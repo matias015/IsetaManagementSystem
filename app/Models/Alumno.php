@@ -49,8 +49,7 @@ class Alumno extends Authenticatable implements MustVerifyEmail
 
 
     static function existeSinPassword($correo){
-        
-        return Alumno::where('email', $correo)->where('password', 0)->first();
+        return Alumno::where('email', $correo)->where('password','0')->first();
     }
 
     public function verificar(){

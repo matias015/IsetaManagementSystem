@@ -16,14 +16,11 @@ use Symfony\Component\HttpFoundation\Session\Session as SessionSession;
 
 class AlumnoAuthController extends Controller
 {
-    function loginView(){
-        return view('Alumnos.Auth.login');
-    }
-
-    function login(AlumnoLoginRequest $request){
-        $data = $request->validated();
-        $alumno = Alumno::where('correo',$data['correo'])->andWhere('password',$data['password']);
-        
+   
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+        $this->middleware('auth:web')->only('logout');
     }
 
     function registroView(){
@@ -42,13 +39,30 @@ class AlumnoAuthController extends Controller
         $alumno -> password = bcrypt($data['password']);
         $alumno -> save();
 
-        $token = rand(1,100);
-
-        session(['__alumno_verificacion_token', $token]);
-
         Auth::login($alumno);
 
-        Mail::to($request->user())->send(new VerificacionEmail($token));
         return redirect() -> route('token.ingreso');
+    }
+
+    function loginView(){
+        return view('Alumnos.Auth.login');
+    }
+
+    function login(AlumnoLoginRequest $request){
+        $data = $request->validated();
+
+        $alumno = Alumno::where('email',$data['email'])->first();
+
+        $passwordCoincide = Hash::check($data['password'], $alumno->password);
+        
+        if(!$alumno || !$passwordCoincide) return redirect()->route('alumno.login')->with('error','incorrecto');
+        
+        Auth::guard('web')->login($alumno);
+        return redirect()->route('alumno.info');
+    }
+
+    function logout(){
+        Auth::logout();
+        return redirect()->route('alumno.login');
     }
 }

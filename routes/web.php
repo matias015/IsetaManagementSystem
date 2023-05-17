@@ -21,3 +21,4 @@ Route::get('/', function () {
 })->name('home');
 
 include_once("alumnos.php");
+include_once("admin.php");

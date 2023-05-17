@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    @include('Comp.header')
+    <h1>Admin login</h1>
+    <form method="post" action="">
+        @csrf
+        <input name="username">
+        <input type="password">
+        <input type="submit" value="Login">
+    </form>
 </body>
 </html>

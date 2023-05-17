@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    @include('Comp.header')
+    <div>
+        @include('Comp.aside')
+        @yield('content')
+        @include('Comp.mensajes')
+    </div>
 </body>
 </html>
