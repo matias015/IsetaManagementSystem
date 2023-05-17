@@ -7,7 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="">
+    <form method="POST" action="{{route('alumno.login.post')}}">
+        @csrf
         <input name="correo">
         <input name="password">
         <input type="submit" value="login">

@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('alumnos', function (Blueprint $table) {
+            
             $table->string('password')->default(0);
-            $table->string('email_verified_at')->nullable();
+            $table->integer('verificado')->default(0);
+            $table->string('token_verificacion')->default(0);
             $table->rememberToken();
         });
     }
@@ -25,7 +27,8 @@ return new class extends Migration
     {
         Schema::table('alumnos', function (Blueprint $table) {
             $table->dropColumn('password');
-            $table->dropColumn('email_verified_at');
+            $table->dropColumn('verificado');
+            $table->dropColumn('token_verificacion');
             $table->dropRememberToken();
         });
     }
