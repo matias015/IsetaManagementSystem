@@ -1,6 +1,7 @@
 <ul>
     <li><a href="{{route('alumno.info')}}">info</a></li>
-      
+    <li><a href="{{route('alumno.cursadas')}}">cursadas</a></li>
+
     <hr>
     @auth
         <li><a href="{{route('alumno.logout')}}">logout</a></li>

@@ -22,3 +22,4 @@ Route::get('alumno/token', [MailVerifController::class, 'ingresarTokenView'])->n
 Route::post('alumno/token', [MailVerifController::class, 'verificarToken'])->name('token.ingreso.post');
 
 Route::get('alumno/info', [AlumnoController::class, 'info'])->name('alumno.info');
+Route::get('alumno/cursadas', [AlumnoController::class, 'cursadas'])->name('alumno.cursadas');

@@ -10,6 +10,8 @@ use Illuminate\Console\View\Components\Alert;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::redirect('/admin','/admin/login');
+
 Route::get('admin/login', [AdminAuthController::class, 'loginView']) -> name('admin.login');
 Route::post('admin/login', [AdminAuthController::class, 'login']) -> name('admin.login.post');
 
