@@ -4,7 +4,7 @@
 <h1>Registro</h1>
     <form method="POST" action="{{route('alumno.registro.post')}}">
         @csrf
-        <input name="correo">
+        <input name="email">
         <input name="password">
         <input type="submit" value="login">
     </form>

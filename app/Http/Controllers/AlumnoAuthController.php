@@ -27,16 +27,16 @@ class AlumnoAuthController extends Controller
         return view('Alumnos.Auth.registro');
     }
 
-    public function registro(AlumnoLoginRequest $request){
-        $data = $request->validated();
-
-        // si existe el correo y tiene password a 0
-        $alumno = Alumno::existeSinPassword($data['correo']);
-
-        if(!$alumno ) return redirect()->back()->with('error','No existe ese mail o ya esta registrado');
+    public function registro(Request $request){
+        //$data = $request->validated();
         
+        // si existe el correo y tiene password a 0
+        $alumno = Alumno::existeSinPassword($request->email);
+        
+        if(!$alumno ) return redirect()->back()->with('error','No existe ese mail o ya esta registrado');
+
         // setea password 
-        $alumno -> password = bcrypt($data['password']);
+        $alumno -> password = bcrypt($request->password);
         $alumno -> save();
 
         Auth::login($alumno);
