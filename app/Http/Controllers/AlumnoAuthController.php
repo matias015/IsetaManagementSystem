@@ -1,32 +1,41 @@
 <?php
 
-namespace App\Http\Controllers;
-
 use App\Http\Requests\AlumnoLoginRequest;
-use App\Mail\VerificacionEmail;
-use App\Models\Admin;
 use App\Models\Alumno;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Symfony\Component\HttpFoundation\Session\Session as SessionSession;
+
+/**
+ * 
+ * Autenticacion (login, registro, etc) de los alumnos
+ * Utilizan el guard: alumno
+ * 
+ */
 
 class AlumnoAuthController extends Controller
 {
    
+    /**
+     * Debes ser guest para acceder a las rutas
+     * excepto para cerrar sesion
+     */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth:web')->only('logout');
     }
 
+    /**
+     * muestra la ruta de registro
+     */
     function registroView(){
         return view('Alumnos.Auth.registro');
     }
 
+    /**
+     * valida los datos de registro y actualiza su contraseña
+     */
     public function registro(Request $request){
         //$data = $request->validated();
         
@@ -44,23 +53,30 @@ class AlumnoAuthController extends Controller
         return redirect() -> route('token.ingreso');
     }
 
+    /**
+     * muestra vista de login
+     */
     function loginView(){
         return view('Alumnos.Auth.login');
     }
 
+    /**
+     * valida datos y loguea al alumno
+     */
     function login(AlumnoLoginRequest $request){
         $data = $request->validated();
 
         $alumno = Alumno::where('email',$data['email'])->first();
 
-        $passwordCoincide = Hash::check($data['password'], $alumno->password);
+        if(!$alumno || !Hash::check($data['password'], $alumno->password)) return redirect()->route('alumno.login')->with('error','incorrecto');
         
-        if(!$alumno || !$passwordCoincide) return redirect()->route('alumno.login')->with('error','incorrecto');
-        
-        Auth::guard('web')->login($alumno);
+        Auth::login($alumno);
         return redirect()->route('alumno.info');
     }
 
+    /**
+     * cierra sesion del alumno
+     */
     function logout(){
         Auth::logout();
         return redirect()->route('alumno.login');

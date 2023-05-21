@@ -23,3 +23,5 @@ Route::post('alumno/token', [MailVerifController::class, 'verificarToken'])->nam
 
 Route::get('alumno/info', [AlumnoController::class, 'info'])->name('alumno.info');
 Route::get('alumno/cursadas', [AlumnoController::class, 'cursadas'])->name('alumno.cursadas');
+
+Route::post('alumno/set-default', [AlumnoController::class, 'setCarreraDefault'])->name('alumno.set.default');
