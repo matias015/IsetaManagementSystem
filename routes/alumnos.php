@@ -23,5 +23,10 @@ Route::post('alumno/token', [MailVerifController::class, 'verificarToken'])->nam
 
 Route::get('alumno/info', [AlumnoController::class, 'info'])->name('alumno.info');
 Route::get('alumno/cursadas', [AlumnoController::class, 'cursadas'])->name('alumno.cursadas');
+Route::get('alumno/examenes', [AlumnoController::class, 'examenes'])->name('alumno.examenes');
+Route::get('alumno/inscripciones', [AlumnoController::class, 'inscripciones'])->name('alumno.inscripciones');
+Route::get('alumno/inscripciones', [AlumnoController::class, 'inscripciones'])->name('alumno.inscripciones');
+Route::post('alumno/inscribirse', [AlumnoController::class, 'inscribirse'])->name('alumno.inscribirse');
+Route::post('alumno/bajarse', [AlumnoController::class, 'bajarse'])->name('alumno.bajarse');
 
 Route::post('alumno/set-default', [AlumnoController::class, 'setCarreraDefault'])->name('alumno.set.default');

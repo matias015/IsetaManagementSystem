@@ -1,12 +1,17 @@
 <?php
 
+namespace App\Http\Controllers;
 
 use App\Models\Carrera;
 use App\Models\CarreraDefault;
+use App\Models\Correlativa;
+use App\Models\Cursada;
+use App\Models\Examen;
 use App\Services\TextFormatService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Mockery\CountValidator\Exact;
 
 /**
  * 
@@ -77,8 +82,8 @@ class AlumnoController extends Controller
         // lista de examenes aprobados para saber si una cursada
         // tiene rendido su final
         $examenesAprobados = DB::table('examenes')
-            -> join('mesa','examenes.id_mesa','mesa.id')
             -> select('mesa.id_asignatura')
+            -> join('mesa','examenes.id_mesa','mesa.id')
             -> where('examenes.nota','>=',4)
             -> where('examenes.id_alumno',Auth::id())
             -> get()
@@ -86,5 +91,67 @@ class AlumnoController extends Controller
             -> toArray();
     
         return view('Alumnos.Datos.cursadas', ['cursadas'=>$cursadas, 'examenesAprobados'=>$examenesAprobados]);
+    }
+
+    /**
+     * Examanes rendidos por el alumno
+     */
+    function examenes(){
+        $examenes = Examen::selectRaw('asignaturas.nombre, MAX(examenes.nota) as nota')
+        -> from('asignaturas')
+        -> join('examenes','examenes.id_asignatura','=','asignaturas.id')
+        -> where('examenes.id_alumno', Auth::id())
+        -> where('asignaturas.id_carrera', Carrera::getDefault()->id_carrera)
+        -> groupBy('asignaturas.nombre')
+        -> get();
+
+        return view('Alumnos.Datos.examenes',[
+            'examenes'=>$examenes,
+            
+            //transformar los nombres de las carreras a utf-8
+            'textFormatService' => new TextFormatService()
+        ]);
+    }
+
+    function inscripciones(){
+        $exAprob = Examen::select('id_asignatura')
+            -> where('id_alumno',617)
+            -> where('nota','>=',4)
+            -> get()
+            -> pluck('id_asignatura')
+            -> toArray();
+
+        $listaAprobados = implode(',',$exAprob);
+
+        $carreraDefault = Carrera::getDefault();
+
+        $sinRendir = Cursada::select('cursada.id_asignatura','asignaturas.nombre')
+        -> join('asignaturas', 'asignaturas.id','cursada.id_asignatura')
+        -> where('cursada.aprobada', 1)
+        -> where('cursada.id_alumno', 617)
+        -> whereRaw('cursada.id_asignatura NOT IN ('.$listaAprobados.')')
+        -> where('asignaturas.id_carrera', $carreraDefault)
+        -> get();
+
+        $posibles=[];
+
+        foreach($sinRendir as $materia){
+            $puede=true;
+
+            $correlativas = Correlativa::select('asignatura_correlativa')
+            -> where('id_asignatura', $materia -> id_asignatura)
+            -> get();
+            dd($correlativas);
+
+            if(count($correlativas)>0){
+                foreach($correlativas as $correlativa){
+                    if(!in_array($correlativa,$exAprob)){
+                        $puede=false;
+                    }
+                }
+            }
+            if($puede) $posibles[]=$materia;    
+        }
+        return $posibles;
     }
 }
