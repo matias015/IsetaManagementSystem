@@ -9,6 +9,8 @@ class Mesa extends Model
 {
     use HasFactory;
 
+    protected $table = "mesa";
+
     public function materia(){
         return $this -> hasOne(Asignatura::class,'id_asignatura');
     }

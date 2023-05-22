@@ -23,10 +23,10 @@ class Carrera extends Model
             -> join('cursada', 'cursada.id_asignatura', 'asignaturas.id')
             -> where('cursada.id_alumno', Auth::id()) 
             -> groupBy('carrera.id', 'carrera.nombre')
-            -> get();
+            -> first();
 
             if(!$carrera) return null;
-            return $carrera->id_carrera;
+            return $carrera->id;
             
             
 

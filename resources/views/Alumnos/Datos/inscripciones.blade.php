@@ -9,7 +9,6 @@
         @foreach($materias as $materia)
             @php
                 
-
             $yaAnotado=false; 
             $sinMesas=false;
             
@@ -20,23 +19,25 @@
                 }
             }
 
-            $path = $yaAnotado? "alumno.inscribirse":"alumno.bajarse";
-            $btnTexto = $yaAnotado? "desinscribirnme":"inscribirnme"; 
+            $path = $yaAnotado? "alumno.bajarse":"alumno.inscribirse";
+            $btnTexto = $yaAnotado? "desinscribirme":"inscribirme"; 
             
             @endphp
             <p>{{$materia->nombre}}</p>
-            <form action="{{route($path)}}" method="post" style="display:flex; flex-direction:column;">';
+            <form action="{{route($path)}}" method="post" style="display:flex; flex-direction:column;">
             @csrf
-                @if($yaAnotado){
-                    @component('bjarse-form')
-                        
-                    @endcomponent        
-                }
+                @if($yaAnotado)
+                    @component('Comp.desinscripcion-form')
+                        @slot('mesa', $yaAnotado)
+                    @endcomponent
+                
                 @elseif($sinMesas) 
                     <p>No hay mesas</p>
                 @else    
                     @foreach($materia -> mesas as $mesa)
-                        include('App/Views/Componentes/inscripcion-form.php');
+                        @component('Comp.inscripcion-form')
+                            @slot('mesa', $mesa)
+                        @endcomponent
                     @endforeach
                 @endif
 
@@ -44,7 +45,6 @@
             </form>
             
         @endforeach
-    
     
 </div>
     

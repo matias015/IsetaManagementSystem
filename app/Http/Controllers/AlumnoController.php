@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alumno;
 use App\Models\Carrera;
 use App\Models\CarreraDefault;
 use App\Models\Correlativa;
 use App\Models\Cursada;
 use App\Models\Examen;
+use App\Models\Mesa;
+use App\Services\DiasHabiles;
 use App\Services\TextFormatService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Mockery\CountValidator\Exact;
 
@@ -101,7 +105,7 @@ class AlumnoController extends Controller
         -> from('asignaturas')
         -> join('examenes','examenes.id_asignatura','=','asignaturas.id')
         -> where('examenes.id_alumno', Auth::id())
-        -> where('asignaturas.id_carrera', Carrera::getDefault()->id_carrera)
+        -> where('asignaturas.id_carrera', Carrera::getDefault())
         -> groupBy('asignaturas.nombre')
         -> get();
 
@@ -114,44 +118,96 @@ class AlumnoController extends Controller
     }
 
     function inscripciones(){
-        $exAprob = Examen::select('id_asignatura')
-            -> where('id_alumno',617)
-            -> where('nota','>=',4)
-            -> get()
-            -> pluck('id_asignatura')
+
+        $posibles = Cache::remember(Auth::id().'inscribibles', 600, function () {
+            return Alumno::inscribibles();
+        });
+
+        $_SESSION['data'] = $posibles;
+
+
+        $yaAnotadas = Examen::select('id_mesa')
+            -> where('id_alumno', Auth::id())
+            -> get() 
+            -> pluck('id_mesa')
             -> toArray();
 
-        $listaAprobados = implode(',',$exAprob);
+        return view('Alumnos.Datos.inscripciones',[
+            'materias' => $posibles,
+            'yaAnotadas' => $yaAnotadas,
 
-        $carreraDefault = Carrera::getDefault();
+        ]);
 
-        $sinRendir = Cursada::select('cursada.id_asignatura','asignaturas.nombre')
-        -> join('asignaturas', 'asignaturas.id','cursada.id_asignatura')
-        -> where('cursada.aprobada', 1)
-        -> where('cursada.id_alumno', 617)
-        -> whereRaw('cursada.id_asignatura NOT IN ('.$listaAprobados.')')
-        -> where('asignaturas.id_carrera', $carreraDefault)
-        -> get();
+    }
 
-        $posibles=[];
+    function inscribirse(Request $request){
+        $mesa = $request->mesa;
 
-        foreach($sinRendir as $materia){
-            $puede=true;
+        $posibles = Cache::remember(Auth::id().'inscribibles', 600, function () {
+            return Alumno::inscribibles();
+        });
 
-            $correlativas = Correlativa::select('asignatura_correlativa')
-            -> where('id_asignatura', $materia -> id_asignatura)
-            -> get();
-            dd($correlativas);
+        $noPuede = true;
+        $finBusqueda = false;
+        // la materia que selecciono esta en las que puede inscribirse
+        // y no caduco la fecha de inscripcion
+        foreach($posibles as $materia){
+            if($finBusqueda) break;
 
-            if(count($correlativas)>0){
-                foreach($correlativas as $correlativa){
-                    if(!in_array($correlativa,$exAprob)){
-                        $puede=false;
-                    }
+            foreach($materia->mesas as $mesaMateria){
+                
+                if($mesaMateria->id == $mesa){
+                    echo '-----------------------';
+                    
+                    if(DiasHabiles::desdeHoyHasta($mesaMateria->fecha) >= 2) $noPuede = false;
+                    else break;
+                    $finBusqueda=true;
                 }
             }
-            if($puede) $posibles[]=$materia;    
         }
-        return $posibles;
+
+        if($noPuede) return redirect()->route('alumno.inscripciones')->with('error', 'No puedes anotarte a esta mesa');
+
+        $yaAnotado = Examen::select('id')
+            -> where('id_mesa', $mesa)
+            -> where('id_alumno', Auth::id())
+            -> first();
+
+        if($yaAnotado) return redirect()->route('alumno.inscripciones')->with('error', 'Ya estas en esta esta mesa');
+
+        Examen::create([
+            'id_mesa' => $mesa,
+            'id_alumno'  => Auth::id(),
+            'nota'=>'0.00',
+        ]);
+
+        return redirect()->route('alumno.inscripciones')->with('mensaje', 'Te has anotado a la mesa');
+    }
+
+    function bajarse(Request $request){
+        if(!$request->has('mesa')) return redirect()->route('alumno.inscripciones');
+        
+        $mesa = Mesa::select('fecha','id')
+            -> where('id', $request->mesa)
+            -> first();
+        
+        $examen = Examen::select('id')
+            -> where('id_mesa', $mesa->id)
+            -> where('id_alumno', Auth::id())
+            -> first();
+
+        if(!$examen){
+            Request::redirect()->route('alumno.inscripciones')->with('error','No estas inscripto en esta mesa.');
+        }
+        
+        if(DiasHabiles::desdeHoyHasta($mesa->fecha) <= 1){
+            return redirect()->route('alumno.inscripciones')->with('error', 'Timpo de desincripcion caducado.');
+        }
+
+        $examen->delete();
+        
+        return redirect()->route('alumno.inscripciones')->with('mensaje','Te has dado de baja de la mesa.');
+
+        
     }
 }

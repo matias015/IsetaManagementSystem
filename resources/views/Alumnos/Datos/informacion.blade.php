@@ -6,7 +6,7 @@
         @csrf
         <select name="carrera" style="height: 5vh;">
             @foreach($carreras as $carrera)
-                <option @if($default && $default->id_carrera == $carrera->id) selected @endif value="{{$carrera->id}}">{{$textFormatService->utf8Minusculas($carrera->nombre)}}</option>
+                <option @if($default && $default == $carrera->id) selected @endif value="{{$carrera->id}}">{{$textFormatService->utf8Minusculas($carrera->nombre)}}</option>
             @endforeach
         </select>
         <input type="submit" value="Seleccionar">

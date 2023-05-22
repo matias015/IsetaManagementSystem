@@ -4,10 +4,12 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Services\DiasHabiles;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class Alumno extends Authenticatable implements MustVerifyEmail
@@ -61,4 +63,63 @@ class Alumno extends Authenticatable implements MustVerifyEmail
         return $this -> hasMany(Cursada::class,'id_alumno');
     }
 
+    static function inscribibles(){
+        $exAprob = Examen::select('id_asignatura')
+            -> where('id_alumno',Auth::id())
+            -> where('nota','>=',4)
+            -> get()
+            -> pluck('id_asignatura')
+            -> toArray();
+
+        $listaAprobados = implode(',',$exAprob);
+
+        $carreraDefault = Carrera::getDefault();
+
+        $sinRendir = Cursada::select('cursada.id_asignatura','asignaturas.nombre')
+        -> join('asignaturas', 'asignaturas.id','cursada.id_asignatura')
+        -> where('cursada.aprobada', 1)
+        -> where('cursada.id_alumno', Auth::id())
+        -> whereRaw('cursada.id_asignatura NOT IN ('.$listaAprobados.')')
+        -> where('asignaturas.id_carrera', $carreraDefault)
+        -> get();
+
+        $posibles=[];
+
+        foreach($sinRendir as $materia){
+            $puede=true;
+
+            $correlativas = Correlativa::select('asignatura_correlativa')
+            -> where('id_asignatura', $materia -> id_asignatura)
+            -> get();
+
+            if(count($correlativas)>0){
+                foreach($correlativas as $correlativa){
+                    if(!in_array($correlativa->asignatura_correlativa,$exAprob)){
+                        $puede=false;
+                    }
+                }
+            }
+            if($puede) $posibles[]=$materia;    
+        }
+
+        
+        foreach($posibles as $key => $materia){
+            $mesas = Mesa::select('id', 'fecha', 'llamado')
+            -> where('id_asignatura', $materia->id_asignatura)
+            -> whereRaw('fecha > NOW()')
+            -> get();
+            
+            
+            foreach($mesas as $keyMesa => $mesa){
+                $mesa -> {'diasHabiles'} = DiasHabiles::desdeHoyHasta($mesa->fecha);
+                $mesas[$keyMesa] = $mesa;
+            }
+
+            $materia -> {'mesas'} = $mesas;
+            $posibles[$key] = $materia;
+            
+        }
+        return $posibles;
+    }
+    
 }
