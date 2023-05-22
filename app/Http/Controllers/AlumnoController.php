@@ -11,6 +11,7 @@ use App\Models\Examen;
 use App\Models\Mesa;
 use App\Services\DiasHabiles;
 use App\Services\TextFormatService;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -117,14 +118,14 @@ class AlumnoController extends Controller
         ]);
     }
 
-    function inscripciones(){
+    function inscripciones(Request $request){
+        $posibles = [];
 
-        $posibles = Cache::remember(Auth::id().'inscribibles', 600, function () {
-            return Alumno::inscribibles();
-        });
-
-        $_SESSION['data'] = $posibles;
-
+        if($request->session()->has('data')) $posibles = $request->session()->get('data');
+        else{
+            $posibles = Alumno::inscribibles();
+            $request->session()->put('data', $posibles);
+        }
 
         $yaAnotadas = Examen::select('id_mesa')
             -> where('id_alumno', Auth::id())
@@ -143,9 +144,11 @@ class AlumnoController extends Controller
     function inscribirse(Request $request){
         $mesa = $request->mesa;
 
-        $posibles = Cache::remember(Auth::id().'inscribibles', 600, function () {
-            return Alumno::inscribibles();
-        });
+        $posibles = [];
+
+        if($request->session()->has('data')) $posibles = $request->session()->get('data');
+        else $posibles = Alumno::inscribibles();
+        
 
         $noPuede = true;
         $finBusqueda = false;
@@ -181,6 +184,7 @@ class AlumnoController extends Controller
             'nota'=>'0.00',
         ]);
 
+        $request->session()->forget('data');
         return redirect()->route('alumno.inscripciones')->with('mensaje', 'Te has anotado a la mesa');
     }
 
@@ -205,7 +209,7 @@ class AlumnoController extends Controller
         }
 
         $examen->delete();
-        
+        $request->session()->forget('data');
         return redirect()->route('alumno.inscripciones')->with('mensaje','Te has dado de baja de la mesa.');
 
         

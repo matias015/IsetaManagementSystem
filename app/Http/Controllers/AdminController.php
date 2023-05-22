@@ -20,13 +20,13 @@ class AdminController extends Controller
      */
     function __construct()
     {
-        $this -> middleware('auth:admin');
+        //$this -> middleware('auth:admin');
     }
 
     /**
      * ver todos los alumnos
      */
     function alumnos(){
-        return view('Admin.alumnos', ['alumnos'=>Alumno::all()]);
+        return view('Admin.alumnos', ['alumnos'=>Alumno::paginate(25)]);
     }
 }
