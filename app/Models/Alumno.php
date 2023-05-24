@@ -25,9 +25,25 @@ class Alumno extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'dni',
+        'nombre',
+        'apellido',
+        'fecha_nacimiento',
+        'ciudad',
+        'calle',
+        'casa_numero' ,
+        'dpto' ,
+        'piso' ,
+        'estado_civil' ,
         'email',
-        'password',
+        'titulo_anterior' ,
+        'becas',
+        'observaciones',
+        'telefono1',
+        'telefono2' ,
+        'telefono3',
+        'codigo_postal',
+        'password'
     ];
 
     /**

@@ -11,10 +11,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/admin','/admin/login');
 
-Route::get('admin/login', [AdminController::class, 'loginView']) -> name('admin.login');
-Route::post('admin/login', [AdminAuthController::class, 'login']) -> name('admin.login.post');
 
 
 Route::prefix('admin')->group(function(){
+
+    Route::get('login', [AdminController::class, 'loginView']) -> name('admin.login');
+    Route::post('login', [AdminAuthController::class, 'login']) -> name('admin.login.post');
+
     Route::resource('alumnos', AlumnoCrudController::class);
+
 });

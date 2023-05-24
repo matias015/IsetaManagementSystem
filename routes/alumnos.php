@@ -8,25 +8,30 @@ use Illuminate\Console\View\Components\Alert;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('alumno/registro',[AlumnoAuthController::class,'registroView'])->name('alumno.registro');
-Route::post('alumno/registro',[AlumnoAuthController::class,'registro'])->name('alumno.registro.post');
 
-Route::get('alumno/login',[AlumnoAuthController::class,'loginView'])->name('alumno.login');
-Route::post('alumno/login',[AlumnoAuthController::class,'login'])->name('alumno.login.post');
+Route::prefix('alumno')->group(function(){
 
-Route::get('alumno/logout',[AlumnoAuthController::class,'logout'])->name('alumno.logout');
+    Route::get('/registro',[AlumnoAuthController::class,'registroView'])->name('alumno.registro');
+    Route::post('/registro',[AlumnoAuthController::class,'registro'])->name('alumno.registro.post');
 
-Route::get('/alumno/mail', [MailVerifController::class,'enviarMail'])->name('token.enviar.mail');
+    Route::get('/login',[AlumnoAuthController::class,'loginView'])->name('alumno.login');
+    Route::post('/login',[AlumnoAuthController::class,'login'])->name('alumno.login.post');
 
-Route::get('alumno/token', [MailVerifController::class, 'ingresarTokenView'])->name('token.ingreso');
-Route::post('alumno/token', [MailVerifController::class, 'verificarToken'])->name('token.ingreso.post');
+    Route::get('/logout',[AlumnoAuthController::class,'logout'])->name('alumno.logout');
 
-Route::get('alumno/info', [AlumnoController::class, 'info'])->name('alumno.info');
-Route::get('alumno/cursadas', [AlumnoController::class, 'cursadas'])->name('alumno.cursadas');
-Route::get('alumno/examenes', [AlumnoController::class, 'examenes'])->name('alumno.examenes');
-Route::get('alumno/inscripciones', [AlumnoController::class, 'inscripciones'])->name('alumno.inscripciones');
-Route::get('alumno/inscripciones', [AlumnoController::class, 'inscripciones'])->name('alumno.inscripciones');
-Route::post('alumno/inscribirse', [AlumnoController::class, 'inscribirse'])->name('alumno.inscribirse');
-Route::post('alumno/bajarse', [AlumnoController::class, 'bajarse'])->name('alumno.bajarse');
+    Route::get('/mail', [MailVerifController::class,'enviarMail'])->name('token.enviar.mail');
 
-Route::post('alumno/set-default', [AlumnoController::class, 'setCarreraDefault'])->name('alumno.set.default');
+    Route::get('/token', [MailVerifController::class, 'ingresarTokenView'])->name('token.ingreso');
+    Route::post('/token', [MailVerifController::class, 'verificarToken'])->name('token.ingreso.post');
+
+    Route::get('/info', [AlumnoController::class, 'info'])->name('alumno.info');
+    Route::get('/cursadas', [AlumnoController::class, 'cursadas'])->name('alumno.cursadas');
+    Route::get('/examenes', [AlumnoController::class, 'examenes'])->name('alumno.examenes');
+    Route::get('/inscripciones', [AlumnoController::class, 'inscripciones'])->name('alumno.inscripciones');
+    Route::get('/inscripciones', [AlumnoController::class, 'inscripciones'])->name('alumno.inscripciones');
+    Route::post('/inscribirse', [AlumnoController::class, 'inscribirse'])->name('alumno.inscribirse');
+    Route::post('/bajarse', [AlumnoController::class, 'bajarse'])->name('alumno.bajarse');
+
+    Route::post('/set-default', [AlumnoController::class, 'setCarreraDefault'])->name('alumno.set.default');
+
+});
