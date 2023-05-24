@@ -10,5 +10,6 @@
     @include('Comp.header')
     @yield('content')
     @include('Comp.mensajes')
+    
 </body>
 </html>

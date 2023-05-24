@@ -9,7 +9,7 @@
         @endif
 
 
-       <form method="post" action="{{route('alumnos.update')}}">
+       <form method="post" action="{{route('alumnos.update', ['alumno'=>$alumno->id])}}">
         @csrf
 
         <p>dni <input value="{{$alumno->dni}}" name="dni"></p>

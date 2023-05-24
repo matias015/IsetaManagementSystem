@@ -15,6 +15,7 @@ class AlumnoCrudController extends Controller
     public function index(Request $request)
     {       
          $alumnos = [];
+         $porPagina = 15;
 
         if($request->has('filtro')){
             
@@ -22,7 +23,7 @@ class AlumnoCrudController extends Controller
                 $arr = explode(':',$request->filtro);
                 $campo = $arr[0];
                 $filtro = $arr[1];
-                $alumnos = Alumno::where($campo,'LIKE','%'.$filtro.'%')-> paginate(25);
+                $alumnos = Alumno::where($campo,'LIKE','%'.$filtro.'%')-> paginate($porPagina);
             }else{
 
                 $filtro = '%'.$request->filtro.'%';
@@ -32,10 +33,10 @@ class AlumnoCrudController extends Controller
                     -> orWhere('apellido','LIKE',$filtro)
                     -> orWhere('dni','LIKE',$filtro)
                     -> orWhere('email','LIKE',$filtro)
-                    -> paginate(25);
+                    -> paginate($porPagina);
             }   
         }else{
-            $alumnos = Alumno::paginate(25);
+            $alumnos = Alumno::paginate($porPagina);
         }
         return view('Admin.Alumnos.index',compact('alumnos'));
     }

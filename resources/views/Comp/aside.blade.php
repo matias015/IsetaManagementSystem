@@ -1,7 +1,9 @@
 <div>
-    <ul>
-        <li>a</li>
-        <li>b</li>
-        <li>c</li>
+    
+    <ul class="m-2">
+        <p>Admin</p>
+        <li><a class="text-blue-600" href="{{route('alumnos.index')}}">Alumnos</a></li>
+        <hr>
     </ul>
+
 </div>
