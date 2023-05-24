@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Http\Controllers;
 
 use App\Mail\VerificacionEmail;
 use App\Models\Alumno;
