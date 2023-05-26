@@ -9,7 +9,7 @@
         @endif
 
 
-       <form method="post" action="{{route('admin.alumnos.store')}}">
+       <form method="post" action="{{route('admin.profesores.store')}}">
         @csrf
 
         <p>dni <input name="dni"></p>
@@ -29,9 +29,10 @@
             </select>
         </p>
         <p>email <input value="@gmail.com" name="email"></p>
-        <p>titulo anterior <input name="titulo_anterior"></p>
-        <p>becas <input name="becas"></p>
-        
+        <p>formacion academica <input name="formacion_academica"></p>
+        <p>titulo <input name="titulo"></p>
+        <p>año de ingreso <input name="anio_ingreso"></p>
+
         <p>observaciones <textarea name="observaciones" cols="30" rows="10"></textarea></p>
 
         <p>telefono <input value="2317" name="telefono1"></p>

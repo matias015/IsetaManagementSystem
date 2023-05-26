@@ -9,13 +9,14 @@
         @endif
 
 
-       <form method="post" action="{{route('alumnos.update', ['alumno'=>$alumno->id])}}">
+       <form method="post" action="{{route('admin.alumnos.update', ['alumno'=>$alumno->id])}}">
         @csrf
+        @method('put')
 
         <p>dni <input value="{{$alumno->dni}}" name="dni"></p>
         <p>nombre <input value="{{$alumno->nombre}}" name="nombre"></p>
         <p>apellido <input value="{{$alumno->apellido}}" name="apellido"></p>
-        <p>fecha nacimiento <input value="{{$alumno->fecha_nacimiento}}" type="date" name="fecha_nacimiento"></p>
+        <p>fecha nacimiento <input value="{{$alumno->fecha_nacimiento->format('Y-m-d')}}" type="date" name="fecha_nacimiento"></p>
         <p>ciudad <input value="{{$alumno->ciudad}}" value="9 de Julio" name="ciudad"></p>
         <p>calle <input value="{{$alumno->calle}}" name="calle"></p>
         <p>numero <input value="{{$alumno->numero}}"  name="casa_numero"></p>

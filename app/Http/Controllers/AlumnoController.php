@@ -5,58 +5,46 @@ namespace App\Http\Controllers;
 use App\Models\Alumno;
 use App\Models\Carrera;
 use App\Models\CarreraDefault;
-use App\Models\Correlativa;
-use App\Models\Cursada;
 use App\Models\Examen;
 use App\Models\Mesa;
 use App\Services\DiasHabiles;
-use App\Services\TextFormatService;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
-use Mockery\CountValidator\Exact;
 
-/**
- * 
- * acciones del usuario, como:
- *  - ver su informacion
- *  - ver sus cursadas
- *  - anotarse/bajarse de mesas
- *  - etc
- * 
+/*
+ | -----------------------------
+ | Acciones del usuario, como:
+ |  - ver su informacion
+ |  - ver sus cursadas
+ |  - anotarse/bajarse de mesas
+ |  - etc
+ | -----------------------------
  */
 
 class AlumnoController extends Controller
 {
 
-    /**
-     * todas las rutas estan protegidas
+
+    /*
+     | --------------------------------
+     | Todas las rutas estan protegidas
+     | --------------------------------
      */
+
     public function __construct()
     {
         $this -> middleware('auth:web');
     }
 
-    /**
-     * setea la carrera que el alumno haya elegido como default para los resultados
-     * se guarda en la tabla: carreras_default
-     */
-    function setCarreraDefault(Request $request){
-        $data = [
-            'id_alumno' => Auth::id(),
-            'id_carrera' => $request -> carrera
-        ];
 
-        CarreraDefault::updateOrInsert($data);
-        return redirect()->back();
-    }
-
-    /**
-     * informacion genereal del alumno
-     * y un select para elegir una carrera default
+    /*
+     | -------------------------------------------
+     | informacion genereal del alumno
+     | y un select para elegir una carrera default
+     |  ---------------------------------------------
      */
+
     function info(){
         // carreras que el alumno cursa o curso
         $carreras = Carrera::select('carrera.id', 'carrera.nombre')
@@ -69,16 +57,36 @@ class AlumnoController extends Controller
         return view('Alumnos.Datos.informacion', [
             'alumno'=>Auth::user(),
             'carreras' => $carreras,
-            'default' => Carrera::getDefault(),
-
-            //transformar los nombres de las carreras a utf-8
-            'textFormatService' => new TextFormatService()
+            'default' => Carrera::getDefault()
         ]);
     }
 
-    /**
-     * ver todas las cursadas del alumno y su estado
+
+    /*
+     | ----------------------------------------------------------------------------
+     | Setea la carrera que el alumno haya elegido como default para los resultados
+     | se guarda en la tabla: carreras_default
+     | ----------------------------------------------------------------------------
      */
+
+     function setCarreraDefault(Request $request){
+        $data = [
+            'id_alumno' => Auth::id(),
+            'id_carrera' => $request -> carrera
+        ];
+
+        CarreraDefault::updateOrInsert($data);
+
+        return redirect()->back();
+    }
+
+
+    /*
+     | ---------------------------------------------
+     | ver todas las cursadas del alumno y su estado
+     | ---------------------------------------------
+     */
+
     function cursadas(){
         $user = Auth::user();
 
@@ -95,12 +103,19 @@ class AlumnoController extends Controller
             -> pluck('id_asignatura')
             -> toArray();
     
-        return view('Alumnos.Datos.cursadas', ['cursadas'=>$cursadas, 'examenesAprobados'=>$examenesAprobados]);
+        return view('Alumnos.Datos.cursadas', [
+            'cursadas' => $cursadas, 
+            'examenesAprobados' => $examenesAprobados
+        ]);
     }
 
-    /**
-     * Examanes rendidos por el alumno
+
+    /*
+     | ---------------------------------------------
+     | Examanes rendidos por el alumno
+     | ---------------------------------------------
      */
+
     function examenes(){
         $examenes = Examen::selectRaw('asignaturas.nombre, MAX(examenes.nota) as nota')
         -> from('asignaturas')
@@ -110,13 +125,15 @@ class AlumnoController extends Controller
         -> groupBy('asignaturas.nombre')
         -> get();
 
-        return view('Alumnos.Datos.examenes',[
-            'examenes'=>$examenes,
-            
-            //transformar los nombres de las carreras a utf-8
-            'textFormatService' => new TextFormatService()
-        ]);
+        return view('Alumnos.Datos.examenes', compact('examenes'));
     }
+
+
+    /*
+     | ---------------------------------------------
+     | Vista para inscribirse o bajarse a una mesa
+     | ---------------------------------------------
+     */
 
     function inscripciones(Request $request){
         $posibles = [];
@@ -136,10 +153,16 @@ class AlumnoController extends Controller
         return view('Alumnos.Datos.inscripciones',[
             'materias' => $posibles,
             'yaAnotadas' => $yaAnotadas,
-
         ]);
 
     }
+
+
+    /*
+     | ---------------------------------------------
+     | Solicitud de inscripcion a mesa [post] 
+     | ---------------------------------------------
+     */
 
     function inscribirse(Request $request){
         $mesa = $request->mesa;
@@ -149,19 +172,18 @@ class AlumnoController extends Controller
         if($request->session()->has('data')) $posibles = $request->session()->get('data');
         else $posibles = Alumno::inscribibles();
         
-
         $noPuede = true;
         $finBusqueda = false;
+        
         // la materia que selecciono esta en las que puede inscribirse
         // y no caduco la fecha de inscripcion
         foreach($posibles as $materia){
+
             if($finBusqueda) break;
 
             foreach($materia->mesas as $mesaMateria){
                 
-                if($mesaMateria->id == $mesa){
-                    echo '-----------------------';
-                    
+                if($mesaMateria->id == $mesa){               
                     if(DiasHabiles::desdeHoyHasta($mesaMateria->fecha) >= 2) $noPuede = false;
                     else break;
                     $finBusqueda=true;
@@ -188,6 +210,13 @@ class AlumnoController extends Controller
         return redirect()->route('alumno.inscripciones')->with('mensaje', 'Te has anotado a la mesa');
     }
 
+
+    /*
+     | ---------------------------------------------
+     | Solicitud para bajarse de una mesa [post] 
+     | ---------------------------------------------
+     */
+
     function bajarse(Request $request){
         if(!$request->has('mesa')) return redirect()->route('alumno.inscripciones');
         
@@ -210,8 +239,8 @@ class AlumnoController extends Controller
 
         $examen->delete();
         $request->session()->forget('data');
+
         return redirect()->route('alumno.inscripciones')->with('mensaje','Te has dado de baja de la mesa.');
 
-        
     }
 }

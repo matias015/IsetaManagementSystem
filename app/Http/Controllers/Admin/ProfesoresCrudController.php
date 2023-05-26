@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\crearAlumnoRequest;
-use App\Models\Alumno;
+use App\Http\Requests\crearProfesorRequest;
+use App\Models\Profesor;
 use Illuminate\Http\Request;
 
-class AlumnoCrudController extends Controller
+class ProfesoresCrudController extends Controller
 {
-    /**
+       /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {       
-         $alumnos = [];
+         $profesores = [];
          $porPagina = 15;
 
         if($request->has('filtro')){
@@ -23,22 +23,22 @@ class AlumnoCrudController extends Controller
                 $arr = explode(':',$request->filtro);
                 $campo = $arr[0];
                 $filtro = $arr[1];
-                $alumnos = Alumno::where($campo,'LIKE','%'.$filtro.'%')-> paginate($porPagina);
+                $profesores = Profesor::where($campo,'LIKE','%'.$filtro.'%')-> paginate($porPagina);
             }else{
 
                 $filtro = '%'.$request->filtro.'%';
                 
 
-                $alumnos = Alumno::where('nombre','LIKE',$filtro)
+                $profesores = Profesor::where('nombre','LIKE',$filtro)
                     -> orWhere('apellido','LIKE',$filtro)
                     -> orWhere('dni','LIKE',$filtro)
                     -> orWhere('email','LIKE',$filtro)
                     -> paginate($porPagina);
             }   
         }else{
-            $alumnos = Alumno::paginate($porPagina);
+            $profesores = Profesor::paginate($porPagina);
         }
-        return view('Admin.Alumnos.index',compact('alumnos'));
+        return view('Admin.Profesores.index',compact('profesores'));
     }
 
     /**
@@ -46,18 +46,18 @@ class AlumnoCrudController extends Controller
      */
     public function create()
     {
-        return view('Admin.Alumnos.create');
+        return view('admin.profesores.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(crearAlumnoRequest $request)
+    public function store(crearProfesorRequest $request)
     {
         $data = $request->validated();
 
-        Alumno::create($data);
-        return redirect()->route('admin.alumnos.index');
+        Profesor::create($data);
+        return redirect()->route('admin.profesores.index');
     }
 
     /**
@@ -71,27 +71,27 @@ class AlumnoCrudController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Alumno $alumno)
+    public function edit(Profesor $profesor)
     {
-        //dd($alumno->fecha_nacimiento);
-        return view('Admin.Alumnos.edit', compact('alumno'));
+        //dd($profesor->fecha_nacimiento);
+        return view('admin.profesores.edit', compact('profesor'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Alumno $alumno)
+    public function update(Request $request, Profesor $profesor)
     {
-        $alumno->update($request->all());
-        return redirect()->route('admin.alumnos.index');
+        $profesor->update($request->all());
+        return redirect()->route('admin.profesores.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Alumno $alumno)
+    public function destroy(Profesor $profesor)
     {
-        $alumno->delete();
-        return redirect() -> route('admin.alumnos.index') -> with('mensaje', 'Se ha eliminado el alumno');
+        $profesor->delete();
+        return redirect() -> route('admin.profesores.index') -> with('mensaje', 'Se ha eliminado el alumno');
     }
 }
