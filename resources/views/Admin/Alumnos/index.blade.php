@@ -11,7 +11,7 @@
         <div>
             <form action="{{route('admin.alumnos.index')}}">
                 <p>filtrar</p> 
-                 <input  name="filtro" type="text">
+                 <input value="{{$filtro}}" name="filtro" type="text">
                  <input type="submit" value="Buscar">
             </form>
 

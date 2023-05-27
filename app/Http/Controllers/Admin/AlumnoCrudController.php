@@ -15,21 +15,20 @@ class AlumnoCrudController extends Controller
     public function index(Request $request)
     {       
          $alumnos = [];
+         $filtro = "";
          $porPagina = 15;
 
         if($request->has('filtro')){
-            
-            if(strpos($request->filtro,':')){
-                $arr = explode(':',$request->filtro);
+            $filtro = $request->filtro;
+
+            if(strpos($filtro, ':')){
+                $arr = explode(':',$filtro);
                 $campo = $arr[0];
-                $filtro = $arr[1];
-                $alumnos = Alumno::where($campo,'LIKE','%'.$filtro.'%')-> paginate($porPagina);
+                $keyword = $arr[1];
+                $alumnos = Alumno::where($campo,'LIKE','%'.$keyword.'%')-> paginate($porPagina);
             }else{
-
-                $filtro = '%'.$request->filtro.'%';
                 
-
-                $alumnos = Alumno::where('nombre','LIKE',$filtro)
+                $alumnos = Alumno::where('nombre','LIKE','%'.$filtro.'%')
                     -> orWhere('apellido','LIKE',$filtro)
                     -> orWhere('dni','LIKE',$filtro)
                     -> orWhere('email','LIKE',$filtro)
@@ -38,7 +37,7 @@ class AlumnoCrudController extends Controller
         }else{
             $alumnos = Alumno::paginate($porPagina);
         }
-        return view('Admin.Alumnos.index',compact('alumnos'));
+        return view('Admin.Alumnos.index',['alumnos'=>$alumnos, 'filtro'=>$filtro]);
     }
 
     /**

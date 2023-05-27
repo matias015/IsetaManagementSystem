@@ -10,6 +10,15 @@ class Carrera extends Model
 {
     use HasFactory;
     protected $table = "carrera";
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nombre',
+        'resolucion',
+        'anio_apertura',
+        'anio_fin',
+        'observaciones',
+    ];
 
     static function getDefault(){
         $carrera = CarreraDefault::select('id_carrera')
