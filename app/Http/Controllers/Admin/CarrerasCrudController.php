@@ -68,10 +68,11 @@ class CarrerasCrudController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Carrera $carrera)
+    public function edit(Request $request, $carrera)
     {
         //dd($alumno->fecha_nacimiento);
-        return view('Admin.Carreras.edit', compact('carrera'));
+        //dd(Carrera::where('id',$carrera)->with('asignaturas')->get());
+        return view('Admin.Carreras.edit', ['carrera'=>Carrera::where('id',$carrera)->with('asignaturas')->first()]);
     }
 
     /**

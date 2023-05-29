@@ -20,6 +20,10 @@ class Carrera extends Model
         'observaciones',
     ];
 
+    public function asignaturas(){
+        return $this -> hasMany(Asignatura::class, 'id_carrera');
+    }
+
     static function getDefault(){
         $carrera = CarreraDefault::select('id_carrera')
             -> where('id_alumno',Auth::id())

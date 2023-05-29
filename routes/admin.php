@@ -24,8 +24,9 @@ Route::prefix('admin')->group(function(){
     
     Route::resource('carreras', CarrerasCrudController::class, ['as' => 'admin']);
     
-    //Route::resource('mesas', CarrerasCrudController::class, ['as' => 'admin']);
     //Route::resource('asignaturas', CarrerasCrudController::class, ['as' => 'admin']);
+
+    //Route::resource('mesas', CarrerasCrudController::class, ['as' => 'admin']);
     //Route::resource('dias', CarrerasCrudController::class, ['as' => 'admin']);
     //Route::resource('cursadas', CarrerasCrudController::class, ['as' => 'admin']);
     //Route::resource('correlativas', CarrerasCrudController::class, ['as' => 'admin']);

@@ -21,5 +21,38 @@
 
         <input type="submit" value="Actualizar">
        </form>
+       <hr>
+       <table>
+        <tr>
+            <td>año</td>
+            <td>materia</td>
+            <td>carga</td>
+            <td>acciones</td>
+        </tr>
+
+        @foreach ($carrera->asignaturas as $asignatura)
+            <tr>
+                <td> {{$asignatura->anio + 1}} </td>
+
+                <td> {{$asignatura->nombre}} </td>
+                
+                <td> {{$asignatura->carga_horaria}} horas</td>
+
+                <td style="display:flex;">
+                    <form action="">
+                        <button>Editar</button>
+                    </form>
+                    <form action="">
+                        <button>Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+        
+            
+
+       </table>
     </div>
+
+
 @endsection
