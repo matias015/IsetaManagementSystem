@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class AlumnoCrudController extends Controller
 {
+    public function __construct()
+    {
+        $this -> middleware('guest');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -29,9 +34,9 @@ class AlumnoCrudController extends Controller
             }else{
                 
                 $alumnos = Alumno::where('nombre','LIKE','%'.$filtro.'%')
-                    -> orWhere('apellido','LIKE',$filtro)
-                    -> orWhere('dni','LIKE',$filtro)
-                    -> orWhere('email','LIKE',$filtro)
+                    -> orWhere('apellido','LIKE','%'.$filtro.'%')
+                    -> orWhere('dni','LIKE','%'.$filtro.'%')
+                    -> orWhere('email','LIKE','%'.$filtro.'%')
                     -> paginate($porPagina);
             }   
         }else{

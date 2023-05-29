@@ -26,7 +26,7 @@
         <tr>
             <td>año</td>
             <td>materia</td>
-            <td>carga</td>
+            <td>carga anual o semanal</td>
             <td>acciones</td>
         </tr>
 
@@ -35,7 +35,7 @@
                 <td> {{$asignatura->anio + 1}} </td>
 
                 <td> {{$asignatura->nombre}} </td>
-                
+
                 <td> {{$asignatura->carga_horaria}} horas</td>
 
                 <td style="display:flex;">

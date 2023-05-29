@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 class CarrerasCrudController extends Controller
 {
     
+    public function __construct()
+    {
+        $this -> middleware('guest');
+    }
+
     /**
      * Display a listing of the resource.
      */
