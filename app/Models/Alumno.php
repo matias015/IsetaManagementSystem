@@ -25,25 +25,9 @@ class Alumno extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'dni',
-        'nombre',
-        'apellido',
-        'fecha_nacimiento',
-        'ciudad',
-        'calle',
-        'casa_numero' ,
-        'dpto' ,
-        'piso' ,
-        'estado_civil' ,
+        'name',
         'email',
-        'titulo_anterior' ,
-        'becas',
-        'observaciones',
-        'telefono1',
-        'telefono2' ,
-        'telefono3',
-        'codigo_postal',
-        'password'
+        'password',
     ];
 
     /**
@@ -63,7 +47,6 @@ class Alumno extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'fecha_nacimiento' => 'datetime',
     ];
 
 

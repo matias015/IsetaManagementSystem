@@ -6,10 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body class="bg-slate-900 text-slate-300 m-2">
+<body>
     @include('Comp.header')
     @yield('content')
     @include('Comp.mensajes')
-    
 </body>
 </html>
