@@ -7,5 +7,8 @@ class TextFormatService{
         return ucfirst(mb_strtolower(utf8_encode($texto)));
     }
 
+    static function utf8UpperCamelCase ($texto){
+        return ucwords(mb_strtolower(utf8_encode($texto)));
+    }
 
 }

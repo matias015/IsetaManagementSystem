@@ -43,4 +43,24 @@
         <input type="submit" value="Actualizar">
        </form>
     </div>
+
+    <div>
+        cursadas
+        <table>
+            <tr>
+                <td>materia</td>
+                <td>año</td>
+                <td>carrera</td>
+                <td>aprobada</td>
+            </tr>
+            @foreach($alumno->cursadas as $cursada)
+                <tr>
+                    <td>{{$cursada->asignatura->nombre}}</td>
+                    <td>{{$cursada->anio_cursada}}</td>
+                    <td>{{$cursada->asignatura->carrera->nombre}}</td>
+                    <td>{{$cursada->aprobada}}</td>
+                </tr>
+            @endforeach
+        </table>
+    </div>
 @endsection

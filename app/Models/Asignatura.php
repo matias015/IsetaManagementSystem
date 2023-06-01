@@ -13,5 +13,9 @@ class Asignatura extends Model
     public function cursadas(){
         return $this -> hasMany(Cursada::class,'id_asignatura');
     }
+
+    public function carrera(){
+        return $this -> belongsTo(Carrera::class,'id_carrera','id');
+    }
     
 }

@@ -1,7 +1,3 @@
-@extends('Alumnos.layout')
-
-@section('content')
-
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -10,38 +6,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ISETA inscripciones</title>
         <link rel="icon" type="image/png" href="img/icono-iseta.png">
-        <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
+        <link rel="stylesheet" href="estilos.css">
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
         <script src="nav.js" defer></script>
     </head>
 <body id="logeo">
     <section class="login">
-        <form method="post" action="{{route('alumno.login.post')}}">
-            @csrf
-
+        <form method="post">
             <div class="logo">ISETA</div>
-            
             <div class="titulo-login">
-                <h1>Inicio de sesión</h1>
+                <h1>Registrate</h1>
                 <p>¡Bienvenido! Por favor ingrese sus datos</p>
             </div>
-            <div class="usuario input-box">
-                <input type="email" name="email" required placeholder="Nombre de usuario">
+            <div class="usuario input-box underline">
+                <input type="email" name="usuario" required placeholder="Correo electronico">
+                <div class="underline"></div>
+            </div>
+            <div class="dni input-box">
+                <input type="text" name="dni" required placeholder="DNI">
                 <div class="underline"></div>
             </div>
             <div class="contraseña input-box">
-                <input type="password" name="password"  required placeholder="Contraseña">
+                <input type="password" name="contraseña"  required placeholder="Contraseña">
                 <div class="underline"></div>
             </div>
-            <div class="entrar input-box button"><input type="submit" value="Entrar"></div>
-            <div class="etiquetas"><a href="registro.html">¡Registrate!</a></div>
-            <div class="etiquetas"><a href="recuperar-contraseña.html">¿Ha olvidado su contraseña?</a></div>
-            
+            <div class="crear input-box button"><input type="submit" value="Crear"></div>
+            <div class="etiquetas"><p>¿Ya estas registrado?<a href="login.html">¡Inicia sesion!</a></p></div>
             
         </form>
     </section>
 </body>
 </html>
-@endsection
-

@@ -6,16 +6,16 @@
         <script src="https://cdn.tailwindcss.com"></script>
 
     
-            <a href="{{route('admin.alumnos.create')}}"><button>Agregar alumno</button></a>
+            <a href="{{route('admin.asignaturas.create')}}"><button>Agregar carrera</button></a>
 
         <div>
-            <form action="{{route('admin.alumnos.index')}}">
+            <form action="{{route('admin.asignaturas.index')}}">
                 <p>filtrar</p> 
-                 <input value="{{$filtro}}" name="filtro" type="text">
+                 <input  name="filtro" type="text">
                  <input type="submit" value="Buscar">
             </form>
 
-            <a href="{{route('admin.alumnos.index')}}"><button>Quitar filtro</button></a>
+            <a href="{{route('admin.asignaturas.index')}}"><button>Quitar filtro</button></a>
       
         </div>
 
@@ -32,19 +32,18 @@
         <table>
             <tr>
                 <td>Nombre</td>
-                <td>Apellido</td>
-                <td>Dni</td>
+                <td>carrera</td>
+
                 <td>Acciones</td>
             </tr>
 
-            @foreach ($alumnos as $alumno)
+            @foreach ($asignaturas as $asignatura)
             <tr>
-                <td>{{$textFormatService->utf8UpperCamelCase($alumno->nombre)}}</td>
-                <td>{{$textFormatService->utf8UpperCamelCase($alumno->apellido)}}</td>
-                <td>{{$alumno->dni}}</td>
-                <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}"><button>editar</button></a></td>
+                <td>{{$textFormatService->utf8Minusculas($asignatura->nombre)}}</td>
+                <td>{{$textFormatService->utf8UpperCamelCase($asignatura->carrera->nombre)}}</td>
+                <td><a href="{{route('admin.asignaturas.edit', ['asignatura' => $asignatura->id])}}"><button>editar</button></a></td>
                 <td>
-                    <form method="POST" action="{{route('admin.alumnos.destroy', ['alumno' => $alumno->id])}}">
+                    <form method="POST" action="{{route('admin.asignaturas.destroy', ['asignatura' => $asignatura->id])}}">
                         @csrf
                         @method('delete')
                         <input type="submit" value="Eliminar">
@@ -56,7 +55,7 @@
         </table>
         
         <div class="w-1/2 mx-auto p-5">
-            {{ $alumnos->appends(request()->query())->links() }}
+            {{ $asignaturas->appends(request()->query())->links() }}
         </div>
 
     </div>

@@ -10,12 +10,16 @@ class Cursada extends Model
     protected $table = 'cursada';
     use HasFactory;
 
-    public function cursadas(){
-        return $this -> belongsTo(Alumno::class,'id_alumno');
+    protected $fillable = ['anio_cursada','aprobada','condicion'];
+
+    public $timestamps=false;
+
+    public function alumno(){
+        return $this -> hasOne(Alumno::class,'id','id_alumno');
     }
 
-    public function materia(){
-        return $this -> belongsTo(Asignatura::class,'id_asignatura');
+    public function asignatura(){
+        return $this -> belongsTo(Asignatura::class,'id_asignatura','id');
     }
 
 

@@ -1,0 +1,759 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+:root {
+    --rojo-sl: #ec212d;
+    --azul-sl:  #273b56;
+    --azul-alt: #2c3e50;
+    --boton-vermas:#3276c9;
+    --instagram: #e1306c;
+    --twitter: #00acee;
+    --facebook: #3b5998;
+    --whatsapp: #25d366;
+    --phone: #3276c9;
+    --mail: #f8f32b;
+    --netflix: #d81f26;
+    --youtube: #ff0000;
+    --prime-vide: #00a5e2;
+    --hbo-max: #991eeb;
+    --disney-plus:  #0d2e6f;
+    --star-plus: #ec5d2b;
+    --paramount-plus: #0064ff;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+
+
+body {
+    
+    min-height: 100vh;
+    overflow-X: hidden;
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+}
+
+
+
+
+
+/*
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: skyblue;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 15px 15px rgba(0,0,0,0.05);
+}
+
+.logo {
+    color: #333;
+    font-size: 1.5em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+header ul {
+    position: relative;
+    display: flex;
+    gap: 30px;
+}
+
+header ul li a {
+    position: relative;
+    font-size: 1em;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+header ul li a::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: #333;
+    transform: scaleX(0);
+    transition: transform 0.5s ease-in-out;
+    transform-origin: right;
+}
+
+header ul li a:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+header .buscar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.buscarBox {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: skyblue;
+    align-items: center;
+    padding: 0 30px;
+    transition: 0.5s ease-in-out;
+}
+
+.buscarBox.active {
+    right: 0;
+
+}
+
+.buscarBox input {
+    width: 100%;
+    border: none;
+    outline: none;
+    height: 50px;
+    color: #333;
+    font-size: 1.25em;
+    background: white;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+
+}
+
+.searchBtn {
+    position: relative;
+    left: 30px;
+    top: 2.5px;
+    transition: 0.5s ease-in-out;
+}
+
+.searchBtn.active {
+    left: 0;
+}
+
+.closeBtn {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.closeBtn.active {
+    
+}
+
+*/
+
+/*
+
+.inicio-logo {
+    height: 100px;
+    display: flex;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+h1 {
+    color: wheat;
+}
+
+.navigation {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    background-color: #0734CF;
+}
+
+.navigation ul {
+    display: flex;
+}
+
+.navigation ul li {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    z-index: 1;
+}
+
+.navigation ul li a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    
+}
+
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+    line-height: 75px;
+    font-size: 1.5em;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.navigation ul li.active a .icon {
+    transform: translateY(-35px);
+}
+
+.navigation ul li a .text {
+    position: absolute;
+    font-weight: 400;
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.navigation ul li.active a .text {
+    opacity: 1;
+    transform: translateY(10px);
+
+}
+
+.indicador {
+    position: absolute;
+    background: #0734CF;
+    top: -50%;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    
+    transition: 0.5s;
+}
+
+
+
+.navigation ul li:nth-child(1).active ~ .indicador {
+    transform: translateX(calc(70px * 0));
+}
+
+.navigation ul li:nth-child(2).active ~ .indicador {
+    transform: translateX(calc(70px * 1));
+}
+
+.navigation ul li:nth-child(3).active ~ .indicador {
+    transform: translateX(calc(70px * 2));
+}
+
+.navigation ul li:nth-child(4).active ~ .indicador {
+    transform: translateX(calc(70px * 3));
+}
+
+.navigation ul li:nth-child(5).active ~ .indicador {
+    transform: translateX(calc(70px * 4));
+}
+
+.navigation ul li:nth-child(6).active ~ .indicador {
+    transform: translateX(calc(70px * 5));
+}
+
+.buscar {
+    
+}
+
+.boton-busqueda{
+    background: transparent;
+    border: none;
+}
+
+
+
+/*
+
+header {
+    background-color: #0734CF;
+    width: 100%;
+    height: 60px;
+    position: fixed;
+}
+
+nav {
+    padding:0.2%;
+    margin-top: 0.5%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+nav ul {
+    padding:0px;
+    cursor: pointer;
+    transition:  all .3s ease 0s;
+}
+  
+nav li {
+    display: inline;
+}
+  
+nav li:hover {
+    background-color: white;
+}
+
+nav a {
+   display:inline-block;
+   text-align:center;
+   font-weight: bold;
+    padding:6px 15px;
+    margin:2px;
+}
+
+nav a:hover {
+    color: #0734CF;
+}*/
+
+
+/*------------------------------------------------------- L O G I N , R E G I S T R O , C O N T R A S E Ñ A  --------------------------------------------------------*/
+
+#logeo {
+    background: linear-gradient(150deg, #5872d16d, black), url(img/Estudiar-en-casa--1024x576.jpg);
+    height: 100vh;
+    background-size: cover;
+}
+
+.login {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px 20px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+
+form .logo {
+    text-align: center;
+    font-family: 'Openface';
+    font-size: 45px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #0F0844;
+}
+
+  .container form .title:before{
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 33px;
+    left: 0px;
+    bottom: 3px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #99004d 0%, #ff0080 100%);
+}
+
+
+.titulo-login h1 {
+    font-size: 25px;
+    font-weight: 600;
+    position: relative;
+    padding-left: 23px;
+    margin: 20px 0 10px 0;
+}
+
+.titulo-login h1::before, .titulo-login h1::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(to right, skyblue 0%, #0F0844 100%);
+    left: 0;
+    top: 10px;
+    border-radius: 50%;
+}
+
+.titulo-login h1::after {
+    animation: pulse 1.3s infinite;
+}
+
+@keyframes pulse {
+    0%{
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        transform: scale(1.7);
+        opacity: 0;
+    }
+}
+
+.titulo-login p {
+    color: #626060eb;
+    font-size: 13px;
+}
+
+.login form {
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+
+.usuario {
+    position: relative;
+    
+    margin: 30px 0;
+}
+
+.usuario-perfil {
+    position: relative;
+    margin: 30px 0;
+}
+
+
+.dni{
+    position: relative;
+    
+    margin: 30px 0;
+}
+
+.contraseña{
+    position: relative;
+    
+    margin: 30px 0;
+    display: flex;
+}
+
+.login form .underline::before{
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: #ccc;
+    left: 0;
+    bottom: 0;
+}
+
+.login form .underline::after{
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(to right, skyblue 0%, #0F0844 100%);
+    left: 0;
+    bottom: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: all 0.3s ease;
+}
+
+.login form .input-box input:focus ~ .underline::after,
+.login form .input-box input:valid ~ .underline::after{
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.login form .button {
+    margin: 40px 0 20px 0;
+}
+
+.login .input-box input[type="submit"]{
+    background: linear-gradient(to right, skyblue 0%, #0F0844 100%);
+    font-size: 17px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    width: 100%;
+    height: 40px;
+  }
+
+  .login .input-box input[type="submit"]:hover{
+    letter-spacing: 1px;
+    background: linear-gradient(to left, skyblue 0%, #0F0844 100%);
+}
+
+
+.usuario input{
+    width: 100%;
+    padding: 0 5px;
+    height: 45px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.dni input{
+    width: 100%;
+    padding: 0 5px;
+    height: 45px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.contraseña input{
+    width: 100%;
+    padding: 0 5px;
+    height: 45px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+input[type=number] { -moz-appearance: textfield; }
+
+
+.contraseña label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color:#adadad;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+}
+
+
+.retroceder {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    background: rgba(255, 0, 0, 0.334);
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.retroceder a {
+    color: white;
+}
+
+.retroceder:hover {
+    background: red;
+}
+
+
+.inicio-sesion {
+    margin-top: 20px
+}
+
+
+
+.etiquetas a {
+    padding-top: 10px;
+    color: #551A8B
+}
+
+.etiquetas a:hover {
+    color: #0734CF;
+}
+
+
+
+form div {
+    margin-bottom: 10px;
+}
+
+
+.contraseña-token{
+    margin: 20px 0;
+    width: 100%;
+}
+
+.contraseña-token input{
+    width: 100%;
+    height: 35px;
+    text-align: left;
+    font-size: 16px;
+    background: none;
+    outline: none;
+    text-align: center;
+    border: 2px solid #adadad;
+    border-radius: 5px;
+    margin-left: 3px;
+}
+
+.contraseña-token input:hover {
+    border: 2px solid #140B5C;
+}
+
+
+
+.switch {
+    display: block;
+    background-color: black;
+    width: 150px;
+    height: 195px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2), 0 0 1px 2px black, inset 0 2px 2px -2px white, inset 0 0 2px 15px #47434c, inset 0 0 2px 22px black;
+    border-radius: 5px;
+    padding: 20px;
+    perspective: 700px;
+  }
+  
+  .switch input {
+    display: none;
+  }
+  
+  .switch input:checked + .button {
+    transform: translateZ(20px) rotateX(25deg);
+    box-shadow: 0 -10px 20px #ff1818;
+  }
+  
+  .switch input:checked + .button .light {
+    animation: flicker 0.2s infinite 0.3s;
+  }
+  
+  .switch input:checked + .button .shine {
+    opacity: 1;
+  }
+  
+  .switch input:checked + .button .shadow {
+    opacity: 0;
+  }
+  
+  .switch .button {
+    display: block;
+    transition: all 0.3s cubic-bezier(1, 0, 1, 1);
+    transform-origin: center center -20px;
+    transform: translateZ(20px) rotateX(-25deg);
+    transform-style: preserve-3d;
+    background-color: #9b0621;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+    background: linear-gradient(#980000 0%, #6f0000 30%, #6f0000 70%, #980000 100%);
+    background-repeat: no-repeat;
+  }
+  
+  .switch .button::before {
+    content: "";
+    background: linear-gradient(rgba(255, 255, 255, 0.8) 10%, rgba(255, 255, 255, 0.3) 30%, #650000 75%, #320000) 50% 50%/97% 97%, #b10000;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 50px;
+    transform-origin: top;
+    transform: rotateX(-90deg);
+    position: absolute;
+    top: 0;
+  }
+  
+  .switch .button::after {
+    content: "";
+    background-image: linear-gradient(#650000, #320000);
+    width: 100%;
+    height: 50px;
+    transform-origin: top;
+    transform: translateY(50px) rotateX(-90deg);
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0 50px 8px 0px black, 0 80px 20px 0px rgba(0, 0, 0, 0.5);
+  }
+  
+  .switch .light {
+    opacity: 0;
+    animation: light-off 1s;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(#ffc97e, #ff1818 40%, transparent 70%);
+  }
+  
+  .switch .dots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(transparent 30%, rgba(101, 0, 0, 0.7) 70%);
+    background-size: 10px 10px;
+  }
+  
+  .switch .characters {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(white, white) 50% 20%/5% 20%, radial-gradient(circle, transparent 50%, white 52%, white 70%, transparent 72%) 50% 80%/33% 25%;
+    background-repeat: no-repeat;
+  }
+  
+  .switch .shine {
+    transition: all 0.3s cubic-bezier(1, 0, 1, 1);
+    opacity: 0.3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(white, transparent 3%) 50% 50%/97% 97%, linear-gradient(rgba(255, 255, 255, 0.5), transparent 50%, transparent 80%, rgba(255, 255, 255, 0.5)) 50% 50%/97% 97%;
+    background-repeat: no-repeat;
+  }
+  
+  .switch .shadow {
+    transition: all 0.3s cubic-bezier(1, 0, 1, 1);
+    opacity: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent 70%, rgba(0, 0, 0, 0.8));
+    background-repeat: no-repeat;
+  }
+  
+  @keyframes flicker {
+    0% {
+      opacity: 1;
+    }
+  
+    80% {
+      opacity: 0.8;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes light-off {
+    0% {
+      opacity: 1;
+    }
+  
+    80% {
+      opacity: 0;
+    }
+  }

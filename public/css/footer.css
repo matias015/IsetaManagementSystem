@@ -1,0 +1,170 @@
+/* ---------------------------------------------- F  O  O  T  E  R  ------------------------------------------------------*/
+
+
+
+footer {
+    position: relative;
+    background: #140B5C;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 80px;
+    height: 1px;
+    width: 100%;
+    background: #AFAFB6;
+}
+
+footer .content {
+    max-width: 1250px;
+    margin: auto;
+    padding: 30px 40px 40px 40x;
+}
+
+footer .content .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 25px 0;
+}
+
+
+
+.content .top .logo-details {
+    font-size: 30px;
+}
+
+.logo-details .logo_name {
+    font-family: 'Openface';
+}
+
+.content .top .media-icons {
+    display: flex;
+}
+
+.media-icons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    margin: 0 8px;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.media-icons .fb-iseta {
+    background: white;
+    color: #4267B2;
+    
+}
+
+.media-icons .fb-iseta:hover {
+    background: #4267B2;
+    color: white;
+    
+}
+
+.media-icons .ig-iseta {
+    background: white;
+    color: #E1306C;
+}
+
+
+.media-icons .ig-iseta:hover {
+    background: #E1306C;
+    color: white;
+}
+
+
+.media-icons .sitio-iseta {
+    background: white;
+    color: red;
+}
+
+.media-icons .sitio-iseta:hover {
+    background: red;
+    color: white;
+}
+
+footer .content .link-boxes {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer .content .link-boxes .box {
+    width: calc(100 / 4 - 10px);
+}
+
+.content .link-boxes .box .link_name {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.link-boxes .box .link_name::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 35px;
+    background: white;
+}
+
+.content .link-boxes .box li {
+    margin: 6px 0;
+}
+
+.content .link-boxes .box li a {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.8;
+    transition: all 0.4s ease;
+    text-decoration: none;
+}
+
+.content .link-boxes .box li a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+footer .bottom-details {
+    width: 100%;
+    background: #0F0844;
+}
+
+footer .bottom-details .bottom_text {
+    max-width: 1250px;
+    margin: auto;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom-details .bottom_text span,
+.bottom-details .bottom_text a {
+    font-size: 14px;
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+.bottom-details .bottom_text a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.bottom-details .bottom_text a {
+    margin-right: 10px;
+}
