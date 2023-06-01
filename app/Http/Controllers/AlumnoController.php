@@ -102,7 +102,7 @@ class AlumnoController extends Controller
             -> get()
             -> pluck('id_asignatura')
             -> toArray();
-    
+        
         return view('Alumnos.Datos.cursadas', [
             'cursadas' => $cursadas, 
             'examenesAprobados' => $examenesAprobados
@@ -138,11 +138,13 @@ class AlumnoController extends Controller
     function inscripciones(Request $request){
         $posibles = [];
 
-        if($request->session()->has('data')) $posibles = $request->session()->get('data');
-        else{
-            $posibles = Alumno::inscribibles();
-            $request->session()->put('data', $posibles);
-        }
+
+        $posibles = Alumno::inscribibles();
+        $request->session()->put('data', $posibles);
+       // dd($posibles);
+        
+        
+
 
         $yaAnotadas = Examen::select('id_mesa')
             -> where('id_alumno', Auth::id())
@@ -171,7 +173,7 @@ class AlumnoController extends Controller
 
         if($request->session()->has('data')) $posibles = $request->session()->get('data');
         else $posibles = Alumno::inscribibles();
-        
+
         $noPuede = true;
         $finBusqueda = false;
         

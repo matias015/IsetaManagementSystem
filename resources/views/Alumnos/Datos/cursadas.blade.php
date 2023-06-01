@@ -1,5 +1,4 @@
 @extends('Alumnos.layout')
-@include('Comp/header')
 @section('content')
 <table>
           <section class="table">

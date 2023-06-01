@@ -67,8 +67,11 @@ class Alumno extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    static function existeSinPassword($correo){
-        return Alumno::where('email', $correo)->where('password','0')->first();
+    static function existeSinPassword($data){
+        return Alumno::where('email', $data['email'])
+            -> where('password','0')
+            -> where('dni',$data['dni'])
+            -> first();
     }
 
     public function verificar(){
@@ -89,10 +92,10 @@ class Alumno extends Authenticatable implements MustVerifyEmail
             -> toArray();
 
         $listaAprobados = implode(',',$exAprob);
-
+        if($listaAprobados=="") $listaAprobados="0";
         $carreraDefault = Carrera::getDefault();
 
-        $sinRendir = Cursada::select('cursada.id_asignatura','asignaturas.nombre')
+        $sinRendir = Cursada::select('cursada.id_asignatura','asignaturas.nombre','asignaturas.anio')
         -> join('asignaturas', 'asignaturas.id','cursada.id_asignatura')
         -> where('cursada.aprobada', 1)
         -> where('cursada.id_alumno', Auth::id())
@@ -121,7 +124,7 @@ class Alumno extends Authenticatable implements MustVerifyEmail
 
         
         foreach($posibles as $key => $materia){
-            $mesas = Mesa::select('id', 'fecha', 'llamado')
+            $mesas = Mesa::select('*')
             -> where('id_asignatura', $materia->id_asignatura)
             -> whereRaw('fecha > NOW()')
             -> get();

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AlumnoLoginRequest;
+use App\Http\Requests\AlumnoRegistroRequest;
 use App\Models\Alumno;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,16 +38,16 @@ class AlumnoAuthController extends Controller
     /**
      * valida los datos de registro y actualiza su contraseña
      */
-    public function registro(Request $request){
-        //$data = $request->validated();
+    public function registro(AlumnoRegistroRequest $request){
+        $data = $request->validated();
         
         // si existe el correo y tiene password a 0
-        $alumno = Alumno::existeSinPassword($request->email);
+        $alumno = Alumno::existeSinPassword($data);
         
-        if(!$alumno ) return redirect()->back()->with('error','No existe ese mail o ya esta registrado');
+        if(!$alumno ) return redirect()->back()->with('error','mail y dni no coinciden o ya esta registrado');
 
         // setea password 
-        $alumno -> password = bcrypt($request->password);
+        $alumno -> password = bcrypt($data['password']);
         $alumno -> save();
 
         Auth::login($alumno);

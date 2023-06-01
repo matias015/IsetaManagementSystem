@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AlumnoCrudController;
 use App\Http\Controllers\Admin\AsignaturasCrudController;
 use App\Http\Controllers\Admin\CarrerasCrudController;
+use App\Http\Controllers\Admin\MesasCrudController;
 use App\Http\Controllers\Admin\ProfesoresCrudController;
 use App\Http\Controllers\CursadasAdminController;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +34,7 @@ Route::prefix('admin')->group(function(){
     Route::delete('cursadas/{cursada}', [CursadasAdminController::class,'delete'])->name('admin.cursadas.destroy');
     Route::post('cursadas/create', [CursadasAdminController::class,'store'])->name('admin.cursadas.store');
     
-    //Route::resource('mesas', CarrerasCrudController::class, ['as' => 'admin']);
+    Route::resource('mesas', MesasCrudController::class, ['as' => 'admin']);
     //Route::resource('dias', CarrerasCrudController::class, ['as' => 'admin']);
     //Route::resource('cursadas', CarrerasCrudController::class, ['as' => 'admin']);
     //Route::resource('correlativas', CarrerasCrudController::class, ['as' => 'admin']);

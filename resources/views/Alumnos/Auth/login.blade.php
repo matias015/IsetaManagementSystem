@@ -1,10 +1,7 @@
-@extends('Alumnos.layout')
-
-@section('content')
-
 <!DOCTYPE html>
 <html lang="es">
     <head>
+
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +11,12 @@
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
         <script src="nav.js" defer></script>
+        <link rel="stylesheet" href="{{asset('css/main.css')}}">
     </head>
+
+
 <body id="logeo">
+    
     <section class="login">
         <form method="post" action="{{route('alumno.login.post')}}">
             @csrf
@@ -35,13 +36,12 @@
                 <div class="underline"></div>
             </div>
             <div class="entrar input-box button"><input type="submit" value="Entrar"></div>
-            <div class="etiquetas"><a href="registro.html">¡Registrate!</a></div>
-            <div class="etiquetas"><a href="recuperar-contraseña.html">¿Ha olvidado su contraseña?</a></div>
-            
+            <div class="etiquetas"><a href="{{route('alumno.registro')}}">¡Registrate!</a></div>
+            <div class="etiquetas"><a href="{{route('alumno.login')}}">¿Ha olvidado su contraseña?</a></div>
             
         </form>
     </section>
 </body>
 </html>
-@endsection
+
 
