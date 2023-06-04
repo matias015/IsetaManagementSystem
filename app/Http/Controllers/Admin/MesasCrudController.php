@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CrearMesaRequest;
 use App\Models\Asignatura;
+use App\Models\Carrera;
 use App\Models\Mesa;
+use App\Models\Profesor;
 use Illuminate\Http\Request;
 
 class MesasCrudController extends Controller
@@ -37,10 +40,16 @@ class MesasCrudController extends Controller
                     ->join('asignaturas','asignaturas.id','=','mesa.id_asignatura')
                     ->join('carrera','carrera.id','=','asignaturas.id_carrera')
                     ->where('asignaturas.nombre','LIKE','%'.$filtro.'%')
+                    ->where('carrera.nombre','LIKE','%'.$filtro.'%')
+                    ->orderBy('mesa.fecha','ASC')
                     ->paginate($porPagina);
             }   
         }else{
-            $mesas = Mesa::paginate($porPagina);
+            $mesas = Mesa::select('mesa.id','mesa.fecha', 'asignaturas.nombre','asignaturas.anio', 'carrera.nombre as carrera')
+            ->join('asignaturas','asignaturas.id','=','mesa.id_asignatura')
+            ->join('carrera','carrera.id','=','asignaturas.id_carrera')
+            ->orderBy('mesa.fecha','DESC')
+            ->paginate($porPagina);
         }
         //dd($mesas);
         return view('Admin.Mesas.index',['mesas'=>$mesas, 'filtro'=>$filtro]);
@@ -51,18 +60,20 @@ class MesasCrudController extends Controller
      */
     public function create()
     {
-        return view('Admin.Alumnos.create');
+        $carreras = Carrera::all();
+        $profesores = Profesor::all();
+        return view('Admin.Mesas.create',['carreras'=>$carreras,'profesores'=>$profesores]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(crearAlumnoRequest $request)
+    public function store(CrearMesaRequest $request)
     {
         $data = $request->validated();
 
-        Alumno::create($data);
-        return redirect()->route('admin.alumnos.index');
+        Mesa::create($data);
+        return redirect()->route('admin.mesas.index');
     }
 
     /**
@@ -79,26 +90,26 @@ class MesasCrudController extends Controller
     public function edit(Request $request, $alumno)
     {
         //dd($alumno->fecha_nacimiento);
-        return view('Admin.Alumnos.edit', [
-            'alumno' => Alumno::where('id', $alumno)->with('cursadas.asignatura.carrera')->first()
+        return view('Admin.Mesa.edit', [
+            'alumno' => Mesa::where('id', $alumno)->with('cursadas.asignatura.carrera')->first()
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Alumno $alumno)
+    public function update(Request $request, Mesa $mesa)
     {
-        $alumno->update($request->all());
-        return redirect()->route('admin.alumnos.index');
+        $mesa->update($request->all());
+        return redirect()->route('admin.mesas.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Alumno $alumno)
+    public function destroy(Mesa $mesa)
     {
-        $alumno->delete();
-        return redirect() -> route('admin.alumnos.index') -> with('mensaje', 'Se ha eliminado el alumno');
+        $mesa->delete();
+        return redirect() -> route('admin.mesas.index') -> with('mensaje', 'Se ha eliminado el alumno');
     }
 }

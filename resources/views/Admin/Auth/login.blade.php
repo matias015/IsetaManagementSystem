@@ -5,14 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="{{asset('css/Admin/login.css')}}">
 </head>
 <body>
-    <h1>Admin login</h1>
-    <form method="post" action="">
-        @csrf
-        <input name="username">
-        <input name="password">
-        <input type="submit" value="Login">
-    </form>
+    <div class="login-box">
+ 
+        <form method="POST" action="{{route('admin.login.post')}}">
+            @csrf
+          <div class="user-box">
+            <input type="text" name="" required="">
+            <label>Username</label>
+          </div>
+          <div class="user-box">
+            <input type="password" name="" required="">
+            <label>Password</label>
+          </div>
+          <input type="submit" value="Login">
+        </form>
+      </div>
+      @include('Comp.mensajes')
 </body>
 </html>

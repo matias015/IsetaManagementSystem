@@ -6,6 +6,7 @@
         <li><a class="text-blue-600" href="{{route('admin.profesores.index')}}">profesores</a></li>
         <li><a class="text-blue-600" href="{{route('admin.carreras.index')}}">carreras</a></li>
         <li><a class="text-blue-600" href="{{route('admin.asignaturas.index')}}">asignaturas</a></li>
+        <li><a class="text-blue-600" href="{{route('admin.mesas.index')}}">mesas</a></li>
 
         <hr>
     </ul>

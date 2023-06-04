@@ -8,38 +8,80 @@
             @endforeach
         @endif
 
+        <select name="carrera" id="carrera">
+            @foreach ($carreras as $carrera)
+                <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
+            @endforeach
+        </select>
 
-       <form method="post" action="{{route('admin.alumnos.store')}}">
+       <form method="post" action="{{route('admin.mesas.store')}}">
         @csrf
 
-        <p>dni <input name="dni"></p>
-        <p>nombre <input name="nombre"></p>
-        <p>apellido <input name="apellido"></p>
-        <p>fecha nacimiento <input type="date" name="fecha_nacimiento"></p>
-        <p>ciudad <input value="9 de Julio" name="ciudad"></p>
-        <p>calle <input name="calle"></p>
-        <p>numero <input  name="casa_numero"></p>
-        <p>departamento <input name="dpto"></p>
-        <p>piso <input name="piso"></p>
         <p>
-            estado civil 
-            <select name="estado_civil">
-                <option selected value="0">soltero</option>
-                <option value="1">casado</option>
+            materia 
+            <select class="asignatura" name="id_asignatura">
+                <option value="">selecciona una carrera</option>
             </select>
         </p>
-        <p>email <input value="@gmail.com" name="email"></p>
-        <p>titulo anterior <input name="titulo_anterior"></p>
-        <p>becas <input name="becas"></p>
-        
-        <p>observaciones <textarea name="observaciones" cols="30" rows="10"></textarea></p>
+        <p>
+            Profesor 
+            <select class="profesor" name="prof_presidente">
+                @foreach ($profesores as $profesor)
+                    <option value="{{$profesor->id}}">{{$profesor->nombre.' '.$profesor->apellido}}</option>
+                @endforeach
+            </select>
+        </p>
+        <p>
+            Profesor 1
+            <select class="profesor" name="prof_vocal_1">
+                @foreach ($profesores as $profesor)
+                    <option value="{{$profesor->id}}">{{$profesor->nombre.' '.$profesor->apellido}}</option>
+                @endforeach
+            </select>
+        </p>
+        <p>
+            Profesor 2
+            <select class="profesor" name="prof_vocal_2">
+                @foreach ($profesores as $profesor)
+                    <option value="{{$profesor->id}}">{{$profesor->nombre.' '.$profesor->apellido}}</option>
+                @endforeach
+            </select>
+        </p>
 
-        <p>telefono <input value="2317" name="telefono1"></p>
-        <p>telefono 2 <input name="telefono2"></p>
-        <p>telefono 3<input name="telefono3"></p>
-        <p>codigo postal<input value="6500" name="codigo_postal"></p>
+        <p>
+            Llamado
+            <select name="llamado">
+                <option value="1">Primero</option>
+                <option value="2">Segundo</option>
+            </select>
+        </p>
+
+        <p>
+            Fecha
+            <input type="datetime-local" name="fecha">
+        </p>
+
 
         <input type="submit" value="Crear">
        </form>
     </div>
+
+    <script>
+        const carrera = document.querySelector('#carrera')
+        const asignaturaSelect = document.querySelector('.asignatura')
+        carrera.addEventListener('change',function(){
+            asignaturaSelect.innerHTML = '';
+            fetch(`http://127.0.0.1:8000/api/a/${carrera.value}`)
+                .then( data => data.json())
+                .then(data=>{
+                    data.forEach(element => {
+                        const option = document.createElement('option')
+                        option.value = element.id
+                        option.textContent = element.nombre
+                        asignaturaSelect.appendChild(option)
+                    });
+                    
+                })
+        })
+    </script>
 @endsection

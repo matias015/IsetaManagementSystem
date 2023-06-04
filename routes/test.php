@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Alumno;
+use App\Models\Asignatura;
 use App\Models\Cursada;
 use App\Models\Examen;
 use App\Models\Mesa;
@@ -10,9 +11,7 @@ use Illuminate\Support\Facades\Route;
 use Mockery\CountValidator\Exact;
 
 Route::get('test', function(Request $request){
-    $data = Alumno::findMany($request->toPrint);
-    $pdf = Pdf::loadView('Pdf.test-alumnos',['alumnos' => $data]);
-    return $pdf->stream('alumnos.pdf');
+    
 })->name('test.print-1');
 
 

@@ -39,6 +39,10 @@
               
             @endphp
 
+          @if (!isset($materia->mesas[0]))
+            @continue
+          @endif              
+
             <tr>
               <td>{{$materia->anio + 1}}</td>
               <td>{{$materia->nombre}}</td>
@@ -46,7 +50,7 @@
               <td>{{$materia->mesas[0]->prof_presidente}}</td>
               
               <td class="llamado_1">
-                @dd($materia->mesas)
+                {{-- @dd($materia->mesas) --}}
                 @foreach ($materia->mesas as $mesa)
                   <input type="radio">
                   <span>{{$mesa->fecha}}</span>

@@ -6,7 +6,7 @@
         <script src="https://cdn.tailwindcss.com"></script>
 
     
-            <a href="{{route('admin.alumnos.create')}}"><button>Agregar mesa</button></a>
+            <a href="{{route('admin.mesas.create')}}"><button>Agregar mesa</button></a>
 
         <div>
             <form action="{{route('admin.mesas.index')}}">

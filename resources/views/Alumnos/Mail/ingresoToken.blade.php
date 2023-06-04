@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
 </head>
 
-    <body class="">
+    <body id="logeo">
         
     <div class="login">
         <form action="{{route('token.ingreso.post')}}" method="post">
