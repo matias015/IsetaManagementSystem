@@ -7,7 +7,7 @@
                 <p>{{$error}}</p>
             @endforeach
         @endif
-
+<div class="edit-form-container">
 
        <form method="post" action="{{route('admin.alumnos.update', ['alumno'=>$alumno->id])}}">
         @csrf
@@ -62,5 +62,5 @@
                 </tr>
             @endforeach
         </table>
-    </div>
+    </div></div>
 @endsection

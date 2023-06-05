@@ -1,7 +1,7 @@
 @extends('Admin.template')
 
 @section('content')
-
+<div class="edit-form-container">
     <div>
 
         @if ($errors -> any())
@@ -68,6 +68,6 @@
        <input type="submit" value="Imprimir">
     </form>
     </div>
-
+</div>
 
 @endsection

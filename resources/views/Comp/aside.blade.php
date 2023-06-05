@@ -1,6 +1,6 @@
-<aside>
+<aside class="admin-aside">
     
-    <ul class="m-2">
+    <ul class="admin-aside-ul">
         <p>Admin</p>
         <li><a class="text-blue-600" href="{{route('admin.alumnos.index')}}">Alumnos</a></li>
         <li><a class="text-blue-600" href="{{route('admin.profesores.index')}}">Profesores</a></li>

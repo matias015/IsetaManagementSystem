@@ -1,6 +1,7 @@
 @extends('Admin.template')
 
 @section('content')
+<div class="edit-form-container">
     <div>
 
 
@@ -63,5 +64,6 @@
                 </tr>
             @endforeach
         </table>
-    </div>
+    </div> 
+</div>
 @endsection

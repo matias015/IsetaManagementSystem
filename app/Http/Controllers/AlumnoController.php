@@ -94,13 +94,12 @@ class AlumnoController extends Controller
         $cursadas=[];
 
         if($request->has('filtro')){
+
             $filtro = $request->filtro;
 
                 if($request->campo == "anio"){
-
                     $cursadas = Cursada::where('id_alumno', Auth::id())
-                    -> with('asignatura')
-                    -> where('cursada.anio_cursada',$filtro)
+                    -> with('asignatura') -> where('cursada.anio_cursada',$filtro)
                     -> get();
                 }
                 else if($request->campo == "materia"){

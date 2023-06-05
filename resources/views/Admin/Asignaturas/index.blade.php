@@ -55,7 +55,7 @@
         </table>
         
         <div class="w-1/2 mx-auto p-5">
-            {{ $asignaturas->appends(request()->query())->links() }}
+            {{ $asignaturas->appends(request()->query())->links('Comp.pagination') }}
         </div>
 
     </div>

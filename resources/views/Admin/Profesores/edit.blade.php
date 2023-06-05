@@ -8,7 +8,7 @@
             @endforeach
         @endif
 
-
+<div class="edit-form-container">
        <form method="post" action="{{route('admin.profesores.update', ['profesor'=>$profesor->id])}}">
         @csrf
         @method('put')
@@ -42,5 +42,5 @@
 
         <input type="submit" value="Actualizar">
        </form>
-    </div>
+    </div></div>
 @endsection

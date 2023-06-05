@@ -60,7 +60,7 @@
     </table>
     
     <div class="w-1/2 mx-auto p-5">
-        {{ $carreras->appends(request()->query())->links() }}
+        {{ $carreras->appends(request()->query())->links('Comp.pagination') }}
     </div>
 
 </div>

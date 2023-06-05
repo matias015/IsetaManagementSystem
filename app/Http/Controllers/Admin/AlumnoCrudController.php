@@ -21,28 +21,34 @@ class AlumnoCrudController extends Controller
     {       
          $alumnos = [];
          $filtro = "";
+         $campo = "";
          $porPagina = 15;
 
         if($request->has('filtro')){
             $filtro = $request->filtro;
+            $campo = $request->campo;
 
-            if(strpos($filtro, ':')){
-                $arr = explode(':',$filtro);
-                $campo = $arr[0];
-                $keyword = $arr[1];
-                $alumnos = Alumno::where($campo,'LIKE','%'.$keyword.'%')-> paginate($porPagina);
-            }else{
-                
+            if($campo == "principales"){
                 $alumnos = Alumno::where('nombre','LIKE','%'.$filtro.'%')
                     -> orWhere('apellido','LIKE','%'.$filtro.'%')
                     -> orWhere('dni','LIKE','%'.$filtro.'%')
                     -> orWhere('email','LIKE','%'.$filtro.'%')
                     -> paginate($porPagina);
-            }   
-        }else{
-            $alumnos = Alumno::paginate($porPagina);
-        }
-        return view('Admin.Alumnos.index',['alumnos'=>$alumnos, 'filtro'=>$filtro]);
+            }
+            else if($campo == "nombre") $alumnos = Alumno::where('nombre','LIKE','%'.$filtro.'%') -> paginate($porPagina);  
+            else if($campo == "apellido") $alumnos = Alumno::where('apellido','LIKE','%'.$filtro.'%') -> paginate($porPagina);  
+            else if($campo == "dni") $alumnos = Alumno::where('dni','LIKE','%'.$filtro.'%') -> paginate($porPagina);  
+            else if($campo == "email") $alumnos = Alumno::where('email','LIKE','%'.$filtro.'%') -> paginate($porPagina);  
+            else if($campo == "telefonos"){
+                $alumnos = Alumno::where('telefono1','LIKE','%'.$filtro.'%')
+                    -> orWhere('telefono2','LIKE','%'.$filtro.'%')
+                    -> orWhere('telefono3','LIKE','%'.$filtro.'%')
+                    -> paginate($porPagina);  
+            } 
+            else if($campo == "ciudad") $alumnos = Alumno::where('email','LIKE','%'.$filtro.'%') -> paginate($porPagina);  
+        }else $alumnos = Alumno::paginate($porPagina);
+        return view('Admin.Alumnos.index',['alumnos'=>$alumnos, 'filtros'=>['campo'=>$campo,'filtro'=>$filtro]]);
+        
     }
 
     /**

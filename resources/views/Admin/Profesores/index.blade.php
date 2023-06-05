@@ -10,9 +10,18 @@
 
         <div>
             <form action="{{route('admin.profesores.index')}}">
-                <p>filtrar</p> 
-                 <input  name="filtro" type="text">
-                 <input type="submit" value="Buscar">
+                <p>filtrar</p>
+                <select name="campo">
+                    <option @selected($filtros['campo'] == 'principales') value="principales">Principales</option>
+                    <option @selected($filtros['campo'] == 'dni') value="dni">Dni</option>
+                    <option @selected($filtros['campo'] == 'nombre') value="nombre">Nombre</option> 
+                    <option @selected($filtros['campo'] == 'apellido') value="apellido">Apellido</option>   
+                    <option @selected($filtros['campo'] == 'email') value="email">Email</option> 
+                    <option @selected($filtros['campo'] == 'telefonos') value="telefonos">Telefonos</option>
+                    <option @selected($filtros['campo'] == 'ciudad') value="ciudad">Ciudad</option>
+                </select> 
+             <input value="{{$filtros['filtro']}}" name="filtro" type="text">
+             <input type="submit" value="Buscar">
             </form>
 
             <a href="{{route('admin.profesores.index')}}"><button>Quitar filtro</button></a>
@@ -56,7 +65,7 @@
         </table>
         
         <div class="w-1/2 mx-auto p-5">
-            {{ $profesores->appends(request()->query())->links() }}
+            {{ $profesores->appends(request()->query())->links('Comp.pagination') }}
         </div>
 
     </div>

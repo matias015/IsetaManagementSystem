@@ -8,7 +8,7 @@
             @endforeach
         @endif
 
-
+<div class="edit-form-container">
        <form method="post" action="{{route('admin.cursadas.update', ['cursada'=>$cursada->id])}}">
         @csrf
         @method('put')
@@ -35,7 +35,7 @@
 
         <input type="submit" value="Actualizar">
        </form>
-       @dd($cursada)
+
        <form method="post" action="{{route('admin.cursadas.destroy', ['cursada'=>$cursada->id])}}">
             @csrf
             @method('delete')
@@ -45,6 +45,6 @@
         
 
     </div>
-
+</div>
 
 @endsection
