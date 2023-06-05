@@ -3,7 +3,7 @@
 @section('content')
 
     <div>
-        <script src="https://cdn.tailwindcss.com"></script>
+        
 
     
             <a href="{{route('admin.profesores.create')}}"><button>Agregar profesor</button></a>

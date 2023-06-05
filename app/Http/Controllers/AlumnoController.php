@@ -88,9 +88,34 @@ class AlumnoController extends Controller
      | ---------------------------------------------
      */
 
-    function cursadas(){
+    function cursadas(Request $request){
 
-        $cursadas = Cursada::where('id_alumno', Auth::id())->with('asignatura')->get();
+        $filtro = "*";
+        $cursadas=[];
+
+        if($request->has('filtro')){
+            $filtro = $request->filtro;
+
+                if($request->campo == "anio"){
+
+                    $cursadas = Cursada::where('id_alumno', Auth::id())
+                    -> with('asignatura')
+                    -> where('cursada.anio_cursada',$filtro)
+                    -> get();
+                }
+                else if($request->campo == "materia"){
+                    $cursadas = Cursada::where('id_alumno', Auth::id())
+                    -> whereRelation('asignatura','asignaturas.nombre','LIKE','%'.$filtro.'%')
+                    -> get();
+                }
+                else if($request->campo == "anio_carrera"){
+                    $cursadas = Cursada::where('id_alumno', Auth::id())
+                    -> whereRelation('asignatura','asignaturas.anio','LIKE','%'.$filtro.'%')
+                    -> get();
+                }
+        }else{
+            $cursadas = Cursada::where('id_alumno', Auth::id())->with('asignatura')->get();
+        }
 
         // lista de examenes aprobados para saber si una cursada
         // tiene rendido su final
@@ -105,7 +130,8 @@ class AlumnoController extends Controller
         
         return view('Alumnos.Datos.cursadas', [
             'cursadas' => $cursadas, 
-            'examenesAprobados' => $examenesAprobados
+            'examenesAprobados' => $examenesAprobados,
+            'filtros' => $request->only('campo','filtro')
         ]);
     }
 
@@ -232,7 +258,7 @@ class AlumnoController extends Controller
             -> first();
 
         if(!$examen){
-            Request::redirect()->route('alumno.inscripciones')->with('error','No estas inscripto en esta mesa.');
+            return redirect()->route('alumno.inscripciones')->with('error','No estas inscripto en esta mesa.');
         }
         
         if(DiasHabiles::desdeHoyHasta($mesa->fecha) <= 1){

@@ -1,9 +1,48 @@
-<label for="">llamado {{$mesa->llamado}}
-    @if($mesa->diasHabiles >= 2)
-        <input type="radio" name="mesa" value="{{$mesa->id}}">
+<form method="POST" action="{{route($path)}}">
+    @csrf
+      
+    @if ($yaAnotado)
+        @if($yaAnotado->llamado == 1)
+            <td class="llamado_{{$yaAnotado->llamado}}">
+                <input checked name="mesa" value="{{$yaAnotado->id}}" type="radio">
+                <span>{{$yaAnotado->fecha}}</span>
+            </td>
+    
+            <td class="llamado_{{$yaAnotado->llamado}}">
+                -
+            </td>
+        @else
+            <td class="llamado_{{$yaAnotado->llamado}}">
+                -
+            </td>
+            <td class="llamado_{{$yaAnotado->llamado}}">
+                <input checked name="mesa" value="{{$yaAnotado->id}}" type="radio">
+                <span>{{$yaAnotado->fecha}}</span>
+            </td>
+        @endif
+
     @else
-        Ya ha caducado el tiempo de inscripcion    
+        <td class="llamado_1">
+            <input name="mesa" value="{{$materia->mesas[0]->id}}" type="radio">
+            <span>{{$materia->mesas[0]->fecha}}</span>
+        </td>
+    
+        @isset($materia->mesas[1])
+            <td class="llamado_2">
+            <input name="mesa" value="{{$materia->mesas[1]->id}}" type="radio">
+            <span>{{$materia->mesas[1]->fecha}}</span>
+            </td>
+        @else
+            <td class="llamado_2"> - </td>
+        @endisset
     @endif
 
-    fecha:   {{$mesa->fecha}}
-</label>
+    <td>
+        <button @class([
+          'inscribir' => !$yaAnotado,
+          'bajarse' => $yaAnotado])>
+            {{$btnTexto}}
+        </button>
+    </td>
+  </tr>
+  </form>

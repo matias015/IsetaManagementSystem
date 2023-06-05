@@ -3,7 +3,7 @@
 @section('content')
 
     <div>
-        <script src="https://cdn.tailwindcss.com"></script>
+        
 
     
             <a href="{{route('admin.asignaturas.create')}}"><button>Agregar carrera</button></a>

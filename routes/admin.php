@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AsignaturasCrudController;
 use App\Http\Controllers\Admin\CarrerasCrudController;
 use App\Http\Controllers\Admin\MesasCrudController;
 use App\Http\Controllers\Admin\ProfesoresCrudController;
+use App\Http\Controllers\Admin\AdminsCrudController;
 use App\Http\Controllers\CursadasAdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,8 @@ Route::prefix('admin')->group(function(){
     Route::post('cursadas/create', [CursadasAdminController::class,'store'])->name('admin.cursadas.store');
     
     Route::resource('mesas', MesasCrudController::class, ['as' => 'admin']);
+    Route::resource('admins', AdminsCrudController::class, ['as' => 'admin']);
+
     //Route::resource('dias', CarrerasCrudController::class, ['as' => 'admin']);
     //Route::resource('cursadas', CarrerasCrudController::class, ['as' => 'admin']);
     //Route::resource('correlativas', CarrerasCrudController::class, ['as' => 'admin']);

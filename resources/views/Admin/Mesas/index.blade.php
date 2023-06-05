@@ -3,7 +3,7 @@
 @section('content')
 
     <div>
-        <script src="https://cdn.tailwindcss.com"></script>
+        
 
     
             <a href="{{route('admin.mesas.create')}}"><button>Agregar mesa</button></a>

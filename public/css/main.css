@@ -8,7 +8,11 @@
 
 
 /*----------------------------------------------- T A B L A   ------------------------------------------------------*/
-
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
 #fondo-estudiantes {
     background: linear-gradient(150deg, #5872d16d, black), url(img/concepto-educacion-estudiante-estudiar-brainstorming-campus-concepto-cerca-estudiantes-que-discuten-su-tema-libros-o-libros-texto-enfoque-selectivo.jpg);

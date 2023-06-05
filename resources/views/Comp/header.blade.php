@@ -23,11 +23,12 @@
             <i class="uil uil-file-edit-alt"></i>
             Inscribir</a></li>
         </ul>
-        <i class="uil uil-search search-icon" id="searchIcon"></i>
-        <div class="search-box">
-          <i class="uil uil-search search-icon"></i>
-          <input type="text" placeholder="Busca aquí" />
-        </div>
+        @auth('web')
+        <a href="{{route('alumno.logout')}}">
+          <button>Cerrar sesion</button>
+        </a>  
+        @endauth
+        
         
     </nav>
 </header>

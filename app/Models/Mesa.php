@@ -15,6 +15,6 @@ class Mesa extends Model
     protected $fillable = ['id_asignatura','prof_presidente','prof_vocal_1','prof_vocal_2','llamado','fecha'];
 
     public function materia(){
-        return $this -> hasOne(Asignatura::class,'id_asignatura');
+        return $this -> hasOne(Asignatura::class,'id','id_asignatura');
     }
 }

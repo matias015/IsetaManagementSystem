@@ -39,7 +39,7 @@
               
             @endphp
 
-          @if (!isset($materia->mesas[0]))
+          @if (count($materia->mesas)<1)
             @continue
           @endif              
 
@@ -47,99 +47,16 @@
               <td>{{$materia->anio + 1}}</td>
               <td>{{$materia->nombre}}</td>
               <td>{{$materia->hora}}</td>
-              <td>{{$materia->mesas[0]->prof_presidente}}</td>
+              <td>{{
+                $materia->mesas[0]->prof_presidente? 
+                  $materia->mesas[0]->prof_presidente:
+                  'A confirmar'
+              }}</td>
               
-              <td class="llamado_1">
-                {{-- @dd($materia->mesas) --}}
-                @foreach ($materia->mesas as $mesa)
-                  <input type="radio">
-                  <span>{{$mesa->fecha}}</span>
-                @endforeach
-              </td>
-                  
-              
-              <td class="llamado_2">
-                  <input type="radio">
-                  <span>22/3</span>
-              </td>
-              <td>
-                  <button class="boton-finales inscribir">
-                      <i class="ti ti-check"></i>
-                  </button>
-                  <button class="boton-finales bajarse">
-                      <i class="ti ti-x"></i>
-                  </button>
-              </td>
-            </tr>
-
+              @include('Comp.inscripcion-form')
 @endforeach
 
-            <tr>
-              <td>1</td>
-              <td>EDI 1</td>
-              <td>18.30</td>
-              <td>A confirmar...</td>
-              <td class="llamado_1">
-                  <input type="radio">
-                  <span>15/3</span>
-              </td>
-              <td class="llamado_2">
-                  <input type="radio">
-                  <span>22/3</span>
-              </td>
-              <td>
-                  <button class="boton-finales inscribir">
-                      <i class="ti ti-check"></i>
-                  </button>
-                  <button class="boton-finales bajarse">
-                      <i class="ti ti-x"></i>
-                  </button>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Practicas profesionales</td>
-              <td>18.30</td>
-              <td>Gonzalez / Armendano</td>
-              <td class="llamado_1">
-                  <input type="radio">
-                  <span>6/3</span>
-              </td>
-              <td class="llamado_2">
-                  <input type="radio">
-                  <span>13/3</span>
-              </td>
-              <td>
-                  <button class="boton-finales inscribir">
-                      <i class="ti ti-check"></i>
-                  </button>
-                  <button class="boton-finales bajarse">
-                      <i class="ti ti-x"></i>
-                  </button>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Base de Datos</td>
-              <td>18.30</td>
-              <td>Nidia Banchero / Luis Secreto</td>
-              <td class="llamado_1">
-                  <input type="radio">
-                  <span>6/3</span>
-              </td>
-              <td class="llamado_2">
-                  <input type="radio">
-                  <span>20/3</span>
-              </td>
-              <td>
-                  <button class="boton-finales inscribir">
-                      <i class="ti ti-check"></i>
-                  </button>
-                  <button class="boton-finales bajarse">
-                      <i class="ti ti-x"></i>
-                  </button>
-              </td>
-            </tr>
+         
             
             
           </tbody>

@@ -30,20 +30,13 @@ class MesasCrudController extends Controller
         if($request->has('filtro')){
             $filtro = $request->filtro;
 
-            if(strpos($filtro, ':')){
-                $arr = explode(':',$filtro);
-                $campo = $arr[0];
-                $keyword = $arr[1];
-                $mesas = Mesa::where($campo,'LIKE','%'.$keyword.'%')-> paginate($porPagina);
-            }else{
-                $mesas = Mesa::select('mesa.id','mesa.fecha', 'asignaturas.nombre','asignaturas.anio', 'carrera.nombre as carrera')
-                    ->join('asignaturas','asignaturas.id','=','mesa.id_asignatura')
-                    ->join('carrera','carrera.id','=','asignaturas.id_carrera')
-                    ->where('asignaturas.nombre','LIKE','%'.$filtro.'%')
-                    ->where('carrera.nombre','LIKE','%'.$filtro.'%')
-                    ->orderBy('mesa.fecha','ASC')
-                    ->paginate($porPagina);
-            }   
+            $mesas = Mesa::select('mesa.id','mesa.fecha', 'asignaturas.nombre','asignaturas.anio', 'carrera.nombre as carrera')
+                ->join('asignaturas','asignaturas.id','=','mesa.id_asignatura')
+                ->join('carrera','carrera.id','=','asignaturas.id_carrera')
+                ->where('asignaturas.nombre','LIKE','%'.$filtro.'%')
+                ->orWhere('carrera.nombre','LIKE','%'.$filtro.'%')
+                ->orderBy('mesa.fecha','ASC')
+                ->paginate($porPagina);
         }else{
             $mesas = Mesa::select('mesa.id','mesa.fecha', 'asignaturas.nombre','asignaturas.anio', 'carrera.nombre as carrera')
             ->join('asignaturas','asignaturas.id','=','mesa.id_asignatura')
@@ -87,11 +80,11 @@ class MesasCrudController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, $alumno)
+    public function edit(Request $request, $carrera)
     {
         //dd($alumno->fecha_nacimiento);
-        return view('Admin.Mesa.edit', [
-            'alumno' => Mesa::where('id', $alumno)->with('cursadas.asignatura.carrera')->first()
+        return view('Admin.Mesas.edit', [
+            'mesa' => Mesa::where('id', $carrera)->with('materia.carrera')->first()
         ]);
     }
 

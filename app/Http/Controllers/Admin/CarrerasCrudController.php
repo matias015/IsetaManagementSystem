@@ -22,6 +22,7 @@ class CarrerasCrudController extends Controller
     {       
          $carreras = [];
          $porPagina = 15;
+         $filtro="";
 
         if($request->has('filtro')){
             
@@ -40,7 +41,7 @@ class CarrerasCrudController extends Controller
         }else{
             $carreras = Carrera::paginate($porPagina);
         }
-        return view('Admin.Carreras.index',compact('carreras'));
+        return view('Admin.Carreras.index',['carreras'=>$carreras, 'filtro'=>$filtro]);
     }
 
     /**

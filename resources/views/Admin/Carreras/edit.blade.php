@@ -17,7 +17,9 @@
         <p>resolucion <input value="{{$carrera->resolucion}}" name="resolucion"></p>
         <p>anio_apertura <input value="{{$carrera->anio_apertura}}" name="anio_apertura"></p>
         <p>anio_fin <input value="{{$carrera->anio_fin}}" name="anio_fin"></p>
-        <p>observaciones <input value="{{$carrera->observaciones}}" name="observaciones"></p>
+        <p>observaciones 
+
+            <input value="{{$carrera->observaciones}}" name="observaciones"></p>
 
         <input type="submit" value="Actualizar">
        </form>
@@ -39,10 +41,10 @@
                 <td> {{$asignatura->carga_horaria}} horas</td>
 
                 <td style="display:flex;">
-                    <form action="">
+                    <form action="{{route('admin.asignaturas.edit', ['asignatura'=>$asignatura->id])}}">
                         <button>Editar</button>
                     </form>
-                    <form action="">
+                    <form action="{{route('admin.asignaturas.destroy', ['asignatura'=>$asignatura->id])}}">
                         <button>Eliminar</button>
                     </form>
                 </td>

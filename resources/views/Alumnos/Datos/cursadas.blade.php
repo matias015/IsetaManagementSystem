@@ -6,21 +6,16 @@
           <h1>Mis cursadas </h1>
           <div class="tabla_botonera">
             
-              <select class="dropdown">
-                <option selected><i class="ti ti-123"></i>Año</option>
-                <option><i class="ti ti-school"></i>Materia</option>
-                <option><i class="ti ti-status-change"></i>Cursada</option>
-                <option><i class="ti ti-calendar-time"></i>Año cursada</option>
-              </select>
 
             {{-- <div class="filtrar"> --}}
-              <select class="filtrar">
-                <option selected value='1'><i class="ti ti-pdf"></i>filtrar</option>
-                <option value='1'><i class="ti ti-pdf"></i></option>
-                <option value='2'><i class="ti ti-pdf"></i>2</option>
-                <option value='3'><i class="ti ti-pdf"></i></i>3</option>
-                <option value='4'><i class="ti ti-png"></i>4</option>
-              </select>
+              <form action="{{route('alumno.cursadas')}}">
+                <select name="campo" class="dropdown">
+                  <option @selected($filtros['campo'] == 'anio') value="anio" selected><i class="ti ti-123"></i>Año</option>
+                  <option @selected($filtros['campo'] == 'materia') value="materia"><i class="ti ti-school"></i>Materia</option>
+                  <option @selected($filtros['campo'] == 'anio_carrera') value="anio_carrera"><i class="ti ti-calendar-time"></i>Año carrera</option>
+                </select>
+                <input value="{{$filtros['filtro']}}" name="filtro">
+              </form>
             {{-- </div> --}}
             <div class="descargar">
               <input type="text" class="textDow" placeholder="Descargar" readonly>

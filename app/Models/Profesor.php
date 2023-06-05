@@ -37,6 +37,7 @@ class Profesor extends Model
     protected $casts = [
         'fecha_nacimiento' => 'datetime',
     ];
-
     
+    
+
 }

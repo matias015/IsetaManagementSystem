@@ -1,58 +1,67 @@
 @extends('Admin.template')
 
 @section('content')
+
+<div>
+    
+
+
+        <a href="{{route('admin.carreras.create')}}"><button>Agregar carrera</button></a>
+
     <div>
-        @if ($errors -> any())
-            @foreach ($errors->all() as $error)
-                <p>{{$error}}</p>
-            @endforeach
-        @endif
+        <form action="{{route('admin.carreras.index')}}">
+            <p>filtrar</p> 
+             <input value="{{$filtro}}" name="filtro" type="text">
+             <input type="submit" value="Buscar">
+        </form>
 
-
-       <form method="post" action="{{route('admin.carreras.update', ['carrera'=>$carrera->id])}}">
-        @csrf
-        @method('put')
-
-        <p>carrera <input value="{{$carrera->nombre}}" name="nombre"></p>
-        <p>resolucion <input value="{{$carrera->resolucion}}" name="resolucion"></p>
-        <p>anio_apertura <input value="{{$carrera->anio_apertura}}" name="anio_apertura"></p>
-        <p>anio_fin <input value="{{$carrera->anio_fin}}" name="anio_fin"></p>
-        <p>observaciones <input value="{{$carrera->observaciones}}" name="observaciones"></p>
-
-        <input type="submit" value="Actualizar">
-       </form>
-       <hr>
-       <table>
-        <tr>
-            <td>año</td>
-            <td>materia</td>
-            <td>carga anual o semanal</td>
-            <td>acciones</td>
-        </tr>
-
-        @foreach ($carrera->asignaturas as $asignatura)
-            <tr>
-                <td> {{$asignatura->anio + 1}} </td>
-
-                <td> {{$asignatura->nombre}} </td>
-
-                <td> {{$asignatura->carga_horaria}} horas</td>
-
-                <td style="display:flex;">
-                    <form action="">
-                        <button>Editar</button>
-                    </form>
-                    <form action="">
-                        <button>Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-        
-            
-
-       </table>
+        <a href="{{route('admin.carreras.index')}}"><button>Quitar filtro</button></a>
+  
     </div>
 
+    
 
+    {{-- @foreach ($alumnos->pagr as )
+        
+    @endforeach
+    <li class="page-item{{ $page == $alumnos->currentPage() ? ' active' : '' }}">
+        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+    </li> --}}
+    
+    
+    <table>
+        <tr>
+            <td>Carrera</td>
+            <td>Resolucion</td>
+            <td>Apertura</td>
+            <td>Fin</td>
+            <td>Observaciones</td>
+            <td>Acciones</td>
+        </tr>
+
+        @foreach ($carreras as $carrera)
+        <tr>
+            <td>{{$textFormatService->utf8Minusculas($carrera->nombre)}}</td>
+            <td>{{$carrera->resolucion}}</td>
+            <td>{{$carrera->anio_apertura}}</td>
+            <td>{{$carrera->anio_fin}}</td>
+            <td>{{$carrera->observaciones}}</td>
+            <td><a href="{{route('admin.carreras.edit', ['carrera' => $carrera->id])}}"><button>editar</button></a></td>
+            <td>
+                <form method="POST" action="{{route('admin.carreras.destroy', ['carrera' => $carrera->id])}}">
+                    @csrf
+                    @method('delete')
+                    <input type="submit" value="Eliminar">
+                </form>
+            </td>
+        </tr>
+        @endforeach
+
+    </table>
+    
+    <div class="w-1/2 mx-auto p-5">
+        {{ $carreras->appends(request()->query())->links() }}
+    </div>
+
+</div>
 @endsection
