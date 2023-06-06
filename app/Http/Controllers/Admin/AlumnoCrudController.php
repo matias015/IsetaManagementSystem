@@ -83,9 +83,9 @@ class AlumnoCrudController extends Controller
      */
     public function edit(Request $request, $alumno)
     {
-        //dd($alumno->fecha_nacimiento);
+
         return view('Admin.Alumnos.edit', [
-            'alumno' => Alumno::where('id', $alumno)->with('cursadas.asignatura.carrera')->first()
+            'alumno' => Alumno::where('id', $alumno)->with('cursadas.asignatura.carrera','examenes.mesa.materia.carrera')->first()
         ]);
     }
 

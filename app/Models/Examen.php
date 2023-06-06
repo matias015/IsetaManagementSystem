@@ -12,12 +12,11 @@ class Examen extends Model
     public $timestamps = false;
     use HasFactory;
 
-    function mesas(){
+    function mesa(){
         return $this -> belongsTo(Mesa::class,'id_mesa');
     }
 
     function alumno(){
         return $this -> belongsTo(Alumno::class,'id_alumno');
     }
-
 }

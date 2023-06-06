@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('carreras_default', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_alumno');
-            $table->foreignId('id_asignatura');
+            $table->foreignId('id_carrera');
             $table->timestamps();
         });
     }

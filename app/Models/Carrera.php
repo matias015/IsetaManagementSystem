@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class Carrera extends Model
 {
     use HasFactory;
-    protected $table = "carrera";
+    protected $table = "carreras";
     public $timestamps = false;
 
     protected $fillable = [
@@ -31,11 +31,11 @@ class Carrera extends Model
 
             if($carrera) return $carrera->id_carrera;
 
-            $carrera=Carrera::select('carrera.id', 'carrera.nombre')
-            -> join('asignaturas', 'asignaturas.id_carrera', 'carrera.id')
-            -> join('cursada', 'cursada.id_asignatura', 'asignaturas.id')
-            -> where('cursada.id_alumno', Auth::id()) 
-            -> groupBy('carrera.id', 'carrera.nombre')
+            $carrera=Carrera::select('carreras.id', 'carreras.nombre')
+            -> join('asignaturas', 'asignaturas.id_carrera', 'carreras.id')
+            -> join('cursadas', 'cursadas.id_asignatura', 'asignaturas.id')
+            -> where('cursadas.id_alumno', Auth::id()) 
+            -> groupBy('carreras.id', 'carreras.nombre')
             -> first();
 
             if(!$carrera) return null;

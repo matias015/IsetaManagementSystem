@@ -1,9 +1,11 @@
 <footer>
     <div class="content">
       <section class="top">
+
         <div class="logo-details">
           <span class="logo_name">ISETA</span>
         </div>
+        
         <div class="media-icons">
           <a class="fb-iseta" href="https://www.facebook.com/iseta9dejulio/" target="_blank">
             <i class="ti ti-brand-facebook-filled"></i></a>

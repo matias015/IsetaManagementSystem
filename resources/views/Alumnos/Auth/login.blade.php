@@ -28,11 +28,11 @@
                 <p>¡Bienvenido! Por favor ingrese sus datos</p>
             </div>
             <div class="usuario input-box">
-                <input type="email" name="email" required placeholder="Nombre de usuario">
+                <input value="matiasjf015@gmail.com" type="email" name="email" required placeholder="Nombre de usuario">
                 <div class="underline"></div>
             </div>
             <div class="contraseña input-box">
-                <input type="password" name="password"  required placeholder="Contraseña">
+                <input value="123" type="password" name="password"  required placeholder="Contraseña">
                 <div class="underline"></div>
             </div>
             <div class="entrar input-box button"><input type="submit" value="Entrar"></div>

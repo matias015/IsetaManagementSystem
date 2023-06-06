@@ -30,18 +30,18 @@ class MesasCrudController extends Controller
         if($request->has('filtro')){
             $filtro = $request->filtro;
 
-            $mesas = Mesa::select('mesa.id','mesa.fecha', 'asignaturas.nombre','asignaturas.anio', 'carrera.nombre as carrera')
-                ->join('asignaturas','asignaturas.id','=','mesa.id_asignatura')
-                ->join('carrera','carrera.id','=','asignaturas.id_carrera')
+            $mesas = Mesa::select('mesas.id','mesas.fecha', 'asignaturas.nombre','asignaturas.anio', 'carreras.nombre as carrera')
+                ->join('asignaturas','asignaturas.id','=','mesas.id_asignatura')
+                ->join('carreras','carreras.id','=','asignaturas.id_carrera')
                 ->where('asignaturas.nombre','LIKE','%'.$filtro.'%')
-                ->orWhere('carrera.nombre','LIKE','%'.$filtro.'%')
-                ->orderBy('mesa.fecha','ASC')
+                ->orWhere('carreras.nombre','LIKE','%'.$filtro.'%')
+                ->orderBy('mesas.fecha','ASC')
                 ->paginate($porPagina);
         }else{
-            $mesas = Mesa::select('mesa.id','mesa.fecha', 'asignaturas.nombre','asignaturas.anio', 'carrera.nombre as carrera')
-            ->join('asignaturas','asignaturas.id','=','mesa.id_asignatura')
-            ->join('carrera','carrera.id','=','asignaturas.id_carrera')
-            ->orderBy('mesa.fecha','DESC')
+            $mesas = Mesa::select('mesas.id','mesas.fecha', 'asignaturas.nombre','asignaturas.anio', 'carreras.nombre as carrera')
+            ->join('asignaturas','asignaturas.id','=','mesas.id_asignatura')
+            ->join('carreras','carreras.id','=','asignaturas.id_carrera')
+            ->orderBy('mesas.fecha','DESC')
             ->paginate($porPagina);
         }
         //dd($mesas);

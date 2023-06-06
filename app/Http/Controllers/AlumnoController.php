@@ -48,11 +48,11 @@ class AlumnoController extends Controller
 
     function info(){
         // carreras que el alumno cursa o curso
-        $carreras = Carrera::select('carrera.id', 'carrera.nombre')
-        -> join('asignaturas', 'asignaturas.id_carrera', 'carrera.id')
-        -> join('cursada', 'cursada.id_asignatura', 'asignaturas.id')
-        -> where('cursada.id_alumno', Auth::id()) 
-        -> groupBy('carrera.id', 'carrera.nombre')
+        $carreras = Carrera::select('carreras.id', 'carreras.nombre')
+        -> join('asignaturas', 'asignaturas.id_carrera', 'carreras.id')
+        -> join('cursadas', 'cursadas.id_asignatura', 'asignaturas.id')
+        -> where('cursadas.id_alumno', Auth::id()) 
+        -> groupBy('carreras.id', 'carreras.nombre')
         -> get();
         
         return view('Alumnos.Datos.informacion', [
@@ -92,14 +92,16 @@ class AlumnoController extends Controller
 
         $filtro = "*";
         $cursadas=[];
+        $campo = "";
 
         if($request->has('filtro')){
 
             $filtro = $request->filtro;
+            $campo = $request->campo;
 
                 if($request->campo == "anio"){
                     $cursadas = Cursada::where('id_alumno', Auth::id())
-                    -> with('asignatura') -> where('cursada.anio_cursada',$filtro)
+                    -> with('asignatura') -> where('cursadas.anio_cursada',$filtro)
                     -> get();
                 }
                 else if($request->campo == "materia"){
@@ -119,8 +121,8 @@ class AlumnoController extends Controller
         // lista de examenes aprobados para saber si una cursada
         // tiene rendido su final
         $examenesAprobados = DB::table('examenes')
-            -> select('mesa.id_asignatura')
-            -> join('mesa','examenes.id_mesa','mesa.id')
+            -> select('mesas.id_asignatura')
+            -> join('mesas','examenes.id_mesa','mesas.id')
             -> where('examenes.nota','>=',4)
             -> where('examenes.id_alumno',Auth::id())
             -> get()
@@ -130,7 +132,7 @@ class AlumnoController extends Controller
         return view('Alumnos.Datos.cursadas', [
             'cursadas' => $cursadas, 
             'examenesAprobados' => $examenesAprobados,
-            'filtros' => $request->only('campo','filtro')
+            'filtros' => ['campo'=>$campo,'filtro'=>$filtro]
         ]);
     }
 

@@ -41,8 +41,12 @@
        </form>
     </div>
 
+    <br><br>
+
+    
+
     <div>
-        cursadas
+        <h2>Cursadas</h2>
         <table>
             <tr>
                 <td>materia</td>
@@ -60,6 +64,28 @@
                     <td><a href="{{route('admin.cursadas.edit', [
                         'asignatura' => $cursada->asignatura->id,
                         'alumno' => $alumno->id
+                        ])}}">editar</a></td>
+                </tr>
+            @endforeach
+        </table>
+    </div> 
+    <br><br><br>
+    <div>
+        <h2>examenes</h2>
+        <table>
+            <tr>
+                <td>materia</td>
+                <td>carrera</td>
+                <td>nota</td>
+                <td>acciones</td>
+            </tr>
+            @foreach($alumno->examenes as $examen)
+                <tr>
+                    <td>{{$examen->mesa->materia->nombre}}</td>
+                    <td>{{$examen->mesa->materia->carrera->nombre}}</td>
+                    <td>{{$examen->nota}}</td>
+                    <td><a href="{{route('admin.examenes.edit', [
+                        'examen' => $examen->id,
                         ])}}">editar</a></td>
                 </tr>
             @endforeach

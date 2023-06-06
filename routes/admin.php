@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CarrerasCrudController;
 use App\Http\Controllers\Admin\MesasCrudController;
 use App\Http\Controllers\Admin\ProfesoresCrudController;
 use App\Http\Controllers\Admin\AdminsCrudController;
+use App\Http\Controllers\Admin\ExamenesCrudController;
 use App\Http\Controllers\CursadasAdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,11 @@ Route::prefix('admin')->group(function(){
     
     Route::resource('mesas', MesasCrudController::class, ['as' => 'admin']);
     Route::resource('admins', AdminsCrudController::class, ['as' => 'admin']);
+
+    Route::resource('examenes',ExamenesCrudController::class,[
+        'as' => 'admin',
+        'parameters' => ['examenes' => 'examen']
+    ]);
 
     //Route::resource('dias', CarrerasCrudController::class, ['as' => 'admin']);
     //Route::resource('cursadas', CarrerasCrudController::class, ['as' => 'admin']);

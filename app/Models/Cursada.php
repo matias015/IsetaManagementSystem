@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cursada extends Model
 {
-    protected $table = 'cursada';
+    protected $table = 'cursadas';
     use HasFactory;
 
     protected $fillable = ['anio_cursada','aprobada','condicion'];

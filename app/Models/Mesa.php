@@ -9,7 +9,7 @@ class Mesa extends Model
 {
     use HasFactory;
 
-    protected $table = "mesa";
+    protected $table = "mesas";
 
     public $timestamps = false;
     protected $fillable = ['id_asignatura','prof_presidente','prof_vocal_1','prof_vocal_2','llamado','fecha'];

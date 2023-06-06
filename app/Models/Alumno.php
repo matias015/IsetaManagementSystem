@@ -95,11 +95,11 @@ class Alumno extends Authenticatable implements MustVerifyEmail
         if($listaAprobados=="") $listaAprobados="0";
         $carreraDefault = Carrera::getDefault();
 
-        $sinRendir = Cursada::select('cursada.id_asignatura','asignaturas.nombre','asignaturas.anio')
-        -> join('asignaturas', 'asignaturas.id','cursada.id_asignatura')
-        -> where('cursada.aprobada', 1)
-        -> where('cursada.id_alumno', Auth::id())
-        -> whereRaw('cursada.id_asignatura NOT IN ('.$listaAprobados.')')
+        $sinRendir = Cursada::select('cursadas.id_asignatura','asignaturas.nombre','asignaturas.anio')
+        -> join('asignaturas', 'asignaturas.id','cursadas.id_asignatura')
+        -> where('cursadas.aprobada', 1)
+        -> where('cursadas.id_alumno', Auth::id())
+        -> whereRaw('cursadas.id_asignatura NOT IN ('.$listaAprobados.')')
         -> where('asignaturas.id_carrera', $carreraDefault)
         -> get();
 
@@ -140,6 +140,10 @@ class Alumno extends Authenticatable implements MustVerifyEmail
             
         }
         return $posibles;
+    }
+
+    public function examenes(){
+        return $this -> hasMany(Examen::class, 'id_alumno');
     }
     
 }
