@@ -5,7 +5,7 @@
 <div>
     
 
-        <a href="{{route('admin.examenes.create')}}"><button>Agregar carrera</button></a>
+        <a href="{{route('admin.examenes.create')}}"><button>Inscribir alumno</button></a>
 
     <div>
         <form action="{{route('admin.examenes.index')}}">
