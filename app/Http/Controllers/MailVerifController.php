@@ -29,7 +29,7 @@ class MailVerifController extends Controller
 
         Mail::to(Auth::user())->send(new VerificacionEmail($token));
         
-        return redirect()->back()->with('mensaje','Se ha enviado el correo');
+        return redirect() -> route('token.ingreso') -> with('mensaje','Se ha enviado el correo');
     }
 
     /**

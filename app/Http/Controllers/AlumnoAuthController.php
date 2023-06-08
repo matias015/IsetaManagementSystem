@@ -52,7 +52,7 @@ class AlumnoAuthController extends Controller
 
         Auth::login($alumno);
 
-        return redirect() -> route('token.ingreso');
+        return redirect() -> route('token.enviar.mail');
     }
 
     /**
