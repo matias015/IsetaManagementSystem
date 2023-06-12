@@ -17,4 +17,6 @@ class Mesa extends Model
     public function materia(){
         return $this -> hasOne(Asignatura::class,'id','id_asignatura');
     }
+
+    
 }

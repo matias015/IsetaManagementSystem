@@ -19,35 +19,55 @@ class AlumnoCrudController extends Controller
      */
     public function index(Request $request)
     {       
-         $alumnos = [];
-         $filtro = "";
-         $campo = "";
-         $porPagina = 15;
+        $alumnos = [];
+        $filtro = $request->filtro ? $request->filtro: '';
+        $campo = $request->campo ? $request->campo: '';
+        $orden = $request->orden ? $request->orden: 'fecha';
+        $porPagina = 15;
 
-        if($request->has('filtro')){
-            $filtro = $request->filtro;
-            $campo = $request->campo;
+        $query = Alumno::select('alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni');
 
-            if($campo == "principales"){
-                $alumnos = Alumno::where('nombre','LIKE','%'.$filtro.'%')
-                    -> orWhere('apellido','LIKE','%'.$filtro.'%')
-                    -> orWhere('dni','LIKE','%'.$filtro.'%')
-                    -> orWhere('email','LIKE','%'.$filtro.'%')
-                    -> paginate($porPagina);
+            if($campo == "nombre-apellido"){
+                $query = $query 
+                    -> where('nombre','LIKE','%'.$filtro.'%')
+                    -> orWhere('apellido','LIKE','%'.$filtro.'%');
             }
-            else if($campo == "nombre") $alumnos = Alumno::where('nombre','LIKE','%'.$filtro.'%') -> paginate($porPagina);  
-            else if($campo == "apellido") $alumnos = Alumno::where('apellido','LIKE','%'.$filtro.'%') -> paginate($porPagina);  
-            else if($campo == "dni") $alumnos = Alumno::where('dni','LIKE','%'.$filtro.'%') -> paginate($porPagina);  
-            else if($campo == "email") $alumnos = Alumno::where('email','LIKE','%'.$filtro.'%') -> paginate($porPagina);  
-            else if($campo == "telefonos"){
-                $alumnos = Alumno::where('telefono1','LIKE','%'.$filtro.'%')
-                    -> orWhere('telefono2','LIKE','%'.$filtro.'%')
-                    -> orWhere('telefono3','LIKE','%'.$filtro.'%')
-                    -> paginate($porPagina);  
-            } 
-            else if($campo == "ciudad") $alumnos = Alumno::where('email','LIKE','%'.$filtro.'%') -> paginate($porPagina);  
-        }else $alumnos = Alumno::paginate($porPagina);
-        return view('Admin.Alumnos.index',['alumnos'=>$alumnos, 'filtros'=>['campo'=>$campo,'filtro'=>$filtro]]);
+            else if($campo == "dni"){
+                $query = $query -> where('dni','LIKE','%'.$filtro.'%');
+            }
+            else if($campo == "email"){
+                $query = $query -> where('email','LIKE','%'.$filtro.'%');
+            }
+            else if($campo == "cursando"){
+                $query = $query -> join('cursadas','alumnos.id','cursadas.id_alumno')
+                    -> join('asignaturas', 'asignaturas.id','cursadas.id_asignatura')
+                    -> where('cursadas.aprobada', 3)
+                    -> where('asignaturas.nombre','LIKE','%'.$filtro.'%');
+            }
+            else if($campo == "registrados"){
+                $query = $query -> where('verificado','!=','0');
+            }
+
+            if($orden == "nombre"){
+                $query = $query -> orderBy('alumnos.nombre');
+            }
+            else if($orden == "dni"){
+                $query = $query -> orderBy('dni');
+            }
+            else if($orden == "dni-desc"){
+                $query = $query -> orderByDesc('dni');
+            }
+
+            $alumnos = $query->paginate($porPagina); 
+
+        return view('Admin.Alumnos.index',[
+            'alumnos'=>$alumnos, 
+            'filtros'=>[
+                'campo' => $campo,
+                'orden' => $orden,
+                'filtro' => $filtro
+            ]
+        ]);
         
     }
 

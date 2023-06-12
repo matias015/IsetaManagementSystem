@@ -23,29 +23,45 @@ class MesasCrudController extends Controller
      */
     public function index(Request $request)
     {       
-         $mesas = [];
-         $filtro = "";
-         $porPagina = 15;
+        $mesas = [];
+        $filtro = $request->filtro ? $request->filtro: '';
+        $campo = $request->campo ? $request->campo: '';
+        $orden = $request->orden ? $request->orden: 'fecha';
+        $porPagina = 15;
 
-        if($request->has('filtro')){
-            $filtro = $request->filtro;
+        $query = Mesa::select('mesas.id','mesas.fecha', 'asignaturas.nombre','asignaturas.anio', 'carreras.nombre as carrera')
+            -> join('asignaturas','asignaturas.id','=','mesas.id_asignatura')
+            -> join('carreras','carreras.id','=','asignaturas.id_carrera');
 
-            $mesas = Mesa::select('mesas.id','mesas.fecha', 'asignaturas.nombre','asignaturas.anio', 'carreras.nombre as carrera')
-                ->join('asignaturas','asignaturas.id','=','mesas.id_asignatura')
-                ->join('carreras','carreras.id','=','asignaturas.id_carrera')
-                ->where('asignaturas.nombre','LIKE','%'.$filtro.'%')
-                ->orWhere('carreras.nombre','LIKE','%'.$filtro.'%')
-                ->orderBy('mesas.fecha','ASC')
-                ->paginate($porPagina);
-        }else{
-            $mesas = Mesa::select('mesas.id','mesas.fecha', 'asignaturas.nombre','asignaturas.anio', 'carreras.nombre as carrera')
-            ->join('asignaturas','asignaturas.id','=','mesas.id_asignatura')
-            ->join('carreras','carreras.id','=','asignaturas.id_carrera')
-            ->orderBy('mesas.fecha','DESC')
-            ->paginate($porPagina);
+        if($campo == "nuevas"){
+            $query = $query->whereRaw('fecha > NOW()');
         }
+        else if($campo == "asignatura"){
+            $query = $query->where('asignaturas.nombre','LIKE','%'.$request->filtro.'%'); 
+        }
+        else if($campo == "carrera"){
+            $query = $query->where('carreras.nombre','LIKE','%'.$request->filtro.'%'); 
+        }
+
+        
+        if($orden == "fecha"){
+            $query->orderByDesc('mesas.fecha');
+        }
+        else if($orden == "asignatura"){
+            $query->orderBy('asignaturas.nombre');
+        }
+
+        $mesas = $query -> paginate($porPagina);
+        
         //dd($mesas);
-        return view('Admin.Mesas.index',['mesas'=>$mesas, 'filtro'=>$filtro]);
+        return view('Admin.Mesas.index',[
+            'mesas' => $mesas, 
+            'filtros'=>[
+                'campo' => $campo,
+                'orden' => $orden,
+                'filtro' => $filtro
+            ]
+        ]);
     }
 
     /**
@@ -80,11 +96,18 @@ class MesasCrudController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, $carrera)
+    public function edit(Request $request, $mesa)
     {
-        //dd($alumno->fecha_nacimiento);
+        $alumnos = Mesa::select('examenes.id as id_examen','alumnos.nombre','alumnos.apellido','examenes.nota')
+            -> join('examenes', 'examenes.id_mesa','mesas.id')
+            -> join('alumnos', 'alumnos.id','examenes.id_alumno')
+            -> where('mesas.id', $mesa)
+            -> get();
+
+
         return view('Admin.Mesas.edit', [
-            'mesa' => Mesa::where('id', $carrera)->with('materia.carrera')->first()
+            'mesa' => Mesa::where('id', $mesa)->with('materia.carrera')->first(),
+            'alumnos' => $alumnos
         ]);
     }
 

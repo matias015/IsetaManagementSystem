@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Alumno;
 use App\Models\Examen;
 use Illuminate\Http\Request;
 
@@ -81,17 +82,17 @@ class ExamenesCrudController extends Controller
      */
     public function create()
     {
-        return view('Admin.Alumnos.create');
+        return view('Admin.Examenes.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(crearAlumnoRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
+        $data = $request->only('');
 
-        Alumno::create($data);
+        Examen::create($data);
         return redirect()->route('admin.alumnos.index');
     }
 
@@ -126,9 +127,9 @@ class ExamenesCrudController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Alumno $alumno)
+    public function destroy(Examen $examen)
     {
-        $alumno->delete();
-        return redirect() -> route('admin.alumnos.index') -> with('mensaje', 'Se ha eliminado el alumno');
+        $examen->delete();
+        return redirect() -> back() -> with('mensaje', 'Se ha eliminado el alumno');
     }
 }

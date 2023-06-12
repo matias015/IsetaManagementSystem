@@ -11,8 +11,19 @@
         <div>
             <form action="{{route('admin.mesas.index')}}">
                 <p>filtrar</p> 
-                 <input value="{{$filtro}}" name="filtro" type="text">
-                 <input type="submit" value="Buscar">
+                <select name="campo">
+                    <option value="ninguno">todo</option>
+                    <option @selected($filtros['campo'] == 'nuevas') value="nuevas">nuevas</option>
+                    <option @selected($filtros['campo'] == 'asignatura') value="asignatura">asigantura</option>
+                    <option @selected($filtros['campo'] == 'carrera') value="carrera">carrera</option>
+                </select>
+                <input value="{{$filtros['filtro']}}" name="filtro" type="text">
+                <p>ordenar</p>
+                <select name="orden">
+                    <option @selected($filtros['orden'] == 'fecha') value="fecha">Fecha</option>
+                    <option @selected($filtros['orden'] == 'asignatura') value="asignatura">asigantura</option>
+                </select>
+                <input type="submit" value="Buscar">
             </form>
 
             <a href="{{route('admin.mesas.index')}}"><button>Quitar filtro</button></a>

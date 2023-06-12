@@ -9,56 +9,39 @@
         @endif
 <div class="edit-form-container">
 
-       <form method="post" action="{{route('admin.alumnos.update', ['alumno'=>$alumno->id])}}">
+        <h2>{{$mesa->materia->nombre}}</h2>
+       <form method="post" action="{{route('admin.mesas.update', ['mesa'=>$mesa->id])}}">
         @csrf
         @method('put')
 
-        <p>dni <input value="{{$alumno->dni}}" name="dni"></p>
-        <p>nombre <input value="{{$alumno->nombre}}" name="nombre"></p>
-        <p>apellido <input value="{{$alumno->apellido}}" name="apellido"></p>
-        <p>fecha nacimiento <input value="{{$alumno->fecha_nacimiento->format('Y-m-d')}}" type="date" name="fecha_nacimiento"></p>
-        <p>ciudad <input value="{{$alumno->ciudad}}" value="9 de Julio" name="ciudad"></p>
-        <p>calle <input value="{{$alumno->calle}}" name="calle"></p>
-        <p>numero <input value="{{$alumno->numero}}"  name="casa_numero"></p>
-        <p>departamento <input value="{{$alumno->departamento}}" name="dpto"></p>
-        <p>piso <input value="{{$alumno->piso}}" name="piso"></p>
-        <p>
-            estado civil 
-            <select name="estado_civil">
-                <option @if($alumno->estado_civil==0) selected @endif value="0">soltero</option>
-                <option @if($alumno->estado_civil==1) selected @endif value="1">casado</option>
-            </select>
-        </p>
-        <p>email <input value="{{$alumno->email}}" name="email"></p>
-        <p>titulo anterior <input value="{{$alumno->titulo_anterior}}" name="titulo_anterior"></p>
-        <p>becas <input value="{{$alumno->becas}}" name="becas"></p>
+        <p>Materia <input value="{{$mesa->fecha}}" name="fecha"></p>
+        <p>Llamado <input value="{{$mesa->llamado}}" name="llamado"></p>
         
-        <p>observaciones <textarea value="{{$alumno->observaciones}}" name="observaciones" cols="30" rows="10"></textarea></p>
-
-        <p>telefono <input value="{{$alumno->telefono1}}" name="telefono1"></p>
-        <p>telefono 2 <input value="{{$alumno->telefono2}}" name="telefono2"></p>
-        <p>telefono 3<input value="{{$alumno->telefono3}}" name="telefono3"></p>
-        <p>codigo postal<input value="{{$alumno->codigo_postal}}" value="6500" name="codigo_postal"></p>
-
         <input type="submit" value="Actualizar">
        </form>
     </div>
 
     <div>
-        cursadas
+        Alumnos inscriptos
         <table>
             <tr>
-                <td>materia</td>
-                <td>año</td>
-                <td>carrera</td>
-                <td>aprobada</td>
+                <td>nombre</td>
+                <td>apellido</td>
+                <td>nota</td>
+                <td>cosas</td>
             </tr>
-            @foreach($alumno->cursadas as $cursada)
+            @foreach($alumnos as $alumno)
                 <tr>
-                    <td>{{$cursada->asignatura->nombre}}</td>
-                    <td>{{$cursada->anio_cursada}}</td>
-                    <td>{{$cursada->asignatura->carrera->nombre}}</td>
-                    <td>{{$cursada->aprobada}}</td>
+                    <td>{{$alumno->nombre}}</td>
+                    <td>{{$alumno->apellido}}</td>
+                    <td>{{$alumno->nota}}</td>
+                    <td>
+                        <form method="POST" action="{{route('admin.examenes.destroy', ['examen' => $alumno->id_examen])}}">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Eliminar">
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </table>
