@@ -22,7 +22,28 @@
     </div>
 
     <div>
-        Alumnos inscriptos
+        <h2>Alumnos inscriptos</h2>
+        <p>Agregar alumno</p>
+        <p>
+
+        @if(strtotime($mesa->fecha) > time())
+        
+            estos alumnos han aprobado la cursada de esta materia, luego se volvera a validar sobre equivalencias y tiempos
+            
+            <form method="POST" action="{{route('admin.examenes.store', ['mesa'=>$mesa->id])}}">
+                @csrf
+                
+            <select>
+                <option value=""></option>
+                @foreach ($inscribibles as $inscribible)
+                    <option value="{{$inscribible->id}}">{{$inscribible->nombre.' '.$inscribible->apellido}}</option>
+                @endforeach
+            </select>
+          <input type="submit" value="Agregar">
+        @else
+            Ya no se pueden agregar alumnos    
+        @endif
+    </p>
         <table>
             <tr>
                 <td>nombre</td>

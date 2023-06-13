@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Alumno;
 use App\Models\Examen;
+use App\Models\Mesa;
+use App\Models\Profesor;
 use Illuminate\Http\Request;
 
 class ExamenesCrudController extends Controller
@@ -80,8 +82,9 @@ class ExamenesCrudController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request, Mesa $mesa)
     {
+        dd($mesa);
         return view('Admin.Examenes.create');
     }
 
@@ -107,11 +110,13 @@ class ExamenesCrudController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, $alumno)
+    public function edit(Request $request, $examen)
     {
-
-        return view('Admin.Alumnos.edit', [
-            'alumno' => Alumno::where('id', $alumno)->with('cursadas.asignatura.carrera','examenes.mesa.materia.carrera')->first()
+        $examen = Examen::with('mesa', 'alumno')->where('examenes.id',$examen)->first();
+        
+        //dd($examen);
+        return view('Admin.Examenes.edit', [
+            'examen' => $examen
         ]);
     }
 

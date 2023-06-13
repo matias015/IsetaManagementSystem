@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CrearMesaRequest;
+use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Mesa;
@@ -80,7 +81,7 @@ class MesasCrudController extends Controller
     public function store(CrearMesaRequest $request)
     {
         $data = $request->validated();
-
+        
         Mesa::create($data);
         return redirect()->route('admin.mesas.index');
     }
@@ -98,16 +99,27 @@ class MesasCrudController extends Controller
      */
     public function edit(Request $request, $mesa)
     {
+        $mesa = Mesa::where('id', $mesa)->with('materia.carrera')->first();
+
         $alumnos = Mesa::select('examenes.id as id_examen','alumnos.nombre','alumnos.apellido','examenes.nota')
             -> join('examenes', 'examenes.id_mesa','mesas.id')
             -> join('alumnos', 'alumnos.id','examenes.id_alumno')
-            -> where('mesas.id', $mesa)
+            -> where('mesas.id', $mesa->id)
             -> get();
 
+        $inscribibles = Alumno::select('alumnos.id','alumnos.nombre', 'alumnos.apellido')
+            -> join('cursadas','cursadas.id_alumno','alumnos.id')
+            -> join('asignaturas','asignaturas.id','cursadas.id_asignatura')
+            -> where('cursadas.aprobada','1')
+            -> where('cursadas.id_asignatura',$mesa->id_asignatura)
+            -> get();
+
+           
 
         return view('Admin.Mesas.edit', [
-            'mesa' => Mesa::where('id', $mesa)->with('materia.carrera')->first(),
-            'alumnos' => $alumnos
+            'mesa' => $mesa,
+            'alumnos' => $alumnos,
+            'inscribibles' => $inscribibles
         ]);
     }
 
