@@ -28,7 +28,7 @@
 
             
         <select name="tipo_final">
-            <option value="1">escrito</option>
+            <option value="1">escrito</option >
             <option value="2">oral</option>
             <option value="3">promocionado</option> 
         </select>

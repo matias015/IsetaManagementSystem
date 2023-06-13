@@ -30,16 +30,19 @@
         
             estos alumnos han aprobado la cursada de esta materia, luego se volvera a validar sobre equivalencias y tiempos
             
-            <form method="POST" action="{{route('admin.examenes.store', ['mesa'=>$mesa->id])}}">
+            <form method="POST" action="{{route('admin.examenes.store')}}">
                 @csrf
                 
-            <select>
+            <select name="id_alumno">
                 <option value=""></option>
                 @foreach ($inscribibles as $inscribible)
                     <option value="{{$inscribible->id}}">{{$inscribible->nombre.' '.$inscribible->apellido}}</option>
                 @endforeach
+                
             </select>
+            <input name="id_mesa" value="{{$mesa->id}}" type="hidden">
           <input type="submit" value="Agregar">
+            </form>
         @else
             Ya no se pueden agregar alumnos    
         @endif

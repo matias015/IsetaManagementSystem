@@ -93,10 +93,10 @@ class ExamenesCrudController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->only('');
+        $data = $request->only('id_alumno','id_mesa');
 
         Examen::create($data);
-        return redirect()->route('admin.alumnos.index');
+        return redirect()->back();
     }
 
     /**
