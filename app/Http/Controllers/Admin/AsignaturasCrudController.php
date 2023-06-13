@@ -49,7 +49,8 @@ class AsignaturasCrudController extends Controller
      */
     public function create()
     {
-        return view('Admin.Asignaturas.create');
+        $carreras = Carrera::all();
+        return view('Admin.Asignaturas.create',compact('carreras'));
     }
 
     /**
@@ -58,6 +59,8 @@ class AsignaturasCrudController extends Controller
     public function store(CrearAsignaturaRequest $request)
     {
         $data = $request->validated();
+
+        $data['anio'] = $data['anio'] - 1; 
 
         Asignatura::create($data);
         return redirect()->route('admin.asignaturas.index');

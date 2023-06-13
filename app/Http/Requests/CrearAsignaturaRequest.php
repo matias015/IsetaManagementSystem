@@ -11,7 +11,7 @@ class CrearAsignaturaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class CrearAsignaturaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => ['required'],
+            'id_carrera' => ['required'],
+            'tipo_modulo' => ['required'],
+            'carga_horaria' => ['required'],
+            'anio' => ['required'],
+            'observaciones' => ['required'],
         ];
     }
 }

@@ -37,9 +37,10 @@
             </div>
             <div class="entrar input-box button"><input type="submit" value="Entrar"></div>
             <div class="etiquetas"><a href="{{route('alumno.registro')}}">¡Registrate!</a></div>
-            <div class="etiquetas"><a href="{{route('alumno.login')}}">¿Ha olvidado su contraseña?</a></div>
+            <div class="etiquetas"><a href="{{route('reset.password')}}">¿Ha olvidado su contraseña?</a></div>
             
         </form>
+        @include('Comp.mensajes')
     </section>
 </body>
 </html>

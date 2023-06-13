@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlumnoAuthController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\MailVerifController;
+use App\Http\Controllers\PasswordResetController;
 use App\Models\Alumno;
 use Illuminate\Console\View\Components\Alert;
 use Illuminate\Support\Facades\Auth;
@@ -35,5 +36,10 @@ Route::prefix('alumno')->group(function(){
     Route::post('/bajarse', [AlumnoController::class, 'bajarse'])->name('alumno.bajarse');
 
     Route::post('/set-default', [AlumnoController::class, 'setCarreraDefault'])->name('alumno.set.default');
+
+    Route::get('/reset',[PasswordResetController::class,'vista'])->name('reset.password');
+    Route::get('/reset/mail',[PasswordResetController::class,'mail'])->name('reset.password.mail');
+
+    Route::post('/reset',[PasswordResetController::class,'validarToken'])->name('reset.password.post');
 
 });

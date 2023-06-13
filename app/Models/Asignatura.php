@@ -10,6 +10,15 @@ class Asignatura extends Model
     protected $table = "asignaturas";
     use HasFactory;
 
+    public $timestamps = false;
+
+    protected $fillable =  ['nombre',
+    'id_carrera',
+    'tipo_modulo',
+    'carga_horaria',
+    'anio',
+    'observaciones'];
+
     public function cursadas(){
         return $this -> hasMany(Cursada::class,'id_asignatura');
     }

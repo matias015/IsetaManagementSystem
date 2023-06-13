@@ -9,14 +9,21 @@
         @endif
 
 
-       <form method="post" action="{{route('admin.carreras.store')}}">
+       <form method="post" action="{{route('admin.asignaturas.store')}}">
         @csrf
 
-        <p>carrera <input name="nombre"></p>
-        <p>resolucion <input name="resolucion"></p>
-        <p>anio_apertura <input name="anio_apertura"></p>
-        <p>anio_fin <input name="anio_fin"></p>
-        <p>observaciones <input name="observaciones"></p>
+        <p>asignatura <input name="nombre"></p>
+        
+        <select name="id_carrera">
+            @foreach($carreras as $carrera)
+                <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
+            @endforeach
+        </select>
+        <p>tipo modulo <input  name="tipo_modulo"></p>
+        <p>carga horaria <input  name="carga_horaria"></p>
+        <p>año<input  name="anio"></p>
+        <p>observaciones <input  name="observaciones"></p>
+
 
         <input type="submit" value="Crear">
        </form>
