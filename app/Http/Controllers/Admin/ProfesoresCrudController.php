@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\crearProfesorRequest;
+use App\Models\Examen;
+use App\Models\Mesa;
 use App\Models\Profesor;
 use Illuminate\Http\Request;
 
@@ -79,7 +81,18 @@ class ProfesoresCrudController extends Controller
     public function edit(Profesor $profesor)
     {
         //dd($profesor->fecha_nacimiento);
-        return view('admin.profesores.edit', compact('profesor'));
+        $mesas = Mesa::where(function ($query) use ($profesor) {
+            $query->where('prof_presidente', $profesor->id)
+                ->orWhere('prof_vocal_1', $profesor->id)
+                ->orWhere('prof_vocal_2', $profesor->id);
+        })
+        ->whereRaw('fecha > NOW()')
+        ->get();
+
+        return view('admin.profesores.edit', [
+            'profesor' => $profesor,
+            'mesas' => $mesas
+        ]);
     }
 
     /**

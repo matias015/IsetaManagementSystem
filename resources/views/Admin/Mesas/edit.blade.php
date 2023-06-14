@@ -16,7 +16,32 @@
 
         <p>Materia <input value="{{$mesa->fecha}}" name="fecha"></p>
         <p>Llamado <input value="{{$mesa->llamado}}" name="llamado"></p>
-        
+
+        <p>
+            Prof. presidente
+            <select name="presidente">
+                @foreach($profesores as $profesor)
+                    <option @selected($mesa->profesor->id == $profesor->id) value="{{$profesor->id}}">{{$profesor->nombre}}</option>
+                @endforeach
+            </select>
+        </p>
+        <p>
+            Prof. vocal 1
+            <select name="presidente">
+                @foreach($profesores as $profesor)
+                    <option @selected($mesa->vocal1->id == $profesor->id) value="{{$profesor->id}}">{{$profesor->nombre}}</option>
+                @endforeach
+            </select>
+        </p>
+        <p>
+            Prof. vocal 2
+            <select name="presidente">
+                @foreach($profesores as $profesor)
+                    <option @selected($mesa->vocal2->id == $profesor->id) value="{{$profesor->id}}">{{$profesor->nombre}}</option>
+                @endforeach
+            </select>
+        </p>
+
         <input type="submit" value="Actualizar">
        </form>
     </div>

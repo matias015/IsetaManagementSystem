@@ -94,8 +94,13 @@ class ExamenesCrudController extends Controller
     public function store(Request $request)
     {
         $data = $request->only('id_alumno','id_mesa');
+        $mesa = Mesa::find($data['id_mesa']);
 
-        Examen::create($data);
+        Examen::create([
+            'id_alumno' => $data['id_alumno'],
+            'id_mesa' => $mesa->id,
+            'id_asignatura' => $mesa->id_asignatura
+        ]); 
         return redirect()->back();
     }
 

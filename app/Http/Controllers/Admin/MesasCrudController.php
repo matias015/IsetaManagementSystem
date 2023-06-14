@@ -99,7 +99,9 @@ class MesasCrudController extends Controller
      */
     public function edit(Request $request, $mesa)
     {
-        $mesa = Mesa::where('id', $mesa)->with('materia.carrera')->first();
+        $mesa = Mesa::where('id', $mesa)->with('materia.carrera','profesor','vocal1','vocal2')->first();
+
+        $profesores = Profesor::all();
 
         $alumnos = Mesa::select('examenes.id as id_examen','alumnos.nombre','alumnos.apellido','examenes.nota')
             -> join('examenes', 'examenes.id_mesa','mesas.id')
@@ -119,6 +121,7 @@ class MesasCrudController extends Controller
         return view('Admin.Mesas.edit', [
             'mesa' => $mesa,
             'alumnos' => $alumnos,
+            'profesores'=>$profesores,
             'inscribibles' => $inscribibles
         ]);
     }

@@ -42,5 +42,33 @@
 
         <input type="submit" value="Actualizar">
        </form>
-    </div></div>
+    </div>
+
+    <h2>Proximas mesas</h2>
+    <table>
+        <tr>
+            <td>Asignatura</td>
+            <td>Fecha</td>
+            <td>Rol</td>
+            <td>Detalles</td>
+        </tr>
+    
+    @foreach ($mesas as $mesa)
+        <tr>
+            <td>{{$mesa->materia->nombre}}</td>
+            <td>{{$mesa->fecha}}</td>
+            <td>
+                @if ($mesa->prof_presidente == $profesor->id)
+                    Presidente
+                @elseif ($mesa->prof_vocal_1 == $profesor->id)
+                    Vocal 1
+                @elseif ($mesa->prof_vocal_2 == $profesor->id)
+                    Vocal 2
+                @endif
+            </td>
+            <td><a href="{{route('admin.mesas.edit',['mesa'=>$mesa->id])}}">Detalles</a></td>
+        </tr>
+    @endforeach
+</table>
+</div>
 @endsection
