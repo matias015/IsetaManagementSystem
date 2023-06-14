@@ -14,7 +14,7 @@
                     <option value="ninguno">todo</option>
                     <option @selected($filtros['campo'] == 'asignatura') value="asignatura">asignatura</option>
                     <option @selected($filtros['campo'] == 'aprobadas') value="aprobadas">aprobadas</option>
-                    <option @selected($filtros['campo'] == 'desaprobadas') value="aprobadas">desaprobadas</option>
+                    <option @selected($filtros['campo'] == 'desaprobadas') value="desaprobadas">desaprobadas</option>
                     <option @selected($filtros['campo'] == 'final_aprobado') value="final_aprobado">final aprobado</option>
                     <option @selected($filtros['campo'] == 'final_desaprobado') value="final_desaprobado">final desaprobado</option>
                   </select>

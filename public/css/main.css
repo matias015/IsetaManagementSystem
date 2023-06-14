@@ -334,9 +334,15 @@ th {
 /*-------------------------------------------   L   L   A   M   A   D   O   S   ----------------------------------------------------*/
 
 
-.llamado_1 input[type="radio"], .llamado_2 input[type="radio"] {
-    display: none;
-}
+/* ---------------------------------------------------
+----- BORRADO
+-----
+-----   .llamado_1 input[type="radio"], .llamado_2 input[type="radio"] {
+-----       display: none;
+-----   }
+-----
+--------------------------------------------------- */
+
 
 .llamado_1 label, .llamado_2 label {
     position: relative;
