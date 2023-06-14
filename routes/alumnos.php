@@ -42,4 +42,5 @@ Route::prefix('alumno')->group(function(){
 
     Route::post('/reset',[PasswordResetController::class,'validarToken'])->name('reset.password.post');
 
+    Route::post('/cambiarpw',[AlumnoAuthController::class, 'cambiarPassword'])->name('cambio.password');
 });

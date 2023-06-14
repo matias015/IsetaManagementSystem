@@ -1,18 +1,5 @@
-
-
-/*----------------------------------------------------- A L U M N O S -------------------------------------------------------*/
-
-
-
-
-
-
 /*----------------------------------------------- T A B L A   ------------------------------------------------------*/
-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+
 
 #fondo-estudiantes {
     background: linear-gradient(150deg, #5872d16d, black), url(img/concepto-educacion-estudiante-estudiar-brainstorming-campus-concepto-cerca-estudiantes-que-discuten-su-tema-libros-o-libros-texto-enfoque-selectivo.jpg);
@@ -20,85 +7,174 @@ body{
 }
 
 main {
+    position: relative;
     min-height: 1000px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/*------------------------------------------- P   E   R   F   I   L  -------------------------------------------------------------*/
 
-section.table {
+section.perfil {
     margin: 20px 0 20px 0;
     width: 92vw;
-    background: #fff5;
+    background: var(--gris-fondo-tabla);
     backdrop-filter: blur(7px);
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
-    /*
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    */
     overflow: hidden;
-}
-
-.perfil {
-    margin: 20px 0 20px 0;
-    width: 92vw;
-    background: #fff5;
-    backdrop-filter: blur(7px);
-    box-shadow: 0 .4rem .8rem #0005;
-    border-radius: .8rem;
 }
 
 .perfil_header {
     width: 100%;
     height: 10%;
-    background: #fff4;
+    background: var(--gris-header-tabla);
     padding: .8rem 1rem;
+    display: flex;
+    align-items: center;
+    color: #000;
+}
+
+.perfil_body {
+    width: 95%;
+    margin: .8rem auto;
+    border-radius: .6rem;
+    overflow: auto;
+}
+
+.perfil_one, .perfil_second, .perfil_third {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    padding: 15px;
+    height: auto;
+    color: #000;
+    border-radius: .6rem;
+    background: var(--gris-body-tabla);
+    margin-bottom: 20px;
+}
+
+.perfil_header h1 {
+    font-size: 24px;
+    margin-left: 15px;
+}
+
+.perfil_body h2 {
+    font-size: 21px;
+}
+
+.perfil_subtop {
+    
+    padding-bottom: .8rem;
     display: flex;
     align-items: center;
 }
 
-
-
-.perfil_body {
-    display: flex;
-    width: 95%;
-    background: #fffb;
-    margin: .8rem auto;
-    border-radius: .6rem;
+.perfil_dataname {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    border-bottom: 1px solid;
 }
 
-.perfil_one {
+.perfil_datainfo {
+    color: rgb(75, 74, 74);
+    font-weight: 500;
+}
+
+.perfil_password {
+    position: relative;
+    width: 100%;
+    
+    height: 50px;
+}
+.perfil_password input {
+    position: relative;
+    width: 50%;
+    border: none;
+    border-radius: 5px;
+    padding-left: 10px;
+    height: 40px;
+    outline: none;
+    font-size: 15px;
+}
+
+.perfil_password i {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 51%;
+    bottom: 60%;
+    transform: translateY(50%);
+}
+
+.perfil_password i.check_pos {
+    color: var(--verde-2);
+    
+}
+
+.perfil_password i.check_neg {
+    color: var(--rojo-sl);
+    display: none;
+}
+
+.perfil_descargable {
+    height: 50px;
+    
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 17px;
+}
+
+.perfil_descargable button {
+    width: 10%;
+    height: 40px;
+    background: var(--azul-iseta);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+.perfil_descargable button:hover {
+    background: var(--azul-osc-iseta);
+}
+
+.perfil_descargable i {
+    padding-right: 10px;
+}
+
+/*------------------------------------------- T   A   B   L   A   -------------------------------------------------------------*/
+
+section.table {
+    margin: 20px 0 20px 0;
+    width: 92vw;
+    background: var(--gris-fondo-tabla);
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    overflow: hidden;
 }
 
 .table__header {
     width: 100%;
     height: 10%;
-    background: #fff4;
+    background: var(--gris-header-tabla);
     padding: .8rem 1rem;
     display: flex;
     justify-content: space-between;
 }
 
-.perfil_header h1 {
-    margin-left: 15px;
-}
-
-
-
-
 .table__body {
     width: 95%;
     /* max-height: calc(89% - 1.6rem); */
-    background: #fffb;
+    background: var(--gris-body-tabla);
     margin: .8rem auto;
     border-radius: .6rem;
-
     overflow: auto;
 }
 
@@ -119,14 +195,13 @@ section.table {
 
 table {
     width: 100%;
-
 }
 
 thead th {
    /* position: sticky; */
     top: 0;
     left: 0;
-    background: #d5d1defe;
+    background: var(--gris-titulo);
 }
 
 tbody tr:nth-child(even) {
@@ -134,7 +209,7 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:hover {
-    background: #fff6;
+    background: var(--gris-hover);
 }
 
 table, th, td {
@@ -143,11 +218,22 @@ table, th, td {
     text-align: left;
 }
 
+.table h1 {
+    font-size: 24px;
+}
+
+th {
+    font-size: 16px;
+}
+
+/*------------------------------------------- E   S   T   A   D   0   ------------------------------------------------------------*/
+
 .status {
     background: var(--rojo-sl);
     padding: .4rem;
     border-radius: 10px;
     text-align: center;
+    width: 100px;
 }
 
 .status.aprobada {
@@ -165,140 +251,154 @@ table, th, td {
     color: #6b0000;
 }
 
-@media (max-width: 1000px) {
-    td:not(:first-of-type) {
 
-    }
-}
+/*------------------------------------------- F   I   L   T   R   A   R   ------------------------------------------------------------*/
 
-.perfil_home {
-    
-    width: 92vw;
-    height: auto;
-    margin: 20px 0 20px 0;
-    display: flex;
-}
-
-.perfil_one {
-    height: 600px;
-    background: yellow;
-    width: 50%;
-}
-
-.perfil_second {
-    height: 600px;
-    background: blueviolet;
-    width: 50%;
-}
-
-
-
-
-
-
-
-
-
-
-/* -------------------------------------------- I N S C R I P C I O N E S -------------------------------------------------------*/
-
-
-.boton-finales {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    color: white;
-    font-size: 17px;
-    border: none;
-}
-
-button.inscribir {
-    background: #0ee303;
-}
-
-button.bajarse {
-    background: red;
-}
-
-
-/* ---------------------------------- FILTRAR Y ORDENAR ------------------------------------*/
 .tabla_botonera {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.dropdown, .filtrar, .descargar {
+.contenedor_filtrar {
     position: relative;
+}
+
+.filtrar {
+    position: relative;
+    appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+    border: none;
+    outline: none;
     width: 180px;
     height: 40px;
     margin-right: 22px;
     font-size: 15px;
-}
-
-.dropdown::before, .filtrar::before , .descargar::before {
-    content: '';
-    position: absolute;
-    right: 20px;
-    top: 10.5px;
-    width: 8px;
-    height: 8px;
-    z-index: 10000;
-    border: 2px solid #333;
-    border-top: 2px solid #fff;
-    border-right: 2px solid #fff;
-    transform: rotate(-45deg);
-    transition: 0.5s;
-    pointer-events: none;
-}
-
-.dropdown.active::before, .filtrar.active::before, .descargar.active::before {
-    top: 17.5px;
-    transform: rotate(-225deg);
-}
-
-.dropdown input, .filtrar input, .descargar input{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     cursor: pointer;
     background: #fff;
-    border: none;
-    outline: none;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    padding: 12px 20px;
+    padding-left: 18%;
     border-radius: 5px;
 }
 
-.dropdown .opcion, .filtrar .filtrado, .descargar .opciones {
+.i_filtrar {
+    color: #000;
     position: absolute;
-    top: 50px;
-    width: 100%;
-    background: #fff;
-    box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
-    overflow: hidden;
-    display: none;
-}
-
-.dropdown.active .opcion, .filtrar.active .filtrado , .descargar.active .opciones {
-    display: block;
-}
-
-.dropdown .opcion li, .filtrar .filtrado li , .descargar .opciones div{
-    padding: 12px 20px;
+    width: 20px;
+    height: 20px;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
 }
 
-.dropdown .opcion li:hover, .filtrar .filtrado li:hover, .descargar .opciones div:hover {
-    color: white;
-    background: #0F0844;
+.contenedor_filtrado {
+    position: relative;
+    width: 180px;
 }
 
-.dropdown .opcion li i, .filtrar .filtrado li i, .descargar .opciones div i {
+.filtrado-busqueda {
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    color: #191919;
+    padding: 15px 15px 15px 35px;
+    width: 100%;
+    height: 40px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+
+
+.i_lupa {
+    color: #000;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .i_borrar {
+    color: #000;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 12px;
+    bottom: 50%;
+    transform: translateY(50%);
+  }
+
+/*-------------------------------------------   L   L   A   M   A   D   O   S   ----------------------------------------------------*/
+
+
+.llamado_1 input[type="radio"], .llamado_2 input[type="radio"] {
+    display: none;
+}
+
+.llamado_1 label, .llamado_2 label {
     position: relative;
-    margin-right: 15px;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    border-radius: 5px;
+    height: 40px;
+    width: 80px;
+    padding-left: 30%;
+    cursor: pointer;
+   
+}
+
+.llamado_1 label::before, .llamado_2 label::before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    border: 2px solid var(--azul-iseta);
+    border-radius: 50%;
+    cursor: pointer;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.llamado_1 input[type="radio"]:checked + label, .llamado_2 input[type="radio"]:checked + label  {
+    background: var(--azul-iseta);
+    color: white;
+}
+
+.llamado_1 input[type="radio"]:checked + label::before, .llamado_2 input[type="radio"]:checked + label::before {
+    height: 9px;
+    width: 9px;
+    border: 3px solid white;
+    background: var(--whatsapp);
+}
+
+
+/*------------------------------------------- I   N   S   C   R   I   P   C   I   O   N   ----------------------------------------------------*/
+
+.boton-finales {
+    width: 120px;
+    height: 40px;
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+button.inscribir {
+    background: var(--whatsapp);
+}
+
+button.inscribir:hover {
+    background: var(--verde-2);
+}
+
+button.bajarse {
+    display: none;
+    background: var(--rojo-sl);
 }

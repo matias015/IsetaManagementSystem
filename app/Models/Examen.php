@@ -19,4 +19,7 @@ class Examen extends Model
     function alumno(){
         return $this -> belongsTo(Alumno::class,'id_alumno');
     }
+
+    
+
 }

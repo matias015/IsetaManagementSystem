@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
     <link rel="stylesheet" href="{{asset('css/footer.css')}}">
 
+    @yield('estilos')
+
 </head>
 
 <body class="bg-slate-900 text-slate-300 m-2">

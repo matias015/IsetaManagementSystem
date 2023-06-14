@@ -19,7 +19,7 @@ class PasswordResetController extends Controller
         $token = rand(1,100);
 
         $existe = ResetToken::where('email', $request->email)->first();
-        if($existe) $existe->delete();
+        if($existe) ResetToken::where('email', $request->email)->delete();
 
         ResetToken::create([
             'email' => $request->email,
@@ -33,11 +33,13 @@ class PasswordResetController extends Controller
 
     function validarToken(Request $request){
         $tokenData = ResetToken::where('token',$request->token)->first();
+        
         if($tokenData) {
-            $alumno = Alumno::where('email',$request->email)->first();
+            $alumno = Alumno::where('email',$tokenData->email)->first();
             $alumno->password = bcrypt($request->password);
             $alumno->save();
-            $tokenData->delete();
+            
+            ResetToken::where('email',$request->email)->delete();
         }
         return redirect()->route('alumno.login');
     }

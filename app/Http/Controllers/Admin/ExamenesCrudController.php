@@ -114,7 +114,6 @@ class ExamenesCrudController extends Controller
     {
         $examen = Examen::with('mesa', 'alumno')->where('examenes.id',$examen)->first();
         
-        //dd($examen);
         return view('Admin.Examenes.edit', [
             'examen' => $examen
         ]);
@@ -123,10 +122,20 @@ class ExamenesCrudController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Alumno $alumno)
+    public function update(Request $request, Examen $examen)
     {
-        $alumno->update($request->all());
-        return redirect()->route('admin.alumnos.index');
+        
+        $examen->update($request->all());
+        
+        if($request->ausente){
+            $examen->nota = 0;
+            $examen->aprobado = 3;
+        }else if($request->nota > 4){
+            $examen->aprobado = 1;
+        }else $examen->aprobado = 2;
+
+        $examen->save();
+        return redirect()->back();
     }
 
     /**

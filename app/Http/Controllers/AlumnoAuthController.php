@@ -24,8 +24,8 @@ class AlumnoAuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
-        $this->middleware('auth:web')->only('logout');
+        $this->middleware('guest')->except('logout','cambiarPassword');
+        $this->middleware('auth:web')->only(['logout','cambiarPassword']);
     }
 
     /**
@@ -82,5 +82,21 @@ class AlumnoAuthController extends Controller
     function logout(){
         Auth::logout();
         return redirect()->route('alumno.login');
+    }
+
+
+
+    function cambiarPassword(Request $request){
+        $user = Auth::user();
+        if(!Hash::check($request->oldPassword, $user->password)){
+            dd('incor');
+            return redirect()->back()->with('error','la contraseña no coincide');
+        }
+        dd('cambiando');
+        
+
+        $user->password = bcrypt($request->newPassword);
+        $user->save();
+        return redirect()->back()->with('mensaje','Se ha restablecido la contraseña');
     }
 }
