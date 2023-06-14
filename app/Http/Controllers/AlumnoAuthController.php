@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AlumnoLoginRequest;
 use App\Http\Requests\AlumnoRegistroRequest;
+use App\Http\Requests\ModificarPasswordRequest;
 use App\Models\Alumno;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -86,7 +87,7 @@ class AlumnoAuthController extends Controller
 
 
 
-    function cambiarPassword(Request $request){
+    function cambiarPassword(ModificarPasswordRequest $request){
         $user = Auth::user();
         if(!Hash::check($request->oldPassword, $user->password)){
             dd('incor');

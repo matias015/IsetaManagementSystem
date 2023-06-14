@@ -9,23 +9,25 @@
 
             {{-- <div class="filtrar"> --}}
               <form action="{{route('alumno.cursadas')}}">
-                <select name="campo" class="dropdown">
-                  <option @selected($filtros['campo'] == 'anio') value="anio" selected><i class="ti ti-123"></i>Año</option>
-                  <option @selected($filtros['campo'] == 'materia') value="materia"><i class="ti ti-school"></i>Materia</option>
-                  <option @selected($filtros['campo'] == 'anio_carrera') value="anio_carrera"><i class="ti ti-calendar-time"></i>Año carrera</option>
+                <p>filtrar</p> 
+                <select name="campo">
+                    <option value="ninguno">todo</option>
+                    <option @selected($filtros['campo'] == 'asignatura') value="asignatura">asignatura</option>
+                    <option @selected($filtros['campo'] == 'aprobadas') value="aprobadas">aprobadas</option>
+                    <option @selected($filtros['campo'] == 'desaprobadas') value="aprobadas">desaprobadas</option>
+                    <option @selected($filtros['campo'] == 'final_aprobado') value="final_aprobado">final aprobado</option>
+                    <option @selected($filtros['campo'] == 'final_desaprobado') value="final_desaprobado">final desaprobado</option>
+                  </select>
+                <input value="{{$filtros['filtro']}}" name="filtro" type="text">
+                <p>ordenar</p>
+                <select name="orden">
+                    <option @selected($filtros['orden'] == 'anio') value="anio">Año carrera</option>
+                    <option @selected($filtros['orden'] == 'anio_cursada') value="anio_cursada">Año cursada</option>
                 </select>
-                <input value="{{$filtros['filtro']}}" name="filtro">
-              </form>
-            {{-- </div> --}}
-            <div class="descargar">
-              <input type="text" class="textDow" placeholder="Descargar" readonly>
-              <div class="opciones">
-                <div onclick="show('PDF')"><i class="ti ti-pdf"></i>PDF</div>
-                <div onclick="show('DOCS')"><i class="fa-solid fa-file-pdf"></i>DOCS</div>
-                <div onclick="show('EXCEL')"><i class="ti ti-status-change"></i>EXCEL</div>
-                <div onclick="show('PNG')"><i class="ti ti-png"></i>PNG</div>
-              </div>
-            </div>
+                <input type="submit" value="Buscar">
+            </form>
+           
+          
             
           </div>
           
@@ -54,6 +56,11 @@
             <tbody>
 
                 @foreach($cursadas as $cursada)
+                  @if($filtros['campo'] == 'final_aprobado' && !in_array($cursada->id_asignatura,$examenesAprobados))
+                    @continue
+                  @elseif($filtros['campo'] == 'final_desaprobado' && in_array($cursada->id_asignatura,$examenesAprobados))
+                    @continue
+                  @endif
               <tr>
                 <td>{{$cursada->asignatura->anio+1}}</td>
                 <td>{{$cursada->asignatura->nombre}}</td>

@@ -90,34 +90,36 @@ class AlumnoController extends Controller
 
     function cursadas(Request $request){
 
-        $filtro = "*";
         $cursadas=[];
-        $campo = "";
+        $filtro = $request->filtro ? $request->filtro: '';
+        $campo = $request->campo ? $request->campo: '';
+        $orden = $request->orden ? $request->orden: 'fecha';
+        $porPagina = 15;
+
+        $query = Cursada::where('id_alumno', Auth::id()) -> join('asignaturas','asignaturas.id','cursadas.id_asignatura');
 
         if($request->has('filtro')){
 
-            $filtro = $request->filtro;
-            $campo = $request->campo;
+                if($campo == "asignatura"){
+                    $query =  $query -> where('asignaturas.nombre','LIKE','%'.$filtro.'%');
+                }
+                else if($campo == "aprobadas"){
+                    $query =  $query -> where('cursadas.aprobada', 1);
+                }
+                else if($campo == "desaprobadas"){
+                    $query =  $query -> where('cursadas.aprobada', 2);
+                }
 
-                if($request->campo == "anio"){
-                    $cursadas = Cursada::where('id_alumno', Auth::id())
-                    -> with('asignatura') -> where('cursadas.anio_cursada',$filtro)
-                    -> get();
-                }
-                else if($request->campo == "materia"){
-                    $cursadas = Cursada::where('id_alumno', Auth::id())
-                    -> whereRelation('asignatura','asignaturas.nombre','LIKE','%'.$filtro.'%')
-                    -> get();
-                }
-                else if($request->campo == "anio_carrera"){
-                    $cursadas = Cursada::where('id_alumno', Auth::id())
-                    -> whereRelation('asignatura','asignaturas.anio','LIKE','%'.$filtro.'%')
-                    -> get();
-                }
-        }else{
-            $cursadas = Cursada::where('id_alumno', Auth::id())->with('asignatura')->get();
-        }
+            }
 
+            if($orden == 'anio'){
+                $query->orderBy('asignaturas.anio');
+            }            
+            else if($orden == 'anio_cursada'){
+                $query->orderBy('cursadas.anio_cursada');
+            }
+
+        $cursadas = $query->get();
         // lista de examenes aprobados para saber si una cursada
         // tiene rendido su final
         $examenesAprobados = DB::table('examenes')
@@ -132,7 +134,11 @@ class AlumnoController extends Controller
         return view('Alumnos.Datos.cursadas', [
             'cursadas' => $cursadas, 
             'examenesAprobados' => $examenesAprobados,
-            'filtros' => ['campo'=>$campo,'filtro'=>$filtro]
+            'filtros'=>[
+                'campo' => $campo,
+                'orden' => $orden,
+                'filtro' => $filtro
+            ]
         ]);
     }
 

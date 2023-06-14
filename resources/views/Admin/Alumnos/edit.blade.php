@@ -17,7 +17,7 @@
         <p>ciudad <input value="{{$alumno->ciudad}}" value="9 de Julio" name="ciudad"></p>
         <p>calle <input value="{{$alumno->calle}}" name="calle"></p>
         <p>numero <input value="{{$alumno->numero}}"  name="casa_numero"></p>
-        <p>departamento <input value="{{$alumno->departamento}}" name="dpto"></p>
+        <p>departamento <input valuse="{{$alumno->departamento}}" name="dpto"></p>
         <p>piso <input value="{{$alumno->piso}}" name="piso"></p>
         <p>
             estado civil 
@@ -72,6 +72,10 @@
     <br><br><br>
     <div>
         <h2>examenes</h2>
+        <p>
+        Importante: algunos examanes de alumnos mas antiguos podrian no tener datos sobre las mesas, 
+        debido a que no fueron registradas correctamente por parte de iseta
+    </p>
         <table>
             <tr>
                 <td>materia</td>
@@ -80,9 +84,10 @@
                 <td>acciones</td>
             </tr>
             @foreach($alumno->examenes as $examen)
+                
                 <tr>
-                    <td>{{$examen->mesa->materia->nombre}}</td>
-                    <td>{{$examen->mesa->materia->carrera->nombre}}</td>
+                        <td>{{$examen->asignatura->nombre}}</td>
+                        <td>{{$examen->asignatura->carrera->nombre}}</td>
                     <td>{{$examen->nota}}</td>
                     <td><a href="{{route('admin.examenes.edit', [
                         'examen' => $examen->id,

@@ -103,9 +103,10 @@ class AlumnoCrudController extends Controller
      */
     public function edit(Request $request, $alumno)
     {
-
+        $alumno = Alumno::where('id', $alumno)->with('cursadas.asignatura.carrera','examenes.mesa.materia.carrera')->first();
+        //dd($alumno->id);
         return view('Admin.Alumnos.edit', [
-            'alumno' => Alumno::where('id', $alumno)->with('cursadas.asignatura.carrera','examenes.mesa.materia.carrera')->first()
+            'alumno' => $alumno
         ]);
     }
 

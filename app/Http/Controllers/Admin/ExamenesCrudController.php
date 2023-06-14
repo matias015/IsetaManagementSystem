@@ -112,7 +112,7 @@ class ExamenesCrudController extends Controller
      */
     public function edit(Request $request, $examen)
     {
-        $examen = Examen::with('mesa', 'alumno')->where('examenes.id',$examen)->first();
+        $examen = Examen::with('mesa','asignatura' ,'alumno')->where('examenes.id',$examen)->first();
         
         return view('Admin.Examenes.edit', [
             'examen' => $examen

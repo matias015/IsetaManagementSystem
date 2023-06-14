@@ -38,13 +38,14 @@
           <i class="ti ti-circle-x-filled check_neg"></i>
         </div>
         <div class="perfil_password">
-          <input type="password" name="newPassword_confirm"  required placeholder="Confirmar contraseña">
+          <input type="password" name="newPassword_confirmation"  required placeholder="Confirmar contraseña">
           <i class="ti ti-circle-check-filled check_pos"></i>
           <i class="ti ti-circle-x-filled check_neg"></i>
         </div>
       </div>
       <button>Cambiar</button>
     </form>
+    
 
       <div class="perfil_third">
         <div class="perfil_subtop"><h2>Academico</h2></div>
