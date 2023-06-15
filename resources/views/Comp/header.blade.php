@@ -24,9 +24,26 @@
             Inscribir</a></li>
         </ul>
         @auth('web')
-        <a href="{{route('alumno.logout')}}">
-          <button>Cerrar sesion</button>
-        </a>  
+        <div class="perfil-logout" >
+          <div class="perfil-logout-btn">
+            <div class="perfil-imagen">
+              
+            </div>
+            <span>
+              Lautaro
+              <i class="ti ti-chevron-down"></i>
+            </span>
+          </div>
+          <ul class="perfil-lista">
+            <li class="perfil-lista-item"><a href="perfil.html"><i class="ti ti-user"></i>Editar perfil</a>
+              </li>
+            <li class="perfil-lista-item"><a><i class="ti ti-settings"></i>Ajustes</li></a></li>
+            <li class="perfil-lista-item"><a href=""><i class="ti ti-logout"></i>Cerrar sesion</a></li>
+            <hr>
+            <li class="perfil-lista-item"><a><i class="ti ti-sun"></i>Modo</a></li>
+          </ul>
+          
+        </div>
         @endauth
         
         
