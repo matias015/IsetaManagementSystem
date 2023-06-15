@@ -1,8 +1,8 @@
-
 /*                              HEADER Y BARRA DE NAVEGACION */
 
 header {
-    background: #140B5C;
+  position: relative;
+    background: var(--azul-iseta);
     height: 70px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -10,22 +10,23 @@ header {
 }
 
 .nav {
-    
+    display: flex;
     top: 0;
     left: 0;
     width: 100%;
     padding: 15px 200px;
-    
-    
-  }
-  .nav,
-  .nav .nav-links {
-    display: flex;
-    align-items: center;
-  }
-  .nav {
     justify-content: space-between;
   }
+  
+  .nav-links {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    list-style: none;
+    
+  }
+
+  
   a {
     color: #fff;
     text-decoration: none;
@@ -39,10 +40,7 @@ header {
     text-transform: uppercase;
     letter-spacing: 0.1em;
   }
-  .nav .nav-links {
-    column-gap: 20px;
-    list-style: none;
-  }
+  
   .nav .nav-links a {
     transition: all 0.2s linear;
   }
@@ -136,11 +134,51 @@ header ul li a:hover::before {
 
 .perfil-lista {
   display: none;
+  position: absolute;
+  top: 70px;
+  width: 220px;
+  right: 0;
+  background: var(--azul-iseta);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.05);
+  z-index: 1;
+}
+
+.perfil-lista-item {
+  padding: 0.5rem 0 0.5rem 1rem;
+}
+
+.perfil-lista-item:hover {
+  background: var(--azul-osc-iseta);
+  border-radius: 10px;
+}
+
+.perfil-lista-item a {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.perfil-lista-item a i {
+  color: var(--azul-iseta);
+  margin-right: 1rem;
+  font-size: 25px;
+  width: 2.3rem;
+  height: 2.3rem;
+  line-height: 2.3rem;
+  text-align: center;
+  background: #fff;
+  border-radius: 50%;
+  
 }
 
 .perfil-logout-btn span {
   margin: 0 0 0 0.5rem;
 }
+
+
 
  
 
