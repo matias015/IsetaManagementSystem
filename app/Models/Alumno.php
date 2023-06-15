@@ -83,9 +83,14 @@ class Alumno extends Authenticatable implements MustVerifyEmail
         return $this -> hasMany(Cursada::class,'id_alumno');
     }
 
-    static function inscribibles(){
+    //retorna materias a las que se puede anotar, sin importar si ya esta inscripto
+    static function inscribibles($alumno_id=null){
+
+        if(!$alumno_id) $alumno = Auth::user();
+        else $alumno = Alumno::find($alumno_id);
+
         $exAprob = Examen::select('id_asignatura')
-            -> where('id_alumno',Auth::id())
+            -> where('id_alumno',$alumno->id)
             -> where('nota','>=',4)
             -> get()
             -> pluck('id_asignatura')
@@ -93,15 +98,20 @@ class Alumno extends Authenticatable implements MustVerifyEmail
 
         $listaAprobados = implode(',',$exAprob);
         if($listaAprobados=="") $listaAprobados="0";
-        $carreraDefault = Carrera::getDefault();
+        
 
-        $sinRendir = Cursada::select('cursadas.id_asignatura','asignaturas.nombre','asignaturas.anio')
+        $sinRendirQuery = Cursada::select('cursadas.id_asignatura','asignaturas.nombre','asignaturas.anio')
         -> join('asignaturas', 'asignaturas.id','cursadas.id_asignatura')
         -> where('cursadas.aprobada', 1)
-        -> where('cursadas.id_alumno', Auth::id())
-        -> whereRaw('cursadas.id_asignatura NOT IN ('.$listaAprobados.')')
-        -> where('asignaturas.id_carrera', $carreraDefault)
-        -> get();
+        -> where('cursadas.id_alumno', $alumno->id)
+        -> whereRaw('cursadas.id_asignatura NOT IN ('.$listaAprobados.')');
+        
+        if($alumno_id){
+            $carreraDefault = Carrera::getDefault($alumno_id);
+            $sinRendirQuery =  $sinRendirQuery -> where('asignaturas.id_carrera', $carreraDefault);
+        }
+    
+        $sinRendir = $sinRendirQuery -> get();
 
         $posibles=[];
 

@@ -24,9 +24,11 @@ class Carrera extends Model
         return $this -> hasMany(Asignatura::class, 'id_carrera');
     }
 
-    static function getDefault(){
+    static function getDefault($alumno_id=null){
+        if($alumno_id) $alumno = Alumno::find($alumno_id);
+        else $alumno = Auth::user();
         $carrera = CarreraDefault::select('id_carrera')
-            -> where('id_alumno',Auth::id())
+            -> where('id_alumno',$alumno->id)
             -> first();
 
             if($carrera) return $carrera->id_carrera;
@@ -34,7 +36,7 @@ class Carrera extends Model
             $carrera=Carrera::select('carreras.id', 'carreras.nombre')
             -> join('asignaturas', 'asignaturas.id_carrera', 'carreras.id')
             -> join('cursadas', 'cursadas.id_asignatura', 'asignaturas.id')
-            -> where('cursadas.id_alumno', Auth::id()) 
+            -> where('cursadas.id_alumno', $alumno->id) 
             -> groupBy('carreras.id', 'carreras.nombre')
             -> first();
 

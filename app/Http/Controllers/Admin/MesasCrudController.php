@@ -7,6 +7,7 @@ use App\Http\Requests\CrearMesaRequest;
 use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
+use App\Models\Examen;
 use App\Models\Mesa;
 use App\Models\Profesor;
 use Illuminate\Http\Request;
@@ -140,6 +141,7 @@ class MesasCrudController extends Controller
      */
     public function destroy(Mesa $mesa)
     {
+        Examen::where('id_mesa',$mesa->id)->where('nota',0)->delete();
         $mesa->delete();
         return redirect() -> route('admin.mesas.index') -> with('mensaje', 'Se ha eliminado el alumno');
     }

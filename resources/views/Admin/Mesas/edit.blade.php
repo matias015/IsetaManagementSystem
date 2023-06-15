@@ -37,7 +37,7 @@
             Prof. vocal 2
             <select name="presidente">
                 @foreach($profesores as $profesor)
-                    <option @selected($mesa->vocal2->id == $profesor->id) value="{{$profesor->id}}">{{$profesor->nombre}}</option>
+                    <option @selected($mesa->vocal2 && $mesa->vocal2->id == $profesor->id) value="{{$profesor->id}}">{{$profesor->nombre}}</option>
                 @endforeach
             </select>
         </p>

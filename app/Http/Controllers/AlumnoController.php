@@ -235,10 +235,14 @@ class AlumnoController extends Controller
 
         if($yaAnotado) return redirect()->route('alumno.inscripciones')->with('error', 'Ya estas en esta esta mesa');
 
+        
+        $mesa = Mesa::find($mesa);  
+
         Examen::create([
-            'id_mesa' => $mesa,
+            'id_mesa' => $mesa->id,
             'id_alumno'  => Auth::id(),
             'nota'=>'0.00',
+            'id_asignatura' => $mesa->id_asignatura
         ]);
 
         $request->session()->forget('data');

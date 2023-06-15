@@ -7,6 +7,7 @@ use App\Models\Alumno;
 use App\Models\Examen;
 use App\Models\Mesa;
 use App\Models\Profesor;
+use App\Services\DiasHabiles;
 use Illuminate\Http\Request;
 
 class ExamenesCrudController extends Controller
@@ -95,6 +96,48 @@ class ExamenesCrudController extends Controller
     {
         $data = $request->only('id_alumno','id_mesa');
         $mesa = Mesa::find($data['id_mesa']);
+ 
+        /////////////////
+
+        $posibles = [];
+
+        
+        $posibles = Alumno::inscribibles($data['id_alumno']);
+
+        $noPuede = true;
+        $finBusqueda = false;
+        
+        // la materia que selecciono esta en las que puede inscribirse
+        // y no caduco la fecha de inscripcion
+        foreach($posibles as $materia){
+
+            if($finBusqueda) break;
+
+            foreach($materia->mesas as $mesaMateria){
+                
+                if($mesaMateria->id == $mesa->id){               
+                    if(DiasHabiles::desdeHoyHasta($mesaMateria->fecha) >= 2) $noPuede = false;
+                    else break;
+                    $finBusqueda=true;
+                }
+            }
+        }
+
+        if($noPuede) {
+            dd('No puedes anotarte a esta mesa por que no quenda dias habiles, debe equivalencias, o ya la ha aprobado');
+            return redirect()->route('alumno.inscripciones')->with('error', 'No puedes anotarte a esta mesa');
+        }
+        $yaAnotado = Examen::select('id')
+            -> where('id_mesa', $mesa)
+            -> where('id_alumno', $data['id_alumno'])
+            -> first();
+
+        if($yaAnotado) {
+            dd('ya anotado');
+            return redirect()->route('alumno.inscripciones')->with('error', 'Ya estas en esta esta mesa');
+        }
+
+        //////////////////
 
         Examen::create([
             'id_alumno' => $data['id_alumno'],
