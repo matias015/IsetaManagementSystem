@@ -62,8 +62,7 @@
                     <td>{{$cursada->asignatura->carrera->nombre}}</td>
                     <td>{{$cursada->aprobada}}</td>
                     <td><a href="{{route('admin.cursadas.edit', [
-                        'asignatura' => $cursada->asignatura->id,
-                        'alumno' => $alumno->id
+                        'cursada' => $cursada->id,
                         ])}}">editar</a></td>
                 </tr>
             @endforeach

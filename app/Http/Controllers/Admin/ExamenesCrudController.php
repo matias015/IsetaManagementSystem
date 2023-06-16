@@ -124,17 +124,16 @@ class ExamenesCrudController extends Controller
         }
 
         if($noPuede) {
-            dd('No puedes anotarte a esta mesa por que no quenda dias habiles, debe equivalencias, o ya la ha aprobado');
-            return redirect()->route('alumno.inscripciones')->with('error', 'No puedes anotarte a esta mesa');
+            return redirect() -> back() -> with('error','no puede anotarse a esta mesa');
         }
+        
         $yaAnotado = Examen::select('id')
             -> where('id_mesa', $mesa)
             -> where('id_alumno', $data['id_alumno'])
             -> first();
 
         if($yaAnotado) {
-            dd('ya anotado');
-            return redirect()->route('alumno.inscripciones')->with('error', 'Ya estas en esta esta mesa');
+            return redirect() -> back() -> with('error','ya esta anotado');
         }
 
         //////////////////
@@ -144,7 +143,8 @@ class ExamenesCrudController extends Controller
             'id_mesa' => $mesa->id,
             'id_asignatura' => $mesa->id_asignatura
         ]); 
-        return redirect()->back();
+
+        return redirect()->back()->with('mensaje','anotado');
     }
 
     /**

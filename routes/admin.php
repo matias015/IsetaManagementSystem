@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\MesasCrudController;
 use App\Http\Controllers\Admin\ProfesoresCrudController;
 use App\Http\Controllers\Admin\AdminsCrudController;
 use App\Http\Controllers\Admin\ExamenesCrudController;
-use App\Http\Controllers\CursadasAdminController;
+use App\Http\Controllers\Admin\CursadasAdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/admin','/admin/login');
@@ -31,11 +31,14 @@ Route::prefix('admin')->group(function(){
     
     Route::resource('asignaturas', AsignaturasCrudController::class, ['as' => 'admin']);
 
-    Route::get('cursadas/{asignatura}/alumno/{alumno}/edit', [CursadasAdminController::class,'edit'])->name('admin.cursadas.edit');
+    Route::get('cursadas', [CursadasAdminController::class,'index'])->name('admin.cursadas.index');
+    Route::get('cursadas/{cursada}/edit', [CursadasAdminController::class,'edit'])->name('admin.cursadas.edit');
     Route::put('cursadas/{cursada}/edit', [CursadasAdminController::class,'update'])->name('admin.cursadas.update');
     Route::delete('cursadas/{cursada}', [CursadasAdminController::class,'delete'])->name('admin.cursadas.destroy');
+    Route::get('cursadas/create', [CursadasAdminController::class,'create'])->name('admin.cursadas.create');
     Route::post('cursadas/create', [CursadasAdminController::class,'store'])->name('admin.cursadas.store');
     
+
     Route::resource('mesas', MesasCrudController::class, ['as' => 'admin']);
     Route::resource('admins', AdminsCrudController::class, ['as' => 'admin']);
 
