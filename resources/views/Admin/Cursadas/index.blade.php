@@ -20,6 +20,7 @@
                 <input value="{{$filtros['filtro']}}" name="filtro" type="text">
                 <p>ordenar</p>
                 <select name="orden">
+                    <option @selected($filtros['orden'] == 'creacion') value="creacion">Creacion</option>
                     <option @selected($filtros['orden'] == 'fecha') value="fecha">Fecha</option>
                     <option @selected($filtros['orden'] == 'asignatura') value="asignatura">asigantura</option>
                 </select>

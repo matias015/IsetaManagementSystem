@@ -27,5 +27,9 @@ class Asignatura extends Model
         return $this -> belongsTo(Carrera::class,'id_carrera','id');
     }
 
+    public function correlativas(){
+        return $this -> hasMany(Correlativa::class,'id_asignatura');
+    }   
+
     
 }

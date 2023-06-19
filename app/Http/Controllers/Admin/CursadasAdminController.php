@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Alumno;
+use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Cursada;
 use Illuminate\Http\Request;
@@ -36,7 +37,10 @@ class CursadasAdminController extends Controller
         // if($orden == "fecha"){
         //     $query->orderByDesc('cursadas.fecha');
         // }
-        if($orden == "asignatura"){
+        if($orden == "creacion"){
+            $query->orderBy('cursadas.id','desc');
+        }
+        else if($orden == "asignatura"){
             $query->orderBy('asignaturas.nombre');
         }
 
@@ -78,6 +82,30 @@ class CursadasAdminController extends Controller
     }
 
     function store(Request $request){
+
+        // validar si el alumno se puede anotar a la cursada
+        // debe tener cursada de equivalencia aprobada
+        // no haberla aprobado ya
+        // no tener final rendido (no?)
+
+        $puede = true;
+        $asignatura = Asignatura::where('id',$request->id_asignatura)->with('correlativas.asignatura')->first(); 
+
+        $cursadasDeEsaMateria = Cursada::where('id_asignatura', $request->id_asignatura)->where('id_alumno', $request->id_alumno)->get();
+
+        foreach($cursadasDeEsaMateria as $cursada){
+            if($cursada->aprobada == 1) $puede=false;
+        }
+
+        foreach($asignatura->correlativas as $correlativa){
+            $cursada = Cursada::where('id_asignatura', $correlativa->asignatura->id)
+            -> where('id_alumno', $request->id_alumno)
+            -> first();
+            if(!$cursada || $cursada->aprobada != 1) $puede = false;  
+        }
+
+        dd($puede);
+
         Cursada::create([
             'id_asignatura' => $request->id_asignatura,
             'id_alumno' => $request->id_alumno,
