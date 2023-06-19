@@ -10,7 +10,7 @@ class Cursada extends Model
     protected $table = 'cursadas';
     use HasFactory;
 
-    protected $fillable = ['anio_cursada','aprobada','condicion'];
+    protected $fillable = ['anio_cursada','aprobada','id_alumno','id_asignatura','condicion'];
 
     public $timestamps=false;
 

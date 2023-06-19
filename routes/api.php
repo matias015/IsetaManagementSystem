@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
+use App\Models\Correlativa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/a/{carrera}',function(Request $request, $carrera){
     return Asignatura::where('id_carrera',$carrera)->get();
+});
+
+Route::get('cursadas/alumnos/{asignatura}',function(Request $request, $asignatura){
+  Alumno::all();
+
 });

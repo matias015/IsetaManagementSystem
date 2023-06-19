@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Alumno;
+use App\Models\Carrera;
 use App\Models\Cursada;
 use Illuminate\Http\Request;
 
@@ -17,7 +19,7 @@ class CursadasAdminController extends Controller
         $orden = $request->orden ? $request->orden: 'fecha';
         $porPagina = 15;
 
-        $query = Cursada::select('alumnos.id as alumno','cursadas.id as cursada','asignaturas.id as asignatura','cursadas.aprobada')
+        $query = Cursada::select('alumnos.nombre as alumno','cursadas.id','asignaturas.nombre as asignatura','cursadas.aprobada')
             -> join('asignaturas','asignaturas.id','=','cursadas.id_asignatura')
             -> join('carreras','carreras.id','=','asignaturas.id_carrera')
             -> join('alumnos','alumnos.id','=','cursadas.id_alumno');
@@ -67,11 +69,22 @@ class CursadasAdminController extends Controller
     }
 
     function create(){
-        return view();
+        $alumnos = Alumno::orderBy('nombre','asc')->orderBy('apellido','asc')->get();
+        $carreras = Carrera::all();
+        return view('Admin/Cursadas/create',[
+            'alumnos' => $alumnos,
+            'carreras' => $carreras
+        ]);
     }
 
     function store(Request $request){
-        Cursada::create($request->all());
+        Cursada::create([
+            'id_asignatura' => $request->id_asignatura,
+            'id_alumno' => $request->id_alumno,
+            'anio_cursada' => $request->anio_cursada,
+            'condicion' => $request->condicion
+        ]);
+        
         return redirect() -> back();
     }
 }

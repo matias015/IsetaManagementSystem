@@ -6,7 +6,7 @@
         
 
     
-            <a href="{{route('admin.cursadas.create')}}"><button>Agregar mesa</button></a>
+            <a href="{{route('admin.cursadas.create')}}"><button>Agregar cursada</button></a>
 
         <div>
             <form action="{{route('admin.cursadas.index')}}">
@@ -56,6 +56,7 @@
                 <td>{{$cursada->aprobada}}</td>
                 <td><a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id])}}"><button>editar</button></a></td>
                 <td>
+                   
                     <form method="POST" action="{{route('admin.cursadas.destroy', ['cursada' => $cursada->id])}}">
                         @csrf
                         @method('delete')

@@ -61,10 +61,22 @@
                     <td>{{$cursada->anio_cursada}}</td>
                     <td>{{$cursada->asignatura->carrera->nombre}}</td>
                     <td>{{$cursada->aprobada}}</td>
-                    <td><a href="{{route('admin.cursadas.edit', [
-                        'cursada' => $cursada->id,
-                        ])}}">editar</a></td>
-                </tr>
+                    <td>
+                        
+                        <a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id,])}}">
+                            <button>Editar</button>
+                        </a>
+                        
+                        <form method="POST" action="{{route('admin.cursadas.destroy', ['cursada' => $cursada->id])}}">
+                            @method('delete')
+                            @csrf
+                            <button>Eliminar</button>
+                        </form>
+                    </td>
+                
+                    </tr>
+                    
+                    
             @endforeach
         </table>
     </div> 
