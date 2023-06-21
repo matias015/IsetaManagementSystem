@@ -48,14 +48,13 @@ class AlumnoCrudController extends Controller
                 $query = $query -> where('verificado','!=','0');
             }
 
-            if($orden == "nombre"){
-                $query = $query -> orderBy('alumnos.nombre');
-            }
-            else if($orden == "dni"){
+           if($orden == "dni"){
                 $query = $query -> orderBy('dni');
             }
             else if($orden == "dni-desc"){
                 $query = $query -> orderByDesc('dni');
+            } else{
+                $query = $query -> orderBy('alumnos.nombre') -> orderBy('alumnos.apellido');
             }
 
             $alumnos = $query->paginate($porPagina); 

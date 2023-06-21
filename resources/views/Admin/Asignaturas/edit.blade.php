@@ -26,8 +26,38 @@
         <p>año<input value="{{$asignatura->anio}}" name="anio"></p>
         <p>observaciones <input value="{{$asignatura->observaciones}}" name="observaciones"></p>
 
+        <p>correlativas</p>
+        <ul>
+            @foreach ($asignatura->correlativas as $correlativa)
+                <li>- {{$correlativa->asignatura->nombre}}</li>
+            @endforeach
+        </ul>
+
         <input type="submit" value="Actualizar">
-       </form>
+        </form>
+
+        {{-- -------------------------- --}}
+        <h2>Agregar correlativa</h2>
+        
+        <select name="carrera" id="carrera">
+            @foreach ($carreras as $carrera)
+                <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
+            @endforeach
+        </select>
+
+       <form method="post" action="">
+        @csrf
+
+        <p>
+            materia 
+            <select class="asignatura" name="id_asignatura">
+                <option value="">selecciona una carrera</option>
+            </select>
+        </p>
+            <a href=""><button>Agregar</button></a>
+        </form>
+       
+       
        <hr>
        <table>
         <tr>
@@ -57,7 +87,7 @@
                     <form action="">
                         <button>Eliminar</button>
                     </form> --}}
-                    <a href="{{route('admin.cursadas.edit', ['asignatura' => $asignatura->id, 'alumno' => $alumno->id])}}">Editar cursada</a>
+                    <a href="{{route('admin.cursadas.edit', ['cursada' => $alumno->cursada_id])}}">Editar cursada</a>
                 </td>
             </tr>
         @endforeach
@@ -70,4 +100,22 @@
     </div>
 </div>
 
+<script>
+    const carrera = document.querySelector('#carrera')
+    const asignaturaSelect = document.querySelector('.asignatura')
+    carrera.addEventListener('change',function(){
+        asignaturaSelect.innerHTML = '';
+        fetch(`http://127.0.0.1:8000/api/a/${carrera.value}`)
+            .then( data => data.json())
+            .then(data=>{
+                data.forEach(element => {
+                    const option = document.createElement('option')
+                    option.value = element.id
+                    option.textContent = element.nombre
+                    asignaturaSelect.appendChild(option)
+                });
+                
+            })
+    })
+</script>
 @endsection

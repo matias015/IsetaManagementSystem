@@ -8,6 +8,7 @@ use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use Illuminate\Http\Request;
+use Svg\Tag\Rect;
 
 class AsignaturasCrudController extends Controller
 {
@@ -47,10 +48,13 @@ class AsignaturasCrudController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $carreras = Carrera::all();
-        return view('Admin.Asignaturas.create',compact('carreras'));
+        return view('Admin.Asignaturas.create',[
+            'carreras'=>$carreras,
+            'id_carrera'=>$request->id_carrera? $request->id_carrera:null 
+        ]);
     }
 
     /**
@@ -59,6 +63,9 @@ class AsignaturasCrudController extends Controller
     public function store(CrearAsignaturaRequest $request)
     {
         $data = $request->validated();
+        if($request->id_carrera){
+            $data['id_asignatura'] = $request->id_asignatura; 
+        }
 
         $data['anio'] = $data['anio'] - 1; 
 
@@ -81,7 +88,7 @@ class AsignaturasCrudController extends Controller
     {
         
 
-        $alumnos = Alumno::select('alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni')
+        $alumnos = Alumno::select('cursadas.id as cursada_id','alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni')
             -> join('cursadas','cursadas.id_alumno','alumnos.id')
             -> join('asignaturas','cursadas.id_asignatura','asignaturas.id')
             -> where('asignaturas.id', $asignatura)

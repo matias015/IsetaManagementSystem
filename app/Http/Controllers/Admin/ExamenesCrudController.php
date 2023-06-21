@@ -85,7 +85,6 @@ class ExamenesCrudController extends Controller
      */
     public function create(Request $request, Mesa $mesa)
     {
-        dd($mesa);
         return view('Admin.Examenes.create');
     }
 
@@ -159,9 +158,15 @@ class ExamenesCrudController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Request $request, $examen)
-    {
+    {   
         $examen = Examen::with('mesa','asignatura' ,'alumno')->where('examenes.id',$examen)->first();
-        
+        if($examen->mesa){
+            $examen -> borrable = DiasHabiles::desdeHoyHasta($examen->mesa->fecha) >= 1? true:false;
+        }else if($examen->fecha){
+            $examen -> borrable = DiasHabiles::desdeHoyHasta($examen->fecha) >= 1? true:false;
+        }else{
+            $examen -> borrable = false;
+        }
         return view('Admin.Examenes.edit', [
             'examen' => $examen
         ]);
@@ -192,6 +197,6 @@ class ExamenesCrudController extends Controller
     public function destroy(Examen $examen)
     {
         $examen->delete();
-        return redirect() -> back() -> with('mensaje', 'Se ha eliminado el alumno');
+        return redirect() -> route('admin.examenes.index') -> with('mensaje', 'Se ha eliminado el alumno');
     }
 }

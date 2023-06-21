@@ -23,7 +23,7 @@ class CrearAsignaturaRequest extends FormRequest
     {
         return [
             'nombre' => ['required'],
-            'id_carrera' => ['required'],
+            'id_carrera' => ['nullable'],
             'tipo_modulo' => ['required'],
             'carga_horaria' => ['required'],
             'anio' => ['required'],

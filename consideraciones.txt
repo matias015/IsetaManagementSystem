@@ -1,1 +1,14 @@
 Hasta que fecha puede el alumno anotarse a una cursada
+
+
+cursada
+ - aprobada : si->1, no->2, vacio->3
+ - condicion: libre->1, precencial->2, desertor->3, atrasoacadamico->4, otro->5
+
+Examenes
+ - aprobado: aprobado->1, desaprobado->2, ausente->3
+ - tipofinal: escrito->1, oral->2, promocionado->3
+
+profes
+ estados_civiles: 1,soltero,2,casado,3divorciado,4viudo,5conyuge,6otros
+ titulo: 1,SR,2SRA,3DOC,4ING,5LIC,6TEC,7PROF,8OTROS

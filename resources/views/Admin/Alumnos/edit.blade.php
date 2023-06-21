@@ -60,13 +60,21 @@
                     <td>{{$cursada->asignatura->nombre}}</td>
                     <td>{{$cursada->anio_cursada}}</td>
                     <td>{{$cursada->asignatura->carrera->nombre}}</td>
-                    <td>{{$cursada->aprobada}}</td>
+                    <td>
+                        @if ($cursada->aprobada==1)
+                            Si
+                        @elseif($cursada->aprobada==2)
+                            No
+                        @else
+                            Cursando/sin determinar
+                        @endif
+                    </td>
                     <td>
                         
                         <a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id,])}}">
                             <button>Editar</button>
                         </a>
-                        
+    
                         <form method="POST" action="{{route('admin.cursadas.destroy', ['cursada' => $cursada->id])}}">
                             @method('delete')
                             @csrf
@@ -99,7 +107,16 @@
                 <tr>
                         <td>{{$examen->asignatura->nombre}}</td>
                         <td>{{$examen->asignatura->carrera->nombre}}</td>
-                    <td>{{$examen->nota}}</td>
+                    <td>
+                        
+                        @if ($examen->aprobado==3)
+                            Ausente
+                        @elseif($examen->nota<=0)
+                            Sin nota
+                        @else
+                            {{$examen->nota}}
+                        @endif
+                    </td>
                     <td><a href="{{route('admin.examenes.edit', [
                         'examen' => $examen->id,
                         ])}}">editar</a></td>

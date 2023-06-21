@@ -16,7 +16,7 @@
         
         <select name="id_carrera">
             @foreach($carreras as $carrera)
-                <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
+                <option @selected($id_carrera==$carrera->id) value="{{$carrera->id}}">{{$carrera->nombre}}</option>
             @endforeach
         </select>
         <p>tipo modulo <input  name="tipo_modulo"></p>

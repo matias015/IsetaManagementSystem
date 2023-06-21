@@ -32,6 +32,9 @@
             <td>acciones</td>
         </tr>
 
+        <hr>
+        <a href="{{route('admin.asignaturas.create',['id_carrera'=>$carrera->id])}}"><button>Agregar asignatura</button></a>
+        
         @foreach ($carrera->asignaturas as $asignatura)
             <tr>
                 <td> {{$asignatura->anio + 1}} </td>
