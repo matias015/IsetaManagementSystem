@@ -2,7 +2,7 @@
 
 @section('content')
 
-<main>
+<main id="fondo-estudiantes">
     <section class="table">
       <div class="table__header">
         <h1>Inscripciones</h1>
