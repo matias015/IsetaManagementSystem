@@ -1,8 +1,8 @@
 @extends('Alumnos.layout')
 @section('content')
-<table>
+<main id="fondo-estudiantes">
           <section class="table">
-        <div class="table__header">
+            <div class="table__header">
           <h1>Mis cursadas </h1>
           <div class="tabla_botonera">
             
@@ -46,10 +46,10 @@
           <table>
             <thead>
               <tr>
-                <th class="p1">Año</th>
+                <th>Año</th>
                 <th>Materia</th>
                 <th>Cursada</th>
-                <th class="p2">Año cursada</th>
+                <th>Año cursada</th>
                 <th>Final</th>
               </tr>
             </thead>
@@ -93,6 +93,6 @@
         </div>
 
       </section>
-      
+      </main>
 
 @endsection
