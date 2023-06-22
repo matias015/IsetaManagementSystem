@@ -1,6 +1,6 @@
 @extends('Alumnos.layout')
 @section('content')
-<main>
+<main id="fondo-estudiantes">
   <section class="perfil">
     <div class="perfil_header">
       <i class="uil uil-user"></i>
