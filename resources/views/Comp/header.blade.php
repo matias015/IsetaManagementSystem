@@ -27,7 +27,6 @@
         <div class="perfil-logout" >
           <div class="perfil-logout-btn">
             <div class="perfil-imagen">
-              
             </div>
             <span>
               Matias

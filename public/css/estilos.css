@@ -17,6 +17,11 @@
     --azul-osc-iseta: #0F0844;
     --instagram: #E1306C;
     --facebook: #4267B2;
+    --gris-fondo-tabla: #fff5;
+    --gris-header-tabla: #fff4;
+    --gris-body-tabla: #fffb;
+    --gris-titulo: #d5d1defe;
+    --gris-hover: #fff6;
 }
 
 * {

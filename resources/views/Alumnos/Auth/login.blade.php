@@ -28,7 +28,7 @@
                 <p>¡Bienvenido! Por favor ingrese sus datos</p>
             </div>
             <div class="usuario input-box">
-                <input value="matiasjf015@gmail.com" type="email" name="email" required placeholder="Nombre de usuario">
+                <input value="lau.sanchez.17e@gmail.com" type="email" name="email" required placeholder="Nombre de usuario">
                 <div class="underline"></div>
             </div>
             <div class="contraseña input-box">

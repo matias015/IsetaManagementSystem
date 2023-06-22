@@ -2,7 +2,7 @@
 
 
 #fondo-estudiantes {
-    background: linear-gradient(150deg, #5872d16d, black), url(img/concepto-educacion-estudiante-estudiar-brainstorming-campus-concepto-cerca-estudiantes-que-discuten-su-tema-libros-o-libros-texto-enfoque-selectivo.jpg);
+    background: linear-gradient(150deg, #5872d16d, black), url(/img/concepto-educacion-estudiante-estudiar-brainstorming-campus-concepto-cerca-estudiantes-que-discuten-su-tema-libros-o-libros-texto-enfoque-selectivo.jpg);
     background-size: cover;
 }
 
@@ -29,7 +29,7 @@ section.perfil {
 .perfil_header {
     width: 100%;
     height: 10%;
-    background: var(--gris-header-tabla);
+    background: #fff4;
     padding: .8rem 1rem;
     display: flex;
     align-items: center;

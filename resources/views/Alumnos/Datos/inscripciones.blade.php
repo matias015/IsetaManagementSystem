@@ -2,7 +2,7 @@
 
 @section('content')
 
-<main>
+<main id="fondo-estudiantes">
     <section class="table">
       <div class="table__header">
         <h1>Inscripciones</h1>
@@ -47,11 +47,7 @@
               <td>{{$materia->anio + 1}}</td>
               <td>{{$materia->nombre}}</td>
               <td>{{$materia->hora}}</td>
-              <td>{{
-                $materia->mesas[0]->prof_presidente? 
-                  $materia->mesas[0]->prof_presidente:
-                  'A confirmar'
-              }}</td>
+              <td></td>
               
               @include('Comp.inscripcion-form')
 @endforeach
