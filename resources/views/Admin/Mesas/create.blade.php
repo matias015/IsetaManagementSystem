@@ -26,6 +26,7 @@
         <p>
             Profesor 
             <select class="profesor" name="prof_presidente">
+                <option selected value="vacio">vacio/A confirmar</option>
                 @foreach ($profesores as $profesor)
                     <option value="{{$profesor->id}}">{{$profesor->nombre.' '.$profesor->apellido}}</option>
                 @endforeach
@@ -34,6 +35,7 @@
         <p>
             Profesor 1
             <select class="profesor" name="prof_vocal_1">
+                <option selected value="vacio">vacio/A confirmar</option>
                 @foreach ($profesores as $profesor)
                     <option value="{{$profesor->id}}">{{$profesor->nombre.' '.$profesor->apellido}}</option>
                 @endforeach
@@ -42,6 +44,7 @@
         <p>
             Profesor 2
             <select class="profesor" name="prof_vocal_2">
+                <option selected value="vacio">vacio/A confirmar</option>
                 @foreach ($profesores as $profesor)
                     <option value="{{$profesor->id}}">{{$profesor->nombre.' '.$profesor->apellido}}</option>
                 @endforeach

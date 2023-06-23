@@ -19,25 +19,31 @@
 
         <p>
             Prof. presidente
-            <select name="presidente">
+            <select name="prof_presidente">
+                <option @selected($mesa->prof_presidente==0) value="vacio">vacio/A confirmar</option>
+
                 @foreach($profesores as $profesor)
-                    <option @selected($mesa->profesor->id == $profesor->id) value="{{$profesor->id}}">{{$profesor->nombre}}</option>
+                    <option @selected($mesa->prof_presidente != 0 && $mesa->profesor->id == $profesor->id) value="{{$profesor->id}}">{{$profesor->nombre}}</option>
                 @endforeach
             </select>
         </p>
         <p>
             Prof. vocal 1
-            <select name="presidente">
+            <select name="prof_vocal_1">
+                <option @selected($mesa->prof_vocal_1==0) value="vacio">vacio/A confirmar</option>
+
                 @foreach($profesores as $profesor)
-                    <option @selected($mesa->vocal1->id == $profesor->id) value="{{$profesor->id}}">{{$profesor->nombre}}</option>
+                    <option @selected($mesa->prof_vocal_1 != 0 && $mesa->vocal1->id == $profesor->id) value="{{$profesor->id}}">{{$profesor->nombre}}</option>
                 @endforeach
             </select>
         </p>
         <p>
             Prof. vocal 2
-            <select name="presidente">
+            <select name="prof_vocal_2">
+                <option @selected($mesa->prof_vocal_2==0) value="vacio">vacio/A confirmar</option>
+
                 @foreach($profesores as $profesor)
-                    <option @selected($mesa->vocal2 && $mesa->vocal2->id == $profesor->id) value="{{$profesor->id}}">{{$profesor->nombre}}</option>
+                    <option @selected($mesa->prof_vocal_2 != 0 && $mesa->vocal2 && $mesa->vocal2->id == $profesor->id) value="{{$profesor->id}}">{{$profesor->nombre}}</option>
                 @endforeach
             </select>
         </p>
@@ -93,6 +99,7 @@
                     </td>
                 </tr>
             @endforeach
+            <a href="{{route('admin.mesas.acta',['mesa'=>$mesa->id])}}"><button>Acta volante</button></a>
         </table>
     </div></div>
 @endsection

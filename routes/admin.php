@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\ProfesoresCrudController;
 use App\Http\Controllers\Admin\AdminsCrudController;
 use App\Http\Controllers\Admin\ExamenesCrudController;
 use App\Http\Controllers\Admin\CursadasAdminController;
+use App\Models\Mesa;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/admin','/admin/login');
@@ -16,6 +19,17 @@ Route::redirect('/admin','/admin/login');
 
 
 Route::prefix('admin')->group(function(){
+
+    Route::get('/mesas/acta-volante/{mesa}', function(Request $request,Mesa $mesa){
+        $alumnos = Mesa::select('examenes.id as id_examen','alumnos.nombre','alumnos.dni','alumnos.apellido','examenes.nota')
+        -> join('examenes', 'examenes.id_mesa','mesas.id')
+        -> join('alumnos', 'alumnos.id','examenes.id_alumno')
+        -> where('mesas.id', $mesa->id)
+        -> get();
+
+        $pdf = Pdf::loadView('pdf.acta-volante', ['alumnos' => $alumnos,'mesa' => $mesa]);
+        return $pdf->stream('invoice.pdf');
+    })->name('admin.mesas.acta');
 
     Route::get('login', [AdminAuthController::class, 'loginView']) -> name('admin.login');
     Route::post('login', [AdminAuthController::class, 'login']) -> name('admin.login.post');
@@ -51,5 +65,7 @@ Route::prefix('admin')->group(function(){
     //Route::resource('cursadas', CarrerasCrudController::class, ['as' => 'admin']);
     //Route::resource('correlativas', CarrerasCrudController::class, ['as' => 'admin']);
     //Route::resource('administradores', CarrerasCrudController::class, ['as' => 'admin']);
+
+
 
 });

@@ -72,7 +72,7 @@ class MesasCrudController extends Controller
     public function create()
     {
         $carreras = Carrera::all();
-        $profesores = Profesor::all();
+        $profesores = Profesor::orderBy('nombre','asc')->orderBy('apellido','asc')->get();
         return view('Admin.Mesas.create',['carreras'=>$carreras,'profesores'=>$profesores]);
     }
 
@@ -82,7 +82,15 @@ class MesasCrudController extends Controller
     public function store(CrearMesaRequest $request)
     {
         $data = $request->validated();
-        
+        if($data['prof_presidente']=="vacio"){
+            $data['prof_presidente'] = 0;
+        }
+        if($data['prof_vocal_1']=="vacio"){
+            $data['prof_vocal_1'] = 0;
+        }
+        if($data['prof_vocal_2']=="vacio"){
+            $data['prof_vocal_2'] = 0;
+        }
         Mesa::create($data);
         return redirect()->route('admin.mesas.index');
     }
@@ -132,7 +140,20 @@ class MesasCrudController extends Controller
      */
     public function update(Request $request, Mesa $mesa)
     {
-        $mesa->update($request->all());
+        //CAMIAR REQUEST ALL
+        $data = $request->all();
+
+        if($data['prof_presidente']=="vacio"){
+            $data['prof_presidente'] = 0;
+        }
+        if($data['prof_vocal_1']=="vacio"){
+            $data['prof_vocal_1'] = 0;
+        }
+        if($data['prof_vocal_2']=="vacio"){
+            $data['prof_vocal_2'] = 0;
+        }
+        $mesa->update($data);
+        
         return redirect()->route('admin.mesas.index');
     }
 
