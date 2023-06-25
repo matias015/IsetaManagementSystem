@@ -3,8 +3,13 @@
 <main id="fondo-estudiantes">
   <section class="perfil">
     <div class="perfil_header">
-      <i class="uil uil-user"></i>
       <h1>Perfil</h1>
+        <div class="contenedor_select_carrera">
+        <select class="select-carrera" name="" id="">
+          <option value="">Análisis, Desarrollo y Programación de Aplicaciones</option>
+          <option value="">Analista de Sistemas</option>
+        </select>
+      </div>
     </div>
     <div class="perfil_body">
       <div class="perfil_one">
@@ -42,8 +47,10 @@
           <i class="ti ti-circle-check-filled check_pos"></i>
           <i class="ti ti-circle-x-filled check_neg"></i>
         </div>
+          <div class="perfil_password_refresh">
+          <button><i class="ti ti-refresh"></i>Confirmar</button>
+        </div>
       </div>
-      <button>Cambiar</button>
     </form>
     
 
