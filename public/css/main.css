@@ -32,6 +32,7 @@ section.perfil {
     background: var(--gris-header-tabla);
     padding: .8rem 1rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     color: #000;
 }
@@ -253,6 +254,23 @@ th {
 
 
 /*------------------------------------------- F   I   L   T   R   A   R   ------------------------------------------------------------*/
+
+.contenedor_select_carrera {
+    position: relative;
+}
+
+.select-carrera {
+    position: relative;
+    border: none;
+    outline: none;
+    width: auto;
+    height: 40px;
+    font-size: 15px;
+    cursor: pointer;
+    background: #fff;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
 
 .tabla_botonera {
     display: flex;
