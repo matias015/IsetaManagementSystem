@@ -120,6 +120,14 @@ section.perfil {
     display: none;
 }
 
+.perfil_password_refresh {
+    height: 50px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-size: 17px;
+}
+
 .perfil_descargable {
     height: 50px;
     
@@ -129,7 +137,7 @@ section.perfil {
     font-size: 17px;
 }
 
-.perfil_descargable button {
+.perfil_descargable button, .perfil_password_refresh button {
     width: 10%;
     height: 40px;
     background: var(--azul-iseta);
@@ -139,13 +147,11 @@ section.perfil {
     cursor: pointer;
 }
 
-
-
-.perfil_descargable button:hover {
+.perfil_descargable button:hover, .perfil_password_refresh button:hover {
     background: var(--azul-osc-iseta);
 }
 
-.perfil_descargable i {
+.perfil_descargable i, .perfil_password_refresh i {
     padding-right: 10px;
 }
 
