@@ -4,32 +4,41 @@
           <section class="table">
             <div class="table__header">
           <h1>Mis cursadas </h1>
-          <div class="tabla_botonera">
-            
-
-            {{-- <div class="filtrar"> --}}
+          {{-- <div class="filtrar"> --}}
               <form action="{{route('alumno.cursadas')}}">
-                <p>filtrar</p> 
-                <select name="campo">
-                    <option value="ninguno">todo</option>
-                    <option @selected($filtros['campo'] == 'asignatura') value="asignatura">asignatura</option>
-                    <option @selected($filtros['campo'] == 'aprobadas') value="aprobadas">aprobadas</option>
-                    <option @selected($filtros['campo'] == 'desaprobadas') value="desaprobadas">desaprobadas</option>
-                    <option @selected($filtros['campo'] == 'final_aprobado') value="final_aprobado">final aprobado</option>
-                    <option @selected($filtros['campo'] == 'final_desaprobado') value="final_desaprobado">final desaprobado</option>
+              <div class="tabla_botonera">
+
+                <div class="contenedor_ordenar">
+                  <select class="ordenar" name="orden">
+                      <option @selected($filtros['orden'] == 'anio') value="anio">Año carrera</option>
+                      <option @selected($filtros['orden'] == 'anio_cursada') value="anio_cursada">Año cursada</option>
                   </select>
-                <input value="{{$filtros['filtro']}}" name="filtro" type="text">
-                <p>ordenar</p>
-                <select name="orden">
-                    <option @selected($filtros['orden'] == 'anio') value="anio">Año carrera</option>
-                    <option @selected($filtros['orden'] == 'anio_cursada') value="anio_cursada">Año cursada</option>
-                </select>
-                <input type="submit" value="Buscar">
+                  <i class="ti ti-arrows-down-up i_ordenar"></i>
+                </div>
+                
+                <div class="contenedor_filtrar">
+                  <select class="filtrar" name="campo">
+                      <option value="ninguno">todo</option>
+                      <option @selected($filtros['campo'] == 'asignatura') value="asignatura">asignatura</option>
+                      <option @selected($filtros['campo'] == 'aprobadas') value="aprobadas">aprobadas</option>
+                      <option @selected($filtros['campo'] == 'desaprobadas') value="desaprobadas">desaprobadas</option>
+                      <option @selected($filtros['campo'] == 'final_aprobado') value="final_aprobado">final aprobado</option>
+                      <option @selected($filtros['campo'] == 'final_desaprobado') value="final_desaprobado">final desaprobado</option>
+                    </select>
+                    <i class="ti ti-adjustments i_filtrar"></i>
+                </div>
+                <div class="contenedor_filtrado">
+                      <input class="filtrado-busqueda" value="{{$filtros['filtro']}}" name="filtro" type="text">
+                      <i class="ti ti-search i_lupa"></i>
+                      <i class="ti ti-x i_borrar"></i>
+                </div>
+
+                <div class="contenedor_btn-busqueda">
+                  <input class="btn-buscador" type="submit" value="Buscar">
+                </div>
+                
+                </div>
             </form>
-           
-          
-            
-          </div>
           
           <!--<label class="switch">
             <input checked="checked" type="checkbox">
