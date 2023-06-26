@@ -17,7 +17,7 @@
               <th>Profesores</th>
               <th>Llamado 1</th>
               <th>Llamado 2</th>
-              <th>In</th>
+              <th>Estado</th>
             </tr>
           </thead>
           <tbody>
