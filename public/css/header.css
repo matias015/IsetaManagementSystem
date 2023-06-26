@@ -115,7 +115,7 @@ header ul li a:hover::before {
   border: 1px solid white;
   border-radius: 50px;
   cursor: pointer;
-  width: 150px;
+  width: auto;
   transition: box-shadow 0.2s, background-color 0.2s;
 }
 
