@@ -96,8 +96,6 @@ header {
     font-size: 25px;
   }
 
-  
-
 header ul li a:hover::before {
     transform: scaleX(1);
     transform-origin: left;
@@ -121,7 +119,6 @@ header ul li a:hover::before {
   transition: box-shadow 0.2s, background-color 0.2s;
 }
 
-
 .perfil-imagen{
   position: relative;
   width: 2.5rem;
@@ -131,9 +128,7 @@ header ul li a:hover::before {
   border-radius: 50%;
 }
 
-
 .perfil-lista {
-  display: none;
   position: absolute;
   top: 70px;
   width: 220px;
@@ -142,6 +137,13 @@ header ul li a:hover::before {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.05);
   z-index: 1;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+
+.perfil-lista.active{
+  max-height: 500px;
 }
 
 .perfil-lista-item {
@@ -149,6 +151,7 @@ header ul li a:hover::before {
 }
 
 .perfil-lista-item:hover {
+  padding-left: 1.5rem;
   background: var(--azul-osc-iseta);
   border-radius: 10px;
 }
