@@ -23,7 +23,12 @@
         
             <h2>Mesa</h2>
         @if (isset($examen->mesa))
-            <p>Presidente: {{$examen->mesa->profesor->nombre . ' '.$examen->mesa->profesor->apellido}}</p>
+            <p>Presidente: @if($examen->mesa->profesor) 
+                {{$examen->mesa->profesor->nombre . ' '.$examen->mesa->profesor->apellido}}
+                @else
+                    sin profesor confirmado
+                @endif  
+            </p>
             <p>vocal1: {{$examen->mesa->vocal1? $examen->mesa->vocal1->nombre . ' ' . $examen->mesa->vocal1->apellido : 'No hay'}}</p>
             <p>vocal2: {{$examen->mesa->vocal2? $examen->mesa->vocal2->nombre . ' ' . $examen->mesa->vocal2->apellido : 'No hay'}}</p>
             <p>llamado: {{$examen->mesa->llamado? $examen->mesa->llamado : 'No hay datos sobre el llamado'}}</p>
