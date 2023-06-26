@@ -49,7 +49,7 @@ body {
 /*------------------------------------------------------- L O G I N , R E G I S T R O , C O N T R A S E Ñ A  --------------------------------------------------------*/
 
 #logeo {
-    background: linear-gradient(150deg, #5872d16d, black), url(img/Estudiar-en-casa--1024x576.jpg);
+    background: linear-gradient(150deg, #5872d16d, black), url(/img/Estudiar-en-casa--1024x576.jpg);
     height: 100vh;
     background-size: cover;
 }
