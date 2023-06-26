@@ -45,7 +45,7 @@
             <li class="perfil-lista-item"><a><i class="ti ti-sun"></i>Modo</a></li>
           </ul>
          
-        </div> <li class="perfil-lista-item"><a href="/alumno/logout"><i class="ti ti-logout"></i>Cerrar sesion</a></li>
+        </div> 
         @endauth
     </nav>
     <script>
