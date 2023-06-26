@@ -39,8 +39,8 @@
 
     <td>
         <button @class([
-          'inscribir' => !$yaAnotado,
-          'bajarse' => $yaAnotado])>
+          'boton-finales inscribir' => !$yaAnotado,
+          'boton-finales bajarse' => $yaAnotado])>
             {{$btnTexto}}
         </button>
     </td>
