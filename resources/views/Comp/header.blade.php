@@ -25,7 +25,7 @@
         </ul>
         @auth('web')
         <div class="perfil-logout" >
-          <div class="perfil-logout-btn">
+          <div class="perfil-logout-btn" onclick="toggle()">
             <div class="perfil-imagen">
               
             </div>
@@ -40,14 +40,23 @@
             <li class="perfil-lista-item"><a href="perfil.html"><i class="ti ti-user"></i>Editar perfil</a>
               </li>
             <li class="perfil-lista-item"><a><i class="ti ti-settings"></i>Ajustes</li></a></li>
-            
+            <li class="perfil-lista-item"><a href="/alumno/logout"><i class="ti ti-logout"></i>Cerrar sesion</a></li>
             <hr>
             <li class="perfil-lista-item"><a><i class="ti ti-sun"></i>Modo</a></li>
           </ul>
          
         </div> <li class="perfil-lista-item"><a href="/alumno/logout"><i class="ti ti-logout"></i>Cerrar sesion</a></li>
         @endauth
-        
-        
     </nav>
+    <script>
+    let perfilDropdownList = document.querySelector(".perfil-lista")
+let btn = document.querySelector(".perfil-logout-btn")
+
+const toggle = () => perfilDropdownList.classList.toggle("active")
+
+window.addEventListener('click', function(e) {
+
+    if (!btn.contains(e.target))perfilDropdownList.classList.remove('active')
+    });
+    </script>
 </header>
