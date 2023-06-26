@@ -425,10 +425,14 @@ button.inscribir {
 }
 
 button.inscribir:hover {
-    background: var(--verde-2);
+    background: green;
 }
 
 button.bajarse {
     display: none;
     background: var(--rojo-sl);
+}
+
+button.bajarse:hover {
+    background: red;
 }
