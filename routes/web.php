@@ -18,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::redirect('/', 'alumno/info');
 
 include_once("alumnos.php");
 include_once("admin.php");
