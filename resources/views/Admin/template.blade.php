@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="{{asset('css/Admin/Edit/edit-page.css')}}">
     <link rel="stylesheet" href="{{asset('css/Admin/main.css')}}">
     <link rel="stylesheet" href="{{asset('css/Admin/aside.css')}}">
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
 
 <body style="background-color:#d5e1ff;">
