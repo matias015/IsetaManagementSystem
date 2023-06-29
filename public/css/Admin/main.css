@@ -1,20 +1,64 @@
-.admin-main{
-    padding: 1em;
-    display: flex;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+:root {
+    --rojo-sl: #ec212d;
+    --azul-sl:  #273b56;
+    --azul-alt: #2c3e50;
+    --whatsapp: #25d366;
+    --phone: #3276c9;
+    --netflix: #d81f26;
+    --youtube: #ff0000;
+    --prime-vide: #00a5e2;
+    --hbo-max: #991eeb;
+    --disney-plus:  #0d2e6f;
+    --star-plus: #ec5d2b;
+    --paramount-plus: #0064ff;
+    --azul-iseta: #140B5C;
+    --azul-osc-iseta: #0F0844;
+    --instagram: #E1306C;
+    --facebook: #4267B2;
+    --gris-fondo-tabla: #fff5;
+    --gris-header-tabla: #fff4;
+    --gris-body-tabla: #fffb;
+    --gris-titulo: #d5d1defe;
+    --gris-hover: #fff6;
 }
 
-.admin-main aside{
-    width: 25%;
+* {
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.admin-main{
+    display: flex;
+
+    background: #e5e5e5e6;
 }
 
 .admin-main div{
     width: 75%;
 }
 
-
 .admin-main aside ul{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+}
+
+.hhh {
+    display: flex;
+    justify-content: space-between;
+}
+
+.for-hh {
+    display: flex;
+    justify-content: space-between;
 }
