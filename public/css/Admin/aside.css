@@ -1,0 +1,31 @@
+.admin-main aside{
+    height: 100vh;
+    background: white;
+}
+
+aside ul p {
+    font-family: 'Openface';
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--azul-iseta);
+}
+
+aside ul {
+    font-size: 16px;
+   
+}
+
+aside ul li:hover {
+    border-right: 3px solid var(--azul-iseta);
+}
+
+aside ul a {
+    color: var(--azul-iseta);
+    font-weight: 500;
+}
+
+.mode-dark_light {
+    color: var(--azul-iseta);
+    font-weight: 500;
+}
