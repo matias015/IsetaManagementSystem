@@ -115,7 +115,7 @@ class ExamenesCrudController extends Controller
             foreach($materia->mesas as $mesaMateria){
                 
                 if($mesaMateria->id == $mesa->id){               
-                    if(DiasHabiles::desdeHoyHasta($mesaMateria->fecha) >= 2) $noPuede = false;
+                    if(DiasHabiles::desdeHoyHasta($mesaMateria->fecha) >= 48) $noPuede = false;
                     else break;
                     $finBusqueda=true;
                 }
@@ -161,9 +161,9 @@ class ExamenesCrudController extends Controller
     {   
         $examen = Examen::with('mesa','asignatura' ,'alumno')->where('examenes.id',$examen)->first();
         if($examen->mesa){
-            $examen -> borrable = DiasHabiles::desdeHoyHasta($examen->mesa->fecha) >= 1? true:false;
+            $examen -> borrable = DiasHabiles::desdeHoyHasta($examen->mesa->fecha) >= 24? true:false;
         }else if($examen->fecha){
-            $examen -> borrable = DiasHabiles::desdeHoyHasta($examen->fecha) >= 1? true:false;
+            $examen -> borrable = DiasHabiles::desdeHoyHasta($examen->fecha) >= 24? true:false;
         }else{
             $examen -> borrable = false;
         }
