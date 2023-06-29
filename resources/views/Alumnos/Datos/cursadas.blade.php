@@ -78,6 +78,7 @@
                         'status' => true,
                         'aprobada' => $cursada->aprobada == 1,
                         'reprobada' => $cursada->aprobada == 2,
+                        'cursando' => $cursada->aprobada == 3
                     ]) >
                     @if($cursada->aprobada == 1)
                         Aprobada
