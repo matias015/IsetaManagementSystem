@@ -123,6 +123,7 @@ class AlumnoCrudController extends Controller
      */
     public function destroy(Alumno $alumno)
     {
+        dd('No hagas cagada');
         $alumno->delete();
         return redirect() -> route('admin.alumnos.index') -> with('mensaje', 'Se ha eliminado el alumno');
     }
