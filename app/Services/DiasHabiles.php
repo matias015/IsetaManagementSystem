@@ -10,42 +10,70 @@ use DateTime;
 class DiasHabiles{
 
     static function desdeHoyHasta($fecha){
-        $hoy = new DateTime(date('Y-m-d'));
-    $fechaDadaObj = new DateTime(date('Y-m-d', strtotime($fecha)));
-    $diferencia = $fechaDadaObj->diff($hoy);
-    $dias = $diferencia->days;
+        
+    // fecha de mesa test
+    $testStr = $fecha;
+    
+    // fecha actual y de mesa
+    $currentDateTime = new DateTime(); // Obtiene la fecha y hora actual
+    $targetDateTime = new DateTime($testStr); // Define la fecha y hora objetivo
 
-    if ($fechaDadaObj > $hoy) {
-        $dias = -$dias;
+    if($currentDateTime>$targetDateTime){
+        return 0;
     }
 
+    $fechaActualHoras = $currentDateTime->format('H');
+    $fechaActualMinutos = $currentDateTime->format('i');
+    $minutosRestantesHoy = (24*60) - ($fechaActualHoras * 60 + $fechaActualMinutos);
+    //si la fecha dada es no habil minutosRestantesHoy = 0
+
+    $fechaDadaHoras = $targetDateTime->format('H');
+    $fechaDadaMinutos = $targetDateTime->format('i');
+    $minutosHastaMesa = $fechaDadaHoras * 60 + $fechaDadaMinutos;
+   
+    $minutosTotales = $minutosRestantesHoy + $minutosHastaMesa;
+    
+    if($currentDateTime->format('y-m-d') === $targetDateTime->format('y-m-d')){
+        $minutosTotales = $minutosTotales - (24*60);
+    }
+
+    // intervalo de dias
     $intervalo = new DateInterval('P1D');
-    $periodo = new DatePeriod($hoy, $intervalo, $fechaDadaObj);
+    $targetDateTime = new DateTime($targetDateTime->format('y-m-d'));
+    $periodo = new DatePeriod($currentDateTime, $intervalo, $targetDateTime);
 
-    $diasExcluidos = 0; // Contador de días excluidos (sábados, domingos y festivos)
-
+    $i = 0;
+    $dias = [];
+    $festivos = DiasHabiles::obtenerFestivos();
+    
     foreach ($periodo as $fecha) {
-        if ($fecha->format('N')==5 || $fecha->format('N')==6) { // Excluir sábados y domingos
-            $diasExcluidos++;
-        } else {
-            $festivos = DiasHabiles::obtenerFestivos($fecha->format('Y'));
-            if (in_array($fecha->format('Y-m-d'), $festivos)) { // Excluir días festivos
-                $diasExcluidos++;
-            }
+        $i++;
+
+        if($i==1) continue;
+    
+        if ($fecha->format('D')=='Sun' || $fecha->format('D')=='Sat') { // Excluir sábados y domingos            
+            continue;
         }
+
+        if (in_array($fecha->format('Y-m-d'), $festivos)) { 
+            continue;
+        }
+
+        $minutosTotales = $minutosTotales + 24*60;
+        
     }
 
+    return $minutosTotales / 60;
 
-    return (($dias*-1) - $diasExcluidos);
     }
-    static function obtenerFestivos($anio) {
+    static function obtenerFestivos() {
         // Aquí puedes agregar o mantener una lista de días festivos para el año dado
         // Los días festivos pueden variar según la ubicación y el año
         // Este es solo un ejemplo de lista ficticia de días festivos
     
         $festivos = [
-            '2025-06-23', // Ejemplo: Día festivo
-            '2026-07-05', // Ejemplo: Otro día festivo
+            '2023-06-23', // Ejemplo: Día festivo
+            '2023-07-05', // Ejemplo: Otro día festivo
         ];
     
         return $festivos;
