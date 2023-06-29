@@ -219,8 +219,10 @@ class AlumnoController extends Controller
             foreach($materia->mesas as $mesaMateria){
                 
                 if($mesaMateria->id == $mesa){               
-                    if(DiasHabiles::desdeHoyHasta($mesaMateria->fecha) >= 2) $noPuede = false;
-                    else break;
+                    if(DiasHabiles::desdeHoyHasta($mesaMateria->fecha) <= 48){
+                        return redirect()->route('alumno.inscripciones')->with('error', 'Ha caducado el tiempo de inscripcion');
+                    }
+                    $noPuede = false;
                     $finBusqueda=true;
                 }
             }
