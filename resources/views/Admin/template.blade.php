@@ -16,12 +16,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
 
-<body style="background-color:#d5e1ff;">
-    <div class="admin-main">
+<body>
         @include('Comp.aside')
         @yield('content')
-        @include('Comp.mensajes')
-    </div>
-    
+        @include('Comp.mensajes') 
 </body>
 </html>
