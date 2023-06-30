@@ -6,17 +6,19 @@
         <div class="hhh">
             <a href="{{route('admin.alumnos.create')}}"><button>Agregar alumno</button></a>
             
+            
                 <form class="form-hh" action="{{route('admin.alumnos.index')}}">
+                    <div class="alumnos_filtrar">
                     <br>
                     <p>filtrar</p> 
-                    <select name="campo">
-                        <option value="ninguno">ninguno</option>
-                        <option @selected($filtros['campo'] == 'nombre-apellido') value="nombre-apellido">nombre/apellido</option>
-                        <option @selected($filtros['campo'] == 'dni') value="dni">dni</option>
-                        <option @selected($filtros['campo'] == 'email') value="email">email</option>
-                        <option @selected($filtros['campo'] == 'cursando') value="cursando">cursando</option>
-                        <option @selected($filtros['campo'] == 'registrados') value="registrados">registrados</option>
-                    </select>
+                        <select name="campo">
+                            <option value="ninguno">ninguno</option>
+                            <option @selected($filtros['campo'] == 'nombre-apellido') value="nombre-apellido">nombre/apellido</option>
+                            <option @selected($filtros['campo'] == 'dni') value="dni">dni</option>
+                            <option @selected($filtros['campo'] == 'email') value="email">email</option>
+                            <option @selected($filtros['campo'] == 'cursando') value="cursando">cursando</option>
+                            <option @selected($filtros['campo'] == 'registrados') value="registrados">registrados</option>
+                        </select>
         
                         <input value="{{$filtros['filtro']}}" name="filtro" type="text">
                     <p>ordenar</p>
@@ -28,7 +30,10 @@
                     </select>
                     <br><br>
                     <input type="submit" value="Buscar">
+                    </div>
                 </form>
+            
+                
             <br>
             <a href="{{route('admin.alumnos.index')}}"><button>Quitar filtro</button></a>
 
@@ -43,16 +48,18 @@
         <li class="page-item{{ $page == $alumnos->currentPage() ? ' active' : '' }}">
             <a class="page-link" href="{{ $url }}">{{ $page }}</a>
         </li> --}}
-        
 
-        <table>
-            <tr>
-                <td>Nombre</td>
-                <td>Apellido</td>
-                <td>Dni</td>
-                <td>Acciones</td>
-            </tr>
-
+        <div class="table">
+        <table class="table__body">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Dni</th>
+                    <th colspan="2">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
             @foreach ($alumnos as $alumno)
             <tr>
                 <td>{{$textFormatService->utf8UpperCamelCase($alumno->nombre)}}</td>
@@ -68,8 +75,15 @@
                 </td>
             </tr>
             @endforeach
+            </tbody>
+            
+            
 
         </table>
+        </div>
+        
+
+        
         
         <div class="w-1/2 mx-auto p-5">
             {{ $alumnos->appends(request()->query())->links('Comp.pagination') }}
