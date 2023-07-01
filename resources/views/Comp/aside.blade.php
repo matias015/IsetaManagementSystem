@@ -9,6 +9,8 @@
         <li><a class="text-blue-600" href="{{route('admin.mesas.index')}}"><i class="ti ti-clipboard-text"></i>         Mesas       </a></li>
         <li><a class="text-blue-600" href="{{route('admin.examenes.index')}}"><i class="ti ti-address-book"></i>      Examenes    </a></li>
         <li><a class="text-blue-600" href="{{route('admin.cursadas.index')}}"><i class="ti ti-books"></i></i>      Cursadas    </a></li>
+                <li><a class="text-blue-600" href="{{route('admin.egresados.index')}}"><i class="ti ti-books"></i></i>      Egresados    </a></li>
+
         <hr>
         <li><a class="text-blue-600" href="{{route('admin.admins.index')}}  "><i class="ti ti-user-cog"></i>      Admins      </a></li>
         <li class="cont-btn">
