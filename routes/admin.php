@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProfesoresCrudController;
 use App\Http\Controllers\Admin\AdminsCrudController;
 use App\Http\Controllers\Admin\ExamenesCrudController;
 use App\Http\Controllers\Admin\CursadasAdminController;
+use App\Http\Controllers\Admin\EgresadosAdminController;
 use App\Models\Mesa;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -35,7 +36,8 @@ Route::prefix('admin')->group(function(){
     Route::post('login', [AdminAuthController::class, 'login']) -> name('admin.login.post');
 
     Route::resource('alumnos', AlumnoCrudController::class, ['as' => 'admin']);
-    
+    Route::resource('egresados', EgresadosAdminController::class, ['as' => 'admin']);
+
     Route::resource('profesores', ProfesoresCrudController::class, [
         'as' => 'admin', 
         'parameters' => ['profesores' => 'profesor']
