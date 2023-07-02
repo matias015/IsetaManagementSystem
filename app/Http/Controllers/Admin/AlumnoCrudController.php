@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\crearAlumnoRequest;
 use App\Models\Alumno;
+use App\Models\Configuracion;
 use Illuminate\Http\Request;
 
 class AlumnoCrudController extends Controller
@@ -23,7 +24,7 @@ class AlumnoCrudController extends Controller
         $filtro = $request->filtro ? $request->filtro: '';
         $campo = $request->campo ? $request->campo: '';
         $orden = $request->orden ? $request->orden: 'fecha';
-        $porPagina = 15;
+        $porPagina = Configuracion::get('filas_por_tabla',true);
 
         $query = Alumno::select('alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni');
 
