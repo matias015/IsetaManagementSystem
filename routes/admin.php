@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CarrerasCrudController;
 use App\Http\Controllers\Admin\MesasCrudController;
 use App\Http\Controllers\Admin\ProfesoresCrudController;
 use App\Http\Controllers\Admin\AdminsCrudController;
+use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\ExamenesCrudController;
 use App\Http\Controllers\Admin\CursadasAdminController;
 use App\Http\Controllers\Admin\EgresadosAdminController;
@@ -69,5 +70,7 @@ Route::prefix('admin')->group(function(){
     //Route::resource('administradores', CarrerasCrudController::class, ['as' => 'admin']);
 
 
+    Route::get('config', [ConfigController::class, 'index'])->name('admin.config.index');
+    Route::get('config/{clave}', [ConfigController::class, 'setear'])->name('admin.config.set');
 
 });
