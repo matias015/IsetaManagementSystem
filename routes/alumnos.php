@@ -4,6 +4,7 @@ use App\Http\Controllers\AlumnoAuthController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\MailVerifController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\PdfsController;
 use App\Models\Alumno;
 use Illuminate\Console\View\Components\Alert;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('alumno')->group(function(){
+    Route::get('/constancia', [PdfsController::class, 'constanciaMesas'])->name('alumno.constancia');
 
     Route::get('/registro',[AlumnoAuthController::class,'registroView'])->name('alumno.registro');
     Route::post('/registro',[AlumnoAuthController::class,'registro'])->name('alumno.registro.post');
@@ -43,4 +45,5 @@ Route::prefix('alumno')->group(function(){
     Route::post('/reset',[PasswordResetController::class,'validarToken'])->name('reset.password.post');
 
     Route::post('/cambiarpw',[AlumnoAuthController::class, 'cambiarPassword'])->name('cambio.password');
+
 });

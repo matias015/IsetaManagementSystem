@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alumno;
 use App\Models\Carrera;
 use App\Models\CarreraDefault;
+use App\Models\Configuracion;
 use App\Models\Cursada;
 use App\Models\Examen;
 use App\Models\Mesa;
@@ -170,7 +171,7 @@ class AlumnoController extends Controller
 
     function inscripciones(Request $request){
         $posibles = [];
-
+        $config = Configuracion::todas();   
 
         $posibles = Alumno::inscribibles();
         $request->session()->put('data', $posibles);
@@ -200,6 +201,9 @@ class AlumnoController extends Controller
      */
 
     function inscribirse(Request $request){
+
+        $config = Configuracion::todas();   
+
         $mesa = $request->mesa;
 
         $posibles = [];
@@ -219,7 +223,7 @@ class AlumnoController extends Controller
             foreach($materia->mesas as $mesaMateria){
                 
                 if($mesaMateria->id == $mesa){               
-                    if(DiasHabiles::desdeHoyHasta($mesaMateria->fecha) <= 48){
+                    if(DiasHabiles::desdeHoyHasta($mesaMateria->fecha) <= $config['dias_habiles_inscripcion']){
                         return redirect()->route('alumno.inscripciones')->with('error', 'Ha caducado el tiempo de inscripcion');
                     }
                     $noPuede = false;
@@ -259,6 +263,9 @@ class AlumnoController extends Controller
      */
 
     function bajarse(Request $request){
+
+        $config = Configuracion::todas();   
+
         if(!$request->has('mesa')) return redirect()->route('alumno.inscripciones');
         
         $mesa = Mesa::select('fecha','id')
@@ -274,7 +281,7 @@ class AlumnoController extends Controller
             return redirect()->route('alumno.inscripciones')->with('error','No estas inscripto en esta mesa.');
         }
         
-        if(DiasHabiles::desdeHoyHasta($mesa->fecha) <= 1){
+        if(DiasHabiles::desdeHoyHasta($mesa->fecha) <= $config['dias_habiles_desinscripcion']){
             return redirect()->route('alumno.inscripciones')->with('error', 'Timpo de desincripcion caducado.');
         }
 
@@ -284,4 +291,6 @@ class AlumnoController extends Controller
         return redirect()->route('alumno.inscripciones')->with('mensaje','Te has dado de baja de la mesa.');
 
     }
+
+
 }

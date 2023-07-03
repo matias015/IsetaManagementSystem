@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,5 +17,17 @@ class Configuracion extends Model
         if($int) return intval($value->value);
         return $value->value;
     }
+
+    static function todas(){
+        if(session('config')){
+            return session('config');
+        }else{
+            $config = Configuracion::all()->pluck('value','key')->toArray();
+            session(['config',$config]);
+            return $config;
+        }
+        
+    }
+    
      
 }

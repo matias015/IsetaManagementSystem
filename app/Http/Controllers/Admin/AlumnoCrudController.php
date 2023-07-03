@@ -12,20 +12,22 @@ class AlumnoCrudController extends Controller
 {
     public function __construct()
     {
-        $this -> middleware('guest');
+        //$this -> middleware('guest');
     }
 
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {       
+    {   
+        $config = Configuracion::todas();    
+
         $alumnos = [];
         $filtro = $request->filtro ? $request->filtro: '';
         $campo = $request->campo ? $request->campo: '';
         $orden = $request->orden ? $request->orden: 'fecha';
-        $porPagina = Configuracion::get('filas_por_tabla',true);
-
+        $porPagina = $config['filas_por_tabla'];
+        
         $query = Alumno::select('alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni');
 
             if($campo == "nombre-apellido"){
@@ -75,7 +77,7 @@ class AlumnoCrudController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    { 
         return view('Admin.Alumnos.create');
     }
 

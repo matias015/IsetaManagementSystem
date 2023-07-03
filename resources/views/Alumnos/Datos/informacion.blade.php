@@ -61,8 +61,8 @@
           <button><i class="ti ti-eye"></i>Ver</button>
         </div>
         <div class="perfil_descargable d">
-          <span>Constancia de inscripción a mesas de examen</span>
-          <button><i class="ti ti-download"></i>Descargar</button>
+         <span>Constancia de inscripción a mesas de examen</span>
+         <a href="{{route('alumno.constancia')}}"><button><i class="ti ti-download"></i>Descargar</button></a>
         </div>
         
       </div>

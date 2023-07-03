@@ -93,11 +93,10 @@ class AlumnoAuthController extends Controller
             dd('incor');
             return redirect()->back()->with('error','la contraseña no coincide');
         }
-        dd('cambiando');
         
-
         $user->password = bcrypt($request->newPassword);
         $user->save();
+        
         return redirect()->back()->with('mensaje','Se ha restablecido la contraseña');
     }
 }
