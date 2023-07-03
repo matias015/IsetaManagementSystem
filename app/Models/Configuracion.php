@@ -11,6 +11,7 @@ class Configuracion extends Model
     use HasFactory;
 
     protected $table = "config";
+    public $timestamps = false;
 
     static function get($key,$int=false){
         $value = Configuracion::where('key',$key)->first();
