@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\crearProfesorRequest;
+use App\Models\Configuracion;
 use App\Models\Examen;
 use App\Models\Mesa;
 use App\Models\Profesor;
@@ -19,7 +20,7 @@ class ProfesoresCrudController extends Controller
         $profesores = [];
         $filtro = "";
         $campo = "";
-        $porPagina = 15;
+        $porPagina = Configuracion::get('filas_por_tabla',true);
 
        if($request->has('filtro')){
            $filtro = $request->filtro;

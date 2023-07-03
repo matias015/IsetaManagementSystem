@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Configuracion;
 use Illuminate\Http\Request;
 
 class AdminsCrudController extends Controller
@@ -15,7 +16,8 @@ class AdminsCrudController extends Controller
     {
         $admins = [];
          $filtro = "";
-         $porPagina = 15;
+         $porPagina = Configuracion::get('filas_por_tabla',true);
+
 
         if($request->has('filtro')){
             $filtro = $request->filtro;

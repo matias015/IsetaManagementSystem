@@ -7,6 +7,7 @@ use App\Http\Requests\CrearAsignaturaRequest;
 use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
+use App\Models\Configuracion;
 use Illuminate\Http\Request;
 use Svg\Tag\Rect;
 
@@ -24,7 +25,8 @@ class AsignaturasCrudController extends Controller
     {       
          $asignaturas = [];
          $filtro = "";
-         $porPagina = 15;
+         $porPagina = Configuracion::get('filas_por_tabla',true);
+
 
         if($request->has('filtro')){
             $filtro = $request->filtro;

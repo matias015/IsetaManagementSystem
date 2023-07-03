@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\crearAlumnoRequest;
 use App\Models\Alumno;
 use App\Models\Carrera;
+use App\Models\Configuracion;
 use App\Models\Egresado;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class EgresadosAdminController extends Controller
         $filtro = $request->filtro ? $request->filtro: '';
         $campo = $request->campo ? $request->campo: '';
         $orden = $request->orden ? $request->orden: 'fecha';
-        $porPagina = 15;
+        $porPagina = Configuracion::get('filas_por_tabla',true);
 
         $query = Egresado::select('alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni','carreras.nombre as carrera')
                 ->join('alumnos','alumnos.id','egresadoinscripto.id_alumno')

@@ -7,6 +7,7 @@ use App\Http\Requests\CrearMesaRequest;
 use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
+use App\Models\Configuracion;
 use App\Models\Examen;
 use App\Models\Mesa;
 use App\Models\Profesor;
@@ -29,7 +30,7 @@ class MesasCrudController extends Controller
         $filtro = $request->filtro ? $request->filtro: '';
         $campo = $request->campo ? $request->campo: '';
         $orden = $request->orden ? $request->orden: 'fecha';
-        $porPagina = 15;
+        $porPagina = Configuracion::get('filas_por_tabla',true);
 
         $query = Mesa::select('mesas.id','mesas.fecha', 'asignaturas.nombre','asignaturas.anio', 'carreras.nombre as carrera')
             -> join('asignaturas','asignaturas.id','=','mesas.id_asignatura')

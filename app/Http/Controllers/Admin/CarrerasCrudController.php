@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CrearCarreraRequest;
 use App\Models\Carrera;
+use App\Models\Configuracion;
 use Illuminate\Http\Request;
 
 class CarrerasCrudController extends Controller
@@ -21,7 +22,8 @@ class CarrerasCrudController extends Controller
     public function index(Request $request)
     {       
          $carreras = [];
-         $porPagina = 15;
+         $porPagina = Configuracion::get('filas_por_tabla',true);
+
          $filtro="";
 
         if($request->has('filtro')){

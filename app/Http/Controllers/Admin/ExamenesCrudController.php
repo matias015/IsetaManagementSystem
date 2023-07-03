@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Alumno;
+use App\Models\Configuracion;
 use App\Models\Examen;
 use App\Models\Mesa;
 use App\Models\Profesor;
@@ -25,7 +26,7 @@ class ExamenesCrudController extends Controller
          $examenes = [];
          $filtro = "";
          $campo = "";
-         $porPagina = 15;
+         $porPagina = Configuracion::get('filas_por_tabla',true);
 
         if($request->has('filtro')){
             $filtro = $request->filtro;
