@@ -58,6 +58,7 @@
                 <th>Año</th>
                 <th>Materia</th>
                 <th>Cursada</th>
+                <th>Condicion</th>
                 <th>Año cursada</th>
                 <th>Final</th>
               </tr>
@@ -88,6 +89,24 @@
                         En curso
                     @endif
                     </p>
+                </td>
+                  <td>
+                  @switch($cursada->condicion)
+                    @case(1)
+                      libre
+                      @break
+                    @case(2)
+                      precencial  
+                      @break
+                    @case(3)
+                      desertor  
+                      @break
+                    @case(4)
+                      atrasoacadamico  
+                      @break
+                    @default
+                        otro
+                    @endswitch
                 </td>
                 <td>{{$cursada->anio_cursada}}</td>
                 @if (in_array($cursada->id_asignatura,$examenesAprobados))
