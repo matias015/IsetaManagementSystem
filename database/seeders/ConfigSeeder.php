@@ -13,14 +13,20 @@ class ConfigSeeder extends Seeder
      */
     public function run(): void
     {
+
         Configuracion::create([
-            'key' => 'dias_habiles_inscripcion',
-            'value' => 2
+            'key' => 'filas_por_tabla',
+            'value' => 25
+        ]);
+        
+        Configuracion::create([
+            'key' => 'horas_habiles_inscripcion',
+            'value' => 48
         ]);
 
         Configuracion::create([
-            'key' => 'dias_habiles_desinscripcion',
-            'value' => 1
+            'key' => 'horas_habiles_desinscripcion',
+            'value' => 24
         ]);
 
 
