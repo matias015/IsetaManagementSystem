@@ -47,11 +47,22 @@
               <td>{{$materia->anio + 1}}</td>
               <td>{{$materia->nombre}}</td>
               <td>{{$materia->hora}}</td>
-              <td>{{
-                $materia->mesas[0]->prof_presidente? 
-                  $materia->mesas[0]->prof_presidente:
-                  'A confirmar'
-              }}</td>
+              <td>
+
+                <p>{{
+                    $materia->mesas[0]->prof_presidente? 
+                      $textFormatService->utf8UpperCamelCase($materia->mesas[0]->profesor->nombre.' '.$materia->mesas[0]->profesor->apellido):
+                      'A confirmar'
+                }}</p>
+                <p>{{
+                    $materia->mesas[0]->vocal1? 
+                      $textFormatService->utf8UpperCamelCase($materia->mesas[0]->vocal1->nombre.' '.$materia->mesas[0]->vocal1->apellido):
+                      'A confirmar'
+                }}</p>
+                @if ($materia->mesas[0]->vocal2)
+                    <p>{{$textFormatService->utf8UpperCamelCase($materia->mesas[0]->vocal2->nombre.' '.$materia->mesas[0]->vocal2->apellido)}}</p>
+                @endif
+              </td>
               
               @include('Comp.inscripcion-form')
 @endforeach
