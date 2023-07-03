@@ -5,10 +5,19 @@
     <div class="perfil_header">
       <h1>Perfil</h1>
         <div class="contenedor_select_carrera">
-        <select class="select-carrera" name="" id="">
-          <option value="">Análisis, Desarrollo y Programación de Aplicaciones</option>
-          <option value="">Analista de Sistemas</option>
-        </select>
+        
+        <form method="POST" action="{{route('alumno.set.default')}}">
+          @csrf
+          <select class="select-carrera" name="carrera">
+            @foreach ($carreras as $carrera)
+                <option @selected($carrera->id==$default) value="{{$carrera->id}}">
+                  {{$carrera->nombre}}
+                </option>
+            @endforeach
+          </select>
+          <button>Cambiar</button>
+        </form>
+
       </div>
     </div>
     <div class="perfil_body">
