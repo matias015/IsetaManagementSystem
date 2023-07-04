@@ -22,6 +22,9 @@
     --gris-body-tabla: #fffb;
     --gris-titulo: #d5d1defe;
     --gris-hover: #fff6;
+    --dark: #181818;
+    --dark2: #212121;
+    --dark3: #323232;
 }
 
 * {
@@ -45,7 +48,7 @@ body {
 body.active {
     background: linear-gradient(150deg, #181818, black);
     color: white;
-    transition: all 0.5s ease;
+    /*transition: all 0.5s ease;*/
 }
 
 .admin-main{
@@ -64,8 +67,8 @@ body div{
     justify-content: center;
 }
 
-.hhh {
-    background-color: var(--gris-titulo);
+.contenedor_top {
+    background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -74,14 +77,50 @@ body div{
     border-radius: 10px;
 }
 
+.nuevo_alumno, .quitar_filtro, .buscar_filtro {
+    background: var(--azul-iseta);
+    color: white; 
+    font-size: 500;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .nuevo_alumno::after, .quitar_filtro::after {
+    content: "";
+    background: var(--facebook); 
+    position: absolute;
+    z-index: -1;
+    padding: 15px 20px;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    right: 100%;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+  }
+  .nuevo_alumno:hover::after, .quitar_filtro:hover::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+  }
+
 .alumnos_filtrar {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-
-div.table {
+.table {
     margin: 20px 0 20px 0;
     background: var(--gris-fondo-tabla);
     backdrop-filter: blur(7px);
@@ -90,6 +129,9 @@ div.table {
     overflow: hidden;
 }
 
+.table.active {
+    background: var(--dark2);
+}
 
 thead th {
     top: 0;
@@ -104,6 +146,10 @@ thead th {
     margin: .8rem auto;
     border-radius: .6rem;
     overflow: auto;
+}
+
+table.active {
+    background-color: var(--azul-alt);
 }
 
 tbody tr:nth-child(even) {
