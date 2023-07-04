@@ -3,39 +3,46 @@
 @section('content')
 
     <div>
-        <div class="hhh">
-            <a href="{{route('admin.alumnos.create')}}"><button>Agregar alumno</button></a>
+        <div class="contenedor_top">
+            <a href="{{route('admin.alumnos.create')}}"><button class="nuevo_alumno">Agregar alumno</button></a>
             
             
                 <form class="form-hh" action="{{route('admin.alumnos.index')}}">
                     <div class="alumnos_filtrar">
-                    <br>
-                    <p>filtrar</p> 
-                        <select name="campo">
-                            <option value="ninguno">ninguno</option>
-                            <option @selected($filtros['campo'] == 'nombre-apellido') value="nombre-apellido">nombre/apellido</option>
-                            <option @selected($filtros['campo'] == 'dni') value="dni">dni</option>
-                            <option @selected($filtros['campo'] == 'email') value="email">email</option>
-                            <option @selected($filtros['campo'] == 'cursando') value="cursando">cursando</option>
-                            <option @selected($filtros['campo'] == 'registrados') value="registrados">registrados</option>
-                        </select>
+                        <p class="categoria">filtrar</p> 
+                        <div>
+                            <select name="campo">
+                                <option value="ninguno">ninguno</option>
+                                <option @selected($filtros['campo'] == 'nombre-apellido') value="nombre-apellido">nombre/apellido</option>
+                                <option @selected($filtros['campo'] == 'dni') value="dni">dni</option>
+                                <option @selected($filtros['campo'] == 'email') value="email">email</option>
+                                <option @selected($filtros['campo'] == 'cursando') value="cursando">cursando</option>
+                                <option @selected($filtros['campo'] == 'registrados') value="registrados">registrados</option>
+                            </select>
+                        </div>
         
-                        <input value="{{$filtros['filtro']}}" name="filtro" type="text">
-                    <p>ordenar</p>
-                    <select name="orden">
-                        <option @selected($filtros['orden'] == 'nombre') value="nombre">nombre</option>
-                        <option @selected($filtros['orden'] == 'dni') value="dni">dni</option>
-                        <option @selected($filtros['orden'] == 'dni-desc') value="dni-desc">dni descendiente</option>
+                        <div>
+                            <input value="{{$filtros['filtro']}}" name="filtro" type="text">
+                        </div>
+                        <p class="categoria">ordenar</p>
+                        <div>
+                            <select name="orden">
+                                <option @selected($filtros['orden'] == 'nombre') value="nombre">nombre</option>
+                                <option @selected($filtros['orden'] == 'dni') value="dni">dni</option>
+                                <option @selected($filtros['orden'] == 'dni-desc') value="dni-desc">dni descendiente</option>
 
-                    </select>
-                    <br><br>
-                    <input type="submit" value="Buscar">
+                            </select>
+                        </div>
+
+                        <div>
+                            <input class="buscar_filtro" type="submit" value="Buscar">
+                        </div>
                     </div>
                 </form>
             
                 
-            <br>
-            <a href="{{route('admin.alumnos.index')}}"><button>Quitar filtro</button></a>
+            
+            <a href="{{route('admin.alumnos.index')}}"><button class="quitar_filtro">Quitar filtro</button></a>
 
             
         </div>
