@@ -56,10 +56,12 @@ body.active {
     height: 100%;
 }
 
-body div{
+
+
+/* body div{
     width: 100%;
     padding: 15px;
-}
+}  */
 
 .admin-main aside ul{
     display: flex;

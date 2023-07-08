@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div>
+
         
 
     
@@ -72,6 +72,6 @@
             {{ $mesas->appends(request()->query())->links('Comp.pagination') }}
         </div>
 
-    </div>
+
     
 @endsection

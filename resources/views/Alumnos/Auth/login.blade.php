@@ -12,11 +12,12 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
         <script src="nav.js" defer></script>
         <link rel="stylesheet" href="{{asset('css/main.css')}}">
+        <link rel="stylesheet" href="{{asset('css/global.css')}}">
     </head>
 
 
 <body id="logeo">
-    
+    @include('Comp/mensaje')
     <section class="login">
         <form method="post" action="{{route('alumno.login.post')}}">
             @csrf
@@ -40,7 +41,7 @@
             <div class="etiquetas"><a href="{{route('reset.password')}}">¿Ha olvidado su contraseña?</a></div>
             
         </form>
-        @include('Comp.mensajes')
+        @include('Comp.mensaje')
     </section>
 </body>
 </html>

@@ -1,6 +1,5 @@
 @extends('Alumnos.layout')
 @section('content')
-
 <main id="fondo-estudiantes">
   <section class="perfil">
     <div class="perfil_header">
@@ -42,23 +41,23 @@
       
       <div class="perfil_second">
         <div class="perfil_subtop"><h2>Editar contraseña</h2></div>
-        <div class="w-100p sm-w-75p md-w-50p  perfil_password">
-          <input class="w-100p" type="password" name="oldPassword"  required placeholder="Contraseña actual">
+        <div class="perfil_password">
+          <input type="password" name="oldPassword"  required placeholder="Contraseña actual">
           <i class="ti ti-circle-check-filled check_pos"></i>
           <i class="ti ti-circle-x-filled check_neg"></i>
         </div>
-        <div class="w-100p sm-w-75p md-w-50p  perfil_password">
-          <input class="w-100p" type="password" name="newPassword"  required placeholder="Nueva contraseña">
+        <div class="perfil_password">
+          <input type="password" name="newPassword"  required placeholder="Nueva contraseña">
           <i class="ti ti-circle-check-filled check_pos"></i>
           <i class="ti ti-circle-x-filled check_neg"></i>
         </div>
-        <div class="w-100p sm-w-75p md-w-50p  perfil_password">
-          <input class="w-100p" type="password" name="newPassword_confirmation"  required placeholder="Confirmar contraseña">
+        <div class="perfil_password">
+          <input type="password" name="newPassword_confirmation"  required placeholder="Confirmar contraseña">
           <i class="ti ti-circle-check-filled check_pos"></i>
           <i class="ti ti-circle-x-filled check_neg"></i>
         </div>
-        <div class="w-100p flex just-end ">
-          <button class="w-17 white border-none p-3 rounded-1 bg-indigo-900"><i class="ti ti-refresh"></i>   Confirmar</button>
+          <div class="perfil_password_refresh">
+          <button><i class="ti ti-refresh"></i>Confirmar</button>
         </div>
       </div>
     </form>
@@ -66,14 +65,13 @@
 
       <div class="perfil_third">
         <div class="perfil_subtop"><h2>Academico</h2></div>
-        <div class="flex just-between">
-          <span class="font-5">Informe analitico</span>
-          <button class="w-13 white border-none p-3 rounded-1 bg-indigo-900"><i class="ti ti-eye"></i>Ver</button>
+        <div class="perfil_descargable v">
+          <span>Informe analitico</span>
+          <button><i class="ti ti-eye"></i>Ver</button>
         </div>
-        <div class="flex just-between items-center">
-          <span class="md-none font-5">Const. inscripción</span>
-          <span class="none md-block font-5">Constancia de inscripción a mesas de examen</span>
-          <a class="" href="{{route('alumno.constancia')}}"><button class="w-13 white rounded-1 border-none p-3  bg-indigo-900"><i class="ti ti-download"></i>Descargar</button></a>
+        <div class="perfil_descargable d">
+         <span>Constancia de inscripción a mesas de examen</span>
+         <a href="{{route('alumno.constancia')}}"><button><i class="ti ti-download"></i>Descargar</button></a>
         </div>
         
       </div>

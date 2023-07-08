@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div>
+
         <div class="hhh">
             <a href="{{route('admin.egresados.create')}}"><button>Agregar alumno</button></a>
             
@@ -92,6 +92,6 @@
             {{ $alumnos->appends(request()->query())->links('Comp.pagination') }}
         </div>
 
-    </div>
+
     
 @endsection

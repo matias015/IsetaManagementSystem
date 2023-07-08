@@ -10,9 +10,10 @@
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
         <script src="nav.js" defer></script>
-        
+        <link rel="stylesheet" href="{{asset('css/global.css')}}">
     </head>
-<body id="logeo">
+<body id="logeo"> 
+    @include('Comp/mensaje')
     <section class="login">
         <form method="post">
             @csrf   

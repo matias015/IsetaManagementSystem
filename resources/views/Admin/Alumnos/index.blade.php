@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div>
+    
         <div class="contenedor_top">
             <a href="{{route('admin.alumnos.create')}}"><button class="nuevo_alumno">Agregar alumno</button></a>
             
@@ -96,6 +96,6 @@
             {{ $alumnos->appends(request()->query())->links('Comp.pagination') }}
         </div>
 
-    </div>
+
     
 @endsection

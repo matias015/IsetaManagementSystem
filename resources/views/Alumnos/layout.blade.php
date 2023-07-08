@@ -21,15 +21,15 @@
 
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
     <link rel="stylesheet" href="{{asset('css/footer.css')}}">
-
+    
     @yield('estilos')
-
+    <link rel="stylesheet" href="{{asset('css/global.css')}}">
 </head>
 
-<body class="bg-slate-900 text-slate-300 m-2">
+<body class="">
     @include('Comp.header')
     @yield('content')
-    @include('Comp.mensajes')
+    @include('Comp.mensaje')
     
     @include('Comp.footer')
     <script src="nav.js" defer></script>

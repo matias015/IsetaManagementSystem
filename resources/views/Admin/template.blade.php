@@ -11,14 +11,19 @@
     <link rel="stylesheet" href="{{asset('css/Admin/Edit/edit-page.css')}}">
     <link rel="stylesheet" href="{{asset('css/Admin/main.css')}}">
     <link rel="stylesheet" href="{{asset('css/Admin/aside.css')}}">
+    <link rel="stylesheet" href="{{asset('css/global.css')}}">
+
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
 
 <body>
-        @include('Comp.aside')
+    @include('Comp.mensaje') 
+    @include('Comp.aside')
+    <div class="w-100 p-5">
         @yield('content')
-        @include('Comp.mensajes') 
+    </div>
+    @include('Comp.mensaje') 
 </body>
 </html>

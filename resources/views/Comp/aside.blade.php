@@ -1,6 +1,6 @@
 <aside class="admin-aside">
     
-    <ul class="admin-aside-ul">
+    <ul class="p-3 admin-aside-ul">
         <p class="logo-iseta">ISETA Admin</p>
         <li><a class="text-blue-600" href="{{route('admin.alumnos.index')}} "><i class="ti ti-user"></i>      Alumnos     </a></li>
         <li><a class="text-blue-600" href="{{route('admin.profesores.index')}}"><i class="ti ti-users"></i>    Profesores  </a></li>
