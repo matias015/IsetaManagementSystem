@@ -15,7 +15,7 @@
             <i class="ti ti-world"></i></a>
         </div>
       </section>
-      <section class="grid-cols-1 lg-grid-cols-4  gap-2">
+      <section class="grid-cols-1 md-grid-cols-2 lg-grid-cols-4  gap-2">
         <ul class="box flex-col items-center md-items-start">
           <li class="link_name bolder font-4">Explorar</li>
           <li><a href="#">Perfil</a></li>

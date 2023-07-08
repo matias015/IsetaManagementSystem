@@ -3,20 +3,20 @@
 
 <main id="fondo-estudiantes">
   <section class="perfil">
-    <div class="perfil_header">
+    <div class="perfil_header just-end gap-2">
       <h1>Perfil</h1>
-        <div class="contenedor_select_carrera">
+        <div class="w-100p contenedor_select_carrera">
         
-        <form method="POST" action="{{route('alumno.set.default')}}">
+        <form class="flex just-end gap-2" method="POST" action="{{route('alumno.set.default')}}">
           @csrf
-          <select class="select-carrera" name="carrera">
+          <select class="w-50p lg-w-auto select-carrera" name="carrera">
             @foreach ($carreras as $carrera)
                 <option @selected($carrera->id==$default) value="{{$carrera->id}}">
                   {{$carrera->nombre}}
                 </option>
             @endforeach
           </select>
-          <button>Cambiar</button>
+          <button class="border-none rounded px-1">Cambiar</button>
         </form>
 
       </div>
@@ -73,7 +73,7 @@
         <div class="flex just-between items-center">
           <span class="md-none font-5">Const. inscripción</span>
           <span class="none md-block font-5">Constancia de inscripción a mesas de examen</span>
-          <a class="" href="{{route('alumno.constancia')}}"><button class="w-13 white rounded-1 border-none p-3  bg-indigo-900"><i class="ti ti-download"></i>Descargar</button></a>
+          <a class="" href="{{route('alumno.constancia')}}"><button class="white rounded-1 border-none p-3  bg-indigo-900"><i class="ti ti-download"></i>Descargar</button></a>
         </div>
         
       </div>
