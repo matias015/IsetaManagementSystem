@@ -1,4 +1,4 @@
-<aside class="admin-aside">
+<aside class="none lg-block admin-aside">
     
     <ul class="p-3 admin-aside-ul">
         <p class="logo-iseta">ISETA Admin</p>

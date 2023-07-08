@@ -16,10 +16,11 @@
     </head>
 
 
-<body id="logeo">
+<body class="flex p-2" id="logeo">
     @include('Comp/mensaje')
+
     <section class="login">
-        <form method="post" action="{{route('alumno.login.post')}}">
+        <form class="w-100p h-50p " method="post" action="{{route('alumno.login.post')}}">
             @csrf
 
             <div class="logo">ISETA</div>
@@ -41,7 +42,6 @@
             <div class="etiquetas"><a href="{{route('reset.password')}}">¿Ha olvidado su contraseña?</a></div>
             
         </form>
-        @include('Comp.mensaje')
     </section>
 </body>
 </html>

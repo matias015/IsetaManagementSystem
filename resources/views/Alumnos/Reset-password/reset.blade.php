@@ -9,9 +9,10 @@
     <title>Document</title>
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
+    <link rel="stylesheet" href="{{asset('css/global.css')}}">
 </head>
 
-    <body id="logeo">
+    <body class="p-2" id="logeo">
         
     <div class="login">
         <form action="{{route('reset.password.mail')}}" method="get">

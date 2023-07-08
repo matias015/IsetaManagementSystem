@@ -5,7 +5,7 @@
             <div class="table__header">
           <h1>Mis cursadas </h1>
           {{-- <div class="filtrar"> --}}
-              <form action="{{route('alumno.cursadas')}}">
+              <form class="none md-block" action="{{route('alumno.cursadas')}}">
               <div class="tabla_botonera">
 
                 <div class="contenedor_ordenar">

@@ -12,7 +12,7 @@
         <script src="nav.js" defer></script>
         <link rel="stylesheet" href="{{asset('css/global.css')}}">
     </head>
-<body id="logeo"> 
+<body class="p-2" id="logeo"> 
     @include('Comp/mensaje')
     <section class="login">
         <form method="post">

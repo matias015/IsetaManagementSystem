@@ -498,6 +498,15 @@
 .bolder{font-weight: bolder;}
 
 .center{text-align: center;}
+
+
+.overflow-hidden{overflow: hidden;}
+.overflow-scroll{overflow: scroll;}
+.overflowx-hidden{overflow-x: hidden;}
+.overflowx-scroll{overflow-x: scroll;}
+.overflowy-hidden{overflow-y: hidden;}
+.overflowy-scroll{overflow-y: scroll;}
+
 @media screen and (min-width: 640px) {
     .sm-grid-cols-1 {display: grid;grid-template-columns: 1fr;}
     .sm-grid-cols-2 {display: grid;grid-template-columns: repeat(2, 1fr);}
@@ -654,6 +663,13 @@
     .sm-font-5{font-size: large;}
     .sm-font-6{font-size: x-large;}
     .sm-font-7{font-size: larger;}
+
+    .sm-overflow-hidden{overflow: hidden;}
+    .sm-overflow-scroll{overflow: scroll;}
+    .sm-overflowx-hidden{overflow-x: hidden;}
+    .sm-overflowx-scroll{overflow-x: scroll;}
+    .sm-overflowy-hidden{overflow-y: hidden;}
+    .sm-overflowy-scroll{overflow-y: scroll;}
 }
 
 @media screen and (min-width: 768px) {
@@ -812,6 +828,13 @@
     .md-font-5{font-size: large;}
     .md-font-6{font-size: x-large;}
     .md-font-7{font-size: larger;}
+
+    .md-overflow-hidden{overflow: hidden;}
+    .md-overflow-scroll{overflow: scroll;}
+    .md-overflowx-hidden{overflow-x: hidden;}
+    .md-overflowx-scroll{overflow-x: scroll;}
+    .md-overflowy-hidden{overflow-y: hidden;}
+    .md-overflowy-scroll{overflow-y: scroll;}
 }
 @media screen and (min-width: 1024px) {
     .lg-grid-cols-1 {display: grid;grid-template-columns: 1fr;}
@@ -970,4 +993,11 @@
 .lg-font-5{font-size: large;}
 .lg-font-6{font-size: x-large;}
 .lg-font-7{font-size: larger;}
+
+    .lg-overflow-hidden{overflow: hidden;}
+    .lg-overflow-scroll{overflow: scroll;}
+    .lg-overflowx-hidden{overflow-x: hidden;}
+    .lg-overflowx-scroll{overflow-x: scroll;}
+    .lg-overflowy-hidden{overflow-y: hidden;}
+    .lg-overflowy-scroll{overflow-y: scroll;}
 }

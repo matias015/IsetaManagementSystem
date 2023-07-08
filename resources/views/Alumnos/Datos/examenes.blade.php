@@ -6,7 +6,7 @@
 <div class="table__header">
           <h1>Examenes</h1>
           <div class="tabla_botonera">
-            <div class="contenedor_filtrar">
+            <div class="none md-block contenedor_filtrar">
               <select class="filtrar">
                 <option>Filtrar</option>
                 <option>Año</option>
