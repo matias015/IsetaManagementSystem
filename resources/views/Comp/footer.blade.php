@@ -1,12 +1,12 @@
 <footer class="font-1 md-font-5">
-    <div class="p-2 grid-1 gap-3 just-center">
-      <section class="flex just-center items-center">
+    <div class="p-2 grid-1 content gap-3 just-center">
+      <section class="grid-1 gap-2 just-center lg-flex lg-just-between">
 
-        <div class="logo-details">
-          <span class="logo_name">ISETA</span>
+        <div class="logo-details center">
+          <span class="font-6 logo_name">ISETA</span>
         </div>
         
-        <div class="flex media-icons">
+        <div class="flex media-icons just-center">
           <a class="fb-iseta" href="https://www.facebook.com/iseta9dejulio/" target="_blank">
             <i class="ti ti-brand-facebook-filled"></i></a>
           <a class="ig-iseta" href="https://www.instagram.com/isft.iseta/" target="_blank">
