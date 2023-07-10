@@ -9,9 +9,9 @@
             
                 <form class="none lg-block form-hh" action="{{route('admin.alumnos.index')}}">
                     <div class=" alumnos_filtrar">
-                        <p class="categoria">filtrar</p> 
-                        <div>
-                            <select name="campo">
+                        <p class="categoria">Filtrar</p> 
+                        <div class="contenedor_filtrar">
+                            <select class="filtrar" name="campo">
                                 <option value="ninguno">ninguno</option>
                                 <option @selected($filtros['campo'] == 'nombre-apellido') value="nombre-apellido">nombre/apellido</option>
                                 <option @selected($filtros['campo'] == 'dni') value="dni">dni</option>
@@ -22,9 +22,9 @@
                         </div>
         
                         <div>
-                            <input value="{{$filtros['filtro']}}" name="filtro" type="text">
+                            <input class="btn-buscador" value="{{$filtros['filtro']}}" name="filtro" type="text">
                         </div>
-                        <p class="categoria">ordenar</p>
+                        <p class="categoria">Ordenar</p>
                         <div>
                             <select name="orden">
                                 <option @selected($filtros['orden'] == 'nombre') value="nombre">nombre</option>
