@@ -1,4 +1,12 @@
-body aside{
+/*
+aside > * {
+    margin: 0;
+    padding: 0;
+}
+
+*/
+
+aside{
     width: 20%;
     height: auto;
     background: white;
