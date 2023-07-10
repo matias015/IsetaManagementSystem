@@ -21,7 +21,7 @@
 <body>
     @include('Comp.mensaje') 
     @include('Comp.aside')
-    <div class="w-100 p-5">
+    <div class="w-100p p-5">
         @yield('content')
     </div>
     @include('Comp.mensaje') 

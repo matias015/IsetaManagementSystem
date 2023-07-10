@@ -1,5 +1,5 @@
 <footer class="font-1 md-font-5">
-    <div class="p-2 grid-cols-1 gap-3 just-center">
+    <div class="p-2 grid-1 gap-3 just-center">
       <section class="flex just-center items-center">
 
         <div class="logo-details">
@@ -15,7 +15,7 @@
             <i class="ti ti-world"></i></a>
         </div>
       </section>
-      <section class="grid-cols-1 md-grid-cols-2 lg-grid-cols-4  gap-2">
+      <section class="grid-1 md-grid-2 lg-grid-4  gap-2">
         <ul class="box flex-col items-center md-items-start">
           <li class="link_name bolder font-4">Explorar</li>
           <li><a href="#">Perfil</a></li>
@@ -45,7 +45,7 @@
       </section>
     </div>
     <div class="p-2 bottom-details">
-      <div class="gray-600 gap-2 grid-cols-1 just-center lg-grid-cols-2">
+      <div class="gray-600 gap-2 grid-1 just-center lg-grid-2">
         <span class="center copyright_text">Copyright © 2023 <a class="gray-600" href="#">ISETA</a> | Todos los derechos reservados</span>
         <span class="flex gap-4 just-center policy_terms">
           <a class="center" href="#">Política de privacidad</a>

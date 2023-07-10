@@ -3,12 +3,12 @@
 @section('content')
 
     
-        <div class="contenedor_top">
+        <div class=" contenedor_top">
             <a href="{{route('admin.alumnos.create')}}"><button class="nuevo_alumno">Agregar alumno</button></a>
             
             
-                <form class="form-hh" action="{{route('admin.alumnos.index')}}">
-                    <div class="alumnos_filtrar">
+                <form class="none lg-block form-hh" action="{{route('admin.alumnos.index')}}">
+                    <div class=" alumnos_filtrar">
                         <p class="categoria">filtrar</p> 
                         <div>
                             <select name="campo">
@@ -42,7 +42,7 @@
             
                 
             
-            <a href="{{route('admin.alumnos.index')}}"><button class="quitar_filtro">Quitar filtro</button></a>
+            <a class="none lg-block " href="{{route('admin.alumnos.index')}}"><button class="quitar_filtro">Quitar filtro</button></a>
 
             
         </div>
