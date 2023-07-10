@@ -167,3 +167,29 @@ table, th, td {
     padding: 1rem;
     text-align: left;
 }
+
+.contenedor_filtrar, .contenedor_ordenar {
+    position: relative;
+}
+
+.filtrar, .ordenar {
+    position: relative;
+    outline: none;
+    width: 180px;
+    height: 40px;
+    
+    cursor: pointer;
+    background: #fff;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+
+.btn-buscador {
+    border: 1px solid black;
+    outline: none;
+    background-color: var(--gris-header-tabla);
+    height: 40px;
+    width: 180px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
