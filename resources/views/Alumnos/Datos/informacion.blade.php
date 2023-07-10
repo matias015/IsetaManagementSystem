@@ -16,13 +16,13 @@
                 </option>
             @endforeach
           </select>
-          <button class="border-none rounded px-1">Cambiar</button>
+          <button class="btn-doscolores">Cambiar</button>
         </form>
 
       </div>
     </div>
     <div class="perfil_body">
-      <div class="perfil_one">
+      <div class="perfil_one shadow">
         <div class="perfil_subtop"><h2>Información alumno</h2></div>
         <span class="perfil_dataname">Nombres: <b class="perfil_datainfo">{{$alumno->nombre}}</b></span>
         <span class="perfil_dataname">Apellidos: <b class="perfil_datainfo">{{$alumno->apellido}}</b></span>
@@ -36,11 +36,13 @@
           <span class="perfil_dataname">Numero: <b class="perfil_datainfo">{{$alumno->casa_numero}}</b></span>
         @endif
       </div>
+
+
+        <div class="perfil_second shadow">
+            <form action="{{route('cambio.password')}}" method="POST">
+          @csrf
       
-    <form action="{{route('cambio.password')}}" method="POST">
-      @csrf
       
-      <div class="perfil_second">
         <div class="perfil_subtop"><h2>Editar contraseña</h2></div>
         <div class="w-100p sm-w-75p md-w-50p  perfil_password">
           <input class="w-100p" type="password" name="oldPassword"  required placeholder="Contraseña actual">
@@ -60,15 +62,15 @@
         <div class="w-100p flex just-end ">
           <button class="w-17 white border-none p-3 rounded-1 bg-indigo-900"><i class="ti ti-refresh"></i>   Confirmar</button>
         </div>
-      </div>
     </form>
+     </div>
     
 
-      <div class="perfil_third">
+      <div class="perfil_third shadow">
         <div class="perfil_subtop"><h2>Academico</h2></div>
         <div class="flex just-between">
           <span class="font-5">Informe analitico</span>
-          <button class="w-13 white border-none p-3 rounded-1 bg-indigo-900"><i class="ti ti-eye"></i>Ver</button>
+          <a href=""><button><i class="ti ti-eye"></i>Ver</button></a>
         </div>
         <div class="flex just-between items-center">
           <span class="md-none font-5">Const. inscripción</span>
