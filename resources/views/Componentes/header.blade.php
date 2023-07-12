@@ -6,9 +6,7 @@
           
           <i class="uil uil-times navCloseBtn"></i>
 
-          <li>
-            <a href="{{route('alumno.info')}}"><i class="uil uil-estate"></i>Inicio</a>
-          </li>
+
 
           <li><a href="{{route('alumno.info')}}">
             <i class="uil uil-user"></i>
@@ -22,6 +20,9 @@
           <li><a href="{{route('alumno.inscripciones')}}">
             <i class="uil uil-file-edit-alt"></i>
             Inscribir</a></li>
+            <li>
+              <a href="{{route('alumno.rematriculacion')}}"><i class="uil uil-estate"></i>Rematriculacion</a>
+            </li>
         </ul>
         @auth('web')
         <div class="perfil-logout" >

@@ -64,7 +64,7 @@
                 @endif
               </td>
               
-              @include('Comp.inscripcion-form')
+              @include('Componentes.inscripcion-form')
 @endforeach
 
          

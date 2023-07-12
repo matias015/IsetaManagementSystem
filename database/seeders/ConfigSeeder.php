@@ -28,8 +28,15 @@ class ConfigSeeder extends Seeder
             'key' => 'horas_habiles_desinscripcion',
             'value' => 24
         ]);
-
-
+        
+        Configuracion::create([
+            'key' => 'fecha_inicial_rematriculacion',
+            'value' => 24
+        ]);
+        Configuracion::create([
+            'key' => 'fecha_final_rematriculacion',
+            'value' => 24
+        ]);
 
     }
 }

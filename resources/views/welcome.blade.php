@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
 </head>
 <body>
-    @include('Comp.header')
+    @include('Componentes.header')
     <div>Bienvenido al sitio oficial de ISETA</div>
-    @include('Comp.footer')
+    @include('Componentes.footer')
 </body>
 </html>

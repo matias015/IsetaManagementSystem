@@ -1,7 +1,7 @@
 @extends('Admin.template')
 
 @section('content')
-
+    
     <div>
         
 
@@ -54,7 +54,18 @@
                 <td>{{$cursada->id}}</td>
                 <td>{{$cursada->asignatura}}</td>
                 <td>{{$cursada->alumno}}</td>
-                <td>{{$cursada->aprobada}}</td>
+                <td>
+                    @switch($cursada->aprobada)
+                        @case(1)
+                            Aprobada
+                            @break
+                        @case(2)
+                            Desaprobada
+                            @break
+                        @default
+                            Cursando...
+                    @endswitch
+                </td>
                 <td><a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id])}}"><button>editar</button></a></td>
                 <td>
                    
@@ -70,7 +81,7 @@
         </table>
         
         <div class="w-1/2 mx-auto p-5">
-            {{ $cursadas->appends(request()->query())->links('Comp.pagination') }}
+            {{ $cursadas->appends(request()->query())->links('Componentes.pagination') }}
         </div>
 
     </div>

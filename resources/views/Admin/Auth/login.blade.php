@@ -23,6 +23,6 @@
           <input type="submit" value="Login">
         </form>
       </div>
-      @include('Comp.mensaje')
+      @include('Componentes.mensaje')
 </body>
 </html>

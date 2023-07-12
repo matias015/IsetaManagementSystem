@@ -69,7 +69,7 @@
         </table>
         
         <div class="w-1/2 mx-auto p-5">
-            {{ $mesas->appends(request()->query())->links('Comp.pagination') }}
+            {{ $mesas->appends(request()->query())->links('Componentes.pagination') }}
         </div>
 
 

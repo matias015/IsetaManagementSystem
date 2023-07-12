@@ -46,4 +46,5 @@ Route::prefix('alumno')->group(function(){
 
     Route::post('/cambiarpw',[AlumnoAuthController::class, 'cambiarPassword'])->name('cambio.password');
 
+    Route::get('/rematriculacion', [AlumnoController::class,'rematriculacion_vista'])->name('alumno.rematriculacion');
 });

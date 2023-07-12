@@ -71,6 +71,6 @@ Route::prefix('admin')->group(function(){
 
 
     Route::get('config', [ConfigController::class, 'index'])->name('admin.config.index');
-    Route::get('config/{clave}', [ConfigController::class, 'setear'])->name('admin.config.set');
+    Route::post('config', [ConfigController::class, 'setear'])->name('admin.config.set');
 
 });

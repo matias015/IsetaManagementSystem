@@ -89,7 +89,7 @@
         
         
         <div class="w-1/2 mx-auto p-5">
-            {{ $alumnos->appends(request()->query())->links('Comp.pagination') }}
+            {{ $alumnos->appends(request()->query())->links('Componentes.pagination') }}
         </div>
 
 

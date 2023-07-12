@@ -27,11 +27,11 @@
 </head>
 
 <body class="">
-    @include('Comp.header')
+    @include('Componentes.header')
     @yield('content')
-    @include('Comp.mensaje')
+    @include('Componentes.mensaje')
     
-    @include('Comp.footer')
+    @include('Componentes.footer')
     <script src="nav.js" defer></script>
 </body>
 

@@ -297,5 +297,9 @@ class AlumnoController extends Controller
 
     }
 
+    function rematriculacion_vista(){
+        $carreras = Carrera::all();
+        return view('Alumnos.datos.rematriculacion',compact('carreras'));
+    }
 
 }
