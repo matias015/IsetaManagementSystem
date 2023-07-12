@@ -17,7 +17,7 @@
 
 
 <body class="flex p-2" id="logeo">
-    @include('Comp/mensaje')
+    @include('Componentes.mensaje')
 
     <section class="login">
         <form class="w-100p h-50p " method="post" action="{{route('alumno.login.post')}}">

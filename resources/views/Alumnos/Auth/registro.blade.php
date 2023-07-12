@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="{{asset('css/global.css')}}">
     </head>
 <body class="p-2" id="logeo"> 
-    @include('Comp/mensaje')
+    @include('Componentes.mensaje')
     <section class="login">
         <form method="post">
             @csrf   

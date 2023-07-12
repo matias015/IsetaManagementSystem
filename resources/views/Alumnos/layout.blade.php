@@ -27,12 +27,14 @@
 </head>
 
 <body class="">
+
+    @include('Componentes.mensaje')
     @include('Componentes.header')
     @yield('content')
-    @include('Componentes.mensaje')
     
     @include('Componentes.footer')
     <script src="nav.js" defer></script>
+    <script src="{{asset('js/ocultar-mensaje.js')}}"></script>
 </body>
 
 </html>

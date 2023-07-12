@@ -69,12 +69,12 @@
       <div class="perfil_third shadow">
         <div class="perfil_subtop"><h2>Academico</h2></div>
         <div class="flex just-between">
-          <span class="font-5">Informe analitico</span>
+          <span class="font-3">Informe analitico</span>
           <a href=""><button><i class="ti ti-eye"></i>Ver</button></a>
         </div>
         <div class="flex just-between items-center">
-          <span class="md-none font-5">Const. inscripción</span>
-          <span class="none md-block font-5">Constancia de inscripción a mesas de examen</span>
+          <span class="md-none font-3">Const. inscripción</span>
+          <span class="none md-block font-3">Constancia de inscripción a mesas de examen</span>
           <a class="" href="{{route('alumno.constancia')}}"><button class="white rounded-1 border-none p-3  bg-indigo-900"><i class="ti ti-download"></i>Descargar</button></a>
         </div>
         

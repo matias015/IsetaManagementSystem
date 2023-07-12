@@ -24,6 +24,7 @@
     <div class="w-100p p-5">
         @yield('content')
     </div>
-    @include('Componentes.mensaje') 
+    <script src="{{asset('js/ocultar-mensaje.js')}}"></script>
+
 </body>
 </html>

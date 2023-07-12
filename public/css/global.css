@@ -1,5 +1,7 @@
 *{padding: 0; margin: 0; box-sizing: border-box;}
 
+.z-index-top{z-index: 9999999;}
+
 /* GRILLA */
 
 .grid-1 {display: grid;grid-template-columns: 1fr;}
@@ -129,10 +131,15 @@
 
 /* SOMBRAS */
 
-.shadow-1 {box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.55);}
-.shadow-2 {box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.55);}
-.shadow-3 {box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.55);}
-.shadow-4 {box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.65);}
+.shadow-1 {box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);}
+.shadow-2 {box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);}
+.shadow-3 {box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);}
+.shadow-4 {box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);}
+
+.soft-shadow-1 {box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);}
+.soft-shadow-2 {box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);}
+.soft-shadow-3 {box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);}
+.soft-shadow-4 {box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);}
 /* REDONDADO */
 
 .rounded{border-radius: 3px;}
@@ -484,18 +491,18 @@
 .bottom-4{bottom: 1em;}
 .bottom-5{bottom: 1.25em;}
 
-.font-1 { font-size: 0.25em; }
-.font-2 { font-size: 0.5em; }
-.font-3 { font-size: 0.75em; }
-.font-4 { font-size: 1em; }
-.font-5 { font-size: 1.25em; }
-.font-6 { font-size: 1.5em; }
-.font-7 { font-size: 1.75em; }
-.font-8 { font-size: 2em; }
-.font-9 { font-size: 2.25em; }
-.font-10 { font-size: 2.5em; }
-.font-11 { font-size: 5em; }
-.font-12 { font-size: 8em; }
+.font-1 { font-size: 8px; }
+.font-2 { font-size: 12px; }
+.font-3 { font-size: 16px; }
+.font-4 { font-size: 20px; }
+.font-5 { font-size: 24px; }
+.font-6 { font-size: 28px; }
+.font-7 { font-size: 32px; }
+.font-8 { font-size: 36px; }
+.font-9 { font-size: 42px; }
+.font-10 { font-size: 48px; }
+.font-11 { font-size: 56px; }
+.font-12 { font-size: 68px; }
 
 
 .bold{font-weight: bold;}
@@ -668,18 +675,18 @@
     .sm-overflowy-hidden{overflow-y: hidden;}
     .sm-overflowy-scroll{overflow-y: scroll;}
 
-    .sm-font-1 { font-size: 0.25em; }
-    .sm-font-2 { font-size: 0.5em; }
-    .sm-font-3 { font-size: 0.75em; }
-    .sm-font-4 { font-size: 1em; }
-    .sm-font-5 { font-size: 1.25em; }
-    .sm-font-6 { font-size: 1.5em; }
-    .sm-font-7 { font-size: 1.75em; }
-    .sm-font-8 { font-size: 2em; }
-    .sm-font-9 { font-size: 2.25em; }
-    .sm-font-10 { font-size: 2.5em; }
-    .sm-font-11 { font-size: 5em; }
-    .sm-font-12 { font-size: 8em; }
+    .sm-font-1 { font-size: 8px; }
+    .sm-font-2 { font-size: 12px; }
+    .sm-font-3 { font-size: 16px; }
+    .sm-font-4 { font-size: 20px; }
+    .sm-font-5 { font-size: 24px; }
+    .sm-font-6 { font-size: 28px; }
+    .sm-font-7 { font-size: 32px; }
+    .sm-font-8 { font-size: 36px; }
+    .sm-font-9 { font-size: 42px; }
+    .sm-font-10 { font-size: 48px; }
+    .sm-font-11 { font-size: 56px; }
+    .sm-font-12 { font-size: 68px; }
 
 }
 
@@ -840,18 +847,18 @@
     .md-overflowy-hidden{overflow-y: hidden;}
     .md-overflowy-scroll{overflow-y: scroll;}
 
-    .md-font-1 { font-size: 0.25em; }
-    .md-font-2 { font-size: 0.5em; }
-    .md-font-3 { font-size: 0.75em; }
-    .md-font-4 { font-size: 1em; }
-    .md-font-5 { font-size: 1.25em; }
-    .md-font-6 { font-size: 1.5em; }
-    .md-font-7 { font-size: 1.75em; }
-    .md-font-8 { font-size: 2em; }
-    .md-font-9 { font-size: 2.25em; }
-    .md-font-10 { font-size: 2.5em; }
-    .md-font-11 { font-size: 5em; }
-    .md-font-12 { font-size: 8em; }
+    .md-font-1 { font-size: 8px; }
+    .md-font-2 { font-size: 12px; }
+    .md-font-3 { font-size: 16px; }
+    .md-font-4 { font-size: 20px; }
+    .md-font-5 { font-size: 24px; }
+    .md-font-6 { font-size: 28px; }
+    .md-font-7 { font-size: 32px; }
+    .md-font-8 { font-size: 36px; }
+    .md-font-9 { font-size: 42px; }
+    .md-font-10 { font-size: 48px; }
+    .md-font-11 { font-size: 56px; }
+    .md-font-12 { font-size: 68px; }
 }
 @media screen and (min-width: 1024px) {
     .lg-grid-1 {display: grid;grid-template-columns: 1fr;}
@@ -1003,18 +1010,18 @@
 .lg-h-100p{height: 100%;}
 
 
-.lg-font-1 { font-size: 0.25em; }
-.lg-font-2 { font-size: 0.5em; }
-.lg-font-3 { font-size: 0.75em; }
-.lg-font-4 { font-size: 1em; }
-.lg-font-5 { font-size: 1.25em; }
-.lg-font-6 { font-size: 1.5em; }
-.lg-font-7 { font-size: 1.75em; }
-.lg-font-8 { font-size: 2em; }
-.lg-font-9 { font-size: 2.25em; }
-.lg-font-10 { font-size: 2.5em; }
-.lg-font-11 { font-size: 5em; }
-.lg-font-12 { font-size: 8em; }
+.lg-font-1 { font-size: 8px; }
+.lg-font-2 { font-size: 12px; }
+.lg-font-3 { font-size: 16px; }
+.lg-font-4 { font-size: 20px; }
+.lg-font-5 { font-size: 24px; }
+.lg-font-6 { font-size: 28px; }
+.lg-font-7 { font-size: 32px; }
+.lg-font-8 { font-size: 36px; }
+.lg-font-9 { font-size: 42px; }
+.lg-font-10 { font-size: 48px; }
+.lg-font-11 { font-size: 56px; }
+.lg-font-12 { font-size: 68px; }
 
     .lg-overflow-hidden{overflow: hidden;}
     .lg-overflow-scroll{overflow: scroll;}
