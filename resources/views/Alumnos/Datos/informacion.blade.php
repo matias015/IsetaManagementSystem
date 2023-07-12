@@ -9,14 +9,15 @@
         
         <form class="flex just-end gap-2" method="POST" action="{{route('alumno.set.default')}}">
           @csrf
-          <select class="w-50p lg-w-auto select-carrera" name="carrera">
+          {{-- <select class="w-50p lg-w-auto select-carrera" name="carrera"> --}}
+          <select class="w-50p lg-w-auto border-none p-2 bg-white rounded shadow-sm select-carrera" name="carrera">
             @foreach ($carreras as $carrera)
                 <option @selected($carrera->id==$default) value="{{$carrera->id}}">
                   {{$carrera->nombre}}
                 </option>
             @endforeach
           </select>
-          <button class="btn-doscolores">Cambiar</button>
+          <button class="border-none p-2 bg-white rounded shadow-sm btn-doscolores">Cambiar</button>
         </form>
 
       </div>
@@ -70,12 +71,13 @@
         <div class="perfil_subtop"><h2>Academico</h2></div>
         <div class="flex just-between">
           <span class="font-3">Informe analitico</span>
-          <a href=""><button><i class="ti ti-eye"></i>Ver</button></a>
+          <a class="" href="/alumno/analitico "><button class="white rounded-1 border-none p-3  bg-indigo-900"><i class="ti ti-download"></i>Ver</button></a>
+
         </div>
         <div class="flex just-between items-center">
           <span class="md-none font-3">Const. inscripción</span>
           <span class="none md-block font-3">Constancia de inscripción a mesas de examen</span>
-          <a class="" href="{{route('alumno.constancia')}}"><button class="white rounded-1 border-none p-3  bg-indigo-900"><i class="ti ti-download"></i>Descargar</button></a>
+          <a class="" href="{{route('alumno.constancia')}}"><button class="white rounded-1 border-none p-3  bg-indigo-900"><i class="ti ti-download"></i>Ver</button></a>
         </div>
         
       </div>

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('alumno')->group(function(){
     Route::get('/constancia', [PdfsController::class, 'constanciaMesas'])->name('alumno.constancia');
+    Route::get('/analitico', [PdfsController::class, 'analitico'])->name('alumno.analitico');
 
     Route::get('/registro',[AlumnoAuthController::class,'registroView'])->name('alumno.registro');
     Route::post('/registro',[AlumnoAuthController::class,'registro'])->name('alumno.registro.post');

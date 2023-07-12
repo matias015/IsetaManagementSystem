@@ -1,10 +1,4 @@
 <?php
-
-use App\Models\Admin;
-use App\Models\Alumno;
-use App\Models\Carrera;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', 'alumno/info');
+
 
 include_once("alumnos.php");
 include_once("admin.php");

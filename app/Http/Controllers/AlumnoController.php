@@ -11,6 +11,7 @@ use App\Models\Examen;
 use App\Models\Mesa;
 use App\Services\DiasHabiles;
 use App\Services\TextFormatService;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -299,7 +300,16 @@ class AlumnoController extends Controller
 
     function rematriculacion_vista(){
         $carreras = Carrera::all();
-        return view('Alumnos.datos.rematriculacion',compact('carreras'));
+        $config = Configuracion::todas();
+        $inicial = new DateTime($config['fecha_inicial_rematriculacion']);
+        $final = new DateTime($config['fecha_final_rematriculacion']);
+        
+        $en_fecha = false;
+        if(time()>$inicial->getTimestamp() && time()<$final->getTimestamp()){
+            $en_fecha=true;
+        }
+        $fecha_valida =1; 
+        return view('Alumnos.datos.rematriculacion', ['carreras'=>$carreras,'en_fecha'=>$en_fecha]);
     }
 
 }

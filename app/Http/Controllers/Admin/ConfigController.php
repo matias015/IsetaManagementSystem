@@ -20,8 +20,7 @@ class ConfigController extends Controller
     }
 
     public function setear(Request $request){
-        // $remt_inicio = date('d-m', strtotime($request->fecha_inicial_rematriculacion));
-        // $remt_final = date('d-m', strtotime($request->fecha_final_rematriculacion));
+        
         
         foreach($request->except('_token') as $key => $value){
             Configuracion::where('key', $key)

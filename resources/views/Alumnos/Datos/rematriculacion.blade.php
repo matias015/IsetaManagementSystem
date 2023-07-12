@@ -1,6 +1,9 @@
 @extends('Alumnos.layout')
 @section('content')
 
+@if (!$en_fecha)
+    <h1>No es fecha de rematriculacion</h1>
+@else
     <select id="carrera_select">
         <option selected value="0">Selecciona una carrera</option>
         @foreach ($carreras as $carrera)
@@ -15,4 +18,5 @@
     </form>
 
     <script src="{{asset('js/obtener-materias.js')}}"></script>
+@endif
 @endsection
