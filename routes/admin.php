@@ -16,8 +16,19 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/admin','/admin/login');
 
+
+/* --------------------------------------------------------
+ | 
+ | original -> Route::redirect('/admin','/admin/login');
+ | tambien activar middlewares en el controlador
+ |
+ | NO LOGIN NECESARIO
+ | 
+ */ Route::redirect('/admin','/admin/alumnos'); /*
+ |
+ |  SOLO POR TESTEO
+ | --------------------------------------------------------*/ 
 
 
 Route::prefix('admin')->group(function(){
