@@ -31,11 +31,11 @@ class ConfigSeeder extends Seeder
         
         Configuracion::create([
             'key' => 'fecha_inicial_rematriculacion',
-            'value' => 24
+            'value' => "01-01-23"
         ]);
         Configuracion::create([
             'key' => 'fecha_final_rematriculacion',
-            'value' => 24
+            'value' => "01-02-23"
         ]);
 
     }
