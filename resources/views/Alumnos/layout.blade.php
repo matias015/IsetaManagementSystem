@@ -34,6 +34,10 @@
     
     @include('Componentes.footer')
     <script src="nav.js" defer></script>
+    
+    <script src="{{asset('js/config.js')}}"></script>
+    <script src="{{asset('js/libs/ev.js')}}"></script>
+
     <script src="{{asset('js/ocultar-mensaje.js')}}"></script>
 </body>
 

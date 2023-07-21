@@ -15,6 +15,8 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use SebastianBergmann\CodeUnit\FunctionUnit;
+use Svg\Tag\Rect;
 
 /*
  | -----------------------------
@@ -308,8 +310,14 @@ class AlumnoController extends Controller
         if(time()>$inicial->getTimestamp() && time()<$final->getTimestamp()){
             $en_fecha=true;
         }
-        $fecha_valida =1; 
+        
+
+
         return view('Alumnos.datos.rematriculacion', ['carreras'=>$carreras,'en_fecha'=>$en_fecha]);
+    }
+
+    public function rematriculacion(Request $request){
+        dd($request);
     }
 
 }

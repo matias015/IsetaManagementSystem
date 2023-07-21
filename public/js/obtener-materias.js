@@ -4,7 +4,7 @@ const asignaturaSelect = document.querySelector('#asignatura_select')
 carreraSelect.addEventListener('change',function(){
     asignaturaSelect.innerHTML = '';
 
-    fetch(`http://127.0.0.1:8000/api/a/${carreraSelect.value}`)
+    fetch(BASE_URL + `api/a/${carreraSelect.value}`)
         .then( data => data.json())
         .then(data=>{
             data.forEach(element => {

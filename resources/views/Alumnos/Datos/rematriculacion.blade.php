@@ -11,12 +11,23 @@
         @endforeach
     </select>
 
-    <form action="">
-        <select id="asignatura_select">
-            <option selected value="">Selecciona una carrera</option>
-        </select>
-    </form>
+    <table>
+        <thead>
+            <tr>
+                <td>Asignatura</td>
+                <td>tipo</td>
+            </tr>
+        </thead>
+        <form method="POST" id="form" action="{{route('alumno.rematriculacion.post')}}">
+            @csrf
+            <tbody id="body-table">
+                
+            </tbody>
+        </form>
+    </table>
 
-    <script src="{{asset('js/obtener-materias.js')}}"></script>
+    <input form="form" type="submit" value="Remat">
+
+    <script src="{{asset('js/mostrar-materias-remat.js')}}"></script>
 @endif
 @endsection
