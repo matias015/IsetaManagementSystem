@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alumno;
+use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\CarreraDefault;
 use App\Models\Configuracion;
@@ -300,7 +301,7 @@ class AlumnoController extends Controller
 
     }
 
-    function rematriculacion_vista(){
+    function remat_carrera_vista(){
         $carreras = Carrera::all();
         $config = Configuracion::todas();
         $inicial = new DateTime($config['fecha_inicial_rematriculacion']);
@@ -311,13 +312,54 @@ class AlumnoController extends Controller
             $en_fecha=true;
         }
         
+        return view('Alumnos.datos.remat-seleccionar-carrera', ['carreras'=>$carreras,'en_fecha'=>$en_fecha]);
+    }
 
+    function rematriculacion_vista(Carrera $carrera){
 
-        return view('Alumnos.datos.rematriculacion', ['carreras'=>$carreras,'en_fecha'=>$en_fecha]);
+        $asignaturas = $carrera->asignaturas;
+       // dd($asignaturas);
+        return view('Alumnos.datos.rematriculacion', ['asignaturas'=>$asignaturas]);
     }
 
     public function rematriculacion(Request $request){
-        dd($request);
+        $asignaturas = [];
+        
+        foreach($request->except('_token') as $asig_id => $value){
+            if($value==0) continue;
+            $asignaturas[] = Asignatura::with('correlativas.asignatura')->where('id', $asig_id)->first();
+        }
+        $correlativas_sin_aprobar = [];
+
+        foreach($asignaturas as $asignatura){
+
+            if(count($asignatura->correlativas)>0){
+                foreach($asignatura->correlativas as $correlativa){
+                    $aprobado = Asignatura::where('asignaturas.id',$correlativa->asignatura_correlativa)
+                        -> join('cursadas', 'cursadas.id_asignatura','asignaturas.id')
+                        -> join('examenes', 'examenes.id_asignatura','asignaturas.id')
+                        -> where('cursadas.id_alumno', Auth::id()) -> where('cursadas.aprobada', 1)
+                        -> first();
+
+                    if(!$aprobado){
+                        $correlativas_sin_aprobar[] = $correlativa->asignatura->nombre;
+                    }
+                }
+            }
+            
+        }
+
+        if(count($correlativas_sin_aprobar)>0){
+            echo '<h1>Tienes las siguientes correlativas sin aprobar</h1>';
+            dd($correlativas_sin_aprobar);
+        }else{
+            return redirect()->route('alumno.info')->with('mensaje','Te has anotado');
+        }
+        
+
+        
     }
+
+    
 
 }

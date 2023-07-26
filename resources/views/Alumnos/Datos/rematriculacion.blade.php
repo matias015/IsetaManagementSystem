@@ -1,33 +1,23 @@
 @extends('Alumnos.layout')
 @section('content')
+<div class="p-2">
+    <form method="POST" action="{{route('alumno.rematriculacion.post')}}">
+        @csrf
 
-@if (!$en_fecha)
-    <h1>No es fecha de rematriculacion</h1>
-@else
-    <select id="carrera_select">
-        <option selected value="0">Selecciona una carrera</option>
-        @foreach ($carreras as $carrera)
-            <option value="{{$carrera->id}}">{{$textFormatService->utf8Minusculas($carrera->nombre)}}</option>
+        @foreach ($asignaturas as $asignatura)
+            <div class="w-100p grid-2">
+                <span>{{$asignatura->nombre}}</span>
+                <span>
+                    <select name="{{$asignatura->id}}">
+                        <option selected value="0">Selecciona</option>
+                        <option value="1">Presencial</option>
+                        <option value="2">Libre</option>
+                    </select>
+                </span>
+            </div>
+            <hr>
         @endforeach
-    </select>
-
-    <table>
-        <thead>
-            <tr>
-                <td>Asignatura</td>
-                <td>tipo</td>
-            </tr>
-        </thead>
-        <form method="POST" id="form" action="{{route('alumno.rematriculacion.post')}}">
-            @csrf
-            <tbody id="body-table">
-                
-            </tbody>
-        </form>
-    </table>
-
-    <input form="form" type="submit" value="Remat">
-
-    <script src="{{asset('js/mostrar-materias-remat.js')}}"></script>
-@endif
+        <button>Enviar</button>
+    </form>
+</div>
 @endsection

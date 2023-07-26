@@ -19,7 +19,10 @@
             <i class="uil uil-file-edit-alt"></i>
             Inscribir</a></li>
             <li>
-              <a @class(['bold'=>request()->is('alumno/rematriculacion')]) href="{{route('alumno.rematriculacion')}}"><i class="uil uil-estate"></i>Rematriculacion</a>
+              <a @class([
+                'bold' => request()->is('alumno/rematriculacion/carrera'),
+                'bold' => request()->is('alumno/rematriculacion')
+              ]) href="{{route('alumno.rematriculacion.carrera')}}"><i class="uil uil-estate"></i>Rematriculacion</a>
             </li>
         </ul>
         @auth('web')

@@ -10,7 +10,7 @@ carreraSelect.addEventListener('change',function(){
         .then(data=>{
             data.forEach(element => {
 
-                const select = _newNode({tag: 'select', attrs:{'name': `asig-${element.id}`}, childrens: [
+                const select = _newNode({tag: 'select', attrs:{'name': element.id}, childrens: [
                     _newNode({tag: 'option', content: 'Modalidad', attrs:{'value': 0, 'selected':true}}),
                     _newNode({tag: 'option', content: 'Libre', attrs:{'value': 1}}),
                     _newNode({tag: 'option', content: 'Presencial', attrs:{'value': 2}})

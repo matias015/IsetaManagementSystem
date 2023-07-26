@@ -47,7 +47,8 @@ Route::prefix('alumno')->group(function(){
 
     Route::post('/cambiarpw',[AlumnoAuthController::class, 'cambiarPassword'])->name('cambio.password');
 
-    Route::get('/rematriculacion', [AlumnoController::class,'rematriculacion_vista'])->name('alumno.rematriculacion');
+    Route::get('/rematriculacion/carrera', [AlumnoController::class,'remat_carrera_vista'])->name('alumno.rematriculacion.carrera');
+    Route::get('/rematriculacion/{carrera}', [AlumnoController::class,'rematriculacion_vista'])->name('alumno.rematriculacion.asignaturas');
     Route::post('/rematriculacion', [AlumnoController::class,'rematriculacion'])->name('alumno.rematriculacion.post');
 
 });
