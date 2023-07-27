@@ -1,4 +1,4 @@
-<footer class="font-1 md-font-5">
+<footer class="font-1 md-font-3">
     <div class="p-2 grid-1 content gap-3 just-center">
       <section class="grid-1 gap-2 just-center lg-flex lg-just-between">
 

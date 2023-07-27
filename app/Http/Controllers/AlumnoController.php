@@ -318,7 +318,29 @@ class AlumnoController extends Controller
     function rematriculacion_vista(Carrera $carrera){
 
         $asignaturas = $carrera->asignaturas;
-       // dd($asignaturas);
+
+        foreach($asignaturas as $key => $asignatura){
+            $asignatura->{'equivalencias_previas'} = array();
+            
+            if(count($asignatura->correlativas)>0){
+                $previas = [];
+                foreach($asignatura->correlativas as $correlativa){
+                    $aprobado = Asignatura::where('asignaturas.id',$correlativa->asignatura_correlativa)
+                        -> join('cursadas', 'cursadas.id_asignatura','asignaturas.id')
+                        -> join('examenes', 'examenes.id_asignatura','asignaturas.id')
+                        -> where('cursadas.id_alumno', Auth::id()) -> where('cursadas.aprobada', 1)
+                        -> first();
+
+                    if(!$aprobado){
+                        $asignatura->equivalencias_sin_aprobar = true;
+                        $previas[] = 'año '.$correlativa->asignatura->anio .' - '.$correlativa->asignatura->nombre;     
+                    }
+                }
+                $asignatura->equivalencias_previas = $previas;
+                $asignatura[$key] = $asignatura;
+            }
+            
+        }
         return view('Alumnos.datos.rematriculacion', ['asignaturas'=>$asignaturas]);
     }
 
@@ -342,7 +364,7 @@ class AlumnoController extends Controller
                         -> first();
 
                     if(!$aprobado){
-                        $correlativas_sin_aprobar[] = $correlativa->asignatura->nombre;
+                        $correlativas_sin_aprobar[] = 'año '.$correlativa->asignatura->anio .' - '.$correlativa->asignatura->nombre;
                     }
                 }
             }
