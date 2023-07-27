@@ -1,20 +1,24 @@
 @extends('Alumnos.layout')
 @section('content')
 <div class="p-2">
-    <form method="POST" action="{{route('alumno.rematriculacion.post')}}">
+    <form method="POST" action="{{route('alumno.rematriculacion.post', ['carrera'=>$asignaturas[0]->id_carrera])}}">
         @csrf
 
         @foreach ($asignaturas as $asignatura)
+        
             <div class="w-100p grid-2">
+                
                 <span @class([
                     'gray-600' => $asignatura->equivalencias_sin_aprobar
                 ])>
-                    {{$asignatura->nombre}}
+                    <span>Año: {{$asignatura->anio+1}}</span> {{$asignatura->nombre}}
                 </span>
                 <span>
                     @if ($asignatura->equivalencias_sin_aprobar)
-                        <h2>debes equivalencias</h2>
-                        <span class="bg-red-500 px-1 rounded pointer ver-equiv" data-element="{{$asignatura->id}}">Detalles</span> 
+                    <div class="flex gap-3">    
+                        <p class="font-600">Debes equivalencias</p>
+                        <span class="blue-600 px-1 rounded pointer ver-equiv" data-element="{{$asignatura->id}}">detalles...</span> 
+                    </div>
                         <ul class="none id-{{$asignatura->id}}">
                             @foreach ($asignatura->equivalencias_previas as $asignatura)
                                 <li>{{$asignatura}}</li>
@@ -22,7 +26,7 @@
                         </ul>
                     @else
                         <select name="{{$asignatura->id}}">
-                            <option selected value="0">Selecciona</option>
+                            <option selected value="0"></option>
                             <option value="1">Presencial</option>
                             <option value="2">Libre</option>
                         </select>

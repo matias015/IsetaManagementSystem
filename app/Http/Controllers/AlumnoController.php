@@ -12,6 +12,7 @@ use App\Models\Examen;
 use App\Models\Mesa;
 use App\Services\DiasHabiles;
 use App\Services\TextFormatService;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -315,7 +316,7 @@ class AlumnoController extends Controller
         return view('Alumnos.datos.remat-seleccionar-carrera', ['carreras'=>$carreras,'en_fecha'=>$en_fecha]);
     }
 
-    function rematriculacion_vista(Carrera $carrera){
+    function rematriculacion_vista(Request $request,Carrera $carrera){
 
         $asignaturas = $carrera->asignaturas;
 
@@ -333,52 +334,57 @@ class AlumnoController extends Controller
 
                     if(!$aprobado){
                         $asignatura->equivalencias_sin_aprobar = true;
-                        $previas[] = 'año '.$correlativa->asignatura->anio .' - '.$correlativa->asignatura->nombre;     
+                        $previas[] = 'año '.$correlativa->asignatura->anio+1 .' - '.$correlativa->asignatura->nombre;     
                     }
                 }
                 $asignatura->equivalencias_previas = $previas;
-                $asignatura[$key] = $asignatura;
+                $asignaturas[$key] = $asignatura;
             }
-            
+           // $request->session()->put('remat_asignaturas_seleccionadas', $asignaturas);
         }
         return view('Alumnos.datos.rematriculacion', ['asignaturas'=>$asignaturas]);
     }
 
-    public function rematriculacion(Request $request){
+    public function rematriculacion(Request $request, Carrera $carrera){
+
+        //todas la materias de esa carrera
+        $asignaturas_de_carrera = $carrera->asignaturas()->pluck('id')->toArray();
+
+        //asignaturas que se seleccionaron que sean validas para inscripcion
         $asignaturas = [];
         
         foreach($request->except('_token') as $asig_id => $value){
+            // si no se selecciono ignora, si no es de la carrera: error 
             if($value==0) continue;
-            $asignaturas[] = Asignatura::with('correlativas.asignatura')->where('id', $asig_id)->first();
-        }
-        $correlativas_sin_aprobar = [];
-
-        foreach($asignaturas as $asignatura){
-
-            if(count($asignatura->correlativas)>0){
-                foreach($asignatura->correlativas as $correlativa){
-                    $aprobado = Asignatura::where('asignaturas.id',$correlativa->asignatura_correlativa)
-                        -> join('cursadas', 'cursadas.id_asignatura','asignaturas.id')
-                        -> join('examenes', 'examenes.id_asignatura','asignaturas.id')
-                        -> where('cursadas.id_alumno', Auth::id()) -> where('cursadas.aprobada', 1)
-                        -> first();
-
-                    if(!$aprobado){
-                        $correlativas_sin_aprobar[] = 'año '.$correlativa->asignatura->anio .' - '.$correlativa->asignatura->nombre;
-                    }
-                }
-            }
+            if(!in_array($asig_id, $asignaturas_de_carrera)) return \redirect()->back()->with('error','error 1');
             
+            $asignatura = Asignatura::with('correlativas.asignatura')->where('id', $asig_id)->first();
+            
+            // verifica equivalencias
+            foreach($asignatura->correlativas as $correlativa){
+                $aprobado = Asignatura::where('asignaturas.id',$correlativa->asignatura_correlativa)
+                    -> join('cursadas', 'cursadas.id_asignatura','asignaturas.id')
+                    -> join('examenes', 'examenes.id_asignatura','asignaturas.id')
+                    -> where('cursadas.id_alumno', Auth::id()) -> where('cursadas.aprobada', 1)
+                    -> first();
+
+                if(!$aprobado) return redirect()->back()->with('error', 'Debes 1 o mas equivalencias');
+            }
+            $asignaturas[$asig_id] = $value;
         }
 
-        if(count($correlativas_sin_aprobar)>0){
-            echo '<h1>Tienes las siguientes correlativas sin aprobar</h1>';
-            dd($correlativas_sin_aprobar);
-        }else{
-            return redirect()->route('alumno.info')->with('mensaje','Te has anotado');
-        }
-        
-
+        $anio_remat = Configuracion::get('anio_remat');
+    
+        foreach($asignaturas as $asigId => $tipoCursada){
+            Cursada::create([
+                'id_asignatura' => $asigId,
+                'id_alumno' => Auth::id(),
+                'condicion' => $tipoCursada,
+                'aprobada' => 0,
+                'anio_cursada' => $anio_remat
+            ]);
+        }    
+    
         
     }
 
