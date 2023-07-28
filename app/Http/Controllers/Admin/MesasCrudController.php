@@ -92,6 +92,7 @@ class MesasCrudController extends Controller
         if($data['prof_vocal_2']=="vacio"){
             $data['prof_vocal_2'] = 0;
         }
+        $data['id_carrera'] = Asignatura::find($data['id_asignatura'])->carrera->id;
         Mesa::create($data);
         return redirect()->route('admin.mesas.index');
     }

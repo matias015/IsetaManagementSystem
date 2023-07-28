@@ -22,9 +22,9 @@ class AlumnoRegistroRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required'],
-            'dni' => ['required'],
-            'password' => ['required']
+            'email' => ['required','email'],
+            'dni' => ['required','numeric','min:7'],
+            'password' => ['required','min:6', 'regex:/^[A-Za-z0-9!@#$%^&*()_+{}|:<>?~-]+$/','max:16']
         ];
     }
 }

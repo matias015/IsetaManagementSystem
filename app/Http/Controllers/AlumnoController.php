@@ -380,10 +380,10 @@ class AlumnoController extends Controller
                 'id_asignatura' => $asigId,
                 'id_alumno' => Auth::id(),
                 'condicion' => $tipoCursada,
-                'aprobada' => 0,
+                'aprobada' => 3,
                 'anio_cursada' => $anio_remat
             ]);
-        }    
+        }   
     
         
     }
