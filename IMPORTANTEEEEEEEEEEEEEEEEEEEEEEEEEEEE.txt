@@ -1,0 +1,3 @@
+tacha las cosas a medida q las leas
+
+ - para que te ande lo de los profes tenes que usar php artisan migrate
