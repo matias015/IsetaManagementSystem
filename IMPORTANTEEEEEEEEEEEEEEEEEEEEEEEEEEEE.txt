@@ -1,3 +1,5 @@
 tacha las cosas a medida q las leas
 
  - para que te ande lo de los profes tenes que usar php artisan migrate
+ - no es necesario ver el codigo que te llega al mail cuando lo registras, con poner cualquier cosa te lo toma para validar el mail (para testear mas rapido)
+ - si al moverte entre profes-admin-alumno y asi, por ahi a veces se buguea por entrar a uno estando logueado como el otro, si pasa eso cerra sesion en alguno
