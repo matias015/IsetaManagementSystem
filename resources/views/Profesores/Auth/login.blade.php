@@ -20,7 +20,7 @@
     @include('Componentes.mensaje')
 
     <section class="login">
-        <form class="w-100p h-50p " method="post" action="{{route('alumno.login.post')}}">
+        <form class="w-100p h-50p " method="post" action="{{route('profesor.login.post')}}">
             @csrf
 
             <div class="logo">ISETA</div>
@@ -30,17 +30,17 @@
                 <p>¡Bienvenido! Por favor ingrese sus datos</p>
             </div>
             <div class="usuario input-box">
-                <input value="matiasjf015@gmail.com" type="email" name="email" required placeholder="Nombre de usuario">
+                <input value="lucasmatiasperez@gmail.com" type="email" name="email" required placeholder="Nombre de usuario">
                 <div class="underline"></div>
             </div>
             <div class="contraseña input-box">
-                <input value="123" type="password" name="password"  required placeholder="Contraseña">
+                <input value="123456789" type="password" name="password"  required placeholder="Contraseña">
                 <div class="underline"></div>
             </div>
             <div class="entrar input-box button"><input type="submit" value="Entrar"></div>
-            <div class="etiquetas"><a href="{{route('alumno.registro')}}">¡Registrate!</a></div>
-            <div class="etiquetas"><a href="{{route('reset.password')}}">¿Ha olvidado su contraseña?</a></div>
-            <div class="etiquetas"><a href="{{route('profesor.login')}}">¿Eres profesor?</a></div>
+            <div class="etiquetas"><a href="{{route('profesor.register')}}">¡Registrate!</a></div>
+            <div class="etiquetas"><a href="">¿Ha olvidado su contraseña?</a></div>
+            
         </form>
     </section>
 </body>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\VerificacionEmail;
 use App\Models\Alumno;
+use App\Models\Profesor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -37,7 +38,7 @@ class MailVerifController extends Controller
      * tambien incluye un boton para enviar el mail cuantas veces sea necesario
      */
     function ingresarTokenView(){
-        return view('Alumnos.Mail.ingresoToken');
+        return view('Profesores.Mail.ingresoToken');
     }
 
     /**
@@ -46,7 +47,6 @@ class MailVerifController extends Controller
      */
     function verificarToken(Request $request){
         $alumno = Alumno::find(Auth::id());
-
         $token = Session::get('__alumno_verificacion_token');
 
         // if($token && $token == $request->token){
@@ -55,6 +55,46 @@ class MailVerifController extends Controller
             $alumno->verificar();
             $request->session()->forget('__alumno_verificacion_token');
             return redirect()->route('alumno.info')->with('mensaje','estas verificado');
+        }
+        
+        return redirect()->back()->with('error','token incorrecto o no valido');
+    }
+
+    function enviarMailProfe(){
+        $token = rand(1,100);
+
+        // el token se guarda en la sesion
+        Session::put('__profe_verificacion_token', $token);
+
+        Mail::to(Auth::guard('profesor')->user())->send(new VerificacionEmail($token));
+        
+        return redirect() -> route('token.ingreso.post') -> with('mensaje','Se ha enviado el correo');
+    }
+
+    /**
+     * vista para ingresar el token
+     * tambien incluye un boton para enviar el mail cuantas veces sea necesario
+     */
+    function ingresarTokenViewProfe(){
+        return view('Profesores.Mail.ingresoToken');
+    }
+
+    /**
+     * verificar que el token ingresado sea correcto
+     * si lo es verifica su cuenta
+     */
+    function verificarTokenProfe(Request $request){
+
+        $profe = Profesor::find(Auth::guard('profesor')->id() );
+
+        $token = Session::get('__profe_verificacion_token');
+
+        // if($token && $token == $request->token){
+        // para testeos, cualquier codigo es valido
+        if(true){
+            $profe->verificar();
+            $request->session()->forget('__alumno_verificacion_token');
+            return redirect()->route('profesor.mesas')->with('mensaje','estas verificado');
         }
         
         return redirect()->back()->with('error','token incorrecto o no valido');

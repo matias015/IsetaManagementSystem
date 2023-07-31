@@ -17,5 +17,6 @@ Route::redirect('/', 'alumno/info');
 
 include_once("alumnos.php");
 include_once("admin.php");
+include_once("profesores.php");
 include_once("test.php");
 

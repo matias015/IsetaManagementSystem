@@ -44,6 +44,11 @@ Route::prefix('admin')->group(function(){
         return $pdf->stream('invoice.pdf');
     })->name('admin.mesas.acta');
 
+    Route::get('/mesas/actas',function(){
+        $mesas = Mesa::whereDate('fecha', '>=', now()->subDay()->toDateString())->get();
+        dd($mesas);
+    })->name('admin.mesas.actas');
+
     Route::get('login', [AdminAuthController::class, 'loginView']) -> name('admin.login');
     Route::post('login', [AdminAuthController::class, 'login']) -> name('admin.login.post');
 

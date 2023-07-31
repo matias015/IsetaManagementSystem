@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Profesor extends Model
+class Profesor extends Authenticatable
 {
     use HasFactory;
 
@@ -38,6 +39,14 @@ class Profesor extends Model
         'fecha_nacimiento' => 'datetime',
     ];
     
-    
-
+    static function existeSinPassword($data){
+        return Profesor::where('email', $data['email'])
+            -> where('password','0')
+            -> where('dni',$data['dni'])
+            -> first();
+    }
+    public function verificar(){
+        $this->verificado = 1;
+        $this->save();
+    }
 }

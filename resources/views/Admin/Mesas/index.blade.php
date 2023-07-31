@@ -7,6 +7,7 @@
 
     
             <a href="{{route('admin.mesas.create')}}"><button>Agregar mesa</button></a>
+            <a href="{{route('admin.mesas.actas')}}"><button>Enviar actas</button></a>
 
         <div>
             <form action="{{route('admin.mesas.index')}}">
