@@ -54,15 +54,15 @@ class DiasHabiles{
         if ($fecha->format('D')=='Sun' || $fecha->format('D')=='Sat') { // Excluir sábados y domingos            
             continue;
         }
-
+        
         if (in_array($fecha->format('Y-m-d'), $festivos)) { 
-            continue;
+            
+            continue; 
         }
 
         $minutosTotales = $minutosTotales + 24*60;
         
     }
-
     return $minutosTotales / 60;
 
     }
@@ -72,8 +72,8 @@ class DiasHabiles{
         // Este es solo un ejemplo de lista ficticia de días festivos
     
         $festivos = [
-            '2023-06-23', // Ejemplo: Día festivo
-            '2023-07-05', // Ejemplo: Otro día festivo
+            '2023-08-18', // Ejemplo: Día festivo
+            '2023-08-21', // Ejemplo: Otro día festivo
         ];
     
         return $festivos;
@@ -116,3 +116,4 @@ class DiasHabiles{
     //     return $dias;
     // }
 }
+
