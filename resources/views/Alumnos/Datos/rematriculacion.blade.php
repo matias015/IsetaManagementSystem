@@ -1,17 +1,18 @@
 @extends('Alumnos.layout')
 @section('content')
-<div class="p-2">
-    <form method="POST" action="{{route('alumno.rematriculacion.post', ['carrera'=>$asignaturas[0]->id_carrera])}}">
+<main class="black flex-col justify-center items-center gap-3 p-3 w-100">
+
+    <form class="p-5 my-10 flex-col items-end just-center rounded-3 bg-gray-200" method="POST" action="{{route('alumno.rematriculacion.post', ['carrera'=>$asignaturas[0]->id_carrera])}}">
         @csrf
 
         @foreach ($asignaturas as $asignatura)
-        
-            <div class="w-100p grid-2">
+            <div class="w-100p flex just-between">
                 
                 <span @class([
                     'gray-600' => $asignatura->equivalencias_sin_aprobar
                 ])>
-                    <span>Año: {{$asignatura->anio+1}}</span> {{$asignatura->nombre}}
+                    <span class="font-600">Año: {{$asignatura->anio+1}}</span> 
+                    <span>Asignatura: {{$asignatura->nombre}}</span>
                 </span>
                 <span>
                     @if ($asignatura->equivalencias_sin_aprobar)
@@ -35,9 +36,11 @@
             </div>
             <hr>
         @endforeach
-        <button>Enviar</button>
+        <button class="m-2 bg-white rounded px-3 py-2">Enviar</button>
     </form>
-</div>
+
+</main>
+
 <script>
     const button = document.querySelector('#ver-equiv')
     window.onclick = function(e){
