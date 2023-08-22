@@ -61,7 +61,7 @@
             </td>
             <td>
                 <span class="blue-600">Acta</span>
-                {{-- <a href="{{route('admin.mesas.edit',['mesa'=>$mesa->id])}}">Detalles</a> --}}
+                <a href="{{route('admin.mesas.acta',['mesa'=>$mesa->id])}}"><button>Acta volante</button></a>
             </td>
         </tr>
     @endforeach
