@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -9,6 +9,7 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
         }
 
         .acta_contenedor {
@@ -40,9 +41,17 @@
         border: 1px solid black;
         border-collapse: collapse;
         }
-
+        
+        .acta_contenedor {
+            /* border: 0.3px solid black; */
+            page-break-inside: avoid !important;
+        }
         td {
             text-align: center;
+        }
+
+        .tabla1 tbody tr td{
+            padding: 3px;
         }
 
         </style>
@@ -98,13 +107,32 @@
                         @foreach($alumnos as $alumno)
                             <tr>
                                 <td></td>
-                                <td>{{$alumno->nombre . ' ' . $alumno->apellido}}</td>
+                                <td style="white-space:nowrap">
+                                    {{$textFormatService->utf8UpperCamelCase($alumno->nombre . ' ' . $alumno->apellido)}}
+                                </td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td>{{$alumno->dni}}</td>
                             </tr>
                         @endforeach
+                        @php
+                            if(count($alumnos)<35){
+                                $restantes = 35-count($alumnos);
+                            }
+                        @endphp
+
+                        @for ($i = 0; $i < $restantes; $i++)
+                        <tr>
+                            <td style="color:white;">a</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        @endfor
+
                         </tbody>
                     </table>
                 </td>
@@ -159,3 +187,4 @@
         </table>
 </body>
 </html>
+
