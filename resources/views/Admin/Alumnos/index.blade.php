@@ -3,46 +3,54 @@
 @section('content')
 
     
-        <div class=" contenedor_top">
-            <a href="{{route('admin.alumnos.create')}}"><button class="nuevo_alumno">Agregar alumno</button></a>
+        <div class="bg-transparent contenedor_top flex items-end gap-2">
+
+            <a href="{{route('admin.alumnos.create')}}"><button class="p-1 nuevo_alumno">Agregar alumno</button></a>
             
             
-                <form class="none lg-block form-hh" action="{{route('admin.alumnos.index')}}">
-                    <div class=" alumnos_filtrar">
-                        <p class="categoria">Filtrar</p> 
-                        <div class="contenedor_filtrar">
-                            <select class="filtrar" name="campo">
-                                <option value="ninguno">ninguno</option>
-                                <option @selected($filtros['campo'] == 'nombre-apellido') value="nombre-apellido">nombre/apellido</option>
-                                <option @selected($filtros['campo'] == 'dni') value="dni">dni</option>
-                                <option @selected($filtros['campo'] == 'email') value="email">email</option>
-                                <option @selected($filtros['campo'] == 'cursando') value="cursando">cursando</option>
-                                <option @selected($filtros['campo'] == 'registrados') value="registrados">registrados</option>
-                            </select>
+                <form class="none grid lg-block form-hh" action="{{route('admin.alumnos.index')}}">
+                    <div class="alumnos_filtrar gap-5 flex items-end">
+                        
+                        <div class="">
+                            <p class="categoria">Ordenar</p>
+                            <div>
+                                <select class="border-none rounded p-1 bg-white shadow" name="orden">
+                                    <option @selected($filtros['orden'] == 'nombre') value="nombre">nombre</option>
+                                    <option @selected($filtros['orden'] == 'dni') value="dni">dni</option>
+                                    <option @selected($filtros['orden'] == 'dni-desc') value="dni-desc">dni descendiente</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="categoria">Filtrar</p> 
+
+                            <div class="contenedor_filtrar">
+                                <select class="border-none rounded p-1 bg-white shadow" name="campo">
+                                    <option value="ninguno">ninguno</option>
+                                    <option @selected($filtros['campo'] == 'nombre-apellido') value="nombre-apellido">nombre/apellido</option>
+                                    <option @selected($filtros['campo'] == 'dni') value="dni">dni</option>
+                                    <option @selected($filtros['campo'] == 'email') value="email">email</option>
+                                    <option @selected($filtros['campo'] == 'cursando') value="cursando">cursando</option>
+                                    <option @selected($filtros['campo'] == 'registrados') value="registrados">registrados</option>
+                                </select>
+                            </div>
                         </div>
         
                         <div>
-                            <input class="btn-buscador" value="{{$filtros['filtro']}}" name="filtro" type="text">
+                            <p>Termino</p>
+                            <input class="border-none rounded p-1 bg-white shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
                         </div>
-                        <p class="categoria">Ordenar</p>
+                        
                         <div>
-                            <select name="orden">
-                                <option @selected($filtros['orden'] == 'nombre') value="nombre">nombre</option>
-                                <option @selected($filtros['orden'] == 'dni') value="dni">dni</option>
-                                <option @selected($filtros['orden'] == 'dni-desc') value="dni-desc">dni descendiente</option>
-
-                            </select>
-                        </div>
-
-                        <div>
-                            <input class="buscar_filtro" type="submit" value="Buscar">
+                            <input class="p-1 border-none rounded pointer" type="submit" value="Buscar">
                         </div>
                     </div>
                 </form>
             
                 
             
-            <a class="none lg-block " href="{{route('admin.alumnos.index')}}"><button class="quitar_filtro">Quitar filtro</button></a>
+            <a class="none lg-block" href="{{route('admin.alumnos.index')}}"><button class="p-1 border-none red-800 font-600 white rounded pointer">Quitar filtros</button></a>
 
             
         </div>
