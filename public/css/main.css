@@ -2,7 +2,7 @@
 
 
 #fondo-estudiantes {
-    background: linear-gradient(150deg, #5872d16d, white);
+    background: linear-gradient(150deg, #5872d16d, rgba(175, 222, 252, 0.44));
     background-size: cover;
 }
 
