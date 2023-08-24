@@ -38,7 +38,7 @@ class MailVerifController extends Controller
      * tambien incluye un boton para enviar el mail cuantas veces sea necesario
      */
     function ingresarTokenView(){
-        return view('Profesores.Mail.ingresoToken');
+        return view('Alumnos.Mail.ingresoToken');
     }
 
     /**
