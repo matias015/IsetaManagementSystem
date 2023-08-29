@@ -5,6 +5,7 @@
     <section class="table">
 <div class="table__header">
           <h1>Examenes</h1>
+          <p>Promedio: {{$promedio}}</p>
           <div class="tabla_botonera">
             <div class="none md-block contenedor_filtrar">
               <select class="filtrar">

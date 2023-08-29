@@ -169,7 +169,14 @@ class AlumnoController extends Controller
         -> groupBy('asignaturas.nombre')
         -> get();
 
-        return view('Alumnos.Datos.examenes', compact('examenes'));
+        $promedio = 0;
+        foreach($examenes as $examen){
+            $promedio += $examen->nota;
+        }
+        $promedio = $promedio / count($examenes);
+
+
+        return view('Alumnos.Datos.examenes', ['examenes'=>$examenes,'promedio'=>$promedio]);
     }
 
 
