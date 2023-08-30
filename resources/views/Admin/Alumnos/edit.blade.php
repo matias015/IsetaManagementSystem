@@ -2,59 +2,68 @@
 
 @section('content')
 <div class="edit-form-container">
-    <div>
-
-
-
-       <form method="post" action="{{route('admin.alumnos.update', ['alumno'=>$alumno->id])}}">
+    <div class="table">
+        <div><h2>Datos</h2></div>
+            
+        <form method="post" action="{{route('admin.alumnos.update', ['alumno'=>$alumno->id])}}">
         @csrf
         @method('put')
-
-        <p>dni <input value="{{$alumno->dni}}" name="dni"></p>
-        <p>nombre <input value="{{$alumno->nombre}}" name="nombre"></p>
-        <p>apellido <input value="{{$alumno->apellido}}" name="apellido"></p>
-        <p>fecha nacimiento <input value="{{$alumno->fecha_nacimiento->format('Y-m-d')}}" type="date" name="fecha_nacimiento"></p>
-        <p>ciudad <input value="{{$alumno->ciudad}}" value="9 de Julio" name="ciudad"></p>
-        <p>calle <input value="{{$alumno->calle}}" name="calle"></p>
-        <p>numero <input value="{{$alumno->numero}}"  name="casa_numero"></p>
-        <p>departamento <input valuse="{{$alumno->departamento}}" name="dpto"></p>
-        <p>piso <input value="{{$alumno->piso}}" name="piso"></p>
-        <p>
-            estado civil 
-            <select name="estado_civil">
+        
+        <span class="sep1">DNI: <input class="campo_info" value="{{$alumno->dni}}" name="dni"></span>
+        <span>Nombre: <input class="campo_info" value="{{$alumno->nombre}}" name="nombre"></span>
+        <span>apellido: <input class="campo_info" value="{{$alumno->apellido}}" name="apellido"></span>
+        <span>Fecha nacimiento: <input class="campo_info" value="{{$alumno->fecha_nacimiento->format('Y-m-d')}}" type="date" name="fecha_nacimiento"></span>
+        <span>ciudad: <input class="campo_info" value="{{$alumno->ciudad}}" value="9 de Julio" name="ciudad"></span>
+        <span>calle: <input class="campo_info" value="{{$alumno->calle}}" name="calle"></span>
+        <span>numero: <input class="campo_info" value="{{$alumno->numero}}"  name="casa_numero"></span>
+        <span>departamento: <input class="campo_info" value="{{$alumno->departamento}}" name="dpto"></span>
+        <span>Piso: <input class="campo_info" value="{{$alumno->piso}}" name="piso"></span>
+        <span>
+            Estado civil: 
+            <select class="campo_info" name="estado_civil">
                 <option @if($alumno->estado_civil==0) selected @endif value="0">soltero</option>
                 <option @if($alumno->estado_civil==1) selected @endif value="1">casado</option>
             </select>
-        </p>
-        <p>email <input value="{{$alumno->email}}" name="email"></p>
-        <p>titulo anterior <input value="{{$alumno->titulo_anterior}}" name="titulo_anterior"></p>
-        <p>becas <input value="{{$alumno->becas}}" name="becas"></p>
+        </span>
+        <span>email <input class="campo_info" value="{{$alumno->email}}" name="email"></span>
+        <span>titulo anterior <input class="campo_info" value="{{$alumno->titulo_anterior}}" name="titulo_anterior"></span>
+        <span>becas <input class="campo_info" value="{{$alumno->becas}}" name="becas"></span>
         
-        <p>observaciones <textarea value="{{$alumno->observaciones}}" name="observaciones" cols="30" rows="10"></textarea></p>
+        <span>observaciones <textarea value="{{$alumno->observaciones}}" name="observaciones" cols="100" rows="10"></textarea></span>
 
-        <p>telefono <input value="{{$alumno->telefono1}}" name="telefono1"></p>
-        <p>telefono 2 <input value="{{$alumno->telefono2}}" name="telefono2"></p>
-        <p>telefono 3<input value="{{$alumno->telefono3}}" name="telefono3"></p>
-        <p>codigo postal<input value="{{$alumno->codigo_postal}}" value="6500" name="codigo_postal"></p>
+        <span>telefono <input class="campo_info" value="{{$alumno->telefono1}}" name="telefono1"></span>
+        <span>telefono 2 <input class="campo_info" value="{{$alumno->telefono2}}" name="telefono2"></span>
+        <span>telefono 3<input class="campo_info" value="{{$alumno->telefono3}}" name="telefono3"></span>
+        <span>codigo postal<input class="campo_info" value="{{$alumno->codigo_postal}}" value="6500" name="codigo_postal"></span>
 
-        <input type="submit" value="Actualizar">
+        <div class="upd"><input class="btn_borrar upd" type="submit" value="Actualizar"></div>
+        
+        
        </form>
+        </table>
+
+       
     </div>
 
     <br><br>
 
     
 
-    <div>
+    <div class="table">
+        <div>
         <h2>Cursadas</h2>
+        </div>
         <table>
-            <tr>
-                <td>materia</td>
-                <td>año</td>
-                <td>carrera</td>
-                <td>aprobada</td>
-                <td>acciones</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Materia</th>
+                    <th>Año</th>
+                    <th>Carrera</th>
+                    <th>Aprobada</th>
+                    <th colspan="2">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
             @foreach($alumno->cursadas as $cursada)
                 <tr>
                     <td>{{$cursada->asignatura->nombre}}</td>
@@ -72,57 +81,66 @@
                     <td>
                         
                         <a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id,])}}">
-                            <button>Editar</button>
+                            <button class="btn_edit">Editar</button>
                         </a>
     
-                        <form method="POST" action="{{route('admin.cursadas.destroy', ['cursada' => $cursada->id])}}">
+                        
+                    </td>
+                    <td>
+                    <form method="POST" action="{{route('admin.cursadas.destroy', ['cursada' => $cursada->id])}}">
                             @method('delete')
                             @csrf
-                            <button>Eliminar</button>
+                            <button class="btn_borrar">Eliminar</button>
                         </form>
                     </td>
                 
-                    </tr>
+                </tr>
                     
                     
             @endforeach
+            </tbody>
         </table>
+        
+        
     </div> 
     <br><br><br>
-    <div>
+    <div class="table">
+
         <h2>examenes</h2>
-        <p>
-        Importante: algunos examanes de alumnos mas antiguos podrian no tener datos sobre las mesas, 
-        debido a que no fueron registradas correctamente por parte de iseta
-    </p>
-        <table>
-            <tr>
-                <td>materia</td>
-                <td>carrera</td>
-                <td>nota</td>
-                <td>acciones</td>
-            </tr>
-            @foreach($alumno->examenes as $examen)
-                
-                <tr>
-                        <td>{{$examen->asignatura->nombre}}</td>
-                        <td>{{$examen->asignatura->carrera->nombre}}</td>
-                    <td>
+        
+            <p>Importante: algunos examanes de alumnos mas antiguos podrian no tener datos sobre las mesas, debido a que no fueron registradas correctamente por parte de iseta
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Materia</th>
+                        <th>Carrera</th>
+                        <th>Nota</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($alumno->examenes as $examen)
+                        <tr>
+                            <td>{{$examen->asignatura->nombre}}</td>
+                            <td>{{$examen->asignatura->carrera->nombre}}</td>
+                            <td>
                         
-                        @if ($examen->aprobado==3)
-                            Ausente
-                        @elseif($examen->nota<=0)
-                            Sin nota
-                        @else
-                            {{$examen->nota}}
-                        @endif
-                    </td>
-                    <td><a href="{{route('admin.examenes.edit', [
-                        'examen' => $examen->id,
-                        ])}}">editar</a></td>
-                </tr>
-            @endforeach
-        </table>
+                            @if ($examen->aprobado==3)
+                                Ausente
+                            @elseif($examen->nota<=0)
+                                Sin nota
+                            @else
+                                {{$examen->nota}}
+                            @endif
+                            </td>
+                            <td><a href="{{route('admin.examenes.edit', ['examen' => $examen->id,])}}"><button class="btn_edit">Editar</button></a></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+       
     </div> 
 </div>
+
 @endsection
