@@ -145,7 +145,6 @@ thead th {
 .table__body {
     width: 100%;
     background: var(--gris-body-tabla);
-    margin: .8rem auto;
     border-radius: .6rem;
     overflow: auto;
 }
@@ -192,4 +191,58 @@ table, th, td {
     width: 180px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     border-radius: 5px;
+}
+
+.btn_edit {
+    background: var(--azul-iseta);
+    color: white;
+    width: 80px;
+    height: 40px;
+    border-radius: 6px;
+}
+
+.btn_edit:hover, .btn_borrar:hover {
+    background: var(--facebook);
+}
+
+.btn_borrar {
+    background: var(--azul-iseta);
+    color: white;
+    width: 80px;
+    height: 40px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+}
+
+/*---------------------------------------------- E  D  I  T ---------------------------------------------------------------*/
+
+.nwt {
+    display: flex;
+}
+
+.table span {
+    display: flex;
+    
+    width: 100%;
+    border-bottom: 1px solid;
+    padding-left: 10px;
+    
+}
+
+.campo_info { 
+    border: none;
+    outline: none;
+    width: 20%;
+    margin-left: 10px;
+}
+
+.upd {
+    display: flex;
+    justify-content: end;
+    margin: 10px;
+}
+
+.upd input {
+    justify-content: center;
 }
