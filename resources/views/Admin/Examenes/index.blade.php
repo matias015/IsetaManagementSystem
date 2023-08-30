@@ -27,8 +27,7 @@
         <a href="{{route('admin.examenes.index')}}"><button>Quitar filtro</button></a>
   
     </div>
-
-    
+</div>
 
     {{-- @foreach ($alumnos->pagr as )
         
@@ -37,38 +36,41 @@
         <a class="page-link" href="{{ $url }}">{{ $page }}</a>
     </li> --}}
     
-    
-    <table>
-        <tr>
-            <td>Nombre</td>
-            <td>Apellido</td>
-            <td>Materia</td>
-            <td>Nota</td>
-            <td>Acciones</td>
-        </tr>
-
+    <div class="table">
+    <table class="table__body">
+        <thead>
+            <tr>
+                <th>Nombre</td>
+                <th>Apellido</td>
+                <th>Materia</td>
+                <th>Nota</td>
+                <th colspan="2">Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
         @foreach ($examenes as $examen)
         <tr>
             <td>{{$examen->nombre}}</td>
             <td>{{$examen->apellido}}</td>
             <td>{{$examen->materia}}</td>
             <td>{{$examen->nota}}</td>
-            <td><a href="{{route('admin.examenes.edit', ['examen' => $examen->id])}}"><button>editar</button></a></td>
+            <td><a href="{{route('admin.examenes.edit', ['examen' => $examen->id])}}"><button class="btn_edit">Editar</button></a></td>
             <td>
                 <form method="POST" action="{{route('admin.examenes.destroy', ['examen' => $examen->id])}}">
                     @csrf
                     @method('delete')
-                    <input type="submit" value="Eliminar">
+                    <input class="btn_borrar" type="submit" value="Eliminar">
                 </form>
             </td>
         </tr>
         @endforeach
-
+        </tbody>
     </table>
-    
-    <div class="w-1/2 mx-auto p-5">
+    </div>
+
+    <div class="w-1/2 mx-auto p-5 pagination">
         {{ $examenes->appends(request()->query())->links('Componentes.pagination') }}
     </div>
 
-</div>
+
 @endsection
