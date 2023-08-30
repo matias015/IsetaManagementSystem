@@ -60,8 +60,8 @@
           <i class="ti ti-circle-check-filled check_pos"></i>
           <i class="ti ti-circle-x-filled check_neg"></i>
         </div>
-        <div class="w-100p flex just-end ">
-          <button class="w-17 white border-none p-3 rounded-1 bg-indigo-900"><i class="ti ti-refresh"></i>   Confirmar</button>
+        <div class="w-100p flex just-end perfil_password_refresh">
+          <button class="w-17 white border-none p-3 rounded-1 bg-indigo-900"><i class="ti ti-refresh"></i>  Actualizar</button>
         </div>
     </form>
      </div>
@@ -69,15 +69,15 @@
 
       <div class="perfil_third shadow">
         <div class="perfil_subtop"><h2>Academico</h2></div>
-        <div class="flex just-between">
-          <span class="font-3">Informe analitico</span>
-          <a class="" href="/alumno/analitico "><button class="white rounded-1 border-none p-3  bg-indigo-900"><i class="ti ti-download"></i>Ver</button></a>
+        <div class=" perfil_descargable"> <!---flex just-between----->
+          <span>Informe analitico</span> <!-- class="font-3"--->
+          <a href="/alumno/analitico "><button><i class="ti ti-eye"></i>Observar</button></a> <!--class="white rounded-1 border-none p-3  bg-indigo-900-->
 
         </div>
-        <div class="flex just-between items-center">
-          <span class="md-none font-3">Const. inscripción</span>
-          <span class="none md-block font-3">Constancia de inscripción a mesas de examen</span>
-          <a class="" href="{{route('alumno.constancia')}}"><button class="white rounded-1 border-none p-3  bg-indigo-900"><i class="ti ti-download"></i>Ver</button></a>
+        <div class="perfil_descargable"> <!--flex just-between items-center-->
+          <span class="md-none font-3">Const. inscripción</span> 
+          <span>Constancia de inscripción a mesas de examen</span><!-- class="none md-block font-3"--->
+          <a href="{{route('alumno.constancia')}}"><button><i class="ti ti-eye"></i>Observar</button></a> <!--- class="white rounded-1 border-none p-3  bg-indigo-900"--->
         </div>
         
       </div>
