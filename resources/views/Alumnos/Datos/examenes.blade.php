@@ -27,25 +27,25 @@
         </div>
 <div class="table__body">
     <table>
-    <tr>
-        <th>Materia</th>
-        <th>Nota mas alta</th>
-    </tr>
-    
-    
-    @foreach($examenes as $examen)
+      <thead>
+        <tr>
+          <th>Materia</th>
+          <th>Nota mas alta</th>
+          <th>Fecha final</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach($examenes as $examen)
         <tr>
             <td>{{$textFormatService->utf8Minusculas($examen->nombre)}}</td>
             <td>{{$examen->nota}}</td>
+            <td>{{$examen->fecha}}</td>
         </tr>
     
-    @endforeach
-    
+        @endforeach
+      </tbody>
     </table>
 </div>
 </section>
 </main>
 @endsection
-
-           
-  
