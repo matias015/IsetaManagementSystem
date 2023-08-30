@@ -8,56 +8,61 @@
             @endforeach
         @endif
 
-<div class="edit-form-container">
-       <form method="post" action="{{route('admin.carreras.update', ['carrera'=>$carrera->id])}}">
-        @csrf
-        @method('put')
+        <div class="edit-form-container">
+            <div class="perfil_one table">
+            <form method="post" action="{{route('admin.carreras.update', ['carrera'=>$carrera->id])}}">
+                @csrf
+                @method('put')
 
-        <p>carrera <input value="{{$carrera->nombre}}" name="nombre"></p>
-        <p>resolucion <input value="{{$carrera->resolucion}}" name="resolucion"></p>
-        <p>anio_apertura <input value="{{$carrera->anio_apertura}}" name="anio_apertura"></p>
-        <p>anio_fin <input value="{{$carrera->anio_fin}}" name="anio_fin"></p>
-        <p>observaciones 
+                    <span class="perfil_dataname">Carrera: <input class="campo_info" value="{{$carrera->nombre}}" name="nombre"></span>
+                    <span class="perfil_dataname">Resolucion: <input class="campo_info" value="{{$carrera->resolucion}}" name="resolucion"></span>
+                    <span class="perfil_dataname">Año apertura: <input class="campo_info" value="{{$carrera->anio_apertura}}" name="anio_apertura"></span>
+                    <span class="perfil_dataname">Año fin: <input class="campo_info" value="{{$carrera->anio_fin}}" name="anio_fin"></span>
+                    <span class="perfil_dataname">Observaciones: <input class="campo_info" value="{{$carrera->observaciones}}" name="observaciones"></span>
 
-            <input value="{{$carrera->observaciones}}" name="observaciones"></p>
-
-        <input type="submit" value="Actualizar">
-       </form>
-       <hr>
-       <table>
-        <tr>
-            <td>año</td>
-            <td>materia</td>
-            <td>carga anual o semanal</td>
-            <td>acciones</td>
-        </tr>
-
-        <hr>
-        <a href="{{route('admin.asignaturas.create',['id_carrera'=>$carrera->id])}}"><button>Agregar asignatura</button></a>
-        
-        @foreach ($carrera->asignaturas as $asignatura)
-            <tr>
-                <td> {{$asignatura->anio + 1}} </td>
-
-                <td> {{$asignatura->nombre}} </td>
-
-                <td> {{$asignatura->carga_horaria}} horas</td>
-
-                <td style="display:flex;">
-                    <form action="{{route('admin.asignaturas.edit', ['asignatura'=>$asignatura->id])}}">
-                        <button>Editar</button>
-                    </form>
-                    <form action="{{route('admin.asignaturas.destroy', ['asignatura'=>$asignatura->id])}}">
-                        <button>Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-        
+                    <div class="upd"><input class="btn_borrar upd" type="submit" value="Actualizar"></div>
+            </form>
+            </div>
             
+            <div class="table">
+                <div  class="table__header">
+                <a href="{{route('admin.asignaturas.create',['id_carrera'=>$carrera->id])}}"><button class="btn_edit">Agregar asignatura</button></a>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Año</th>
+                            <th>Materia</th>
+                            <th>Carga anual o semanal</th>
+                            <th colspan="2">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($carrera->asignaturas as $asignatura)
+                            <tr>
+                                <td> {{$asignatura->anio + 1}} </td>
 
-       </table>
+                                <td> {{$asignatura->nombre}} </td>
+
+                                <td> {{$asignatura->carga_horaria}} horas</td>
+
+                                <td style="display:flex;">
+                                    <form action="{{route('admin.asignaturas.edit', ['asignatura'=>$asignatura->id])}}">
+                                        <button class="btn_edit">Editar</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="{{route('admin.asignaturas.destroy', ['asignatura'=>$asignatura->id])}}">
+                                        <button class="btn_edit">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table> 
+            </div>
+            
+        </div>
     </div>
-</div>
 
 @endsection
