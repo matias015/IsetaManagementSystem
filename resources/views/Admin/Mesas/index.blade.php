@@ -40,36 +40,39 @@
             <a class="page-link" href="{{ $url }}">{{ $page }}</a>
         </li> --}}
         
-        
-        <table>
-            <tr>
-                <td>Materia</td>
-                <td>Año</td>
-                <td>Fecha</td>
-                <td>Carrera</td>
-                <td>Acciones</td>
-            </tr>
-
-            @foreach ($mesas as $mesa)
-            <tr>
-                <td>{{$textFormatService->utf8Minusculas($mesa->nombre)}}</td>
-                <td>{{$mesa->anio + 1}}</td>
-                <td>{{$mesa->fecha}}</td>
-                <td>{{$textFormatService->utf8Minusculas($mesa->carrera)}}</td>
-                <td><a href="{{route('admin.mesas.edit', ['mesa' => $mesa->id])}}"><button>editar</button></a></td>
-                <td>
-                    <form method="POST" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">
-                        @csrf
-                        @method('delete')
-                        <input type="submit" value="Eliminar">
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-
+       <div class="table">
+        <table class="table__body">
+            <thead>
+                <tr>
+                    <th>Materia</td>
+                    <th>Año</td>
+                    <th>Fecha</td>
+                    <th>Carrera</td>
+                    <th colspan="2">Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($mesas as $mesa)
+                    <tr>
+                    <td>{{$textFormatService->utf8Minusculas($mesa->nombre)}}</td>
+                    <td>{{$mesa->anio + 1}}</td>
+                    <td>{{$mesa->fecha}}</td>
+                    <td>{{$textFormatService->utf8Minusculas($mesa->carrera)}}</td>
+                    <td><a href="{{route('admin.mesas.edit', ['mesa' => $mesa->id])}}"><button class="btn_edit">editar</button></a></td>
+                    <td>
+                        <form method="POST" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">
+                            @csrf
+                            @method('delete')
+                            <input class="btn_borrar" type="submit" value="Eliminar">
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
-        
-        <div class="w-1/2 mx-auto p-5">
+        </div>
+
+        <div class="w-1/2 mx-auto p-5 pagination">
             {{ $mesas->appends(request()->query())->links('Componentes.pagination') }}
         </div>
 
