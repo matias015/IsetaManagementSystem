@@ -232,6 +232,10 @@ table, th, td {
     
 }
 
+table {
+    width: 100%;
+}
+
 .campo_info { 
     border: none;
     outline: none;
