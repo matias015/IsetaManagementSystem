@@ -19,7 +19,7 @@
       
         </div>
 
-        
+    </div>    
 
         {{-- @foreach ($alumnos->pagr as )
             
@@ -28,36 +28,38 @@
             <a class="page-link" href="{{ $url }}">{{ $page }}</a>
         </li> --}}
         
-
-        <table>
-            <tr>
-                <td>Nombre</td>
-                <td>carrera</td>
-
-                <td>Acciones</td>
-            </tr>
-
-            @foreach ($asignaturas as $asignatura)
-            <tr>
-                <td>{{$textFormatService->utf8Minusculas($asignatura->nombre)}}</td>
-                <td>{{$textFormatService->utf8UpperCamelCase($asignatura->carrera->nombre)}}</td>
-                <td><a href="{{route('admin.asignaturas.edit', ['asignatura' => $asignatura->id])}}"><button>editar</button></a></td>
-                <td>
-                    <form method="POST" action="{{route('admin.asignaturas.destroy', ['asignatura' => $asignatura->id])}}">
-                        @csrf
-                        @method('delete')
-                        <input type="submit" value="Eliminar">
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-
+        <div class="table">
+        <table class="table__body">
+            <thead>
+                <tr>
+                    <th>Nombre</td>
+                    <th>Carrera</td>
+                    <th colspan="2">Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($asignaturas as $asignatura)
+                <tr>
+                    <td>{{$textFormatService->utf8Minusculas($asignatura->nombre)}}</td>
+                    <td>{{$textFormatService->utf8UpperCamelCase($asignatura->carrera->nombre)}}</td>
+                    <td><a href="{{route('admin.asignaturas.edit', ['asignatura' => $asignatura->id])}}"><button class="btn_edit">Editar</button></a></td>
+                    <td>
+                        <form method="POST" action="{{route('admin.asignaturas.destroy', ['asignatura' => $asignatura->id])}}">
+                            @csrf
+                            @method('delete')
+                            <input class="btn_borrar" type="submit" value="Eliminar">
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
-        
-        <div class="w-1/2 mx-auto p-5">
+        </div>
+
+        <div class="w-1/2 mx-auto p-5 pagination">
             {{ $asignaturas->appends(request()->query())->links('Componentes.pagination') }}
         </div>
 
-    </div>
+   
     
 @endsection
