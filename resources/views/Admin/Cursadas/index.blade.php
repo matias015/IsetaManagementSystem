@@ -30,7 +30,7 @@
             <a href="{{route('admin.cursadas.index')}}"><button>Quitar filtro</button></a>
       
         </div>
-
+    </div>
         
 
         {{-- @foreach ($alumnos->pagr as )
@@ -40,15 +40,19 @@
             <a class="page-link" href="{{ $url }}">{{ $page }}</a>
         </li> --}}
         
-        
-        <table>
-            <tr>
-                <td>cursada</td>
-                <td>materia</td>
-                <td>alumno</td>
-                <td>aprobada</td>
-            </tr>
-
+        <div class="table">
+        <table class="table__body">
+            <thead>
+                <tr>
+                    <th>Cursada</td>
+                    <th>Materia</td>
+                    <th>Alumno</td>
+                    <th>Estado</td>
+                    <th colspan="2">Acciones</th>
+                </tr>
+            </thead>
+            
+            <tbody>
             @foreach ($cursadas as $cursada)
             <tr>
                 <td>{{$cursada->id}}</td>
@@ -66,24 +70,25 @@
                             Cursando...
                     @endswitch
                 </td>
-                <td><a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id])}}"><button>editar</button></a></td>
+                <td><a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id])}}"><button class="btn_edit">Editar</button></a></td>
                 <td>
                    
                     <form method="POST" action="{{route('admin.cursadas.destroy', ['cursada' => $cursada->id])}}">
                         @csrf
                         @method('delete')
-                        <input type="submit" value="Eliminar">
+                        <input class="btn_borrar" type="submit" value="Eliminar">
                     </form>
                 </td>
             </tr>
             @endforeach
-
+            </tbody>
         </table>
+        </div>
         
-        <div class="w-1/2 mx-auto p-5">
+        <div class="w-1/2 mx-auto p-5 pagination">
             {{ $cursadas->appends(request()->query())->links('Componentes.pagination') }}
         </div>
 
-    </div>
+    
     
 @endsection
