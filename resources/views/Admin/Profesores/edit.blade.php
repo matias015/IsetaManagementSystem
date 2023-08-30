@@ -8,67 +8,77 @@
             @endforeach
         @endif
 
-<div class="edit-form-container">
-       <form method="post" action="{{route('admin.profesores.update', ['profesor'=>$profesor->id])}}">
-        @csrf
-        @method('put')
+        <div class="edit-form-container">
+            <h1>Ficha profesor/a</h1>
+            <div class="perfil_one table">
+                <form method="post" action="{{route('admin.profesores.update', ['profesor'=>$profesor->id])}}">
+                    @csrf
+                    @method('put')
 
-        <p>dni <input value="{{$profesor->dni}}" name="dni"></p>
-        <p>nombre <input value="{{$profesor->nombre}}" name="nombre"></p>
-        <p>apellido <input value="{{$profesor->apellido}}" name="apellido"></p>
-        <p>fecha nacimiento <input value="{{$profesor->fecha_nacimiento->format('Y-m-d')}}" type="date" name="fecha_nacimiento"></p>
-        <p>ciudad <input value="{{$profesor->ciudad}}" value="9 de Julio" name="ciudad"></p>
-        <p>calle <input value="{{$profesor->calle}}" name="calle"></p>
-        <p>numero <input value="{{$profesor->numero}}"  name="casa_numero"></p>
-        <p>departamento <input value="{{$profesor->departamento}}" name="dpto"></p>
-        <p>piso <input value="{{$profesor->piso}}" name="piso"></p>
-        <p>
-            estado civil 
-            <select name="estado_civil">
-                <option @if($profesor->estado_civil==0) selected @endif value="0">soltero</option>
-                <option @if($profesor->estado_civil==1) selected @endif value="1">casado</option>
-            </select>
-        </p>
-        <p>email <input value="{{$profesor->email}}" name="email"></p>
-        <p>formacion academica <input value="{{$profesor->formacion_academica}}" name="formacion_academica"></p>
-        <p>año de ingreso <input value="{{$profesor->anio_ingreso}}" name="anio_ingreso"></p>
+                    <span class=" perfil_dataname sep1">DNI: <input class="campo_info" value="{{$profesor->dni}}" name="dni"></span>
+                    <span class="perfil_dataname">Nombre: <input class="campo_info" value="{{$profesor->nombre}}" name="nombre"></span>
+                    <span class="perfil_dataname">Apellido: <input class="campo_info" value="{{$profesor->apellido}}" name="apellido"></span>
+                    <span class="perfil_dataname">Fecha nacimiento: <input class="campo_info" value="{{$profesor->fecha_nacimiento->format('Y-m-d')}}" type="date" name="fecha_nacimiento"></span>
+                    <span class="perfil_dataname">Ciudad: <input class="campo_info" value="{{$profesor->ciudad}}" value="9 de Julio" name="ciudad"></span>
+                    <span class="perfil_dataname">Calle: <input class="campo_info" value="{{$profesor->calle}}" name="calle"></span>
+                    <span class="perfil_dataname">Numero: <input class="campo_info" value="{{$profesor->numero}}"  name="casa_numero"></span>
+                    <span class="perfil_dataname">Departamento: <input class="campo_info" value="{{$profesor->departamento}}" name="dpto"></span>
+                    <span class="perfil_dataname">Piso: <input class="campo_info" value="{{$profesor->piso}}" name="piso"></span>
+                    <span class="perfil_dataname">Estado civil: 
+                        <select class="campo_info" name="estado_civil">
+                            <option @if($profesor->estado_civil==0) selected @endif value="0">soltero</option>
+                            <option @if($profesor->estado_civil==1) selected @endif value="1">casado</option>
+                        </select>
+                    </span>
+                    <span class="perfil_dataname">Email: <input class="campo_info" value="{{$profesor->email}}" name="email"></span>
+                    <span class="perfil_dataname">Formacion academica: <input class="campo_info" value="{{$profesor->formacion_academica}}" name="formacion_academica"></span>
+                    <span class="perfil_dataname">Año de ingreso: <input class="campo_info" value="{{$profesor->anio_ingreso}}" name="anio_ingreso"></span>
         
-        <p>observaciones <textarea value="{{$profesor->observaciones}}" name="observaciones" cols="30" rows="10"></textarea></p>
+                    <span class="perfil_dataname">Observaciones: <textarea value="{{$profesor->observaciones}}" name="observaciones" cols="100" rows="10"></textarea></span>
 
-        <p>telefono <input value="{{$profesor->telefono1}}" name="telefono1"></p>
-        <p>telefono 2 <input value="{{$profesor->telefono2}}" name="telefono2"></p>
-        <p>telefono 3<input value="{{$profesor->telefono3}}" name="telefono3"></p>
-        <p>codigo postal<input value="{{$profesor->codigo_postal}}" value="6500" name="codigo_postal"></p>
+                    <span class="perfil_dataname">Telefono: <input class="campo_info" value="{{$profesor->telefono1}}" name="telefono1"></span>
+                    <span class="perfil_dataname">Telefono 2: <input class="campo_info" value="{{$profesor->telefono2}}" name="telefono2"></span>
+                    <span class="perfil_dataname">Telefono 3:<input class="campo_info" value="{{$profesor->telefono3}}" name="telefono3"></span>
+                    <span class="perfil_dataname">Codigo postal:<input class="campo_info" value="{{$profesor->codigo_postal}}" value="6500" name="codigo_postal"></span>
 
-        <input type="submit" value="Actualizar">
-       </form>
-    </div>
+                    <div class="upd"><input class="btn_borrar upd" type="submit" value="Actualizar"></div>
+                </form>
+            </div>
 
-    <h2>Proximas mesas</h2>
-    <table>
-        <tr>
-            <td>Asignatura</td>
-            <td>Fecha</td>
-            <td>Rol</td>
-            <td>Detalles</td>
-        </tr>
+        <div class="table">
+            <div  class="table__header"><h2>Proximas mesas</h2></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Asignatura</th>
+                        <th>Fecha</th>
+                        <th>Rol</th>
+                        <th>Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach ($mesas as $mesa)
+                    <tr>
+                        <td>{{$mesa->materia->nombre}}</td>
+                        <td>{{$mesa->fecha}}</td>
+                        <td>
+                            @if ($mesa->prof_presidente == $profesor->id)
+                                Presidente
+                            @elseif ($mesa->prof_vocal_1 == $profesor->id)
+                                Vocal 1
+                            @elseif ($mesa->prof_vocal_2 == $profesor->id)
+                                Vocal 2
+                            @endif
+                        </td>
+                        <td><a href="{{route('admin.mesas.edit',['mesa'=>$mesa->id])}}">Detalles</a></td>
+                    </tr>
+                    @endforeach
+                </tbody>           
+            </table>
+
+        </div>
+
+        </div>     
     
-    @foreach ($mesas as $mesa)
-        <tr>
-            <td>{{$mesa->materia->nombre}}</td>
-            <td>{{$mesa->fecha}}</td>
-            <td>
-                @if ($mesa->prof_presidente == $profesor->id)
-                    Presidente
-                @elseif ($mesa->prof_vocal_1 == $profesor->id)
-                    Vocal 1
-                @elseif ($mesa->prof_vocal_2 == $profesor->id)
-                    Vocal 2
-                @endif
-            </td>
-            <td><a href="{{route('admin.mesas.edit',['mesa'=>$mesa->id])}}">Detalles</a></td>
-        </tr>
-    @endforeach
-</table>
-</div>
+    </div>
 @endsection
