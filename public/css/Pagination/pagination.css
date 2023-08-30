@@ -7,3 +7,54 @@
 .disabled{
     color: gray;
 }
+
+.pagination {
+    display: flex;
+    align-items: center;
+}
+
+.pagination ul li {
+    display: inline-block;
+    margin: 0 7px;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.pagination .btn1, .pagination .btn2 {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
+    outline: none;
+    background: transparent;
+    border: none;
+}
+
+.pagination .btn1 {
+    margin-right: 30px;
+    margin-left: 0;
+}
+
+.no-active {
+    background: #ccc;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    line-height: 45px;
+}
+
+.no-active:hover {
+    color: white;
+    font-weight: 600;
+    background: rgba(255, 0, 0, 0.775);
+}
+
+.active {
+    color: white;
+    font-weight: 600;
+    background: red;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    line-height: 45px;
+}
