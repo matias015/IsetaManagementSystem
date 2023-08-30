@@ -80,12 +80,12 @@
                 <td>{{$textFormatService->utf8UpperCamelCase($alumno->nombre)}}</td>
                 <td>{{$textFormatService->utf8UpperCamelCase($alumno->apellido)}}</td>
                 <td>{{$alumno->dni}}</td>
-                <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}"><button>editar</button></a></td>
+                <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}"><button class="btn_edit">Editar</button></a></td>
                 <td>
                     <form method="POST" action="{{route('admin.alumnos.destroy', ['alumno' => $alumno->id])}}">
                         @csrf
                         @method('delete')
-                        <input type="submit" value="Eliminar">
+                        <input class="btn_borrar" type="submit" value="Eliminar">
                     </form>
                 </td>
             </tr>
@@ -100,7 +100,7 @@
 
         
         
-        <div class="w-1/2 mx-auto p-5">
+        <div class="w-1/2 mx-auto p-5 pagination">
             {{ $alumnos->appends(request()->query())->links('Componentes.pagination') }}
         </div>
 
