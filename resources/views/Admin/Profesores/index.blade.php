@@ -28,7 +28,7 @@
       
         </div>
 
-        
+       </div>   
 
         {{-- @foreach ($profesores->pagr as )
             
@@ -37,37 +37,39 @@
             <a class="page-link" href="{{ $url }}">{{ $page }}</a>
         </li> --}}
         
-
-        <table>
-            <tr>
-                <td>Nombre</td>
-                <td>Apellido</td>
-                <td>Dni</td>
-                <td>Acciones</td>
-            </tr>
-
-            @foreach ($profesores as $profesor)
-            <tr>
-                <td>{{$textFormatService->utf8UpperCamelCase($profesor->nombre)}}</td>
-                <td>{{$textFormatService->utf8UpperCamelCase($profesor->apellido)}}</td>
-                <td>{{$profesor->dni}}</td>
-                <td><a href="{{route('admin.profesores.edit', ['profesor' => $profesor->id])}}"><button>editar</button></a></td>
-                <td>
-                    <form method="POST" action="{{route('admin.profesores.destroy', ['profesor' => $profesor->id])}}">
-                        @csrf
-                        @method('delete')
-                        <input type="submit" value="Eliminar">
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-
+        <div class="table">
+        <table class="table__body">
+            <thead>
+                <tr>
+                    <th>Nombre</td>
+                    <th>Apellido</td>
+                    <th>Dni</td>
+                    <th colspan="2">Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($profesores as $profesor)
+                <tr>
+                    <td>{{$textFormatService->utf8UpperCamelCase($profesor->nombre)}}</td>
+                    <td>{{$textFormatService->utf8UpperCamelCase($profesor->apellido)}}</td>
+                    <td>{{$profesor->dni}}</td>
+                    <td><a href="{{route('admin.profesores.edit', ['profesor' => $profesor->id])}}"><button class="btn_edit">Editar</button></a></td>
+                    <td>
+                        <form method="POST" action="{{route('admin.profesores.destroy', ['profesor' => $profesor->id])}}">
+                            @csrf
+                            @method('delete')
+                            <input class="btn_borrar" type="submit" value="Eliminar">
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
-        
-        <div class="w-1/2 mx-auto p-5">
+        </div>
+        <div class="w-1/2 mx-auto p-5 pagination">
             {{ $profesores->appends(request()->query())->links('Componentes.pagination') }}
         </div>
 
-    </div>
+    
     
 @endsection
