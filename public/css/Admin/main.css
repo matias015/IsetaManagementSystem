@@ -223,18 +223,23 @@ table, th, td {
 
 .table .perfil_dataname {
     display: flex;
+    align-items: center;
     width: 100%;
     border-bottom: 1px solid;
     font-size: 16px;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin: 5px 0 5px 0;
+    
 }
 
 .campo_info { 
     border: none;
     outline: none;
     width: 100%;
-    margin-left: 10px;
+    margin: 0 0 5px 10px;
+    
+    padding: 10px 0;
+    background: var(--gris-titulo);
 }
 
 .upd {
