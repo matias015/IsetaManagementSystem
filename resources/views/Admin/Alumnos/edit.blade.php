@@ -9,14 +9,14 @@
         @csrf
         @method('put')
         
-        <span class=" perfil_dataname sep1">DNI: <input class="campo_info" value="{{$alumno->dni}}" name="dni"></span>
+        <span class="perfil_dataname sep1">DNI: <input class="campo_info" value="{{$alumno->dni}}" name="dni"></span>
         <span class="perfil_dataname">Nombre: <input class="campo_info" value="{{$alumno->nombre}}" name="nombre"></span>
-        <span class="perfil_dataname">apellido: <input class="campo_info" value="{{$alumno->apellido}}" name="apellido"></span>
+        <span class="perfil_dataname">Apellido: <input class="campo_info" value="{{$alumno->apellido}}" name="apellido"></span>
         <span class="perfil_dataname">Fecha nacimiento: <input class="campo_info" value="{{$alumno->fecha_nacimiento->format('Y-m-d')}}" type="date" name="fecha_nacimiento"></span>
-        <span class="perfil_dataname">ciudad: <input class="campo_info" value="{{$alumno->ciudad}}" value="9 de Julio" name="ciudad"></span>
-        <span class="perfil_dataname">calle: <input class="campo_info" value="{{$alumno->calle}}" name="calle"></span>
-        <span class="perfil_dataname">numero: <input class="campo_info" value="{{$alumno->numero}}"  name="casa_numero"></span>
-        <span class="perfil_dataname">departamento: <input class="campo_info" value="{{$alumno->departamento}}" name="dpto"></span>
+        <span class="perfil_dataname">Ciudad: <input class="campo_info" value="{{$alumno->ciudad}}" value="9 de Julio" name="ciudad"></span>
+        <span class="perfil_dataname">Calle: <input class="campo_info" value="{{$alumno->calle}}" name="calle"></span>
+        <span class="perfil_dataname">Numero: <input class="campo_info" value="{{$alumno->numero}}"  name="casa_numero"></span>
+        <span class="perfil_dataname">Departamento: <input class="campo_info" value="{{$alumno->departamento}}" name="dpto"></span>
         <span class="perfil_dataname">Piso: <input class="campo_info" value="{{$alumno->piso}}" name="piso"></span>
         <span class="perfil_dataname">
             Estado civil: 
@@ -25,16 +25,16 @@
                 <option @if($alumno->estado_civil==1) selected @endif value="1">casado</option>
             </select>
         </span>
-        <span class="perfil_dataname">email <input class="campo_info" value="{{$alumno->email}}" name="email"></span>
-        <span class="perfil_dataname">titulo anterior <input class="campo_info" value="{{$alumno->titulo_anterior}}" name="titulo_anterior"></span>
-        <span class="perfil_dataname">becas <input class="campo_info" value="{{$alumno->becas}}" name="becas"></span>
+        <span class="perfil_dataname">Email: <input class="campo_info" value="{{$alumno->email}}" name="email"></span>
+        <span class="perfil_dataname">Titulo anterior: <input class="campo_info" value="{{$alumno->titulo_anterior}}" name="titulo_anterior"></span>
+        <span class="perfil_dataname">Becas: <input class="campo_info" value="{{$alumno->becas}}" name="becas"></span>
         
-        <span class="perfil_dataname">observaciones <textarea value="{{$alumno->observaciones}}" name="observaciones" cols="100" rows="10"></textarea></span>
+        <span class="perfil_dataname">Observaciones: <textarea value="{{$alumno->observaciones}}" name="observaciones" cols="100" rows="10"></textarea></span>
 
-        <span class="perfil_dataname">telefono <input class="campo_info" value="{{$alumno->telefono1}}" name="telefono1"></span>
-        <span class="perfil_dataname">telefono 2 <input class="campo_info" value="{{$alumno->telefono2}}" name="telefono2"></span>
-        <span class="perfil_dataname">telefono 3<input class="campo_info" value="{{$alumno->telefono3}}" name="telefono3"></span>
-        <span class="perfil_dataname">codigo postal<input class="campo_info" value="{{$alumno->codigo_postal}}" value="6500" name="codigo_postal"></span>
+        <span class="perfil_dataname">Telefono: <input class="campo_info" value="{{$alumno->telefono1}}" name="telefono1"></span>
+        <span class="perfil_dataname">Telefono 2: <input class="campo_info" value="{{$alumno->telefono2}}" name="telefono2"></span>
+        <span class="perfil_dataname">Telefono 3:<input class="campo_info" value="{{$alumno->telefono3}}" name="telefono3"></span>
+        <span class="perfil_dataname">Codigo postal:<input class="campo_info" value="{{$alumno->codigo_postal}}" value="6500" name="codigo_postal"></span>
 
         <div class="upd"><input class="btn_borrar upd" type="submit" value="Actualizar"></div>
         
