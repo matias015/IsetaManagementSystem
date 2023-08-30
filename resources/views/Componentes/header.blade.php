@@ -27,8 +27,11 @@
         </ul>
         @auth('web')
         <div class="perfil-logout" >
-          {{-- <div class="perfil-logout-btn" onclick="toggle()"> --}}
-          <div class="white pointer" onclick="toggle()">
+          <div class="perfil-logout-btn" onclick="toggle()"> 
+          {{-- <div class="white pointer" onclick="toggle()">--}}
+            <!--<div class="perfil-imagen">
+              
+            </div> -->
             <span>
               {{auth()->user()->nombre}}
               <i class="ti ti-chevron-down"></i>
