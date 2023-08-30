@@ -68,12 +68,12 @@
                 <td>{{$alumno->dni}}</td>
                 <td>{{$textFormatService->utf8minusculas($alumno->carrera)}}</td>
 
-                <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}"><button>Ver alumno</button></a></td>
+                <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}"><button class="btn_edit">Ver</button></a></td>
                 <td>
                     <form method="POST" action="{{route('admin.egresados.destroy', ['egresado' => $alumno->id])}}">
                         @csrf
                         @method('delete')
-                        <input type="submit" value="Eliminar">
+                        <input class="btn_borrar" type="submit" value="Eliminar">
                     </form>
                 </td>
             </tr>
@@ -88,7 +88,7 @@
 
         
         
-        <div class="w-1/2 mx-auto p-5">
+        <div class="w-1/2 mx-auto p-5 pagination">
             {{ $alumnos->appends(request()->query())->links('Componentes.pagination') }}
         </div>
 
