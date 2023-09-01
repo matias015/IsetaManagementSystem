@@ -1,8 +1,8 @@
 @extends('Alumnos.layout')
 @section('content')
-<main class="black flex-col justify-center items-center gap-3 p-3 w-100">
+<main id="fondo-estudiantes" class="black flex-col justify-center items-center gap-3 p-3 w-100">
 
-    <form class="p-5 my-10 flex-col items-end just-center rounded-3 bg-gray-200" method="POST" action="{{route('alumno.rematriculacion.post', ['carrera'=>$asignaturas[0]->id_carrera])}}">
+    <form class=" w-75p p-5 my-10 flex-col items-end just-center rounded-3  box-sh" method="POST" action="{{route('alumno.rematriculacion.post', ['carrera'=>$asignaturas[0]->id_carrera])}}">
         @csrf
 
         @foreach ($asignaturas as $asignatura)
@@ -16,9 +16,9 @@
                 </span>
                 <span>
                     @if ($asignatura->equivalencias_sin_aprobar)
-                    <div class="flex gap-3">    
+                    <div class="flex just-end gap-3">    
                         <p class="font-600">Debes equivalencias</p>
-                        <span class="blue-600 px-1 rounded pointer ver-equiv" data-element="{{$asignatura->id}}">detalles...</span> 
+                        <span class="blue-600 px-1 rounded pointer ver-equiv" data-element="{{$asignatura->id}}">Detalles...</span> 
                     </div>
                         <ul class="none id-{{$asignatura->id}}">
                             @foreach ($asignatura->equivalencias_previas as $asignatura)
@@ -36,7 +36,7 @@
             </div>
             <hr>
         @endforeach
-        <button class="m-2 bg-white rounded px-3 py-2">Enviar</button>
+        <button class="m-2 rounded px-3 py-2 btn_edit">Enviar</button>
     </form>
 
 </main>
