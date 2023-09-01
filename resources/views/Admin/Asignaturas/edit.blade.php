@@ -3,7 +3,7 @@
 @section('content')
 <div class="edit-form-container">
     <div>
-
+    <div class="perfil_one table">
         @if ($errors -> any())
             @foreach ($errors->all() as $error)
                 <p>{{$error}}</p>
@@ -15,26 +15,34 @@
         @csrf
         @method('put')
 
-        <p>asignatura <input value="{{$asignatura->nombre}}" name="nombre"></p>
-        <select name="id_carrera">
-            @foreach($carreras as $carrera)
-                <option @selected($carrera->id == $asignatura->id_carrera) value="{{$carrera->id}}">{{$carrera->nombre}}</option>
-            @endforeach
-        </select>
-        <p>tipo modulo <input value="{{$asignatura->tipo_modulo}}" name="tipo_modulo"></p>
-        <p>carga horaria <input value="{{$asignatura->carga_horaria}}" name="carga_horaria"></p>
-        <p>año<input value="{{$asignatura->anio}}" name="anio"></p>
-        <p>observaciones <input value="{{$asignatura->observaciones}}" name="observaciones"></p>
+        <span class="perfil_dataname">Asignatura: <input class="campo_info" value="{{$asignatura->nombre}}" name="nombre"></span>
+        <span class="perfil_dataname">Carrera: 
+            <select class="campo_info" name="id_carrera">
+                @foreach($carreras as $carrera)
+                    <option @selected($carrera->id == $asignatura->id_carrera) value="{{$carrera->id}}">{{$carrera->nombre}}</option>
+                @endforeach
+            </select>
+        </span>
+        <span class="perfil_dataname">Tipo modulo: <input class="campo_info" value="{{$asignatura->tipo_modulo}}" name="tipo_modulo"></span>
+        <span class="perfil_dataname">Carga horaria: <input class="campo_info" value="{{$asignatura->carga_horaria}}" name="carga_horaria"></span>
+        <span class="perfil_dataname">Año:<input class="campo_info" value="{{$asignatura->anio}}" name="anio"></span>
+        <span class="perfil_dataname">Observaciones: <input class="campo_info" value="{{$asignatura->observaciones}}" name="observaciones"></span>
 
-        <p>correlativas</p>
+        <span class="perfil_dataname">Correlativas:
+            <ul class="campo_info">
+            @foreach ($asignatura->correlativas as $correlativa)
+                <li>- {{$correlativa->asignatura->nombre}}</li>
+            @endforeach
+        </ul></span>
         <ul>
             @foreach ($asignatura->correlativas as $correlativa)
                 <li>- {{$correlativa->asignatura->nombre}}</li>
             @endforeach
         </ul>
 
-        <input type="submit" value="Actualizar">
+        <div class="upd"><input class="btn_borrar upd" type="submit" value="Actualizar"></div>
         </form>
+    </div>
 
         {{-- -------------------------- --}}
         <h2>Agregar correlativa</h2>
@@ -94,9 +102,10 @@
 
             
 
-       </table>
+       
        <input type="submit" value="Imprimir">
     </form>
+    </table>
     </div>
 </div>
 
