@@ -493,3 +493,19 @@ button.bajarse {
 button.bajarse:hover {
     background: red;
 }
+
+/*--------------------------------------------- R  E  M  A  T  R  I  C  U  L  A  C  I  O  N  -----------------------------------------*/
+
+.style_hover:hover {
+    background: var(--facebook);
+    color: white;
+}
+
+.ver-equiv:hover {
+    text-decoration: underline;
+}
+
+.box-sh {
+    box-shadow: 0 .4rem .8rem #0005;
+    background: var(--gris-body-tabla);
+}
