@@ -5,6 +5,13 @@ FALTA CORREGIR:
 - muchos filtros
 - traducciones de mensajes
 - verificar bien fecha de cursada al rematricularse (2023,2024 etc)
+- agregar boton para filtrar en examenes
+- algunos botones de quitar filtro
+- algo de responsive capaz en rematriculacion
+- cartelito que propuso lucas para motrar equivalencias en la rematriculacion (?
+- agregar pag para ver todas los exámenes (historia) o idear la forma pada verlos todos sin agregar otra pag
+- creo que si entras en la cuanta de alguien que no curso nunca nada, osea no tiene carreras para seleccionar, explota
+- agregar filtro que propuso Lucas de filtrar por texto a la vez que por aprobados, desaprobados, etc
 
 COSAS RARAS:
 - LA CARRERA DE MECANICA LIVIANA NO TIENE REGISTRADA NINGUNA EQUIVALENCIA, OSEA NINGUNA MATERIA TIENE EQUIVALENCIAS CON NINGUNA (carita de calabera)
