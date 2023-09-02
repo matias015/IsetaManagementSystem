@@ -3,9 +3,10 @@ Anotar cosas que faltan corregir
 
 FALTA CORREGIR:
 - muchos filtros
+- traducciones de mensajes
 
 COSAS RARAS:
-- LA CARRERA DE MECANICA LIVIANO NO TIENE REGISTRADA NINGUNA EQUIVALENCIA (carita de calabera)
+- LA CARRERA DE MECANICA LIVIANA NO TIENE REGISTRADA NINGUNA EQUIVALENCIA (carita de calabera)
 
 CORRECCIONES 2/9
 
