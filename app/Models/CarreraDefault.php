@@ -11,4 +11,5 @@ class CarreraDefault extends Model
     protected $table = 'carreras_default';
 
     
+    
 }

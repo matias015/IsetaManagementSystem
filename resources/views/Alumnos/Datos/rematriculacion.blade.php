@@ -2,9 +2,19 @@
 @section('content')
 <main id="fondo-estudiantes" class="black flex-col justify-center items-center gap-3 p-3 w-100">
 
-    <form class=" w-75p p-5 my-10 flex-col items-end just-center rounded-3  box-sh" method="POST" action="{{route('alumno.rematriculacion.post', ['carrera'=>$asignaturas[0]->id_carrera])}}">
+    <form class=" w-75p p-5 my-10 flex-col items-end just-center rounded-3  box-sh" method="POST" action="{{route('alumno.rematriculacion.post', ['carrera'=>$carrera])}}">
         @csrf
 
+        @if (count($asignaturas)<=0)
+        <div class="w-100p flex-col">
+                
+            <span>No tienes asignaturas para rendir de esta carrera.</span>
+            
+            <span>Si crees que se trata de un error, comunicate con la institucion para solucionarlo.</span>
+
+        </div>
+        <hr>
+        @else
         @foreach ($asignaturas as $asignatura)
             <div class="w-100p flex just-between">
                 
@@ -37,6 +47,9 @@
             <hr>
         @endforeach
         <button class="m-2 rounded px-3 py-2 btn_edit">Enviar</button>
+        @endif
+
+        
     </form>
 
 </main>

@@ -1,0 +1,19 @@
+Siempre poner correcciones aca en lo posible, mas que nada correcion de errores y eso.
+Anotar cosas que faltan corregir
+
+FALTA CORREGIR:
+- muchos filtros
+
+COSAS RARAS:
+- LA CARRERA DE MECANICA LIVIANO NO TIENE REGISTRADA NINGUNA EQUIVALENCIA (carita de calabera)
+
+CORRECCIONES 2/9
+
+- En la pagina para ver tus cursadas ahora deberia mostrar bien que finales rendiste
+- Arreglado el select para elegir una carrera en la pag de info
+- Ahora las cursadas si se muestran de acuerdo a la carrera que seleccionaste
+- Ahora no se muestra en rematriculacion las materias que ya aprobaste o que ya estas anotado
+- Tambien hay limite de 2 materias libres
+- Los examenes muestran la fecha (deberiamos sacar la hora, todos fueron a las 12AM xd)
+- Si una carrera no tiene materias ya no explota al entrar en rematriculacion
+- Si no tenias ningun examen rendido daba error de division por 0 al calcular el promedio (ahora ya no :D)

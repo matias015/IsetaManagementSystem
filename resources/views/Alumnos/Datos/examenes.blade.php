@@ -6,24 +6,26 @@
 <div class="table__header">
           <h1>Examenes</h1>
           <p>Promedio: {{$promedio}}</p>
-          <div class="tabla_botonera">
-            <div class="none md-block contenedor_filtrar">
-              <select class="filtrar">
-                <option>Filtrar</option>
-                <option>Año</option>
-                <option>Materia</option>
-                <option>Nota final</option>
-                <option>Fecha final</option>
-              </select>
-              <i class="ti ti-adjustments i_filtrar"></i>
+          <form class="none md-block" action="{{route('alumno.examenes')}}">
+            <div class="tabla_botonera">
+              <div class="none md-block contenedor_filtrar">
+                <select  name="campo" class="filtrar">
+                  <option>Filtrar</option>
+                  <option>Año</option>
+                  <option>Materia</option>
+                  <option>Nota final</option>
+                  <option>Fecha final</option>
+                </select>
+                <i class="ti ti-adjustments i_filtrar"></i>
+              </div>
+                
+              <div class="contenedor_filtrado">
+                <input class="filtrado-busqueda">
+                <i class="ti ti-search i_lupa"></i>
+                <i class="ti ti-x i_borrar"></i>
+              </div>
             </div>
-              
-            <div class="contenedor_filtrado">
-              <input class="filtrado-busqueda">
-              <i class="ti ti-search i_lupa"></i>
-              <i class="ti ti-x i_borrar"></i>
-            </div>
-          </div>
+          </form>
         </div>
 <div class="table__body">
     <table>
@@ -37,7 +39,7 @@
       <tbody>
         @foreach($examenes as $examen)
         <tr>
-            <td>{{$textFormatService->utf8Minusculas($examen->nombre)}}</td>
+            <td>{{$examen->id}}{{$textFormatService->utf8Minusculas($examen->nombre)}}</td>
             <td>{{$examen->nota}}</td>
             <td>{{$examen->fecha}}</td>
         </tr>

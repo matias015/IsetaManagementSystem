@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\DB;
 use SebastianBergmann\CodeUnit\FunctionUnit;
 use Svg\Tag\Rect;
 
+use function PHPUnit\Framework\returnValue;
+
 /*
  | -----------------------------
  | Acciones del usuario, como:
@@ -87,7 +89,14 @@ class AlumnoController extends Controller
             'id_carrera' => $request -> carrera
         ];
 
-        CarreraDefault::updateOrInsert($data);
+        $existente = CarreraDefault::where('id_alumno', Auth::id())->first();
+
+        if($existente){
+            $existente->id_carrera = $data['id_carrera'];
+            $existente->save();
+        }else{
+            CarreraDefault::create($data);
+        }
 
         return redirect()->back();
     }
@@ -107,7 +116,9 @@ class AlumnoController extends Controller
         $orden = $request->orden ? $request->orden: 'fecha';
         $porPagina = 15;
 
-        $query = Cursada::where('id_alumno', Auth::id()) -> join('asignaturas','asignaturas.id','cursadas.id_asignatura');
+        $query = Cursada::where('id_alumno', Auth::id())
+            -> where('asignaturas.id_carrera', Carrera::getDefault(Auth::id())) 
+            -> join('asignaturas','asignaturas.id','cursadas.id_asignatura');
 
         if($request->has('filtro')){
 
@@ -133,15 +144,12 @@ class AlumnoController extends Controller
         $cursadas = $query->get();
         // lista de examenes aprobados para saber si una cursada
         // tiene rendido su final
-        $examenesAprobados = DB::table('examenes')
-            -> select('mesas.id_asignatura')
-            -> join('mesas','examenes.id_mesa','mesas.id')
+        $examenesAprobados = Examen::select('examenes.id_asignatura')
             -> where('examenes.nota','>=',4)
             -> where('examenes.id_alumno',Auth::id())
-            -> get()
-            -> pluck('id_asignatura')
-            -> toArray();
-        
+            -> orderBy('examenes.id_asignatura')            
+            -> get()-> pluck('id_asignatura')-> toArray();
+
         return view('Alumnos.Datos.cursadas', [
             'cursadas' => $cursadas, 
             'examenesAprobados' => $examenesAprobados,
@@ -161,21 +169,19 @@ class AlumnoController extends Controller
      */
 
     function examenes(){
-        $examenes = Examen::selectRaw('asignaturas.nombre, MAX(examenes.nota) as nota')
-        -> from('asignaturas')
-        -> join('examenes','examenes.id_asignatura','=','asignaturas.id')
-        -> where('examenes.id_alumno', Auth::id())
-        -> where('asignaturas.id_carrera', Carrera::getDefault())
-        -> groupBy('asignaturas.nombre')
-        -> get();
+
+        $examenes = Examen::delAlumnoMasAltas();
 
         $promedio = 0;
         foreach($examenes as $examen){
             $promedio += $examen->nota;
         }
-        $promedio = $promedio / count($examenes);
+        
+        $cantidadDeExamenes = count($examenes);
 
-
+        if($cantidadDeExamenes < 1) $promedio = 0;
+        else $promedio = $promedio / $cantidadDeExamenes;
+        
         return view('Alumnos.Datos.examenes', ['examenes'=>$examenes,'promedio'=>$promedio]);
     }
 
@@ -323,15 +329,38 @@ class AlumnoController extends Controller
         return view('Alumnos.datos.remat-seleccionar-carrera', ['carreras'=>$carreras,'en_fecha'=>$en_fecha]);
     }
 
+    /*
+     | ---------------------------------------------
+     | Vista de rematriculacion
+     | ---------------------------------------------
+     */
     function rematriculacion_vista(Request $request,Carrera $carrera){
 
+        // todas las materias de esa carrera
+        
         $asignaturas = $carrera->asignaturas;
+        $anotables = [];
 
+        // para cada asignatura 
         foreach($asignaturas as $key => $asignatura){
+
+            // array para almancenar correlativas, solo en caso de que deba equivalencias
             $asignatura->{'equivalencias_previas'} = array();
+
+            // Chequear que no este ya en la cursada
+            $yaAnotadoEnCursada = Cursada::where('id_alumno', Auth::id())
+                -> whereRaw('(aprobada=3 OR aprobada=1)')
+                -> where('id_asignatura', $asignatura->id)
+                -> first();
+
+            // Si lo esta, no incluir
+            if($yaAnotadoEnCursada) continue;
             
+            // Si la materia tiene correlativas
             if(count($asignatura->correlativas)>0){
                 $previas = [];
+
+                // Ver si estan aprobadas
                 foreach($asignatura->correlativas as $correlativa){
                     $aprobado = Asignatura::where('asignaturas.id',$correlativa->asignatura_correlativa)
                         -> join('cursadas', 'cursadas.id_asignatura','asignaturas.id')
@@ -344,18 +373,37 @@ class AlumnoController extends Controller
                         $previas[] = 'año '.$correlativa->asignatura->anio+1 .' - '.$correlativa->asignatura->nombre;     
                     }
                 }
+                
+                // Cargamos la info de que materias debe
                 $asignatura->equivalencias_previas = $previas;
-                $asignaturas[$key] = $asignatura;
+                
             }
-           // $request->session()->put('remat_asignaturas_seleccionadas', $asignaturas);
+
+            // Cargamos a inscribibles
+            $anotables[] = $asignatura;
         }
-        return view('Alumnos.datos.rematriculacion', ['asignaturas'=>$asignaturas]);
+
+        return view('Alumnos.datos.rematriculacion', ['asignaturas' => $anotables, 'carrera'=>$carrera->id]);
     }
+
+
+    /*
+     | ---------------------------------------------
+     | Post de rematriculacion
+     | ---------------------------------------------
+     */
+    
+
+     // Falta chequear lo mismo que arriba
 
     public function rematriculacion(Request $request, Carrera $carrera){
 
+       
         //todas la materias de esa carrera
         $asignaturas_de_carrera = $carrera->asignaturas()->pluck('id')->toArray();
+
+        $totalLibres = array_count_values($request->except('_token'))[2];
+        if($totalLibres > 2) return redirect()->back()->with('error','No puedes cursar mas de 2 materias libres');
 
         //asignaturas que se seleccionaron que sean validas para inscripcion
         $asignaturas = [];
@@ -392,7 +440,6 @@ class AlumnoController extends Controller
             ]);
         }   
     
-        
     }
 
     
