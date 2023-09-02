@@ -14,6 +14,7 @@ FALTA CORREGIR:
 - agregar filtro que propuso Lucas de filtrar por texto a la vez que por aprobados, desaprobados, etc
 - comprobar que la info de los pdf esten bien y no falte nada
 - terminar díseño de pdfs 
+- agregar validaciones de rematriculacion tambien luego de enviar
 
 COSAS RARAS:
 - LA CARRERA DE MECANICA LIVIANA NO TIENE REGISTRADA NINGUNA EQUIVALENCIA, OSEA NINGUNA MATERIA TIENE EQUIVALENCIAS CON NINGUNA (carita de calabera)
