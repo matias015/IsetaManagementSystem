@@ -4,6 +4,7 @@ Anotar cosas que faltan corregir
 FALTA CORREGIR:
 - muchos filtros
 - traducciones de mensajes
+- verificar bien fecha de cursada al rematricularse (2023,2024 etc)
 
 COSAS RARAS:
 - LA CARRERA DE MECANICA LIVIANA NO TIENE REGISTRADA NINGUNA EQUIVALENCIA, OSEA NINGUNA MATERIA TIENE EQUIVALENCIAS CON NINGUNA (carita de calabera)
