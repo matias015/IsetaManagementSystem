@@ -2,7 +2,7 @@ Siempre poner correcciones aca en lo posible.
 Anotar cosas que faltan corregir
 
 FALTA CORREGIR:
-- muchos filtros
+- filtro de examanes
 - traducciones de mensajes
 - verificar bien fecha de cursada al rematricularse (2023,2024 etc)
 - agregar boton para filtrar en examenes
@@ -11,7 +11,6 @@ FALTA CORREGIR:
 - cartelito que propuso lucas para motrar equivalencias en la rematriculacion (?
 - agregar pag para ver todas los exámenes (historia) o idear la forma pada verlos todos sin agregar otra pag
 - creo que si entras en la cuanta de alguien que no curso nunca nada, osea no tiene carreras para seleccionar, explota
-- agregar filtro que propuso Lucas de filtrar por texto a la vez que por aprobados, desaprobados, etc
 - comprobar que la info de los pdf esten bien y no falte nada
 - terminar díseño de pdfs 
 - agregar validaciones de rematriculacion tambien luego de enviar
@@ -29,3 +28,4 @@ CORRECCIONES 2/9
 - Los examenes muestran la fecha (deberiamos sacar la hora, todos fueron a las 12AM xd)
 - Si una carrera no tiene materias ya no explota al entrar en rematriculacion
 - Si no tenias ningun examen rendido daba error de division por 0 al calcular el promedio (ahora ya no :D)
+- ahora anda el filtro de cursadas, y podes buscar por filtro y materia simultaneamente
