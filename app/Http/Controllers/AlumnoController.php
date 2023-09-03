@@ -12,13 +12,9 @@ use App\Models\Examen;
 use App\Models\Mesa;
 use App\Services\DiasHabiles;
 use App\Services\TextFormatService;
-use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use SebastianBergmann\CodeUnit\FunctionUnit;
-use Svg\Tag\Rect;
 
 use function PHPUnit\Framework\returnValue;
 
@@ -111,35 +107,42 @@ class AlumnoController extends Controller
     function cursadas(Request $request){
 
         $cursadas=[];
+        
         $filtro = $request->filtro ? $request->filtro: '';
         $campo = $request->campo ? $request->campo: '';
         $orden = $request->orden ? $request->orden: 'fecha';
+        
         $porPagina = 15;
 
+        // cursadas del alumno de la carrera seleccionada
         $query = Cursada::where('id_alumno', Auth::id())
             -> where('asignaturas.id_carrera', Carrera::getDefault(Auth::id())) 
             -> join('asignaturas','asignaturas.id','cursadas.id_asignatura');
 
         if($request->has('filtro')){
+            $query =  $query -> where('asignaturas.nombre','LIKE','%'.$filtro.'%');
+        }
 
-                if($campo == "asignatura"){
-                    $query =  $query -> where('asignaturas.nombre','LIKE','%'.$filtro.'%');
-                }
-                else if($campo == "aprobadas"){
-                    $query =  $query -> where('cursadas.aprobada', 1);
-                }
-                else if($campo == "desaprobadas"){
-                    $query =  $query -> where('cursadas.aprobada', 2);
-                }
+        if($campo == "aprobadas"){
+            $query =  $query -> where('cursadas.aprobada', 1);
+        }
+        else if($campo == "desaprobadas"){
+            $query =  $query -> where('cursadas.aprobada', 2);
+        }
 
-            }
 
-            if($orden == 'anio'){
-                $query->orderBy('asignaturas.anio');
-            }            
-            else if($orden == 'anio_cursada'){
-                $query->orderBy('cursadas.anio_cursada');
-            }
+        if($orden == 'anio'){
+            $query->orderBy('asignaturas.anio');
+        }            
+        else if($orden == 'anio_cursada'){
+            $query->orderBy('cursadas.anio_cursada');
+        }
+        else if($orden == 'anio_desc'){
+            $query->orderBy('asignaturas.anio','desc');
+        }            
+        else if($orden == 'anio_cursada_desc'){
+            $query->orderBy('cursadas.anio_cursada','desc');
+        }
 
         $cursadas = $query->get();
         // lista de examenes aprobados para saber si una cursada

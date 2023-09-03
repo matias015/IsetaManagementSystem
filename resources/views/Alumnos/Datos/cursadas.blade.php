@@ -12,14 +12,15 @@
                   <select class="ordenar" name="orden">
                       <option @selected($filtros['orden'] == 'anio') value="anio">Año carrera</option>
                       <option @selected($filtros['orden'] == 'anio_cursada') value="anio_cursada">Año cursada</option>
+                      <option @selected($filtros['orden'] == 'anio_desc') value="anio_desc">Año carrera desc</option>
+                      <option @selected($filtros['orden'] == 'anio_cursada_desc') value="anio_cursada_desc">Año cursada desc</option>
                   </select>
                   <i class="ti ti-arrows-down-up i_ordenar"></i>
                 </div>
                 
                 <div class="contenedor_filtrar">
                   <select class="filtrar" name="campo">
-                      <option value="ninguno">todo</option>
-                      <option @selected($filtros['campo'] == 'asignatura') value="asignatura">asignatura</option>
+                      <option value="ninguno">Ninguno</option>
                       <option @selected($filtros['campo'] == 'aprobadas') value="aprobadas">aprobadas</option>
                       <option @selected($filtros['campo'] == 'desaprobadas') value="desaprobadas">desaprobadas</option>
                       <option @selected($filtros['campo'] == 'final_aprobado') value="final_aprobado">final aprobado</option>

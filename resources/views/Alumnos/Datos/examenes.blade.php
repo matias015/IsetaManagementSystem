@@ -39,7 +39,7 @@
       <tbody>
         @foreach($examenes as $examen)
         <tr>
-            <td>{{$examen->id}}{{$textFormatService->utf8Minusculas($examen->nombre)}}</td>
+            <td>{{$textFormatService->utf8Minusculas($examen->nombre)}}</td>
             <td>{{$examen->nota}}</td>
             <td>{{$examen->fecha}}</td>
         </tr>
