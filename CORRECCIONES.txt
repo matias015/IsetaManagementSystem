@@ -6,6 +6,7 @@ CUESTIONES:
 - No podemos enviar mails sin un servidor smtp por lo que no podemos pedir registro con mail
     por lo que podrias entrar facilmente en la cuenta de otro xd
     Gmail tiene uno pero ni idea como usarlo y necesitamos una cuenta.
+- No estoy seguro si la pc sea tan rapida para manejar muchas solicitudes si es que entra mucha gente
 
 
 COSAS RARAS:

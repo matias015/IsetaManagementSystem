@@ -1,11 +1,3 @@
-Por hacer:
- - Intenta hacer el acta volante desde 0 simulando flexbox con tablas
- - en el perfil, el select de carrera no tiene boton para hacen la accion, y agregale un toque de padding
- - si te da el tiempo para hoy fijate si podes darle algo de estilo a los filtros de las cursadas, mas que nada para q no esten tan amontonados
-
-creo q de diseño nada, a menos que nos sobre el tiempo
-los mensajes de error y popups dejalos para despues :D
-
 cursada
  - aprobada : si->1, no->2, vacio->3
  - condicion: libre->1, presencial->2, desertor->3, atrasoacadamico->4, otro->5
