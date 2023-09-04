@@ -8,38 +8,39 @@
             @endforeach
         @endif
 
-
+        <div class="perfil_one table">
        <form method="post" action="{{route('admin.alumnos.store')}}">
         @csrf
 
-        <p>dni <input name="dni"></p>
-        <p>nombre <input name="nombre"></p>
-        <p>apellido <input name="apellido"></p>
-        <p>fecha nacimiento <input type="date" name="fecha_nacimiento"></p>
-        <p>ciudad <input value="9 de Julio" name="ciudad"></p>
-        <p>calle <input name="calle"></p>
-        <p>numero <input  name="casa_numero"></p>
-        <p>departamento <input name="dpto"></p>
-        <p>piso <input name="piso"></p>
-        <p>
-            estado civil 
-            <select name="estado_civil">
-                <option selected value="0">soltero</option>
-                <option value="1">casado</option>
+        <span class="perfil_dataname">DNI: <input class="campo_info" name="dni"></span>
+        <span class="perfil_dataname">Nombre: <input class="campo_info" name="nombre"></span>
+        <span class="perfil_dataname">Apellido: <input class="campo_info" name="apellido"></span>
+        <span class="perfil_dataname">Fecha nacimiento: <input class="campo_info" type="date" name="fecha_nacimiento"></span>
+        <span class="perfil_dataname">Ciudad: <input class="campo_info" value="9 de Julio" name="ciudad"></span>
+        <span class="perfil_dataname">Calle: <input class="campo_info" name="calle"></span>
+        <span class="perfil_dataname">Numero: <input class="campo_info"  name="casa_numero"></span>
+        <span class="perfil_dataname">Departamento: <input class="campo_info" name="dpto"></span>
+        <span class="perfil_dataname">Piso: <input class="campo_info" name="piso"></span>
+        <span class="perfil_dataname">
+            Estado civil: 
+            <select class="campo_info" name="estado_civil">
+                <option selected value="0">Soltero</option>
+                <option value="1">Casado</option>
             </select>
-        </p>
-        <p>email <input value="@gmail.com" name="email"></p>
-        <p>titulo anterior <input name="titulo_anterior"></p>
-        <p>becas <input name="becas"></p>
+        </span>
+        <span class="perfil_dataname">Email: <input class="campo_info" value="@gmail.com" name="email"></span>
+        <span class="perfil_dataname">Titulo anterior: <input class="campo_info" name="titulo_anterior"></span>
+        <span class="perfil_dataname">Becas: <input class="campo_info" name="becas"></span>
         
-        <p>observaciones <textarea name="observaciones" cols="30" rows="10"></textarea></p>
+        <span class="perfil_dataname">Observaciones: <textarea name="observaciones" cols="30" rows="10"></textarea></span>
 
-        <p>telefono <input value="2317" name="telefono1"></p>
-        <p>telefono 2 <input name="telefono2"></p>
-        <p>telefono 3<input name="telefono3"></p>
-        <p>codigo postal<input value="6500" name="codigo_postal"></p>
+        <span class="perfil_dataname">Telefono: <input class="campo_info" value="2317" name="telefono1"></span>
+        <span class="perfil_dataname">Telefono 2: <input class="campo_info" name="telefono2"></span>
+        <span class="perfil_dataname">Telefono 3:<input class="campo_info" name="telefono3"></span>
+        <span class="perfil_dataname">Codigo postal:<input class="campo_info" value="6500" name="codigo_postal"></span>
 
-        <input type="submit" value="Crear">
+        <div class="upd"><input class="btn_borrar upd" type="submit" value="Crear"></div>
        </form>
+       </div>
     </div>
 @endsection
