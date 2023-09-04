@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
 
-<body>
+<body class="">
     @include('Componentes.mensaje') 
     @include('Componentes.aside')
     <div class="w-100p p-5">

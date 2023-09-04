@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class Examen extends Model
 {
     protected $table = "examenes";
-    protected $fillable = ['id_mesa','id_asignatura','id_alumno','nota'];
+    protected $fillable = ['id_mesa','id_asignatura','id_alumno','nota','fecha'];
     public $timestamps = false;
     use HasFactory;
 
@@ -25,17 +25,44 @@ class Examen extends Model
         return $this -> belongsTo(Asignatura::class,'id_asignatura');
     }
 
-    static function delAlumnoMasAltas(){
+    static function delAlumnoMasAltas($filtro,$campo,$orden){
         $id = Auth::id();
+        $examenes = null;
 
-        $examenes = Examen::select('asignaturas.id','asignaturas.nombre','nota','id_asignatura','fecha')
+        $query = Examen::select('examenes.aprobado','asignaturas.id','asignaturas.anio','asignaturas.nombre','nota','id_asignatura','fecha')
             -> join('asignaturas', 'asignaturas.id','examenes.id_asignatura')
             -> where('asignaturas.id_carrera', Carrera::getDefault())
-            -> where('id_alumno', $id)
-            -> orderBy('asignaturas.id')
-            -> get();
-        
-
+            -> where('id_alumno', $id);
+            
+            if($filtro){
+                $query =  $query -> where('asignaturas.nombre','LIKE','%'.$filtro.'%');
+            }
+    
+            if($campo == "aprobadas"){
+                $query = $query -> where('nota', '>=',4);
+            }
+            else if($campo == "desaprobadas"){
+                $query =  $query -> where('nota','<', 4);
+            }
+    
+    
+            if($orden == 'anio'){
+                $query->orderBy('asignaturas.anio');
+            }
+            else if($orden == 'asignatura'){
+                $query->orderBy('asignaturas.nombre');
+            }            
+            else if($orden == 'fecha'){
+                $query->orderBy('examenes.fecha');
+            }
+            else if($orden == 'anio_desc'){
+                $query->orderBy('asignaturas.anio','desc');
+            }            
+            else if($orden == 'fecha_desc'){
+                $query->orderBy('examenes.fecha','desc');
+            }
+            
+            $examenes = $query->get();
         $notas_mas_altas = [];
 
         foreach ($examenes as $examen) {

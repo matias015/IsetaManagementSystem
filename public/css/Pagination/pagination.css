@@ -1,7 +1,7 @@
 .pager{
     list-style: none;
     display: flex;
-    gap: 1em;
+    gap: 0.5em;
 }
 
 .disabled{
@@ -15,7 +15,7 @@
 
 .pagination ul li {
     display: inline-block;
-    margin: 0 7px;
+    margin: 0 5px;
     text-align: center;
     font-weight: 500;
     cursor: pointer;
@@ -31,16 +31,16 @@
 }
 
 .pagination .btn1 {
-    margin-right: 30px;
+    margin-right: 15px;
     margin-left: 0;
 }
 
 .no-active {
     background: #ccc;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    line-height: 45px;
+    line-height: 35px;
 }
 
 .no-active:hover {
@@ -53,8 +53,8 @@
     color: white;
     font-weight: 600;
     background: red;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    line-height: 45px;
+    line-height: 35px;
 }

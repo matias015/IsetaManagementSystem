@@ -38,8 +38,8 @@
                     @else
                         <select name="{{$asignatura->id}}">
                             <option selected value="0"></option>
-                            <option value="1">Presencial</option>
-                            <option value="2">Libre</option>
+                            <option value="2">Presencial</option>
+                            <option value="1">Libre</option>
                         </select>
                     @endif
                 </span>

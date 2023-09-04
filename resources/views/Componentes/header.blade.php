@@ -6,9 +6,7 @@
           
           <i class="uil uil-times navCloseBtn"></i>
 
-          <li><a @class(['bold'=>request()->is('alumno/info')]) href="{{route('alumno.info')}}">
-            <i class="uil uil-user"></i>
-            Perfil</a></li>
+          
           <li><a @class(['bold'=>request()->is('alumno/cursadas')]) href="{{route('alumno.cursadas')}}">
             <i class="uil uil-books"></i>
             Cursadas</a></li>
@@ -26,6 +24,7 @@
             </li>
         </ul>
         @auth('web')
+
         <div class="perfil-logout" >
           <div class="perfil-logout-btn" onclick="toggle()"> 
           {{-- <div class="white pointer" onclick="toggle()">--}}
@@ -40,10 +39,15 @@
           </div>
           
           <ul class="perfil-lista shadow-2xl">
-            <li class="perfil-lista-item"><a><i class="ti ti-settings"></i>Ajustes</li></a></li>
+            
+            <li class="perfil-lista-item">
+              <a @class(['bold'=>request()->is('alumno/info')]) href="{{route('alumno.info')}}">
+                <i class="uil uil-user"></i> Perfil
+              </a>
+              </li>
+
             <li class="perfil-lista-item"><a href="/alumno/logout"><i class="ti ti-logout"></i>Cerrar sesion</a></li>
-            <hr>
-            <li class="perfil-lista-item"><a><i class="ti ti-sun"></i>Modo</a></li>
+            
           </ul>
          
         </div> 

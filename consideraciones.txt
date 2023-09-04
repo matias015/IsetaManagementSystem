@@ -8,7 +8,7 @@ los mensajes de error y popups dejalos para despues :D
 
 cursada
  - aprobada : si->1, no->2, vacio->3
- - condicion: libre->1, precencial->2, desertor->3, atrasoacadamico->4, otro->5
+ - condicion: libre->1, presencial->2, desertor->3, atrasoacadamico->4, otro->5
 
 Examenes
  - aprobado: aprobado->1, desaprobado->2, ausente->3

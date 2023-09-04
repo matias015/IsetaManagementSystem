@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', 'alumno/info');
+Route::redirect('/', 'alumno/inscripciones');
 
 
 include_once("alumnos.php");

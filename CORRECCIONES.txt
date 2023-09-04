@@ -2,18 +2,11 @@ Siempre poner correcciones aca en lo posible.
 Anotar cosas que faltan corregir
 
 FALTA CORREGIR:
-- filtro de examanes
-- traducciones de mensajes
-- verificar bien fecha de cursada al rematricularse (2023,2024 etc)
-- agregar boton para filtrar en examenes
-- algunos botones de quitar filtro
 - algo de responsive capaz en rematriculacion
-- cartelito que propuso lucas para motrar equivalencias en la rematriculacion (?
-- agregar pag para ver todas los exámenes (historia) o idear la forma pada verlos todos sin agregar otra pag
-- creo que si entras en la cuanta de alguien que no curso nunca nada, osea no tiene carreras para seleccionar, explota
+- cartelito que propuso lucas para motrar equivalencias en la rematriculacion (no tan urgente)
+- agregar pag para ver todas los exámenes (historia) o idear la forma pada verlos todos sin agregar otra pag (no tan urgente)
 - comprobar que la info de los pdf esten bien y no falte nada
 - terminar díseño de pdfs 
-- agregar validaciones de rematriculacion tambien luego de enviar
 
 COSAS RARAS:
 - LA CARRERA DE MECANICA LIVIANA NO TIENE REGISTRADA NINGUNA EQUIVALENCIA, OSEA NINGUNA MATERIA TIENE EQUIVALENCIAS CON NINGUNA (carita de calabera)
@@ -29,3 +22,18 @@ CORRECCIONES 2/9
 - Si una carrera no tiene materias ya no explota al entrar en rematriculacion
 - Si no tenias ningun examen rendido daba error de division por 0 al calcular el promedio (ahora ya no :D)
 - ahora anda el filtro de cursadas, y podes buscar por filtro y materia simultaneamente
+
+
+3/9
+- filtro de examenes
+- mensajes traducidos
+- validaciones de rematriculacion luego de enviar   
+- la rematriculacion estaba al reves si ponias libre, te anotaba presencial y viceversa xd
+- agregue la config de año de rematriculacion en la config de profes
+- ahora los examenes no muestran hora, solo fecha
+- Ahora si aun no rendiste un examen, la nota ya no es 0.00, dice "Por rendir"
+- Si faltaste a un examen dice "Ausente"
+- El formato de hora y fecha de examenes y desincripcion cambio al de inscripcion
+- El promedio estaba sin redondear, tipo tenias promedio de 9,3501859374 xd
+- Perfil ahora esta en el desplegable junto con cerrar sesion
+- Ahora inscripciones es la pagina default

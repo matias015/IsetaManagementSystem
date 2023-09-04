@@ -97,7 +97,7 @@
                       libre
                       @break
                     @case(2)
-                      precencial  
+                      presencial  
                       @break
                     @case(3)
                       desertor  

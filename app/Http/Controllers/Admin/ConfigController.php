@@ -21,8 +21,9 @@ class ConfigController extends Controller
 
     public function setear(Request $request){
         
-        
+        // dd($request->except('_token'));
         foreach($request->except('_token') as $key => $value){
+            if(!$value) $value = '';
             Configuracion::where('key', $key)
             ->update(['value'=>$value]);
         }

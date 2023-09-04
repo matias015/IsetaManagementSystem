@@ -8,8 +8,11 @@
 </head>
 <body>
     
-    <h1>hola</h1>
     <ul>
+        @if (count($mesas)<1)
+            <h1>No estas inscripto en ningun examen</h1>            
+        @endif
+        
         @foreach ($mesas as $mesa)
             <li>{{$mesa->asignatura->nombre}}</li>
         @endforeach
