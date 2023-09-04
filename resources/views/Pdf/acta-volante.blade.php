@@ -1,4 +1,4 @@
-     <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -54,6 +54,23 @@
             padding: 3px;
         }
 
+        .pos1 {
+            width: 60px;
+        }
+
+        .pos2 {
+            width: auto;
+            text-transform: uppercase;
+        }
+
+        .pos3, .pos4, .pos5 {
+            width: 60px;
+        }
+
+        .pos6 {
+            width: 120px;
+        }
+
         </style>
     </head>
     <body>
@@ -106,14 +123,14 @@
                         <tbody>
                         @foreach($alumnos as $alumno)
                             <tr>
-                                <td></td>
-                                <td style="white-space:nowrap">
-                                    {{$textFormatService->utf8UpperCamelCase($alumno->nombre . ' ' . $alumno->apellido)}}
+                                <td class="pos1"></td>
+                                <td class="pos2" style="white-space:nowrap">
+                                    {{$textFormatService->utf8UpperCamelCase($alumno->apellido . ', ' . $alumno->nombre)}}
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>{{$alumno->dni}}</td>
+                                <td class="pos3"></td>
+                                <td class="pos4"></td>
+                                <td class="pos5"></td>
+                                <td class="pos6">{{$alumno->dni}}</td>
                             </tr>
                         @endforeach
                         @php
@@ -187,4 +204,3 @@
         </table>
 </body>
 </html>
-
