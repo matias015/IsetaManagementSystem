@@ -74,7 +74,7 @@ class AlumnoAuthController extends Controller
         if(!$alumno || !Hash::check($data['password'], $alumno->password)) return redirect()->route('alumno.login')->with('error','Datos de usuario incorrectos');
         
         Auth::login($alumno);
-        return redirect()->route('alumno.info');
+        return redirect()->route('alumno.inscripciones');
     }
 
     /**

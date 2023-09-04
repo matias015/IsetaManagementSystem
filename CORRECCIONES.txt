@@ -1,15 +1,20 @@
 Siempre poner correcciones aca en lo posible.
 Anotar cosas que faltan corregir
 
+
 FALTA CORREGIR:
-- algo de responsive capaz en rematriculacion
-- cartelito que propuso lucas para motrar equivalencias en la rematriculacion (no tan urgente)
-- agregar pag para ver todas los exámenes (historia) o idear la forma pada verlos todos sin agregar otra pag (no tan urgente)
-- comprobar que la info de los pdf esten bien y no falte nada
-- terminar díseño de pdfs 
+- terminar díseño de pdfs [importancia: mucha]
+- comprobar que la info de los pdf esten bien y no falte nada [importancia: mucha]
+- algo de responsive capaz en rematriculacion [importancia: no tanta]
+- cartelito que propuso lucas para motrar equivalencias en la rematriculacion [importancia: no tanto es estetica nomas]
+- agregar pag para ver todos los exámenes (historial) o idear la forma pada verlos todos sin agregar otra pag [importancia: ahora no tanto, en la version final si]
+
 
 COSAS RARAS:
 - LA CARRERA DE MECANICA LIVIANA NO TIENE REGISTRADA NINGUNA EQUIVALENCIA, OSEA NINGUNA MATERIA TIENE EQUIVALENCIAS CON NINGUNA (carita de calabera)
+- Y en general faltan correlativas
+- Hay que avisar que algunos examenes tienen la hora 00:00 por q los q registraban eso antes eran unos vagos de mierda y q no es culpa nuestra.
+- Lo mismo con las cursadas que figuran todas libres
 
 CORRECCIONES 2/9
 
@@ -30,10 +35,13 @@ CORRECCIONES 2/9
 - validaciones de rematriculacion luego de enviar   
 - la rematriculacion estaba al reves si ponias libre, te anotaba presencial y viceversa xd
 - agregue la config de año de rematriculacion en la config de profes
-- ahora los examenes no muestran hora, solo fecha
 - Ahora si aun no rendiste un examen, la nota ya no es 0.00, dice "Por rendir"
 - Si faltaste a un examen dice "Ausente"
-- El formato de hora y fecha de examenes y desincripcion cambio al de inscripcion
+- El formato de fecha y hora de examenes y desincripcion, cambió al de inscripcion.
+    osea en lugar de 4-9-2023 18:30:00, ahora es: 4/9 - 18:30hs
 - El promedio estaba sin redondear, tipo tenias promedio de 9,3501859374 xd
 - Perfil ahora esta en el desplegable junto con cerrar sesion
 - Ahora inscripciones es la pagina default
+- En la parte de admin se salian las cosas de la pantalla por la paginacion.
+    le puse medidas mas chicas y se arreglo. al menos la version de escritorio.
+
