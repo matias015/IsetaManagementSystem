@@ -146,6 +146,10 @@ return [
     |
     */
 
-    'attributes' => ['password'=>'contraseña'],
+    'attributes' => [
+        'password'=>'contraseña',
+        'newPassword' => 'nueva contraseña',
+        'newPassword_confirmation' => 'de confirmacion'
+    ],
 
 ];

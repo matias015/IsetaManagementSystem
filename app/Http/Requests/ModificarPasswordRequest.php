@@ -23,7 +23,8 @@ class ModificarPasswordRequest extends FormRequest
     {
         return [
             'oldPassword' => ['required'],
-            'newPassword' => ['required','confirmed'],
+            'newPassword' => ['required','min:8', 'regex:/^[A-Za-z0-9!@#$%^&*()_+{}|:<>?~-]+$/','max:16'],
+            'newPassword_confirmation' => ['required']
         ];
     }
 }
