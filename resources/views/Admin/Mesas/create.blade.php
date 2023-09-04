@@ -8,65 +8,69 @@
             @endforeach
         @endif
 
-        <select name="carrera" id="carrera_select">
+        <div class="perfil_one table">
+        <span class="perfil_dataname">Carrera:
+        <select class="campo_info" name="carrera" id="carrera_select">
             @foreach ($carreras as $carrera)
                 <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
             @endforeach
         </select>
+        </span>
 
        <form method="post" action="{{route('admin.mesas.store')}}">
         @csrf
 
-        <p>
-            materia 
-            <select id="asignatura_select" name="id_asignatura">
+        <span class="perfil_dataname">
+            Materia:
+            <select class="campo_info" id="asignatura_select" name="id_asignatura">
                 <option value="">selecciona una carrera</option>
             </select>
-        </p>
-        <p>
-            Profesor 
-            <select class="profesor" name="prof_presidente">
+        </span>
+        <span class="perfil_dataname">
+            Profesor: 
+            <select class="profesor campo_info" name="prof_presidente">
                 <option selected value="vacio">vacio/A confirmar</option>
                 @foreach ($profesores as $profesor)
                     <option value="{{$profesor->id}}">{{$profesor->nombre.' '.$profesor->apellido}}</option>
                 @endforeach
             </select>
-        </p>
-        <p>
-            Profesor 1
-            <select class="profesor" name="prof_vocal_1">
+        </span>
+        <span class="perfil_dataname">
+            Profesor 1:
+            <select class="profesor campo_info" name="prof_vocal_1">
                 <option selected value="vacio">vacio/A confirmar</option>
                 @foreach ($profesores as $profesor)
                     <option value="{{$profesor->id}}">{{$profesor->nombre.' '.$profesor->apellido}}</option>
                 @endforeach
             </select>
-        </p>
-        <p>
-            Profesor 2
-            <select class="profesor" name="prof_vocal_2">
+        </span>
+        <span class="perfil_dataname">
+            Profesor 2:
+            <select class="profesor campo_info" name="prof_vocal_2">
                 <option selected value="vacio">vacio/A confirmar</option>
                 @foreach ($profesores as $profesor)
                     <option value="{{$profesor->id}}">{{$profesor->nombre.' '.$profesor->apellido}}</option>
                 @endforeach
             </select>
-        </p>
+            </span>
 
-        <p>
-            Llamado
-            <select name="llamado">
+        <span class="perfil_dataname">
+            Llamado:
+            <select class="campo_info" name="llamado">
                 <option value="1">Primero</option>
                 <option value="2">Segundo</option>
             </select>
-        </p>
+            </span>
 
-        <p>
-            Fecha
-            <input type="datetime-local" name="fecha">
-        </p>
+        <span class="perfil_dataname">
+            Fecha:
+            <input class="campo_info" type="datetime-local" name="fecha">
+        </span>
 
 
-        <input type="submit" value="Crear">
+        <div class="upd"><input class="btn_borrar upd" type="submit" value="Crear"></div>
        </form>
+    </div>
     </div>
 
     <script src="{{asset('js/obtener-materias.js')}}"></script>
