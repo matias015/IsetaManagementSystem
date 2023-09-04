@@ -24,7 +24,7 @@ class AlumnoRegistroRequest extends FormRequest
         return [
             'email' => ['required','email'],
             'dni' => ['required','numeric','min:7'],
-            'password' => ['required','min:6', 'regex:/^[A-Za-z0-9!@#$%^&*()_+{}|:<>?~-]+$/','max:16']
+            'password' => ['required','min:8', 'regex:/^[A-Za-z0-9!@#$%^&*()_+{}|:<>?~-]+$/','max:16']
         ];
     }
 }

@@ -18,10 +18,10 @@
       <section class="grid-1 md-grid-2 lg-grid-4  gap-2">
         <ul class="box flex-col items-center md-items-start">
           <li class="link_name bolder font-4">Explorar</li>
-          <li><a href="#">Perfil</a></li>
-          <li><a href="#">Cursadas</a></li>
-          <li><a href="#">Examenes</a></li>
-          <li><a href="#">Inscribir</a></li>
+          <li><a href="{{route('alumno.info')}}">Perfil</a></li>
+          <li><a href="{{route('alumno.cursadas')}}">Cursadas</a></li>
+          <li><a href="{{route('alumno.examenes')}}">Examenes</a></li>
+          <li><a href="{{route('alumno.inscripciones')}}">Inscribir</a></li>
         </ul>
         <ul class="box flex-col items-center md-items-start">
           <li class="link_name bolder font-4">Telefono</li>
