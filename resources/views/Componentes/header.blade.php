@@ -20,7 +20,7 @@
               <a @class([
                 'bold' => request()->is('alumno/rematriculacion/carrera'),
                 'bold' => request()->is('alumno/rematriculacion')
-              ]) href="{{route('alumno.rematriculacion.carrera')}}"><i class="uil uil-estate"></i>Rematriculacion</a>
+              ]) href="{{route('alumno.rematriculacion.carrera')}}"><i class="ti ti-clipboard-text"></i>Rematriculacion</a>
             </li>
         </ul>
         @auth('web')
