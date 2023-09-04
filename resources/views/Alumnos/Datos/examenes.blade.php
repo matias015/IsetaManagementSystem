@@ -5,10 +5,15 @@
     <section class="table">
 <div class="table__header">
           <h1>Examenes</h1>
-          <p>Promedio: {{$promedio}}</p>
+          
           <form class="none md-block" action="{{route('alumno.examenes')}}">
             <div class="tabla_botonera">
+              <div >
+                <p class="promedio">Promedio: {{$promedio}}</p>
+              </div>
+              
               <div class="contenedor_ordenar">
+                <span>Ordenar por</span>
                 <select class="ordenar" name="orden">
                   <option @selected($filtros['orden'] == 'asignatura') value="asignatura">Asignatura</option>
                     <option @selected($filtros['orden'] == 'anio') value="anio">Año carrera</option>
@@ -16,20 +21,17 @@
                     <option @selected($filtros['orden'] == 'anio_desc') value="anio_desc">Año carrera desc</option>
                     <option @selected($filtros['orden'] == 'fecha_desc') value="fecha_desc">Año cursada desc</option>
                 </select>
-                <i class="ti ti-arrows-down-up i_ordenar"></i>
               </div>
               <div class="none md-block contenedor_filtrar">
+                <span>Filtrar por</span>
                 <select  name="campo" class="filtrar">
                   <option @selected($filtros['campo'] == 'aprobadas') value="aprobadas">Aprobadas</option>
                   <option @selected($filtros['campo'] == 'desaprobadas') value="desaprobadas">Desaprobadas</option>
                 </select>
-                <i class="ti ti-adjustments i_filtrar"></i>
               </div>
                 
               <div class="contenedor_filtrado">
                 <input name="filtro" class="filtrado-busqueda" value="{{$filtros['filtro']}}">
-                <i class="ti ti-search i_lupa"></i>
-                <i class="ti ti-x i_borrar"></i>
               </div>
               <div class="contenedor_btn-busqueda">
                 <input class="btn-buscador" type="submit" value="Buscar">
