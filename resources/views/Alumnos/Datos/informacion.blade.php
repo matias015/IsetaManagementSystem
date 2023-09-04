@@ -17,7 +17,7 @@
                 </option>
             @endforeach
           </select>
-          <button class="border-none p-2 bg-white rounded shadow-sm btn-doscolores">Cambiar</button>
+          <button class="border-none p-2 btn_edit">Cambiar</button>
         </form>
 
       </div>
