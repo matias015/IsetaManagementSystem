@@ -32,6 +32,7 @@ FALTA CORREGIR:
     si son tipos que puede elegir el alumno y que mierda significan [importancia: para testeo no tanto, si en la vers final]
 - boton atras en rematriculacion
 - boton quitar filtro para alumnos en cursadas y examanes (igual no si importa como en el admin que si es clave)
+- en la parte de admin cambiar nombres de campos, porque dice cosas como, el campo id_asignatura es obligatorio, en ves de el campo asignatura es obligatorio y asi con varios
 
 
 
@@ -69,3 +70,5 @@ CORRECCIONES 2/9
 - Ahora andan los menus responsive :D
 - pdf de acta volante corregido como queria luis
 - acomodado filtrar y ordenar para alumnos (promedio integrado a botonera)
+- no se que habia hecho y no andaban las traducciones, ahora si
+- el cambio de contraseña no mostraba bien los msjs, y a veces mostraba el cartel de debug como en admin/alumnos cuando te dice que no hagas cagada xd
