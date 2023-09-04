@@ -7,32 +7,35 @@
                 <p>{{$error}}</p>
             @endforeach
         @endif
-
+        <div class="perfil_one table">
 
        <form method="post" action="{{route('admin.egresados.store')}}">
         @csrf
 
        
-        <h2>alumno</h2>
-        <select name="id_alumno">
+        <span class="perfil_dataname">Alumno:
+        <select class="campo_info" name="id_alumno">
             @foreach ($alumnos as $alumno)
                 <option value="{{$alumno->id}}">{{$textFormatService->utf8UpperCamelCase($alumno->nombre.' '.$alumno->apellido)}}</option>
             @endforeach
         </select>
-<br>
-<h2>carrera</h2>
-        <select name="id_carrera">
+        </span>
+    
+        <span class="perfil_dataname">Carrera:
+        <select class="campo_info" name="id_carrera">
             @foreach ($carreras as $carrera)
                 <option value="{{$carrera->id}}">{{$textFormatService->utf8minusculas($carrera->nombre)}}</option>
             @endforeach
         </select>
+        </span>
 
-        <p>año inscripcion <input name="anio_inscripcion"></p>
-        <p>indice_libro_matriz <input name="indice_libro_matriz"></p>
-        <p>anio_finalizacion <input name="anio_finalizacion"></p>
+        <span class="perfil_dataname">Año inscripcion: <input class="campo_info"  name="anio_inscripcion"></span>
+        <span class="perfil_dataname">Indice libro matriz: <input class="campo_info" name="indice_libro_matriz"></span>
+        <span class="perfil_dataname">Año finalizacion: <input class="campo_info" name="anio_finalizacion"></span>
 
-        <br><br>
-        <input type="submit" value="Crear">
+
+        <div class="upd"><input class="btn_borrar upd" type="submit" value="Crear"></div>
        </form>
+        </div>
     </div>
 @endsection
