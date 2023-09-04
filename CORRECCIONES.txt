@@ -2,22 +2,31 @@ Siempre poner correcciones aca en lo posible.
 Anotar cosas que faltan corregir
 
 
+CUESTIONES:
+- No podemos enviar mails sin un servidor smtp por lo que no podemos pedir registro con mail
+    por lo que podrias entrar facilmente en la cuenta de otro xd
+    Gmail tiene uno pero ni idea como usarlo y necesitamos una cuenta.
+
+
 FALTA CORREGIR:
 - terminar díseño de pdfs [importancia: mucha]
 - comprobar que la info de los pdf esten bien y no falte nada [importancia: mucha]
 - algo de responsive capaz en rematriculacion [importancia: no tanta]
 - cartelito que propuso lucas para motrar equivalencias en la rematriculacion [importancia: no tanto es estetica nomas]
 - agregar pag para ver todos los exámenes (historial) o idear la forma pada verlos todos sin agregar otra pag [importancia: ahora no tanto, en la version final si]
+- averiguar los otros tipos de cursada ademas de libre y presencial, "desertor", "atrasoacadamico" y "otro".
+    si son tipos que puede elegir el alumno y que mierda significan [importancia: para testeo no tanto, si en la vers final]
 
 
 COSAS RARAS:
 - LA CARRERA DE MECANICA LIVIANA NO TIENE REGISTRADA NINGUNA EQUIVALENCIA, OSEA NINGUNA MATERIA TIENE EQUIVALENCIAS CON NINGUNA (carita de calabera)
 - Y en general faltan correlativas
-- Hay que avisar que algunos examenes tienen la hora 00:00 por q los q registraban eso antes eran unos vagos de mierda y q no es culpa nuestra.
+- Hay que avisar que algunos examenes tienen la hora 00:00 por q los q registraban eso antes 
+    eran unos vagos de mierda y q no es culpa nuestra.
 - Lo mismo con las cursadas que figuran todas libres
 
-CORRECCIONES 2/9
 
+CORRECCIONES 2/9
 - En la pagina para ver tus cursadas ahora deberia mostrar bien que finales rendiste
 - Arreglado el select para elegir una carrera en la pag de info
 - Ahora las cursadas si se muestran de acuerdo a la carrera que seleccionaste
