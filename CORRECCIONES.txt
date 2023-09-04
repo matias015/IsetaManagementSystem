@@ -30,6 +30,8 @@ FALTA CORREGIR:
 - agregar pag para ver todos los exámenes (historial) o idear la forma pada verlos todos sin agregar otra pag [importancia: ahora no tanto, en la version final si]
 - averiguar los otros tipos de cursada ademas de libre y presencial, "desertor", "atrasoacadamico" y "otro".
     si son tipos que puede elegir el alumno y que mierda significan [importancia: para testeo no tanto, si en la vers final]
+- boton atras en rematriculacion
+- boton quitar filtro para alumnos en cursadas y examanes (igual no si importa como en el admin que si es clave)
 
 
 
@@ -65,3 +67,5 @@ CORRECCIONES 2/9
 
 4/9
 - Ahora andan los menus responsive :D
+- pdf de acta volante corregido como queria luis
+- acomodado filtrar y ordenar para alumnos (promedio integrado a botonera)
