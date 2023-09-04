@@ -71,3 +71,4 @@ CORRECCIONES 2/9
 - pdf de acta volante corregido como queria luis
 - acomodado filtrar y ordenar para alumnos (promedio integrado a botonera)
 - no se que habia hecho y no andaban las traducciones, ahora si
+- el cambio de contraseña no mostraba bien los msjs, y a veces mostraba el cartel de debug como en admin/alumnos cuando te dice que no hagas cagada xd
