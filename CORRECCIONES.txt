@@ -8,6 +8,19 @@ CUESTIONES:
     Gmail tiene uno pero ni idea como usarlo y necesitamos una cuenta.
 
 
+COSAS RARAS:
+- LA CARRERA DE MECANICA LIVIANA NO TIENE REGISTRADA NINGUNA EQUIVALENCIA, OSEA NINGUNA MATERIA TIENE EQUIVALENCIAS CON NINGUNA (carita de calabera)
+- Y en general faltan correlativas
+
+
+RECORDAR
+- Setear restricciones de usuario, que logueandote como alumno NO puedas acceder al admin.
+- Setear una password de admin o bloquear el acceso mientras hagamos la prueba
+- Ver que hacemos con lo del mail
+- Hay que avisar que algunos examenes tienen la hora 00:00 por q los q registraban eso antes 
+    eran unos vagos de mierda y que no es culpa nuestra.
+- Lo mismo con las cursadas que figuran todas libres
+
 FALTA CORREGIR:
 - terminar díseño de pdfs [importancia: mucha]
 - comprobar que la info de los pdf esten bien y no falte nada [importancia: mucha]
@@ -18,12 +31,7 @@ FALTA CORREGIR:
     si son tipos que puede elegir el alumno y que mierda significan [importancia: para testeo no tanto, si en la vers final]
 
 
-COSAS RARAS:
-- LA CARRERA DE MECANICA LIVIANA NO TIENE REGISTRADA NINGUNA EQUIVALENCIA, OSEA NINGUNA MATERIA TIENE EQUIVALENCIAS CON NINGUNA (carita de calabera)
-- Y en general faltan correlativas
-- Hay que avisar que algunos examenes tienen la hora 00:00 por q los q registraban eso antes 
-    eran unos vagos de mierda y q no es culpa nuestra.
-- Lo mismo con las cursadas que figuran todas libres
+
 
 
 CORRECCIONES 2/9
@@ -54,3 +62,5 @@ CORRECCIONES 2/9
 - En la parte de admin se salian las cosas de la pantalla por la paginacion.
     le puse medidas mas chicas y se arreglo. al menos la version de escritorio.
 
+4/9
+- Ahora andan los menus responsive :D

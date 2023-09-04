@@ -2,7 +2,7 @@
     <nav class="nav items-center">
         <i class="uil uil-bars navOpenBtn"></i>
         <a href="#" class="logo">ISETA</a>
-        <ul class="nav-links">
+        <ul class="nav-links left-0 left-hide md-left-0">
           
           <i class="uil uil-times navCloseBtn"></i>
 
@@ -26,7 +26,7 @@
         @auth('web')
 
         <div class="perfil-logout" >
-          <div class="perfil-logout-btn" onclick="toggle()"> 
+          <div class="perfil-logout-btn"> 
           {{-- <div class="white pointer" onclick="toggle()">--}}
             <!--<div class="perfil-imagen">
               
@@ -53,15 +53,7 @@
         </div> 
         @endauth
     </nav>
-    <script>
-    let perfilDropdownList = document.querySelector(".perfil-lista")
-let btn = document.querySelector(".perfil-logout-btn")
-
-const toggle = () => perfilDropdownList.classList.toggle("active")
-
-window.addEventListener('click', function(e) {
-
-    if (!btn.contains(e.target))perfilDropdownList.classList.remove('active')
-    });
-    </script>
+    
 </header>
+
+<script src="{{asset('js/nav-menu.js')}}"></script>

@@ -530,6 +530,7 @@ table tbody tr.active-row {
 .left-3{left: 0.75em;}
 .left-4{left: 1em;}
 .left-5{left: 1.25em;}
+.left-hide{left: -100%;}
 
 .right-0{right: 0;}
 .right-1{right: 0.25em;}
@@ -761,6 +762,14 @@ table tbody tr.active-row {
     .sm-font-11 { font-size: 56px; }
     .sm-font-12 { font-size: 68px; }
 
+    .sm-left-0{left: 0;}
+    .sm-left-1{left: 0.25em;}
+    .sm-left-2{left: 0.5em;}
+    .sm-left-3{left: 0.75em;}
+    .sm-left-4{left: 1em;}
+    .sm-left-5{left: 1.25em;}
+    .sm-left-hide{left: -100%;}
+
 }
 
 @media screen and (min-width: 768px) {
@@ -948,6 +957,14 @@ table tbody tr.active-row {
     .md-font-10 { font-size: 48px; }
     .md-font-11 { font-size: 56px; }
     .md-font-12 { font-size: 68px; }
+
+    .md-left-0{left: 0;}
+    .md-left-1{left: 0.25em;}
+    .md-left-2{left: 0.5em;}
+    .md-left-3{left: 0.75em;}
+    .md-left-4{left: 1em;}
+    .md-left-5{left: 1.25em;}
+    .md-left-hide{left: -100%;}
 }
 @media screen and (min-width: 1024px) {
     .lg-grid-1 {display: grid;grid-template-columns: 1fr;}
@@ -1132,4 +1149,13 @@ table tbody tr.active-row {
     .lg-overflowx-scroll{overflow-x: scroll;}
     .lg-overflowy-hidden{overflow-y: hidden;}
     .lg-overflowy-scroll{overflow-y: scroll;}
+
+    .lg-left-0{left: 0;}
+    .lg-left-1{left: 0.25em;}
+    .lg-left-2{left: 0.5em;}
+    .lg-left-3{left: 0.75em;}
+    .lg-left-4{left: 1em;}
+    .lg-left-5{left: 1.25em;}
+    .lg-left-hide{left: -100%;}
+
 }
