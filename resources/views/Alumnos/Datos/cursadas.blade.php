@@ -9,16 +9,17 @@
               <div class="tabla_botonera">
 
                 <div class="contenedor_ordenar">
+                  <span>Ordenar por</span>
                   <select class="ordenar" name="orden">
                       <option @selected($filtros['orden'] == 'anio') value="anio">Año carrera</option>
                       <option @selected($filtros['orden'] == 'anio_cursada') value="anio_cursada">Año cursada</option>
                       <option @selected($filtros['orden'] == 'anio_desc') value="anio_desc">Año carrera desc</option>
                       <option @selected($filtros['orden'] == 'anio_cursada_desc') value="anio_cursada_desc">Año cursada desc</option>
                   </select>
-                  <i class="ti ti-arrows-down-up i_ordenar"></i>
                 </div>
                 
                 <div class="contenedor_filtrar">
+                  <span>Filtrar por</span>
                   <select class="filtrar" name="campo">
                       <option value="ninguno">Ninguno</option>
                       <option @selected($filtros['campo'] == 'aprobadas') value="aprobadas">aprobadas</option>
@@ -26,12 +27,9 @@
                       <option @selected($filtros['campo'] == 'final_aprobado') value="final_aprobado">final aprobado</option>
                       <option @selected($filtros['campo'] == 'final_desaprobado') value="final_desaprobado">final desaprobado</option>
                     </select>
-                    <i class="ti ti-adjustments i_filtrar"></i>
                 </div>
                 <div class="contenedor_filtrado">
                       <input class="filtrado-busqueda" value="{{$filtros['filtro']}}" name="filtro" type="text">
-                      <i class="ti ti-search i_lupa"></i>
-                      <i class="ti ti-x i_borrar"></i>
                 </div>
 
                 <div class="contenedor_btn-busqueda">
