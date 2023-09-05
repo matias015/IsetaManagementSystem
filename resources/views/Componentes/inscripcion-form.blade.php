@@ -82,7 +82,7 @@
             <td class="llamado_2">
             <input name="mesa" value="{{$materia->mesas[1]->id}}" type="radio">
             @php
-                $stringDateTime = $materia->mesas[0]->fecha;
+                $stringDateTime = $materia->mesas[1]->fecha;
 
                 // Convertir el string a un objeto DateTime
                 $dateObj = new DateTime($stringDateTime);

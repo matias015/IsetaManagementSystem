@@ -8,9 +8,9 @@
           
           <form class="none md-block" action="{{route('alumno.examenes')}}">
             <div class="tabla_botonera">
-              <div >
+              {{-- <div >
                 <p class="promedio">Promedio: {{$promedio}}</p>
-              </div>
+              </div> --}}
               
               <div class="contenedor_ordenar">
                 <span>Ordenar por</span>

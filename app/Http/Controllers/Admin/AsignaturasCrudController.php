@@ -101,8 +101,7 @@ class AsignaturasCrudController extends Controller
 
         return view('Admin.Asignaturas.edit', [
             'asignatura' => Asignatura::find($asignatura),
-            'alumnos' => $alumnos,
-            'carreras' => Carrera::all()
+            'alumnos' => $alumnos
         ]);
     }
 

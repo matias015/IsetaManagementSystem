@@ -13,6 +13,8 @@
         <hr>
         <li><a class="text-blue-600" href="{{route('admin.admins.index')}}  "><i class="ti ti-user-cog"></i>      Admins      </a></li>
         <li><a class="text-blue-600" href="{{route('admin.config.index')}}  "><i class="ti ti-settings"></i>      Configuracion      </a></li>
+        
+        <li class="none">    
             <i class="ti ti-sun-filled"></i>
             <i class="ti ti-moon"></i>
             <div id="mode-dark_light">

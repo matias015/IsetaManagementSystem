@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\AdminCorrelativasController;
 use App\Http\Controllers\Admin\AlumnoCrudController;
 use App\Http\Controllers\Admin\AsignaturasCrudController;
 use App\Http\Controllers\Admin\CarrerasCrudController;
@@ -88,5 +89,9 @@ Route::prefix('admin')->group(function(){
 
     Route::get('config', [ConfigController::class, 'index'])->name('admin.config.index');
     Route::post('config', [ConfigController::class, 'setear'])->name('admin.config.set');
+
+    Route::post('correlativa/{asignatura}',[AdminCorrelativasController::class, 'agregar'])->name('correlativa.agregar');
+
+    Route::delete('correlativa/{asignatura}',[AdminCorrelativasController::class, 'eliminar'])->name('correlativa.eliminar');
 
 });
