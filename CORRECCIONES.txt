@@ -72,3 +72,9 @@ CORRECCIONES 2/9
 - acomodado filtrar y ordenar para alumnos (promedio integrado a botonera)
 - no se que habia hecho y no andaban las traducciones, ahora si
 - el cambio de contraseña no mostraba bien los msjs, y a veces mostraba el cartel de debug como en admin/alumnos cuando te dice que no hagas cagada xd
+
+5/9
+- se pueden agregar y eliminar correlativas
+- ahora se muestra bien la fecha de 2do llamado
+- oculte el boton de modo oscuro
+- sacamos el promedio de examenes y lo ponemos despues en otra pagina especifica para ver datos academicos o algo asi
