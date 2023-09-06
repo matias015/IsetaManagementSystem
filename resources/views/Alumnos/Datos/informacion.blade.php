@@ -71,13 +71,13 @@
         <div class="perfil_subtop"><h2>Academico</h2></div>
         <div class=" perfil_descargable"> <!---flex just-between----->
           <span>Informe analitico</span> <!-- class="font-3"--->
-          <a href="/alumno/analitico "><button><i class="ti ti-eye"></i>Observar</button></a> <!--class="white rounded-1 border-none p-3  bg-indigo-900-->
+          <a href="/alumno/analitico" target="_blank"><button><i class="ti ti-eye"></i>Observar</button></a> <!--class="white rounded-1 border-none p-3  bg-indigo-900-->
 
         </div>
         <div class="perfil_descargable"> <!--flex just-between items-center-->
           <span class="md-none font-3">Const. inscripción</span> 
           <span>Constancia de inscripción a mesas de examen</span><!-- class="none md-block font-3"--->
-          <a href="{{route('alumno.constancia')}}"><button><i class="ti ti-eye"></i>Observar</button></a> <!--- class="white rounded-1 border-none p-3  bg-indigo-900"--->
+          <a href="{{route('alumno.constancia')}}" target="_blank"><button><i class="ti ti-eye"></i>Observar</button></a> <!--- class="white rounded-1 border-none p-3  bg-indigo-900"--->
         </div>
         
       </div>
