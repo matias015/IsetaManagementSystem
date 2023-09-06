@@ -59,7 +59,7 @@
         }
 
         .pos2 {
-            width: auto;
+            width: 300px;
             text-transform: uppercase;
         }
 
