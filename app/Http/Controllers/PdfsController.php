@@ -1,6 +1,8 @@
 <?php
 
+
 namespace App\Http\Controllers;
+
 
 use App\Models\Asignatura;
 use App\Models\Carrera;
@@ -10,10 +12,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Mockery\CountValidator\Exact;
 
+
 class PdfsController extends Controller
 {
     function constanciaMesas(){
         $alumno = Auth::id();
+
 
         $mesas = Examen::where('id_alumno', $alumno)
             -> join('mesas','mesas.id','examenes.id_mesa')
@@ -21,35 +25,55 @@ class PdfsController extends Controller
             -> get();
 
 
+
+
         $pdf = Pdf::loadView('pdf.constanciaMesas', ['mesas' => $mesas]);
         return $pdf->stream('invoice.pdf');
     }
 
+
     function analitico(){
         $alumno = Auth::id();
 
+
         $id_carrera = Carrera::getDefault();
 
-        $materias_totales = Asignatura::where('id_carrera', $id_carrera)->count();
         
- 
+        $materias = Asignatura::where('id_carrera', $id_carrera)->get();
+       
+         $materiasExamenes = [];
         
-        $examenes = Examen::selectRaw('asignaturas.nombre, MAX(examenes.nota) as nota, asignaturas.anio')
+        $examenes = Examen::selectRaw('examenes.id_asignatura, asignaturas.nombre, MAX(examenes.nota) as nota, asignaturas.anio, examenes.fecha')
         -> from('asignaturas')
         -> join('examenes','examenes.id_asignatura','=','asignaturas.id')
         -> where('examenes.id_alumno', Auth::id())
         -> where('asignaturas.id_carrera', Carrera::getDefault())
         -> where('examenes.nota', '>=', 4)
-        -> groupBy('asignaturas.nombre','asignaturas.anio')
-        -> get(); 
+        -> groupBy('examenes.id_asignatura','asignaturas.nombre','asignaturas.anio','examenes.fecha')
+        -> get();
+        
 
-        $porcentaje = number_format((float) count($examenes) / $materias_totales * 100, 2, '.', ''). '%';
-
+        $porcentaje = number_format((float) count($examenes) / count($materias) * 100, 2, '.', ''). '%';
+        ;
+        foreach($materias as $key => $materia){
+            foreach($examenes as $examen){
+                if($materia->id == $examen->id_asignatura){
+                   
+                    $copia = $materia;
+                    $copia->{'examen'} = $examen;
+                    $materia = $copia;
+                    continue;
+                }
+            }
+            $materiasExamenes[] = $materia;
+        }
+        
         $pdf = Pdf::loadView('pdf.analitico', [
-            'examenes' => $examenes,
+            'materias' => $materias,
             'carrera' => Carrera::where('id',$id_carrera)->first()->nombre,
             'porcentaje' => $porcentaje
         ]);
+
         return $pdf->stream('invoice.pdf');
     }
 }

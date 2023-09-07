@@ -2,11 +2,14 @@ const carreraSelect = document.querySelector('#carrera_select')
 const asignaturaSelect = document.querySelector('#asignatura_select')
 
 carreraSelect.addEventListener('change',function(){
+    
     asignaturaSelect.innerHTML = '';
-
-    fetch(BASE_URL + `api/a/${carreraSelect.value}`)
+    fetch(`/api/a/${carreraSelect.value}`)
         .then( data => data.json())
         .then(data=>{
+            console.log(4);
+
+            console.log(data);
             data.forEach(element => {
                 const option = document.createElement('option')
 
@@ -16,5 +19,5 @@ carreraSelect.addEventListener('change',function(){
                 asignaturaSelect.appendChild(option)
             });
             
-        })
+        }).catch(e=>console.log(e))
 })
