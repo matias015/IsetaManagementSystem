@@ -335,7 +335,10 @@ th {
 }
 
 .contenedor_ordenar, .contenedor_filtrar, .contenedor_filtrado {
+    position: relative;
     font-size: 13px;
+    display: flex;
+    align-items: center;
 }
 
 .filtrar, .ordenar {
@@ -363,12 +366,23 @@ th {
 .i_filtrar, .i_ordenar {
     color: #000;
     position: absolute;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    font-size: 16px;
     width: 20px;
     height: 20px;
-    left: 12px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
+}
+
+.i_filtrar {
+    left: 82px;
+}
+
+.i_ordenar {
+    left: 100px;
 }
 
 .contenedor_filtrado {
