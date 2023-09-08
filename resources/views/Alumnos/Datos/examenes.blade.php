@@ -21,6 +21,7 @@
                     <option @selected($filtros['orden'] == 'anio_desc') value="anio_desc">Año carrera desc</option>
                     <option @selected($filtros['orden'] == 'fecha_desc') value="fecha_desc">Año cursada desc</option>
                 </select>
+                <i class="ti ti-arrows-down-up i_ordenar"></i>
               </div>
               <div class="none md-block contenedor_filtrar">
                 <span>Filtrar por</span>
@@ -28,10 +29,11 @@
                   <option @selected($filtros['campo'] == 'aprobadas') value="aprobadas">Aprobadas</option>
                   <option @selected($filtros['campo'] == 'desaprobadas') value="desaprobadas">Desaprobadas</option>
                 </select>
+                <i class="ti ti-adjustments i_filtrar"></i>
               </div>
                 
               <div class="contenedor_filtrado">
-                <input name="filtro" class="filtrado-busqueda" value="{{$filtros['filtro']}}">
+                <input name="filtro" class="filtrado-busqueda" value="{{$filtros['filtro']}}" placeholder="Encontrar filtro...">
               </div>
               <div class="contenedor_btn-busqueda">
                 <input class="btn-buscador" type="submit" value="Buscar">
