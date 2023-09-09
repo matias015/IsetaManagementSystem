@@ -41,6 +41,10 @@ class ConfigSeeder extends Seeder
             'key' => 'anio_remat',
             'value' => "2024"
         ]);
+        Configuracion::create([
+            'key' => 'fecha_limite_desrematriculacion',
+            'value' => "01-02-23"
+        ]);
 
     }
 }

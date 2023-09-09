@@ -62,6 +62,7 @@
                 <th>Condicion</th>
                 <th>Año cursada</th>
                 <th>Final</th>
+                <th>A</th>
               </tr>
             </thead>
             <tbody>
@@ -73,8 +74,8 @@
                     @continue
                   @endif
               <tr>
-                <td>{{$cursada->asignatura->anio+1}}</td>
-                <td>{{$cursada->asignatura->nombre}}</td>
+                <td>{{$cursada->anio+1}}</td>
+                <td>{{$cursada->nombre}}</td>
                 <td>
                     <p @class([
                         'status' => true,
@@ -115,6 +116,13 @@
             @else
                 <td>Desprobado / Sin rendir</td>
             @endif
+            <td>
+              <form method="POST" action="{{route('alumno.rematriculacion.delete', ['cursada'=>$cursada->id])}}">
+                @csrf
+                @method('delete')
+                <button class="rounded px-2 py-1 bg-red-400">Bajarse</button>
+              </form>
+            </td>
               </tr>
             @endforeach
               

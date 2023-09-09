@@ -34,6 +34,19 @@ FALTA CORREGIR:
 - boton quitar filtro para alumnos en cursadas y examanes (igual no si importa como en el admin que si es clave)
 - en la parte de admin cambiar nombres de campos, porque dice cosas como, el campo id_asignatura es obligatorio, en ves de el campo asignatura es obligatorio y asi con varios
 
+De Luis:
+- Evaluar si el alumno se puede desmatricular 
+    o que haya un rango de tiempo para desmatricularse,
+    si sin querer se matricula en una no hay vuelta atras.
+- En cada asignatura hay un listado de todos los alumnos que estan matriculados
+    eso es lo que necesitan los preceptores tambien, que lo puedan bajar de ahi.
+    o que se les pase a alguna carpeta, etc.
+- Mostrar las carreras vigentes solamente.
+- Ver la posibilidad de hacer un backup de la base de datos, evaluar la periodicidad.
+- Ver algun plan de contingencias.
+
+
+
 
 
 
@@ -78,3 +91,8 @@ CORRECCIONES 2/9
 - ahora se muestra bien la fecha de 2do llamado
 - oculte el boton de modo oscuro
 - sacamos el promedio de examenes y lo ponemos despues en otra pagina especifica para ver datos academicos o algo asi
+
+
+9/9
+- Ahora te podes bajar de la rematriculacion hasta una fecha limite
+- 

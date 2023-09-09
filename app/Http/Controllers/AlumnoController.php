@@ -115,7 +115,8 @@ class AlumnoController extends Controller
         $porPagina = 15;
 
         // cursadas del alumno de la carrera seleccionada
-        $query = Cursada::where('id_alumno', Auth::id())
+        $query = Cursada::select('cursadas.id','cursadas.aprobada','cursadas.condicion','asignaturas.nombre','asignaturas.anio')
+            ->where('id_alumno', Auth::id())
             -> where('asignaturas.id_carrera', Carrera::getDefault(Auth::id())) 
             -> join('asignaturas','asignaturas.id','cursadas.id_asignatura');
 
@@ -152,7 +153,7 @@ class AlumnoController extends Controller
             -> where('examenes.id_alumno',Auth::id())
             -> orderBy('examenes.id_asignatura')            
             -> get()-> pluck('id_asignatura')-> toArray();
-
+        // \dd($cursadas);
         return view('Alumnos.Datos.cursadas', [
             'cursadas' => $cursadas, 
             'examenesAprobados' => $examenesAprobados,
@@ -487,4 +488,18 @@ class AlumnoController extends Controller
         }
         return redirect()->back()->with('mensaje','Te has rematriculado correctamente');       
     }
+
+    function bajar_rematriculacion(Request $request, Cursada $cursada){
+        if($cursada->aprobada != 3) return redirect()->back()->with('error','ya cursada');
+        
+        $config = Configuracion::todas();
+
+        if(DiasHabiles::desdeHoyHasta($config['fecha_limite_desrematriculacion'])<=0){
+            return redirect()->back()->with('error','ya paso el limite de tiempo');
+        }
+
+        $cursada->delete();
+        return redirect()->back()->with('mensaje','Se ha eliminado la cursada');
+    }
+
 }
