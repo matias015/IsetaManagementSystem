@@ -45,7 +45,7 @@ class AlumnoAuthController extends Controller
         // si existe el correo y tiene password a 0
         $alumno = Alumno::existeSinPassword($data);
         
-        if(!$alumno ) return redirect()->back()->with('error','mail y dni no coinciden o ya esta registrado');
+        if(!$alumno ) return redirect()->back()->withInput()->with('error','mail y dni no coinciden o ya esta registrado');
 
         // setea password 
         $alumno -> password = bcrypt($data['password']);
@@ -71,7 +71,7 @@ class AlumnoAuthController extends Controller
 
         $alumno = Alumno::where('email',$data['email'])->first();
 
-        if(!$alumno || !Hash::check($data['password'], $alumno->password)) return redirect()->route('alumno.login')->with('error','Datos de usuario incorrectos');
+        if(!$alumno || !Hash::check($data['password'], $alumno->password)) return redirect()->route('alumno.login')->withInput()->with('error','Datos de usuario incorrectos');
         
         Auth::login($alumno);
         return redirect()->route('alumno.inscripciones');

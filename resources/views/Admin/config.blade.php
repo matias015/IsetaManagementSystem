@@ -15,6 +15,8 @@
             <p>Fechas de rematriculacion <input type="date" name="fecha_final_rematriculacion" value="{{$configuracion['fecha_final_rematriculacion'] ? $configuracion['fecha_final_rematriculacion'] : ''}}" name="fecha_final_rematriculacion"></p>
             <p>Fechas de rematriculacion <input type="number" name="anio_remat" value="{{$configuracion['anio_remat'] ? $configuracion['anio_remat'] : ''}}" name="anio_remat"></p>
             <p>Fechas limite para revertir rematriculacion <input type="date" name="fecha_limite_desrematriculacion" value="{{$configuracion['fecha_limite_desrematriculacion'] ? $configuracion['fecha_limite_desrematriculacion'] : ''}}"></p>
+            <p>Diferencia maxima entre llamado 1 y 2 en dias <input type="number" name="diferencia_llamados" value="{{$configuracion['diferencia_llamados'] ? $configuracion['diferencia_llamados'] : ''}}"></p>
+
             <button class="m-2 border-none rounded px-3 py-1 bg-blue-900 white">Aplicar</button>
 
         </form>

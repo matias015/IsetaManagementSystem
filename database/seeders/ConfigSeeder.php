@@ -45,6 +45,10 @@ class ConfigSeeder extends Seeder
             'key' => 'fecha_limite_desrematriculacion',
             'value' => "01-02-23"
         ]);
+        Configuracion::create([
+            'key' => 'diferencia_llamados',
+            'value' => "30"
+        ]);
 
     }
 }

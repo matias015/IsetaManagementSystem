@@ -9,17 +9,22 @@ use DateTime;
 
 class DiasHabiles{
 
-    static function desdeHoyHasta($fecha){
+    static function desdeHoyHasta($fecha,$fecha2=null){
         
     // fecha de mesa test
     $testStr = $fecha;
-    
+    $esNEgativo = false;
     // fecha actual y de mesa
-    $currentDateTime = new DateTime(); // Obtiene la fecha y hora actual
+    if($fecha2){
+        $currentDateTime = new DateTime($fecha2);
+    }else{
+        $currentDateTime = new DateTime(); // Obtiene la fecha y hora actual
+    }
     $targetDateTime = new DateTime($testStr); // Define la fecha y hora objetivo
 
     if($currentDateTime>$targetDateTime){
-        return 0;
+        $esNEgativo=true;
+        // return 0;
     }
 
     $fechaActualHoras = $currentDateTime->format('H');
@@ -33,6 +38,12 @@ class DiasHabiles{
    
     $minutosTotales = $minutosRestantesHoy + $minutosHastaMesa;
     
+    if($esNEgativo){
+        $data = $currentDateTime;
+        $currentDateTime = $targetDateTime;
+        $targetDateTime = $data;
+    }
+
     if($currentDateTime->format('y-m-d') === $targetDateTime->format('y-m-d')){
         $minutosTotales = $minutosTotales - (24*60);
     }
@@ -63,7 +74,11 @@ class DiasHabiles{
         $minutosTotales = $minutosTotales + 24*60;
         
     }
-    return $minutosTotales / 60;
+    $final = $minutosTotales / 60;
+    
+    if($esNEgativo) $final = $final*(-1);
+
+    return $final;
 
     }
     static function obtenerFestivos() {

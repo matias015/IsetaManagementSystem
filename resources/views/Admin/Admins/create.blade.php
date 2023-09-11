@@ -11,8 +11,7 @@
 
        <form method="post" action="{{route('admin.alumnos.store')}}">
         @csrf
-
-        <p>dni <input name="dni"></p>
+        <p>dni <input value="{{old('dni')}}" name="dni"></p>
         <p>nombre <input name="nombre"></p>
         <p>apellido <input name="apellido"></p>
         <p>fecha nacimiento <input type="date" name="fecha_nacimiento"></p>

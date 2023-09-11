@@ -115,7 +115,7 @@ class AlumnoController extends Controller
         $porPagina = 15;
 
         // cursadas del alumno de la carrera seleccionada
-        $query = Cursada::select('cursadas.id','cursadas.aprobada','cursadas.condicion','asignaturas.nombre','asignaturas.anio')
+        $query = Cursada::select('cursadas.id_asignatura','cursadas.id','cursadas.aprobada','cursadas.condicion','asignaturas.nombre','asignaturas.anio')
             ->where('id_alumno', Auth::id())
             -> where('asignaturas.id_carrera', Carrera::getDefault(Auth::id())) 
             -> join('asignaturas','asignaturas.id','cursadas.id_asignatura');
@@ -245,11 +245,35 @@ class AlumnoController extends Controller
         $config = Configuracion::todas();   
 
         $mesa = $request->mesa;
+        if(!$mesa) return redirect()->back()->with('error','Selecciona una mesa');
 
+
+        $mesaDb = Mesa::find($mesa);
+
+        if($mesaDb->llamado == 2){
+            $yaAnotadoAllamado1 = Examen::join('mesas','mesas.id','examenes.id_mesa')
+                -> where('examenes.id_asignatura', $mesaDb->id_asignatura)
+                -> where('mesas.llamado', 1)
+                -> where('examenes.id_alumno', Auth::id())
+                -> first();
+            
+            $diferencia = DiasHabiles::desdeHoyHasta($yaAnotadoAllamado1->fecha, $mesaDb->fecha)*-1;
+            $diferencia = $diferencia/24;
+            // \dd([$diferencia,$config['diferencia_llamados']]);
+            if($diferencia>0 && $diferencia<$config['diferencia_llamados']){
+                return redirect()->back()->with('error','Ya has rendido el llamado 1');
+
+            }
+
+        }
         $posibles = [];
 
         if($request->session()->has('data')) $posibles = $request->session()->get('data');
         else $posibles = Alumno::inscribibles();
+
+        
+
+
 
         $noPuede = true;
         $finBusqueda = false;
@@ -334,7 +358,7 @@ class AlumnoController extends Controller
     }
 
     function remat_carrera_vista(){
-        $carreras = Carrera::all();
+        $carreras = Carrera::where('anio_fin',0)->orWhere('vigente',1)->get();
         $config = Configuracion::todas();
         $inicial = new DateTime($config['fecha_inicial_rematriculacion']);
         $final = new DateTime($config['fecha_final_rematriculacion']);

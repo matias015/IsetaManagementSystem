@@ -23,11 +23,11 @@
                 <p>¡Bienvenido! Por favor ingrese sus datos</p>
             </div>
             <div class="usuario input-box underline">
-                <input type="email" name="email" required placeholder="Correo electronico">
+                <input type="email" value="{{old('email')}}" name="email" required placeholder="Correo electronico">
                 <div class="underline"></div>
             </div>
             <div class="dni input-box">
-                <input type="text" name="dni" required placeholder="DNI">
+                <input type="text" value="{{old('dni')}}" name="dni" required placeholder="DNI">
                 <div class="underline"></div>
             </div>
             <div class="contraseña input-box">

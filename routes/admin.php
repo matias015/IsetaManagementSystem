@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Route;
  | --------------------------------------------------------*/ 
 
 
-Route::prefix('admin')->group(function(){
+ Route::middleware(['web'])->prefix('admin')->group(function(){
 
     Route::get('/mesas/acta-volante/{mesa}', function(Request $request,Mesa $mesa){
         $alumnos = Mesa::select('examenes.id as id_examen','alumnos.nombre','alumnos.dni','alumnos.apellido','examenes.nota')
