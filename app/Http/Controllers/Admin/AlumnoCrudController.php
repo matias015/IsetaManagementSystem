@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\crearAlumnoRequest;
+use App\Http\Requests\EditarAlumnoRequest;
 use App\Models\Alumno;
 use App\Models\Configuracion;
 use Hamcrest\Type\IsNumeric;
@@ -113,9 +114,9 @@ class AlumnoCrudController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Alumno $alumno)
+    public function update(EditarAlumnoRequest $request, Alumno $alumno)
     {
-        $alumno->update($request->all());
+        $alumno->update($request->validated());
         return redirect()->route('admin.alumnos.index');
     }
 

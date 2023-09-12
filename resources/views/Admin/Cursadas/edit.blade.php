@@ -2,11 +2,7 @@
 
 @section('content')
     <div>
-        @if ($errors -> any())
-            @foreach ($errors->all() as $error)
-                <p>{{$error}}</p>
-            @endforeach
-        @endif
+
 
 <div class="edit-form-container">
        <form method="post" action="{{route('admin.cursadas.update', ['cursada'=>$cursada->id])}}">

@@ -2,11 +2,6 @@
 
 @section('content')
     <div>
-        @if ($errors -> any())
-            @foreach ($errors->all() as $error)
-                <p>{{$error}}</p>
-            @endforeach
-        @endif
 
         <div class="perfil_one table">
         <span class="perfil_dataname">Carrera:
@@ -57,16 +52,15 @@
         <span class="perfil_dataname">
             Llamado:
             <select class="campo_info" name="llamado">
-                <option value="1">Primero</option>
-                <option value="2">Segundo</option>
+                <option @selected(old('llamado')=='1') value="1">Primero</option>
+                <option @selected(old('llamado')=='2') value="2">Segundo</option>
             </select>
             </span>
 
         <span class="perfil_dataname">
             Fecha:
-            <input class="campo_info" type="datetime-local" name="fecha">
+            <input class="campo_info" value="{{old('fecha')?old('fecha'):''}}" type="datetime-local" name="fecha">
         </span>
-
 
         <div class="upd"><input class="btn_borrar upd" type="submit" value="Crear"></div>
        </form>

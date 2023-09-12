@@ -7,12 +7,15 @@ CUESTIONES:
     por lo que podrias entrar facilmente en la cuenta de otro xd
     Gmail tiene uno pero ni idea como usarlo y necesitamos una cuenta.
 - No estoy seguro si la pc sea tan rapida para manejar muchas solicitudes si es que entra mucha gente
+- Ver si habria que comprobar que los dnis sean unicos
 
 
 COSAS RARAS:
 - LA CARRERA DE MECANICA LIVIANA NO TIENE REGISTRADA NINGUNA EQUIVALENCIA, OSEA NINGUNA MATERIA TIENE EQUIVALENCIAS CON NINGUNA (carita de calabera)
 - Y en general faltan correlativas
-
+- Funcionalidad de mantener datos de los campos agregado a mas apartados
+- En los principales apartados de creacion, los errores de campos requeridos ahora se muestran como corresponde y no explota la app
+- Ahora ningun apartado muestra errores de validacion en la vista, solo en la ventana emergente
 
 RECORDAR
 - Setear restricciones de usuario, que logueandote como alumno NO puedas acceder al admin.
@@ -105,3 +108,7 @@ CORRECCIONES 2/9
     pronto tambien en el resto de apartados, a no ser que se necesario hacerlo como antes
 - empezamos a usar el mismo filtro de alumnos para todos pero modificado a cada apartado, ya esta en profesores y carreras
 - editar alumno ya no se desborda, el problema era el textarea que tenia cols=100 y era muy ancho
+
+
+12/9
+- Ahora se pueden imprimir los alumnos que cursan una asignatura (falta diseño/formato del pdf, solo esta la logica)

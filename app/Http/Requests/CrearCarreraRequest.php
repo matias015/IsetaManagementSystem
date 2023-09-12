@@ -22,10 +22,10 @@ class CrearCarreraRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "nombre" => ['nullable'],
-            "resolucion" => ['nullable'],
-            "anio_apertura" => ['nullable'],
-            "anio_fin" => ['nullable'],
+            "nombre" => ['required'],
+            "resolucion" => ['required'],
+            "anio_apertura" => ['required','numeric'],
+            "anio_fin" => ['nullable','numeric'],
             "observaciones" => ['nullable']
         ];
     }

@@ -36,22 +36,20 @@ class MesasCrudController extends Controller
             -> join('asignaturas','asignaturas.id','=','mesas.id_asignatura')
             -> join('carreras','carreras.id','=','asignaturas.id_carrera');
 
-        if($campo == "nuevas"){
+        if($campo == "proximas"){
             $query = $query->whereRaw('fecha > NOW()');
         }
-        else if($campo == "asignatura"){
-            $query = $query->where('asignaturas.nombre','LIKE','%'.$request->filtro.'%'); 
-        }
-        else if($campo == "carrera"){
-            $query = $query->where('carreras.nombre','LIKE','%'.$request->filtro.'%'); 
-        }
 
-        
         if($orden == "fecha"){
             $query->orderByDesc('mesas.fecha');
         }
         else if($orden == "asignatura"){
             $query->orderBy('asignaturas.nombre');
+        }
+
+        if($filtro){
+            $word = '%'.str_replace(' ','%',$filtro).'%';
+            $query->whereRaw("(asignaturas.nombre LIKE '$word' OR carreras.nombre LIKE '$word')");
         }
 
         $mesas = $query -> paginate($porPagina);

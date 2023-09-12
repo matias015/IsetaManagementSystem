@@ -6,30 +6,52 @@
         
 
     
-            <a href="{{route('admin.mesas.create')}}"><button>Agregar mesa</button></a>
-            <a href="{{route('admin.mesas.actas')}}"><button>Enviar actas</button></a>
+<div class="bg-transparent contenedor_top flex items-end gap-2">
 
-        <div>
-            <form action="{{route('admin.mesas.index')}}">
-                <p>filtrar</p> 
-                <select name="campo">
-                    <option value="ninguno">todo</option>
-                    <option @selected($filtros['campo'] == 'nuevas') value="nuevas">nuevas</option>
-                    <option @selected($filtros['campo'] == 'asignatura') value="asignatura">asigantura</option>
-                    <option @selected($filtros['campo'] == 'carrera') value="carrera">carrera</option>
-                </select>
-                <input value="{{$filtros['filtro']}}" name="filtro" type="text">
-                <p>ordenar</p>
-                <select name="orden">
-                    <option @selected($filtros['orden'] == 'fecha') value="fecha">Fecha</option>
-                    <option @selected($filtros['orden'] == 'asignatura') value="asignatura">asigantura</option>
-                </select>
-                <input type="submit" value="Buscar">
-            </form>
+    <a href="{{route('admin.mesas.create')}}"><button class="p-1 nuevo_alumno">Agregar mesa</button></a>
+    
+    
+        <form class="none grid lg-block form-hh" action="{{route('admin.mesas.index')}}">
+            <div class="alumnos_filtrar gap-5 flex items-end">
+                
+                <div class="">
+                    <p class="categoria">Ordenar</p>
+                    <div>
+                        <select class="border-none rounded p-1 bg-white shadow" name="orden">
+                            <option @selected($filtros['orden'] == 'asignatura') value="asignatura">Asignatura</option>
+                            <option @selected($filtros['orden'] == 'fecha') value="fecha">Fecha</option>
 
-            <a href="{{route('admin.mesas.index')}}"><button>Quitar filtro</button></a>
-      
-        </div>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <p class="categoria">Mostrar</p> 
+
+                    <div class="contenedor_filtrar">
+                        <select class="border-none rounded p-1 bg-white shadow" name="campo">
+                            <option value="ninguno">ninguno</option>
+                            <option @selected($filtros['campo'] == 'proximas') value="proximas">Proximas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <p>Termino</p>
+                    <input class="border-none rounded p-1 bg-white shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
+                </div>
+                
+                <div>
+                    <input class="p-1 border-none rounded pointer" type="submit" value="Buscar">
+                </div>
+            </div>
+        </form>
+    
+        
+    
+    <a class="none lg-block" href="{{route('admin.mesas.index')}}"><button class="p-1 border-none red-800 font-600 white rounded pointer">Quitar filtros</button></a>
+
+    
+</div>
 
         
 

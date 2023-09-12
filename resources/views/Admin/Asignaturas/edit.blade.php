@@ -4,11 +4,7 @@
 <div class="edit-form-container">
     <div>
     <div class="perfil_one table">
-        @if ($errors -> any())
-            @foreach ($errors->all() as $error)
-                <p>{{$error}}</p>
-            @endforeach
-        @endif
+
 
 
        <form method="post" action="{{route('admin.asignaturas.update', ['asignatura'=>$asignatura->id])}}">
@@ -73,7 +69,7 @@
             <td>acciones</td>
         </tr>
 
-        <form enctype="multipart/form-data" action="{{route('test.print-1')}}">
+        <form action="{{route('test.print-1', ['asignatura'=>$asignatura->id])}}">
             alumnos que cursan esta materia que aun no tienen un estado final (aprobado o desaprobado)
         @foreach ($alumnos as $alumno)
             <tr>
@@ -96,8 +92,6 @@
         @endforeach
 
             
-
-       
        <input type="submit" value="Imprimir">
     </form>
     </table>

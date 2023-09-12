@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello</h1>
+    <h1>Alumnos que cursan {{$asignatura->nombre}}</h1>
+    
+    <ol>
+        @foreach ($alumnos as $alumno)
+            <li>{{$alumno->nombre.' '.$alumno->apellido.' - dni: '.$alumno->dni}}</li>
+        @endforeach
+    </ol>
 </body>
 </html>

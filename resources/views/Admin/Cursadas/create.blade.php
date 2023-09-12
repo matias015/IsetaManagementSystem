@@ -2,11 +2,7 @@
 
 @section('content')
     <div>
-        @if ($errors -> any())
-            @foreach ($errors->all() as $error)
-                <p>{{$error}}</p>
-            @endforeach
-        @endif
+
         <div class="perfil_one table">
         <span class="perfil_dataname">Carrera:
         <select class="campo_info" name="carrera" id="carrera_select">
