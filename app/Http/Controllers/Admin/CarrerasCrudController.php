@@ -22,28 +22,35 @@ class CarrerasCrudController extends Controller
     public function index(Request $request)
     {       
          $carreras = [];
-         $porPagina = Configuracion::get('filas_por_tabla',true);
+         $config = Configuracion::todas();
 
-         $filtro="";
+         $filtro = $request->filtro ? $request->filtro: '';
+         $campo = $request->campo ? $request->campo: '';
+         $orden = $request->orden ? $request->orden: 'fecha';
+         $porPagina = $config['filas_por_tabla'];
 
-        if($request->has('filtro')){
-            
-            if(strpos($request->filtro,':')){
-                $arr = explode(':',$request->filtro);
-                $campo = $arr[0];
-                $filtro = $arr[1];
-                $carreras = Carrera::where($campo,'LIKE','%'.$filtro.'%') -> paginate($porPagina);
-            }else{
+         $query = Carrera::select('*');
 
-                $filtro = '%'.$request->filtro.'%';
-                
-
-                $carreras = Carrera::where('nombre','LIKE',$filtro)->paginate($porPagina);
-            }   
-        }else{
-            $carreras = Carrera::paginate($porPagina);
+         if($filtro){
+            $word = str_replace(' ','%',$filtro);
+            $query->orWhere('carreras.nombre', 'LIKE', '%'.$word.'%');
         }
-        return view('Admin.Carreras.index',['carreras'=>$carreras, 'filtro'=>$filtro]);
+
+        if($campo == "vigentes"){
+            $query = $query -> where('vigente','1');
+        }
+
+        if($orden == "nombre"){
+            $query = $query -> orderBy('nombre');
+        }
+            
+        $carreras = $query->paginate($porPagina);
+
+        return view('Admin.Carreras.index',['carreras'=>$carreras, 'filtros'=>[
+            'campo' => $campo,
+            'orden' => $orden,
+            'filtro' => $filtro
+        ]]);
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\crearAlumnoRequest;
 use App\Models\Alumno;
 use App\Models\Configuracion;
+use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
 
 class AlumnoCrudController extends Controller
@@ -30,26 +31,23 @@ class AlumnoCrudController extends Controller
         
         $query = Alumno::select('alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni');
 
-            if($campo == "nombre-apellido"){
-                $query = $query 
-                    -> where('nombre','LIKE','%'.$filtro.'%')
-                    -> orWhere('apellido','LIKE','%'.$filtro.'%');
+
+        if($filtro){
+            if(is_numeric($filtro)){
+                $query = $query->where('alumnos.dni','like','%'.$filtro.'%');
+            }  
+            else if(preg_match('/^[a-zA-Z\s]+$/', $filtro)){
+                $word = str_replace(' ','%',$filtro);
+                $query->orWhereRaw("CONCAT(alumnos.nombre,' ',alumnos.apellido) LIKE '%$word%'");
+            }else{
+                $query = $query->where('alumnos.email', 'LIKE', '%'.$filtro.'%');
             }
-            else if($campo == "dni"){
-                $query = $query -> where('dni','LIKE','%'.$filtro.'%');
-            }
-            else if($campo == "email"){
-                $query = $query -> where('email','LIKE','%'.$filtro.'%');
-            }
-            else if($campo == "cursando"){
-                $query = $query -> join('cursadas','alumnos.id','cursadas.id_alumno')
-                    -> join('asignaturas', 'asignaturas.id','cursadas.id_asignatura')
-                    -> where('cursadas.aprobada', 3)
-                    -> where('asignaturas.nombre','LIKE','%'.$filtro.'%');
-            }
-            else if($campo == "registrados"){
-                $query = $query -> where('verificado','!=','0');
-            }
+        }
+        
+       
+        if($campo == "registrados"){
+            $query = $query -> where('password','!=','0');
+        }
 
            if($orden == "dni"){
                 $query = $query -> orderBy('dni');

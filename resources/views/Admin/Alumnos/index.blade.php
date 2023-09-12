@@ -23,15 +23,11 @@
                             </div>
                         </div>
                         <div>
-                            <p class="categoria">Filtrar</p> 
+                            <p class="categoria">Mostrar</p> 
 
                             <div class="contenedor_filtrar">
                                 <select class="border-none rounded p-1 bg-white shadow" name="campo">
                                     <option value="ninguno">ninguno</option>
-                                    <option @selected($filtros['campo'] == 'nombre-apellido') value="nombre-apellido">nombre/apellido</option>
-                                    <option @selected($filtros['campo'] == 'dni') value="dni">dni</option>
-                                    <option @selected($filtros['campo'] == 'email') value="email">email</option>
-                                    <option @selected($filtros['campo'] == 'cursando') value="cursando">cursando</option>
                                     <option @selected($filtros['campo'] == 'registrados') value="registrados">registrados</option>
                                 </select>
                             </div>

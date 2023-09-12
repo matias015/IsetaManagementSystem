@@ -2,23 +2,49 @@
 
 @section('content')
 
-<div>
+<div class="bg-transparent contenedor_top flex items-end gap-2">
+
+    <a href="{{route('admin.carreras.create')}}"><button class="p-1 nuevo_alumno">Agregar carrera</button></a>
     
+    
+        <form class="none grid lg-block form-hh" action="{{route('admin.carreras.index')}}">
+            <div class="alumnos_filtrar gap-5 flex items-end">
+                
+                <div class="">
+                    <p class="categoria">Ordenar</p>
+                    <div>
+                        <select class="border-none rounded p-1 bg-white shadow" name="orden">
+                            <option @selected($filtros['orden'] == 'nombre') value="nombre">nombre</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <p class="categoria">Mostrar</p> 
 
+                    <div class="contenedor_filtrar">
+                        <select class="border-none rounded p-1 bg-white shadow" name="campo">
+                            <option value="ninguno">ninguno</option>
+                            <option @selected($filtros['campo'] == 'vigentes') value="vigentes">Vigentes</option>
+                        </select>
+                    </div>
+                </div>
 
-        <a href="{{route('admin.carreras.create')}}"><button>Agregar carrera</button></a>
-
-    <div>
-        <form action="{{route('admin.carreras.index')}}">
-            <p>filtrar</p> 
-             <input value="{{$filtro}}" name="filtro" type="text">
-             <input type="submit" value="Buscar">
+                <div>
+                    <p>Termino</p>
+                    <input class="border-none rounded p-1 bg-white shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
+                </div>
+                
+                <div>
+                    <input class="p-1 border-none rounded pointer" type="submit" value="Buscar">
+                </div>
+            </div>
         </form>
+    
+        
+    
+    <a class="none lg-block" href="{{route('admin.carreras.index')}}"><button class="p-1 border-none red-800 font-600 white rounded pointer">Quitar filtros</button></a>
 
-        <a href="{{route('admin.carreras.index')}}"><button>Quitar filtro</button></a>
-  
-    </div>
-
+    
 </div>
 
     {{-- @foreach ($alumnos->pagr as )

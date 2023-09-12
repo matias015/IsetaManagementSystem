@@ -100,3 +100,8 @@ CORRECCIONES 2/9
 - Ya no se muestran los fallos de validacion en la vista de crear alumno, solo en el cartelito de mensaje
 - uno que otro bug que quedo de lo que cambie la ultima vez
 - Ahora los llamados de las mesas se muestran en el orden que corresponde
+- si ponias inscribirse sin seleccionar mesa daba error
+- Mejora de buscadores en admin de alumnos y profes, ya no es necesario seleccionar campo por el que filtrar
+    pronto tambien en el resto de apartados, a no ser que se necesario hacerlo como antes
+- empezamos a usar el mismo filtro de alumnos para todos pero modificado a cada apartado, ya esta en profesores y carreras
+- editar alumno ya no se desborda, el problema era el textarea que tenia cols=100 y era muy ancho

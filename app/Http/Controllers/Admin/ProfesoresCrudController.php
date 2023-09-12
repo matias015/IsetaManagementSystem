@@ -17,35 +17,52 @@ class ProfesoresCrudController extends Controller
      */
     public function index(Request $request)
     {       
+        $config = Configuracion::todas();    
+
         $profesores = [];
-        $filtro = "";
-        $campo = "";
-        $porPagina = Configuracion::get('filas_por_tabla',true);
+        $filtro = $request->filtro ? $request->filtro: '';
+        $campo = $request->campo ? $request->campo: '';
+        $orden = $request->orden ? $request->orden: 'fecha';
+        $porPagina = $config['filas_por_tabla'];
 
-       if($request->has('filtro')){
-           $filtro = $request->filtro;
-           $campo = $request->campo;
+        $query = Profesor::select('profesores.id','profesores.nombre','profesores.apellido','profesores.dni');
 
-           if($campo == "principales"){
-               $profesores = Profesor::where('nombre','LIKE','%'.$filtro.'%')
-                   -> orWhere('apellido','LIKE','%'.$filtro.'%')
-                   -> orWhere('dni','LIKE','%'.$filtro.'%')
-                   -> orWhere('email','LIKE','%'.$filtro.'%')
-                   -> paginate($porPagina);
-           }
-           else if($campo == "nombre") $profesores = Profesor::where('nombre','LIKE','%'.$filtro.'%') -> paginate($porPagina);  
-           else if($campo == "apellido") $profesores = Profesor::where('apellido','LIKE','%'.$filtro.'%') -> paginate($porPagina);  
-           else if($campo == "dni") $profesores = Profesor::where('dni','LIKE','%'.$filtro.'%') -> paginate($porPagina);  
-           else if($campo == "email") $profesores = Profesor::where('email','LIKE','%'.$filtro.'%') -> paginate($porPagina);  
-           else if($campo == "telefonos"){
-               $profesores = Profesor::where('telefono1','LIKE','%'.$filtro.'%')
-                   -> orWhere('telefono2','LIKE','%'.$filtro.'%')
-                   -> orWhere('telefono3','LIKE','%'.$filtro.'%')
-                   -> paginate($porPagina);  
-           } 
-           else if($campo == "ciudad") $profesores = Profesor::where('email','LIKE','%'.$filtro.'%') -> paginate($porPagina);  
-       }else $profesores = Profesor::paginate($porPagina);
-       return view('Admin.Profesores.index',['profesores'=>$profesores, 'filtros'=>['campo'=>$campo,'filtro'=>$filtro]]);
+
+        if($filtro){
+            if(is_numeric($filtro)){
+                $query = $query->where('profesores.dni','like','%'.$filtro.'%');
+            }  
+            else if(preg_match('/^[a-zA-Z\s]+$/', $filtro)){
+                $word = str_replace(' ','%',$filtro);
+                $query->orWhereRaw("CONCAT(profesores.nombre,' ',profesores.apellido) LIKE '%$word%'");            
+            }else{
+                $query = $query->where('profesores.email', 'LIKE', '%'.$filtro.'%');
+            }
+        }
+        
+       
+        if($campo == "registrados"){
+            $query = $query -> where('password','!=','0');
+        }
+
+           if($orden == "dni"){
+                $query = $query -> orderBy('dni');
+            }
+            else if($orden == "dni-desc"){
+                $query = $query -> orderByDesc('dni');
+            } else{
+                $query = $query -> orderBy('profesores.nombre') -> orderBy('profesores.apellido');
+            }
+
+            $profesores = $query->paginate($porPagina); 
+        return view('Admin.Profesores.index',[
+            'profesores'=>$profesores, 
+            'filtros'=>[
+                'campo' => $campo,
+                'orden' => $orden,
+                'filtro' => $filtro
+            ]
+        ]);
 
     }
 
