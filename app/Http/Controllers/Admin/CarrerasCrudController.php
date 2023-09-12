@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CrearCarreraRequest;
+use App\Http\Requests\EditarCarreraRequest;
 use App\Models\Carrera;
 use App\Models\Configuracion;
 use Illuminate\Http\Request;
@@ -93,9 +94,11 @@ class CarrerasCrudController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Carrera $carrera)
+    public function update(EditarCarreraRequest $request, Carrera $carrera)
     {
-        $carrera->update($request->all());
+        $datos = $request->validated();
+
+        $carrera->update($datos);
         return redirect()->route('admin.carreras.index');
     }
 

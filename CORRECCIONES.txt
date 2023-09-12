@@ -13,9 +13,6 @@ CUESTIONES:
 COSAS RARAS:
 - LA CARRERA DE MECANICA LIVIANA NO TIENE REGISTRADA NINGUNA EQUIVALENCIA, OSEA NINGUNA MATERIA TIENE EQUIVALENCIAS CON NINGUNA (carita de calabera)
 - Y en general faltan correlativas
-- Funcionalidad de mantener datos de los campos agregado a mas apartados
-- En los principales apartados de creacion, los errores de campos requeridos ahora se muestran como corresponde y no explota la app
-- Ahora ningun apartado muestra errores de validacion en la vista, solo en la ventana emergente
 
 RECORDAR
 - Setear restricciones de usuario, que logueandote como alumno NO puedas acceder al admin.
@@ -112,3 +109,7 @@ CORRECCIONES 2/9
 
 12/9
 - Ahora se pueden imprimir los alumnos que cursan una asignatura (falta diseño/formato del pdf, solo esta la logica)
+- Funcionalidad de mantener datos de los campos agregado a mas apartados
+- En los principales apartados de creacion, los errores de campos requeridos ahora se muestran como corresponde y no explota la app
+- Ahora ningun apartado muestra errores de validacion en la vista, solo en la ventana emergente
+- se pueden marcar carreras como vigentes o no

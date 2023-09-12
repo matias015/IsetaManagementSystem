@@ -18,6 +18,7 @@ class Carrera extends Model
         'anio_apertura',
         'anio_fin',
         'observaciones',
+        'vigente'
     ];
 
     public function asignaturas(){
