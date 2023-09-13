@@ -61,36 +61,33 @@
         </li> --}}
 
         <div class="table">
-        <table class="table__body">
-            <thead>
+            <table class="table__body">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Dni</th>
+                        <th colspan="2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach ($alumnos as $alumno)
                 <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Dni</th>
-                    <th colspan="2">Acciones</th>
+                    <td>{{$textFormatService->utf8UpperCamelCase($alumno->nombre)}}</td>
+                    <td>{{$textFormatService->utf8UpperCamelCase($alumno->apellido)}}</td>
+                    <td>{{$alumno->dni}}</td>
+                    <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}"><button class="btn_edit">Editar</button></a></td>
+                    <td>
+                        <form method="POST" action="{{route('admin.alumnos.destroy', ['alumno' => $alumno->id])}}">
+                            @csrf
+                            @method('delete')
+                            <input class="btn_borrar" type="submit" value="Eliminar">
+                        </form>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-            @foreach ($alumnos as $alumno)
-            <tr>
-                <td>{{$textFormatService->utf8UpperCamelCase($alumno->nombre)}}</td>
-                <td>{{$textFormatService->utf8UpperCamelCase($alumno->apellido)}}</td>
-                <td>{{$alumno->dni}}</td>
-                <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}"><button class="btn_edit">Editar</button></a></td>
-                <td>
-                    <form method="POST" action="{{route('admin.alumnos.destroy', ['alumno' => $alumno->id])}}">
-                        @csrf
-                        @method('delete')
-                        <input class="btn_borrar" type="submit" value="Eliminar">
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-            </tbody>
-            
-            
-
-        </table>
+                @endforeach
+                </tbody>
+            </table>
         </div>
         
 
