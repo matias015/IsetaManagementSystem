@@ -124,3 +124,5 @@ CORRECCIONES 2/9
 - se oculto el apartado de "examenes" porque no es util, ni comodo.
 - Ahora se muestra el llamado al ver todas las mesas
 - bug al anotarte al 2do llamado
+- Pestaña para añadir y borrar dias no habiles
+- Ya no puedes crear una mesa un fin de semana o en un dia no habil

@@ -9,8 +9,10 @@ use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Configuracion;
 use App\Models\Examen;
+use App\Models\Habiles;
 use App\Models\Mesa;
 use App\Models\Profesor;
+use App\Services\DiasHabiles;
 use Illuminate\Http\Request;
 
 class MesasCrudController extends Controller
@@ -81,6 +83,21 @@ class MesasCrudController extends Controller
     public function store(CrearMesaRequest $request)
     {
         $data = $request->validated();
+
+        $timestamp = strtotime($data['fecha']);
+        $dia = date("l", $timestamp);
+
+
+        if($dia == 'Saturday' || $dia == 'Sunday'){
+            return \redirect()->back()->with('error','No puedes crear una mesa un fin de semana');
+        }
+
+        $diasNoHabiles = DiasHabiles::obtenerFestivos();
+
+        if(in_array(explode('T', $data['fecha'])[0],$diasNoHabiles)){
+            return \redirect()->back()->with('error','No puedes crear una mesa un dia no habil');
+        }
+
         if($data['prof_presidente']=="vacio"){
             $data['prof_presidente'] = 0;
         }

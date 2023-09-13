@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\DiaNoHabil;
+use App\Models\Habiles;
 use DateInterval;
 use DatePeriod;
 use DateTime;
@@ -86,10 +87,7 @@ class DiasHabiles{
         // Los días festivos pueden variar según la ubicación y el año
         // Este es solo un ejemplo de lista ficticia de días festivos
     
-        $festivos = [
-            '2023-08-18', // Ejemplo: Día festivo
-            '2023-08-21', // Ejemplo: Otro día festivo
-        ];
+        $festivos = Habiles::all()->pluck('fecha')->toArray();
     
         return $festivos;
     }

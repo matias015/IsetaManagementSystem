@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminCorrelativasController;
+use App\Http\Controllers\Admin\AdminDiasHabilesController;
 use App\Http\Controllers\Admin\AlumnoCrudController;
 use App\Http\Controllers\Admin\AsignaturasCrudController;
 use App\Http\Controllers\Admin\CarrerasCrudController;
@@ -81,11 +82,6 @@ use Illuminate\Support\Facades\Route;
         'parameters' => ['examenes' => 'examen']
     ]);
 
-    //Route::resource('dias', CarrerasCrudController::class, ['as' => 'admin']);
-    //Route::resource('cursadas', CarrerasCrudController::class, ['as' => 'admin']);
-    //Route::resource('correlativas', CarrerasCrudController::class, ['as' => 'admin']);
-    //Route::resource('administradores', CarrerasCrudController::class, ['as' => 'admin']);
-
 
     Route::get('config', [ConfigController::class, 'index'])->name('admin.config.index');
     Route::post('config', [ConfigController::class, 'setear'])->name('admin.config.set');
@@ -93,5 +89,10 @@ use Illuminate\Support\Facades\Route;
     Route::post('correlativa/{asignatura}',[AdminCorrelativasController::class, 'agregar'])->name('correlativa.agregar');
 
     Route::delete('correlativa/{asignatura}',[AdminCorrelativasController::class, 'eliminar'])->name('correlativa.eliminar');
+
+
+    Route::get('dias-habiles', [AdminDiasHabilesController::class,'index'])->name('admin.habiles.index');
+    Route::post('dias-habiles', [AdminDiasHabilesController::class,'store'])->name('admin.habiles.store');
+    Route::delete('dias-habiles/{habil}', [AdminDiasHabilesController::class,'destroy'])->name('admin.habiles.destroy');
 
 });
