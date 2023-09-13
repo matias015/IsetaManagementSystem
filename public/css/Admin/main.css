@@ -194,6 +194,9 @@ table, th, td {
 }
 
 .btn_edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: var(--azul-iseta);
     color: white;
     width: 80px;
@@ -215,13 +218,25 @@ table, th, td {
     border: none;
 }
 
+.wit {
+    width: 160px;
+}
+
+.wit2 {
+    width: 130px;
+}
+
+.wit3 {
+    width: 100px;
+}
+
 /*---------------------------------------------- E  D  I  T ---------------------------------------------------------------*/
 
 .nwt {
     display: flex;
 }
 
-.table .perfil_dataname {
+ .perfil_dataname {
     display: flex;
     align-items: center;
     width: 100%;
@@ -241,9 +256,8 @@ table {
     outline: none;
     width: 100%;
     margin: 0 0 5px 10px;
-    
     padding: 10px 0;
-    background: var(--gris-titulo);
+    background-color: transparent;
 }
 
 .upd {
@@ -279,8 +293,14 @@ table {
     background: var(--gris-header-tabla);
     padding: .8rem 1rem;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .table__header p {
     text-align: center;
+}
+
+ul .campo_info {
+    display: flex;
 }
