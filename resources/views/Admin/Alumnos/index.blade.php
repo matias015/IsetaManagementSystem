@@ -34,8 +34,8 @@
                         </div>
         
                         <div>
-                            <p>Termino</p>
-                            <input class="border-none rounded p-1 bg-white shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
+                            <p>Buscar</p>
+                            <input placeholder="Dni, Apellido, Nombre, mail" class="border-none rounded p-1 bg-white shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
                         </div>
                         
                         <div>

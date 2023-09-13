@@ -256,14 +256,16 @@ class AlumnoController extends Controller
                 -> where('mesas.llamado', 1)
                 -> where('examenes.id_alumno', Auth::id())
                 -> first();
-            
-            $diferencia = DiasHabiles::desdeHoyHasta($yaAnotadoAllamado1->fecha, $mesaDb->fecha)*-1;
-            $diferencia = $diferencia/24;
-            // \dd([$diferencia,$config['diferencia_llamados']]);
-            if($diferencia>0 && $diferencia<$config['diferencia_llamados']){
-                return redirect()->back()->with('error','Ya has rendido el llamado 1');
-
+            if($yaAnotadoAllamado1){
+                $diferencia = DiasHabiles::desdeHoyHasta($yaAnotadoAllamado1->fecha, $mesaDb->fecha)*-1;
+                $diferencia = $diferencia/24;
+                // \dd([$diferencia,$config['diferencia_llamados']]);
+                if($diferencia>0 && $diferencia<$config['diferencia_llamados']){
+                    return redirect()->back()->with('error','Ya has rendido el llamado 1');
+    
+                }
             }
+            
 
         }
         $posibles = [];

@@ -197,7 +197,26 @@ class ExamenesCrudController extends Controller
      */
     public function destroy(Examen $examen)
     {
+        $examen = Examen::with('mesa','asignatura' ,'alumno')->where('examenes.id',$examen->id)->first();
+//  aprobado->1, desaprobado->2, ausente->3
+
+     
+if($examen->nota > 0 || $examen->aprobado =! 0){
+            return redirect()->back()->with('error','No se puede borrar porque el examen ya fue realizado por el alumno');
+        }
+        $borrable = false;
+
+        if($examen->mesa){
+            $borrable = DiasHabiles::desdeHoyHasta($examen->mesa->fecha) >= 24? true:false;
+        }else if($examen->fecha){
+            $borrable = DiasHabiles::desdeHoyHasta($examen->fecha) >= 24? true:false;
+        }else{
+            $borrable = false;
+        }
+
+        if(!$borrable) return redirect()->back()->with('error','No se puede borrar porque faltan menos de 24 horas');
+
         $examen->delete();
-        return redirect() -> route('admin.examenes.index') -> with('mensaje', 'Se ha eliminado el alumno');
+        return redirect() -> route('admin.examenes.index') -> with('mensaje', 'Se ha eliminado el examen');
     }
 }

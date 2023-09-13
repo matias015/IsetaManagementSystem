@@ -67,6 +67,7 @@
             <thead>
                 <tr>
                     <th>Materia</td>
+                    <th>Llamado</th>
                     <th>Año</td>
                     <th>Fecha</td>
                     <th>Carrera</td>
@@ -77,6 +78,13 @@
                 @foreach ($mesas as $mesa)
                     <tr>
                     <td>{{$textFormatService->utf8Minusculas($mesa->nombre)}}</td>
+                    <td>
+                        @if ($mesa->llamado == 1 || $mesa->llamado == 0)
+                            1
+                        @else
+                            2
+                        @endif
+                    </td>
                     <td>{{$mesa->anio + 1}}</td>
                     <td>{{$mesa->fecha}}</td>
                     <td>{{$textFormatService->utf8Minusculas($mesa->carrera)}}</td>

@@ -107,7 +107,6 @@ class CarrerasCrudController extends Controller
      */
     public function destroy(Carrera $carrera)
     {
-        $carrera->delete();
-        return redirect() -> route('admin.carreras.index') -> with('mensaje', 'Se ha eliminado el alumno');
+        return redirect() -> route('admin.carreras.index') -> with('error', 'Las carreras no se pueden eliminar');
     }
 }

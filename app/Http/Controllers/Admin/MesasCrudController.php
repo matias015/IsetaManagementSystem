@@ -32,7 +32,7 @@ class MesasCrudController extends Controller
         $orden = $request->orden ? $request->orden: 'fecha';
         $porPagina = Configuracion::get('filas_por_tabla',true);
 
-        $query = Mesa::select('mesas.id','mesas.fecha', 'asignaturas.nombre','asignaturas.anio', 'carreras.nombre as carrera')
+        $query = Mesa::select('mesas.id','mesas.llamado','mesas.fecha', 'asignaturas.nombre','asignaturas.anio', 'carreras.nombre as carrera')
             -> join('asignaturas','asignaturas.id','=','mesas.id_asignatura')
             -> join('carreras','carreras.id','=','asignaturas.id_carrera');
 
@@ -164,6 +164,6 @@ class MesasCrudController extends Controller
     {
         Examen::where('id_mesa',$mesa->id)->where('nota',0)->delete();
         $mesa->delete();
-        return redirect() -> route('admin.mesas.index') -> with('mensaje', 'Se ha eliminado el alumno');
+        return redirect() -> route('admin.mesas.index') -> with('mensaje', 'Se ha eliminado la mesa');
     }
 }

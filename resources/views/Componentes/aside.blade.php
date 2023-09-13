@@ -7,7 +7,7 @@
         <li><a class="text-blue-600" href="{{route('admin.carreras.index')}}">      Carreras    </a></li>
         <li><a class="text-blue-600" href="{{route('admin.asignaturas.index')}}">   Asignaturas </a></li>
         <li><a class="text-blue-600" href="{{route('admin.mesas.index')}}"><i class="ti ti-clipboard-text"></i>         Mesas       </a></li>
-        <li><a class="text-blue-600" href="{{route('admin.examenes.index')}}"><i class="ti ti-address-book"></i>      Examenes    </a></li>
+        {{-- <li><a class="text-blue-600" href="{{route('admin.examenes.index')}}"><i class="ti ti-address-book"></i>      Examenes    </a></li> --}}
         <li><a class="text-blue-600" href="{{route('admin.cursadas.index')}}"><i class="ti ti-books"></i></i>      Cursadas    </a></li>
         <li><a class="text-blue-600" href="{{route('admin.egresados.index')}}"><i class="ti ti-school"></i>      Egresados    </a></li>
         <hr>

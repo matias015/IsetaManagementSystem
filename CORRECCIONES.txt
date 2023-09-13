@@ -8,6 +8,7 @@ CUESTIONES:
     Gmail tiene uno pero ni idea como usarlo y necesitamos una cuenta.
 - No estoy seguro si la pc sea tan rapida para manejar muchas solicitudes si es que entra mucha gente
 - Ver si habria que comprobar que los dnis sean unicos
+- que carajo es tipo modulo en las materias
 
 
 COSAS RARAS:
@@ -113,3 +114,13 @@ CORRECCIONES 2/9
 - En los principales apartados de creacion, los errores de campos requeridos ahora se muestran como corresponde y no explota la app
 - Ahora ningun apartado muestra errores de validacion en la vista, solo en la ventana emergente
 - se pueden marcar carreras como vigentes o no
+
+13/9
+- ya no se pueden eliminar las carreras
+- al eliminar una carrera, examen, cursada, mesa, etc, salia el mismo msje de "se ha eliminado el alumno" xd
+- Los profesores ahora tienen validaciones en la edicion
+- en los detalles de la mesa, aparecian los alumnos inscriptos y la opcion de 'eliminar', ahora es 'ver'
+- solo se pueden eliminar examenes si no se han rendido aun, y con minimo de 24hs antes
+- se oculto el apartado de "examenes" porque no es util, ni comodo.
+- Ahora se muestra el llamado al ver todas las mesas
+- bug al anotarte al 2do llamado

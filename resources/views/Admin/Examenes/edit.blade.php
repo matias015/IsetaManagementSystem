@@ -58,7 +58,7 @@
        </form>
 
        @if ($examen->borrable)
-            <form method="post" action="{{route('admin.examenes.destroy', ['examen'=>$examen->id])}}">
+            <form class="form-eliminar" method="post" action="{{route('admin.examenes.destroy', ['examen'=>$examen->id])}}">
                 @csrf
                 @method('delete')
                 <input type="submit" value="Borrar registro de examen">
@@ -66,9 +66,11 @@
         @endif
        
         
-
+        
 
     </div>
 </div>
+
+<script src="{{asset('js/confirmacion.js')}}"></script>
 
 @endsection

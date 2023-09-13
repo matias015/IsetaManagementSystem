@@ -87,15 +87,18 @@
                     <td>{{$alumno->apellido}}</td>
                     <td>{{$alumno->nota}}</td>
                     <td>
-                        <form method="POST" action="{{route('admin.examenes.destroy', ['examen' => $alumno->id_examen])}}">
+                        <a href="{{route('admin.examenes.edit', ['examen' => $alumno->id_examen])}}">
+                            <button>Ver</button>
+                        </a>
+                        {{-- <form method="POST" action="{{route('admin.examenes.destroy', ['examen' => $alumno->id_examen])}}">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="Eliminar">
-                        </form>
+                        </form> --}}
                     </td>
                 </tr>
             @endforeach
-            <a href="{{route('admin.mesas.acta',['mesa'=>$mesa->id])}}"><button>Acta volante</button></a>
+            <a href="{{route('admin.mesas.acta', ['mesa'=>$mesa->id])}}"><button>Acta volante</button></a>
         </table>
     </div></div>
 @endsection

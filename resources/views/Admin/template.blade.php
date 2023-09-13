@@ -19,13 +19,14 @@
 </head>
 
 <body class="">
+    <script src="{{asset('js/config.js')}}"></script>
+    <script src="{{asset('js/libs/ev.js')}}"></script>
     @include('Componentes.mensaje') 
     @include('Componentes.aside')
     <div class="w-100p p-5">
         @yield('content')
     </div>
-    <script src="{{asset('js/config.js')}}"></script>
-    <script src="{{asset('js/libs/ev.js')}}"></script>
+    
 
     <script src="{{asset('js/ocultar-mensaje.js')}}"></script>
 
