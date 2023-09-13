@@ -15,7 +15,7 @@
                     <span class="perfil_dataname">Año apertura: <input class="campo_info" value="{{$carrera->anio_apertura}}" name="anio_apertura"></span>
                     <span class="perfil_dataname">Año fin: <input class="campo_info" value="{{$carrera->anio_fin}}" name="anio_fin"></span>
                     <span class="perfil_dataname">Observaciones: <input class="campo_info" value="{{$carrera->observaciones}}" name="observaciones"></span>
-                    <span class="perfil_dataname">Vigente: <input value="1" type="checkbox" class="campo_info" @checked($carrera->vigente == 1) name="vigente"></span>
+                    <span class="perfil_dataname">Vigente: <input class="campo_info" value="1" type="checkbox"  @checked($carrera->vigente == 1) name="vigente"></span>
 
                     <div class="upd"><input class="btn_borrar upd" type="submit" value="Actualizar"></div>
             </form>
@@ -23,7 +23,7 @@
             
             <div class="table">
                 <div  class="table__header">
-                <a href="{{route('admin.asignaturas.create',['id_carrera'=>$carrera->id])}}"><button class="btn_edit">Agregar asignatura</button></a>
+                <a href="{{route('admin.asignaturas.create',['id_carrera'=>$carrera->id])}}"><button class="btn_edit wit">Agregar asignatura</button></a>
                 </div>
                 <table>
                     <thead>
