@@ -26,13 +26,11 @@ header {
     
   }
 
-  
   a {
     color: #fff;
     text-decoration: none;
   }
 
-  
   .nav .logo {
     font-family: 'Openface';
     font-size: 30px;
@@ -40,50 +38,7 @@ header {
     text-transform: uppercase;
     letter-spacing: 0.1em;
   }
-  
-  .nav .nav-links a {
-    transition: all 0.2s linear;
-  }
-  .nav.openSearch .nav-links a {
-    opacity: 0;
-    pointer-events: none;
-  }
-  .nav .search-icon {
-    color: #fff;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  .nav .search-box {
-    position: absolute;
-    right: 250px;
-    height: 45px;
-    max-width: 555px;
-    width: 100%;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.2s linear;
-  }
-  .nav.openSearch .search-box {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  .search-box .search-icon {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    left: 15px;
-    color: #4a98f7;
-    transform: translateY(-50%);
-  }
-  .search-box input {
-    height: 100%;
-    width: 100%;
-    border: none;
-    outline: none;
-    border-radius: 6px;
-    background-color: #fff;
-    padding: 0 15px 0 45px;
-  }
+
   .nav .navOpenBtn,
   .nav .navCloseBtn {
     display: none;
@@ -96,9 +51,27 @@ header {
     font-size: 25px;
   }
 
-header ul li a:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
+.nav-links li a{
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+  position: relative;
+  padding: 6px 0;
+}
+
+.nav-links li a::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background-color: white;
+  bottom: 0;
+  left: 0;
+  transition: all 0.4s ease;
+}
+
+.nav-links li a:hover::before {
+  width: 100%;
 }
 
 .perfil-logout {
@@ -183,10 +156,6 @@ header ul li a:hover::before {
 }
 
 
-
- 
-
-
   /*                                       R  E  S  P  O  N  S  I  V  E               */
 
 
@@ -194,18 +163,13 @@ header ul li a:hover::before {
     .nav {
       padding: 15px 100px;
     }
-    .nav .search-box {
-      right: 150px;
-    }
+    
   }
   @media screen and (max-width: 950px) {
     .nav {
       padding: 15px 50px;
     }
-    .nav .search-box {
-      right: 100px;
-      max-width: 400px;
-    }
+  
   }
   @media screen and (max-width: 768px) {
     .nav .navOpenBtn,
@@ -219,7 +183,6 @@ header ul li a:hover::before {
     .nav .nav-links {
       position: fixed;
       top: 0;
-
       height: 100%;
       max-width: 280px;
       width: 100%;
@@ -245,12 +208,4 @@ header ul li a:hover::before {
       font-size: 20px;
       cursor: pointer;
     }
-    .nav .search-box {
-      top: calc(100% + 10px);
-      max-width: calc(100% - 20px);
-      right: 50%;
-      transform: translateX(50%);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
   }
-
