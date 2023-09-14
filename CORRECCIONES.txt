@@ -126,3 +126,8 @@ CORRECCIONES 2/9
 - bug al anotarte al 2do llamado
 - Pestaña para añadir y borrar dias no habiles
 - Ya no puedes crear una mesa un fin de semana o en un dia no habil
+
+14/9 
+-Nuevo efecto hover en el header de parte del alumno
+-Elimine codigo css que no servia en header.css
+-Incorpore el css que faltaba pasar de main (alumnos) a main (admin) para que la tabla deslize cuando no entre mas contenido
