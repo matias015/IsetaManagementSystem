@@ -131,3 +131,5 @@ CORRECCIONES 2/9
 -Nuevo efecto hover en el header de parte del alumno
 -Elimine codigo css que no servia en header.css
 -Incorpore el css que faltaba pasar de main (alumnos) a main (admin) para que la tabla deslize cuando no entre mas contenido
+-Footer actualizado (despues acomodo el responsive) :) 
+- (IMPORTANTE) Agrega la foto de encabezado con el logo del iseta en el analitico, asi lo termino y sigo con de el examen
