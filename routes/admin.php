@@ -22,17 +22,17 @@ use Illuminate\Support\Facades\Route;
 
 /* --------------------------------------------------------
  | 
- | original -> Route::redirect('/admin','/admin/login');
+ | original -> 
  | tambien activar middlewares en el controlador
  |
  | NO LOGIN NECESARIO
  | 
- */ Route::redirect('/admin','/admin/alumnos'); /*
+ / Route::redirect('/admin','/admin/alumnos'); /*
  |
  |  SOLO POR TESTEO
  | --------------------------------------------------------*/ 
 
-
+ Route::redirect('/admin','/admin/login');
  Route::middleware(['web'])->prefix('admin')->group(function(){
 
     Route::get('/mesas/acta-volante/{mesa}', function(Request $request,Mesa $mesa){
