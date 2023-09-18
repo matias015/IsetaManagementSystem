@@ -102,7 +102,7 @@
         <tbody>
            
            <tr class="analitico-content">
-            <td colspan="4">Se deja constancia que <span>{{auth()->user()->apellido}}</span>, <span>{{auth()->user()->nombre}}</span> D.N.I: {{auth()->user()->dni}} ha aprobado las siguientes asignaturas correspondientes al plan de estudio de la carrera {{$carrera}}, resolucion: {{"RESOLUCION"}}
+            <td colspan="4">Se deja constancia que {{auth()->user()->apellido}} {{auth()->user()->nombre}} D.N.I: {{auth()->user()->dni}} ha aprobado las siguientes asignaturas correspondientes al plan de estudio de la carrera {{$carrera->nombre}}, resolucion: {{$carrera->resolucion}}
             </td>
            </tr>
             <tr>
