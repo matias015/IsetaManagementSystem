@@ -72,7 +72,7 @@ class MesasCrudController extends Controller
      */
     public function create()
     {
-        $carreras = Carrera::all();
+        $carreras = Carrera::where('vigente', 1)->get();
         $profesores = Profesor::orderBy('nombre','asc')->orderBy('apellido','asc')->get();
         return view('Admin.Mesas.create',['carreras'=>$carreras,'profesores'=>$profesores]);
     }

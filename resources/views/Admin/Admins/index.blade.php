@@ -2,16 +2,6 @@
 
 @section('content')
 
-    <div>
-        <a href="{{route('admin.admins.create')}}"><button>Agregar admin</button></a>
-        
-            <form action="{{route('admin.admins.index')}}">
-                <p>filtrar</p> 
-                 <input value="{{$filtro}}" name="filtro" type="text">
-                 <input type="submit" value="Buscar">
-            </form>
-            <a href="{{route('admin.admins.index')}}"><button>Quitar filtro</button></a>
-    </div>
 
         
 

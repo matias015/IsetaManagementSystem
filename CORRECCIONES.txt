@@ -128,7 +128,7 @@ CORRECCIONES 2/9
 - Ya no puedes crear una mesa un fin de semana o en un dia no habil
 
 14/9 
- Nuevo efecto hover en el header de parte del alumno
+- Nuevo efecto hover en el header de parte del alumno
 - Elimine codigo css que no servia en header.css
 - Incorpore el css que faltaba pasar de main (alumnos) a main (admin) para que la tabla deslize cuando no entre mas contenido
 - Footer actualizado (despues acomodo el responsive) :) 
@@ -136,3 +136,15 @@ CORRECCIONES 2/9
 - Ahora solo se pueden crear mesas de las carreras vigentes
 - En editar mesa y agregar alumnos, los profes y alumnos tienen nombre y apellido
 - Ahora los roles de admin y alumnos estan activados (debes loguearte como admin o como alumno)
+- Se cambio el mensaje de cursando/sin determinar por el de "cursando"
+- Comentada la funcion de eliminar un profesor
+- logout para admin
+- Comentado el apartado de asignaturas de admin, porque tambien me parece que nadie lo va a usar, es mas facil 
+    verlo directamente entrando en los detalles de una carrera
+    Tal vez haya que hacer lo mismo con las cursadas, servira de algo que esten ahi todas sueltas?
+- los egresados tienen el nuevo filtro, falta agregar filtros especificos para ellos
+- los admin ya no tienen filtro
+- Ahora db:seed crea un admin inicial con [username/password] = ["admin"/"admin"]
+- Ahora no se puede eliminar un administrador si es la unico
+- En el header de alumno ahora se marca bien en que apartado excepto la rematriculacion no se pq, 
+    aunque esta hecho asi nomas igual jaja si se te ocurre algo mejor cambialo

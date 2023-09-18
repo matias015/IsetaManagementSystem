@@ -7,20 +7,21 @@
           <i class="uil uil-times navCloseBtn"></i>
 
           
-          <li><a @class(['bold'=>request()->is('alumno/cursadas')]) href="{{route('alumno.cursadas')}}">
+          <li><a @class(['selected'=>request()->is('alumno/cursadas')]) href="{{route('alumno.cursadas')}}">
             <i class="uil uil-books"></i>
             Cursadas</a></li>
-          <li><a @class(['bold'=>request()->is('alumno/examenes')]) href="{{route('alumno.examenes')}}">
+          <li><a @class(['selected'=>request()->is('alumno/examenes')]) href="{{route('alumno.examenes')}}">
             <i class="uil uil-folder"></i>
             Examenes</a></li>
-          <li><a @class(['bold'=>request()->is('alumno/inscripciones')]) href="{{route('alumno.inscripciones')}}">
+          <li><a @class(['selected'=>request()->is('alumno/inscripciones')]) href="{{route('alumno.inscripciones')}}">
             <i class="uil uil-file-edit-alt"></i>
             Inscribir</a></li>
             <li>
               <a @class([
-                'bold' => request()->is('alumno/rematriculacion/carrera'),
-                'bold' => request()->is('alumno/rematriculacion')
-              ]) href="{{route('alumno.rematriculacion.carrera')}}"><i class="ti ti-clipboard-text"></i>Rematriculacion</a>
+                'selected' => request()->is('alumno/rematriculacion/carrera'),
+                'selected' => request()->is('alumno/rematriculacion')
+              ]) href="{{route('alumno.rematriculacion.carrera')}}">
+              <i class="ti ti-clipboard-text"></i>Rematriculacion</a>
             </li>
         </ul>
         @auth('web')

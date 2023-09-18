@@ -39,7 +39,7 @@ class AlumnoCrudController extends Controller
             }  
             else if(preg_match('/^[a-zA-Z\s]+$/', $filtro)){
                 $word = str_replace(' ','%',$filtro);
-                $query->orWhereRaw("CONCAT(alumnos.nombre,' ',alumnos.apellido) LIKE '%$word%'");
+                $query->orWhereRaw("(CONCAT(alumnos.nombre,' ',alumnos.apellido) LIKE '%$word%' OR alumnos.email  LIKE '%$word%')");
             }else{
                 $query = $query->where('alumnos.email', 'LIKE', '%'.$filtro.'%');
             }

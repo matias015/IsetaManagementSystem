@@ -71,7 +71,7 @@
                         @elseif($cursada->aprobada==2)
                             No
                         @else
-                            Cursando/sin determinar
+                            Cursando
                         @endif
                     </td>
                     <td>

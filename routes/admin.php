@@ -54,6 +54,8 @@ use Illuminate\Support\Facades\Route;
     Route::get('login', [AdminAuthController::class, 'loginView']) -> name('admin.login');
     Route::post('login', [AdminAuthController::class, 'login']) -> name('admin.login.post');
 
+    Route::get('logout', [AdminAuthController::class, 'logout']) -> name('admin.logout');
+
     Route::resource('alumnos', AlumnoCrudController::class, ['as' => 'admin']);
     Route::resource('egresados', EgresadosAdminController::class, ['as' => 'admin']);
 

@@ -22,49 +22,50 @@ class EgresadosAdminController extends Controller
      */
     public function index(Request $request)
     {       
+        
+        $config = Configuracion::todas();    
+
         $alumnos = [];
+        
         $filtro = $request->filtro ? $request->filtro: '';
         $campo = $request->campo ? $request->campo: '';
         $orden = $request->orden ? $request->orden: 'fecha';
-        $porPagina = Configuracion::get('filas_por_tabla',true);
-
+        $porPagina = $config['filas_por_tabla'];
+        
+        
         $query = Egresado::select('alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni','carreras.nombre as carrera')
-                ->join('alumnos','alumnos.id','egresadoinscripto.id_alumno')
-                ->join('carreras','carreras.id','egresadoinscripto.id_carrera');
+        ->join('alumnos','alumnos.id','egresadoinscripto.id_alumno')
+        ->join('carreras','carreras.id','egresadoinscripto.id_carrera');
 
-            if($campo == "nombre-apellido"){
-                $query = $query 
-                    -> where('alumnos.nombre','LIKE','%'.$filtro.'%')
-                    -> orWhere('alumnos.apellido','LIKE','%'.$filtro.'%');
+        if($filtro){
+            if(is_numeric($filtro)){
+                $query = $query->where('alumnos.dni','like','%'.$filtro.'%');
+            }  
+            else if(preg_match('/^[a-zA-Z\s]+$/', $filtro)){
+                $word = str_replace(' ','%',$filtro);
+                $query->orWhereRaw("(CONCAT(alumnos.nombre,' ',alumnos.apellido) LIKE '%$word%' OR alumnos.email  LIKE '%$word%')");
+            }else{
+                $query = $query->where('alumnos.email', 'LIKE', '%'.$filtro.'%');
             }
-            else if($campo == "dni"){
-                $query = $query -> where('alumnos.dni','LIKE','%'.$filtro.'%');
-            }
-            else if($campo == "email"){
-                $query = $query -> where('alumnos.email','LIKE','%'.$filtro.'%');
-            }
-            else if($campo == "cursando"){
-                $query = $query -> join('cursadas','alumnos.id','cursadas.id_alumno')
-                    -> join('asignaturas', 'asignaturas.id','cursadas.id_asignatura')
-                    -> where('cursadas.aprobada', 3)
-                    -> where('asignaturas.nombre','LIKE','%'.$filtro.'%');
-            }
-            else if($campo == "registrados"){
-                $query = $query -> where('verificado','!=','0');
-            }
+        }
+        
+        
+        if($campo == "registrados"){
+            $query = $query -> where('password','!=','0');
+        }
 
-           if($orden == "dni"){
-                $query = $query -> orderBy('alumnos.dni');
+            if($orden == "dni"){
+                $query = $query -> orderBy('dni');
             }
             else if($orden == "dni-desc"){
-                $query = $query -> orderByDesc('alumnos.dni');
+                $query = $query -> orderByDesc('dni');
             } else{
                 $query = $query -> orderBy('alumnos.nombre') -> orderBy('alumnos.apellido');
             }
 
             $alumnos = $query->paginate($porPagina); 
 
-        return view('Admin.Egresados.index',[
+        return view('Admin.Alumnos.index',[
             'alumnos'=>$alumnos, 
             'filtros'=>[
                 'campo' => $campo,

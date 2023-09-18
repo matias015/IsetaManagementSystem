@@ -79,7 +79,10 @@ class AdminsCrudController extends Controller
      */
     public function destroy(Admin $admin)
     {
+        if(Admin::count()<=1){
+            return \redirect()->back()->with('error','Debe haber almenos un administrador');
+        }
         $admin->delete();
-        return redirect()->back();
+        return redirect()->back()->with('mensaje','Se ha eliminado el administrador');
     }
 }

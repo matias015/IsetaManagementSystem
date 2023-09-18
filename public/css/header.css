@@ -156,6 +156,18 @@ header {
 }
 
 
+.selected::after {
+  content: '';
+
+  position: absolute;
+  height: 3px;
+  background-color: white;
+  bottom: 0;
+  left: 0;
+  transition: all 0.4s ease;
+  width: 100%;
+}
+
   /*                                       R  E  S  P  O  N  S  I  V  E               */
 
 

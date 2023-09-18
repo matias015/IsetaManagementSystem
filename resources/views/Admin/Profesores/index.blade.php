@@ -73,13 +73,13 @@
                     <td>{{$textFormatService->utf8UpperCamelCase($profesor->nombre)}}</td>
                     <td>{{$textFormatService->utf8UpperCamelCase($profesor->apellido)}}</td>
                     <td>{{$profesor->dni}}</td>
-                    <td><a href="{{route('admin.profesores.edit', ['profesor' => $profesor->id])}}"><button class="btn_edit">Editar</button></a></td>
+                    <td><a href="{{route('admin.profesores.edit', ['profesor' => $profesor->id])}}"><button class="btn_edit">ver</button></a></td>
                     <td>
-                        <form method="POST" action="{{route('admin.profesores.destroy', ['profesor' => $profesor->id])}}">
+                        {{-- <form method="POST" action="{{route('admin.profesores.destroy', ['profesor' => $profesor->id])}}">
                             @csrf
                             @method('delete')
                             <input class="btn_borrar" type="submit" value="Eliminar">
-                        </form>
+                        </form> --}}
                     </td>
                 </tr>
                 @endforeach

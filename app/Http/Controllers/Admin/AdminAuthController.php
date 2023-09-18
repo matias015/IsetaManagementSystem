@@ -21,7 +21,7 @@ class AdminAuthController extends Controller
 
     public function __construct()
     {
-        // $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except('logout');
         $this->middleware('auth:admin')->only('logout');
     }
 
@@ -55,5 +55,10 @@ class AdminAuthController extends Controller
 
         Auth::guard('admin')->login($admin);
         return redirect()->route('admin.alumnos.index');
+    }
+
+    function logout(){
+        Auth::logout();
+        return \redirect()->route('alumnos.login');
     }
 }
