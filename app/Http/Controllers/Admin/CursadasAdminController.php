@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 
 class CursadasAdminController extends Controller
 {
+        function __construct()
+    {
+        $this -> middleware('auth:admin');
+    }
 
     public function index(Request $request)
     {       
