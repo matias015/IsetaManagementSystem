@@ -75,7 +75,7 @@ class PdfsController extends Controller
         
         $pdf = Pdf::loadView('pdf.analitico', [
             'materias' => $materias,
-            'carrera' => Carrera::where('id',$id_carrera)->first()->nombre,
+            'carrera' => Carrera::where('id',$id_carrera)->first(),
             'porcentaje' => $porcentaje
         ]);
 
