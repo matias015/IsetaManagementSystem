@@ -139,12 +139,13 @@ CORRECCIONES 2/9
 - Se cambio el mensaje de cursando/sin determinar por el de "cursando"
 - Comentada la funcion de eliminar un profesor
 - logout para admin
-- Comentado el apartado de asignaturas de admin, porque tambien me parece que nadie lo va a usar, es mas facil 
-    verlo directamente entrando en los detalles de una carrera
+- Comentado el apartado de asignaturas de admin, porque tambien me parece que nadie lo va a usar,
+    es mas facil verlo directamente entrando en los detalles de una carrera
     Tal vez haya que hacer lo mismo con las cursadas, servira de algo que esten ahi todas sueltas?
 - los egresados tienen el nuevo filtro, falta agregar filtros especificos para ellos
 - los admin ya no tienen filtro
 - Ahora db:seed crea un admin inicial con [username/password] = ["admin"/"admin"]
 - Ahora no se puede eliminar un administrador si es la unico
-- En el header de alumno ahora se marca bien en que apartado excepto la rematriculacion no se pq, 
+- En el header de alumno ahora se marca bien en que apartado excepto la rematriculacion no se pq,
     aunque esta hecho asi nomas igual jaja si se te ocurre algo mejor cambialo
+- Ahora las actas muestran el N° de orden hasta 35

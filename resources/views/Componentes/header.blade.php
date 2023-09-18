@@ -1,7 +1,7 @@
 <header>
     <nav class="nav items-center">
         <i class="uil uil-bars navOpenBtn"></i>
-        <a href="#" class="logo">ISETA</a>
+        <a href="/alumno/inscripciones" class="logo">ISETA</a>
         <ul class="nav-links left-0 left-hide md-left-0">
           
           <i class="uil uil-times navCloseBtn"></i>
