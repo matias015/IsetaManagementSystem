@@ -11,6 +11,12 @@ use function PHPUnit\Framework\returnValue;
 
 class AdminDiasHabilesController extends Controller
 {
+
+    function __construct()
+    {
+        $this -> middleware('auth:admin');
+    }
+    
     function index(){
         $habiles=Habiles::all();
         return view('Admin.DiasHabiles.index',\compact('habiles'));
