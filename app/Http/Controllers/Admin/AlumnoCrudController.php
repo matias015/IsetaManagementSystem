@@ -12,9 +12,9 @@ use Illuminate\Http\Request;
 
 class AlumnoCrudController extends Controller
 {
-    public function __construct()
+    function __construct()
     {
-        //$this -> middleware('guest');
+        $this -> middleware('auth:admin');
     }
 
     /**
