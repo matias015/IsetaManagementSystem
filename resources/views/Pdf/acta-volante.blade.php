@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
+        {{-- <link rel="stylesheet" href="{{asset('css/global.css')}}"> --}}
         <style>
 
         body {
@@ -94,8 +95,12 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>26/5</td>
-                <td>18.30</td>
+                <td>
+                    {{ str_replace('-','/',explode(' ',$mesa->fecha)[0]) }}
+                </td>
+                <td>
+                    {{ substr(explode(' ', $mesa->fecha)[1],3) }}
+                </td>
             </tr>
             <tr>
                 <td colspan="4">Carrera: {{$mesa->materia->carrera->nombre}}</td>
