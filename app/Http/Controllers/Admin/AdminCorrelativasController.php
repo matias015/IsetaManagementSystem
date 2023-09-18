@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class AdminCorrelativasController extends Controller
 {
+
+    function __construct()
+    {
+        $this -> middleware('auth:admin');
+    }
+    
     function agregar(Request $request, Asignatura $asignatura){
 
         if($asignatura->anio == 0) return \redirect()->back()->with('error', 'No puedes añadir correlativas en asignaturas del primer año');
