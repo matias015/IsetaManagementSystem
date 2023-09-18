@@ -141,14 +141,14 @@
                                     @if(isset($materia->examen))
                                     {{ str_replace('-','/',explode(' ',$materia->examen->fecha)[0]) }}
                                     @else
-                                        -
+                                        -----------
                                     @endif
                                 </td>
                                 <td class="pos3">
                                     @if(isset($materia->examen))
                                         {{$materia->examen->nota}}
                                     @else
-                                        -
+                                        -----------
                                     @endif
                                 </td>
                             </tr>
