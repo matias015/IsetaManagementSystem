@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Hash;
 
 class ConfigController extends Controller
 {
+        function __construct()
+    {
+        $this -> middleware('auth:admin');
+    }
     public function index(){
         $configuracion=Configuracion::all()-> pluck('value','key')-> toArray();
         return view('Admin/config',compact('configuracion'));
