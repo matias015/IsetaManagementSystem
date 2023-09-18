@@ -17,15 +17,30 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+
     public const HOME = '/home';
 
     /**
-     * Define your route model bindings, pattern filters, and other route configuration.
-     */
+    * Define your route model bindings, pattern filters, and other route configuration.
+    */
     public function boot(): void
     {
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+        });
+
+        RateLimiter::for('alumno-login', function (Request $request) {
+            $key = 'login.'.$request->ip();
+            $max = 5;   // attempts
+            $decay = 60;    //seconds
+        
+            if (RateLimiter::tooManyAttempts($key, $max)) {
+                $seconds = RateLimiter::availableIn($key);
+                return redirect()->route('alumno.login')
+                    ->with('error', __('auth.throttle', ['seconds' => $seconds]));
+            } else {
+                RateLimiter::hit($key, $decay);
+            }
         });
 
         $this->routes(function () {
