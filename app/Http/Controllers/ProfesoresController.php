@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfesoresController extends Controller
 {
+    function __constructor(){
+        $this->middleware('auth:profesor');
+    }
     function mesas(){
 
         $profesor = Auth::guard('profesor')->user();
