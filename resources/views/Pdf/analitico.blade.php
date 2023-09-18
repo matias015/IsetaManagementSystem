@@ -11,14 +11,12 @@
             font-size: 12px;
         }
 
-
         .acta_contenedor {
             width: 100%;
         }
 
 
         .acta_contenedor th {
-           
             width: 100%;
         }
 
@@ -32,15 +30,36 @@
             width: 100%;
         }
 
+        .tabla1 {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
 
-        .tabla1, .tabla1 th, .tabla1 td {
-            border: 2px solid black;
+        .tabla1 th, .tabla1 td {
+            border: 2.5px solid black;
             border-collapse: collapse;
         }
 
 
+        .analitico-content, p {
+            font-size: 15px;
+        }
+
+        .analitico-content span {
+            text-transform: uppercase;
+        }
+
+        p {
+            padding-left: 15px;
+        }
+
         .pos1, .pos2, .pos3 {
             text-transform: uppercase;
+        }
+
+        .pos2, .pos3 {
+            text-align: center;
         }
 
 
@@ -50,22 +69,26 @@
             font-size: 14px;
         }
 
-
         .pos1 {
             width: 450px;
         }
-
 
         .pos2 {
             width: 100px;
         }
 
-
         .pos3 {
             width: 130px;
         }
 
+        .footer-analitico {
+            font-size: 12px; 
+            text-align: center;
+        }
 
+        .pad {
+            margin: 0 10px;
+        }
     </style>
 </head>
 <body>
@@ -78,8 +101,8 @@
         </thead>
         <tbody>
            
-           <tr>
-            <td colspan="4">Se deja constancia que {{auth()->user()->apellido}} {{auth()->user()->nombre}} D.N.I: {{auth()->user()->dni}} ha aprobado las siguientes asignaturas correspondientes al plan de estudio de la carrera {{$carrera}}, resolucion: {{"RESOLUCION"}}
+           <tr class="analitico-content">
+            <td colspan="4">Se deja constancia que <span>{{auth()->user()->apellido}}</span>, <span>{{auth()->user()->nombre}}</span> D.N.I: {{auth()->user()->dni}} ha aprobado las siguientes asignaturas correspondientes al plan de estudio de la carrera {{$carrera}}, resolucion: {{"RESOLUCION"}}
             </td>
            </tr>
             <tr>
@@ -136,8 +159,19 @@
                     </table>
                 </td>
             </tr>
+            <br>
+            <br>
             <p> Porcentaje de materias aprobadas {{$porcentaje}}.</p>
             <p>Se extiende la presente en la ciudad de 9 de Julio a los {{}} .-</p>
+             <br>
+            <p class="footer-analitico"> <span>H. Yrigoyen 931 - Tel/Fax (02317) 4225507/422305 - C.P.: 6500 - 9 de Julio (Bs As) Republica Argentina</span>
+            <br>
+            <b>www.iseta.edu.ar</b>
+            <br>
+            <span class="pad">dirección@iseta.edu.ar </span>
+            <span class="pad">preceptoria@iseta.edu.ar</span>
+            <span class="pad">regenciadeinvestigacion@iseta.edu.ar</span>
+            </p>
         </tbody>
     </table>
 </body>
