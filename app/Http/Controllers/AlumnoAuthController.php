@@ -72,7 +72,8 @@ class AlumnoAuthController extends Controller
         $alumno = Alumno::where('email',$data['email'])->first();
 
         if(!$alumno || !Hash::check($data['password'], $alumno->password)) return redirect()->route('alumno.login')->withInput()->with('error','Datos de usuario incorrectos');
-        
+        Auth::guard('admin')->logout();
+
         Auth::login($alumno);
         return redirect()->route('alumno.inscripciones');
     }
