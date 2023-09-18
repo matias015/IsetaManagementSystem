@@ -116,7 +116,7 @@
                                 <td class="pos1">{{$materia->nombre}}</td>
                                 <td class="pos2">
                                     @if(isset($materia->examen))
-                                        {{$materia->examen->fecha}}
+                                    {{ str_replace('-','/',explode(' ',$materia->examen->fecha)[0]) }}
                                     @else
                                         -
                                     @endif
@@ -142,3 +142,4 @@
     </table>
 </body>
 </html>
+
