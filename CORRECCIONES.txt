@@ -149,3 +149,4 @@ CORRECCIONES 2/9
 - En el header de alumno ahora se marca bien en que apartado excepto la rematriculacion no se pq,
     aunque esta hecho asi nomas igual jaja si se te ocurre algo mejor cambialo
 - Ahora las actas muestran el N° de orden hasta 35
+- Limite de intentos de inicio de sesion de alumno (5 intentos)
