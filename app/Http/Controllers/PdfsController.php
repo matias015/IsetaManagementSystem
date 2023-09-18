@@ -15,6 +15,11 @@ use Mockery\CountValidator\Exact;
 
 class PdfsController extends Controller
 {
+    function __construct()
+    {
+        $this -> middleware('auth:web')->only('constanciaMesas','analitico');
+    }
+    
     function constanciaMesas(){
         $alumno = Auth::id();
 
@@ -54,7 +59,7 @@ class PdfsController extends Controller
         
 
         $porcentaje = number_format((float) count($examenes) / count($materias) * 100, 2, '.', ''). '%';
-        ;
+        
         foreach($materias as $key => $materia){
             foreach($examenes as $examen){
                 if($materia->id == $examen->id_asignatura){
