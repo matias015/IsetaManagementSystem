@@ -98,7 +98,7 @@
                       libre
                       @break
                     @case(2)
-                      presencial  
+                      Regular  
                       @break
                     @case(3)
                       desertor  

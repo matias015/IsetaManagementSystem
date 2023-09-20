@@ -49,7 +49,7 @@
 
                     @if(strtotime($mesa->fecha) > time())
         
-                        estos alumnos han aprobado la cursada de esta materia, luego se volvera a validar sobre equivalencias y tiempos
+                        estos alumnos han aprobado la cursada de esta materia, luego se volvera a validar sobre correlativas y tiempos
             
                         <form method="POST" action="{{route('admin.examenes.store')}}">
                     @csrf

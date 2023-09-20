@@ -42,8 +42,17 @@
     </div>
 
     <br><br>
-
     
+
+    <form action="{{route('admin.alumno.rematricular',['alumno' => $alumno->id])}}">
+        <select name="carrera" id="">
+            @foreach ($carreras as $carrera)
+                <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
+            @endforeach
+        </select>
+        <button>Matricular</button>
+    </form>
+    <br><br><br>
 
     <div class="table">
         <div  class="table__header">
@@ -100,6 +109,7 @@
         
     </div> 
     <br><br><br>
+
     <div class="table">
         <div class="table__header">
             <h2>Examenes</h2>
@@ -137,6 +147,7 @@
             </table>
        
     </div> 
+    
 </div>
 
 @endsection

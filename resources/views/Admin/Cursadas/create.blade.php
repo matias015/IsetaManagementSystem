@@ -37,7 +37,7 @@
         <span class="perfil_dataname">Condicion: 
             <select class="campo_info" name="condicion">
                 <option value="1">Libre</option>
-                <option selected value="2">Presencial</option>
+                <option selected value="2">Regular</option>
                 <option value="3">Desertor</option>    
                 <option value="4">Atraso acadamico</option>
                 <option value="5">Otro</option>

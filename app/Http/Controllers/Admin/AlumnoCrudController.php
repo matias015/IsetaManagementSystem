@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\crearAlumnoRequest;
 use App\Http\Requests\EditarAlumnoRequest;
 use App\Models\Alumno;
+use App\Models\Carrera;
 use App\Models\Configuracion;
 use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
@@ -107,7 +108,8 @@ class AlumnoCrudController extends Controller
         $alumno = Alumno::where('id', $alumno)->with('cursadas.asignatura.carrera','examenes.mesa.materia.carrera')->first();
 
         return view('Admin.Alumnos.edit', [
-            'alumno' => $alumno
+            'alumno' => $alumno,
+            'carreras' => Carrera::vigentes()
         ]);
     }
 

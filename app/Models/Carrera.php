@@ -43,10 +43,10 @@ class Carrera extends Model
 
             if(!$carrera) return null;
             return $carrera->id;
-            
-            
+    }
 
-            
+    static function vigentes(){
+        return Carrera::where('vigente',1)->get();
     }
 
 }

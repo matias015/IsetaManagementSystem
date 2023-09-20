@@ -150,3 +150,7 @@ CORRECCIONES 2/9
     aunque esta hecho asi nomas igual jaja si se te ocurre algo mejor cambialo
 - Ahora las actas muestran el N° de orden hasta 35
 - Limite de intentos de inicio de sesion de alumno (5 intentos)
+
+20/9
+- Equivalencias ahora son correlativas
+- Ahora no es presencial, es, "Regular"

@@ -59,6 +59,6 @@ class AdminAuthController extends Controller
 
     function logout(){
         Auth::logout();
-        return \redirect()->route('alumnos.login');
+        return \redirect()->route('alumno.login');
     }
 }

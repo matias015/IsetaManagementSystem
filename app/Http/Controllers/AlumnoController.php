@@ -494,7 +494,7 @@ class AlumnoController extends Controller
                     -> where('cursadas.id_alumno', Auth::id()) -> where('cursadas.aprobada', 1)
                     -> first();
 
-                if(!$aprobado) return redirect()->back()->with('error', 'Debes 1 o mas equivalencias');
+                if(!$aprobado) return redirect()->back()->with('error', 'Debes 1 o mas correlativas');
             }
             $asignaturas[$asig_id] = $value;
         }

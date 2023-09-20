@@ -10,6 +10,7 @@ class CarreraDefault extends Model
     use HasFactory;
     protected $table = 'carreras_default';
 
+    protected $fillable = ['id_carrera','id_alumno'];
     
     
 }
