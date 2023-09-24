@@ -154,3 +154,9 @@ CORRECCIONES 2/9
 20/9
 - Equivalencias ahora son correlativas
 - Ahora no es presencial, es, "Regular"
+
+24/9
+- Cambio en como funciona el obtener la carrera default o seleccionada
+- Ahora solo se puede rematricular el alumno a si mismo en la carrera que tiene seleccionada
+- El admin ahora puede facilmente matricular un alumno, esta en desarrollo aun
+- Ahora en el nav si se marca bien el apartado de rematriculacion cuando esta seleccionado

@@ -32,7 +32,7 @@ class Carrera extends Model
             -> where('id_alumno',$alumno->id)
             -> first();
 
-            if($carrera) return $carrera->id_carrera;
+            if($carrera) return Carrera::find($carrera->id_carrera);
 
             $carrera=Carrera::select('carreras.id', 'carreras.nombre')
             -> join('asignaturas', 'asignaturas.id_carrera', 'carreras.id')
@@ -41,8 +41,9 @@ class Carrera extends Model
             -> groupBy('carreras.id', 'carreras.nombre')
             -> first();
 
+
             if(!$carrera) return null;
-            return $carrera->id;
+            return $carrera;
     }
 
     static function vigentes(){

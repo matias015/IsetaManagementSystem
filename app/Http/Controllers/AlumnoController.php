@@ -67,7 +67,7 @@ class AlumnoController extends Controller
         return view('Alumnos.Datos.informacion', [
             'alumno'=>Auth::user(),
             'carreras' => $carreras,
-            'default' => Carrera::getDefault()
+            'default' => Carrera::getDefault()->id
         ]);
     }
 
@@ -117,7 +117,7 @@ class AlumnoController extends Controller
         // cursadas del alumno de la carrera seleccionada
         $query = Cursada::select('cursadas.id_asignatura','cursadas.id','cursadas.aprobada','cursadas.condicion','asignaturas.nombre','asignaturas.anio')
             ->where('id_alumno', Auth::id())
-            -> where('asignaturas.id_carrera', Carrera::getDefault(Auth::id())) 
+            -> where('asignaturas.id_carrera', Carrera::getDefault(Auth::id())->id) 
             -> join('asignaturas','asignaturas.id','cursadas.id_asignatura');
 
         if($request->has('filtro')){
@@ -359,26 +359,29 @@ class AlumnoController extends Controller
 
     }
 
-    function remat_carrera_vista(){
-        $carreras = Carrera::where('anio_fin',0)->orWhere('vigente',1)->get();
-        $config = Configuracion::todas();
-        $inicial = new DateTime($config['fecha_inicial_rematriculacion']);
-        $final = new DateTime($config['fecha_final_rematriculacion']);
+    // function remat_carrera_vista(){
+    //     $carreras = Carrera::where('anio_fin',0)->orWhere('vigente',1)->get();
+    //     $config = Configuracion::todas();
+    //     $inicial = new DateTime($config['fecha_inicial_rematriculacion']);
+    //     $final = new DateTime($config['fecha_final_rematriculacion']);
         
-        $en_fecha = false;
-        if(time()>$inicial->getTimestamp() && time()<$final->getTimestamp()){
-            $en_fecha=true;
-        }
+    //     $en_fecha = false;
+    //     if(time()>$inicial->getTimestamp() && time()<$final->getTimestamp()){
+    //         $en_fecha=true;
+    //     }
         
-        return view('Alumnos.datos.remat-seleccionar-carrera', ['carreras'=>$carreras,'en_fecha'=>$en_fecha]);
-    }
+    //     return view('Alumnos.datos.remat-seleccionar-carrera', ['carreras'=>$carreras,'en_fecha'=>$en_fecha]);
+    // }
 
     /*
      | ---------------------------------------------
      | Vista de rematriculacion
      | ---------------------------------------------
      */
-    function rematriculacion_vista(Request $request,Carrera $carrera){
+    function rematriculacion_vista(Request $request){
+
+
+        $carrera = Carrera::getDefault();
 
         // todas las materias de esa carrera
         $asignaturas = $carrera->asignaturas;

@@ -41,7 +41,7 @@ class PdfsController extends Controller
         $alumno = Auth::id();
 
 
-        $id_carrera = Carrera::getDefault();
+        $id_carrera = Carrera::getDefault()->id;
 
         
         $materias = Asignatura::where('id_carrera', $id_carrera)->get();
@@ -52,7 +52,7 @@ class PdfsController extends Controller
         -> from('asignaturas')
         -> join('examenes','examenes.id_asignatura','=','asignaturas.id')
         -> where('examenes.id_alumno', Auth::id())
-        -> where('asignaturas.id_carrera', Carrera::getDefault())
+        -> where('asignaturas.id_carrera', Carrera::getDefault()->id)
         -> where('examenes.nota', '>=', 4)
         -> groupBy('examenes.id_asignatura','asignaturas.nombre','asignaturas.anio','examenes.fecha')
         -> get();

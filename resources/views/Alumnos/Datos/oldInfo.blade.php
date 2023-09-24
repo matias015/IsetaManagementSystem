@@ -10,7 +10,7 @@
           @csrf
           <select class="select-carrera" name="carrera">
             @foreach ($carreras as $carrera)
-                <option @selected($carrera->id==$default) value="{{$carrera->id}}">
+                <option @selected($carrera->id==$default->id) value="{{$carrera->id}}">
                   {{$carrera->nombre}}
                 </option>
             @endforeach

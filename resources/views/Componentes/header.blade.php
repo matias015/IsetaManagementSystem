@@ -18,9 +18,8 @@
             Inscribir</a></li>
             <li>
               <a @class([
-                'selected' => request()->is('alumno/rematriculacion/carrera'),
                 'selected' => request()->is('alumno/rematriculacion')
-              ]) href="{{route('alumno.rematriculacion.carrera')}}">
+              ]) href="{{route('alumno.rematriculacion.asignaturas')}}">
               <i class="ti ti-clipboard-text"></i>Rematriculacion</a>
             </li>
         </ul>

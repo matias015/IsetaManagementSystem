@@ -12,7 +12,7 @@
           {{-- <select class="w-50p lg-w-auto select-carrera" name="carrera"> --}}
           <select class="w-50p lg-w-auto border-none p-2 bg-white rounded shadow-sm select-carrera" name="carrera">
             @foreach ($carreras as $carrera)
-                <option @selected($carrera->id==$default) value="{{$carrera->id}}">
+                <option @selected($carrera->id==$default->id) value="{{$carrera->id}}">
                   {{$carrera->nombre}}
                 </option>
             @endforeach

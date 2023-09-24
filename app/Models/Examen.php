@@ -31,7 +31,7 @@ class Examen extends Model
 
         $query = Examen::select('examenes.aprobado','asignaturas.id','asignaturas.anio','asignaturas.nombre','nota','id_asignatura','fecha')
             -> join('asignaturas', 'asignaturas.id','examenes.id_asignatura')
-            -> where('asignaturas.id_carrera', Carrera::getDefault())
+            -> where('asignaturas.id_carrera', Carrera::getDefault()->id)
             -> where('id_alumno', $id);
             
             if($filtro){
