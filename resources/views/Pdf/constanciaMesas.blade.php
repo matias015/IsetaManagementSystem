@@ -17,6 +17,6 @@
             <li>{{$mesa->asignatura->nombre}}</li>
         @endforeach
     </ul>
-
+    <img style="width: 100%" src="{{asset('img/CONSTANCIA-MESA-EXAMINADORA.png')}}" alt="">
 </body>
 </html>
