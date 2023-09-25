@@ -18,11 +18,12 @@ class AdminCorrelativasController extends Controller
     function agregar(Request $request, Asignatura $asignatura){
 
         if($asignatura->anio == 0) return \redirect()->back()->with('error', 'No puedes añadir correlativas en asignaturas del primer año');
-
+      
         Correlativa::create([
             'id_asignatura' => $asignatura->id,
-            'asignatura_correlativa' => $request->asignatura_correlativa
+            'asignatura_correlativa' => $request->id_asignatura
         ]);
+
 
         return redirect()->back()->with('mensaje','Se agrego la correlativa');
     }
