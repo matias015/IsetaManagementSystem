@@ -67,7 +67,7 @@ class AlumnoController extends Controller
         return view('Alumnos.Datos.informacion', [
             'alumno'=>Auth::user(),
             'carreras' => $carreras,
-            'default' => Carrera::getDefault()->id
+            'default' => Carrera::getDefault()
         ]);
     }
 
