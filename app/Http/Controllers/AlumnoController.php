@@ -115,7 +115,7 @@ class AlumnoController extends Controller
         $porPagina = 15;
 
         // cursadas del alumno de la carrera seleccionada
-        $query = Cursada::select('cursadas.id_asignatura','cursadas.id','cursadas.aprobada','cursadas.condicion','asignaturas.nombre','asignaturas.anio')
+        $query = Cursada::select('cursadas.id_asignatura','cursadas.anio_cursada','cursadas.id','cursadas.aprobada','cursadas.condicion','asignaturas.nombre','asignaturas.anio')
             ->where('id_alumno', Auth::id())
             -> where('asignaturas.id_carrera', Carrera::getDefault(Auth::id())->id) 
             -> join('asignaturas','asignaturas.id','cursadas.id_asignatura');
