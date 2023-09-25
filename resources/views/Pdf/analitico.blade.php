@@ -95,7 +95,7 @@
     <table class="acta_contenedor">
         <thead>
             <tr>
-                {{-- <th><img style="width: 100%" src="{{asset('img/a.bmp')}}" alt=""></th> --}}
+                <th><img style="width: 100%" src="{{asset('img/pdf.png')}}" alt=""></th>
             </tr>
                
         </thead>
@@ -162,7 +162,16 @@
             <br>
             <br>
             <p> Porcentaje de materias aprobadas {{$porcentaje}}.</p>
-            <p>Se extiende la presente en la ciudad de 9 de Julio a los {{}} .-</p>
+
+            @php
+                $time = time();
+                $meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+                $mes = $meses[str_replace('0','',date("m", $time))-1];
+                $dia = str_replace('0','',date("d", $time))-1;
+                $anio = date("Y", $time);
+            @endphp
+             
+            <p>Se extiende la presente en la ciudad de 9 de Julio a los {{$dia+1}} dias del mes de {{$mes}} de {{$anio}}.</p>
              <br>
             <p class="footer-analitico"> <span>H. Yrigoyen 931 - Tel/Fax (02317) 4225507/422305 - C.P.: 6500 - 9 de Julio (Bs As) Republica Argentina</span>
             <br>
