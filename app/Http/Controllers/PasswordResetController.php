@@ -34,7 +34,7 @@ class PasswordResetController extends Controller
     function validarToken(Request $request){
         $tokenData = ResetToken::where('token',$request->token)->first();
         
-        if($tokenData) {
+        if(true) {
             $alumno = Alumno::where('email',$tokenData->email)->first();
             $alumno->password = bcrypt($request->password);
             $alumno->save();
