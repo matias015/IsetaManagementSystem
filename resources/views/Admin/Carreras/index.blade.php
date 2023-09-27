@@ -72,7 +72,7 @@
                 <td>{{$textFormatService->utf8Minusculas($carrera->nombre)}}</td>
                 <td>{{$carrera->resolucion}}</td>
                 <td>{{$carrera->anio_apertura}}</td>
-                <td>{{$carrera->anio_fin}}</td>
+                <td>{{$carrera->anio_fin == 0? "Aun vigente":$carrera->anio_fin}}</td>
                 <td>{{$carrera->observaciones}}</td>
                 <td><a href="{{route('admin.carreras.edit', ['carrera' => $carrera->id])}}"><button class="btn_edit">editar</button></a></td>
                 <td>

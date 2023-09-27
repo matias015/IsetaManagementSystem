@@ -34,7 +34,7 @@
                 <div class="underline"></div>
             </div>
             <div class="contraseña input-box">
-                <input value="123" type="password" name="password"  required placeholder="Contraseña">
+                <input value="123456789" type="password" name="password"  required placeholder="Contraseña">
                 <div class="underline"></div>
             </div>
             <div class="entrar input-box button"><input type="submit" value="Entrar"></div>

@@ -16,7 +16,7 @@
                     <span class="perfil_dataname">Condicion: 
                         <select class="campo_info" name="condicion">
                             <option @selected($cursada->condicion==1) value="1">Libre</option>
-                            <option @selected($cursada->condicion==2) value="2">Precencial</option>
+                            <option @selected($cursada->condicion==2) value="2">Regular</option>
                             <option @selected($cursada->condicion==3) value="3">Desertor</option>    
                             <option @selected($cursada->condicion==4) value="4">Atraso acadamico</option>
                             <option @selected($cursada->condicion==5) value="5">Otro</option>

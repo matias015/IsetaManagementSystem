@@ -43,11 +43,11 @@
             </div>
 
             <div class="perfil_one table">
-                <h2>Alumnos inscriptos</h2>
+                {{--<h2>Alumnos inscriptos</h2>
                     <p>Agregar alumno</p>
                     <p>
 
-                    @if(strtotime($mesa->fecha) > time())
+                     @if(strtotime($mesa->fecha) > time())
         
                         estos alumnos han aprobado la cursada de esta materia, luego se volvera a validar sobre correlativas y tiempos
             
@@ -66,7 +66,7 @@
                         </form>
                     @else
                         Ya no se pueden agregar alumnos    
-                    @endif
+                    @endif --}}
                     </p>
             </div>
             <div class="table">

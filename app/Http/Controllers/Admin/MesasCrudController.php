@@ -142,6 +142,12 @@ class MesasCrudController extends Controller
             -> where('cursadas.id_asignatura',$mesa->id_asignatura)
             -> get();
 
+        // $finales = [];
+
+        // foreach ($inscribibles as $alumno) {
+        //     $examenAprobado = Examen::where('id_alumno',$alumno->id)->where('nota','>=',4)->first();
+        //     if(!$examenAprobado) $finales[] = $alumno;
+        // }
            
 
         return view('Admin.Mesas.edit', [
