@@ -16,7 +16,12 @@
             @endforeach
         </select>
         </span>
-        <span class="perfil_dataname">Tipo modulo: <input class="campo_info"  name="tipo_modulo"></span>
+        <span class="perfil_dataname">Tipo modulo: 
+            <select class="campo_info"  name="tipo_modulo">
+                <option value="1">Modulos</option>
+                <option value="2">Horas</option>
+            </select>
+    </span>
         <span class="perfil_dataname">Carga horaria: <input class="campo_info"  name="carga_horaria"></span>
         <span class="perfil_dataname">Año:<input class="campo_info"  name="anio"></span>
         <span class="perfil_dataname">Observaciones: <input class="campo_info"  name="observaciones"></span>
@@ -27,3 +32,4 @@
         </div>
     </div>
 @endsection
+
