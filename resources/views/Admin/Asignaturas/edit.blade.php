@@ -12,7 +12,12 @@
         <span class="perfil_dataname">Carrera: 
             <p class="campo_info">{{$asignatura->carrera->nombre}}</p>
         </span>
-        <span class="perfil_dataname">Tipo modulo: <input class="campo_info" value="{{$asignatura->tipo_modulo}}" name="tipo_modulo"></span>
+        <span class="perfil_dataname">Tipo modulo: 
+            <select class="campo_info" name="tipo_modulo">
+                <option @selected($asignatura->tipo_modulo==1) value="1">Modulos</option>
+                <option @selected($asignatura->tipo_modulo==2) value="2">Horas</option>
+            </select>
+        </span>
         <span class="perfil_dataname">Carga horaria: <input class="campo_info" value="{{$asignatura->carga_horaria}}" name="carga_horaria"></span>
         <span class="perfil_dataname">Año:<input class="campo_info" value="{{$asignatura->anio}}" name="anio"></span>
         <span class="perfil_dataname">Observaciones: <input class="campo_info" value="{{$asignatura->observaciones}}" name="observaciones"></span>

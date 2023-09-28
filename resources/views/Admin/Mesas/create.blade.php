@@ -5,11 +5,12 @@
 
         <div class="perfil_one table">
         <span class="perfil_dataname">Carrera:
-        <select class="campo_info" name="carrera" id="carrera_select">
-            @foreach ($carreras as $carrera)
-                <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
-            @endforeach
-        </select>
+            <select class="campo_info" name="carrera" id="carrera_select">
+                <option value="any">Selecciona una carrera</option>
+                @foreach ($carreras as $carrera)
+                    <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
+                @endforeach
+            </select>
         </span>
 
        <form method="post" action="{{route('admin.mesas.store')}}">

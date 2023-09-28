@@ -8,6 +8,7 @@ use App\Models\Carrera;
 use App\Models\CarreraDefault;
 use App\Models\Configuracion;
 use App\Models\Cursada;
+use App\Models\Egresado;
 use App\Models\Examen;
 use App\Models\Mesa;
 use App\Services\DiasHabiles;
@@ -53,11 +54,15 @@ class AlumnoController extends Controller
 
     function info(){
         // carreras que el alumno cursa o curso
-        $carreras = Carrera::select('carreras.id', 'carreras.nombre')
-        -> join('asignaturas', 'asignaturas.id_carrera', 'carreras.id')
-        -> join('cursadas', 'cursadas.id_asignatura', 'asignaturas.id')
-        -> where('cursadas.id_alumno', Auth::id()) 
-        -> groupBy('carreras.id', 'carreras.nombre')
+        // $carreras = Carrera::select('carreras.id', 'carreras.nombre')
+        // -> join('asignaturas', 'asignaturas.id_carrera', 'carreras.id')
+        // -> join('cursadas', 'cursadas.id_asignatura', 'asignaturas.id')
+        // -> where('cursadas.id_alumno', Auth::id()) 
+        // -> groupBy('carreras.id', 'carreras.nombre')
+        // -> get();
+        $carreras = Egresado::select('carreras.id', 'carreras.nombre')
+        -> join('carreras','egresadoinscripto.id_carrera','carreras.id')
+        -> where('egresadoinscripto.id_alumno', Auth::id())
         -> get();
 
         foreach($carreras as $carrera){
@@ -80,6 +85,7 @@ class AlumnoController extends Controller
      */
 
      function setCarreraDefault(Request $request){
+    
         $data = [
             'id_alumno' => Auth::id(),
             'id_carrera' => $request -> carrera

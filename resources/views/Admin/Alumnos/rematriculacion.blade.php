@@ -2,6 +2,7 @@
 @section('content')
 <main id="fondo-estudiantes" class="black flex-col justify-center items-center gap-3 p-3 w-100">
     <p>Esta pagina sufrira cambios en el futuro ya que esta en etapa de prueba</p>
+    
     <form class=" w-75p p-5 my-10 flex-col items-end just-center rounded-3  box-sh" method="POST" 
     action="{{route('admin.alumno.matricular.post', ['alumno'=>$alumno->id, 'carrera'=>$carrera->id])}}">
         @csrf

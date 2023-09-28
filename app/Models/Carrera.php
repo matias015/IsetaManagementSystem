@@ -28,19 +28,25 @@ class Carrera extends Model
     static function getDefault($alumno_id=null){
         if($alumno_id) $alumno = Alumno::find($alumno_id);
         else $alumno = Auth::user();
+
         $carrera = CarreraDefault::select('id_carrera')
             -> where('id_alumno',$alumno->id)
             -> first();
 
             if($carrera) return Carrera::find($carrera->id_carrera);
 
-            $carrera=Carrera::select('carreras.id', 'carreras.nombre')
-            -> join('asignaturas', 'asignaturas.id_carrera', 'carreras.id')
-            -> join('cursadas', 'cursadas.id_asignatura', 'asignaturas.id')
-            -> where('cursadas.id_alumno', $alumno->id) 
-            -> groupBy('carreras.id', 'carreras.nombre')
-            -> first();
+            // ANTES
+            // $carrera=Carrera::select('carreras.id', 'carreras.nombre')
+            // -> join('asignaturas', 'asignaturas.id_carrera', 'carreras.id')
+            // -> join('cursadas', 'cursadas.id_asignatura', 'asignaturas.id')
+            // -> where('cursadas.id_alumno', $alumno->id) 
+            // -> groupBy('carreras.id', 'carreras.nombre')
+            // -> first();
 
+            $carrera = Egresado::select('carreras.id', 'carreras.nombre')
+                -> join('carreras','egresadoinscripto.id_carrera','carreras.id')
+                -> where('egresadoinscripto.id_alumno',$alumno->id)
+                -> first();
 
             if(!$carrera) return null;
             return $carrera;

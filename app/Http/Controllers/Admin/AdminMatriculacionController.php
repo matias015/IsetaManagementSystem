@@ -8,6 +8,7 @@ use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Configuracion;
 use App\Models\Cursada;
+use App\Models\Egresado;
 use Illuminate\Http\Request;
 
 class AdminMatriculacionController extends Controller
@@ -148,7 +149,17 @@ class AdminMatriculacionController extends Controller
         // Año de la rematriculacion
         $config = Configuracion::todas();
         $anio_remat = $config['anio_remat'];
-    
+
+
+
+        Egresado::create([
+            'id_alumno' => $alumno->id,
+            'id_carrera' => $carrera->id,
+            'anio_inscripcion' => date("Y", time()),
+            // 'indice_libro_matriz' => ['required'],
+            // 'anio_finalizacion' => ['required']
+        ]);
+
         // Registrar las cursadas
         foreach($asignaturas as $asigId => $tipoCursada){
             Cursada::create([

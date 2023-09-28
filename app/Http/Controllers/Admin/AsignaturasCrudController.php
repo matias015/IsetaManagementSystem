@@ -13,6 +13,7 @@ use Svg\Tag\Rect;
 
 class AsignaturasCrudController extends Controller
 {
+    
     function __construct()
     {
         $this -> middleware('auth:admin');
@@ -72,7 +73,7 @@ class AsignaturasCrudController extends Controller
         $data['anio'] = $data['anio'] - 1; 
 
         Asignatura::create($data);
-        return redirect()->route('admin.asignaturas.index');
+        return redirect()->back()->with('Se creo la asignatura');
     }
 
     /**
@@ -111,7 +112,7 @@ class AsignaturasCrudController extends Controller
     public function update(Request $request, Asignatura $asignatura)
     {
         $asignatura->update($request->all());
-        return redirect()->route('admin.asignaturas.index');
+        return redirect()->back()->with('mensaje','Se edito la asignatura');
     }
 
     /**
@@ -120,6 +121,6 @@ class AsignaturasCrudController extends Controller
     public function destroy(Asignatura $asignatura)
     {
         $asignatura->delete();
-        return redirect() -> route('admin.asignaturas.index') -> with('mensaje', 'Se ha eliminado la asig');
+        return redirect() -> back() -> with('mensaje', 'Se ha eliminado la asignatura');
     }
 }
