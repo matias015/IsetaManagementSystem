@@ -10,7 +10,7 @@
 
         <span class="perfil_dataname">Asignatura: <input class="campo_info" value="{{$asignatura->nombre}}" name="nombre"></span>
         <span class="perfil_dataname">Carrera: 
-            <p class="campo_info">{{$asignatura->carrera->nombre}}</p>
+            <p class="campo_info">{{$textFormatService->ucfirst($asignatura->carrera->nombre)}}</p>
         </span>
         <span class="perfil_dataname">Tipo modulo: 
             <select class="campo_info" name="tipo_modulo">
@@ -27,7 +27,7 @@
                 <form method="post" action="{{route('correlativa.eliminar', ['asignatura'=>$asignatura->id,'asignatura_correlativa'=>$correlativa->asignatura->id])}}">
                     @csrf
                     @method('delete')
-                    <li>- {{$correlativa->asignatura->nombre}}</li>
+                    <li>- {{$textFormatService->ucfirst($correlativa->asignatura->nombre)}}</li>
                     <button class="btn_edit">Eliminar</button>
                 </form>
                 @endforeach
@@ -51,7 +51,7 @@
                     <select class="campo_info" id="asignatura_select" name="id_asignatura">
                     @foreach ($asignatura->carrera->asignaturas as $asignatura_carrera)
                         @if ($asignatura_carrera->id != $asignatura->id)
-                            <option value="{{$asignatura_carrera->id}}">{{$asignatura_carrera->nombre}}</option>
+                            <option value="{{$asignatura_carrera->id}}">{{$textFormatService->ucfirst($asignatura_carrera->nombre)}}</option>
                         @endif
                     @endforeach
                
@@ -82,7 +82,7 @@
                 <tr>
                     <td><input type="checkbox" checked name="toPrint[]" value="{{$alumno->id}}"></td>
                 
-                    <td> {{$alumno->nombre}} {{$alumno->apellido}}</td>
+                    <td> {{$textFormatService->ucwords($alumno->apellido.' '.$alumno->nombre)}}</td>
 
                     <td> {{$alumno->dni}}</td>
 

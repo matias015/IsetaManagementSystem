@@ -10,7 +10,7 @@
                 @csrf
                 @method('put')
 
-                    <span class="perfil_dataname">Carrera: <input class="campo_info" value="{{$carrera->nombre}}" name="nombre"></span>
+                    <span class="perfil_dataname">Carrera: <input class="campo_info" value="{{$textFormatService->ucfirst($carrera->nombre)}}" name="nombre"></span>
                     <span class="perfil_dataname">Resolucion: <input class="campo_info" value="{{$carrera->resolucion}}" name="resolucion"></span>
                     <span class="perfil_dataname">Año apertura: <input class="campo_info" value="{{$carrera->anio_apertura}}" name="anio_apertura"></span>
                     <span class="perfil_dataname">Año fin: <input class="campo_info" value="{{$carrera->anio_fin}}" name="anio_fin"></span>
@@ -39,7 +39,7 @@
                             <tr>
                                 <td> {{$asignatura->anio + 1}} </td>
 
-                                <td> {{$asignatura->nombre}} </td>
+                                <td> {{$textFormatService->ucfirst($asignatura->nombre)}} </td>
 
                                 <td> {{$asignatura->carga_horaria}} horas</td>
 

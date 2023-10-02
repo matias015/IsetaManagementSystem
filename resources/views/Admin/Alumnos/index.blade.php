@@ -18,7 +18,6 @@
                                     <option @selected($filtros['orden'] == 'nombre') value="nombre">nombre</option>
                                     <option @selected($filtros['orden'] == 'dni') value="dni">dni</option>
                                     <option @selected($filtros['orden'] == 'dni-desc') value="dni-desc">dni descendiente</option>
-
                                 </select>
                             </div>
                         </div>
@@ -27,7 +26,8 @@
 
                             <div class="contenedor_filtrar">
                                 <select class="border-none rounded p-1 bg-white shadow" name="campo">
-                                    <option value="ninguno">ninguno</option>
+                                    <option value="ninguno">Ninguno</option>
+                                    <option @selected($filtros['campo'] == 'egresados') value="egresados">Egresados</option>
                                     <option @selected($filtros['campo'] == 'registrados') value="registrados">registrados</option>
                                 </select>
                             </div>
@@ -73,8 +73,8 @@
                 <tbody>
                 @foreach ($alumnos as $alumno)
                 <tr>
-                    <td>{{$textFormatService->utf8UpperCamelCase($alumno->nombre)}}</td>
-                    <td>{{$textFormatService->utf8UpperCamelCase($alumno->apellido)}}</td>
+                    <td>{{$textFormatService->ucwords($alumno->nombre)}}</td>
+                    <td>{{$textFormatService->ucwords($alumno->apellido)}}</td>
                     <td>{{$alumno->dni}}</td>
                     <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}"><button class="btn_edit">Editar</button></a></td>
                     <td>

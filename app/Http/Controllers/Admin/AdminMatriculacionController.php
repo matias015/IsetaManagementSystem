@@ -151,14 +151,17 @@ class AdminMatriculacionController extends Controller
         $anio_remat = $config['anio_remat'];
 
 
+        if(!Egresado::where('id_alumno',$alumno->id)->where('id_carrera',$carrera->id)->first()){
+            Egresado::create([
+                'id_alumno' => $alumno->id,
+                'id_carrera' => $carrera->id,
+                'anio_inscripcion' => date("Y", time()),
+                // 'indice_libro_matriz' => ['required'],
+                // 'anio_finalizacion' => ['required']
+            ]);
+        }
 
-        Egresado::create([
-            'id_alumno' => $alumno->id,
-            'id_carrera' => $carrera->id,
-            'anio_inscripcion' => date("Y", time()),
-            // 'indice_libro_matriz' => ['required'],
-            // 'anio_finalizacion' => ['required']
-        ]);
+       
 
         // Registrar las cursadas
         foreach($asignaturas as $asigId => $tipoCursada){

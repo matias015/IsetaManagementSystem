@@ -14,7 +14,7 @@
                     <p class="categoria">Ordenar</p>
                     <div>
                         <select class="border-none rounded p-1 bg-white shadow" name="orden">
-                            <option @selected($filtros['orden'] == 'nombre') value="nombre">nombre</option>
+                            <option @selected($filtros['orden'] == 'nombre') value="nombre">Nombre</option>
                         </select>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
 
                     <div class="contenedor_filtrar">
                         <select class="border-none rounded p-1 bg-white shadow" name="campo">
-                            <option value="ninguno">ninguno</option>
+                            <option value="ninguno">Todas</option>
                             <option @selected($filtros['campo'] == 'vigentes') value="vigentes">Vigentes</option>
                         </select>
                     </div>
@@ -69,7 +69,7 @@
         <tbody>
             @foreach ($carreras as $carrera)
             <tr>
-                <td>{{$textFormatService->utf8Minusculas($carrera->nombre)}}</td>
+                <td>{{$textFormatService->ucfirst($carrera->nombre)}}</td>
                 <td>{{$carrera->resolucion}}</td>
                 <td>{{$carrera->anio_apertura}}</td>
                 <td>{{$carrera->anio_fin == 0? "Aun vigente":$carrera->anio_fin}}</td>

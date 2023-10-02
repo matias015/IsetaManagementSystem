@@ -127,7 +127,7 @@ class MesasCrudController extends Controller
     {
         $mesa = Mesa::where('id', $mesa)->with('materia.carrera','profesor','vocal1','vocal2')->first();
 
-        $profesores = Profesor::all();
+        $profesores = Profesor::orderBy('apellido')->orderBy('nombre')->get();
 
         $alumnos = Mesa::select('examenes.id as id_examen','alumnos.nombre','alumnos.apellido','examenes.nota')
             -> join('examenes', 'examenes.id_mesa','mesas.id')

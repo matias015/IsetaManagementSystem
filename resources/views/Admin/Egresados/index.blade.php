@@ -27,7 +27,8 @@
 
                     <div class="contenedor_filtrar">
                         <select class="border-none rounded p-1 bg-white shadow" name="campo">
-                            <option value="ninguno">ninguno</option>
+                            <option value="ninguno">Todos</option>
+                            <option @selected($filtros['campo'] == 'egresados') value="egresados">Egresados</option>
                             <option @selected($filtros['campo'] == 'registrados') value="registrados">registrados</option>
                         </select>
                     </div>
@@ -64,29 +65,36 @@
         <table class="table__body">
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Dni</th>
+                    <th>Apellido y nombre</th>
+                    {{-- <th>Dni</th> --}}
                     <th>Carrera</th>
-                    <th colspan="2">Acciones</th>
+                    <th>Periodo</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
             @foreach ($alumnos as $alumno)
             <tr>
-                <td>{{$textFormatService->utf8UpperCamelCase($alumno->nombre)}}</td>
-                <td>{{$textFormatService->utf8UpperCamelCase($alumno->apellido)}}</td>
-                <td>{{$alumno->dni}}</td>
-                <td>{{$textFormatService->utf8minusculas($alumno->carrera)}}</td>
-
-                <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}"><button class="btn_edit">Ver</button></a></td>
                 <td>
+                    {{$textFormatService->ucwords($alumno->apellido.' '. $alumno->nombre)}}
+                </td>
+                
+                {{-- <td>{{$alumno->dni}}</td> --}}
+                <td>{{$textFormatService->ucfirst($alumno->carrera)}}</td>
+                <td>
+                    {{$alumno->anio_inscripcion?$alumno->anio_inscripcion:'Sin datos'}}
+                    -
+                    {{$alumno->anio_finalizacion? $alumno->anio_finalizacion:'Presente'}}
+                </td>
+                
+                <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}"><button class="btn_edit">Ver</button></a></td>
+                {{-- <td>
                     <form method="POST" action="{{route('admin.egresados.destroy', ['egresado' => $alumno->id])}}">
                         @csrf
                         @method('delete')
                         <input class="btn_borrar" type="submit" value="Eliminar">
                     </form>
-                </td>
+                </td> --}}
             </tr>
             @endforeach
             </tbody>

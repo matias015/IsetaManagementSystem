@@ -12,7 +12,7 @@
         <span class="perfil_dataname">Alumno:
         <select class="campo_info" name="id_alumno">
             @foreach ($alumnos as $alumno)
-                <option value="{{$alumno->id}}">{{$textFormatService->utf8UpperCamelCase($alumno->nombre.' '.$alumno->apellido)}}</option>
+                <option value="{{$alumno->id}}">{{$textFormatService->ucwords($alumno->apellido.' '.$alumno->nombre)}}</option>
             @endforeach
         </select>
         </span>
@@ -20,7 +20,7 @@
         <span class="perfil_dataname">Carrera:
         <select class="campo_info" name="id_carrera">
             @foreach ($carreras as $carrera)
-                <option value="{{$carrera->id}}">{{$textFormatService->utf8minusculas($carrera->nombre)}}</option>
+                <option value="{{$carrera->id}}">{{$textFormatService->ucfirst($carrera->nombre)}}</option>
             @endforeach
         </select>
         </span>

@@ -96,7 +96,7 @@ class ExamenesCrudController extends Controller
     {
         $data = $request->only('id_alumno','id_mesa');
         $mesa = Mesa::find($data['id_mesa']);
- 
+     
         /////////////////
 
         $posibles = [];
@@ -137,14 +137,16 @@ class ExamenesCrudController extends Controller
         }
 
         //////////////////
-
+      
         Examen::create([
             'id_alumno' => $data['id_alumno'],
             'id_mesa' => $mesa->id,
-            'id_asignatura' => $mesa->id_asignatura
+            'id_asignatura' => $mesa->id_asignatura,
+            'nota'=>0,
+            'aprobado' => 0
         ]); 
 
-        return redirect()->back()->with('mensaje','anotado');
+        return redirect() -> back() -> with('mensaje','anotado');
     }
 
     /**
@@ -197,11 +199,10 @@ class ExamenesCrudController extends Controller
      */
     public function destroy(Examen $examen)
     {
-        $examen = Examen::with('mesa','asignatura' ,'alumno')->where('examenes.id',$examen->id)->first();
-//  aprobado->1, desaprobado->2, ausente->3
-
-     
-if($examen->nota > 0 || $examen->aprobado =! 0){
+        $examen = Examen::with('mesa','asignatura' ,'alumno')->where('examenes.id', $examen->id)->first();
+        //  aprobado->1, desaprobado->2, ausente->3
+       
+        if($examen->nota > 0 || $examen->aprobado =! 0){
             return redirect()->back()->with('error','No se puede borrar porque el examen ya fue realizado por el alumno');
         }
         $borrable = false;
@@ -216,7 +217,7 @@ if($examen->nota > 0 || $examen->aprobado =! 0){
 
         if(!$borrable) return redirect()->back()->with('error','No se puede borrar porque faltan menos de 24 horas');
 
-        $examen->delete();
+       
         return redirect() -> route('admin.examenes.index') -> with('mensaje', 'Se ha eliminado el examen');
     }
 }

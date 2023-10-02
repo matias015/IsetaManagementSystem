@@ -47,7 +47,7 @@
     <form action="{{route('admin.alumno.rematricular',['alumno' => $alumno->id])}}">
         <select name="carrera" id="">
             @foreach ($carreras as $carrera)
-                <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
+                <option value="{{$carrera->id}}">{{$textFormatService->ucfirst($carrera->nombre)}}</option>
             @endforeach
         </select>
         <button>Matricular</button>
@@ -71,9 +71,11 @@
             <tbody>
             @foreach($alumno->cursadas as $cursada)
                 <tr>
-                    <td>{{$cursada->asignatura->nombre}}</td>
+                    <td>{{$textFormatService->ucfirst($cursada->asignatura->nombre)}}</td>
                     <td>{{$cursada->anio_cursada}}</td>
-                    <td>{{$cursada->asignatura->carrera->nombre}}</td>
+                    <td>
+                        {{$textFormatService->ucfirst($cursada->asignatura->carrera->nombre)}}
+                    </td>
                     <td>
                         @if ($cursada->aprobada==1)
                             Si
@@ -113,7 +115,7 @@
     <div class="table">
         <div class="table__header">
             <h2>Examenes</h2>
-            <p>Importante: algunos examanes de alumnos mas antiguos podrian no tener datos sobre las mesas, debido a que no fueron registradas correctamente por parte de iseta
+            <p>Importante: algunos examanes de alumnos mas antiguos podrian no tener datos sobre las mesas.
             </p>
         </div>
             <table>
@@ -128,8 +130,8 @@
                 <tbody>
                     @foreach($alumno->examenes as $examen)
                         <tr>
-                            <td>{{$examen->asignatura->nombre}}</td>
-                            <td>{{$examen->asignatura->carrera->nombre}}</td>
+                            <td>{{$textFormatService->ucfirst($examen->asignatura->nombre)}}</td>
+                            <td>{{$textFormatService->ucfirst($examen->asignatura->carrera->nombre)}}</td>
                             <td>
                         
                             @if ($examen->aprobado==3)

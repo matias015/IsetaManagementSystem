@@ -70,8 +70,8 @@
             <tbody>
                 @foreach ($profesores as $profesor)
                 <tr>
-                    <td>{{$textFormatService->utf8UpperCamelCase($profesor->nombre)}}</td>
-                    <td>{{$textFormatService->utf8UpperCamelCase($profesor->apellido)}}</td>
+                    <td>{{$textFormatService->ucwords($profesor->nombre)}}</td>
+                    <td>{{$textFormatService->ucwords($profesor->apellido)}}</td>
                     <td>{{$profesor->dni}}</td>
                     <td><a href="{{route('admin.profesores.edit', ['profesor' => $profesor->id])}}"><button class="btn_edit">ver</button></a></td>
                     <td>

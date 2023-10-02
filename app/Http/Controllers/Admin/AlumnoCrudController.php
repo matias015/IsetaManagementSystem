@@ -8,6 +8,7 @@ use App\Http\Requests\EditarAlumnoRequest;
 use App\Models\Alumno;
 use App\Models\Carrera;
 use App\Models\Configuracion;
+use App\Models\Egresado;
 use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
 
@@ -46,19 +47,20 @@ class AlumnoCrudController extends Controller
             }
         }
         
+        
        
         if($campo == "registrados"){
             $query = $query -> where('password','!=','0');
         }
 
-           if($orden == "dni"){
-                $query = $query -> orderBy('dni');
-            }
-            else if($orden == "dni-desc"){
-                $query = $query -> orderByDesc('dni');
-            } else{
-                $query = $query -> orderBy('alumnos.nombre') -> orderBy('alumnos.apellido');
-            }
+        if($orden == "dni"){
+            $query = $query -> orderBy('dni');
+        }
+        else if($orden == "dni-desc"){
+            $query = $query -> orderByDesc('dni');
+        } else{
+            $query = $query -> orderBy('alumnos.nombre') -> orderBy('alumnos.apellido');
+        }
 
             $alumnos = $query->paginate($porPagina); 
 
@@ -127,7 +129,8 @@ class AlumnoCrudController extends Controller
      */
     public function destroy(Alumno $alumno)
     {
-        dd('No hagas cagada');
+        return redirect()->back()->with('error','De momento, no se pueden eliminar alumnos');
+        
         $alumno->delete();
         return redirect() -> route('admin.alumnos.index') -> with('mensaje', 'Se ha eliminado el alumno');
     }

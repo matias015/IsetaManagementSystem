@@ -4,9 +4,9 @@
 
 <ul class="pager">
     @if ($paginator->onFirstPage())
-             <li class="disabled btn1"><span><i class="ti ti-square-rounded-chevron-left"></i>Anterior</span></li>
+             <li class="disabled btn1"><span>Anterior</span></li>
     @else
-        <li class="btn1"><a href="{{ $paginator->previousPageUrl() }}" rel="prev"><i class="ti ti-square-rounded-chevron-left"></i>Anterior</a></li>
+        <li class="btn1"><a href="{{ $paginator->previousPageUrl() }}" rel="prev">Anterior</a></li>
     @endif
     @foreach ($elements as $element)
         @if (is_string($element))
@@ -17,15 +17,20 @@
                 @if ($page == $paginator->currentPage())
                     <li class="active my-active"><span>{{ $page }}</span></li>
                 @else
-                    <li class="no-active"><a href="{{ $url }}">{{ $page }}</a></li>
+                <a href="{{ $url }}"><li class="no-active">{{ $page }}</li></a>
                 @endif
             @endforeach
         @endif
     @endforeach
     @if ($paginator->hasMorePages())
-        <li class="btn2"><a href="{{ $paginator->nextPageUrl() }}" rel="next">Siguiente<i class="ti ti-square-rounded-chevron-right"></i></a></li>
+        
+        <a href="{{ $paginator->nextPageUrl() }}" rel="next">
+            <li class="btn2">
+                Siguiente
+            </li>
+        </a>
     @else
-        <li class="disabled btn2"><span>Siguiente<i class="ti ti-square-rounded-chevron-right"></i></span></li>
+        <li class="disabled btn2"><span>Siguiente</span></li>
     @endif
 </ul>
 

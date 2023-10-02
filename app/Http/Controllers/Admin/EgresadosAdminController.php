@@ -33,7 +33,7 @@ class EgresadosAdminController extends Controller
         $porPagina = $config['filas_por_tabla'];
         
         
-        $query = Egresado::select('alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni','carreras.nombre as carrera')
+        $query = Egresado::select('alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni','carreras.nombre as carrera','egresadoinscripto.anio_inscripcion','egresadoinscripto.anio_finalizacion')
         ->join('alumnos','alumnos.id','egresadoinscripto.id_alumno')
         ->join('carreras','carreras.id','egresadoinscripto.id_carrera');
 
@@ -52,6 +52,8 @@ class EgresadosAdminController extends Controller
         
         if($campo == "registrados"){
             $query = $query -> where('password','!=','0');
+        }else if($campo == "egresados"){
+            $query = $query -> where('anio_finalizacion','!=','null');
         }
 
             if($orden == "dni"){
@@ -65,7 +67,7 @@ class EgresadosAdminController extends Controller
 
             $alumnos = $query->paginate($porPagina); 
 
-        return view('Admin.Alumnos.index',[
+        return view('Admin.Egresados.index',[
             'alumnos'=>$alumnos, 
             'filtros'=>[
                 'campo' => $campo,
@@ -82,8 +84,8 @@ class EgresadosAdminController extends Controller
     public function create()
     {
         return view('Admin.Egresados.create',[
-            'alumnos'=>Alumno::all(),
-            'carreras'=>Carrera::all()
+            'alumnos'=>Alumno::orderBy('apellido')->orderBy('nombre')->get(),
+            'carreras'=>Carrera::where('vigente','1')->get()
         ]);
     }
 
@@ -96,8 +98,8 @@ class EgresadosAdminController extends Controller
             'id_alumno' => ['required'],
             'id_carrera' => ['required'],
             'anio_inscripcion' => ['required'],
-            'indice_libro_matriz' => ['required'],
-            'anio_finalizacion' => ['required']
+            'indice_libro_matriz' => ['nullable'],
+            'anio_finalizacion' => ['nullable']
         ]);
         
         Egresado::create($data);

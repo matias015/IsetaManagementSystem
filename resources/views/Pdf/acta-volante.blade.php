@@ -99,7 +99,8 @@
                     {{ str_replace('-','/',explode(' ',$mesa->fecha)[0]) }}
                 </td>
                 <td>
-                    {{ substr(explode(' ', $mesa->fecha)[1],3) }}
+                    
+                    {{ substr(explode(' ', $mesa->fecha)[1],0,5) }}
                 </td>
             </tr>
             <tr>
@@ -133,7 +134,7 @@
                             <tr>
                                 <td class="pos1">{{$actual}}</td>
                                 <td class="pos2" style="white-space:nowrap">
-                                    {{$textFormatService->utf8UpperCamelCase($alumno->apellido . ', ' . $alumno->nombre)}}
+                                    {{$textFormatService->ucwords($alumno->apellido . ', ' . $alumno->nombre)}}
                                 </td>
                                 <td class="pos3"></td>
                                 <td class="pos4"></td>

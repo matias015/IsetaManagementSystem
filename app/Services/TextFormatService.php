@@ -3,11 +3,11 @@
 namespace App\Services;
 
 class TextFormatService{
-    static function utf8Minusculas ($texto){
+    static function ucfirst ($texto){
         return ucfirst(mb_strtolower($texto));
     }
 
-    static function utf8UpperCamelCase ($texto){
+    static function ucwords ($texto){
         return ucwords(mb_strtolower($texto));
     }
 

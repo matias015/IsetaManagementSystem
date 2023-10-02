@@ -55,7 +55,8 @@
 
 
     <input type="submit" value="Actualizar">
-       </form>
+    <p>Por algun extraño motivo, la funcion de eliminar no funciona correctamente</p>   
+    </form>
 
        @if ($examen->borrable)
             <form class="form-eliminar" method="post" action="{{route('admin.examenes.destroy', ['examen'=>$examen->id])}}">
@@ -64,9 +65,6 @@
                 <input type="submit" value="Borrar registro de examen">
             </form>    
         @endif
-       
-        
-        
 
     </div>
 </div>

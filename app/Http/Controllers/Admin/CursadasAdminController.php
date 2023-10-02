@@ -26,7 +26,7 @@ class CursadasAdminController extends Controller
         $porPagina = Configuracion::get('filas_por_tabla',true);
 
 
-        $query = Cursada::select('alumnos.nombre as alumno','cursadas.id','asignaturas.nombre as asignatura','cursadas.aprobada')
+        $query = Cursada::select('alumnos.apellido as alumno_apellido','alumnos.nombre as alumno_nombre','cursadas.id','asignaturas.nombre as asignatura','cursadas.aprobada')
             -> join('asignaturas','asignaturas.id','=','cursadas.id_asignatura')
             -> join('carreras','carreras.id','=','asignaturas.id_carrera')
             -> join('alumnos','alumnos.id','=','cursadas.id_alumno');
@@ -80,7 +80,7 @@ class CursadasAdminController extends Controller
 
     function create(){
         $alumnos = Alumno::orderBy('nombre','asc')->orderBy('apellido','asc')->get();
-        $carreras = Carrera::all();
+        $carreras = Carrera::orderBy('nombre')->get();
         return view('Admin/Cursadas/create',[
             'alumnos' => $alumnos,
             'carreras' => $carreras

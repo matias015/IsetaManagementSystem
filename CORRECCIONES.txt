@@ -35,6 +35,13 @@ FALTA CORREGIR:
 - boton quitar filtro para alumnos en cursadas y examanes
 - en la parte de admin cambiar nombres de campos, porque dice cosas como, el campo id_asignatura es obligatorio, en ves de el campo asignatura es obligatorio y asi con varios
 
+
+HACER
+- En inscriptos al ingresar en un registro alumno-carrera, tener el historial total de cursadas, examenes etc.
+- Ver como lograr que al ingresar a ver un alumno que cursa muchas carreras, las cursadas no se mezclen tanto
+
+
+
 De Luis:
 - En cada asignatura hay un listado de todos los alumnos que estan matriculados
     eso es lo que necesitan los preceptores tambien, que lo puedan bajar de ahi.
@@ -160,3 +167,12 @@ CORRECCIONES 2/9
 - Ahora solo se puede rematricular el alumno a si mismo en la carrera que tiene seleccionada
 - El admin ahora puede facilmente matricular un alumno, esta en desarrollo aun
 - Ahora en el nav si se marca bien el apartado de rematriculacion cuando esta seleccionado
+
+1/10
+- En la pestaña de inscripciones se mostraban las mesas de todas las carreras, no solo la seleccionada.
+- Ahora se puede filtrar por egresados en la pestaña "egresados"
+- Mensaje de que no se pueden eliminar alumnos
+- La hora en el acta volante no se mostraba bien
+- Mas textos formateados correctamente
+- Antes se podia matricular a un alumno en la misma carrera 2 veces
+- Area de click de paginacion es mayor

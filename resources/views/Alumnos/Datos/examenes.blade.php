@@ -53,7 +53,7 @@
       <tbody>
         @foreach($examenes as $examen)
         <tr>
-            <td>{{$textFormatService->utf8Minusculas($examen->nombre)}}</td>
+            <td>{{$textFormatService->ucfirst($examen->nombre)}}</td>
             <td>
               @if($examen->aprobado == 3)
                 Ausente

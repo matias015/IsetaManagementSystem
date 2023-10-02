@@ -44,7 +44,6 @@
         <table class="table__body">
             <thead>
                 <tr>
-                    <th>Cursada</td>
                     <th>Materia</td>
                     <th>Alumno</td>
                     <th>Estado</td>
@@ -55,9 +54,8 @@
             <tbody>
             @foreach ($cursadas as $cursada)
             <tr>
-                <td>{{$cursada->id}}</td>
-                <td>{{$cursada->asignatura}}</td>
-                <td>{{$cursada->alumno}}</td>
+                <td>{{$textFormatService->ucfirst($cursada->asignatura)}}</td>
+                <td>{{$textFormatService->ucfirst($cursada->alumno_apellido.' '.$cursada->alumno_nombre)}}</td>
                 <td>
                     @switch($cursada->aprobada)
                         @case(1)

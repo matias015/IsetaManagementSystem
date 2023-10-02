@@ -4,6 +4,7 @@ use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Correlativa;
+use App\Services\TextFormatService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/a/{carrera}',function(Request $request, $carrera){
-    return Asignatura::where('id_carrera',$carrera)->get();
+    $formateadas = [];
+    foreach(Asignatura::where('id_carrera',$carrera)->get() as $asignatura){
+      $asignatura->nombre = TextFormatService::ucfirst($asignatura->nombre); 
+      $formateadas[] =  $asignatura;
+    }
+    return $formateadas;
 });
 
 Route::get('cursadas/alumnos/{asignatura}',function(Request $request, $asignatura){

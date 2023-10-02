@@ -88,28 +88,31 @@ class Alumno extends Authenticatable implements MustVerifyEmail
 
         if(!$alumno_id) $alumno = Auth::user();
         else $alumno = Alumno::find($alumno_id);
-
+        
         $exAprob = Examen::select('id_asignatura')
             -> where('id_alumno',$alumno->id)
             -> where('nota','>=',4)
             -> get()
             -> pluck('id_asignatura')
             -> toArray();
-
+        
+        
         $listaAprobados = implode(',',$exAprob);
         if($listaAprobados=="") $listaAprobados="0";
-        
+
+
+        $carreraDefault = Carrera::getDefault($alumno->id);
 
         $sinRendirQuery = Cursada::select('cursadas.id_asignatura','asignaturas.nombre','asignaturas.anio')
         -> join('asignaturas', 'asignaturas.id','cursadas.id_asignatura')
         -> where('cursadas.aprobada', 1)
-        -> where('cursadas.id_alumno', $alumno->id)
-        -> whereRaw('cursadas.id_asignatura NOT IN ('.$listaAprobados.')');
-        
-        if($alumno_id){
-            $carreraDefault = Carrera::getDefault($alumno_id);
-            $sinRendirQuery =  $sinRendirQuery -> where('asignaturas.id_carrera', $carreraDefault);
+        -> where('cursadas.id_alumno', $alumno->id);
+ 
+        if($alumno_id==null){
+            $sinRendirQuery -> where('asignaturas.id_carrera', $carreraDefault->id);
         }
+
+        $sinRendirQuery -> whereRaw('cursadas.id_asignatura NOT IN ('.$listaAprobados.')');
     
         $sinRendir = $sinRendirQuery -> get();
 

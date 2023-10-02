@@ -8,7 +8,9 @@
             <select class="campo_info" name="carrera" id="carrera_select">
                 <option value="any">Selecciona una carrera</option>
                 @foreach ($carreras as $carrera)
-                    <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
+                    <option value="{{$carrera->id}}">
+                        {{$textFormatService->ucfirst($carrera->nombre)}}
+                    </option>
                 @endforeach
             </select>
         </span>
@@ -27,7 +29,9 @@
             <select class="profesor campo_info" name="prof_presidente">
                 <option selected value="vacio">vacio/A confirmar</option>
                 @foreach ($profesores as $profesor)
-                    <option value="{{$profesor->id}}">{{$profesor->nombre.' '.$profesor->apellido}}</option>
+                    <option value="{{$profesor->id}}">
+                        {{$textFormatService->ucwords($profesor->apellido . ' ' . $profesor->nombre)}}
+                    </option>
                 @endforeach
             </select>
         </span>
@@ -36,7 +40,10 @@
             <select class="profesor campo_info" name="prof_vocal_1">
                 <option selected value="vacio">vacio/A confirmar</option>
                 @foreach ($profesores as $profesor)
-                    <option value="{{$profesor->id}}">{{$profesor->nombre.' '.$profesor->apellido}}</option>
+                    <option value="{{$profesor->id}}">
+                        {{$textFormatService->ucwords($profesor->apellido . ' ' . $profesor->nombre)}}
+
+                    </option>
                 @endforeach
             </select>
         </span>
@@ -45,7 +52,10 @@
             <select class="profesor campo_info" name="prof_vocal_2">
                 <option selected value="vacio">vacio/A confirmar</option>
                 @foreach ($profesores as $profesor)
-                    <option value="{{$profesor->id}}">{{$profesor->nombre.' '.$profesor->apellido}}</option>
+                    <option value="{{$profesor->id}}">
+                        {{$textFormatService->ucwords($profesor->apellido . ' ' . $profesor->nombre)}}
+
+                    </option>
                 @endforeach
             </select>
             </span>

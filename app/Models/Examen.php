@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class Examen extends Model
 {
     protected $table = "examenes";
-    protected $fillable = ['id_mesa','id_asignatura','id_alumno','nota','fecha'];
+    protected $fillable = ['id_mesa','id_asignatura','id_alumno','nota','fecha','aprobado'];
     public $timestamps = false;
     use HasFactory;
 

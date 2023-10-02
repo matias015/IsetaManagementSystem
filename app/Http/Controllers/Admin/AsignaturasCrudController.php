@@ -53,7 +53,7 @@ class AsignaturasCrudController extends Controller
      */
     public function create(Request $request)
     {
-        $carreras = Carrera::all();
+        $carreras = Carrera::orderBy('nombre')->get();
         return view('Admin.Asignaturas.create',[
             'carreras'=>$carreras,
             'id_carrera'=>$request->id_carrera? $request->id_carrera:null 

@@ -12,7 +12,9 @@
         <span class="perfil_dataname">Carrera:
         <select class="campo_info" name="id_carrera">
             @foreach($carreras as $carrera)
-                <option @selected($id_carrera==$carrera->id) value="{{$carrera->id}}">{{$carrera->nombre}}</option>
+                <option @selected($id_carrera==$carrera->id) value="{{$carrera->id}}">
+                    {{$textFormatService->ucfirst($carrera->nombre)}}
+                </option>
             @endforeach
         </select>
         </span>
