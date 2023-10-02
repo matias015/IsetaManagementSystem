@@ -43,15 +43,15 @@
 
             
         <select name="tipo_final">
-            <option value="1">escrito</option >
-            <option value="2">oral</option>
-            <option value="3">promocionado</option> 
+            <option value="1">Escrito</option >
+            <option value="2">Oral</option>
+            <option value="3">Promocionado</option> 
         </select>
       
     
     </p>
-    <p>libro <input name="libro" value="{{$examen->libro}}"></p>
-    <p>acta <input name="acta" value="{{$examen->acta}}"></p>
+    <p>Libro <input name="libro" value="{{$examen->libro}}"></p>
+    <p>Acta <input name="acta" value="{{$examen->acta}}"></p>
 
 
     <input type="submit" value="Actualizar">

@@ -87,7 +87,7 @@
                     {{$alumno->anio_finalizacion? $alumno->anio_finalizacion:'Presente'}}
                 </td>
                 
-                <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}"><button class="btn_edit">Ver</button></a></td>
+                <td><a href="{{route('admin.egresados.edit', ['egresado' => $alumno->id])}}"><button class="btn_edit">Ver</button></a></td>
                 {{-- <td>
                     <form method="POST" action="{{route('admin.egresados.destroy', ['egresado' => $alumno->id])}}">
                         @csrf

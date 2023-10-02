@@ -33,10 +33,11 @@ class EgresadosAdminController extends Controller
         $porPagina = $config['filas_por_tabla'];
         
         
-        $query = Egresado::select('alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni','carreras.nombre as carrera','egresadoinscripto.anio_inscripcion','egresadoinscripto.anio_finalizacion')
+        $query = Egresado::select('egresadoinscripto.id as id','alumnos.id as id_alumno','alumnos.nombre','alumnos.apellido','alumnos.dni','carreras.nombre as carrera','egresadoinscripto.anio_inscripcion','egresadoinscripto.anio_finalizacion')
         ->join('alumnos','alumnos.id','egresadoinscripto.id_alumno')
         ->join('carreras','carreras.id','egresadoinscripto.id_carrera');
 
+        
         if($filtro){
             if(is_numeric($filtro)){
                 $query = $query->where('alumnos.dni','like','%'.$filtro.'%');
@@ -117,22 +118,25 @@ class EgresadosAdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, $alumno)
-    {
-        $alumno = Alumno::where('id', $alumno)->with('cursadas.asignatura.carrera','examenes.mesa.materia.carrera')->first();
-        //dd($alumno->id);
-        return view('Admin.Alumnos.edit', [
-            'alumno' => $alumno
+    public function edit(Request $request,  $registro)
+    { 
+        $registro = Egresado::find($registro);
+        // $alumno = Alumno::find($registro->id_alumno);
+        // $carrera = Carrera::find($registro->id_carrera);
+       
+        return view('Admin.Egresados.edit', [
+            'registro' => $registro,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Alumno $alumno)
+    public function update(Request $request, $registro)
     {
-        $alumno->update($request->all());
-        return redirect()->route('admin.alumnos.index');
+        $registro = Egresado::find($registro);
+        $registro->update($request->all());
+        return redirect()->back()->with('mensaje','Se actulizo correctamente');
     }
 
     /**

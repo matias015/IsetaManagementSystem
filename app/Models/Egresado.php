@@ -17,4 +17,7 @@ class Egresado extends Model
     public function alumno(){
         return $this -> hasOne(Alumno::class,'id','id_alumno');
     }
+    public function carrera(){
+        return $this -> hasOne(Carrera::class,'id','id_carrera');
+    }
 }

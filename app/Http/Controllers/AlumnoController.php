@@ -66,7 +66,7 @@ class AlumnoController extends Controller
         -> get();
 
         foreach($carreras as $carrera){
-            $carrera->nombre = TextFormatService::utf8Minusculas($carrera->nombre);
+            $carrera->nombre = TextFormatService::ucfirst($carrera->nombre);
         }
         
         return view('Alumnos.Datos.informacion', [
