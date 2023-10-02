@@ -1,6 +1,6 @@
 <h1>ISETA</h1>
 <br>
-<h2>Restablecer Contraseña</h2>
+<h2>verificar</h2>
 <br>
 <p>Hola! Para recuperar tu Contraseña inserte el siguiente token de verificacion.</p>
 <br>

@@ -424,7 +424,7 @@ class AlumnoController extends Controller
 
                     if(!$aprobado){
                         $asignatura->equivalencias_sin_aprobar = true;
-                        $previas[] = 'año '.$correlativa->asignatura->anio+1 .' - '.$correlativa->asignatura->nombre;     
+                        $previas[] = 'Año '.$correlativa->asignatura->anio+1 .' - '.TextFormatService::ucfirst($correlativa->asignatura->nombre);     
                     }
                 }
                 
