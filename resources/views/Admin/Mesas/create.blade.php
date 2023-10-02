@@ -8,7 +8,7 @@
             <select class="campo_info" name="carrera" id="carrera_select">
                 <option value="any">Selecciona una carrera</option>
                 @foreach ($carreras as $carrera)
-                    <option value="{{$carrera->id}}">
+                    <option @selected($precargados['carrera'] == $carrera->id) value="{{$carrera->id}}">
                         {{$textFormatService->ucfirst($carrera->nombre)}}
                     </option>
                 @endforeach
@@ -21,6 +21,9 @@
         <span class="perfil_dataname">
             Materia:
             <select class="campo_info" id="asignatura_select" name="id_asignatura">
+                @if ($precargados['asignatura'])
+                    <option selected value="{{$precargados['asignatura']->id}}">{{$precargados['asignatura']->nombre}}</option>
+                @endif
                 <option value="">selecciona una carrera</option>
             </select>
         </span>

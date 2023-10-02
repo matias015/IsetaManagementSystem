@@ -49,8 +49,10 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="{{route('admin.asignaturas.destroy', ['asignatura'=>$asignatura->id])}}">
-                                        <button class="btn_edit">Eliminar</button>
+                                    <form action="{{route('admin.mesas.create')}}">
+                                        <input name="carrera" type="hidden" value="{{$carrera->id}}">
+                                        <input name="asignatura" type="hidden" value="{{$asignatura->id}}">
+                                        <button class="btn_edit" >Crear mesa</button>
                                     </form>
                                 </td>
                             </tr>
@@ -58,6 +60,7 @@
                     </tbody>
                 </table> 
             </div>
+
             
         </div>
     </div>

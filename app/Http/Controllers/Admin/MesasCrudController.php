@@ -70,11 +70,22 @@ class MesasCrudController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+
+        $precargados = [];
+        if($request->has('asignatura') && $request->has('carrera')){
+            $precargados['carrera'] = $request->input('carrera');
+            $precargados['asignatura'] = Asignatura::find($request->input('asignatura'));
+        }
+
         $carreras = Carrera::where('vigente', 1)->get();
         $profesores = Profesor::orderBy('apellido','asc')->orderBy('apellido','asc')->get();
-        return view('Admin.Mesas.create',['carreras'=>$carreras,'profesores'=>$profesores]);
+        return view('Admin.Mesas.create',[
+            'carreras'=>$carreras,
+            'profesores'=>$profesores,
+            'precargados' => $precargados
+        ]);
     }
 
     /**
@@ -109,7 +120,7 @@ class MesasCrudController extends Controller
         }
         $data['id_carrera'] = Asignatura::find($data['id_asignatura'])->carrera->id;
         Mesa::create($data);
-        return redirect()->route('admin.mesas.index');
+        return \redirect()->back()->with('mensaje','Se creo la mesa');
     }
 
     /**

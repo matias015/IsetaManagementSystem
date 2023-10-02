@@ -186,7 +186,7 @@ class AlumnoController extends Controller
         
 
         $examenes = Examen::delAlumnoMasAltas($filtro,$campo,$orden);
-
+        
         $promedio = 0;
         foreach($examenes as $examen){
             $promedio += $examen->nota;
@@ -220,6 +220,7 @@ class AlumnoController extends Controller
         $config = Configuracion::todas();   
 
         $posibles = Alumno::inscribibles();
+
         $request->session()->put('data', $posibles);
        // dd($posibles);
         
@@ -388,9 +389,10 @@ class AlumnoController extends Controller
 
 
         $carrera = Carrera::getDefault();
-
+        
         // todas las materias de esa carrera
-        $asignaturas = $carrera->asignaturas;
+        $asignaturas = Asignatura::where('id_carrera',$carrera->id)->get();
+        
         $anotables = [];
 
         // para cada asignatura 
@@ -525,12 +527,12 @@ class AlumnoController extends Controller
     }
 
     function bajar_rematriculacion(Request $request, Cursada $cursada){
-        if($cursada->aprobada != 3) return redirect()->back()->with('error','ya cursada');
+        if($cursada->aprobada != 3) return redirect()->back()->with('error','Ya has terminado de cursar');
         
         $config = Configuracion::todas();
 
         if(DiasHabiles::desdeHoyHasta($config['fecha_limite_desrematriculacion'])<=0){
-            return redirect()->back()->with('error','ya paso el limite de tiempo');
+            return redirect()->back()->with('error','Ya ha caducado el tiempo para desmatricularse');
         }
 
         $cursada->delete();

@@ -23,7 +23,7 @@ class MailVerifController extends Controller
      * envia el mail al usuario con el token de autorizacion
      */
     function enviarMail(){
-        $token = rand(1,100);
+        $token = rand(100000,999999);
 
         // el token se guarda en la sesion
         Session::put('__alumno_verificacion_token', $token);

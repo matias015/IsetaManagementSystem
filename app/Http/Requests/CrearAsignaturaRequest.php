@@ -27,7 +27,7 @@ class CrearAsignaturaRequest extends FormRequest
             'tipo_modulo' => ['required'],
             'carga_horaria' => ['required'],
             'anio' => ['required'],
-            'observaciones' => ['required'],
+            'observaciones' => ['nullable'],
         ];
     }
 }

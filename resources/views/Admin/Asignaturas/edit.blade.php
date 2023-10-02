@@ -105,6 +105,12 @@
     </table>
     </div>
     </div>
+
+    <form method="POST" action="{{route('admin.asignaturas.destroy', ['asignatura'=>$asignatura->id])}}">
+        @csrf
+        @method('delete')
+        <button class="btn_edit">Eliminar</button>
+    </form>
 </div>
 
 {{-- <script src="{{asset('js/obtener-materias.js')}}"></script> --}}

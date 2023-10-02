@@ -151,7 +151,7 @@ class AdminMatriculacionController extends Controller
         $anio_remat = $config['anio_remat'];
 
 
-        if(!Egresado::where('id_alumno',$alumno->id)->where('id_carrera',$carrera->id)->first()){
+        // if(!Egresado::where('id_alumno',$alumno->id)->where('id_carrera',$carrera->id)->first()){
             Egresado::create([
                 'id_alumno' => $alumno->id,
                 'id_carrera' => $carrera->id,
@@ -159,7 +159,7 @@ class AdminMatriculacionController extends Controller
                 // 'indice_libro_matriz' => ['required'],
                 // 'anio_finalizacion' => ['required']
             ]);
-        }
+        // }
 
        
 

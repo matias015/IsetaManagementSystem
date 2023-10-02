@@ -32,7 +32,7 @@
               
             </div> -->
             <span>
-              {{auth()->user()->nombre}}
+              {{$textFormatService->ucwords(auth()->user()->nombre)}}
               <i class="ti ti-chevron-down"></i>
             </span>
             

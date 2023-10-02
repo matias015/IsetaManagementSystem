@@ -75,7 +75,7 @@
                   @endif
               <tr>
                 <td>{{$cursada->anio+1}}</td>
-                <td>{{$cursada->nombre}}</td>
+                <td>{{$textFormatService->ucfirst($cursada->nombre)}}</td>
                 <td>
                     <p @class([
                         'status' => true,

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RestablecerMail;
 use App\Mail\VerificacionEmail;
 use App\Models\Alumno;
 use App\Models\ResetToken;
@@ -16,7 +17,7 @@ class PasswordResetController extends Controller
     }
 
     function mail(Request $request){
-        $token = rand(1,100);
+        $token = rand(100000,999999);
 
         $existe = ResetToken::where('email', $request->email)->first();
         if($existe) ResetToken::where('email', $request->email)->delete();
@@ -26,7 +27,7 @@ class PasswordResetController extends Controller
             'token' => $token
         ]);
 
-        Mail::to($request->email)->send(new VerificacionEmail($token));
+        Mail::to($request->email)->send(new RestablecerMail($token));
         
         return view('Alumnos.Reset-password.ingreso-token');
     }

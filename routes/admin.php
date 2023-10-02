@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminCorrelativasController;
 use App\Http\Controllers\Admin\AdminDiasHabilesController;
 use App\Http\Controllers\Admin\AdminMatriculacionController;
+use App\Http\Controllers\Admin\AdminMesaPorCarreraController;
 use App\Http\Controllers\Admin\AlumnoCrudController;
 use App\Http\Controllers\Admin\AsignaturasCrudController;
 use App\Http\Controllers\Admin\CarrerasCrudController;
@@ -100,5 +101,6 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('matricular/{alumno}',[AdminMatriculacionController::class,'rematriculacion_vista'])->name('admin.alumno.rematricular');
     Route::post('matricular/{alumno}/{carrera}',[AdminMatriculacionController::class,'rematriculacion'])->name('admin.alumno.matricular.post');
+
 
 });

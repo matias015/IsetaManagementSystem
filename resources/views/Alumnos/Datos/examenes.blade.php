@@ -66,8 +66,17 @@
         
             </td>
             <td>
+              @if ($examen->fecha || $examen->mesa->fecha)
               @php
-              $stringDateTime = $examen->fecha;
+              
+              $stringDateTime = null;
+
+              if($examen->fecha){
+                $stringDateTime = $examen->fecha;
+              }else if($examen->mesa->fecha){
+                $stringDateTime = $examen->mesa->fecha;
+              }
+              
 
               // Convertir el string a un objeto DateTime
               $dateObj = new DateTime($stringDateTime);
@@ -75,15 +84,21 @@
               // Obtener el día, mes, hora y minutos en formato deseado
               $dia = $dateObj->format('j'); // Día sin ceros iniciales
               $mes = $dateObj->format('n'); // Mes sin ceros iniciales
-              $horaMinutos = $dateObj->format('H:i'); // Hora y minutos en formato 24 horas
+              $horaMinutos = $dateObj->format('H:i').'hs'; // Hora y minutos en formato 24 horas
+              if($horaMinutos == "00:00hs"){
+                $horaMinutos = 'Desconocido';
+              }
 
 
               // Formatear la fecha y hora en el formato deseado
-              $fecha = "$dia/$mes - $horaMinutos"."hs";
+              $fecha = "$dia/$mes - $horaMinutos";
 
           @endphp
               {{-- {{explode(' ',$examen->fecha)[0]}} --}}
               {{$fecha}}
+              @else
+              Sin datos de fecha
+              @endif
             </td>
         </tr>
     

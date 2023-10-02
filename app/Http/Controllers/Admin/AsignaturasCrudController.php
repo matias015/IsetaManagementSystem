@@ -121,6 +121,6 @@ class AsignaturasCrudController extends Controller
     public function destroy(Asignatura $asignatura)
     {
         $asignatura->delete();
-        return redirect() -> back() -> with('mensaje', 'Se ha eliminado la asignatura');
+        return redirect() -> route('admin.carreras.edit',['carrera' => $asignatura->id_carrera]) -> with('mensaje', 'Se ha eliminado la asignatura');
     }
 }

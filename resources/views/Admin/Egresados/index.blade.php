@@ -5,7 +5,7 @@
 
 <div class="bg-transparent contenedor_top flex items-end gap-2">
 
-    <a href="{{route('admin.egresados.create')}}"><button class="p-1 nuevo_alumno">Agregar alumno</button></a>
+    <a href="{{route('admin.egresados.create')}}"><button class="p-1 nuevo_alumno">Agregar inscripcion</button></a>
     
     
         <form class="none grid lg-block form-hh" action="{{route('admin.egresados.index')}}">
@@ -87,14 +87,14 @@
                     {{$alumno->anio_finalizacion? $alumno->anio_finalizacion:'Presente'}}
                 </td>
                 
-                <td><a href="{{route('admin.egresados.edit', ['egresado' => $alumno->id])}}"><button class="btn_edit">Ver</button></a></td>
-                {{-- <td>
+                <td><a href="{{route('admin.egresados.edit', ['egresado' => $alumno->id])}}"><button class="btn_edit">Ver</button></a>
+                
                     <form method="POST" action="{{route('admin.egresados.destroy', ['egresado' => $alumno->id])}}">
                         @csrf
                         @method('delete')
                         <input class="btn_borrar" type="submit" value="Eliminar">
                     </form>
-                </td> --}}
+                </td>
             </tr>
             @endforeach
             </tbody>

@@ -54,7 +54,6 @@
             </td>
         @endif
 
-
         @else
 
        
@@ -80,7 +79,6 @@
                     @endphp
                     <span>{{$fecha}}</span>
                 </td>
-                <td>Sin segundo llamado</td>
                 @isset($materia->mesas[1])
                 <td class="llamado_2">
                     <input name="mesa" value="{{$materia->mesas[1]->id}}" type="radio">
