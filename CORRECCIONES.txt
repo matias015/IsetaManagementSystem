@@ -177,3 +177,5 @@ CORRECCIONES 2/9
 - Antes se podia matricular a un alumno en la misma carrera 2 veces
 - Area de click de paginacion es mayor
 - Edicion de registro de inscripcion y egresados
+
+$2y$10$TwlFvYTkmbnFFXk17rg.qutmcJQm6xK9aQXM06DD.34/AGbgxfVr.
