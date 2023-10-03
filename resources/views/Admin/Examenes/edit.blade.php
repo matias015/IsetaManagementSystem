@@ -55,7 +55,6 @@
 
 
     <input type="submit" value="Actualizar">
-    <p>Por algun extraño motivo, la funcion de eliminar no funciona correctamente</p>   
     </form>
 
        @if ($examen->borrable)

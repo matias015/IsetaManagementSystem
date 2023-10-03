@@ -3,28 +3,20 @@ Anotar cosas que faltan corregir
 
 
 CUESTIONES:
-- No podemos enviar mails sin un servidor smtp por lo que no podemos pedir registro con mail
-    por lo que podrias entrar facilmente en la cuenta de otro xd
-    Gmail tiene uno pero ni idea como usarlo y necesitamos una cuenta.
 - No estoy seguro si la pc sea tan rapida para manejar muchas solicitudes si es que entra mucha gente
 - Ver si habria que comprobar que los dnis sean unicos
-- que carajo es tipo modulo en las materias
 
 
 COSAS RARAS:
 - LA CARRERA DE MECANICA LIVIANA NO TIENE REGISTRADA NINGUNA EQUIVALENCIA, OSEA NINGUNA MATERIA TIENE EQUIVALENCIAS CON NINGUNA (carita de calabera)
 - Y en general faltan correlativas
 
+
 RECORDAR
-- Setear restricciones de usuario, que logueandote como alumno NO puedas acceder al admin.
-- Setear una password de admin o bloquear el acceso mientras hagamos la prueba
-- Ver que hacemos con lo del mail
-- Hay que avisar que algunos examenes tienen la hora 00:00 por q los q registraban eso antes 
-    eran unos vagos de mierda y que no es culpa nuestra.
-- Lo mismo con las cursadas que figuran todas libres
+
 
 FALTA CORREGIR:
-- terminar díseño de pdfs [importancia: mucha]
+- terminar díseño de pdfs (acta volante)
 - comprobar que la info de los pdf esten bien y no falte nada [importancia: mucha]
 - algo de responsive capaz en rematriculacion [importancia: no tanta]
 - cartelito que propuso lucas para motrar equivalencias en la rematriculacion [importancia: no tanto es estetica nomas]
@@ -32,7 +24,6 @@ FALTA CORREGIR:
 - averiguar los otros tipos de cursada ademas de libre y presencial, "desertor", "atrasoacadamico" y "otro".
     si son tipos que puede elegir el alumno y que mierda significan [importancia: para testeo no tanto, si en la vers final]
 - boton atras en rematriculacion
-- boton quitar filtro para alumnos en cursadas y examanes
 - en la parte de admin cambiar nombres de campos, porque dice cosas como, el campo id_asignatura es obligatorio, en ves de el campo asignatura es obligatorio y asi con varios
 
 
@@ -48,9 +39,6 @@ De Luis:
     o que se les pase a alguna carpeta, etc.
 - Ver la posibilidad de hacer un backup de la base de datos, evaluar la periodicidad.
 - Ver algun plan de contingencias.
-
-
-
 
 
 

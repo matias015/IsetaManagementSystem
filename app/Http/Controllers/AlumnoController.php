@@ -263,13 +263,13 @@ class AlumnoController extends Controller
                 -> where('mesas.llamado', 1)
                 -> where('examenes.id_alumno', Auth::id())
                 -> first();
+                
             if($yaAnotadoAllamado1){
                 $diferencia = DiasHabiles::desdeHoyHasta($yaAnotadoAllamado1->fecha, $mesaDb->fecha)*-1;
                 $diferencia = $diferencia/24;
                 // \dd([$diferencia,$config['diferencia_llamados']]);
                 if($diferencia>0 && $diferencia<$config['diferencia_llamados']){
                     return redirect()->back()->with('error','Ya has rendido el llamado 1');
-    
                 }
             }
             
@@ -362,7 +362,7 @@ class AlumnoController extends Controller
         $examen->delete();
         $request->session()->forget('data');
 
-        return redirect()->route('alumno.inscripciones')->with('mensaje','Te has dado de baja de la mesa.');
+        return redirect()->back('alumno.inscripciones')->with('mensaje','Te has dado de baja de la mesa.');
 
     }
 
@@ -424,13 +424,12 @@ class AlumnoController extends Controller
 
                     if(!$aprobado){
                         $asignatura->equivalencias_sin_aprobar = true;
-                        $previas[] = 'Año '.$correlativa->asignatura->anio+1 .' - '.TextFormatService::ucfirst($correlativa->asignatura->nombre);     
+                        $previas[] = 'Año '.$correlativa->asignatura->anio+1 .' - '.TextFormatService::ucfirst($correlativa->asignatura->nombre);
                     }
                 }
                 
                 // Cargamos la info de que materias debe
                 $asignatura->equivalencias_previas = $previas;
-                
             }
 
             // Cargamos a inscribibles

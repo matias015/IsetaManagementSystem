@@ -58,7 +58,7 @@
             </div>
 
             <div class="perfil_one table">
-                <p>La funcion de agregar alumnos se elimino hasta que se arreglen algunos errores</p>
+                {{-- <p>La funcion de agregar alumnos se elimino hasta que se arreglen algunos errores</p> --}}
                 <h2>Alumnos inscriptos</h2>
                     <p>Agregar alumno</p>
                     <p>
@@ -73,7 +73,7 @@
                             <select name="id_alumno">
                                 <option value=""></option>
                             @foreach ($inscribibles as $inscribible)
-                                <option value="{{$inscribible->id}}">{{$inscribible->nombre.' '.$inscribible->apellido}}</option>
+                                <option value="{{$inscribible->id}}">{{$textFormatService->ucwords($inscribible->apellido.' '.$inscribible->nombre)}}</option>
                             @endforeach
                 
                             </select>
@@ -92,8 +92,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
+                            <th>Alumno</th>
                             <th>Nota</th>
                             <th>Cosas</th>
                         </tr>
@@ -101,9 +100,9 @@
                     <tbody>
                         @foreach($alumnos as $alumno)
                         <tr>
-                            <td>{{$alumno->nombre}}</td>
-                            <td>{{$alumno->apellido}}</td>
-                            <td>{{$alumno->nota}}</td>
+                            <td>{{$textFormatService->ucwords($alumno->apellido . ' ' . $alumno->nombre)}}</td>
+                            
+                            <td>{{$alumno->nota!=0? $alumno->nota : 'Sin nota'}}</td>
                             <td>
                                 <a href="{{route('admin.examenes.edit', ['examen' => $alumno->id_examen])}}">
                                     <button class="btn_edit">Ver</button>

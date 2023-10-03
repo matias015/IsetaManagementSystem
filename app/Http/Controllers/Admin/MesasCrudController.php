@@ -77,6 +77,9 @@ class MesasCrudController extends Controller
         if($request->has('asignatura') && $request->has('carrera')){
             $precargados['carrera'] = $request->input('carrera');
             $precargados['asignatura'] = Asignatura::find($request->input('asignatura'));
+        }else{
+            $precargados['carrera'] = null;
+            $precargados['asignatura'] = null;
         }
 
         $carreras = Carrera::where('vigente', 1)->get();
@@ -93,7 +96,11 @@ class MesasCrudController extends Controller
      */
     public function store(CrearMesaRequest $request)
     {
+        
+        $config=Configuracion::todas();
+        // dd($config);
         $data = $request->validated();
+
 
         $timestamp = strtotime($data['fecha']);
         $dia = date("l", $timestamp);
@@ -118,7 +125,37 @@ class MesasCrudController extends Controller
         if($data['prof_vocal_2']=="vacio"){
             $data['prof_vocal_2'] = 0;
         }
+
         $data['id_carrera'] = Asignatura::find($data['id_asignatura'])->carrera->id;
+        
+        // No se pueden crear 2 "llamado 1" ni 2 "llamado 2"
+        $config['diferencia_llamados'];
+        
+        $copia = Mesa::where('mesas.llamado', $data['llamado'])
+                -> where('mesas.id_asignatura', $data['id_asignatura'])
+                ->latest('mesas.fecha')
+                -> first();
+        
+
+        if($copia){
+            $diferencia = DiasHabiles::desdeHoyHasta($copia->fecha, $data['fecha']);
+            $diferencia = abs($diferencia/24);
+            // \dd([$diferencia,$config['diferencia_llamados']]);
+            // dd($diferencia);
+            if($diferencia>0 && $diferencia<$config['diferencia_llamados']){
+                return redirect()->back()->with('error','Ya hay un llamado ' . $data['llamado'] . ' para esta asignatura');
+            }
+        }
+
+        // buscar mesas de profes
+        $pres = Mesa::where('prof_presidente', $data['prof_presidente'])
+            ->where('fecha', $data['fecha'])
+            ->first();
+
+        if($pres){
+            return redirect()->back()->with('error','El profesor vocal ya tiene un llamado ese dia a esa hora');
+        }
+
         Mesa::create($data);
         return \redirect()->back()->with('mensaje','Se creo la mesa');
     }
@@ -136,6 +173,7 @@ class MesasCrudController extends Controller
      */
     public function edit(Request $request, $mesa)
     {
+  
         $mesa = Mesa::where('id', $mesa)->with('materia.carrera','profesor','vocal1','vocal2')->first();
 
         $profesores = Profesor::orderBy('apellido')->orderBy('nombre')->get();
@@ -151,9 +189,10 @@ class MesasCrudController extends Controller
             -> join('asignaturas','asignaturas.id','cursadas.id_asignatura')
             -> where('cursadas.aprobada','1')
             -> where('cursadas.id_asignatura',$mesa->id_asignatura)
+            -> orderBy('alumnos.apellido')
+            -> orderBy('alumnos.nombre')
             -> get();
 
-        // $finales = [];
 
         // foreach ($inscribibles as $alumno) {
         //     $examenAprobado = Examen::where('id_alumno',$alumno->id)->where('nota','>=',4)->first();
