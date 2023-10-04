@@ -47,7 +47,7 @@
         <tr>
           <th>Materia</th>
           <th>Nota mas alta</th>
-          <th>Fecha</th>
+          <th>Fecha - Hora</th>
         </tr>
       </thead>
       <tbody>
