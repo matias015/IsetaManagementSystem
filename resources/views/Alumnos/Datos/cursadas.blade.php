@@ -75,7 +75,7 @@
                     @continue
                   @endif
               <tr>
-                <td>{{$cursada->anio+1}}</td>
+                <td class="text-center">{{$cursada->anio+1}}</td>
                 <td>{{$textFormatService->ucfirst($cursada->nombre)}}</td>
                 <td>
                     <p @class([
