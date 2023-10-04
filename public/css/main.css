@@ -271,12 +271,18 @@ th {
     font-size: 16px;
 }
 
+.text-center {
+    text-align: center;
+}
+
 /*------------------------------------------- E   S   T   A   D   0   ------------------------------------------------------------*/
 
 .status {
     background: var(--rojo-sl);
     padding: .4rem;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
     text-align: center;
     width: 100px;
 }
@@ -442,6 +448,12 @@ th {
     transform: translateY(50%);
   }
 
+  .leyend {
+    display: flex;
+    justify-content: end;
+    font-size: 14px;
+  }
+
 /*-------------------------------------------   L   L   A   M   A   D   O   S   ----------------------------------------------------*/
 
 
@@ -521,6 +533,15 @@ button.bajarse {
 
 button.bajarse:hover {
     background: red;
+}
+
+.bajarse2 {
+    color: black;
+}
+
+.bajarse2:hover {
+    background: red;
+    color: white;
 }
 
 /*--------------------------------------------- R  E  M  A  T  R  I  C  U  L  A  C  I  O  N  -----------------------------------------*/
