@@ -39,7 +39,7 @@
                 </div>
                 
                 </div>
-                <p>Algunas cursadas podrian mostrarse con la condicion de "libre" cuando esto no es asi.</p>
+                <p class="leyend">Algunas cursadas podrian mostrarse con la condicion de "libre" cuando esto no es asi.</p>
             </form>
           
           <!--<label class="switch">
@@ -57,13 +57,13 @@
           <table>
             <thead>
               <tr>
-                <th>Año</th>
+                <th class="text-center">Año</th>
                 <th>Materia</th>
                 <th>Cursada</th>
-                <th>Condicion</th>
-                <th>Año cursada</th>
+                <th class="text-center">Condicion</th>
+                <th class="text-center">Año cursada</th>
                 <th>Final</th>
-                <th>A</th>
+                <th>Acción</th>
               </tr>
             </thead>
             <tbody>
@@ -93,7 +93,7 @@
                     @endif
                     </p>
                 </td>
-                  <td>
+                  <td class="text-center">
                   @switch($cursada->condicion)
                     @case(1)
                       Libre
@@ -111,7 +111,7 @@
                         Otro
                     @endswitch
                 </td>
-                <td>{{$cursada->anio_cursada}}</td>
+                <td class="text-center">{{$cursada->anio_cursada}}</td>
                 @if (in_array($cursada->id_asignatura,$examenesAprobados))
                 <td>Aprobado</td>
             @else
@@ -121,7 +121,7 @@
               <form method="POST" action="{{route('alumno.rematriculacion.delete', ['cursada'=>$cursada->id])}}">
                 @csrf
                 @method('delete')
-                <button class="rounded px-2 py-1 bg-red-400">Bajarse</button>
+                <button class="rounded px-2 py-1 bg-red-400 bajarse2">Bajarse</button>
               </form>
             </td>
               </tr>
