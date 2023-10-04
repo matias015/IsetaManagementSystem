@@ -11,7 +11,7 @@
       <table>
         <thead>
           <tr>
-            <th>Año</th>
+            <th class="text-center">Año</th>
             <th>Materia</th>
             <th>Profesores</th>
             <th>Llamado 1</th>
@@ -42,7 +42,7 @@
             @endif              
 
             <tr>
-              <td>{{$materia->anio + 1}}</td>
+              <td class="text-center">{{$materia->anio + 1}}</td>
               <td>{{$textFormatService->ucwords($materia->nombre)}}</td>
               <td>
                 <p>{{
