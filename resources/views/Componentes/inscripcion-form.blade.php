@@ -57,8 +57,62 @@
 
         @else
 
-       
-            @if ($materia->mesas[0]->llamado == 1)
+            {{-- @dd(count($materia->mesas)) --}}
+            {{-- @dd($materia->mesas) --}}
+            @foreach ($materia->mesas as $key => $mesa)
+            
+                @if ($key == 0 && $mesa->llamado == 2)
+                    <td>No hay llamado 1</td>
+                    <td class="llamado_2">
+
+                        <input name="mesa" value="{{$materia->mesas[$key+1]->id}}" type="radio">
+                        @php
+                            $stringDateTime = $materia->mesas[$key+1]->fecha;
+            
+                            // Convertir el string a un objeto DateTime
+                            $dateObj = new DateTime($stringDateTime);
+            
+                            // Obtener el día, mes, hora y minutos en formato deseado
+                            $dia = $dateObj->format('j'); // Día sin ceros iniciales
+                            $mes = $dateObj->format('n'); // Mes sin ceros iniciales
+                            $horaMinutos = $dateObj->format('H:i'); // Hora y minutos en formato 24 horas
+            
+            
+                            // Formatear la fecha y hora en el formato deseado
+                            $fecha = "$dia/$mes - $horaMinutos"."hs";
+            
+                        @endphp
+                        <span>{{$fecha}}</span>
+                    </td>
+                    @break
+                @endif
+                <td class="llamado_{{$key+1}}">
+
+                    <input name="mesa" value="{{$materia->mesas[$key]->id}}" type="radio">
+                    @php
+                        $stringDateTime = $materia->mesas[$key]->fecha;
+        
+                        // Convertir el string a un objeto DateTime
+                        $dateObj = new DateTime($stringDateTime);
+        
+                        // Obtener el día, mes, hora y minutos en formato deseado
+                        $dia = $dateObj->format('j'); // Día sin ceros iniciales
+                        $mes = $dateObj->format('n'); // Mes sin ceros iniciales
+                        $horaMinutos = $dateObj->format('H:i'); // Hora y minutos en formato 24 horas
+        
+        
+                        // Formatear la fecha y hora en el formato deseado
+                        $fecha = "$dia/$mes - $horaMinutos"."hs";
+        
+                    @endphp
+                    <span>{{$fecha}}</span>
+                </td>
+            @endforeach
+            @if (count($materia->mesas)==1)
+                <td>No hay llamado 2</td>
+            @endif
+            {{--  --}}
+            {{-- @if ($materia->mesas[0]->llamado == 1)
                 <td class="llamado_1">
 
                     <input name="mesa" value="{{$materia->mesas[0]->id}}" type="radio">
@@ -127,7 +181,7 @@
                     <span>{{$fecha}}</span>
                     </td>
             @endif
-       
+        --}}
     
         {{-- @isset($materia->mesas[1])
             <td class="llamado_2">

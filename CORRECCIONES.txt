@@ -166,8 +166,6 @@ CORRECCIONES 2/9
 - Area de click de paginacion es mayor
 - Edicion de registro de inscripcion y egresados
 
-$2y$10$TwlFvYTkmbnFFXk17rg.qutmcJQm6xK9aQXM06DD.34/AGbgxfVr.
-
 
 4/10
 - Error de redireccion al bajarse de mesa
