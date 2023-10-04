@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <p>Este pdf tiene fines de pruebas por lo que el diseño e información no son representativos.</p>
     
     <ul>
         @if (count($mesas)<1)
@@ -14,9 +15,9 @@
         @endif
         
         @foreach ($mesas as $mesa)
-            <li>{{$mesa->asignatura->nombre}}</li>
+            <li>{{$textFormatService->ucfirst($mesa->asignatura->nombre). ' / '. substr($mesa->fecha,0,16)}}</li>
         @endforeach
     </ul>
-    <img style="width: 100%" src="{{asset('img/CONSTANCIA-MESA-EXAMINADORA.png')}}" alt="">
+    {{-- <img style="width: 100%" src="{{asset('img/CONSTANCIA-MESA-EXAMINADORA.png')}}" alt=""> --}}
 </body>
 </html>

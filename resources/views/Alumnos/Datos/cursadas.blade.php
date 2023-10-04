@@ -39,6 +39,7 @@
                 </div>
                 
                 </div>
+                <p>Algunas cursadas podrian mostrarse con la condicion de "libre" cuando esto no es asi.</p>
             </form>
           
           <!--<label class="switch">
@@ -95,19 +96,19 @@
                   <td>
                   @switch($cursada->condicion)
                     @case(1)
-                      libre
+                      Libre
                       @break
                     @case(2)
                       Regular  
                       @break
                     @case(3)
-                      desertor  
+                      Desertor  
                       @break
                     @case(4)
-                      atrasoacadamico  
+                      Atrasoacadamico  
                       @break
                     @default
-                        otro
+                        Otro
                     @endswitch
                 </td>
                 <td>{{$cursada->anio_cursada}}</td>

@@ -100,7 +100,7 @@ class AdminMatriculacionController extends Controller
             }
         }
 
-        if($libres > 2) return redirect()->back()->with('error','No puedes cursar mas de 2 materias libres');
+        if($libres > 2) return redirect()->back()->with('error','Como fines de testeos, no puedes cursar mas de 2 materias libres');
 
         //asignaturas que se seleccionaron que sean validas para inscripcion
         $asignaturas = [];

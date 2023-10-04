@@ -167,3 +167,12 @@ CORRECCIONES 2/9
 - Edicion de registro de inscripcion y egresados
 
 $2y$10$TwlFvYTkmbnFFXk17rg.qutmcJQm6xK9aQXM06DD.34/AGbgxfVr.
+
+
+4/10
+- Error de redireccion al bajarse de mesa
+- Solo te podes bajar de la cursada si es el mismo año que el seteado por el admin en ajustes
+- Los profes no pueden estar presentes en mas de 1 mesa el mismo dia
+- Los profes no pueden repetirse en una misma mesa
+- Examenes muestran el año
+- El analitico mostraba mal el mes

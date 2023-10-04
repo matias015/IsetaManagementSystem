@@ -84,6 +84,7 @@
               // Obtener el día, mes, hora y minutos en formato deseado
               $dia = $dateObj->format('j'); // Día sin ceros iniciales
               $mes = $dateObj->format('n'); // Mes sin ceros iniciales
+              $anio = $dateObj->format('y'); // 
               $horaMinutos = $dateObj->format('H:i').'hs'; // Hora y minutos en formato 24 horas
               if($horaMinutos == "00:00hs"){
                 $horaMinutos = 'Desconocido';
@@ -91,7 +92,7 @@
 
 
               // Formatear la fecha y hora en el formato deseado
-              $fecha = "$dia/$mes - $horaMinutos";
+              $fecha = "$dia/$mes/$anio - $horaMinutos";
 
           @endphp
               {{-- {{explode(' ',$examen->fecha)[0]}} --}}

@@ -95,7 +95,7 @@
     <table class="acta_contenedor">
         <thead>
             <tr>
-                <th><img style="width: 100%" src="{{asset('img/pdf.png')}}" alt=""></th>
+                {{-- <th><img style="width: 100%" src="{{asset('img/pdf.png')}}" alt=""></th> --}}
             </tr>
                
         </thead>
@@ -166,8 +166,8 @@
             @php
                 $time = time();
                 $meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-                $mes = $meses[str_replace('0','',date("m", $time))-1];
-                $dia = str_replace('0','',date("d", $time))-1;
+                $mes = $meses[str_replace('','',date("m", $time))-1];
+                $dia = str_replace('','',date("d", $time))-1;
                 $anio = date("Y", $time);
             @endphp
              

@@ -362,8 +362,7 @@ class AlumnoController extends Controller
         $examen->delete();
         $request->session()->forget('data');
 
-        return redirect()->back('alumno.inscripciones')->with('mensaje','Te has dado de baja de la mesa.');
-
+        return redirect()->back()->with('mensaje','Te has dado de baja de la mesa.');
     }
 
     // function remat_carrera_vista(){
@@ -463,7 +462,7 @@ class AlumnoController extends Controller
             }
         }
 
-        if($libres > 2) return redirect()->back()->with('error','No puedes cursar mas de 2 materias libres');
+        if($libres > 2) return redirect()->back()->with('error','Como fines de testeos, no puedes cursar mas de 2 materias libres');
 
         //asignaturas que se seleccionaron que sean validas para inscripcion
         $asignaturas = [];
@@ -532,6 +531,10 @@ class AlumnoController extends Controller
 
         if(DiasHabiles::desdeHoyHasta($config['fecha_limite_desrematriculacion'])<=0){
             return redirect()->back()->with('error','Ya ha caducado el tiempo para desmatricularse');
+        }
+
+        if($cursada->anio_cursada != $config['anio_remat']){
+            return redirect()->back()->with('error','Ya estas cursando esta asignatura');
         }
 
         $cursada->delete();

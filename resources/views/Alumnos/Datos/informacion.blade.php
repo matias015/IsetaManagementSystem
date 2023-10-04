@@ -25,8 +25,8 @@
     <div class="perfil_body">
       <div class="perfil_one shadow">
         <div class="perfil_subtop"><h2>Información alumno</h2></div>
-        <span class="perfil_dataname">Nombres: <b class="perfil_datainfo">{{$alumno->nombre}}</b></span>
-        <span class="perfil_dataname">Apellidos: <b class="perfil_datainfo">{{$alumno->apellido}}</b></span>
+        <span class="perfil_dataname">Nombres: <b class="perfil_datainfo">{{$textFormatService->ucwords($alumno->nombre)}}</b></span>
+        <span class="perfil_dataname">Apellidos: <b class="perfil_datainfo">{{$textFormatService->ucwords($alumno->apellido)}}</b></span>
         <span class="perfil_dataname">Mail: <b class="perfil_datainfo">{{$alumno->email}}</b></b></span>
         <span class="perfil_dataname">DNI: <b class="perfil_datainfo">{{$alumno->dni}}</b></span>
         <span class="perfil_dataname">Telefono: <b class="perfil_datainfo">{{$alumno->telefono1}}</b></span>
@@ -47,18 +47,18 @@
         <div class="perfil_subtop"><h2>Editar contraseña</h2></div>
         <div class="w-100p sm-w-75p md-w-50p  perfil_password">
           <input class="w-100p" type="password" name="oldPassword"  required placeholder="Contraseña actual">
-          <i class="ti ti-circle-check-filled check_pos"></i>
-          <i class="ti ti-circle-x-filled check_neg"></i>
+          {{-- <i class="ti ti-circle-check-filled check_pos"></i>
+          <i class="ti ti-circle-x-filled check_neg"></i> --}}
         </div>
         <div class="w-100p sm-w-75p md-w-50p  perfil_password">
           <input class="w-100p" type="password" name="newPassword"  required placeholder="Nueva contraseña">
-          <i class="ti ti-circle-check-filled check_pos"></i>
-          <i class="ti ti-circle-x-filled check_neg"></i>
+          {{-- <i class="ti ti-circle-check-filled check_pos"></i>
+          <i class="ti ti-circle-x-filled check_neg"></i> --}}
         </div>
         <div class="w-100p sm-w-75p md-w-50p  perfil_password">
           <input class="w-100p" type="password" name="newPassword_confirmation"  required placeholder="Confirmar contraseña">
-          <i class="ti ti-circle-check-filled check_pos"></i>
-          <i class="ti ti-circle-x-filled check_neg"></i>
+          {{-- <i class="ti ti-circle-check-filled check_pos"></i>
+          <i class="ti ti-circle-x-filled check_neg"></i> --}}
         </div>
         <div class="w-100p flex just-end perfil_password_refresh">
           <button class="w-17 white border-none p-3 rounded-1 bg-indigo-900"><i class="ti ti-refresh"></i>  Actualizar</button>
