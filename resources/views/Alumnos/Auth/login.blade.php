@@ -30,11 +30,11 @@
                 <p>¡Bienvenido! Por favor ingrese sus datos</p>
             </div>
             <div class="usuario input-box">
-                <input value="{{old('email')? old('email'):'matiasjf015@gmail.com'}}" type="email" name="email" required placeholder="Nombre de usuario">
+                <input value="{{old('email')}}" type="email" name="email" required placeholder="Nombre de usuario">
                 <div class="underline"></div>
             </div>
             <div class="contraseña input-box">
-                <input value="123456789" type="password" name="password"  required placeholder="Contraseña">
+                <input value="" type="password" name="password"  required placeholder="Contraseña">
                 <div class="underline"></div>
             </div>
             <div class="entrar input-box button"><input type="submit" value="Entrar"></div>
