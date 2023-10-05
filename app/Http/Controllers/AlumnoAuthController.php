@@ -27,6 +27,7 @@ class AlumnoAuthController extends Controller
     {
         $this->middleware('guest')->except('logout','cambiarPassword');
         $this->middleware('auth:web')->only(['logout','cambiarPassword']);
+        $this->middleware('verificado')->only(['logout','cambiarPassword']);
     }
 
     /**
@@ -70,7 +71,8 @@ class AlumnoAuthController extends Controller
         $data = $request->validated();
 
         $alumno = Alumno::where('email',$data['email'])->first();
-
+        // \dd($alumno->password);$data['password']
+        // \dd(Hash::check($data['password'], $alumno->password));
         if(!$alumno || !Hash::check($data['password'], $alumno->password)) return redirect()->route('alumno.login')->withInput()->with('error','Datos de usuario incorrectos');
         Auth::guard('admin')->logout();
 

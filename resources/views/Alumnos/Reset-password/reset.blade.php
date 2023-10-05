@@ -13,7 +13,7 @@
 </head>
 
     <body class="p-2" id="logeo">
-        
+        @include('Componentes.mensaje')
     <div class="login">
         <form action="{{route('reset.password.mail')}}" method="get">
             <div class="logo">ISETA</div>
@@ -29,6 +29,7 @@
 
 
     </div>
+    <script src="{{asset('js/ocultar-mensaje.js')}}"></script>
 
     </body>
 </html>

@@ -8,7 +8,7 @@
 @if (Session::get('error'))
 <div class="z-index-top toast px-2 py-1 gap-2 fixed flex rounded left-1 bottom-1 bg-red-400 shadow-md">
     <p class="">{{ Session::get('error') }}</p>
-    <span class="close">&times;</span>
+    <span class="pointer close">&times;</span>
 </div>
 @endif
 
@@ -19,7 +19,7 @@
       <p class="">{{$error}}</p>
     @endforeach
   </div>
-    <span class="close">&times;</span>
+    <span class="pointer close">&times;</span>
   </div>
     
 @endif

@@ -45,6 +45,7 @@
     <table>
       <thead>
         <tr>
+          <th>Año</th>
           <th>Materia</th>
           <th>Nota mas alta</th>
           <th>Fecha - Hora</th>
@@ -52,7 +53,9 @@
       </thead>
       <tbody>
         @foreach($examenes as $examen)
+        
         <tr>
+          <td>{{$examen->asignatura->anio+1}}</td>
             <td>{{$textFormatService->ucfirst($examen->nombre)}}</td>
             <td>
               @if($examen->aprobado == 3)
@@ -66,7 +69,7 @@
         
             </td>
             <td>
-              @if ($examen->fecha || $examen->mesa->fecha)
+              @if (isset($examen->fecha) || isset($examen->mesa->fecha))
               @php
               
               $stringDateTime = null;

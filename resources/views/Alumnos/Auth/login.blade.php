@@ -42,7 +42,9 @@
             <div class="etiquetas"><a href="{{route('reset.password')}}">¿Ha olvidado su contraseña?</a></div>
             <div class="etiquetas"><a href="{{route('profesor.login')}}">¿Eres profesor?</a></div>
         </form>
-    </section>
+    </section>    
+    <script src="{{asset('js/ocultar-mensaje.js')}}"></script>
+
 </body>
 </html>
 

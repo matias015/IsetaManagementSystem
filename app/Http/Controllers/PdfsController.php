@@ -17,7 +17,8 @@ class PdfsController extends Controller
 {
     function __construct()
     {
-        $this -> middleware('auth:web')->only('constanciaMesas','analitico');
+        $this -> middleware('auth:web');
+        $this -> middleware('verificado');
     }
     
     function constanciaMesas(){

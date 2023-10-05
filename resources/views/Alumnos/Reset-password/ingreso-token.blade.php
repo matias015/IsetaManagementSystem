@@ -9,7 +9,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
+    <link rel="stylesheet" href="{{asset('css/global.css')}}">
+
 </head>
+
+@include('Componentes.mensaje')
 
     <body id="logeo">
         
@@ -25,7 +29,7 @@
                 Token <input name="token" required/>
             </div>
             <div class="contraseña-token">
-                Contraseña <input name="password" required/>
+                Contraseña <input type="password" name="password" required/>
             </div>
             <div class="crear input-box button"><input type="submit" value="Restablecer"></div>
         </form>
@@ -33,5 +37,8 @@
 
     </div>
 
+    <script src="{{asset('js/ocultar-mensaje.js')}}"></script>
+
     </body>
+
 </html>

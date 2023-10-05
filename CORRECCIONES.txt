@@ -174,3 +174,15 @@ CORRECCIONES 2/9
 - Los profes no pueden repetirse en una misma mesa
 - Examenes muestran el año
 - El analitico mostraba mal el mes
+
+
+5/10
+- Ya no da error si tenes examenes sin fecha (gracias Ignacio Prezioso!)
+- Ya no da error la zona de inscripciones (gracias medio mundo)
+- Verificacion de mail y restablecimiento de contraseña deberian funcionar bien ahora
+- Ahora debes estar verificado para realizar acciones como anotarte o bajarte a mesas, ver la info personal, etc.
+- Antes podias acceder al olvide mi contraseña estando logueado o sin haberte registro antes.
+- El modal de errores y mensajes ahora se muestra y cierra bien en login, registro y verificacion
+- La x del modal ahora tiene cursor: pointer
+- Al setear una nueva contraseña ahora si se muestran solo simbolos (type:"password")
+- Al poner vocal 1 y 2 en sin confirmar decia que se repetia profe xddd

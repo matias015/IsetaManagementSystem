@@ -58,7 +58,7 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('logout', [AdminAuthController::class, 'logout']) -> name('admin.logout');
 
-    Route::resource('alumnos', AlumnoCrudController::class, ['as' => 'admin']);
+    Route::resource('alumnos', AlumnoCrudController::class, ['as' => 'admin'])->middleware('auth:admin');
     Route::resource('egresados', EgresadosAdminController::class, ['as' => 'admin']);
 
     Route::resource('profesores', ProfesoresCrudController::class, [
@@ -66,7 +66,7 @@ use Illuminate\Support\Facades\Route;
         'parameters' => ['profesores' => 'profesor']
     ]);
     
-    Route::resource('carreras', CarrerasCrudController::class, ['as' => 'admin']);
+    Route::resource('carreras', CarrerasCrudController::class, ['as' => 'admin'])->middleware('auth:admin');
     
     Route::resource('asignaturas', AsignaturasCrudController::class, ['as' => 'admin']);
 
@@ -78,7 +78,7 @@ use Illuminate\Support\Facades\Route;
     Route::post('cursadas/create', [CursadasAdminController::class,'store'])->name('admin.cursadas.store');
     
 
-    Route::resource('mesas', MesasCrudController::class, ['as' => 'admin']);
+    Route::resource('mesas', MesasCrudController::class, ['as' => 'admin'])->middleware('auth:admin');;
     Route::resource('admins', AdminsCrudController::class, ['as' => 'admin']);
 
     Route::resource('examenes',ExamenesCrudController::class,[

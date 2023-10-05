@@ -42,6 +42,14 @@ class AlumnoController extends Controller
     public function __construct()
     {
         $this -> middleware('auth:web');
+        $this -> middleware('verificado')->only([
+            'info',
+            'setCarreraDefault',
+            'inscribirse',
+            'bajarse',
+            'rematriculacion',
+            'bajar_rematriculacion'
+        ]);
     }
 
 
@@ -196,7 +204,7 @@ class AlumnoController extends Controller
 
         if($cantidadDeExamenes < 1) $promedio = 0;
         else $promedio = round($promedio / $cantidadDeExamenes,2);
-        
+        // \dd($examenes);
         return view('Alumnos.Datos.examenes', [
             'examenes'=>$examenes,
             'promedio'=>$promedio,

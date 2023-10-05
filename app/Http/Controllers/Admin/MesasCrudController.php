@@ -20,7 +20,7 @@ class MesasCrudController extends Controller
 {
     function __construct()
     {
-        $this -> middleware('auth:admin');
+        // $this -> middleware('auth:admin');
     }
 
     /**
@@ -154,7 +154,7 @@ class MesasCrudController extends Controller
         if(
             $data['prof_presidente'] == $data['prof_vocal_1'] ||
             $data['prof_presidente'] == $data['prof_vocal_2'] ||
-            $data['prof_vocal_1'] == $data['prof_vocal_2']
+            $data['prof_vocal_1'] == $data['prof_vocal_2'] && $data['prof_vocal_1'] != 0
         ){
             return redirect()->back()->with('error','Hay profesores repetidos');
         }

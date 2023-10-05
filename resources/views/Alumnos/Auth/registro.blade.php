@@ -39,5 +39,7 @@
             
         </form>
     </section>
+    <script src="{{asset('js/ocultar-mensaje.js')}}"></script>
+
 </body>
 </html>
