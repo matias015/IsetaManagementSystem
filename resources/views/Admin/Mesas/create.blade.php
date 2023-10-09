@@ -30,7 +30,7 @@
         <span class="perfil_dataname">
             Profesor: 
             <select class="profesor campo_info" name="prof_presidente">
-                <option selected value="vacio">vacio/A confirmar</option>
+                <option selected value="0">vacio/A confirmar</option>
                 @foreach ($profesores as $profesor)
                     <option value="{{$profesor->id}}">
                         {{$textFormatService->ucwords($profesor->apellido . ' ' . $profesor->nombre)}}
@@ -41,7 +41,7 @@
         <span class="perfil_dataname">
             Profesor 1:
             <select class="profesor campo_info" name="prof_vocal_1">
-                <option selected value="vacio">vacio/A confirmar</option>
+                <option selected value="0">vacio/A confirmar</option>
                 @foreach ($profesores as $profesor)
                     <option value="{{$profesor->id}}">
                         {{$textFormatService->ucwords($profesor->apellido . ' ' . $profesor->nombre)}}
@@ -53,7 +53,7 @@
         <span class="perfil_dataname">
             Profesor 2:
             <select class="profesor campo_info" name="prof_vocal_2">
-                <option selected value="vacio">vacio/A confirmar</option>
+                <option selected value="0">vacio/A confirmar</option>
                 @foreach ($profesores as $profesor)
                     <option value="{{$profesor->id}}">
                         {{$textFormatService->ucwords($profesor->apellido . ' ' . $profesor->nombre)}}

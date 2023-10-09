@@ -268,7 +268,9 @@ table, td { color: #000000; } #u_body a { color: #161a39; text-decoration: under
 <p style="font-size: 14px; line-height: 140%;"> </p>
 <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; color: #666666;">Le enviamos este correo electrónico en su respuesta a su solicitud para restablecer su contraseña. </span></p>
 <p style="font-size: 14px; line-height: 140%;"> </p>
-<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; color: #666666;">Para restablecer su contraseña, por favor ingrese el siguiente código: </span></p>
+<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; color: #666666;">
+  Para restablecer su contraseña, por favor ingrese el siguiente código: {{$token}}
+</span></p>
   </div>
 
       </td>
@@ -282,13 +284,7 @@ table, td { color: #000000; } #u_body a { color: #161a39; text-decoration: under
       <td style="overflow-wrap:break-word;word-break:break-word;padding:0px 40px;font-family:'Lato',sans-serif;" align="left">
         
   <!--[if mso]><style>.v-button {background: transparent !important;}</style><![endif]-->
-<div align="center">
-  <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:52px; v-text-anchor:middle; width:205px;" arcsize="2%"  stroke="f" fillcolor="#140b5c"><w:anchorlock/><center style="color:#FFFFFF;"><![endif]-->
-    <a href="" target="_blank" class="v-button" style="box-sizing: border-box;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #140b5c; border-radius: 1px;-webkit-border-radius: 1px; -moz-border-radius: 1px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;font-size: 14px;">
-      <span class="v-line-height" style="display:block;padding:15px 40px;line-height:120%;"><span style="font-size: 18px; line-height: 21.6px;">Reset Password</span></span>
-    </a>
-    <!--[if mso]></center></v:roundrect><![endif]-->
-</div>
+
 
       </td>
     </tr>
@@ -301,7 +297,7 @@ table, td { color: #000000; } #u_body a { color: #161a39; text-decoration: under
       <td style="overflow-wrap:break-word;word-break:break-word;padding:40px 40px 30px;font-family:'Lato',sans-serif;" align="left">
         
   <div class="v-line-height" style="font-size: 14px; line-height: 140%; text-align: left; word-wrap: break-word;">
-    <p style="line-height: 140%;"><span style="line-height: 19.6px;"><span style="color: #888888;"><span style="font-size: 16px; line-height: 22.4px;"><em>Ten</em></span></span><em><span style="line-height: 19.6px;"><span style="color: #888888;"><span style="line-height: 19.6px;"><span style="font-size: 16px; line-height: 22.4px;"> en cuenta que el código expira en unos minutos. Puedes solicitar uno nuevo desde "Ha olvidado su contraseña?"</span></span></span></span></em></span><br /><span style="font-size: 14px; color: #888888; line-height: 19.6px;"><em><span style="font-size: 16px; line-height: 22.4px;"> </span></em></span></p>
+    <p style="line-height: 140%;"><span style="line-height: 19.6px;"><span style="color: #888888;"><span style="font-size: 16px; line-height: 22.4px;"></span></span><em><span style="line-height: 19.6px;"><span style="color: #888888;"><span style="line-height: 19.6px;"><span style="font-size: 16px; line-height: 22.4px;">Ten en cuenta que el código expira en unos 3 minutos. Puedes solicitar uno nuevo desde "Ha olvidado su contraseña?"</span></span></span></span></em></span><br /><span style="font-size: 14px; color: #888888; line-height: 19.6px;"><em><span style="font-size: 16px; line-height: 22.4px;"> </span></em></span></p>
   </div>
 
       </td>
@@ -521,15 +517,4 @@ table, td { color: #000000; } #u_body a { color: #161a39; text-decoration: under
   <!--[if IE]></div><![endif]-->
 </body>
 
-</html>
-
-<br>
-<h2>Restablecer Contraseña</h2>
-<br>
-<p>Hola! Para recuperar tu Contraseña inserte el siguiente token de verificacion.</p>
-<br>
-<span>{{$token}}</span>
-<br>
-<p>Tene en cuenta que el codigo expira en unos minutos. Podes generar uno nuevo desde "Ha olvido su contraseña?".</p>
-</body>
 </html>

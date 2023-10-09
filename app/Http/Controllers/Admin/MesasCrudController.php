@@ -101,7 +101,7 @@ class MesasCrudController extends Controller
         // dd($config);
         $data = $request->validated();
 
-
+// \dd($request->all());
         $timestamp = strtotime($data['fecha']);
         $dia = date("l", $timestamp);
 
@@ -171,30 +171,34 @@ class MesasCrudController extends Controller
             return redirect()->back()->with('error','El profesor presidente ya tiene un llamado ese dia');
         }
 
-        $vocal1 = Mesa::where(function ($query) use($data) {
-            $query->orWhere('prof_presidente', $data['prof_vocal_1'])
+
+            $vocal1 = Mesa::where(function ($query) use($data) {
+                $query->orWhere('prof_presidente', $data['prof_vocal_1'])
                 ->orWhere('prof_vocal_1', $data['prof_vocal_1'])
                 ->orWhere('prof_vocal_2', $data['prof_vocal_1']);
-        })
-        -> whereDate('fecha',$fechaFormateada)
-        ->first();
-
-        if($vocal1){
-            return redirect()->back()->with('error','El profesor vocal 1 ya tiene un llamado ese dia');
-        }
-
+            })
+            -> whereDate('fecha',$fechaFormateada)
+            ->first();
+            
+            if($vocal1 && $data['prof_vocal_1'] != '0'){
+                return redirect()->back()->with('error','El profesor vocal 1 ya tiene un llamado ese dia');
+            }
+            
         $vocal2 = Mesa::where(function ($query) use($data) {
             $query->orWhere('prof_presidente', $data['prof_vocal_2'])
-                ->orWhere('prof_vocal_1', $data['prof_vocal_2'])
-                ->orWhere('prof_vocal_2', $data['prof_vocal_2']);
+            ->orWhere('prof_vocal_1', $data['prof_vocal_2'])
+            ->orWhere('prof_vocal_2', $data['prof_vocal_2']);
         })
         -> whereDate('fecha',$fechaFormateada)
         ->first();
+    
 
-        if($vocal2){
+        
+        if($vocal2 && $data['prof_vocal_2'] != '0'){
             return redirect()->back()->with('error','El profesor vocal 2 ya tiene un llamado ese dia');
         }
-
+        
+    
         Mesa::create($data);
         return \redirect()->back()->with('mensaje','Se creo la mesa');
     }

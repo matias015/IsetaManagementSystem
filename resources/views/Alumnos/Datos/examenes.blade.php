@@ -52,11 +52,37 @@
         </tr>
       </thead>
       <tbody>
-        @foreach($examenes as $examen)
+        @php
+            $actual = "";
+            $primero = true;
+        @endphp
+        @foreach($examenes as $key => $examen)
+          
+          
+          @php  
+            if ($actual == $examen->id_asignatura) {
+              echo '<tr id="td-'.$examen->id_asignatura.'" class="none">';  
+            }else{
+              echo '<tr>';
+            }
+          @endphp
         
-        <tr>
+        
           <td>{{$examen->asignatura->anio+1}}</td>
-            <td>{{$textFormatService->ucfirst($examen->nombre)}}</td>
+          
+          
+          @if ($actual != $examen->id_asignatura && !$loop->last && $examenes[$key+1]->id_asignatura == $examen->id_asignatura)
+            <td>
+              {{$textFormatService->ucfirst($examen->nombre)}}
+              <button class="pointer bg-transparent px-2 mx-5 rounded desplegable" data-element="{{$examen->id_asignatura}}">↓</button> 
+            </td>
+          @else
+            <td>{{$textFormatService->ucfirst($examen->nombre)}}</td>    
+          @endif
+          @php
+            $actual = $examen->id_asignatura;
+        @endphp  
+          
             <td>
               @if($examen->aprobado == 3)
                 Ausente
@@ -105,11 +131,24 @@
               @endif
             </td>
         </tr>
-    
+        
         @endforeach
       </tbody>
     </table>
 </div>
 </section>
 </main>
+<script>
+  // const button = document.querySelector('#ver-equiv')
+  window.onclick = function(e){
+    
+      if(!e.target.classList.contains('desplegable')) return
+      
+      let id = e.target.dataset.element
+      console.log(document.querySelector('#td-'+id));
+      let list = document.querySelector('#td-'+id)
+      
+      list.classList.toggle('none')
+  }
+</script>
 @endsection

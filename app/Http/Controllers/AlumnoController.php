@@ -193,8 +193,17 @@ class AlumnoController extends Controller
         $orden = $request->orden ? $request->orden: 'fecha';
         
 
-        $examenes = Examen::delAlumnoMasAltas($filtro,$campo,$orden);
+        // $examenes = Examen::delAlumnoMasAltas($filtro,$campo,$orden);
         
+        $examenes = Examen::select('examenes.id_mesa','examenes.aprobado','asignaturas.id','asignaturas.anio','asignaturas.nombre','nota','id_asignatura','fecha')
+        -> join('asignaturas', 'asignaturas.id','examenes.id_asignatura')
+        -> where('asignaturas.id_carrera', Carrera::getDefault()->id)
+        -> where('examenes.id_alumno', Auth::id())
+        -> orderBy('asignaturas.anio')
+        -> orderBy('asignaturas.id')
+        -> orderBy('examenes.nota','desc')
+        -> get();
+
         $promedio = 0;
         foreach($examenes as $examen){
             $promedio += $examen->nota;

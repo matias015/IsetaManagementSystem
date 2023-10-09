@@ -186,3 +186,9 @@ CORRECCIONES 2/9
 - La x del modal ahora tiene cursor: pointer
 - Al setear una nueva contraseña ahora si se muestran solo simbolos (type:"password")
 - Al poner vocal 1 y 2 en sin confirmar decia que se repetia profe xddd
+
+
+9/10
+- Ahora se pueden ver todos los examenes en lugar de solo la nota mas alta.
+- En mesas con vocal 1 y 2 sin determinar daba error de que ya tenian mesa
+- Ahora la sesion se elimina pasados 10 minutos (se cambia en .env y en ./config/session.php linea 34)

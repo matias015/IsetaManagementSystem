@@ -44,6 +44,7 @@ class PasswordResetController extends Controller
         // $tokenData = ResetToken::where('token',$request->token)->first();
         
         $token = Session::get('__alumno_restablecer_token');
+
         $mail = Session::get('__alumno_restablecer_mail');
 
         if(!$token || !$mail) return \redirect()->back()->with('error','Vaya... hemos perdido el mail o el token, intentalo de nuevo');
