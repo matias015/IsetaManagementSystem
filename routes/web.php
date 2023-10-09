@@ -20,3 +20,7 @@ include_once("admin.php");
 include_once("profesores.php");
 include_once("test.php");
 
+Route::fallback(function(){
+    return view('Error/404');
+});
+
