@@ -17,10 +17,15 @@ si lees algo de añadir php al path pone que si!!!!!!!!!
 6. al archivo .env.example en la raiz, cambiale el nombre a solo .env y modifica la config de la db, tiene que quedar asi:
     
     DB_CONNECTION=mysql
+   
     DB_HOST=127.0.0.1
+   
     DB_PORT=3306
+   
     DB_DATABASE=movedb
+   
     DB_USERNAME=root
+   
     DB_PASSWORD=       
     
 El username y password son de tu phpmyadmin, pero si los dejaste default, el username es root y el password queda vacio 
@@ -29,16 +34,22 @@ El username y password son de tu phpmyadmin, pero si los dejaste default, el use
 tenga que enviar mail, pero igual anda y te podes registrar:
  
     MAIL_MAILER=smtp
+   
     MAIL_HOST=sandbox.smtp.mailtrap.io
+   
     MAIL_PORT=2525
+   
     MAIL_USERNAME=af5abb26f9dc63   // aca va lo que te diga la app de mailtrap
+   
     MAIL_PASSWORD=fa016bcca8a71c   // aca va lo que te diga la app de mailtrap
+   
     MAIL_FROM_ADDRESS="hello@example.com"
+   
     MAIL_FROM_NAME="${APP_NAME}"
 
-8. ahora deberias poder abrir la pag con "php artisan serve", si te pide algo de un key, apreta el boton de generar y recarga
+9. ahora deberias poder abrir la pag con "php artisan serve", si te pide algo de un key, apreta el boton de generar y recarga
 
-9. si la pag anda pone en consola lo siguiente en orden
+10. si la pag anda pone en consola lo siguiente en orden
     "php artisan migrate" y "php artisan db:seed"
 
-10. paso 10, disfruta deaa
+11. paso 10, disfruta deaa
