@@ -6,6 +6,8 @@ descargar xampp
 
 descargar composer: https://getcomposer.org/Composer-Setup.exe
 
+si lees algo de añadir php al path pone que si!!!!!!!!!
+
 0. abrir xampp y arrancar mysql y apache
 1. descargar de github la carpeta del proyecto
 2. importar la base dump2.sql a phpmyadmin
