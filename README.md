@@ -26,7 +26,7 @@ si lees algo de añadir php al path pone que si!!!!!!!!!
 El username y password son de tu phpmyadmin, pero si los dejaste default, el username es root y el password queda vacio 
 
 7. lo del mail tiene que quedar asi, pero con las credenciales de tu mailtrap, si no haces esto te da error cuando
-tenga que enviar mail, pero igual anda y te podes registrar:
+tenga que enviar mail:
  
     MAIL_MAILER=smtp
    <br>  
