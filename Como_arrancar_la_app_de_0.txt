@@ -1,10 +1,15 @@
 Como empezar de cero la app
 
-1. descargar de github
+descargar git: https://git-scm.com/download/win
+descargar xampp
+descargar composer: https://getcomposer.org/Composer-Setup.exe
+
+0. abrir xampp y arrancar mysql y apache
+1. descargar de github la carpeta del proyecto
 2. importar la base dump2.sql a phpmyadmin
 3. abrir en visual la carpeta de la app de la raiz (donde esta el archivo sql, carpetas app,public,resources etc)
-4. abris consola
-5. pones en consola "composer install"
+4. abris consola en visual con ctrl+ñ o en el menu de arriba terminal -> nueva terminal
+5. pones en consola "composer install", si da error, entras en xampp, en la parte de apache, pones config, php.ini y buscas la linea que diga ";extension=zip" y le borras el ";" de adelante y cerras y guardas.
 6. al archivo .env.example en la raiz, cambiale el nombre a solo .env y modifica la config de la db, tiene que quedar asi:
     
     DB_CONNECTION=mysql
