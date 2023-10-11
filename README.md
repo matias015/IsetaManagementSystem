@@ -1,7 +1,9 @@
 Como empezar de cero la app
 
 descargar git: https://git-scm.com/download/win
+
 descargar xampp
+
 descargar composer: https://getcomposer.org/Composer-Setup.exe
 
 0. abrir xampp y arrancar mysql y apache
