@@ -1,7 +1,7 @@
 <aside class="none lg-block admin-aside">
     
     <ul class="p-3 admin-aside-ul">
-        <p class="logo-iseta">ISETA Admin</p>
+        <h1 class="logo-iseta">ISETA Admin</h1>
         <li><a class="text-blue-600" href="{{route('admin.alumnos.index')}} "><i class="ti ti-user"></i>Alumnos</a></li>
         <li><a class="text-blue-600" href="{{route('admin.profesores.index')}}"><i class="ti ti-users"></i>    Profesores  </a></li>
         <li><a class="text-blue-600" href="{{route('admin.carreras.index')}}">      Carreras    </a></li>
@@ -15,38 +15,7 @@
         <li><a class="text-blue-600" href="{{route('admin.config.index')}}  "><i class="ti ti-settings"></i>      Configuracion      </a></li>
         <li><a class="text-blue-600" href="{{route('admin.habiles.index')}}  "><i class="ti ti-calendar-time"></i>      Dias habiles      </a></li>
 
-        <li class="none">    
-            <i class="ti ti-sun-filled"></i>
-            <i class="ti ti-moon"></i>
-            <div id="mode-dark_light">
-                <div class="toggle"></div>
-            </div>
-        </li>
-
         <li class="perfil-lista-item"><a href="/admin/logout"><i class="ti ti-logout"></i> Cerrar sesion</a></li>
-
-        
     </ul>
-
-    <script>
-        var toggle = document.getElementById('mode-dark_light')
-        var body = document.querySelector('body')
-        var aside = document.querySelector('aside')
-        var iseta = document.querySelector('p')
-        var a = document.querySelector('a')
-        var icon_sun = document.querySelector('.ti-sun-filled')
-        var icon_moon = document.querySelector('.ti-moon')
-
-        toggle.onclick = function(){
-            
-            toggle.classList.toggle('active');
-            body.classList.toggle('active');
-            aside.classList.toggle('active');
-            iseta.classList.toggle('active');
-            a.classList.toggle('active');
-            icon_sun.classList.toggle('active');
-            icon_moon.classList.toggle('active');
-        }
-    </script>
-
+    
 </aside>
