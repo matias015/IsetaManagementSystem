@@ -159,6 +159,10 @@ class AlumnoController extends Controller
             $query->orderBy('cursadas.anio_cursada','desc');
         }
 
+        $query -> orderBy('asignaturas.anio')
+        -> orderBy('asignaturas.id')
+        -> orderBy('cursadas.anio_cursada','desc');
+
         $cursadas = $query->get();
         // lista de examenes aprobados para saber si una cursada
         // tiene rendido su final

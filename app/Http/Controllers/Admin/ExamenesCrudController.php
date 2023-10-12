@@ -128,7 +128,7 @@ class ExamenesCrudController extends Controller
         }
         
         $yaAnotado = Examen::select('id')
-            -> where('id_mesa', $mesa)
+            -> where('id_mesa', $mesa->id)
             -> where('id_alumno', $data['id_alumno'])
             -> first();
 

@@ -67,16 +67,44 @@
               </tr>
             </thead>
             <tbody>
+              
+              @php
+                $actual = "";
+                $primero = true;
+              @endphp
 
-                @foreach($cursadas as $cursada)
-                  @if($filtros['campo'] == 'final_aprobado' && !in_array($cursada->id_asignatura,$examenesAprobados))
-                    @continue
-                  @elseif($filtros['campo'] == 'final_desaprobado' && in_array($cursada->id_asignatura,$examenesAprobados))
-                    @continue
-                  @endif
-              <tr>
+              @foreach($cursadas as $key=>$cursada)
+                
+                @if($filtros['campo'] == 'final_aprobado' && !in_array($cursada->id_asignatura,$examenesAprobados))
+                  @continue
+                @elseif($filtros['campo'] == 'final_desaprobado' && in_array($cursada->id_asignatura,$examenesAprobados))
+                  @continue
+                @endif
+
+                @php  
+                  if ($actual == $cursada->id_asignatura) {
+                    echo '<tr id="td-'.$cursada->id_asignatura.'" class="none">';
+                  }else{
+                    echo '<tr>';
+                  }
+                @endphp
+              {{-- <tr> --}}
                 <td class="text-center">{{$cursada->anio+1}}</td>
-                <td>{{$textFormatService->ucfirst($cursada->nombre)}}</td>
+
+                @if ($actual != $cursada->id_asignatura && !$loop->last && $cursadas[$key+1]->id_asignatura == $cursada->id_asignatura)
+                  <td>
+                    {{$textFormatService->ucfirst($cursada->nombre)}}
+                    <button class="pointer bg-transparent px-2 mx-5 rounded desplegable" data-element="{{$cursada->id_asignatura}}">↓</button> 
+                  </td>
+                @else
+                  <td>{{$textFormatService->ucfirst($cursada->nombre)}}</td>    
+                @endif
+                @php
+                  $actual = $cursada->id_asignatura;
+                @endphp  
+
+
+
                 <td>
                     <p @class([
                         'status' => true,
@@ -133,5 +161,17 @@
 
       </section>
       </main>
-
+      <script>
+        // const button = document.querySelector('#ver-equiv')
+        window.onclick = function(e){
+          
+            if(!e.target.classList.contains('desplegable')) return
+            
+            let id = e.target.dataset.element
+            console.log(document.querySelector('#td-'+id));
+            let list = document.querySelector('#td-'+id)
+            
+            list.classList.toggle('none')
+        }
+      </script>
 @endsection
