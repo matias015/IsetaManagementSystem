@@ -5,50 +5,48 @@
 
 <div class="bg-transparent contenedor_top flex items-end gap-2">
 
-    <a href="{{route('admin.egresados.create')}}"><button class="p-1 nuevo_alumno">Agregar inscripcion</button></a>
+    <a href="{{route('admin.egresados.create')}}"><button class="nuevo_alumno">Agregar inscripcion</button></a>
     
-    
+    <div class="contenedor-tabla_botonera">
+
         <form class="none grid lg-block form-hh" action="{{route('admin.egresados.index')}}">
-            <div class="alumnos_filtrar gap-5 flex items-end">
+
+            <div class="tabla_botonera gap-5 flex items-end">
                 
-                <div class="">
-                    <p class="categoria">Ordenar</p>
+                <div class="contenedor_ordenar">
+                    <span class="categoria">Ordenar</span>
                     <div>
-                        <select class="border-none rounded p-1 bg-white shadow" name="orden">
-                            <option @selected($filtros['orden'] == 'nombre') value="nombre">nombre</option>
-                            <option @selected($filtros['orden'] == 'dni') value="dni">dni</option>
-                            <option @selected($filtros['orden'] == 'dni-desc') value="dni-desc">dni descendiente</option>
+                        <select class="ordenar border-none rounded p-1 bg-white shadow" name="orden">
+                            <option @selected($filtros['orden'] == 'nombre') value="nombre">Nombre</option>
+                            <option @selected($filtros['orden'] == 'dni') value="dni">DNI</option>
+                            <option @selected($filtros['orden'] == 'dni-desc') value="dni-desc">DNI descendiente</option>
 
                         </select>
                     </div>
                 </div>
-                <div>
-                    <p class="categoria">Mostrar</p> 
-
-                    <div class="contenedor_filtrar">
-                        <select class="border-none rounded p-1 bg-white shadow" name="campo">
+                <div class="contenedor_filtrar">
+                    <span class="categoria">Mostrar</span> 
+                    <div>
+                        <select class="filtrar border-none rounded p-1 bg-white shadow" name="campo">
                             <option value="ninguno">Todos</option>
                             <option @selected($filtros['campo'] == 'egresados') value="egresados">Egresados</option>
-                            <option @selected($filtros['campo'] == 'registrados') value="registrados">registrados</option>
+                            <option @selected($filtros['campo'] == 'registrados') value="registrados">Registrados</option>
                         </select>
                     </div>
                 </div>
 
-                <div>
-                    <p>Buscar</p>
-                    <input placeholder="Dni, Apellido, Nombre, mail" class="border-none rounded p-1 bg-white shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
+                <div class="contenedor_filtrado">
+                    <input placeholder="Encontrar filtro..." class="filtrado-busqueda border-none rounded p-1 bg-white shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
                 </div>
                 
-                <div>
-                    <input class="p-1 border-none rounded pointer" type="submit" value="Buscar">
+                <div class="contenedor_btn-busqueda">
+                    <input class="btn-buscador1 p-1 border-none rounded pointer" type="submit" value="Buscar">
                 </div>
             </div>
         </form>
     
-        
-    
-    <a class="none lg-block" href="{{route('admin.egresados.index')}}"><button class="p-1 border-none red-800 font-600 white rounded pointer">Quitar filtros</button></a>
-
+        <a class="none lg-block" href="{{route('admin.egresados.index')}}"><button class="quitar_filtro">Quitar filtros</button></a>
+    </div>
     
 </div>
 
