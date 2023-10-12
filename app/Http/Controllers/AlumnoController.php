@@ -201,6 +201,7 @@ class AlumnoController extends Controller
         -> where('examenes.id_alumno', Auth::id())
         -> orderBy('asignaturas.anio')
         -> orderBy('asignaturas.id')
+        -> orderBy('examenes.fecha')
         -> orderBy('examenes.nota','desc')
         -> get();
 

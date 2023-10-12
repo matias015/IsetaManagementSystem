@@ -1,4 +1,6 @@
 <?php
+
+use App\Models\Examen;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +25,3 @@ include_once("test.php");
 Route::fallback(function(){
     return view('Error/404');
 });
-
