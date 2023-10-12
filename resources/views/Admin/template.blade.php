@@ -18,15 +18,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
 
-<body class="">
+<body>
     <script src="{{asset('js/config.js')}}"></script>
     <script src="{{asset('js/libs/ev.js')}}"></script>
     @include('Componentes.mensaje') 
     @include('Componentes.aside')
-    <div class="w-100p p-5">
+    <div class="admin-main w-80p p-5 just-end">
         @yield('content')
     </div>
-    
+
 
     <script src="{{asset('js/ocultar-mensaje.js')}}"></script>
 
