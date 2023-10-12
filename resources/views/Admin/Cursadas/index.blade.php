@@ -2,32 +2,48 @@
 
 @section('content')
     
-    <div>
+    <div class="contenedor_top bg-transparent flex items-end gap-2">
         
+        <a href="{{route('admin.cursadas.create')}}"><button class="nuevo_alumno">Agregar cursada</button></a>
 
-    
-            <a href="{{route('admin.cursadas.create')}}"><button>Agregar cursada</button></a>
+        <div class="contenedor-tabla_botonera">
 
-        <div>
-            <form action="{{route('admin.cursadas.index')}}">
-                <p>filtrar</p> 
-                <select name="campo">
-                    <option value="ninguno">todo</option>
-                    <option @selected($filtros['campo'] == 'nuevas') value="nuevas">nuevas</option>
-                    <option @selected($filtros['campo'] == 'asignatura') value="asignatura">asigantura</option>
-                    <option @selected($filtros['campo'] == 'carrera') value="carrera">carrera</option>
-                </select>
-                <input value="{{$filtros['filtro']}}" name="filtro" type="text">
-                <p>ordenar</p>
-                <select name="orden">
-                    <option @selected($filtros['orden'] == 'creacion') value="creacion">Creacion</option>
-                    <option @selected($filtros['orden'] == 'fecha') value="fecha">Fecha</option>
-                    <option @selected($filtros['orden'] == 'asignatura') value="asignatura">asigantura</option>
-                </select>
-                <input type="submit" value="Buscar">
+            <form class="none grid lg-block form-hh" action="{{route('admin.cursadas.index')}}">
+                <div class="tabla_botonera gap-5 flex items-end">
+                    <div class="contenedor_ordenar">
+                        <span class="categoria">Ordenar</span>     
+                        <div>
+                            <select class="ordenar border-none rounded p-1 bg-white shadow" name="orden">
+                                <option @selected($filtros['orden'] == 'creacion') value="creacion">Creacion</option>
+                                <option @selected($filtros['orden'] == 'fecha') value="fecha">Fecha</option>
+                                <option @selected($filtros['orden'] == 'asignatura') value="asignatura">Asigantura</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="contenedor_filtrar">
+                        <span class="categoria">Mostrar</span> 
+                        <div>
+                            <select class="filtrar border-none rounded p-1 bg-white shadow" name="campo">
+                                <option value="ninguno">Todos</option>
+                                <option @selected($filtros['campo'] == 'nuevas') value="nuevas">Nuevas</option>
+                                <option @selected($filtros['campo'] == 'asignatura') value="asignatura">Asigantura</option>
+                                <option @selected($filtros['campo'] == 'carrera') value="carrera">Carrera</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="contenedor_filtrado">
+                        <input placeholder="Encontrar filtro..." class="filtrado-busqueda border-none rounded p-1 bg-white shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
+                    </div>
+
+                    <div class="contenedor_btn-busqueda">
+                        <input class="btn-buscador1 p-1 border-none rounded pointer" type="submit" value="Buscar">
+                    </div>
+                </div>
             </form>
 
-            <a href="{{route('admin.cursadas.index')}}"><button>Quitar filtro</button></a>
+            <a href="{{route('admin.cursadas.index')}}"><button class="quitar_filtro">Quitar filtros</button></a>
       
         </div>
     </div>
