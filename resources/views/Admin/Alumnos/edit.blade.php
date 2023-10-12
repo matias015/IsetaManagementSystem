@@ -69,12 +69,25 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($alumno->cursadas as $cursada)
+
+            @php
+                $carrera_actual = "";
+            @endphp
+
+            @foreach($cursadas as $cursada)
+
+                @php  
+                    if ($carrera_actual != $cursada->carrera) {
+                        echo '<tr id="td-'.$cursada->id.'" class=""><td class="center" colspan=5>'.$cursada->carrera.'</td></tr>';
+                        $carrera_actual = $cursada->carrera;
+                    }
+                @endphp
+
                 <tr>
-                    <td>{{$textFormatService->ucfirst($cursada->asignatura->nombre)}}</td>
+                    <td>{{$textFormatService->ucfirst($cursada->asignatura)}}</td>
                     <td>{{$cursada->anio_cursada}}</td>
                     <td>
-                        {{$textFormatService->ucfirst($cursada->asignatura->carrera->nombre)}}
+                        {{$textFormatService->ucfirst($cursada->carrera)}}
                     </td>
                     <td>
                         @if ($cursada->aprobada==1)

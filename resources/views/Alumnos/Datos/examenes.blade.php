@@ -33,7 +33,7 @@
               </div>
                 
               <div class="contenedor_filtrado">
-                <input name="filtro" class="filtrado-busqueda" value="{{$filtros['filtro']}}" placeholder="Encontrar filtro...">
+                <input name="filtro" class="filtrado-busqueda" value="{{$filtros['filtro']}}" placeholder="Algebra, Ingles, ...">
               </div>
               <div class="contenedor_btn-busqueda">
                 <input class="btn-buscador" type="submit" value="Buscar">

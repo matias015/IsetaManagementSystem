@@ -23,15 +23,15 @@
                   <span>Filtrar por</span>
                   <select class="filtrar" name="campo">
                       <option value="ninguno">Ninguno</option>
-                      <option @selected($filtros['campo'] == 'aprobadas') value="aprobadas">aprobadas</option>
-                      <option @selected($filtros['campo'] == 'desaprobadas') value="desaprobadas">desaprobadas</option>
-                      <option @selected($filtros['campo'] == 'final_aprobado') value="final_aprobado">final aprobado</option>
-                      <option @selected($filtros['campo'] == 'final_desaprobado') value="final_desaprobado">final desaprobado</option>
+                      <option @selected($filtros['campo'] == 'aprobadas') value="aprobadas">Aprobadas</option>
+                      <option @selected($filtros['campo'] == 'desaprobadas') value="desaprobadas">Desaprobadas</option>
+                      <option @selected($filtros['campo'] == 'final_aprobado') value="final_aprobado">Final aprobado</option>
+                      <option @selected($filtros['campo'] == 'final_desaprobado') value="final_desaprobado">Final desaprobado</option>
                     </select>
                     <i class="ti ti-adjustments i_filtrar"></i>
                 </div>
                 <div class="contenedor_filtrado">
-                      <input class="filtrado-busqueda" value="{{$filtros['filtro']}}" name="filtro" type="text" placeholder="Encontrar filtro...">
+                      <input class="filtrado-busqueda" value="{{$filtros['filtro']}}" name="filtro" type="text" placeholder="Algebra, Ingles, ...">
                 </div>
 
                 <div class="contenedor_btn-busqueda">
@@ -39,7 +39,7 @@
                 </div>
                 
                 </div>
-                <p class="leyend">Algunas cursadas podrian mostrarse con la condicion de "libre" cuando esto no es asi.</p>
+                <p class="leyend">Cursadas previas a la implementacion de este sitio podrian mostrarse con la condicion de "Libre" cuando esto no es asi.</p>
             </form>
           
           <!--<label class="switch">

@@ -8,6 +8,7 @@ use App\Http\Requests\EditarAlumnoRequest;
 use App\Models\Alumno;
 use App\Models\Carrera;
 use App\Models\Configuracion;
+use App\Models\Cursada;
 use App\Models\Egresado;
 use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
@@ -107,10 +108,22 @@ class AlumnoCrudController extends Controller
      */
     public function edit(Request $request, $alumno)
     {
-        $alumno = Alumno::where('id', $alumno)->with('cursadas.asignatura.carrera','examenes.mesa.materia.carrera')->first();
+        // $alumno = Alumno::where('id', $alumno)->with('cursadas.asignatura.carrera','examenes.mesa.materia.carrera')->first();
+        $alumno = Alumno::find($alumno);
+        $cursadas = Cursada::select('asignaturas.nombre as asignatura', 'cursadas.aprobada' ,'cursadas.anio_cursada' ,'cursadas.id' ,'carreras.nombre as carrera','asignaturas.anio as anio_asig')
+            ->join('asignaturas', 'cursadas.id_asignatura','asignaturas.id')
+            -> join('carreras','carreras.id','asignaturas.id_carrera')
+            -> where('cursadas.id_alumno',$alumno->id)
+            -> orderBy('carreras.id')
+            -> orderBy('asignaturas.anio')
+            -> orderBy('asignaturas.id')
+            -> orderBy('cursadas.anio_cursada')
+            -> get();
+        // \dd($cursadas);
 
         return view('Admin.Alumnos.edit', [
             'alumno' => $alumno,
+            'cursadas' => $cursadas,
             'carreras' => Carrera::vigentes()
         ]);
     }

@@ -194,8 +194,9 @@ CORRECCIONES 2/9
 - Ahora la sesion se elimina pasados 10 minutos (se cambia en .env y en ./config/session.php linea 34)
 
 12/10
+- Ahora se pueden ver cursadas anteriores de una materia con un "desplegable"
+- Por un error de typeo, en la parte de admin no comprobaba bien que el alumno no este inscripto en la mesa antes de anotarlo. 
+- Nueva separacion visual de las cursadas de alumnos con mas de una carrera en la parte de admin
 - Terminado diseño de la botonera de admin (agregar, ordenar, filtrar, buscar, quitar)
 - Aside de admin ahora funciona en fixed. Abarca el 20% (solucionado no de una forma tan elegante je)
 - El div que funciona de main en Admin no se superpone al aside ni se achica dejando huecos, quedo establecido a la derecha. Ocupa el 80%.
-- Ahora se pueden ver cursadas anteriores de una materia con un "desplegable"
-- Por un error de typeo, en la parte de admin no comprobaba bien que el alumno no este inscripto en la mesa antes de anotarlo. 
