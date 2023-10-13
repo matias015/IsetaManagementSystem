@@ -8,13 +8,15 @@ descargar composer: https://getcomposer.org/Composer-Setup.exe
 
 si lees algo de añadir php al path pone que si!!!!!!!!!
 
-0. abrir xampp y arrancar mysql y apache
-1. descargar de github la carpeta del proyecto
-2. importar la base dump2.sql a phpmyadmin
-3. abrir en visual la carpeta de la app de la raiz (donde esta el archivo sql, carpetas app,public,resources etc)
-4. abris consola en visual con ctrl+ñ o en el menu de arriba terminal -> nueva terminal
-5. pones en consola "composer install", si da error, entras en xampp, en la parte de apache, pones config, php.ini y buscas la linea que diga ";extension=zip" y le borras el ";" de adelante y cerras y guardas.
-6. al archivo .env.example en la raiz, cambiale el nombre a solo .env y modifica la config de la db, tiene que quedar asi:
+0. abrir xampp y arrancar mysql y apache.
+<br><br>
+En apache, ir a config, httpd.conf y buscar la seccion <documentRoot> y a las rutas agregar al final /[CarpetaDelProyecto]/public. si no se hace esto, para poder acceder al sitio se debe usar el path /[CarpetaDelProyecto]/public para acceder a la aplicación 
+2. descargar de github la carpeta del proyecto
+3. importar la base dump2.sql a phpmyadmin
+4. abrir en visual la carpeta de la app de la raiz (donde esta el archivo sql, carpetas app,public,resources etc)
+5. abris consola en visual con ctrl+ñ o en el menu de arriba terminal -> nueva terminal
+6. pones en consola "composer install", si da error, entras en xampp, en la parte de apache, pones config, php.ini y buscas la linea que diga ";extension=zip" y le borras el ";" de adelante y cerras y guardas.
+7. al archivo .env.example en la raiz, cambiale el nombre a solo .env y modifica la config de la db, tiene que quedar asi:
     
     DB_CONNECTION=mysql<br>  
     DB_HOST=127.0.0.1<br>  
