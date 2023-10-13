@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Alumno;
+use App\Models\Asignatura;
 use App\Models\Configuracion;
+use App\Models\Cursada;
 use App\Models\Examen;
 use App\Models\Mesa;
 use App\Models\Profesor;
 use App\Services\DiasHabiles;
 use Illuminate\Http\Request;
+use Mockery\CountValidator\Exact;
 
 class ExamenesCrudController extends Controller
 {
@@ -97,36 +100,31 @@ class ExamenesCrudController extends Controller
         $data = $request->only('id_alumno','id_mesa');
         $mesa = Mesa::find($data['id_mesa']);
      
-        /////////////////
+        $asignatura = Asignatura::find($mesa->id_asignatura);
 
         $posibles = [];
 
-        
-        $posibles = Alumno::inscribibles($data['id_alumno']);
+        $yaAprobado = Examen::where('id_alumno',$data['id_alumno'])
+            -> where('id_asignatura', $asignatura->id)
+            -> whereRaw('(nota >= 4 OR tipo_final = 3)')
+            -> first();
 
-        $noPuede = true;
-        $finBusqueda = false;
-        
-        // la materia que selecciono esta en las que puede inscribirse
-        // y no caduco la fecha de inscripcion
-        foreach($posibles as $materia){
-
-            if($finBusqueda) break;
-
-            foreach($materia->mesas as $mesaMateria){
-                
-                if($mesaMateria->id == $mesa->id){               
-                    if(DiasHabiles::desdeHoyHasta($mesaMateria->fecha) >= 48) $noPuede = false;
-                    else break;
-                    $finBusqueda=true;
-                }
-            }
+        if($yaAprobado){
+            return redirect() -> back() -> with('error','El alumno ya aprobo esta asignatura.');
         }
 
-        if($noPuede) {
-            return redirect() -> back() -> with('error','no puede anotarse a esta mesa');
+        // que haya aprobado la cursada
+        $cursada_aprobada = Cursada::where('id_alumno',$data['id_alumno'])
+            ->where('aprobada', 1)
+            ->where('id_asignatura', $asignatura->id)
+            
+            ->first();
+
+        if(!$cursada_aprobada){
+            return redirect() -> back() -> with('error','No se aprobo la cursada.');
         }
         
+        // Que no este ya anotado
         $yaAnotado = Examen::select('id')
             -> where('id_mesa', $mesa->id)
             -> where('id_alumno', $data['id_alumno'])
@@ -136,13 +134,52 @@ class ExamenesCrudController extends Controller
             return redirect() -> back() -> with('error','ya esta anotado');
         }
 
+        // que no deba equivalencias
+        foreach($asignatura->correlativas as $correlativa){
+            
+            $aprobada = Examen::where('id_alumno', $data['id_alumno'])
+            -> where('id_asignatura', $correlativa->asignatura->id)
+            -> whereRaw('(nota >= 4 OR tipo_final = 3)')
+            -> first();
+            // \dd($aprobada);
+            if(!$aprobada){
+                return redirect() -> back() -> with('error','Debe la correlativa: '.$correlativa->asignatura->nombre);
+            }
+        };
+
+        $posibles = Alumno::inscribibles($data['id_alumno']);
+
+        $noPuede = true;
+        $finBusqueda = false;
+        
+        // la materia que selecciono esta en las que puede inscribirse
+        // y no caduco la fecha de inscripcion
+
+
+        // foreach($asignatura->mesas as $mesaMateria){
+            
+        //     if($mesaMateria->id == $mesa->id){
+        //         if(DiasHabiles::desdeHoyHasta($mesaMateria->fecha) >= 48) $noPuede = false;
+        //         else break;
+        //         $finBusqueda=true;
+        //     }
+
+        // }
+        
+
+        // if(1) {
+        //     return redirect() -> back() -> with('error','no puede anotarse a esta mesa');
+        // }
+        
+        
+
         //////////////////
       
         Examen::create([
             'id_alumno' => $data['id_alumno'],
             'id_mesa' => $mesa->id,
             'id_asignatura' => $mesa->id_asignatura,
-            'nota'=>0,
+            'nota'=> 0,
             'aprobado' => 0
         ]); 
 
