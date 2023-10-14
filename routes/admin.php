@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminCorrelativasController;
 use App\Http\Controllers\Admin\AdminDiasHabilesController;
 use App\Http\Controllers\Admin\AdminMatriculacionController;
 use App\Http\Controllers\Admin\AdminMesaPorCarreraController;
+use App\Http\Controllers\Admin\AdminPdfController;
 use App\Http\Controllers\Admin\AlumnoCrudController;
 use App\Http\Controllers\Admin\AsignaturasCrudController;
 use App\Http\Controllers\Admin\CarrerasCrudController;
@@ -37,21 +38,14 @@ use Illuminate\Support\Facades\Route;
  Route::redirect('/admin','/admin/login');
  Route::middleware(['web'])->prefix('admin')->group(function(){
 
-    Route::get('/mesas/acta-volante/{mesa}', function(Request $request,Mesa $mesa){
-        $alumnos = Mesa::select('examenes.id as id_examen','alumnos.nombre','alumnos.dni','alumnos.apellido','examenes.nota')
-        -> join('examenes', 'examenes.id_mesa','mesas.id')
-        -> join('alumnos', 'alumnos.id','examenes.id_alumno')
-        -> where('mesas.id', $mesa->id)
-        -> get();
-
-        $pdf = Pdf::loadView('pdf.acta-volante', ['alumnos' => $alumnos,'mesa' => $mesa]);
-        return $pdf->stream('invoice.pdf');
-    })->name('admin.mesas.acta');
+    Route::get('/mesas/acta-volante/{mesa}', [AdminPdfController::class,'acta_volante'])->name('admin.mesas.acta');
+    Route::get('/mesas/acta-volante-prom/{mesa}', [AdminPdfController::class,'actaVolantePromocion'])->name('admin.mesas.actaprom');
 
     Route::get('/mesas/actas',function(){
         $mesas = Mesa::whereDate('fecha', '>=', now()->subDay()->toDateString())->get();
         dd($mesas);
     })->name('admin.mesas.actas');
+
 
     Route::get('login', [AdminAuthController::class, 'loginView']) -> name('admin.login');
     Route::post('login', [AdminAuthController::class, 'login']) -> name('admin.login.post');

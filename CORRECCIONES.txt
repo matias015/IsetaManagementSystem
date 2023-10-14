@@ -3,12 +3,16 @@ Anotar cosas que faltan corregir
 
 
 CUESTIONES:
+- Si promociono, puede anotarse a rendir parcial igual?
+- El acta volante de alumnos que rinden libre, no puede seleccionar alumnos automaticamente, 
+    ya que, muchas cursadas anteriores, figuran como libres, cuando no lo son
 - No estoy seguro si la pc sea tan rapida para manejar muchas solicitudes si es que entra mucha gente
 - Ver si habria que comprobar que los dnis sean unicos
 
 
 COSAS RARAS:
-- LA CARRERA DE MECANICA LIVIANA NO TIENE REGISTRADA NINGUNA EQUIVALENCIA, OSEA NINGUNA MATERIA TIENE EQUIVALENCIAS CON NINGUNA (carita de calabera)
+- LA CARRERA DE MECANICA LIVIANA NO TIENE REGISTRADA NINGUNA EQUIVALENCIA, 
+    OSEA NINGUNA MATERIA TIENE EQUIVALENCIAS CON NINGUNA (carita de calabera)
 - Y en general faltan correlativas
 
 
@@ -194,6 +198,7 @@ CORRECCIONES 2/9
 - Ahora la sesion se elimina pasados 10 minutos (se cambia en .env y en ./config/session.php linea 34)
 
 12/10
+- Se puede setear una cursada como promocionada, importante no cambiar el valor de "aprobado=si"
 - Ahora en la parte de Admin/mesas se da mas informacion cuando no es posible anotar a un alumno en una mesa. 
 - Ahora se pueden ver cursadas anteriores de una materia con un "desplegable"
 - Por un error de typeo, en la parte de admin no comprobaba bien que el alumno no este inscripto en la mesa antes de anotarlo. 
@@ -201,3 +206,8 @@ CORRECCIONES 2/9
 - Terminado diseño de la botonera de admin (agregar, ordenar, filtrar, buscar, quitar)
 - Aside de admin ahora funciona en fixed. Abarca el 20% (solucionado no de una forma tan elegante je)
 - El div que funciona de main en Admin no se superpone al aside ni se achica dejando huecos, quedo establecido a la derecha. Ocupa el 80%.
+
+
+13/10
+- Al imprimir un acta volante, ahora se puede seleccionar entre promocionados o regulares (Se debe seguir testeando).
+- 

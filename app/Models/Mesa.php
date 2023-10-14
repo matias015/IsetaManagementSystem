@@ -22,6 +22,7 @@ class Mesa extends Model
         return $this -> hasOne(Asignatura::class,'id','id_asignatura');
     }
 
+
     public function profesor(){
         return $this -> hasOne(Profesor::class,'id','prof_presidente');
     }

@@ -78,8 +78,15 @@
         <table class="acta_contenedor">
             <thead>
                 <tr class="acta_top">
-                    <th colspan="2">Provincia de Buenos Aires</th>
-                    <th colspan="2">ACTA VOLANTE DE EXÁMENES</th>
+                    <th colspan="2">
+                        Provincia de Buenos Aires
+                        @if ($promocion)
+                            <span style="margin-left: 100px">PROMOCION</span>
+                        @endif
+                    </th>
+                    <th colspan="2">
+                        ACTA VOLANTE DE EXÁMENES
+                    </th>
                 </tr>
                 <tr>
                     <th>Dirección General de Cultura y Educación</th>

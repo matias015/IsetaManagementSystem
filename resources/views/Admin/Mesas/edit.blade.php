@@ -89,6 +89,9 @@
                 <div class="table__header">
                     <a href="{{route('admin.mesas.acta', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_edit wit3">Acta volante</button></a>
                 </div>
+                <div class="table__header">
+                    <a href="{{route('admin.mesas.actaprom', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_edit wit3">Acta volante promocion</button></a>
+                </div>
                 <table>
                     <thead>
                         <tr>
