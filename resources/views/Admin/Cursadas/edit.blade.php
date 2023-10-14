@@ -22,14 +22,18 @@
                             <option @selected($cursada->condicion==5) value="5">Otro</option>
                         </select>    
                     </span>
-                    <span class="perfil_dataname">Aprobada: 
+                    
+                    <span class="perfil_dataname">Aprobada:
                         <select class="campo_info" name="aprobada">
                             <option @selected($cursada->aprobada==1) value="1">Si</option>
                             <option @selected($cursada->aprobada==2) value="2">No</option>
                             <option @selected($cursada->aprobada==3) value="3">Vacio</option>
                         </select>    
                     </span>
-
+                    <span class="perfil_dataname">Promocionada:     
+                        <input type="checkbox" @checked($cursada->promocionada) name="promocionada">   
+                    </span>
+                    <span>En caso de ser promocionada, el campo "Aprobada" sera ignorado</span>
                     <div class="upd"><input type="submit" value="Actualizar" class="btn_borrar"></div>
                 </form>
 

@@ -74,7 +74,17 @@ class CursadasAdminController extends Controller
     }
 
     function update(Request $request, Cursada $cursada){
-        $cursada -> update($request->except('_token','_method'));
+        $data = $request->except('_token','_method');
+        $cursada -> update($data);
+
+        if($request->has('promocionada') && $request->input('promocionada') == "on"){
+            $cursada->promocionada = true;
+            $cursada->save();
+        }else{
+            $cursada->promocionada = false;
+            $cursada->save();
+        }
+
         return redirect()->back();
     }
 
