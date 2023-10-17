@@ -12,9 +12,11 @@ si lees algo de añadir php al path pone que si!!!!!!!!!
 <br><br>
 En apache, ir a config, httpd.conf y buscar la seccion <documentRoot> y a las rutas agregar al final /[CarpetaDelProyecto]/public. si no se hace esto, para poder acceder al sitio se debe usar el path /[CarpetaDelProyecto]/public para acceder a la aplicación
 <br>
-Deberia quedar asi: <br><br>
-DocumentRoot "C:/xampp/htdocs/[nombreCarpeta]/public"<br>
-<Directory "C:/xampp/htdocs/[nombreCarpeta]/public"><br><br>
+Deberia quedar asi:
+
+DocumentRoot "C:/xampp/htdocs/[nombreCarpeta]/public"
+<Directory "C:/xampp/htdocs/[nombreCarpeta]/public">
+
 2. descargar de github la carpeta del proyecto
 3. importar la base dump2.sql a phpmyadmin
 4. abrir en visual la carpeta de la app de la raiz (donde esta el archivo sql, carpetas app,public,resources etc)
@@ -24,10 +26,10 @@ DocumentRoot "C:/xampp/htdocs/[nombreCarpeta]/public"<br>
     
     DB_CONNECTION=mysql 
     DB_HOST=127.0.0.1 
-    DB_PORT=3306<br>  
-    DB_DATABASE=movedb<br>  
-    DB_USERNAME=root<br>  
-    DB_PASSWORD=       <br>  
+    DB_PORT=3306
+    DB_DATABASE=movedb
+    DB_USERNAME=root 
+    DB_PASSWORD=       
     
 El username y password son de tu phpmyadmin, pero si los dejaste default, el username es root y el password queda vacio 
 
