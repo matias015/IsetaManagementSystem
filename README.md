@@ -10,7 +10,7 @@ si lees algo de añadir php al path pone que si!!!!!!!!!
 
 0. abrir xampp y arrancar mysql y apache.
 
-En apache, ir a config, httpd.conf y buscar la seccion "<documentRoot>" y a las rutas agregar al final /[CarpetaDelProyecto]/public.
+En apache, ir a config, httpd.conf y buscar la seccion "documentRoot" y a las rutas agregar al final /[CarpetaDelProyecto]/public.
 
 si no se hace esto, para poder acceder al sitio se debe usar el path /[CarpetaDelProyecto]/public para acceder a la aplicación
 
