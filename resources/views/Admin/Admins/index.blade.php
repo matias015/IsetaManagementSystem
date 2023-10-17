@@ -4,7 +4,7 @@
 
 
         
-
+    <p>en progreso</p>
         {{-- @foreach ($alumnos->pagr as )
             
         @endforeach

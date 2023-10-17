@@ -23,15 +23,15 @@
                 <p>¡Bienvenido! Por favor ingrese sus datos</p>
             </div>
             <div class="usuario input-box underline">
-                <input value="lucasmatiasperez@gmail.com" type="email" name="email" required placeholder="Correo electronico">
+                <input value="" type="email" name="email" required placeholder="Correo electronico">
                 <div class="underline"></div>
             </div>
             <div class="dni input-box">
-                <input value="33333754" type="text" name="dni" required placeholder="DNI">
+                <input value="" type="text" name="dni" required placeholder="DNI">
                 <div class="underline"></div>
             </div>
             <div class="contraseña input-box">
-                <input value="123456789" type="password" name="password" required placeholder="Contraseña">
+                <input value="" type="password" name="password" required placeholder="Contraseña">
                 <div class="underline"></div>
             </div>
             <div class="crear input-box button"><input type="submit" value="Crear"></div>

@@ -27,5 +27,6 @@
         <div class="upd"><input class="btn_borrar upd" type="submit" value="Editar"></div>
        </form>
         </div>
+        <p>En progreso</p>
     </div>
 @endsection
