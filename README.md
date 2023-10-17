@@ -66,6 +66,15 @@ si te pide algo de un key, apreta el boton de generar y recarga
 
 10. si la pag anda pone en consola lo siguiente en orden
 
+puedes cambiar la contraseña o usuario de administrador en ./database/seeders/AdminSeeder.php en la linea 18
+
+```
+Admin::create([
+            'username' => 'usuario',
+            'password' => bcrypt('contraseña')
+        ]);
+```
+
 ```
     php artisan migrate
     php artisan db:seed
