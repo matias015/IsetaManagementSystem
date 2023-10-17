@@ -24,10 +24,10 @@ DocumentRoot "C:/xampp/htdocs/[nombreCarpeta]/public"
 6. pones en consola "composer install", si da error, entras en xampp, en la parte de apache, pones config, php.ini y buscas la linea que diga ";extension=zip" y le borras el ";" de adelante y cerras y guardas.
 7. al archivo .env.example en la raiz, cambiale el nombre a solo .env y modifica la config de la db, tiene que quedar asi:
     <br>
-    DB_CONNECTION=mysql <br>
+    >DB_CONNECTION=mysql <br>
     DB_HOST=127.0.0.1 <br>
-    DB_PORT=3306<br>
-    DB_DATABASE=movedb<br>
+    DB_PORT=3306 <br>
+    DB_DATABASE=movedb <br>
     DB_USERNAME=root <br>
     DB_PASSWORD=       <br>
     <br>
