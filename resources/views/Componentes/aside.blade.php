@@ -1,7 +1,6 @@
 <aside class="none lg-block admin-aside">
-    
-    <ul class="p-3 admin-aside-ul">
-        <h1 class="logo-iseta">ISETA Admin</h1>
+    <h1 class="logo-iseta">ISETA Admin</h1>  
+    <ul>
         <li><a class="text-blue-600" href="{{route('admin.alumnos.index')}} "><i class="ti ti-user"></i>Alumnos</a></li>
         <li><a class="text-blue-600" href="{{route('admin.profesores.index')}}"><i class="ti ti-users"></i>    Profesores  </a></li>
         <li><a class="text-blue-600" href="{{route('admin.carreras.index')}}">      Carreras    </a></li>
@@ -15,7 +14,10 @@
         <li><a class="text-blue-600" href="{{route('admin.config.index')}}  "><i class="ti ti-settings"></i>      Configuracion      </a></li>
         <li><a class="text-blue-600" href="{{route('admin.habiles.index')}}  "><i class="ti ti-calendar-time"></i>      Dias habiles      </a></li>
 
-        <li class="perfil-lista-item"><a href="/admin/logout"><i class="ti ti-logout"></i> Cerrar sesion</a></li>
+        <div class="aside-end">
+            <li><a href="/admin/logout"><i class="ti ti-logout"></i> Cerrar sesion</a></li>
+        </div>
     </ul>
+    
     
 </aside>
