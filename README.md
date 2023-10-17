@@ -64,9 +64,8 @@ php artisan serve
 
 si te pide algo de un key, apreta el boton de generar y recarga
 
-10. si la pag anda pone en consola lo siguiente en orden
 
-puedes cambiar la contraseña o usuario de administrador en ./database/seeders/AdminSeeder.php en la linea 18
+Antes del paso 10, puedes cambiar la contraseña o usuario de administrador en ./database/seeders/AdminSeeder.php en la linea 18.
 
 ```
 Admin::create([
@@ -75,6 +74,8 @@ Admin::create([
         ]);
 ```
 
+10. si la pagina funciona pon en consola lo siguiente en orden
+    
 ```
     php artisan migrate
     php artisan db:seed
