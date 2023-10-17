@@ -69,9 +69,9 @@ Antes del paso 10, puedes cambiar la contraseña o usuario de administrador en .
 
 ```
 Admin::create([
-            'username' => 'usuario',
-            'password' => bcrypt('contraseña')
-        ]);
+    'username' => 'usuario',
+    'password' => bcrypt('contraseña')
+]);
 ```
 
 10. si la pagina funciona pon en consola lo siguiente en orden
