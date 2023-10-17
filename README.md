@@ -13,10 +13,10 @@ si lees algo de añadir php al path pone que si!!!!!!!!!
 En apache, ir a config, httpd.conf y buscar la seccion <documentRoot> y a las rutas agregar al final /[CarpetaDelProyecto]/public. si no se hace esto, para poder acceder al sitio se debe usar el path /[CarpetaDelProyecto]/public para acceder a la aplicación
 <br>
 Deberia quedar asi:
-
+```
 DocumentRoot "C:/xampp/htdocs/[nombreCarpeta]/public"
 <Directory "C:/xampp/htdocs/[nombreCarpeta]/public">
-
+```
 2. descargar de github la carpeta del proyecto
 3. importar la base dump2.sql a phpmyadmin
 4. abrir en visual la carpeta de la app de la raiz (donde esta el archivo sql, carpetas app,public,resources etc)
@@ -36,24 +36,26 @@ El username y password son de tu phpmyadmin, pero si los dejaste default, el use
 
 7. lo del mail tiene que quedar asi, pero con las credenciales de tu mailtrap, si no haces esto te da error cuando
 tenga que enviar mail:
- 
-    MAIL_MAILER=smtp
-   <br>  
-    MAIL_HOST=sandbox.smtp.mailtrap.io
-   <br>  
-    MAIL_PORT=2525
-   <br>  
-    MAIL_USERNAME=af5abb26f9dc63   // aca va lo que te diga la app de mailtrap
-   <br>  
-    MAIL_PASSWORD=fa016bcca8a71c   // aca va lo que te diga la app de mailtrap
-   <br>  
-    MAIL_FROM_ADDRESS="hello@example.com"
-   <br>  
-    MAIL_FROM_NAME="${APP_NAME}"<br>  
 
-9. ahora deberias poder abrir la pag con "php artisan serve", si te pide algo de un key, apreta el boton de generar y recarga
+ ```
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=af5abb26f9dc63   // aca va lo que te diga la app de mailtrap
+MAIL_PASSWORD=fa016bcca8a71c   // aca va lo que te diga la app de mailtrap
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"<br>  
+```
 
+9. ahora deberias poder abrir la pag con:
+```
+php artisan serve
+```
+si te pide algo de un key, apreta el boton de generar y recarga
+<br>
 10. si la pag anda pone en consola lo siguiente en orden
-    "php artisan migrate" y "php artisan db:seed"
-
+```
+    php artisan migrate
+    php artisan db:seed
+```
 11. paso 10, disfruta deaa
