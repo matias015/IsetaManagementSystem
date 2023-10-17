@@ -44,6 +44,8 @@ body {
     color: black;
     background: linear-gradient(150deg, #5872d16d, white);
     background-size: cover;
+    min-height: 100vh;
+    width: 100%;
 }
 
 .admin-main {
@@ -150,7 +152,7 @@ body {
 .filtrar, .ordenar {
     border: none;
     outline: none;
-    width: 180px;
+    width: auto;
     height: 40px;
     margin: 0 10px;
     font-size: 13px;
@@ -167,7 +169,7 @@ body {
     outline: none;
     color: #191919;
     padding: 15px;
-    width: 100%;
+    width: 200px;
     height: 40px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     border-radius: 5px;
