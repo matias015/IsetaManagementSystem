@@ -68,7 +68,7 @@ class EgresadosAdminController extends Controller
 
             $alumnos = $query->paginate($porPagina); 
 
-        return view('Admin.Egresados.index',[
+        return view('Admin.inscriptos.index',[
             'alumnos'=>$alumnos, 
             'filtros'=>[
                 'campo' => $campo,
@@ -84,7 +84,7 @@ class EgresadosAdminController extends Controller
      */
     public function create()
     {
-        return view('Admin.Egresados.create',[
+        return view('Admin.inscriptos.create',[
             'alumnos'=>Alumno::orderBy('apellido')->orderBy('nombre')->get(),
             'carreras'=>Carrera::where('vigente','1')->get()
         ]);
@@ -104,7 +104,7 @@ class EgresadosAdminController extends Controller
         ]);
         
         Egresado::create($data);
-        return redirect()->route('admin.egresados.index');
+        return redirect()->route('admin.inscriptos.index');
     }
 
     /**
@@ -124,7 +124,7 @@ class EgresadosAdminController extends Controller
         // $alumno = Alumno::find($registro->id_alumno);
         // $carrera = Carrera::find($registro->id_carrera);
        
-        return view('Admin.Egresados.edit', [
+        return view('Admin.inscriptos.edit', [
             'registro' => $registro,
         ]);
     }
@@ -146,6 +146,6 @@ class EgresadosAdminController extends Controller
     {
         dd('No hagas cagada');
         $alumno->delete();
-        return redirect() -> route('admin.egresados.index') -> with('mensaje', 'Se ha eliminado el alumno');
+        return redirect() -> route('admin.inscriptos.index') -> with('mensaje', 'Se ha eliminado el alumno');
     }
 }

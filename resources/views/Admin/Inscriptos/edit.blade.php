@@ -5,7 +5,7 @@
 
         <div class="perfil_one table">
            
-       <form method="post" action="{{route('admin.egresados.update', ['egresado' => $registro->id])}}">
+       <form method="post" action="{{route('admin.inscriptos.update', ['inscripto' => $registro->id])}}">
         @csrf
         @method('put')
 

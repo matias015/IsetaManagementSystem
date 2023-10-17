@@ -5,11 +5,11 @@
 
 <div class="bg-transparent contenedor_top flex items-end gap-2">
 
-    <a href="{{route('admin.egresados.create')}}"><button class="nuevo_alumno">Agregar inscripcion</button></a>
+    <a href="{{route('admin.inscriptos.create')}}"><button class="nuevo_alumno">Agregar inscripcion</button></a>
     
     <div class="contenedor-tabla_botonera">
 
-        <form class="none grid lg-block form-hh" action="{{route('admin.egresados.index')}}">
+        <form class="none grid lg-block form-hh" action="{{route('admin.inscriptos.index')}}">
 
             <div class="tabla_botonera gap-5 flex items-end">
                 
@@ -45,7 +45,7 @@
             </div>
         </form>
     
-        <a class="none lg-block" href="{{route('admin.egresados.index')}}"><button class="quitar_filtro">Quitar filtros</button></a>
+        <a class="none lg-block" href="{{route('admin.inscriptos.index')}}"><button class="quitar_filtro">Quitar filtros</button></a>
     </div>
     
 </div>
@@ -85,9 +85,9 @@
                     {{$alumno->anio_finalizacion? $alumno->anio_finalizacion:'Presente'}}
                 </td>
                 
-                <td><a href="{{route('admin.egresados.edit', ['egresado' => $alumno->id])}}"><button class="btn_edit">Ver</button></a>
+                <td><a href="{{route('admin.inscriptos.edit', ['inscripto' => $alumno->id])}}"><button class="btn_edit">Ver</button></a>
                 
-                    <form method="POST" action="{{route('admin.egresados.destroy', ['egresado' => $alumno->id])}}">
+                    <form method="POST" action="{{route('admin.inscriptos.destroy', ['inscripto' => $alumno->id])}}">
                         @csrf
                         @method('delete')
                         <input class="btn_borrar" type="submit" value="Eliminar">

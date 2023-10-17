@@ -53,7 +53,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('logout', [AdminAuthController::class, 'logout']) -> name('admin.logout');
 
     Route::resource('alumnos', AlumnoCrudController::class, ['as' => 'admin'])->middleware('auth:admin');
-    Route::resource('egresados', EgresadosAdminController::class, ['as' => 'admin']);
+    Route::resource('inscriptos', EgresadosAdminController::class, ['as' => 'admin']);
 
     Route::resource('profesores', ProfesoresCrudController::class, [
         'as' => 'admin', 

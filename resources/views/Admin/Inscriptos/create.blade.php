@@ -5,7 +5,7 @@
 
         <div class="perfil_one table">
 
-       <form method="post" action="{{route('admin.egresados.store')}}">
+       <form method="post" action="{{route('admin.inscriptos.store')}}">
         @csrf
 
        
