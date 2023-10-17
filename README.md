@@ -51,8 +51,8 @@ tenga que enviar mail:
 MAIL_MAILER=smtp
 MAIL_HOST=sandbox.smtp.mailtrap.io
 MAIL_PORT=2525
-MAIL_USERNAME=af5abb26f9dc63   // aca va lo que te diga la app de mailtrap
-MAIL_PASSWORD=fa016bcca8a71c   // aca va lo que te diga la app de mailtrap
+MAIL_USERNAME=username?   // aca va lo que te diga la app de mailtrap
+MAIL_PASSWORD=contraseña?   // aca va lo que te diga la app de mailtrap
 MAIL_FROM_ADDRESS="hello@example.com"
 MAIL_FROM_NAME="${APP_NAME}"<br>  
 ```
