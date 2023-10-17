@@ -10,7 +10,11 @@ si lees algo de añadir php al path pone que si!!!!!!!!!
 
 0. abrir xampp y arrancar mysql y apache.
 <br><br>
-En apache, ir a config, httpd.conf y buscar la seccion <documentRoot> y a las rutas agregar al final /[CarpetaDelProyecto]/public. si no se hace esto, para poder acceder al sitio se debe usar el path /[CarpetaDelProyecto]/public para acceder a la aplicación 
+En apache, ir a config, httpd.conf y buscar la seccion <documentRoot> y a las rutas agregar al final /[CarpetaDelProyecto]/public. si no se hace esto, para poder acceder al sitio se debe usar el path /[CarpetaDelProyecto]/public para acceder a la aplicación
+<br>
+Deberia quedar asi: <br><br>
+DocumentRoot "C:/xampp/htdocs/[nombreCarpeta]/public"<br>
+<Directory "C:/xampp/htdocs/[nombreCarpeta]/public"><br><br>
 2. descargar de github la carpeta del proyecto
 3. importar la base dump2.sql a phpmyadmin
 4. abrir en visual la carpeta de la app de la raiz (donde esta el archivo sql, carpetas app,public,resources etc)
