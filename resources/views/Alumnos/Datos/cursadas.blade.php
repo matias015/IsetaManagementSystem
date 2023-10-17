@@ -57,7 +57,6 @@
           <table>
             <thead>
               <tr>
-                <th class="text-center">Año</th>
                 <th>Materia</th>
                 <th>Cursada</th>
                 <th class="text-center">Condicion</th>
@@ -71,6 +70,7 @@
               @php
                 $actual = "";
                 $primero = true;
+                $anio_actual = "";
               @endphp
 
               @foreach($cursadas as $key=>$cursada)
@@ -81,6 +81,17 @@
                   @continue
                 @endif
 
+                @if ($anio_actual != $cursada->anio)
+                  <tr>
+                      <td class="center font-600" colspan=6>
+                        Año: {{$cursada->anio+1}}
+                      </td>
+                  </tr>
+                  @php
+                    $anio_actual = $cursada->anio
+                  @endphp
+                @endif
+
                 @php  
                   if ($actual == $cursada->id_asignatura) {
                     echo '<tr id="td-'.$cursada->id_asignatura.'" class="none">';
@@ -89,7 +100,6 @@
                   }
                 @endphp
               {{-- <tr> --}}
-                <td class="text-center">{{$cursada->anio+1}}</td>
 
                 @if ($actual != $cursada->id_asignatura && !$loop->last && $cursadas[$key+1]->id_asignatura == $cursada->id_asignatura)
                   <td>

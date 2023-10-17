@@ -10,6 +10,7 @@ use App\Models\Carrera;
 use App\Models\Configuracion;
 use App\Models\Cursada;
 use App\Models\Egresado;
+use App\Models\Examen;
 use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
 
@@ -119,11 +120,22 @@ class AlumnoCrudController extends Controller
             -> orderBy('asignaturas.id')
             -> orderBy('cursadas.anio_cursada')
             -> get();
+
+            $examenes = Examen::select('examenes.fecha','asignaturas.nombre as asignatura', 'examenes.nota' ,'examenes.id' ,'carreras.nombre as carrera','asignaturas.anio as anio_asig')
+            ->join('asignaturas', 'examenes.id_asignatura','asignaturas.id')
+            -> join('carreras','carreras.id','asignaturas.id_carrera')
+            -> where('examenes.id_alumno',$alumno->id)
+            -> orderBy('carreras.id')
+            -> orderBy('asignaturas.anio')
+            -> orderBy('asignaturas.id')
+            -> orderBy('examenes.fecha')
+            -> get();
         // \dd($cursadas);
 
         return view('Admin.Alumnos.edit', [
             'alumno' => $alumno,
             'cursadas' => $cursadas,
+            'examenes' => $examenes,
             'carreras' => Carrera::vigentes()
         ]);
     }
@@ -134,7 +146,7 @@ class AlumnoCrudController extends Controller
     public function update(EditarAlumnoRequest $request, Alumno $alumno)
     {
         $alumno->update($request->validated());
-        return redirect()->route('admin.alumnos.index');
+        return redirect()->back();
     }
 
     /**

@@ -96,26 +96,29 @@ class MesasCrudController extends Controller
      */
     public function store(CrearMesaRequest $request)
     {
-        
+        // configuracion
         $config=Configuracion::todas();
-        // dd($config);
+
+        // obtener datos validados
         $data = $request->validated();
 
-// \dd($request->all());
+        // Obtener el dia seleccionado (lunes, martes, miercoles, etc)
         $timestamp = strtotime($data['fecha']);
         $dia = date("l", $timestamp);
 
-
+        // verificar que no sea sabado ni domingo
         if($dia == 'Saturday' || $dia == 'Sunday'){
             return \redirect()->back()->with('error','No puedes crear una mesa un fin de semana');
         }
 
+        // verificar que sea dia habil
         $diasNoHabiles = DiasHabiles::obtenerFestivos();
 
         if(in_array(explode('T', $data['fecha'])[0],$diasNoHabiles)){
             return \redirect()->back()->with('error','No puedes crear una mesa un dia no habil');
         }
 
+        // si se selecciona vacio su valor es 0
         if($data['prof_presidente']=="vacio"){
             $data['prof_presidente'] = 0;
         }
@@ -126,11 +129,11 @@ class MesasCrudController extends Controller
             $data['prof_vocal_2'] = 0;
         }
 
+        // se añade el id de la carrera al registro de mesa, ya que no viene en el formulario
+        // no deberia ser necesario pero la base de datos anterior hacia uso de esta duplicidad
         $data['id_carrera'] = Asignatura::find($data['id_asignatura'])->carrera->id;
         
         // No se pueden crear 2 "llamado 1" ni 2 "llamado 2"
-        $config['diferencia_llamados'];
-        
         $copia = Mesa::where('mesas.llamado', $data['llamado'])
                 -> where('mesas.id_asignatura', $data['id_asignatura'])
                 ->latest('mesas.fecha')
@@ -139,14 +142,14 @@ class MesasCrudController extends Controller
 
         if($copia){
             $diferencia = DiasHabiles::desdeHoyHasta($copia->fecha, $data['fecha']);
-            $diferencia = abs($diferencia/24);
-            // \dd([$diferencia,$config['diferencia_llamados']]);
-            // dd($diferencia);
+            $diferencia = abs($diferencia/24); // valor absoluto
+
             if($diferencia>0 && $diferencia<$config['diferencia_llamados']){
                 return redirect()->back()->with('error','Ya hay un llamado ' . $data['llamado'] . ' para esta asignatura');
             }
         }
 
+        // se formatea la fecha para que sea valida para buscar profes en otras mesas
         $fechaBusqueda = $data['fecha'];
         $fechaFormateada = date('Y-m-d', strtotime($fechaBusqueda));
         
@@ -159,7 +162,7 @@ class MesasCrudController extends Controller
             return redirect()->back()->with('error','Hay profesores repetidos');
         }
 
-        // buscar mesas de profes
+        // buscar que los profes no tengan otras mesas ese dia
         $pres = Mesa::where(function ($query) use($data) {
             $query->orWhere('prof_presidente', $data['prof_presidente'])
                 ->orWhere('prof_vocal_1', $data['prof_presidente'])
@@ -172,17 +175,17 @@ class MesasCrudController extends Controller
         }
 
 
-            $vocal1 = Mesa::where(function ($query) use($data) {
-                $query->orWhere('prof_presidente', $data['prof_vocal_1'])
-                ->orWhere('prof_vocal_1', $data['prof_vocal_1'])
-                ->orWhere('prof_vocal_2', $data['prof_vocal_1']);
-            })
-            -> whereDate('fecha',$fechaFormateada)
-            ->first();
+        $vocal1 = Mesa::where(function ($query) use($data) {
+            $query->orWhere('prof_presidente', $data['prof_vocal_1'])
+            ->orWhere('prof_vocal_1', $data['prof_vocal_1'])
+            ->orWhere('prof_vocal_2', $data['prof_vocal_1']);
+        })
+        -> whereDate('fecha',$fechaFormateada)
+        ->first();
             
-            if($vocal1 && $data['prof_vocal_1'] != '0'){
-                return redirect()->back()->with('error','El profesor vocal 1 ya tiene un llamado ese dia');
-            }
+        if($vocal1 && $data['prof_vocal_1'] != '0'){
+            return redirect()->back()->with('error','El profesor vocal 1 ya tiene un llamado ese dia');
+        }
             
         $vocal2 = Mesa::where(function ($query) use($data) {
             $query->orWhere('prof_presidente', $data['prof_vocal_2'])

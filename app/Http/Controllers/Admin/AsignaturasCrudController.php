@@ -111,7 +111,14 @@ class AsignaturasCrudController extends Controller
      */
     public function update(Request $request, Asignatura $asignatura)
     {
-        $asignatura->update($request->all());
+        $data = $request->all();
+
+        if($request->has('promocionable') && $request->input('promocionable') == "on"){
+            $data['promocionable'] = true;
+        }else{
+            $data['promocionable'] = false;
+        }
+        $asignatura->update($data);
         return redirect()->back()->with('mensaje','Se edito la asignatura');
     }
 

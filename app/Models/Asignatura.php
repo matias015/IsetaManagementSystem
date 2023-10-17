@@ -17,7 +17,8 @@ class Asignatura extends Model
     'tipo_modulo',
     'carga_horaria',
     'anio',
-    'observaciones'];
+    'observaciones',
+    'promocionable'];
 
     public function cursadas(){
         return $this -> hasMany(Cursada::class,'id_asignatura');

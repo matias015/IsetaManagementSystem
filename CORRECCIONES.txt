@@ -210,4 +210,11 @@ CORRECCIONES 2/9
 
 13/10
 - Al imprimir un acta volante, ahora se puede seleccionar entre promocionados o regulares (Se debe seguir testeando).
-- 
+
+16/10
+- Ahora se pueden seleccionar asignaturas como promocionables
+- Se podra seleccionar a un alumno como promocionado solo si la asignatura es promocionable durante 
+    el periodo de cursada. Una vez finalice la cursada no se podra cambiar el estado de promocionado.
+- Ahora hay una separacion visual de carreras y años en los examenes y cursadas de alumnos en admin.
+- Ahora hay una separacion visual de años en los examenes y cursadas de alumnos en su apartado.
+- Ya no da error al poner años invalidos al crear mesas.

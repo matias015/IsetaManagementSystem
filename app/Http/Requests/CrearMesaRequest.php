@@ -27,7 +27,7 @@ class CrearMesaRequest extends FormRequest
             'prof_vocal_1'=>['required'],
             'prof_vocal_2'=>['required'],
             'llamado'=>['required'],
-            'fecha'=>['required']
+            'fecha'=>['required','date']
         ];
     }
 }

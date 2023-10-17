@@ -45,7 +45,6 @@
     <table>
       <thead>
         <tr>
-          <th>Año</th>
           <th>Materia</th>
           <th>Nota mas alta</th>
           <th>Fecha - Hora</th>
@@ -55,6 +54,7 @@
         @php
             $actual = "";
             $primero = true;
+            $anio_actual = "";
         @endphp
         @foreach($examenes as $key => $examen)
           
@@ -67,8 +67,18 @@
             }
           @endphp
         
+        @if ($anio_actual != $examen->anio)
+                  <tr>
+                      <td class="center font-600" colspan=3>
+                        Año: {{$examen->anio+1}}
+                      </td>
+                  </tr>
+                  @php
+                    $anio_actual = $examen->anio
+                  @endphp
+                @endif
+
         
-          <td>{{$examen->asignatura->anio+1}}</td>
           
           
           @if ($actual != $examen->id_asignatura && !$loop->last && $examenes[$key+1]->id_asignatura == $examen->id_asignatura)

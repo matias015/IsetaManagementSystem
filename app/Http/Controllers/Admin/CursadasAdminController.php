@@ -77,10 +77,23 @@ class CursadasAdminController extends Controller
         $data = $request->except('_token','_method');
         $cursada -> update($data);
 
+        $estadoActualPromocion = $cursada->promocionada;
+
         if($request->has('promocionada') && $request->input('promocionada') == "on"){
+            if(!$estadoActualPromocion && $cursada->aprobada != 3){
+                return redirect()->back()->with('error','No se puede cambiar el estado de promocion una ves terminada la cursada');
+            }
+
+            if(!$cursada->asignatura->promocionable){
+                return \redirect()->back()->with('error','Esta asignatura no es promocionable');
+            }
+
             $cursada->promocionada = true;
             $cursada->save();
         }else{
+            if($estadoActualPromocion && $cursada->aprobada != 3){
+                return redirect()->back()->with('error','No se puede cambiar el estado de promocion una ves terminada la cursada');
+            }
             $cursada->promocionada = false;
             $cursada->save();
         }

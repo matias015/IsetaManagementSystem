@@ -21,6 +21,7 @@
         <span class="perfil_dataname">Carga horaria: <input class="campo_info" value="{{$asignatura->carga_horaria}}" name="carga_horaria"></span>
         <span class="perfil_dataname">Año:<input class="campo_info" value="{{$asignatura->anio}}" name="anio"></span>
         <span class="perfil_dataname">Observaciones: <input class="campo_info" value="{{$asignatura->observaciones}}" name="observaciones"></span>
+        <span class="perfil_dataname">Promocionable: <input @checked($asignatura->promocionable) type="checkbox" name="promocionable"></span>
         <span class="perfil_dataname">Correlativas:
             <ul class="campo_info">
                 @foreach ($asignatura->correlativas as $correlativa)

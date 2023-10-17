@@ -72,16 +72,34 @@
 
             @php
                 $carrera_actual = "";
+                $anio_actual = "";
             @endphp
 
             @foreach($cursadas as $cursada)
 
-                @php  
-                    if ($carrera_actual != $cursada->carrera) {
-                        echo '<tr id="td-'.$cursada->id.'" class=""><td class="center" colspan=5>'.$cursada->carrera.'</td></tr>';
+                {{-- @dd($cursada) --}}
+                @if ($carrera_actual != $cursada->carrera)
+                    <tr>
+                        <td class="center font-600" colspan=6>{{$cursada->carrera}}</td>
+                    </tr>
+                    @php  
                         $carrera_actual = $cursada->carrera;
-                    }
-                @endphp
+                        $anio_actual = "";
+                    @endphp
+                @endif
+  
+
+                @if ($anio_actual != $cursada->anio_asig)
+                    <tr>
+                        <td class="center font-600" colspan=6>
+                            Año: {{$cursada->anio_asig+1}}
+                        </td>
+                    </tr>
+                    @php
+                            $anio_actual = $cursada->anio_asig
+                    @endphp
+                @endif
+  
 
                 <tr>
                     <td>{{$textFormatService->ucfirst($cursada->asignatura)}}</td>
@@ -141,10 +159,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($alumno->examenes as $examen)
+                    @php  
+                        $carrera_actual = "";
+                        $anio_actual = "";
+                    @endphp
+
+                    @foreach($examenes as $examen)
+
+                        @if ($carrera_actual != $examen->carrera)
+                            <tr>
+                                <td class="center font-600" colspan=6>{{$examen->carrera}}</td>
+                            </tr>
+                            @php  
+                                $carrera_actual = $examen->carrera;
+                                $anio_actual = "";
+                            @endphp
+                        @endif
+    
+
+                        @if ($anio_actual != $examen->anio_asig)
+                            <tr>
+                                <td class="center font-600" colspan=6>
+                                    Año: {{$examen->anio_asig+1}}
+                                </td>
+                            </tr>
+                            @php
+                                    $anio_actual = $examen->anio_asig
+                            @endphp
+                        @endif
+
                         <tr>
-                            <td>{{$textFormatService->ucfirst($examen->asignatura->nombre)}}</td>
-                            <td>{{$textFormatService->ucfirst($examen->asignatura->carrera->nombre)}}</td>
+                            <td>{{$textFormatService->ucfirst($examen->asignatura)}}</td>
+                            <td>{{$textFormatService->ucfirst($examen->carrera)}}</td>
                             <td>
                         
                             @if ($examen->aprobado==3)
