@@ -82,7 +82,7 @@
 
                 @if ($anio_actual != $cursada->anio)
                   <tr>
-                      <td class="center font-600" colspan=6>
+                      <td class="center font-600 tit-year" colspan=6>
                         Año: {{$cursada->anio+1}}
                       </td>
                   </tr>
