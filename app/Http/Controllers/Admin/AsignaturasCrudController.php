@@ -91,7 +91,7 @@ class AsignaturasCrudController extends Controller
     {
         
 
-        $alumnos = Alumno::select('cursadas.id as cursada_id','alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni')
+        $alumnos = Alumno::select('cursadas.condicion','cursadas.id as cursada_id','alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni')
             -> join('cursadas','cursadas.id_alumno','alumnos.id')
             -> join('asignaturas','cursadas.id_asignatura','asignaturas.id')
             -> where('asignaturas.id', $asignatura)

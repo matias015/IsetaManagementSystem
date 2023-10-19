@@ -1,6 +1,6 @@
 cursada
  - aprobada : si->1, no->2, vacio->3
- - condicion: libre->1, presencial->2, 3->prom, equiv, desertor
+ - condicion: libre->0, presencial->1, 2->prom, 3->equiv, 4->desertor
 
 
 Examenes

@@ -111,7 +111,7 @@ class AlumnoCrudController extends Controller
     {
         // $alumno = Alumno::where('id', $alumno)->with('cursadas.asignatura.carrera','examenes.mesa.materia.carrera')->first();
         $alumno = Alumno::find($alumno);
-        $cursadas = Cursada::select('asignaturas.nombre as asignatura', 'cursadas.aprobada' ,'cursadas.anio_cursada' ,'cursadas.id' ,'carreras.nombre as carrera','asignaturas.anio as anio_asig')
+        $cursadas = Cursada::select('asignaturas.nombre as asignatura', 'cursadas.aprobada' ,'cursadas.condicion' ,'cursadas.anio_cursada' ,'cursadas.id' ,'carreras.nombre as carrera','asignaturas.anio as anio_asig')
             ->join('asignaturas', 'cursadas.id_asignatura','asignaturas.id')
             -> join('carreras','carreras.id','asignaturas.id_carrera')
             -> where('cursadas.id_alumno',$alumno->id)

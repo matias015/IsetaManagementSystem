@@ -73,7 +73,8 @@
                 <th>imprimir</th>
                 <th>nombre</th>
                 <th>dni</th>
-                <th>acciones</th>
+                <th>Condicion</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -86,7 +87,25 @@
                     <td> {{$textFormatService->ucwords($alumno->apellido.' '.$alumno->nombre)}}</td>
 
                     <td> {{$alumno->dni}}</td>
-
+<td>       @switch($alumno->condicion)
+    @case(0)
+      Libre
+      @break
+    @case(1)
+      Regular  
+      @break
+    @case(2)
+      Promocion  
+      @break
+    @case(3)
+      Equivalencia  
+      @break
+    @case(4)
+      Desertor
+      @break
+    @default
+        Otro
+    @endswitch</td>
                     <td style="display:flex;">
                     {{-- <form action="">
                         <button class="btn_edit">Editar</button>

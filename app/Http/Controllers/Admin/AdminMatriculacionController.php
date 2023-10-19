@@ -36,7 +36,7 @@ class AdminMatriculacionController extends Controller
 
             // Chequear que no este ya en la cursada
             $yaAnotadoEnCursada = Cursada::where('id_alumno', $alumno->id)
-                -> whereRaw('(aprobada=3 OR aprobada=1)')
+                -> whereRaw('(aprobada=3 OR aprobada=1 OR condicion=2 OR condicion=3)')
                 -> where('id_asignatura', $asignatura->id)
                 -> first();
 
@@ -52,7 +52,8 @@ class AdminMatriculacionController extends Controller
                     $aprobado = Asignatura::where('asignaturas.id',$correlativa->asignatura_correlativa)
                         -> join('cursadas', 'cursadas.id_asignatura','asignaturas.id')
                         -> join('examenes', 'examenes.id_asignatura','asignaturas.id')
-                        -> where('cursadas.id_alumno', $alumno->id) -> where('cursadas.aprobada', 1)
+                        -> where('cursadas.id_alumno', $alumno->id) 
+                        -> whereRaw('cursadas.aprobada = 1 OR cursadas.condicion = 2 OR condicion=3')
                         -> first();
 
                     if(!$aprobado){
@@ -121,7 +122,7 @@ class AdminMatriculacionController extends Controller
 
             // Ver que no este ya anotado o que ya la haya aprobado
             $yaAnotadoEnCursada = Cursada::where('id_alumno', $alumno->id)
-                -> whereRaw('(aprobada=3 OR aprobada=1)')
+                -> whereRaw('(aprobada=3 OR aprobada=1 OR condicion=2 OR condicion=3)')
                 -> where('id_asignatura', $asig_id)
                 -> first();
 
@@ -138,7 +139,8 @@ class AdminMatriculacionController extends Controller
                 $aprobado = Asignatura::where('asignaturas.id',$correlativa->asignatura_correlativa)
                     -> join('cursadas', 'cursadas.id_asignatura','asignaturas.id')
                     -> join('examenes', 'examenes.id_asignatura','asignaturas.id')
-                    -> where('cursadas.id_alumno', $alumno->id) -> where('cursadas.aprobada', 1)
+                    -> where('cursadas.id_alumno', $alumno->id) 
+                    -> whereRaw('(aprobada=3 OR aprobada=1 OR condicion=2 OR condicion=3)')
                     -> first();
 
                 if(!$aprobado) return redirect()->back()->with('error', 'Debes 1 o mas correlativas');

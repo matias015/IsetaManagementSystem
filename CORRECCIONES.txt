@@ -220,3 +220,6 @@ CORRECCIONES 2/9
 - Ahora hay una separacion visual de carreras y años en los examenes y cursadas de alumnos en admin.
 - Ahora hay una separacion visual de años en los examenes y cursadas de alumnos en su apartado.
 - Ya no da error al poner años invalidos al crear mesas.
+
+
+19/

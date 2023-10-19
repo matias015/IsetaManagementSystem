@@ -64,6 +64,7 @@
                     <th>Materia</th>
                     {{-- <th>Año</th> --}}
                     {{-- <th>Carrera</th> --}}
+                    <th>Condicion</th>
                     <th>Aprobada</th>
                     <th colspan="2">Acciones</th>
                 </tr>
@@ -107,6 +108,27 @@
                     {{-- <td>
                         {{$textFormatService->ucfirst($cursada->carrera)}}
                     </td> --}}
+                    <td>
+                        @switch($cursada->condicion)
+                    @case(0)
+                      Libre
+                      @break
+                    @case(1)
+                      Regular  
+                      @break
+                    @case(2)
+                      Promocion  
+                      @break
+                    @case(3)
+                      Equivalencia  
+                      @break
+                    @case(4)
+                      Desertor
+                      @break
+                    @default
+                        Otro
+                    @endswitch
+                    </td>
                     <td>
                         @if ($cursada->aprobada==1)
                             Si

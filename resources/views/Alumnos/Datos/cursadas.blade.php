@@ -39,7 +39,6 @@
                 </div>
                 
                 </div>
-                <p class="leyend">Cursadas previas a la implementacion de este sitio podrian mostrarse con la condicion de "Libre" cuando esto no es asi.</p>
             </form>
           
           <!--<label class="switch">
@@ -133,17 +132,20 @@
                 </td>
                   <td class="text-center">
                   @switch($cursada->condicion)
-                    @case(1)
+                    @case(0)
                       Libre
                       @break
-                    @case(2)
+                    @case(1)
                       Regular  
                       @break
+                    @case(2)
+                      Promocion  
+                      @break
                     @case(3)
-                      Desertor  
+                      Equivalencia  
                       @break
                     @case(4)
-                      Atrasoacadamico  
+                      Desertor
                       @break
                     @default
                         Otro

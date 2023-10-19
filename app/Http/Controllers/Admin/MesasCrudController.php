@@ -233,12 +233,12 @@ class MesasCrudController extends Controller
         $inscribiblesCursada = Alumno::select('alumnos.id','alumnos.nombre', 'alumnos.apellido')
             -> join('cursadas','cursadas.id_alumno','alumnos.id')
             -> join('asignaturas','asignaturas.id','cursadas.id_asignatura')
-            -> where('cursadas.aprobada','1')
+            -> whereRaw('(cursadas.aprobada=1 OR cursadas.condicion=1)')
             -> where('cursadas.id_asignatura',$mesa->id_asignatura)
             -> orderBy('alumnos.apellido')
             -> orderBy('alumnos.nombre')
             -> get();
-
+        // \dd($inscribiblesCursada);
         $inscribibles = [];
 
         foreach ($inscribiblesCursada as $alumno) {
