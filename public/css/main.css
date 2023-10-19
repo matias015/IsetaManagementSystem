@@ -1,4 +1,4 @@
-/*----------------------------------------------- T A B L A   ------------------------------------------------------*/
+*----------------------------------------------- T A B L A   ------------------------------------------------------*/
 
 
 #fondo-estudiantes {
@@ -237,15 +237,20 @@ section.table {
     visibility: visible;
 }
 
+.tit-year {
+    background: var(--facebook);
+    color: white;
+}
+
 table {
     width: 100%;
 }
 
 thead th {
-   /* position: sticky; */
     top: 0;
     left: 0;
-    background: var(--gris-titulo);
+    background: var(--azul-osc-iseta);
+    color: white;
 }
 
 tbody tr:nth-child(even) {
@@ -273,6 +278,14 @@ th {
 
 .text-center {
     text-align: center;
+}
+
+.btn-mov {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    background-color: transparent;
 }
 
 /*------------------------------------------- E   S   T   A   D   0   ------------------------------------------------------------*/
