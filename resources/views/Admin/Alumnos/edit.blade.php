@@ -62,8 +62,8 @@
             <thead>
                 <tr>
                     <th>Materia</th>
-                    <th>Año</th>
-                    <th>Carrera</th>
+                    {{-- <th>Año</th> --}}
+                    {{-- <th>Carrera</th> --}}
                     <th>Aprobada</th>
                     <th colspan="2">Acciones</th>
                 </tr>
@@ -80,7 +80,7 @@
                 {{-- @dd($cursada) --}}
                 @if ($carrera_actual != $cursada->carrera)
                     <tr>
-                        <td class="center font-600" colspan=6>{{$cursada->carrera}}</td>
+                        <td class="center font-600" colspan=4>{{$cursada->carrera}}</td>
                     </tr>
                     @php  
                         $carrera_actual = $cursada->carrera;
@@ -91,7 +91,7 @@
 
                 @if ($anio_actual != $cursada->anio_asig)
                     <tr>
-                        <td class="center font-600" colspan=6>
+                        <td class="center font-600" colspan=4>
                             Año: {{$cursada->anio_asig+1}}
                         </td>
                     </tr>
@@ -103,10 +103,10 @@
 
                 <tr>
                     <td>{{$textFormatService->ucfirst($cursada->asignatura)}}</td>
-                    <td>{{$cursada->anio_cursada}}</td>
-                    <td>
+                    {{-- <td>{{$cursada->anio_cursada}}</td> --}}
+                    {{-- <td>
                         {{$textFormatService->ucfirst($cursada->carrera)}}
-                    </td>
+                    </td> --}}
                     <td>
                         @if ($cursada->aprobada==1)
                             Si
@@ -153,7 +153,7 @@
                 <thead>
                     <tr>
                         <th>Materia</th>
-                        <th>Carrera</th>
+                        {{-- <th>Carrera</th> --}}
                         <th>Nota</th>
                         <th>Acciones</th>
                     </tr>
@@ -168,7 +168,7 @@
 
                         @if ($carrera_actual != $examen->carrera)
                             <tr>
-                                <td class="center font-600" colspan=6>{{$examen->carrera}}</td>
+                                <td class="center font-600" colspan=4>{{$examen->carrera}}</td>
                             </tr>
                             @php  
                                 $carrera_actual = $examen->carrera;
@@ -179,7 +179,7 @@
 
                         @if ($anio_actual != $examen->anio_asig)
                             <tr>
-                                <td class="center font-600" colspan=6>
+                                <td class="center font-600" colspan=4>
                                     Año: {{$examen->anio_asig+1}}
                                 </td>
                             </tr>
@@ -190,7 +190,7 @@
 
                         <tr>
                             <td>{{$textFormatService->ucfirst($examen->asignatura)}}</td>
-                            <td>{{$textFormatService->ucfirst($examen->carrera)}}</td>
+                            {{-- <td>{{$textFormatService->ucfirst($examen->carrera)}}</td> --}}
                             <td>
                         
                             @if ($examen->aprobado==3)

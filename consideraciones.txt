@@ -1,10 +1,12 @@
 cursada
  - aprobada : si->1, no->2, vacio->3
- - condicion: libre->1, presencial->2, desertor->3, atrasoacadamico->4, otro->5
+ - condicion: libre->1, presencial->2, 3->prom, equiv, desertor
+
 
 Examenes
  - aprobado: aprobado->1, desaprobado->2, ausente->3
  - tipofinal: escrito->1, oral->2, promocionado->3
+
 
 profes
  estados_civiles: 1,soltero,2,casado,3divorciado,4viudo,5conyuge,6otros

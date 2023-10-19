@@ -17,7 +17,7 @@
             <label>Username</label>
           </div>
           <div class="user-box">
-            <input value="admin" name="password" name="" required="">
+            <input value="admin" type="password" name="password" name="" required="">
             <label>Password</label>
           </div>
           <input type="submit" value="Login">

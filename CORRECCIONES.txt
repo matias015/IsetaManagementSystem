@@ -3,7 +3,7 @@ Anotar cosas que faltan corregir
 
 
 CUESTIONES:
-- Si promociono, puede anotarse a rendir parcial igual?
+- 
 - El acta volante de alumnos que rinden libre, no puede seleccionar alumnos automaticamente, 
     ya que, muchas cursadas anteriores, figuran como libres, cuando no lo son
 - No estoy seguro si la pc sea tan rapida para manejar muchas solicitudes si es que entra mucha gente
@@ -20,8 +20,10 @@ RECORDAR
 
 
 FALTA CORREGIR:
-- terminar díseño de pdfs (acta volante)
-- comprobar que la info de los pdf esten bien y no falte nada [importancia: mucha]
+- Corregir valores/indices de la base de datos.
+- Conseguir que filtre a los que ya aprobaron.
+- terminar díseño de pdfs (acta volante).
+- comprobar que la info de los pdf esten bien y no falte nada [importancia: mucha].
 - algo de responsive capaz en rematriculacion [importancia: no tanta]
 - cartelito que propuso lucas para motrar equivalencias en la rematriculacion [importancia: no tanto es estetica nomas]
 - agregar pag para ver todos los exámenes (historial) o idear la forma pada verlos todos sin agregar otra pag [importancia: ahora no tanto, en la version final si]

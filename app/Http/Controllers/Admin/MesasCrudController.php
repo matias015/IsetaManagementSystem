@@ -230,7 +230,7 @@ class MesasCrudController extends Controller
             -> where('mesas.id', $mesa->id)
             -> get();
 
-        $inscribibles = Alumno::select('alumnos.id','alumnos.nombre', 'alumnos.apellido')
+        $inscribiblesCursada = Alumno::select('alumnos.id','alumnos.nombre', 'alumnos.apellido')
             -> join('cursadas','cursadas.id_alumno','alumnos.id')
             -> join('asignaturas','asignaturas.id','cursadas.id_asignatura')
             -> where('cursadas.aprobada','1')
@@ -238,6 +238,20 @@ class MesasCrudController extends Controller
             -> orderBy('alumnos.apellido')
             -> orderBy('alumnos.nombre')
             -> get();
+
+        $inscribibles = [];
+
+        foreach ($inscribiblesCursada as $alumno) {
+            
+            $examen = Examen::where('id_alumno', $alumno->id)
+                ->where('nota','>=',4)
+                ->where('id_asignatura',$mesa->id_asignatura)
+                ->first();
+            
+            if(!$examen){
+                $inscribibles[]=$alumno;
+            }
+        }
 
 
         // foreach ($inscribibles as $alumno) {
