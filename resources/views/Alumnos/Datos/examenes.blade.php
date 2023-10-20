@@ -69,7 +69,7 @@
         
         @if ($anio_actual != $examen->anio)
                   <tr>
-                      <td class="center font-600 tit-year" colspan=3>
+                      <td class="center font-600 tit-year" colspan="3">
                         Año: {{$examen->anio+1}}
                       </td>
                   </tr>
@@ -84,7 +84,7 @@
           @if ($actual != $examen->id_asignatura && !$loop->last && $examenes[$key+1]->id_asignatura == $examen->id_asignatura)
             <td class="flex items-center">
               {{$textFormatService->ucfirst($examen->nombre)}}
-              <button class="btn-mov pointer bg-transparent px-2 mx-5 desplegable" data-element="{{$examen->id_asignatura}}">↓</button> 
+              <button class="btn-mov pointer bg-transparent px-2 mx-5 desplegable" data-element="{{$examen->id_asignatura}}">⇅</button> 
             </td>
           @else
             <td>{{$textFormatService->ucfirst($examen->nombre)}}</td>    
