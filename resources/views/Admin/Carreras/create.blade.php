@@ -2,20 +2,37 @@
 
 @section('content')
     <div>
+        <div class="perfil_one br">
+            <div class="perfil__header">
+                <h2>Crear nueva carrera</h2>
+            </div>
+            <div class="perfil__info">
+                <form method="post" action="{{route('admin.carreras.store')}}">
+                @csrf
+                    <div class="perfil_dataname">
+                        <label>Carrera:</label>
+                        <input class="campo_info rounded" name="nombre">
+                    </div>
+                    <div class="perfil_dataname">
+                        <label>Resolucion:</label>
+                        <input class="campo_info rounded" name="resolucion">
+                    </div>
+                    <div class="perfil_dataname">
+                        <label>Año apertura:</label>
+                        <input class="campo_info rounded" name="anio_apertura">
+                    </div>
+                    <div class="perfil_dataname">
+                        <label>Año fin:</label>
+                        <input class="campo_info rounded" name="anio_fin">
+                    </div>
+                    <div class="perfil_dataname">
+                        <label>Observaciones:</label>
+                        <input class="campo_info rounded" name="observaciones">
+                    </div>
 
-
-        <div class="perfil_one table">
-       <form method="post" action="{{route('admin.carreras.store')}}">
-        @csrf
-
-        <span class="perfil_dataname">Carrera: <input class="campo_info" name="nombre"></span>
-        <span class="perfil_dataname">Resolucion: <input class="campo_info" name="resolucion"></span>
-        <span class="perfil_dataname">Año apertura: <input class="campo_info" name="anio_apertura"></span>
-        <span class="perfil_dataname">Año fin: <input class="campo_info" name="anio_fin"></span>
-        <span class="perfil_dataname">Observaciones: <input class="campo_info" name="observaciones"></span>
-
-        <div class="upd"><input class="btn_borrar upd" type="submit" value="Crear"></div>
-       </form>
+                    <div class="upd"><input class="btn_borrar upd" type="submit" value="Crear"></div>
+                </form>
+            </div>
         </div>
     </div>
 @endsection

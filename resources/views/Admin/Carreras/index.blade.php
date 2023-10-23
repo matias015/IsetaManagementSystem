@@ -55,9 +55,9 @@
         <thead>
             <tr>
                 <th>Carrera</td>
-                <th>Resolucion</td>
-                <th>Apertura</td>
-                <th>Fin</td>
+                <th class="center">Resolución</td>
+                <th class="center">Apertura</td>
+                <th class="center">Fin</td>
                 <th>Observaciones</td>
                 <th colspan="2">Acciones</td>
             </tr>
@@ -66,11 +66,11 @@
             @foreach ($carreras as $carrera)
             <tr>
                 <td>{{$textFormatService->ucfirst($carrera->nombre)}}</td>
-                <td>{{$carrera->resolucion}}</td>
-                <td>{{$carrera->anio_apertura}}</td>
-                <td>{{$carrera->anio_fin == 0? "Aun vigente":$carrera->anio_fin}}</td>
+                <td class="center">{{$carrera->resolucion}}</td>
+                <td class="center">{{$carrera->anio_apertura}}</td>
+                <td class="center">{{$carrera->anio_fin == 0? "Vigente":$carrera->anio_fin}}</td>
                 <td>{{$carrera->observaciones}}</td>
-                <td><a href="{{route('admin.carreras.edit', ['carrera' => $carrera->id])}}"><button class="btn_edit">editar</button></a></td>
+                <td><a href="{{route('admin.carreras.edit', ['carrera' => $carrera->id])}}"><button class="btn_edit">Editar</button></a></td>
                 <td>
                     <form method="POST" action="{{route('admin.carreras.destroy', ['carrera' => $carrera->id])}}">
                         @csrf
