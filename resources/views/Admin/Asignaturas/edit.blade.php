@@ -133,6 +133,8 @@
     </form>
 </div>
 
+<a href="/admin/cursantes/{{$asignatura->id}}">excel</a>
+
 {{-- <script src="{{asset('js/obtener-materias.js')}}"></script> --}}
 
 @endsection
