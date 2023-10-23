@@ -96,9 +96,9 @@
                 <div class="table__header">
                     <h2>Acta volante</h2>
                     <div class="flex just-center">
-                        <a href="{{route('admin.mesas.acta', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_edit wit3">Regular</button></a>
-                        <a href="{{route('admin.mesas.actaprom', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_edit wit3">Promocion</button></a>
-                        <a href="{{route('admin.mesas.actalibre', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_edit wit3">Libres</button></a>
+                        <a href="{{route('admin.mesas.acta', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_edit-alt">Regular</button></a>
+                        <a href="{{route('admin.mesas.actaprom', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_edit-alt">Promocion</button></a>
+                        <a href="{{route('admin.mesas.actalibre', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_edit-alt">Libres</button></a>
 
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                         <tr>
                             <th>Alumno</th>
                             <th>Nota</th>
-                            <th>Cosas</th>
+                            <th class="center">Cosas</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -116,7 +116,7 @@
                         <tr>
                             <td>{{$textFormatService->ucwords($alumno->apellido . ' ' . $alumno->nombre)}}</td>
                             <td>{{$alumno->nota!=0? $alumno->nota : 'Sin nota'}}</td>
-                            <td>
+                            <td class=" flex just-center">
                                 <a href="{{route('admin.examenes.edit', ['examen' => $alumno->id_examen])}}">
                                     <button class="btn_edit">Ver</button>
                                 </a>

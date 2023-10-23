@@ -191,10 +191,15 @@ body {
     color: white;
 }
 
+.tit-year2 {
+    background: var(--gris-titulo);
+    color: black;
+}
+
 thead th {
     top: 0;
     left: 0;
-    background: var(--azul-osc-iseta);
+    background: var(--disney-plus);
     color: white;
     text-align: left;
  }
@@ -261,6 +266,23 @@ table, th, td {
     background: var(--facebook);
 }
 
+.btn_edit-alt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--gris-titulo);
+    color: black;
+    padding: 0 10px;
+    height: 40px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.btn_edit-alt:hover {
+    background-color: var(--facebook);
+    color: white;
+}
+
 .btn_borrar {
     background: var(--azul-iseta);
     color: white;
@@ -269,6 +291,22 @@ table, th, td {
     border-radius: 6px;
     cursor: pointer;
     border: none;
+}
+
+.btn_borrar-alt {
+    background: var(--gris-titulo);
+    color: black;
+    width: 80px;
+    height: 40px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+}
+
+.btn_borrar-alt:hover {
+    background-color: var(--facebook);
+    color: white;
 }
 
 .wit {
@@ -309,11 +347,11 @@ table, th, td {
  .perfil_dataname {
     display: flex;
     align-items: center;
-    flex-wrap: nowrap;
     width: 100%;
     border-bottom: 1px solid;
     font-size: 16px;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .perfil_dataname1 {
@@ -343,7 +381,6 @@ table {
     display: flex;
     justify-content: left;
     align-items: center;
-    flex-wrap: nowrap;
 }
 
 .campo_info { 
@@ -376,6 +413,10 @@ table {
     height: 40px;
 }
 
+#border-none {
+    border: none;
+}
+
 .upd {
     display: flex;
     justify-content: end;
@@ -397,7 +438,8 @@ table {
 .table__header {
     width: 100%;
     height: 10%;
-    background: var(--gris-header-tabla);
+    background: var(--azul-iseta);
+    color: white;
     padding: .8rem 1rem;
     display: flex;
     justify-content: space-between;
@@ -424,7 +466,8 @@ ul .campo_info {
 .perfil__header {
     width: 100%;
     height: 10%;
-    background: #fff9;
+    background: var(--azul-iseta);
+    color: white;
     padding: .8rem 1rem;
     display: flex;
     justify-content: space-between;

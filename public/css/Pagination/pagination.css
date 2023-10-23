@@ -14,6 +14,12 @@
     align-items: center;
 }
 
+.pager {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .pagination ul li {
     display: inline-block;
     margin: 0 5px;
@@ -37,7 +43,7 @@
 }
 
 .no-active {
-    background: #ccc;
+    background: white;
     width: 35px;
     height: 35px;
     border-radius: 50%;

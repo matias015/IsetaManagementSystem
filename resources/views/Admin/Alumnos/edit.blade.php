@@ -140,7 +140,7 @@
                 {{-- @dd($cursada) --}}
                 @if ($carrera_actual != $cursada->carrera)
                     <tr>
-                        <td class="center font-600" colspan=5>{{$cursada->carrera}}</td>
+                        <td class="center font-600 tit-year2" colspan=5>{{$cursada->carrera}}</td>
                     </tr>
                     @php  
                         $carrera_actual = $cursada->carrera;
@@ -151,7 +151,7 @@
 
                 @if ($anio_actual != $cursada->anio_asig)
                     <tr>
-                        <td class="center font-600" colspan=5>
+                        <td class="center font-600 tit-year" colspan=5>
                             Año: {{$cursada->anio_asig+1}}
                         </td>
                     </tr>
@@ -248,7 +248,7 @@
 
                         @if ($carrera_actual != $examen->carrera)
                             <tr>
-                                <td class="center font-600" colspan=4>{{$examen->carrera}}</td>
+                                <td class="center font-600 tit-year2" colspan=4>{{$examen->carrera}}</td>
                             </tr>
                             @php  
                                 $carrera_actual = $examen->carrera;
@@ -259,7 +259,7 @@
 
                         @if ($anio_actual != $examen->anio_asig)
                             <tr>
-                                <td class="center font-600" colspan=4>
+                                <td class="center font-600 tit-year" colspan=4>
                                     Año: {{$examen->anio_asig+1}}
                                 </td>
                             </tr>

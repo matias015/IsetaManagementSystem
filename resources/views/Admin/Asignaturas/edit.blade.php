@@ -47,10 +47,12 @@
                     <ul class="campo_info rounded">
                         @foreach ($asignatura->correlativas as $correlativa)
                         <form method="post" action="{{route('correlativa.eliminar', ['asignatura'=>$asignatura->id,'asignatura_correlativa'=>$correlativa->asignatura->id])}}">
+                            <div class="flex">
                             @csrf
                             @method('delete')
-                            <li>- {{$textFormatService->ucfirst($correlativa->asignatura->nombre)}}</li>
-                            <button class="btn_edit">Eliminar</button>
+                                <div class="flex items-center"><li>- {{$textFormatService->ucfirst($correlativa->asignatura->nombre)}}</li></div>
+                                <div class="flex items-center m-1 mx-4"><button class="btn_edit">Eliminar</button></div>
+                            </div>
                         </form>
                         @endforeach
                     </ul>
@@ -89,7 +91,7 @@
     <div class="table">
         <div class="table__header">
             <p>Alumnos que cursan esta materia que aun no tienen un estado final (aprobado o desaprobado)</p>
-            <input class="btn_borrar" type="submit" value="Imprimir">
+            <input class="btn_borrar-alt" type="submit" value="Imprimir">
         </div>
         <table class="table__body">
         <thead>

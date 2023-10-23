@@ -14,7 +14,7 @@
                 <h3>Alumno/a</h3>
             </div>
             <div class="perfil_dataname border-none">
-                <label>Alumno:</label>
+                <label>Nombre:</label>
                 <span class="campo_info2">{{$examen->alumno->nombre}}</span>
             </div>
             <div class="perfil_tit_dataname rounded">
@@ -30,28 +30,52 @@
                     <span class="campo_info2">{{$examen->asignatura->carrera->nombre}}</span>
                 </div>
                 <div class="perfil_dataname border-none">
-                    <label>Año</label>
+                    <label>Año:</label>
                     <span class="campo_info2">{{$examen->asignatura->anio +1}}</span>
                 </div>
             </div>
             <div class="perfil_tit_dataname rounded">
                 <h3>Mesa</h3>
             </div>
-            <div class="campo_info4">
+            <div class=".h-auto">
+                <div id="border-none">
+                    
                 @if (isset($examen->mesa))
-                    <p>Presidente: @if($examen->mesa->profesor) 
-                        {{$examen->mesa->profesor->nombre . ' '.$examen->mesa->profesor->apellido}}
+                <div class="perfil_dataname">
+                    <label>Presidente:</label> 
+                    <span class="campo_info2">@if($examen->mesa->profesor) 
+                        {{$examen->mesa->profesor->nombre . ' '.$examen->mesa->profesor->apellido}}</span>
                 @else
-                    Sin profesor confirmado
+                    <label>Sin profesor confirmado</label>
+                    </div>
                 @endif  
-                    </p>
-                    <p>vocal1: {{$examen->mesa->vocal1? $examen->mesa->vocal1->nombre . ' ' . $examen->mesa->vocal1->apellido : 'No hay'}}</p>
-                    <p>vocal2: {{$examen->mesa->vocal2? $examen->mesa->vocal2->nombre . ' ' . $examen->mesa->vocal2->apellido : 'No hay'}}</p>
-                    <p>llamado: {{$examen->mesa->llamado? $examen->mesa->llamado : 'No hay datos sobre el llamado'}}</p>
-                    <p>llamado: {{$examen->mesa->fecha? $examen->mesa->fecha : 'No hay datos sobre la fecha'}}</p>
+                    
+                </div>
+                <div class="perfil_dataname">
+                    <label>Vocal 1:</label> 
+                    <span class="campo_info2">{{$examen->mesa->vocal1? $examen->mesa->vocal1->nombre . ' ' . $examen->mesa->vocal1->apellido : 'No hay'}}</span>
+                </div>
+                <div class="perfil_dataname">
+                    <label>Vocal 3:</label>
+                    <span class="campo_info2">{{$examen->mesa->vocal2? $examen->mesa->vocal2->nombre . ' ' . $examen->mesa->vocal2->apellido : 'No hay'}}</span>
+                </div>
+                    
+                <div class="perfil_dataname">
+                    <label>Llamado:</label>
+                    <span class="campo_info2">{{$examen->mesa->llamado? $examen->mesa->llamado : 'No hay datos sobre el llamado'}}</span>
+                </div>
+                    
+                <div class="perfil_dataname border-none">
+                    <label>Llamado:</label>
+                    <span class="campo_info2">{{$examen->mesa->fecha? $examen->mesa->fecha : 'No hay datos sobre la fecha'}}</span>
+                </div>
+                
                 @else
-                    <p>No hay informacion de la mesa, esto es debido a que cuando se registro la inscripcion, no se especifico una mesa por parte de iseta</p>    
-                @endif
+                <div class="campo_info3 font-400 border-none">
+                    <label>No hay informacion de la mesa, esto es debido a que cuando se registro la inscripcion, no se especifico una mesa por parte de iseta</label>    
+                </div>
+                    @endif
+                
             </div>
             <div class="perfil_tit_dataname rounded">
                 <h3>Examen</h3>
