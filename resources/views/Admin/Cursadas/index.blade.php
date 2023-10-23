@@ -61,7 +61,7 @@
             <thead>
                 <tr>
                     <th>Materia</td>
-                    <th>Alumno</td>
+                    <th>Alumno/a</td>
                     <th>Estado</td>
                     <th colspan="2">Acciones</th>
                 </tr>
