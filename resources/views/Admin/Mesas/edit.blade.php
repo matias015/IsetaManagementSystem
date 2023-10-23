@@ -98,6 +98,8 @@
                     <div class="flex just-center">
                         <a href="{{route('admin.mesas.acta', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_edit wit3">Regular</button></a>
                         <a href="{{route('admin.mesas.actaprom', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_edit wit3">Promocion</button></a>
+                        <a href="{{route('admin.mesas.actalibre', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_edit wit3">Libres</button></a>
+
                     </div>
                 </div>
         

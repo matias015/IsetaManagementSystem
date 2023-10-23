@@ -82,5 +82,7 @@
                 </table> 
             </div>
     </div>
+    
+    <a class="blue-700 underline" href="/admin/cursantes/carrera/{{$carrera->id}}">Exportar cursadas</a>
 
 @endsection

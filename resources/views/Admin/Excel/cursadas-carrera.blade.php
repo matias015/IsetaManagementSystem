@@ -1,13 +1,9 @@
-<br><table>
+<br>
+
+<table>
 
     <thead>
-      <tr>
-        <th></th>
-        <th colspan="5">
-        {{$asignatura->nombre}}
-      </th>
-      </tr>
-        
+      
         <tr>
             <th></th>
             <th>Alumno</th>
@@ -18,7 +14,15 @@
     </thead>
 
     <tbody>
-        @foreach ($alumnos as $alumno)
+      @foreach ($asignaturas as $asignatura)
+      <tr></tr>
+        <tr>
+          <td></td>
+          <td colspan="5">{{$asignatura->nombre}}</td>
+        </tr>
+        
+        @foreach ($asignatura->cursantes() as $alumno)
+            
             <tr>
                 <td></td>
                 <td>{{$textFormatService->ucwords($alumno->apellido.' '.$alumno->nombre)}}</td>
@@ -46,6 +50,7 @@
                 </td>
                 <td>{{$alumno->anio_cursada}}</td>
             </tr>
+            @endforeach
         @endforeach
     </tbody>
 

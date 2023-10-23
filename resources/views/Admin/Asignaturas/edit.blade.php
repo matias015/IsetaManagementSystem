@@ -153,9 +153,12 @@
         @method('delete')
         <button class="btn_edit">Eliminar</button>
     </form>
+    
+    <br>
+    <a class="blue-700 underline" href="/admin/cursantes/{{$asignatura->id}}">Exportar cursadas</a>
 </div>
 
-<a href="/admin/cursantes/{{$asignatura->id}}">excel</a>
+
 
 {{-- <script src="{{asset('js/obtener-materias.js')}}"></script> --}}
 

@@ -24,7 +24,7 @@ class AdminPdfController extends Controller
                 -> get();
 
             foreach ($cursadas as $cursada) {
-                if(!$cursada->promocionada){
+                if($cursada->condicion==1){
                     $alumnos[]=Alumno::find($examen->id_alumno);
                 }
             }
@@ -53,7 +53,33 @@ class AdminPdfController extends Controller
                 -> get();
 
             foreach ($cursadas as $cursada) {
-                if($cursada->promocionada){
+                if($cursada->condicion == 2){
+                    $alumnos[]=Alumno::find($examen->id_alumno);
+                }
+            }
+        }
+
+        $pdf = Pdf::loadView('pdf.acta-volante', ['alumnos' => $alumnos,'mesa' => $mesa,'promocion'=>true]);
+        return $pdf->stream('acta-volante.pdf');
+    }
+
+    function actaVolanteLibre(Request $request,Mesa $mesa){
+        $alumnos = [];
+
+        // Todos los registros de alumnos en esa mesa
+        $examenes = Examen::where('id_mesa', $mesa->id)->get();
+        
+        // para cada registro
+        foreach ($examenes as $examen) {
+
+            // Buscar cursadas de ese alumno y de la materia de la mesa
+            $cursadas = Cursada::where('id_alumno',$examen->id_alumno)
+                -> where('id_asignatura', $examen->id_asignatura)
+                -> get();
+
+            // si la cursada figura como libre, se muestra.
+            foreach ($cursadas as $cursada) {
+                if($cursada->condicion==0){
                     $alumnos[]=Alumno::find($examen->id_alumno);
                 }
             }

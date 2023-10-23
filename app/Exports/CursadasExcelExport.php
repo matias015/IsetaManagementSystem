@@ -20,7 +20,8 @@ class CursadasExcelExport implements FromView
     public function view(): View
     {
         return view('Admin.Excel.cursadas',[
-            'alumnos'=>$this->asignatura->cursantes()
+            'alumnos'=>$this->asignatura->cursantes(),
+            'asignatura'=>$this->asignatura
         ]);
     }
 }

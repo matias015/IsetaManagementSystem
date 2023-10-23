@@ -42,6 +42,7 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('/mesas/acta-volante/{mesa}', [AdminPdfController::class,'acta_volante'])->name('admin.mesas.acta');
     Route::get('/mesas/acta-volante-prom/{mesa}', [AdminPdfController::class,'actaVolantePromocion'])->name('admin.mesas.actaprom');
+    Route::get('/mesas/acta-volante-libre/{mesa}', [AdminPdfController::class,'actaVolanteLibre'])->name('admin.mesas.actalibre');
 
     Route::get('/mesas/actas',function(){
         $mesas = Mesa::whereDate('fecha', '>=', now()->subDay()->toDateString())->get();
@@ -97,6 +98,8 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('matricular/{alumno}',[AdminMatriculacionController::class,'rematriculacion_vista'])->name('admin.alumno.rematricular');
     Route::post('matricular/{alumno}/{carrera}',[AdminMatriculacionController::class,'rematriculacion'])->name('admin.alumno.matricular.post');
+    
+    Route::get('cursantes/carrera/{carrera}',[AdminExportController::class, 'cursadasCarrera'])->name('excel.cursadas.carrera');
 
     Route::get('cursantes/{asignatura}',[AdminExportController::class, 'cursadasAsignatura'])->name('excel.cursadas.asig');
 });

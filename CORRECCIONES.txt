@@ -222,4 +222,5 @@ CORRECCIONES 2/9
 - Ya no da error al poner años invalidos al crear mesas.
 
 
-19/
+23/10
+- Se puede exportar a excel las cursadas de cada asignatura

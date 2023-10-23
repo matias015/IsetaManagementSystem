@@ -26,8 +26,8 @@
                     <div class="perfil_dataname">
                         <label>Condicion:</label>
                         <select class="campo_info rounded" name="condicion">
-                            <option @selected($cursada->condicion==0) value="0">Regular</option>
-                            <option @selected($cursada->condicion==1) value="1">Libre</option>
+                            <option @selected($cursada->condicion==0) value="0">Libre</option>
+                            <option @selected($cursada->condicion==1) value="1">Regular</option>
                             <option @selected($cursada->condicion==2) value="2">Promocion</option>    
                             <option @selected($cursada->condicion==3) value="3">Equivalencia</option>
                             <option @selected($cursada->condicion==4) value="4">Desertor</option>
@@ -44,13 +44,14 @@
 
                     <div class="upd">
                         <input type="submit" value="Actualizar" class="btn_borrar">
+                    </form>
                         <form method="post" action="{{route('admin.cursadas.destroy', ['cursada'=>$cursada->id])}}">
                         @csrf
                         @method('delete')
                         <input type="submit" value="Borrar" class="btn_borrar">
                         </form>
                     </div>
-                    </form>
+                   
                 </div>
             </div>
         </div>
