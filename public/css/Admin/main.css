@@ -18,7 +18,7 @@
     --instagram: #E1306C;
     --facebook: #4267B2;
     --gris-fondo-tabla: #fff5;
-    --gris-header-tabla: #fff4;
+    --gris-header-tabla: #fff9;
     --gris-body-tabla: #fffb;
     --gris-titulo: #d5d1defe;
     --gris-hover: #fff6;
@@ -40,10 +40,10 @@ body {
     display: flex;
     margin: 0;
     padding: 0;
-    background-color: #fafafa;
     color: black;
-    background: linear-gradient(150deg, #5872d16d, white);
-    background-size: cover;
+    background: #5872d16d;
+    /*--background: linear-gradient(150deg, #5872d16d, white);
+    background-size: cover;--*/
     min-height: 100vh;
     width: 100%;
 }
@@ -175,11 +175,10 @@ body {
     border-radius: 5px;
 }
 
-
-
+/*------------------ TABLA ------------------------*/
 
 .table {
-    margin: 20px 0 20px 0;
+    margin: 20px 0;
     background: var(--gris-fondo-tabla);
     backdrop-filter: blur(7px);
     box-shadow: 0 .4rem .8rem #0005;
@@ -187,14 +186,16 @@ body {
     overflow: hidden;
 }
 
-.table.active {
-    background: var(--dark2);
+.tit-year {
+    background: var(--facebook);
+    color: white;
 }
 
 thead th {
     top: 0;
     left: 0;
-    background: var(--gris-titulo);
+    background: var(--azul-osc-iseta);
+    color: white;
     text-align: left;
  }
 
@@ -218,10 +219,6 @@ thead th {
 
 .table__body:hover::-webkit-scrollbar-thumb {
     visibility: visible;
-}
-
-table.active {
-    background-color: var(--azul-alt);
 }
 
 tbody tr:nth-child(even) {
@@ -292,28 +289,91 @@ table, th, td {
     display: flex;
 }
 
+.perfil_one {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    color: #000;
+    border-radius: .8rem;
+    background: var(--gris-body-tabla);
+    box-shadow: 0 .4rem .8rem #0005;
+    overflow: hidden;
+}
+
+.perfil__info {
+    width: 100%;
+    padding: 15px;
+}
+
  .perfil_dataname {
     display: flex;
     align-items: center;
+    flex-wrap: nowrap;
     width: 100%;
     border-bottom: 1px solid;
     font-size: 16px;
     font-weight: 600;
-    margin: 5px 0 5px 0;
-    
+}
+
+.perfil_dataname1 {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.perfil_tit_dataname {
+    width: 100%;
+    color: white;
+    font-size: 16px;
+    background-color: var(--facebook);
+    padding: 10px 0 10px 5px;
+    text-transform: uppercase;
 }
 
 table {
     width: 100%;
 }
 
+.perfil_dataname label {
+    width: auto;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
 .campo_info { 
     border: none;
     outline: none;
     width: 100%;
-    margin: 0 0 5px 10px;
-    padding: 10px 0;
+    margin: 5px 0 5px 10px;
+    padding: 10px 0 10px 5px;
     background-color: white;
+}
+
+.campo_info2 {
+    border: none;
+    outline: none;
+    width: 100%;
+    margin: 5px 0 5px 10px;
+    padding: 10px 0;
+    background-color: transparent;
+}
+
+.campo_info3 {
+    padding: 10px 0;
+    margin: 5px 0 5px 10px;
+    height: 40px;
+}
+
+.campo_info4 {
+    padding: 10px 0;
+    margin: 5px 0;
+    height: 40px;
 }
 
 .upd {
@@ -322,25 +382,16 @@ table {
     margin: 10px;
 }
 
+
 .upd input {
     justify-content: center;
+    margin: 0 10px;
 }
 
 .perfil_subtop {
     padding-bottom: .8rem;
     display: flex;
     align-items: center;
-}
-
-.perfil_one {
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    height: auto;
-    color: #000;
-    border-radius: .6rem;
-    background: var(--gris-body-tabla);
-    margin-bottom: 20px;
 }
 
 .table__header {
@@ -353,10 +404,55 @@ table {
     align-items: center;
 }
 
+.table__header div a {
+    margin: 0 10px;
+}
+
 .table__header p {
     text-align: center;
+    font-size: 14px;
 }
 
 ul .campo_info {
     display: flex;
+}
+
+.br {
+    margin: 20px 0;
+}
+
+.perfil__header {
+    width: 100%;
+    height: 10%;
+    background: #fff9;
+    padding: .8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.matricular {
+    width: 100%;
+    padding: 15px;
+}
+
+.matricular select {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+.remat div {
+    margin: 0 10px 0 0;
+}
+
+.remat div label {
+    margin: 0 10px 0 0;
+}
+
+.remat div span {
+    margin: 0 10px 0 0;
 }
