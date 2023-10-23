@@ -77,7 +77,8 @@ class CursadasAdminController extends Controller
         $data = $request->except('_token','_method');
         $cursada -> update($data);
 
-        if($request->input('condicion') == 2 || $request->input('condicion') == 1){
+
+        if($request->input('condicion') == 0 || $request->input('condicion') == 2){
             $cursada->aprobada = 1;
             $cursada->save();
         }
@@ -88,6 +89,7 @@ class CursadasAdminController extends Controller
     function create(){
         $alumnos = Alumno::orderBy('nombre','asc')->orderBy('apellido','asc')->get();
         $carreras = Carrera::orderBy('nombre')->get();
+        
         return view('Admin/Cursadas/create',[
             'alumnos' => $alumnos,
             'carreras' => $carreras

@@ -137,6 +137,7 @@
                             @php
                                 $actual = 1;
                             @endphp
+
                         @foreach($alumnos as $alumno)
                             <tr>
                                 <td class="pos1">{{$actual}}</td>
@@ -161,11 +162,11 @@
                         @for ($i = 0; $i < $restantes; $i++)
                             <tr>
                                 <td class="pos-1">{{$actual}}</td>
-                                <td class="pos-2"></td>
+                                <td class="pos-2" style="white-space:nowrap;color: black"></td>
                                 <td class="pos-3"></td>
                                 <td class="pos-4"></td>
                                 <td class="pos-5"></td>
-                                <td class="pos-6"></td>
+                                <td class="pos-6" style="white-space:nowrap;color: black;"></td>
                             </tr>
                             @php
                                 $actual++;

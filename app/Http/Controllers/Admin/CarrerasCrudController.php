@@ -99,6 +99,12 @@ class CarrerasCrudController extends Controller
         $datos = $request->validated();
 
         $carrera->update($datos);
+
+        if(!$request->has('vigente')){
+            $carrera->vigente=false;
+            $carrera->save();
+        }
+
         return redirect()->route('admin.carreras.index');
     }
 

@@ -245,7 +245,7 @@ class MesasCrudController extends Controller
             
             $examen = Examen::where('id_alumno', $alumno->id)
                 ->where('nota','>=',4)
-                ->where('id_asignatura',$mesa->id_asignatura)
+                ->where('id_asignatura', $mesa->id_asignatura)
                 ->first();
             
             if(!$examen){
@@ -253,12 +253,6 @@ class MesasCrudController extends Controller
             }
         }
 
-
-        // foreach ($inscribibles as $alumno) {
-        //     $examenAprobado = Examen::where('id_alumno',$alumno->id)->where('nota','>=',4)->first();
-        //     if(!$examenAprobado) $finales[] = $alumno;
-        // }
-           
 
         return view('Admin.Mesas.edit', [
             'mesa' => $mesa,
@@ -296,7 +290,9 @@ class MesasCrudController extends Controller
     public function destroy(Mesa $mesa)
     {
         Examen::where('id_mesa',$mesa->id)->where('nota',0)->delete();
+        
         $mesa->delete();
+
         return redirect() -> route('admin.mesas.index') -> with('mensaje', 'Se ha eliminado la mesa');
     }
 }

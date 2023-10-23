@@ -68,7 +68,7 @@
                 <td>{{$textFormatService->ucfirst($carrera->nombre)}}</td>
                 <td class="center">{{$carrera->resolucion}}</td>
                 <td class="center">{{$carrera->anio_apertura}}</td>
-                <td class="center">{{$carrera->anio_fin == 0? "Vigente":$carrera->anio_fin}}</td>
+                <td class="center">{{$carrera->vigente == 1? "Vigente":$carrera->anio_fin}}</td>
                 <td>{{$carrera->observaciones}}</td>
                 <td><a href="{{route('admin.carreras.edit', ['carrera' => $carrera->id])}}"><button class="btn_edit">Editar</button></a></td>
                 <td>
