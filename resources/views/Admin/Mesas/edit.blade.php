@@ -108,7 +108,7 @@
                         <tr>
                             <th>Alumno</th>
                             <th>Nota</th>
-                            <th>Cosas</th>
+                            <th class="center">Cosas</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -116,7 +116,7 @@
                         <tr>
                             <td>{{$textFormatService->ucwords($alumno->apellido . ' ' . $alumno->nombre)}}</td>
                             <td>{{$alumno->nota!=0? $alumno->nota : 'Sin nota'}}</td>
-                            <td>
+                            <td class=" flex just-center">
                                 <a href="{{route('admin.examenes.edit', ['examen' => $alumno->id_examen])}}">
                                     <button class="btn_edit">Ver</button>
                                 </a>
