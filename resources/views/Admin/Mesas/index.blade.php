@@ -71,17 +71,17 @@
                 @foreach ($mesas as $mesa)
                     <tr>
                     <td>{{$textFormatService->ucfirst($mesa->nombre)}}</td>
-                    <td>
+                    <td class="center">
                         @if ($mesa->llamado == 1 || $mesa->llamado == 0)
                             1
                         @else
                             2
                         @endif
                     </td>
-                    <td>{{$mesa->anio + 1}}</td>
+                    <td class="center">{{$mesa->anio + 1}}</td>
                     <td>{{$mesa->fecha}}</td>
                     <td>{{$textFormatService->ucfirst($mesa->carrera)}}</td>
-                    <td><a href="{{route('admin.mesas.edit', ['mesa' => $mesa->id])}}"><button class="btn_edit">editar</button></a></td>
+                    <td><a href="{{route('admin.mesas.edit', ['mesa' => $mesa->id])}}"><button class="btn_edit">Editar</button></a></td>
                     <td>
                         <form method="POST" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">
                             @csrf
