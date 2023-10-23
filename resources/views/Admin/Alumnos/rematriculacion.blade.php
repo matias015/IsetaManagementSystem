@@ -3,55 +3,62 @@
 <main id="fondo-estudiantes" class="black flex-col justify-center items-center gap-3 p-3 w-100">
     <p>Esta pagina sufrira cambios en el futuro ya que esta en etapa de prueba</p>
     
-    <form class=" w-75p p-5 my-10 flex-col items-end just-center rounded-3  box-sh" method="POST" 
-    action="{{route('admin.alumno.matricular.post', ['alumno'=>$alumno->id, 'carrera'=>$carrera->id])}}">
-        @csrf
-
-        @if (count($asignaturas)<=0)
-        <div class="w-100p flex-col">
-            
-            <span>No tienes asignaturas para rendir de esta carrera.</span>
-            
-            <span>Si crees que se trata de un error, comunicate con la institucion para solucionarlo.</span>
-
+    <div class="perfil_one br">
+        <div class="perfil__header">
+            <h2>Matricular</h2>
         </div>
-        <hr>
-        @else
-        @foreach ($asignaturas as $asignatura)
-            <div class="w-100p flex just-between">
-                
-                <span @class([
-                    'gray-600' => $asignatura->equivalencias_sin_aprobar
-                ])>
-                    <span class="font-600">Año: {{$asignatura->anio+1}}</span> 
-                    <span>Asignatura: {{$asignatura->nombre}}</span>
-                </span>
-                <span>
-                    @if ($asignatura->equivalencias_sin_aprobar)
-                    <div class="flex just-end gap-3">    
-                        <p class="font-600">Debes correlativas</p>
-                        <span class="blue-600 px-1 rounded pointer ver-equiv" data-element="{{$asignatura->id}}">Detalles...</span> 
-                    </div>
-                        <ul class="none id-{{$asignatura->id}}">
-                            @foreach ($asignatura->equivalencias_previas as $asignatura)
-                                <li>{{$asignatura}}</li>
-                            @endforeach
-                        </ul>
-                    @else
-                        <select name="{{$asignatura->id}}">
-                            <option value="0">Regular</option>
-                            <option value="1">Libre</option>
-                        </select>
-                    @endif
-                </span>
-            </div>
-            <hr>
-        @endforeach
-        <button class="m-2 rounded px-3 py-2 btn_edit">Enviar</button>
-        @endif
+        <div class="perfil__info">
+           
+            <form  method="POST" action="{{route('admin.alumno.matricular.post', ['alumno'=>$alumno->id, 'carrera'=>$carrera->id])}}">
+            @csrf
 
+            @if (count($asignaturas)<=0)
+                <div class="w-100p flex-col">
+                    <span>No tienes asignaturas para rendir de esta carrera.</span>
+                    <span>Si crees que se trata de un error, comunicate con la institucion para solucionarlo.</span>
+                </div>
         
-    </form>
+            @else
+            @foreach ($asignaturas as $asignatura)
+                <div class="w-100p flex just-between perfil_dataname">
+
+                    <div class="flex remat" @class([
+                    'gray-600' => $asignatura->equivalencias_sin_aprobar
+                    ])>
+                        <div class="flex">
+                            <label>Año:</label> 
+                            <span class="font-400">{{$asignatura->anio+1}}</span>
+                        </div>
+                        <div class="flex">
+                            <label>Asignatura:</label>
+                            <span class="font-400">{{$asignatura->nombre}}</span>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        @if ($asignatura->equivalencias_sin_aprobar)
+                        <div class="flex just-end gap-3">    
+                            <p class="font-600">Debes correlativas</p>
+                            <label class="blue-600 px-1 rounded pointer ver-equiv" data-element="{{$asignatura->id}}">Detalles...</label> 
+                        </div>
+                            <ul class="none id-{{$asignatura->id}}">
+                                @foreach ($asignatura->equivalencias_previas as $asignatura)
+                                    <li>{{$asignatura}}</li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <select class="campo_info rounded pointer" name="{{$asignatura->id}}">
+                                <option value="0">Regular</option>
+                                <option value="1">Libre</option>
+                            </select>
+                        @endif
+                    </div>
+                </div>
+            @endforeach
+            <div class="upd"><button class="m-2 rounded px-3 py-2 btn_edit">Enviar</button></div>
+            @endif
+            </form>
+        </div>
+    </div>
 
 </main>
 
