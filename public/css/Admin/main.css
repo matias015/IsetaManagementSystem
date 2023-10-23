@@ -436,11 +436,11 @@ ul .campo_info {
     padding: 15px;
 }
 
-.matricular select {
+.matricular select, .matricular input {
     width: 100%;
     border: none;
     outline: none;
-    padding: 10px 0;
+    padding: 10px 0 10px 5px;
     margin-bottom: 10px;
     background-color: white;
 }
