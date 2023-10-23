@@ -67,7 +67,7 @@
                     {{-- <th>Dni</th> --}}
                     <th>Carrera</th>
                     <th>Periodo</th>
-                    <th></th>
+                    <th colspan="2">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -85,8 +85,8 @@
                     {{$alumno->anio_finalizacion? $alumno->anio_finalizacion:'Presente'}}
                 </td>
                 
-                <td><a href="{{route('admin.inscriptos.edit', ['inscripto' => $alumno->id])}}"><button class="btn_edit">Ver</button></a>
-                
+                <td><a href="{{route('admin.inscriptos.edit', ['inscripto' => $alumno->id])}}"><button class="btn_edit">Ver</button></a></td>
+                <td>
                     <form method="POST" action="{{route('admin.inscriptos.destroy', ['inscripto' => $alumno->id])}}">
                         @csrf
                         @method('delete')
