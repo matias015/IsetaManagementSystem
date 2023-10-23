@@ -37,6 +37,7 @@
                         </ul>
                     @else
                         <select name="{{$asignatura->id}}">
+                            <option></option>
                             <option value="0">Libre</option>
                             <option value="1">Regular</option>
                         </select>

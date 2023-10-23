@@ -33,11 +33,13 @@ class Asignatura extends Model
     }   
 
     public function cursantes(){
+        $config=Configuracion::todas();
         return Alumno::select('cursadas.anio_cursada','cursadas.condicion','cursadas.id as cursada_id','alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni')
             -> join('cursadas','cursadas.id_alumno','alumnos.id')
             -> join('asignaturas','cursadas.id_asignatura','asignaturas.id')
             -> where('asignaturas.id', $this->id)
             -> where('cursadas.aprobada', 3)
+            -> where('anio_cursada', $config['anio_remat'])
             -> get();
     }
     
