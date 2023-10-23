@@ -62,8 +62,8 @@
                 <tr>
                     <th>Nombre</td>
                     <th>Apellido</td>
-                    <th>Dni</td>
-                    <th colspan="2">Acciones</td>
+                    <th>DNI</td>
+                    <th class="center">Acciones</td>
                 </tr>
             </thead>
             <tbody>
@@ -72,14 +72,15 @@
                     <td>{{$textFormatService->ucwords($profesor->nombre)}}</td>
                     <td>{{$textFormatService->ucwords($profesor->apellido)}}</td>
                     <td>{{$profesor->dni}}</td>
-                    <td><a href="{{route('admin.profesores.edit', ['profesor' => $profesor->id])}}"><button class="btn_edit">ver</button></a></td>
+                    <td class="center"><a class="flex just-center" href="{{route('admin.profesores.edit', ['profesor' => $profesor->id])}}"><button class="btn_edit">Ver</button></a></td>
+                    {{--
                     <td>
-                        {{-- <form method="POST" action="{{route('admin.profesores.destroy', ['profesor' => $profesor->id])}}">
+                         <form method="POST" action="{{route('admin.profesores.destroy', ['profesor' => $profesor->id])}}">
                             @csrf
                             @method('delete')
                             <input class="btn_borrar" type="submit" value="Eliminar">
-                        </form> --}}
-                    </td>
+                        </form> 
+                    </td> --}}
                 </tr>
                 @endforeach
             </tbody>
