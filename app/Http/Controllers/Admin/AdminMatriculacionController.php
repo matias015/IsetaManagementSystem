@@ -95,8 +95,9 @@ class AdminMatriculacionController extends Controller
 
         // Ver que no haya seleccionado mas de 2 libres
         $libres=0;
+        // dd($request->except('token'));
         foreach ($request->except('_token') as $value) {
-            if($value == 1){
+            if($value===0){
                 $libres++;
             }
         }
@@ -110,13 +111,13 @@ class AdminMatriculacionController extends Controller
         foreach($request->except('_token') as $asig_id => $value){
 
             // si no se selecciono ignora, si no es de la carrera
-            if($value==0) continue;
+            if(!$value) continue;
             
             // Si la asignatura no es de esta carrera, error
             if(!in_array($asig_id, $asignaturas_de_carrera)) return \redirect()->back()->with('error','Ha habido un error');
             
             // Si se selecciono otra cosa ademas de las posibles
-            if($value!=1 && $value!=2){
+            if($value!=0 && $value!=1){
                 return \redirect()->back()->with('error','Ha habido un error');
             }
 

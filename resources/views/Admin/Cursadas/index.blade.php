@@ -71,7 +71,8 @@
             @foreach ($cursadas as $cursada)
             <tr>
                 <td>{{$cursada->asignatura}}</td>
-                <td>{{$cursada->alumno->apellidoNombre()}}</td>
+                
+                <td>{{$cursada->alumno_nombre.' '.$cursada->alumno_apellido}}</td>
                 <td>
                     {{$cursada->aprodabo}}
                 </td>

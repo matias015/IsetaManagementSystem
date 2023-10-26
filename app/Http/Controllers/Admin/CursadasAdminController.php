@@ -35,6 +35,7 @@ class CursadasAdminController extends Controller
         if($campo == "asignatura"){
             $query = $query->where('asignaturas.nombre','LIKE','%'.$request->filtro.'%'); 
         }
+        
         else if($campo == "carrera"){
             $query = $query->where('carreras.nombre','LIKE','%'.$request->filtro.'%'); 
         }
