@@ -70,7 +70,7 @@
             <tbody>
                 @foreach ($mesas as $mesa)
                     <tr>
-                    <td>{{$textFormatService->ucfirst($mesa->nombre)}}</td>
+                    <td>{{$mesa->nombre}}</td>
                     <td class="center">
                         @if ($mesa->llamado == 1 || $mesa->llamado == 0)
                             1
@@ -80,7 +80,7 @@
                     </td>
                     <td class="center">{{$mesa->anio + 1}}</td>
                     <td>{{$mesa->fecha}}</td>
-                    <td>{{$textFormatService->ucfirst($mesa->carrera)}}</td>
+                    <td>{{$mesa->carrera}}</td>
                     <td><a href="{{route('admin.mesas.edit', ['mesa' => $mesa->id])}}"><button class="btn_edit">Editar</button></a></td>
                     <td>
                         <form method="POST" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">

@@ -19,7 +19,7 @@
                         <select class="campo_info rounded" name="id_carrera">
                             @foreach($carreras as $carrera)
                                 <option @selected($id_carrera==$carrera->id) value="{{$carrera->id}}">
-                                    {{$textFormatService->ucfirst($carrera->nombre)}}
+                                    {{$carrera->nombre}}
                                 </option>
                             @endforeach
                         </select>

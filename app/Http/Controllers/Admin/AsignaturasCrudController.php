@@ -99,10 +99,12 @@ class AsignaturasCrudController extends Controller
             -> where('cursadas.anio_cursada', $config['anio_remat'])
             -> get();
 
-            
+            $asignatura = Asignatura::find($asignatura);
+            $alumnos = $asignatura->cursantes();
+            // dd($alumnos);
 
         return view('Admin.Asignaturas.edit', [
-            'asignatura' => Asignatura::find($asignatura),
+            'asignatura' => $asignatura,
             'alumnos' => $alumnos
         ]);
     }

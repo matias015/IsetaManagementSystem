@@ -102,11 +102,11 @@
 
                 @if ($actual != $cursada->id_asignatura && !$loop->last && $cursadas[$key+1]->id_asignatura == $cursada->id_asignatura)
                   <td>
-                    {{$textFormatService->ucfirst($cursada->nombre)}}
+                    {{$cursada->nombre}}
                     <button class="pointer bg-transparent px-2 mx-5 rounded desplegable" data-element="{{$cursada->id_asignatura}}">↓</button> 
                   </td>
                 @else
-                  <td>{{$textFormatService->ucfirst($cursada->nombre)}}</td>    
+                  <td>{{$cursada->nombre}}</td>    
                 @endif
                 @php
                   $actual = $cursada->id_asignatura;

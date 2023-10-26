@@ -142,7 +142,7 @@
                             <tr>
                                 <td class="pos1">{{$actual}}</td>
                                 <td class="pos2" style="white-space:nowrap">
-                                    {{$textFormatService->ucwords($alumno->apellido . ', ' . $alumno->nombre)}}
+                                    {{$alumno->apellido . ', ' . $alumno->nombre}}
                                 </td>
                                 <td class="pos3"></td>
                                 <td class="pos4"></td>

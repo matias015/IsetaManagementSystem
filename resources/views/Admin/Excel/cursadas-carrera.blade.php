@@ -25,7 +25,7 @@
             
             <tr>
                 <td></td>
-                <td colspan="3">{{$textFormatService->ucwords($alumno->apellido.' '.$alumno->nombre)}}</td>
+                <td colspan="3">{{($alumno->apellido.' '.$alumno->nombre}}</td>
                 <td>{{$alumno->dni}}</td>
                 <td>
                     @switch($alumno->condicion)

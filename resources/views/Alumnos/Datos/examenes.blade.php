@@ -83,11 +83,11 @@
           
           @if ($actual != $examen->id_asignatura && !$loop->last && $examenes[$key+1]->id_asignatura == $examen->id_asignatura)
             <td class="flex items-center">
-              {{$textFormatService->ucfirst($examen->nombre)}}
+              {{$examen->nombre}}
               <button class="btn-mov pointer bg-transparent px-2 mx-5 desplegable" data-element="{{$examen->id_asignatura}}">⇅</button> 
             </td>
           @else
-            <td>{{$textFormatService->ucfirst($examen->nombre)}}</td>    
+            <td>{{$examen->nombre}}</td>    
           @endif
           @php
             $actual = $examen->id_asignatura;

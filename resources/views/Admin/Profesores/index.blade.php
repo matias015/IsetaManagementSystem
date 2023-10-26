@@ -69,8 +69,8 @@
             <tbody>
                 @foreach ($profesores as $profesor)
                 <tr>
-                    <td>{{$textFormatService->ucwords($profesor->nombre)}}</td>
-                    <td>{{$textFormatService->ucwords($profesor->apellido)}}</td>
+                    <td>{{$profesor->nombre}}</td>
+                    <td>{{($profesor->apellido)}}</td>
                     <td>{{$profesor->dni}}</td>
                     <td class="center"><a class="flex just-center" href="{{route('admin.profesores.edit', ['profesor' => $profesor->id])}}"><button class="btn_edit">Ver</button></a></td>
                     {{--

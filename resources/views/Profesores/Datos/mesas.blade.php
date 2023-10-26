@@ -29,7 +29,7 @@
 
     <div class="m-2 p-2 rounded w-100">
         <div class="bg-gray-300 p-2 rounded">
-            <p>Bienvenido <span class="font-600">{{$textFormatService->ucwords($profesor->nombre)}}</span></p>
+            <p>Bienvenido <span class="font-600">{{$profesor->nombre}}</span></p>
             <a class="red-600" href="{{route('profesor.logout')}}">Cerrar sesion</a>
         </div>
         

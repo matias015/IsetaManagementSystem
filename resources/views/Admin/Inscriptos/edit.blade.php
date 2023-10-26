@@ -13,12 +13,12 @@
 
                     <div class="perfil_dataname">
                         <label>Alumno:
-                        <span class="campo_info2">{{$textFormatService->ucwords($registro->alumno->apellido.' '.$registro->alumno->nombre)}}</span>
+                        <span class="campo_info2">{{$registro->alumno->apellido.' '.$registro->alumno->nombre}}</span>
                     </label>
                     </div>
                     <div class="perfil_dataname">
                         <label>Carrera:</label>
-                        <span class="campo_info2">{{$textFormatService->ucwords($registro->carrera->nombre)}}</span>
+                        <span class="campo_info2">{{$registro->carrera->nombre}}</span>
                     </div>
                     <div class="perfil_dataname">
                         <label>Año inscripcion:</label>

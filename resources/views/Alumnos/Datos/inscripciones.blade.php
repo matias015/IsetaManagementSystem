@@ -43,20 +43,20 @@
 
             <tr>
               <td class="text-center">{{$materia->anio + 1}}</td>
-              <td>{{$textFormatService->ucwords($materia->nombre)}}</td>
+              <td>{{$materia->nombre)}}</td>
               <td>
                 <p>{{
                     $materia->mesas[0]->prof_presidente? 
-                      $textFormatService->ucwords($materia->mesas[0]->profesor->nombre.' '.$materia->mesas[0]->profesor->apellido):
+                      $materia->mesas[0]->profesor->nombre.' '.$materia->mesas[0]->profesor->apellido:
                       'A confirmar'
                 }}</p>
                 <p>{{
                     $materia->mesas[0]->vocal1? 
-                      $textFormatService->ucwords($materia->mesas[0]->vocal1->nombre.' '.$materia->mesas[0]->vocal1->apellido):
+                      $materia->mesas[0]->vocal1->nombre.' '.$materia->mesas[0]->vocal1->apellido:
                       'A confirmar'
                 }}</p>
                 @if ($materia->mesas[0]->vocal2)
-                    <p>{{$textFormatService->ucwords($materia->mesas[0]->vocal2->nombre.' '.$materia->mesas[0]->vocal2->apellido)}}</p>
+                    <p>{{$materia->mesas[0]->vocal2->nombre.' '.$materia->mesas[0]->vocal2->apellido}}</p>
                 @endif
               </td>
               

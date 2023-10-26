@@ -14,7 +14,7 @@
 
                     <div class="perfil_dataname">
                         <label>Carrera:</label>
-                        <input class="campo_info rounded" value="{{$textFormatService->ucfirst($carrera->nombre)}}" name="nombre">
+                        <input class="campo_info rounded" value="{{$carrera->nombre}}" name="nombre">
                     </div>
                     <div class="perfil_dataname">
                         <label>Resolucion:</label>
@@ -60,7 +60,7 @@
                             <tr>
                                 <td class="center"> {{$asignatura->anio + 1}} </td>
 
-                                <td> {{$textFormatService->ucfirst($asignatura->nombre)}} </td>
+                                <td> {{$asignatura->nombre}} </td>
 
                                 <td class="center"> {{$asignatura->carga_horaria}} horas</td>
 

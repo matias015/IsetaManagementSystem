@@ -70,8 +70,8 @@
             <tbody>
             @foreach ($cursadas as $cursada)
             <tr>
-                <td>{{$textFormatService->ucfirst($cursada->asignatura)}}</td>
-                <td>{{$textFormatService->ucfirst($cursada->alumno_apellido.' '.$cursada->alumno_nombre)}}</td>
+                <td>{{$cursada->asignatura}}</td>
+                <td>{{$cursada->alumno_apellido.' '.$cursada->alumno_nombre}}</td>
                 <td>
                     @switch($cursada->aprobada)
                         @case(1)

@@ -14,7 +14,7 @@
                         <label>Alumno:</label>
                         <select class="campo_info rounded" name="id_alumno">
                             @foreach ($alumnos as $alumno)
-                            <option value="{{$alumno->id}}">{{$textFormatService->ucwords($alumno->apellido.' '.$alumno->nombre)}}</option>
+                            <option value="{{$alumno->id}}">{{$alumno->apellido.' '.$alumno->nombre}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -22,7 +22,7 @@
                         <label>Carrera:</label>
                         <select class="campo_info rounded" name="id_carrera">
                             @foreach ($carreras as $carrera)
-                            <option value="{{$carrera->id}}">{{$textFormatService->ucfirst($carrera->nombre)}}</option>
+                            <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
                             @endforeach
                         </select>
                     </div>

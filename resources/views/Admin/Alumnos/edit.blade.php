@@ -103,7 +103,7 @@
             <form action="{{route('admin.alumno.rematricular',['alumno' => $alumno->id])}}">
                 <select class="px-2 rounded" name="carrera" id="">
                     @foreach ($carreras as $carrera)
-                        <option value="{{$carrera->id}}">{{$textFormatService->ucfirst($carrera->nombre)}}</option>
+                        <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
                     @endforeach
                 </select>
                 <div class="upd"><button class="btn_edit">Matricular</button></div>
@@ -162,11 +162,8 @@
   
 
                 <tr>
-                    <td>{{$textFormatService->ucfirst($cursada->asignatura)}}</td>
-                    {{-- <td>{{$cursada->anio_cursada}}</td> --}}
-                    {{-- <td>
-                        {{$textFormatService->ucfirst($cursada->carrera)}}
-                    </td> --}}
+                    <td>{{$cursada->asignatura}}</td>
+    
                     <td>
                         @switch($cursada->condicion)
                     @case(0)
@@ -269,8 +266,7 @@
                         @endif
 
                         <tr>
-                            <td>{{$textFormatService->ucfirst($examen->asignatura)}}</td>
-                            {{-- <td>{{$textFormatService->ucfirst($examen->carrera)}}</td> --}}
+                            <td>{{$examen->asignatura}}</td>
                             <td>
                         
                             @if ($examen->aprobado==3)

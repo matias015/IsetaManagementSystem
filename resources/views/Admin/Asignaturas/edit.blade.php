@@ -17,7 +17,7 @@
                 </div>
                 <div class="perfil_dataname">
                     <label>Carrera:</label>
-                    <span class="campo_info2">{{$textFormatService->ucfirst($asignatura->carrera->nombre)}}</span>
+                    <span class="campo_info2">{{$asignatura->carrera->nombre}}</span>
                 </div>
                 <div class="perfil_dataname">
                     <label>Tipo modulo:</label>
@@ -50,7 +50,7 @@
                             <div class="flex">
                             @csrf
                             @method('delete')
-                                <div class="flex items-center"><li>- {{$textFormatService->ucfirst($correlativa->asignatura->nombre)}}</li></div>
+                                <div class="flex items-center"><li>- {{$correlativa->asignatura->nombre}}</li></div>
                                 <div class="flex items-center m-1 mx-4"><button class="btn_edit">Eliminar</button></div>
                             </div>
                         </form>
@@ -78,7 +78,7 @@
                         <select class="campo_info rounded" id="asignatura_select" name="id_asignatura">
                             @foreach ($asignatura->carrera->asignaturas as $asignatura_carrera)
                                 @if ($asignatura_carrera->id != $asignatura->id)
-                                    <option value="{{$asignatura_carrera->id}}">{{$textFormatService->ucfirst($asignatura_carrera->nombre)}}</option>
+                                    <option value="{{$asignatura_carrera->id}}">{{$asignatura_carrera->nombre}}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -108,9 +108,10 @@
                 
             @foreach ($alumnos as $alumno)
                 <tr>
+                    
                     <td class="center"><input type="checkbox" checked name="toPrint[]" value="{{$alumno->id}}"></td>
                 
-                    <td> {{$textFormatService->ucwords($alumno->apellido.' '.$alumno->nombre)}}</td>
+                    <td> {{$alumno->apellido.' '.$alumno->nombre}}</td>
 
                     <td> {{$alumno->dni}}</td>
                     <td>       @switch($alumno->condicion)

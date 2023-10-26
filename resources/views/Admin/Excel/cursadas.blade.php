@@ -21,7 +21,7 @@
         @foreach ($alumnos as $alumno)
             <tr>
                 <td></td>
-                <td>{{$textFormatService->ucwords($alumno->apellido.' '.$alumno->nombre)}}</td>
+                <td>{{$alumno->apellido.' '.$alumno->nombre}}</td>
                 <td>{{$alumno->dni}}</td>
                 <td>
                     @switch($alumno->condicion)

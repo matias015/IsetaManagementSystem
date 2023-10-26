@@ -78,7 +78,9 @@ class CursadasAdminController extends Controller
         $cursada -> update($data);
 
 
-        if($request->input('condicion') == 0 || $request->input('condicion') == 2){
+        if( $request->input('condicion') == 0 || 
+            $request->input('condicion') == 2 ||
+            $request->input('condicion') == 3){
             $cursada->aprobada = 1;
             $cursada->save();
         }
@@ -119,7 +121,7 @@ class CursadasAdminController extends Controller
             if(!$cursada || $cursada->aprobada != 1) $puede = false;  
         }
 
-        dd($puede);
+        // dd($puede);
 
         Cursada::create([
             'id_asignatura' => $request->id_asignatura,

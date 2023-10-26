@@ -74,11 +74,11 @@
             @foreach ($alumnos as $alumno)
             <tr>
                 <td>
-                    {{$textFormatService->ucwords($alumno->apellido.' '. $alumno->nombre)}}
+                    {{$alumno->apellido.' '. $alumno->nombre}}
                 </td>
                 
                 {{-- <td>{{$alumno->dni}}</td> --}}
-                <td>{{$textFormatService->ucfirst($alumno->carrera)}}</td>
+                <td>{{$alumno->carrera}}</td>
                 <td>
                     {{$alumno->anio_inscripcion?$alumno->anio_inscripcion:'Sin datos'}}
                     -

@@ -13,7 +13,7 @@
                         <option value="any">Selecciona una carrera</option>
                         @foreach ($carreras as $carrera)
                         <option @selected($precargados['carrera'] == $carrera->id) value="{{$carrera->id}}">
-                            {{$textFormatService->ucfirst($carrera->nombre)}}
+                            {{$carrera->nombre}}
                         </option>
                         @endforeach
                     </select>
@@ -37,7 +37,7 @@
                         <option selected value="0">Vacio/A confirmar</option>
                         @foreach ($profesores as $profesor)
                         <option value="{{$profesor->id}}">
-                            {{$textFormatService->ucwords($profesor->apellido . ' ' . $profesor->nombre)}}
+                            {{$profesor->apellido . ' ' . $profesor->nombre}}
                         </option>
                         @endforeach
                     </select>
@@ -48,7 +48,7 @@
                         <option selected value="0">Vacio/A confirmar</option>
                         @foreach ($profesores as $profesor)
                         <option value="{{$profesor->id}}">
-                            {{$textFormatService->ucwords($profesor->apellido . ' ' . $profesor->nombre)}}
+                            {{$profesor->apellido . ' ' . $profesor->nombre}}
                         </option>
                         @endforeach
                     </select>
@@ -59,7 +59,7 @@
                         <option selected value="0">Vacio/A confirmar</option>
                         @foreach ($profesores as $profesor)
                         <option value="{{$profesor->id}}">
-                            {{$textFormatService->ucwords($profesor->apellido . ' ' . $profesor->nombre)}}
+                            {{$profesor->apellido . ' ' . $profesor->nombre}}
                         </option>
                         @endforeach
                     </select>

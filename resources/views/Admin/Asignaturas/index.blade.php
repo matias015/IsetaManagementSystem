@@ -40,8 +40,8 @@
             <tbody>
                 @foreach ($asignaturas as $asignatura)
                 <tr>
-                    <td>{{$textFormatService->ucfirst($asignatura->nombre)}}</td>
-                    <td>{{$textFormatService->ucwords($asignatura->carrera->nombre)}}</td>
+                    <td>{{$asignatura->nombre}}</td>
+                    <td>{{$asignatura->carrera->nombre}}</td>
                     <td><a href="{{route('admin.asignaturas.edit', ['asignatura' => $asignatura->id])}}"><button class="btn_edit">Editar</button></a></td>
                     <td>
                         <form method="POST" action="{{route('admin.asignaturas.destroy', ['asignatura' => $asignatura->id])}}">

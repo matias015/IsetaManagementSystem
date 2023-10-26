@@ -15,7 +15,7 @@
         @endif
         
         @foreach ($mesas as $mesa)
-            <li>{{$textFormatService->ucfirst($mesa->asignatura->nombre). ' / '. substr($mesa->fecha,0,16)}}</li>
+            <li>{{$mesa->asignatura->nombre. ' / '. substr($mesa->fecha,0,16)}}</li>
         @endforeach
     </ul>
     {{-- <img style="width: 100%" src="{{asset('img/CONSTANCIA-MESA-EXAMINADORA.png')}}" alt=""> --}}

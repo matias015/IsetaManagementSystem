@@ -18,7 +18,12 @@ use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\ExamenesCrudController;
 use App\Http\Controllers\Admin\CursadasAdminController;
 use App\Http\Controllers\Admin\EgresadosAdminController;
+use App\Models\Alumno;
+use App\Models\Asignatura;
+use App\Models\Carrera;
 use App\Models\Mesa;
+use App\Models\Profesor;
+use App\Services\TextFormatService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -102,4 +107,40 @@ use Illuminate\Support\Facades\Route;
     Route::get('cursantes/carrera/{carrera}',[AdminExportController::class, 'cursadasCarrera'])->name('excel.cursadas.carrera');
 
     Route::get('cursantes/{asignatura}',[AdminExportController::class, 'cursadasAsignatura'])->name('excel.cursadas.asig');
+
+    Route::get('normalizar',function(){
+        foreach (Alumno::all() as $alumno) {
+            $alumno->nombre = TextFormatService::ucwords($alumno->nombre);
+            $alumno->apellido = TextFormatService::ucwords($alumno->apellido);
+            $alumno->ciudad = TextFormatService::ucfirst($alumno->ciudad);
+            $alumno->calle = TextFormatService::ucfirst($alumno->calle);
+            $alumno->email = TextFormatService::ucfirst($alumno->email);
+            $alumno->save();
+        }
+
+        foreach (Profesor::all() as $profe) {
+            $profe->nombre = TextFormatService::ucwords($profe->nombre);
+            $profe->apellido = TextFormatService::ucwords($profe->apellido);
+            $profe->ciudad = TextFormatService::ucfirst($profe->ciudad);
+            $profe->calle = TextFormatService::ucfirst($profe->calle);
+            $profe->observaciones = TextFormatService::ucfirst($profe->observaciones);
+            $profe->email = strtolower($profe->email);
+            $profe->formacion_academica = TextFormatService::ucfirst($profe->formacion_academica);
+            $profe->save();
+        }
+
+        foreach (Carrera::all() as $carrera) {
+            $carrera->nombre = TextFormatService::ucfirst($carrera->nombre);
+            $carrera->observaciones = TextFormatService::ucfirst($carrera->observaciones);
+            $carrera->save();
+        }
+
+        foreach (Asignatura::all() as $asignatura) {
+            $asignatura->observaciones = TextFormatService::ucfirst($asignatura->observaciones);
+            $asignatura->nombre = TextFormatService::ucfirst($asignatura->nombre);
+            $asignatura->save();
+        }
+
+        return redirect()->back()->with('mensaje','Se han normalizado los datos');
+    });
 });

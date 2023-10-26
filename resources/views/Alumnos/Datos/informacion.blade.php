@@ -25,8 +25,8 @@
     <div class="perfil_body">
       <div class="perfil_one shadow">
         <div class="perfil_subtop"><h2>Información alumno</h2></div>
-        <span class="perfil_dataname">Nombres: <b class="perfil_datainfo">{{$textFormatService->ucwords($alumno->nombre)}}</b></span>
-        <span class="perfil_dataname">Apellidos: <b class="perfil_datainfo">{{$textFormatService->ucwords($alumno->apellido)}}</b></span>
+        <span class="perfil_dataname">Nombres: <b class="perfil_datainfo">{{$alumno->nombre}}</b></span>
+        <span class="perfil_dataname">Apellidos: <b class="perfil_datainfo">{{$alumno->apellido}}</b></span>
         <span class="perfil_dataname">Mail: <b class="perfil_datainfo">{{$alumno->email}}</b></b></span>
         <span class="perfil_dataname">DNI: <b class="perfil_datainfo">{{$alumno->dni}}</b></span>
         <span class="perfil_dataname">Telefono: <b class="perfil_datainfo">{{$alumno->telefono1}}</b></span>

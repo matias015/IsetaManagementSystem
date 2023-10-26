@@ -22,7 +22,7 @@
                     'gray-600' => $asignatura->equivalencias_sin_aprobar
                 ])>
                     <span class="font-600">Año: {{$asignatura->anio+1}}</span> 
-                    <span>Asignatura: {{$textFormatService->ucfirst($asignatura->nombre)}}</span>
+                    <span>Asignatura: {{$asignatura->nombre}}</span>
                 </span>
                 <span>
                     @if ($asignatura->equivalencias_sin_aprobar)

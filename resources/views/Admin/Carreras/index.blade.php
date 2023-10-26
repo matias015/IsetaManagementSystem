@@ -65,7 +65,7 @@
         <tbody>
             @foreach ($carreras as $carrera)
             <tr>
-                <td>{{$textFormatService->ucfirst($carrera->nombre)}}</td>
+                <td>{{$carrera->nombre}}</td>
                 <td class="center">{{$carrera->resolucion}}</td>
                 <td class="center">{{$carrera->anio_apertura}}</td>
                 <td class="center">{{$carrera->vigente == 1? "Vigente":$carrera->anio_fin}}</td>
