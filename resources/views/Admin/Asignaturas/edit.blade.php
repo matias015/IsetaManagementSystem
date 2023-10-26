@@ -106,41 +106,13 @@
         <tbody>
             <form action="{{route('test.print-1', ['asignatura'=>$asignatura->id])}}">
                 
-            @foreach ($alumnos as $alumno)
+            @foreach ($asignatura->cursadas as $cursada)
                 <tr>
-                    
-                    <td class="center"><input type="checkbox" checked name="toPrint[]" value="{{$alumno->id}}"></td>
-                
-                    <td> {{$alumno->apellido.' '.$alumno->nombre}}</td>
-
-                    <td> {{$alumno->dni}}</td>
-                    <td>       @switch($alumno->condicion)
-                         @case(0)
-                            Libre
-                            @break
-                        @case(1)
-                            Regular  
-                            @break
-                        @case(2)
-                            Promocion  
-                            @break
-                        @case(3)
-                            Equivalencia  
-                            @break
-                        @case(4)
-                            Desertor
-                            @break
-                        @default
-                            Otro
-                        @endswitch</td>
+                    <td> {{$cursada->alumno->apellidoNombre()}}</td>
+                    <td> {{$cursada->alumno->dni}} </td>
+                    <td> {{$cursada->condicionString()}} </td>
                     <td>
-                    {{-- <form action="">
-                        <button class="btn_edit">Editar</button>
-                    </form>
-                    <form action="">
-                        <button class="btn_edit">Eliminar</button>
-                    </form> --}}
-                    <a href="{{route('admin.cursadas.edit', ['cursada' => $alumno->cursada_id])}}" class="btn_edit">Editar</a>
+                        <a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id])}}" class="btn_edit">Editar</a>
                     </td>
                 </tr>
             @endforeach

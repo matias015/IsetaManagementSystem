@@ -71,18 +71,9 @@
             @foreach ($cursadas as $cursada)
             <tr>
                 <td>{{$cursada->asignatura}}</td>
-                <td>{{$cursada->alumno_apellido.' '.$cursada->alumno_nombre}}</td>
+                <td>{{$cursada->alumno->apellidoNombre()}}</td>
                 <td>
-                    @switch($cursada->aprobada)
-                        @case(1)
-                            Aprobada
-                            @break
-                        @case(2)
-                            Desaprobada
-                            @break
-                        @default
-                            Cursando...
-                    @endswitch
+                    {{$cursada->aprodabo}}
                 </td>
                 <td><a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id])}}"><button class="btn_edit">Editar</button></a></td>
                 <td>

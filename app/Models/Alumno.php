@@ -158,5 +158,14 @@ class Alumno extends Authenticatable implements MustVerifyEmail
     public function examenes(){
         return $this -> hasMany(Examen::class, 'id_alumno');
     }
+
+    public function nombreApellido(){
+        return $this->nombre.' '.$this->apellido;
+    }
+    
+    public function apellidoNombre(){
+        return $this->apellido.' '.$this->nombre;
+    }
+    
     
 }

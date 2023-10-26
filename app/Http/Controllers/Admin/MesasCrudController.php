@@ -220,16 +220,8 @@ class MesasCrudController extends Controller
     public function edit(Request $request, $mesa)
     {
   
-        $mesa = Mesa::where('id', $mesa)->with('materia.carrera','profesor','vocal1','vocal2')->first();
-
-        $profesores = Profesor::orderBy('apellido')->orderBy('nombre')->get();
-
-        $alumnos = Mesa::select('examenes.id as id_examen','alumnos.nombre','alumnos.apellido','examenes.nota')
-            -> join('examenes', 'examenes.id_mesa','mesas.id')
-            -> join('alumnos', 'alumnos.id','examenes.id_alumno')
-            -> where('mesas.id', $mesa->id)
-            -> get();
-
+        $mesa = Mesa::where('id', $mesa)->with('materia.carrera','profesor','vocal1','vocal2','examenes.alumno')->first();
+        
         $inscribiblesCursada = Alumno::select('alumnos.id','alumnos.nombre', 'alumnos.apellido')
             -> join('cursadas','cursadas.id_alumno','alumnos.id')
             -> join('asignaturas','asignaturas.id','cursadas.id_asignatura')
@@ -238,7 +230,7 @@ class MesasCrudController extends Controller
             -> orderBy('alumnos.apellido')
             -> orderBy('alumnos.nombre')
             -> get();
-        // \dd($inscribiblesCursada);
+            
         $inscribibles = [];
 
         foreach ($inscribiblesCursada as $alumno) {
@@ -256,8 +248,7 @@ class MesasCrudController extends Controller
 
         return view('Admin.Mesas.edit', [
             'mesa' => $mesa,
-            'alumnos' => $alumnos,
-            'profesores'=>$profesores,
+            'profesores'=> Profesor::orderBy('apellido')->orderBy('nombre')->get(),
             'inscribibles' => $inscribibles
         ]);
     }

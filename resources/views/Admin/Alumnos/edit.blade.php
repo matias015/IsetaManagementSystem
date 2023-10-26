@@ -163,45 +163,15 @@
 
                 <tr>
                     <td>{{$cursada->asignatura}}</td>
-    
+                    <td>{{$cursada->condicionString()}}</td>
+                    <td class="center">{{$cursada->aprobado()}}</td>
+                    
                     <td>
-                        @switch($cursada->condicion)
-                    @case(0)
-                      Libre
-                      @break
-                    @case(1)
-                      Regular  
-                      @break
-                    @case(2)
-                      Promocion  
-                      @break
-                    @case(3)
-                      Equivalencia  
-                      @break
-                    @case(4)
-                      Desertor
-                      @break
-                    @default
-                        Otro
-                    @endswitch
-                    </td>
-                    <td class="center">
-                        @if ($cursada->aprobada==1)
-                            Si
-                        @elseif($cursada->aprobada==2)
-                            No
-                        @else
-                            Cursando
-                        @endif
-                    </td>
-                    <td>
-                        
                         <a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id,])}}">
                             <button class="btn_edit">Editar</button>
                         </a>
-    
-                        
                     </td>
+                    
                     <td>
                     <form method="POST" action="{{route('admin.cursadas.destroy', ['cursada' => $cursada->id])}}">
                             @method('delete')

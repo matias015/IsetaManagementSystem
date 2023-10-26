@@ -13,7 +13,7 @@
 
                     <div class="perfil_dataname">
                         <label>Alumno:</label>
-                        <span class="campo_info2">{{$cursada->alumno->nombre.' '.$cursada->alumno->apellido}}</span>
+                        <span class="campo_info2">{{$cursada->alumno->apellidoNombre()}}</span>
                     </div>
                     <div class="perfil_dataname">
                         <label>Materia:</label>

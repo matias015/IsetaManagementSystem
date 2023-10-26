@@ -28,7 +28,7 @@
                             <option @selected($mesa->prof_presidente==0) value="vacio">Vacio/A confirmar</option>
                             @foreach($profesores as $profesor)
                             <option @selected($mesa->prof_presidente != 0 && $mesa->profesor->id == $profesor->id) value="{{$profesor->id}}">
-                                {{$profesor->apellido . ' ' . $profesor->nombre}}
+                                {{$profesor->apellidoNombre()}}
                             </option>
                             @endforeach
                         </select>
@@ -40,7 +40,7 @@
 
                         @foreach($profesores as $profesor)
                             <option @selected($mesa->prof_vocal_1 != 0 && $mesa->vocal1->id == $profesor->id) value="{{$profesor->id}}">
-                                {{$profesor->apellido . ' ' . $profesor->nombre}}
+                                {{$profesor->apellidoNombre()}}
                             </option>
                         @endforeach
                         </select>
@@ -51,7 +51,7 @@
                             <option @selected($mesa->prof_vocal_2==0) value="vacio">Vacio/A confirmar</option>
                         @foreach($profesores as $profesor)
                             <option @selected($mesa->prof_vocal_2 != 0 && $mesa->vocal2 && $mesa->vocal2->id == $profesor->id) value="{{$profesor->id}}">
-                                {{$profesor->apellido . ' ' . $profesor->nombre}}
+                                {{$profesor->apellidoNombre()}}
 
                             </option>
                         @endforeach
@@ -77,9 +77,9 @@
                         <form method="POST" action="{{route('admin.examenes.store')}}">
                     @csrf
                             <select class="rounded" name="id_alumno">
-                                    <option value=""></option>
+                                    <option value="">Selecciona un alumno</option>
                                 @foreach ($inscribibles as $inscribible)
-                                    <option value="{{$inscribible->id}}">{{$inscribible->apellido.' '.$inscribible->nombre}}</option>
+                                    <option value="{{$inscribible->id}}">{{$inscribible->apellidoNombre()}}</option>
                                 @endforeach
                             </select>
                             <input name="id_mesa" value="{{$mesa->id}}" type="hidden">
@@ -112,12 +112,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($alumnos as $alumno)
+                        @foreach($mesa->examenes as $examen)
                         <tr>
-                            <td>{{$alumno->apellido . ' ' . $alumno->nombre}}</td>
-                            <td>{{$alumno->nota!=0? $alumno->nota : 'Sin nota'}}</td>
+                            <td>{{$examen->alumno->apellidoNombre()}}</td>
+                            <td>{{$examen->alumno->nota!=0? $examen->alumno->nota : 'Sin nota'}}</td>
                             <td class=" flex just-center">
-                                <a href="{{route('admin.examenes.edit', ['examen' => $alumno->id_examen])}}">
+                                <a href="{{route('admin.examenes.edit', ['examen' => $examen->id])}}">
                                     <button class="btn_edit">Ver</button>
                                 </a>
                                 {{-- <form method="POST" action="{{route('admin.examenes.destroy', ['examen' => $alumno->id_examen])}}">

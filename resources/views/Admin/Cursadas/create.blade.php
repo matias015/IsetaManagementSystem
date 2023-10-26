@@ -31,7 +31,7 @@
                     <select class="alumno campo_info rounded" name="id_alumno">
                         <option selected>Selecciona un alumno</option>
                         @foreach($alumnos as $alumno)
-                        <option value="{{$alumno->id}}">{{$alumno->nombre.' '.$alumno->apellido}}</option>
+                        <option value="{{$alumno->id}}">{{$alumno->nombreApellido()}}</option>
                         @endforeach
                     </select>
                 </div>

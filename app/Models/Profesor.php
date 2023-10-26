@@ -49,4 +49,12 @@ class Profesor extends Authenticatable
         $this->verificado = 1;
         $this->save();
     }
+
+    public function nombreApellido(){
+        return $this->nombre.' '.$this->apellido;
+    }
+    
+    public function apellidoNombre(){
+        return $this->apellido.' '.$this->nombre;
+    }
 }

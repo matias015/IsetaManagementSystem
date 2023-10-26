@@ -41,16 +41,7 @@
                 </div>
             </form>
           
-          <!--<label class="switch">
-            <input checked="checked" type="checkbox">
-            <div class="button">
-              <div class="light"></div>
-              <div class="dots"></div>
-              <div class="characters"></div>
-              <div class="shine"></div>
-              <div class="shadow"></div>
-            </div>
-          </label> -->
+        
         </div>
         <div class="table__body">
           <table>
@@ -121,36 +112,10 @@
                         'reprobada' => $cursada->aprobada == 2,
                         'cursando' => $cursada->aprobada == 3
                     ]) >
-                    @if($cursada->aprobada == 1)
-                        Aprobada
-                    @elseif($cursada->aprobada == 2)
-                        Reprobada
-                    @else
-                        En curso
-                    @endif
+                    {{$cursada->aprobado()}}
                     </p>
                 </td>
-                  <td class="text-center">
-                  @switch($cursada->condicion)
-                    @case(0)
-                      Libre
-                      @break
-                    @case(1)
-                      Regular  
-                      @break
-                    @case(2)
-                      Promocion  
-                      @break
-                    @case(3)
-                      Equivalencia  
-                      @break
-                    @case(4)
-                      Desertor
-                      @break
-                    @default
-                        Otro
-                    @endswitch
-                </td>
+                  <td class="text-center">{{$cursada->condicionString()}}</td>
                 <td class="text-center">{{$cursada->anio_cursada}}</td>
                 @if (in_array($cursada->id_asignatura,$examenesAprobados))
                 <td>Aprobado</td>

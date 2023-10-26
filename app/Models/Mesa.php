@@ -22,9 +22,26 @@ class Mesa extends Model
         return $this -> hasOne(Asignatura::class,'id','id_asignatura');
     }
 
+    public function examenes(){
+        return $this->hasMany(Examen::class,'id_mesa','id');
+    }
 
     public function profesor(){
         return $this -> hasOne(Profesor::class,'id','prof_presidente');
+    }
+
+    function profesorNombre($tipo){
+        $profesor = null;
+
+        if($tipo == 'vocal1') $profesor = $this->vocal1;
+        else if($tipo == 'vocal2') $profesor = $this->vocal2;
+        else $profesor = $this->profesor;
+
+        if($profesor){
+            return $profesor->apellidoNombre();
+        }else{
+            return "A confimar";
+        }
     }
     
     public function vocal1(){

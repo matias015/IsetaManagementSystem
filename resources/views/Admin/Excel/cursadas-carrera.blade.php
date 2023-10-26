@@ -21,34 +21,14 @@
           <td colspan="5">{{$asignatura->nombre}}</td>
         </tr>
         
-        @foreach ($asignatura->cursantes() as $alumno)
+        @foreach ($asignatura->cursadas as $cursada)
             
             <tr>
                 <td></td>
-                <td colspan="3">{{$alumno->apellido.' '.$alumno->nombre}}</td>
-                <td>{{$alumno->dni}}</td>
-                <td>
-                    @switch($alumno->condicion)
-                    @case(0)
-                      Libre
-                      @break
-                    @case(1)
-                      Regular  
-                      @break
-                    @case(2)
-                      Promocion  
-                      @break
-                    @case(3)
-                      Equivalencia  
-                      @break
-                    @case(4)
-                      Desertor
-                      @break
-                    @default
-                        Otro
-                    @endswitch
-                </td>
-                <td>{{$alumno->anio_cursada}}</td>
+                <td colspan="3">{{$cursada->alumno->apellidoNombre()}}</td>
+                <td>{{$cursada->alumno->dni}}</td>
+                <td>{{$cursada->condicionString()}}</td>
+                <td>{{$cursada->anio_cursada}}</td>
             </tr>
             @endforeach
         @endforeach

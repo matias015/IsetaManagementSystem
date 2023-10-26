@@ -21,7 +21,7 @@ class Asignatura extends Model
     'promocionable'];
 
     public function cursadas(){
-        return $this -> hasMany(Cursada::class,'id_asignatura');
+        return $this -> hasMany(Cursada::class,'id_asignatura')->where('anio_cursada', Configuracion::get('anio_remat'));
     }
 
     public function carrera(){

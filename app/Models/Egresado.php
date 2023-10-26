@@ -20,4 +20,5 @@ class Egresado extends Model
     public function carrera(){
         return $this -> hasOne(Carrera::class,'id','id_carrera');
     }
+
 }

@@ -14,7 +14,7 @@
                         <label>Alumno:</label>
                         <select class="campo_info rounded" name="id_alumno">
                             @foreach ($alumnos as $alumno)
-                            <option value="{{$alumno->id}}">{{$alumno->apellido.' '.$alumno->nombre}}</option>
+                            <option value="{{$alumno->id}}">{{$alumno->apellidoNombre()}}</option>
                             @endforeach
                         </select>
                     </div>
