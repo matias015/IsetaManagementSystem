@@ -43,7 +43,7 @@
 
             <tr>
               <td class="text-center">{{$materia->anio + 1}}</td>
-              <td>{{$materia->nombre)}}</td>
+              <td>{{$materia->nombre}}</td>
               <td>
                 <p>{{
                     $materia->mesas[0]->prof_presidente? 

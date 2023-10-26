@@ -114,7 +114,7 @@ use Illuminate\Support\Facades\Route;
             $alumno->apellido = TextFormatService::ucwords($alumno->apellido);
             $alumno->ciudad = TextFormatService::ucfirst($alumno->ciudad);
             $alumno->calle = TextFormatService::ucfirst($alumno->calle);
-            $alumno->email = TextFormatService::ucfirst($alumno->email);
+            $alumno->email = strtolower($alumno->email);
             $alumno->save();
         }
 
