@@ -56,4 +56,15 @@ class Carrera extends Model
         return Carrera::where('vigente',1)->get();
     }
 
+    public function setNombreAttribute($value)
+    {
+        $this->attributes['nombre'] = TextFormatService::ucwords($value);
+    }
+
+    public function setObservacionesAttribute($value)
+    {
+        $this->attributes['observaciones'] = TextFormatService::ucfirst($value);
+    }
+
+
 }

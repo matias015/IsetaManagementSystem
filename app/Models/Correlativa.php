@@ -16,4 +16,6 @@ class Correlativa extends Model
     public function asignatura(){
         return $this->BelongsTo(Asignatura::class,'asignatura_correlativa','id');
     }
+
+
 }

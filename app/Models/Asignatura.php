@@ -43,4 +43,23 @@ class Asignatura extends Model
             -> get();
     }
     
+    function existe($id){
+        $existente = Correlativa::where('id_asignatura', $this->id)
+        ->where('asignatura_correlativa', $id)
+        ->first();
+        
+        return $existente;
+    }
+
+    public function setNombreAttribute($value)
+    {
+        $this->attributes['nombre'] = TextFormatService::ucwords($value);
+    }
+
+    public function setObservacionesAttribute($value)
+    {
+        $this->attributes['observaciones'] = TextFormatService::ucfirst($value);
+    }
+
+
 }

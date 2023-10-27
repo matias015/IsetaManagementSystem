@@ -57,4 +57,34 @@ class Profesor extends Authenticatable
     public function apellidoNombre(){
         return $this->apellido.' '.$this->nombre;
     }
+
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
+    }
+
+    public function setNombreAttribute($value)
+    {
+        $this->attributes['nombre'] = TextFormatService::ucwords($value);
+    }
+
+    public function setApellidoAttribute($value)
+    {
+        $this->attributes['apellido'] = TextFormatService::ucwords($value);
+    }
+
+    public function setCiudadAttribute($value)
+    {
+        $this->attributes['ciudad'] = TextFormatService::ucfirst($value);
+    }
+
+    public function setObservacionesAttribute($value)
+    {
+        $this->attributes['observaciones'] = TextFormatService::ucfirst($value);
+    }
+
+    public function setCalleAttribute($value)
+    {
+        $this->attributes['calle'] = TextFormatService::ucfirst($value);
+    }
 }
