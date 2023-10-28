@@ -13,12 +13,12 @@ class Asignatura extends Model
     public $timestamps = false;
 
     protected $fillable =  ['nombre',
-    'id_carrera',
-    'tipo_modulo',
-    'carga_horaria',
-    'anio',
-    'observaciones',
-    'promocionable'];
+        'id_carrera',
+        'tipo_modulo',
+        'carga_horaria',
+        'anio',
+        'observaciones'
+    ];
 
     public function cursadas(){
         return $this -> hasMany(Cursada::class,'id_asignatura')->where('anio_cursada', Configuracion::get('anio_remat'));
@@ -31,6 +31,41 @@ class Asignatura extends Model
     public function correlativas(){
         return $this -> hasMany(Correlativa::class,'id_asignatura');
     }   
+
+    public function mesas(){
+        return $this -> hasMany(Mesa::class,'id_asignatura')->whereRaw('fecha >= NOW()');
+    }
+
+    public function getAnioAttribute($value){
+        return $value + 1;
+    }
+
+    
+    function aproboExamen($alumno){
+        $examen = Examen::where('id_alumno',$alumno->id)
+            -> where('id_asignatura', $this->id)
+            -> where('nota','>=',4)
+            -> first();
+     
+        if($examen) return $examen;
+        return null;
+     }
+
+     function aproboCursada($alumno){
+        $cursada = Cursada::
+            where('id_alumno', $alumno->id)
+            -> where('id_asignatura',$this->id)
+            ->where(function($subQuery){
+                $subQuery -> where('aprobada', 1)
+                -> orWhere('condicion', 0)
+                -> orWhere('condicion', 2)
+                -> orWhere('condicion', 3);
+            })
+            -> first();
+
+        if($cursada) return $cursada;
+        return null;
+     }
 
     public function cursantes(){
         $config=Configuracion::todas();
@@ -51,6 +86,8 @@ class Asignatura extends Model
         return $existente;
     }
 
+
+
     public function setNombreAttribute($value)
     {
         $this->attributes['nombre'] = TextFormatService::ucwords($value);
@@ -63,3 +100,4 @@ class Asignatura extends Model
 
 
 }
+
