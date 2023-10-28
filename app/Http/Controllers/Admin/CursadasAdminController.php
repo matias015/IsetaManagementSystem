@@ -76,17 +76,25 @@ class CursadasAdminController extends Controller
 
     function update(Request $request, Cursada $cursada){
         $data = $request->except('_token','_method');
-        $cursada -> update($data);
-
+        $mensajes = [];
 
         if( $request->input('condicion') == 0 || 
             $request->input('condicion') == 2 ||
             $request->input('condicion') == 3){
-            $cursada->aprobada = 1;
-            $cursada->save();
+            
+                // \dd([$cursada->aprobada, $request->aprobada]);
+            
+            if($cursada->aprobada == 1 && ($request->aprobada==2 || $request->aprobada==3)){
+                $mensajes[] = "No puedes desaprobar una cursada libre, promocionada o aprobada por equivalencias";
+            }
+
+            $data['aprobada'] = 1;
         }
 
-        return redirect()->back();
+        $cursada -> update($data);
+        $mensajes[] = 'Se ha editado correctamente';
+        
+        return redirect()->back()->with('mensaje',$mensajes);
     }
 
     function create(){

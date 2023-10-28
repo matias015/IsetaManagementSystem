@@ -236,3 +236,6 @@ CORRECCIONES 2/9
 - Cambios en muchas funciones de extraccion de datos, testear en general.
 - Ya no existe la opcion de marcar una asignatura como promocionable
 - Temporalmente, ya no hay limitador de intentos de inicio de sesion.
+- Prototipo de guia de rutas tipo Alumnos/232/cursada/algebra y que sea clickeable
+- Ahora se pueden enviar 2 o mas mensajes a la vista.
+- El tiempo de cierre automatico de los avisos/notificaciones paso de 5 a 7 segundos 

@@ -2,7 +2,10 @@
 
 @section('content')
 <div class="edit-form-container">
-    
+        <p>
+            <a href="/admin/alumnos">Alumnos</a>/
+            <a href="/admin/alumnos/{{$alumno->id}}/edit">{{$alumno->id}}</a>
+        </p>
     <div class="perfil_one br">
         <div class="perfil__header">
             <h2>Historia academica</h2>

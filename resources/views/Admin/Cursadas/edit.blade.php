@@ -1,6 +1,11 @@
 @extends('Admin.template')
 
 @section('content')
+    <p class="w-100p">
+        <a href="/admin/alumnos">Alumnos</a>/
+        <a href="/admin/alumnos/{{$cursada->alumno->id}}/edit">{{$cursada->alumno->id}}</a>/ Cursada/
+        <a>{{$cursada->asignatura->nombre}}</a>
+    </p> 
         <div class="edit-form-container">
             <div class="perfil_one br">
                 <div class="perfil__header">

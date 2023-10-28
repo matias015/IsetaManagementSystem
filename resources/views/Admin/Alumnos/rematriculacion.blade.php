@@ -1,7 +1,14 @@
 @extends('Admin.template')
 @section('content')
+
 <main id="fondo-estudiantes" class="black flex-col justify-center items-center gap-3 p-3 w-100">
+    <p class="w-100p">
+        <a href="/admin/alumnos">Alumnos</a>/
+        <a href="/admin/alumnos/{{$alumno->id}}/edit">{{$alumno->id}}</a>/ Rematricular/
+        <a href="/admin/matricular/{{$alumno->id}}?carrera={{$carrera->id}}">{{$carrera->nombre}}</a>
+    </p> 
     <p>Esta pagina sufrira cambios en el futuro ya que esta en etapa de prueba</p>
+
     
     <div class="perfil_one br">
         <div class="perfil__header">
