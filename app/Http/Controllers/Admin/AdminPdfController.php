@@ -38,7 +38,7 @@ class AdminPdfController extends Controller
 
 
 
-        $pdf = Pdf::loadView('pdf.acta-volante', ['alumnos' => $alumnos,'mesa' => $mesa,'promocion'=>false]);
+        $pdf = Pdf::loadView('pdf.acta-volante', ['alumnos' => $alumnos,'mesa' => $mesa,'condicion'=>'']);
         return $pdf->stream('invoice.pdf');
     }
 
@@ -59,7 +59,7 @@ class AdminPdfController extends Controller
             }
         }
 
-        $pdf = Pdf::loadView('pdf.acta-volante', ['alumnos' => $alumnos,'mesa' => $mesa,'promocion'=>true]);
+        $pdf = Pdf::loadView('pdf.acta-volante', ['alumnos' => $alumnos,'mesa' => $mesa,'condicion'=>'PROMOCION']);
         return $pdf->stream('acta-volante.pdf');
     }
 
@@ -85,7 +85,7 @@ class AdminPdfController extends Controller
             }
         }
 
-        $pdf = Pdf::loadView('pdf.acta-volante', ['alumnos' => $alumnos,'mesa' => $mesa,'promocion'=>true]);
+        $pdf = Pdf::loadView('pdf.acta-volante', ['alumnos' => $alumnos,'mesa' => $mesa,'condicion'=>'LIBRE']);
         return $pdf->stream('acta-volante.pdf');
     }
 }

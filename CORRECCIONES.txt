@@ -243,3 +243,4 @@ CORRECCIONES 2/9
 
 28/10
 - Se muestra condicion de cursada en admin/mesas/editar al ver a los alumnos inscriptos
+- Las actas volantes vacias tiene el tamaño normal

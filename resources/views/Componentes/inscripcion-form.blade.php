@@ -47,7 +47,7 @@
                 <td>Debes correlativas</td>
                 <td>
                     @foreach ($correlativas as $correlativa)
-                        {{$correlativa->nombre}}
+                        <div>-> {{$correlativa->nombre}}</div>
                     @endforeach
                 </td>        
                 @break        

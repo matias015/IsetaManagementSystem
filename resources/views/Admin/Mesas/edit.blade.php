@@ -109,7 +109,7 @@
                             <th>Alumno</th>
                             <th>Nota</th>
                             <th>Cursada</th>
-                            <th class="center">Cosas</th>
+                            <th class="center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -117,17 +117,20 @@
                         <tr>
                             <td>{{$examen->alumno->apellidoNombre()}}</td>
                             <td>{{$examen->alumno->nota!=0? $examen->alumno->nota : 'Sin nota'}}</td>
-                            <td>{{$mesa->asignatura->aproboCursada($examen->alumno)->condicionString()}}</td>
+                            <td>
+                                @php
+                                    $cursada = $mesa->asignatura->aproboCursada($examen->alumno)
+                                @endphp
+                                <a href="{{route('admin.cursadas.edit',['cursada'=>$cursada->id])}}">
+                                    {{$cursada->condicionString()}} <span>&#8599;</span>
+
+                                </a>
+                            </td>
                             <td class=" flex just-center">
                                 <a href="{{route('admin.examenes.edit', ['examen' => $examen->id])}}">
-                                    <button class="btn_edit">Ver</button>
+                                    <button class="btn_edit">Editar</button>
                                 </a>
-                                {{-- <form method="POST" action="{{route('admin.examenes.destroy', ['examen' => $alumno->id_examen])}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="submit" value="Eliminar" class="btn_borrar">
-                                    </form> 
-                                --}}
+
                             </td>
                         </tr>
                         @endforeach

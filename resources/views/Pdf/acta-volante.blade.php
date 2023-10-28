@@ -80,9 +80,8 @@
                 <tr class="acta_top">
                     <th colspan="2">
                         Provincia de Buenos Aires
-                        @if ($promocion)
-                            <span style="margin-left: 100px">PROMOCION</span>
-                        @endif
+                        <span style="margin-left: 100px">{{$condicion}}</span>
+
                     </th>
                     <th colspan="2">
                         ACTA VOLANTE DE EXÁMENES
@@ -133,41 +132,45 @@
                                 <th>Prom.</th>
                             </tr>
                         </thead>
+                        
+                        
+                        
                         <tbody>
                             @php
                                 $actual = 1;
                             @endphp
 
-                        @foreach($alumnos as $alumno)
-                            <tr>
-                                <td class="pos1">{{$actual}}</td>
-                                <td class="pos2" style="white-space:nowrap">
-                                    {{$alumno->apellido . ', ' . $alumno->nombre}}
-                                </td>
-                                <td class="pos3"></td>
-                                <td class="pos4"></td>
-                                <td class="pos5"></td>
-                                <td class="pos6">{{$alumno->dni}}</td>
-                            </tr>
+                            @foreach($alumnos as $alumno)
+                                <tr>
+                                    <td class="pos1">{{$actual}}</td>
+                                    <td class="pos2" style="white-space:nowrap">
+                                        {{$alumno->apellido . ', ' . $alumno->nombre}}
+                                    </td>
+                                    <td class="pos3"></td>
+                                    <td class="pos4"></td>
+                                    <td class="pos5"></td>
+                                    <td class="pos6">{{$alumno->dni}}</td>
+                                </tr>
+                                @php
+                                    $actual++;
+                                @endphp
+                            @endforeach
+
                             @php
-                                $actual++;
+                                if(count($alumnos)<35){
+                                    $restantes = 35-count($alumnos);
+                                }
                             @endphp
-                        @endforeach
-                        @php
-                            if(count($alumnos)<35){
-                                $restantes = 35-count($alumnos);
-                            }
-                        @endphp
 
                         @for ($i = 0; $i < $restantes; $i++)
                             <tr>
-                                <td class="pos-1">{{$actual}}</td>
-                                <td class="pos-2" style="white-space:nowrap;color: black"></td>
-                                <td class="pos-3"></td>
-                                <td class="pos-4"></td>
-                                <td class="pos-5"></td>
-                                <td class="pos-6" style="white-space:nowrap;color: black;"></td>
-                            </tr>
+                                    <td class="pos1">{{$actual}}</td>
+                                    <td class="pos2" style="white-space:nowrap"></td>
+                                    <td class="pos3"></td>
+                                    <td class="pos4"></td>
+                                    <td class="pos5"></td>
+                                    <td class="pos6"></td>
+                                </tr>
                             @php
                                 $actual++;
                             @endphp
