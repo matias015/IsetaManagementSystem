@@ -106,6 +106,7 @@
 
 
                 <td>
+        
                     <p @class([
                         'status' => true,
                         'aprobada' => $cursada->aprobada == 1,
@@ -117,12 +118,19 @@
                 </td>
                   <td class="text-center">{{$cursada->condicionString()}}</td>
                 <td class="text-center">{{$cursada->anio_cursada}}</td>
-                @if (in_array($cursada->id_asignatura,$examenesAprobados))
-                <td>Aprobado</td>
-            @else
-                <td>Desprobado / Sin rendir</td>
-            @endif
-            <td>
+
+                <p>
+                  @php
+                      $examen = $cursada->asignatura->aproboExamen(auth()->user());
+                  @endphp
+                  @if ($examen)
+                      <td><div>Nota: {{$examen->nota}}</div><div>{{$formatoFecha->d_m_a_h_m($examen->fecha())}}</div></td>
+                  @else
+                    <td>Desprobado / Sin rendir</td>
+                  @endif
+                </p>
+
+              <td>
               @if ($cursada->aprobada == 3)
               <form method="POST" action="{{route('alumno.rematriculacion.delete', ['cursada'=>$cursada->id])}}">
                 @csrf

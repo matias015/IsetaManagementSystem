@@ -239,3 +239,7 @@ CORRECCIONES 2/9
 - Prototipo de guia de rutas tipo Alumnos/232/cursada/algebra y que sea clickeable
 - Ahora se pueden enviar 2 o mas mensajes a la vista.
 - El tiempo de cierre automatico de los avisos/notificaciones paso de 5 a 7 segundos 
+
+
+28/10
+- Se muestra condicion de cursada en admin/mesas/editar al ver a los alumnos inscriptos

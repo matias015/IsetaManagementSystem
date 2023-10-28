@@ -248,7 +248,6 @@ class MesasCrudController extends Controller
             }
         }
 
-
         return view('Admin.Mesas.edit', [
             'mesa' => $mesa,
             'profesores'=> Profesor::orderBy('apellido')->orderBy('nombre')->get(),

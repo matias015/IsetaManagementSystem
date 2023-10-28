@@ -2,7 +2,7 @@
 @section('content')
 
 <main id="fondo-estudiantes">
-  <section class="perfil">
+  <section class="perfil">   
     <div class="perfil_header just-end gap-2">
       <h1>Perfil</h1>
         <div class="w-100p contenedor_select_carrera">
@@ -11,9 +11,10 @@
           @csrf
           {{-- <select class="w-50p lg-w-auto select-carrera" name="carrera"> --}}
           <select class="w-50p lg-w-auto border-none p-2 bg-white rounded shadow-sm select-carrera" name="carrera">
-            @foreach ($carreras as $carrera)
-                <option @selected($carrera->id==$default->id) value="{{$carrera->id}}">
-                  {{$carrera->nombre}}
+            
+            @foreach ($alumno->carreras() as $inscripcion)
+                <option @selected($inscripcion->carrera->id==$default->id) value="{{$inscripcion->carrera->id}}">
+                  {{$inscripcion->carrera->nombre}}
                 </option>
             @endforeach
           </select>

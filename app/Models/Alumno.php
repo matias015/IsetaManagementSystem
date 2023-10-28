@@ -84,6 +84,10 @@ class Alumno extends Authenticatable implements MustVerifyEmail
         return $this -> hasMany(Cursada::class,'id_alumno');
     }
 
+    public function carreras(){
+        return Egresado::with('carrera')->where('id_alumno',$this->id)->get();
+    }
+
     static function inscribibles2(){
         $asignaturas = Asignatura::with('mesas.anotado')
             -> where('id_carrera', Carrera::getDefault()->id)

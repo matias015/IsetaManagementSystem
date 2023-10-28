@@ -108,6 +108,7 @@
                         <tr>
                             <th>Alumno</th>
                             <th>Nota</th>
+                            <th>Cursada</th>
                             <th class="center">Cosas</th>
                         </tr>
                     </thead>
@@ -116,6 +117,7 @@
                         <tr>
                             <td>{{$examen->alumno->apellidoNombre()}}</td>
                             <td>{{$examen->alumno->nota!=0? $examen->alumno->nota : 'Sin nota'}}</td>
+                            <td>{{$mesa->asignatura->aproboCursada($examen->alumno)->condicionString()}}</td>
                             <td class=" flex just-center">
                                 <a href="{{route('admin.examenes.edit', ['examen' => $examen->id])}}">
                                     <button class="btn_edit">Ver</button>
