@@ -106,8 +106,8 @@
                 <tbody>
                 @foreach ($mesas as $mesa)
                     <tr>
-                        <td>{{$mesa->materia->nombre}}</td>
-                        <td>{{$mesa->fecha}}</td>
+                        <td>{{$mesa->asignatura->nombre}}</td>
+                        <td>{{$formatoFecha->d_m_h_m($mesa->fecha)}}</td>
                         <td>
                             @if ($mesa->prof_presidente == $profesor->id)
                                 Presidente

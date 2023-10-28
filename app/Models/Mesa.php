@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Services\DiasHabiles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Mesa extends Model
 {
@@ -18,8 +20,13 @@ class Mesa extends Model
     //     'fecha' => 'datetime',
     // ];
 
-    public function materia(){
+    public function asignatura(){
         return $this -> hasOne(Asignatura::class,'id','id_asignatura');
+    }
+
+    public function anotado(){
+        return $this -> hasOne(Examen::class,'id_mesa')
+            ->where('id_alumno',Auth::id());
     }
 
     public function examenes(){
@@ -29,6 +36,14 @@ class Mesa extends Model
     public function profesor(){
         return $this -> hasOne(Profesor::class,'id','prof_presidente');
     }
+
+    function habilitada(){
+        $horasHabiles = Configuracion::get('horas_habiles_inscripcion');
+        
+        $horasMesa = DiasHabiles::desdeHoyHasta($this->fecha);
+        
+        return $horasMesa >= $horasHabiles;
+     }
 
     function profesorNombre($tipo){
         $profesor = null;
@@ -48,7 +63,7 @@ class Mesa extends Model
         return $this -> hasOne(Profesor::class,'id','prof_vocal_1');
     }
 
-    
+
 
     public function vocal2(){
         return $this -> hasOne(Profesor::class,'id','prof_vocal_2');

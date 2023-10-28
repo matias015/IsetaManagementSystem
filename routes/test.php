@@ -10,17 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Mockery\CountValidator\Exact;
 
-Route::get('test/{asignatura}', function(Request $request, Asignatura $asignatura){
+Route::get('test', function(Request $request){
 
-    $alumnos = [];
-
-    foreach ($request->toPrint as $alumnoId) {
-        $alumnos[] = Alumno::find($alumnoId);
-    }
-
-
-    $pdf = Pdf::loadView('pdf.test', ['alumnos' => $alumnos,'asignatura' => $asignatura]);
-    return $pdf->stream('invoice.pdf');
+    $a=Alumno::inscribibles2();
+    return view('Alumnos.Datos.inscripciones2',['disponibles'=>Alumno::inscribibles2()]);
     
 })->name('test.print-1');
 

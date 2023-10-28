@@ -111,11 +111,11 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="4">Carrera: {{$mesa->materia->carrera->nombre}}</td>
+                <td colspan="4">Carrera: {{$mesa->asignatura->carrera->nombre}}</td>
             </tr>
             <tr class="acta_info-carrera_bottom">
-                <td>Año: {{$mesa->materia->anio+1}}</td>
-                <td colspan="3">Asignatura: {{$mesa->materia->nombre}}</td>
+                <td>Año: {{$mesa->asignatura->anio}}</td>
+                <td colspan="3">Asignatura: {{$mesa->asignatura->nombre}}</td>
             </tr>
             <tr>
                 <td colspan="4">

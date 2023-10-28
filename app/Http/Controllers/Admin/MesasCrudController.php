@@ -38,6 +38,8 @@ class MesasCrudController extends Controller
             -> join('asignaturas','asignaturas.id','=','mesas.id_asignatura')
             -> join('carreras','carreras.id','=','asignaturas.id_carrera');
 
+        $query = Mesa::with('asignatura.carrera');
+
         if($campo == "proximas"){
             $query = $query->whereRaw('fecha > NOW()');
         }
@@ -51,12 +53,13 @@ class MesasCrudController extends Controller
 
         if($filtro){
             $word = '%'.str_replace(' ','%',$filtro).'%';
-            $query->whereRaw("(asignaturas.nombre LIKE '$word' OR carreras.nombre LIKE '$word')");
+            $query->whereHas('asignatura', function ($subQuery) use($word){
+                $subQuery->whereRaw("(asignaturas.nombre LIKE '$word' OR carreras.nombre LIKE '$word')");
+            });
         }
 
         $mesas = $query -> paginate($porPagina);
-        
-        //dd($mesas);
+
         return view('Admin.Mesas.index',[
             'mesas' => $mesas, 
             'filtros'=>[
@@ -220,7 +223,7 @@ class MesasCrudController extends Controller
     public function edit(Request $request, $mesa)
     {
   
-        $mesa = Mesa::where('id', $mesa)->with('materia.carrera','profesor','vocal1','vocal2','examenes.alumno')->first();
+        $mesa = Mesa::where('id', $mesa)->with('asignatura.carrera','profesor','vocal1','vocal2','examenes.alumno')->first();
         
         $inscribiblesCursada = Alumno::select('alumnos.id','alumnos.nombre', 'alumnos.apellido')
             -> join('cursadas','cursadas.id_alumno','alumnos.id')

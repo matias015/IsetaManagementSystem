@@ -7,6 +7,7 @@ use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\CarreraDefault;
 use App\Models\Configuracion;
+use App\Models\Correlativa;
 use App\Models\Cursada;
 use App\Models\Egresado;
 use App\Models\Examen;
@@ -238,28 +239,7 @@ class AlumnoController extends Controller
      */
 
     function inscripciones(Request $request){
-        $posibles = [];
-        $config = Configuracion::todas();   
-
-        $posibles = Alumno::inscribibles();
-
-        $request->session()->put('data', $posibles);
-       // dd($posibles);
-        
-        
-
-
-        $yaAnotadas = Examen::select('id_mesa')
-            -> where('id_alumno', Auth::id())
-            -> get() 
-            -> pluck('id_mesa')
-            -> toArray();
-
-        return view('Alumnos.Datos.inscripciones',[
-            'materias' => $posibles,
-            'yaAnotadas' => $yaAnotadas,
-        ]);
-
+        return view('Alumnos.Datos.inscripciones',['disponibles'=>Alumno::inscribibles2()]);
     }
 
 
@@ -270,14 +250,36 @@ class AlumnoController extends Controller
      */
 
     function inscribirse(Request $request){
-
         $config = Configuracion::todas();   
 
         $mesa = $request->mesa;
         if(!$mesa) return redirect()->back()->with('error','Selecciona una mesa');
 
+        $mesaDb = Mesa::with('asignatura','anotado')->find($mesa);
+        if($mesaDb->anotado) return \redirect()->back()->with('error','Ya estas anotado en esta asignatura');
 
-        $mesaDb = Mesa::find($mesa);
+        if(!$mesaDb->habilitada()) return redirect()->back()->with('error', 'Ha caducado el tiempo de inscripcion');
+        
+
+        if($mesaDb->asignatura->aproboExamen(Auth::user())){
+            return redirect()->back()->with('error', 'Ya aprobaste esta asignatura');
+        }
+
+        if(!$mesaDb->asignatura->aproboCursada(Auth::user())) {
+            return redirect()->back()->with('error', 'Aun no aprobaste la cursada de esta asignatura');
+        }
+
+        
+        $correlativas = Correlativa::debeExamenesCorrelativos($mesaDb->asignatura);
+
+        if($correlativas){
+            $mensaje = "Debes: ";
+
+            foreach ($correlativas as $correlativa) {
+                $mensaje = "$mensaje > $correlativa->nombre";
+            }            
+            return redirect()->back()->with('error', "Debes: $mensaje");
+        }
 
         if($mesaDb->llamado == 2){
             $yaAnotadoAllamado1 = Examen::join('mesas','mesas.id','examenes.id_mesa')
@@ -289,7 +291,7 @@ class AlumnoController extends Controller
             if($yaAnotadoAllamado1){
                 $diferencia = DiasHabiles::desdeHoyHasta($yaAnotadoAllamado1->fecha, $mesaDb->fecha)*-1;
                 $diferencia = $diferencia/24;
-                // \dd([$diferencia,$config['diferencia_llamados']]);
+
                 if($diferencia>0 && $diferencia<$config['diferencia_llamados']){
                     return redirect()->back()->with('error','Ya has rendido el llamado 1');
                 }
@@ -297,44 +299,7 @@ class AlumnoController extends Controller
             
 
         }
-        $posibles = [];
-
-        if($request->session()->has('data')) $posibles = $request->session()->get('data');
-        else $posibles = Alumno::inscribibles();
-
         
-
-
-
-        $noPuede = true;
-        $finBusqueda = false;
-        
-        // la materia que selecciono esta en las que puede inscribirse
-        // y no caduco la fecha de inscripcion
-        foreach($posibles as $materia){
-
-            if($finBusqueda) break;
-
-            foreach($materia->mesas as $mesaMateria){
-                
-                if($mesaMateria->id == $mesa){               
-                    if(DiasHabiles::desdeHoyHasta($mesaMateria->fecha) <= $config['horas_habiles_inscripcion']){
-                        return redirect()->route('alumno.inscripciones')->with('error', 'Ha caducado el tiempo de inscripcion');
-                    }
-                    $noPuede = false;
-                    $finBusqueda=true;
-                }
-            }
-        }
-
-        if($noPuede) return redirect()->route('alumno.inscripciones')->with('error', 'No puedes anotarte a esta mesa');
-
-        $yaAnotado = Examen::select('id')
-            -> where('id_mesa', $mesa)
-            -> where('id_alumno', Auth::id())
-            -> first();
-
-        if($yaAnotado) return redirect()->route('alumno.inscripciones')->with('error', 'Ya estas en esta esta mesa');
 
         
         $mesa = Mesa::find($mesa);  

@@ -224,3 +224,15 @@ CORRECCIONES 2/9
 
 23/10
 - Se puede exportar a excel las cursadas de cada asignatura
+
+27/10
+- usando admin/normalizan se pasaran todos los nombres, mails, apellidos, carreras, etc a minusculas.
+- Al crear un nuevo dato se normalizan automaticamente
+- Ahora en alumnos/inscripcion se muestran mesas con correlativas y da mas informacion sobre porque no
+    podes anotarte
+- Cambio la forma de obtener las mesas en alumnos/inscrion, asi que hay que testear mas
+- Antes, alumnos/inscrion, no mostraba las mesas de las materias cuyas cursadas hayan sido aprobadas
+    por promocion, equivalencia o lire, a no ser que explicitamente se haya marcado "aprobada=1"
+- Cambios en muchas funciones de extraccion de datos, testear en general.
+- Ya no existe la opcion de marcar una asignatura como promocionable
+- Temporalmente, ya no hay limitador de intentos de inicio de sesion.

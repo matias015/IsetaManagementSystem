@@ -123,7 +123,7 @@
 
 
                             @foreach ($materias as $materia)
-                            @if ($materia->anio == $anio+1)
+                            @if ($materia->anio-1 == $anio+1)
                                 @php
                                     $anio++;
                                 @endphp

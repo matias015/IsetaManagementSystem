@@ -70,25 +70,19 @@
             <tbody>
                 @foreach ($mesas as $mesa)
                     <tr>
-                    <td>{{$mesa->nombre}}</td>
+                    <td>{{$mesa->asignatura->nombre}}</td>
                     <td class="center">
                         @if ($mesa->llamado == 1 || $mesa->llamado == 0)
-                            1
+                            Primero
                         @else
-                            2
+                            Segundo
                         @endif
                     </td>
-                    <td class="center">{{$mesa->anio + 1}}</td>
-                    <td>{{$mesa->fecha}}</td>
-                    <td>{{$mesa->carrera}}</td>
+                    <td class="center">{{$mesa->asignatura->anio}}</td>
+                    <td>{{$formatoFecha->d_m_a_h_m($mesa->fecha)}}</td>
+                    <td>{{$mesa->asignatura->carrera->nombre}}</td>
                     <td><a href="{{route('admin.mesas.edit', ['mesa' => $mesa->id])}}"><button class="btn_edit">Editar</button></a></td>
-                    <td>
-                        <form method="POST" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">
-                            @csrf
-                            @method('delete')
-                            <input class="btn_borrar" type="submit" value="Eliminar">
-                        </form>
-                    </td>
+                    
                 </tr>
                 @endforeach
             </tbody>

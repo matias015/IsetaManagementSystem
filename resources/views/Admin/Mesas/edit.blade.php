@@ -4,7 +4,7 @@
     <div class="edit-form-container">
         <div class="perfil_one br">
             <div class="perfil__header">
-                <h2>{{$mesa->materia->nombre}}</h2>
+                <h2>{{$mesa->asignatura->nombre}}</h2>
             </div>
             <div class="perfil__info">
                 <form method="post" action="{{route('admin.mesas.update', ['mesa'=>$mesa->id])}}">
@@ -131,6 +131,14 @@
                         @endforeach
                     </tbody>
                 </table>
+                
             </div>
+
+                <form method="POST" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">
+                    @csrf
+                    @method('delete')
+                    <input class="border-none rounded px-2 bg-red-500 py-1" type="submit" value="Eliminar mesa">
+                </form>
+
     </div>
 @endsection

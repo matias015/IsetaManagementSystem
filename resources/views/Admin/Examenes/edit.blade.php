@@ -31,7 +31,7 @@
                 </div>
                 <div class="perfil_dataname border-none">
                     <label>Año:</label>
-                    <span class="campo_info2">{{$examen->asignatura->anio +1}}</span>
+                    <span class="campo_info2">{{$examen->asignatura->anio}}</span>
                 </div>
             </div>
             <div class="perfil_tit_dataname rounded">

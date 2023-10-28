@@ -39,10 +39,6 @@
                     <input class="campo_info rounded" value="{{$asignatura->observaciones}}" name="observaciones">
                 </div>
                 <div class="perfil_dataname">
-                    <label>Promocionable:</label>
-                    <input class="campo_info3" @checked($asignatura->promocionable) type="checkbox" name="promocionable">
-                </div>
-                <div class="perfil_dataname">
                     <label>Correlativas:</label>
                     <ul class="campo_info rounded">
                         @foreach ($asignatura->correlativas as $correlativa)

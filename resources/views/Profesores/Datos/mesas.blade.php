@@ -48,7 +48,7 @@
     
     @foreach ($mesas as $mesa)
         <tr>
-            <td>{{$mesa->materia->nombre}}</td>
+            <td>{{$mesa->asignatura->nombre}}</td>
             <td>{{$mesa->fecha}}</td>
             <td>
                 @if ($mesa->prof_presidente == $profesor->id)

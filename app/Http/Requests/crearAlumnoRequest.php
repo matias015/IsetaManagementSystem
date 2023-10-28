@@ -22,7 +22,7 @@ class crearAlumnoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'dni' => ['required','numeric'],
+            'dni' => ['required','numeric','max:999999999'],
             'nombre' => ['required','regex:/[a-zA-Z0-9\s]+/'],
             'apellido' => ['required','regex:/[a-zA-Z0-9\s]+/'],
             'fecha_nacimiento' => ['required','date'],

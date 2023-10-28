@@ -58,7 +58,7 @@
                     <tbody>
                         @foreach ($carrera->asignaturas as $asignatura)
                             <tr>
-                                <td class="center"> {{$asignatura->anio + 1}} </td>
+                                <td class="center"> {{$asignatura->anio}} </td>
 
                                 <td> {{$asignatura->nombre}} </td>
 

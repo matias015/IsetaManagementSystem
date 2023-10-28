@@ -37,7 +37,7 @@
             </div>
             <div class="perfil_dataname">
                 <label >Numero:</label>
-                <input class="px-2 rounded campo_info" value="{{old('casa_numero')? old('casa_numero'):$alumno->numero}}"  name="casa_numero">
+                <input class="px-2 rounded campo_info" value="{{old('casa_numero')? old('casa_numero'):$alumno->casa_numero}}"  name="casa_numero">
             </div>
             <div class="perfil_dataname">
                 <label >Departamento:</label>
@@ -68,7 +68,9 @@
             </div>
             <div class="perfil_dataname">
                 <label class="w-100p">Observaciones:</label>
-                <textarea value="{{old('observaciones')? old('observaciones'):$alumno->observaciones}}" name="observaciones" rows="10"></textarea>
+                <textarea name="observaciones" rows="10">
+                    {{old('observaciones')? old('observaciones'):$alumno->observaciones}}
+                </textarea>
             </div>
 
             <div class="perfil_dataname">

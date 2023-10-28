@@ -64,7 +64,7 @@ class AlumnoCrudController extends Controller
             $query = $query -> orderBy('alumnos.nombre') -> orderBy('alumnos.apellido');
         }
 
-            $alumnos = $query->paginate($porPagina); 
+        $alumnos = $query->paginate($porPagina); 
 
         return view('Admin.Alumnos.index',[
             'alumnos'=>$alumnos, 

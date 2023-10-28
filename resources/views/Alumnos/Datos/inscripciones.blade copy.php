@@ -20,29 +20,34 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($disponibles as $disponible)
-          {{-- @dd($disponible['asignatura']) --}}
-          {{-- @dd($disponibles) --}}
+          @foreach($materias as $materia)
+            
             @php
-              $asignatura = $disponible['asignatura'];
-              $correlativas = $disponible['correlativas'];
-              $yaAnotado = $disponible['yaAnotado'];
+              $yaAnotado=false; 
+              $sinMesas=false;
+              
+              if(count($materia->mesas) < 1)$sinMesas=true;
+              else {
+                  foreach($materia->mesas as $mesa){
+                      if(in_array($mesa->id, $yaAnotadas)) $yaAnotado=$mesa;
+                  }
+              }
+
               $path = $yaAnotado? "alumno.bajarse":"alumno.inscribirse";
               $btnTexto = $yaAnotado? "desinscribirme":"inscribirme"; 
-              $btnTexto = $correlativas? "No disponible":$btnTexto;
-              if($asignatura->mesas[0]) $key = 0;
-              else $key=1;
-            @endphp 
-            
+            @endphp
+
+            @if (count($materia->mesas)<1)
+              @continue
+            @endif              
 
             <tr>
-              <td class="text-center">{{$asignatura->anio}}</td>
-              
-              <td>{{$asignatura->nombre}}</td>
+              <td class="text-center">{{$materia->anio + 1}}</td>
+              <td>{{$materia->nombre}}</td>
               <td>
-                <p>{{$asignatura->mesas[$key]->profesorNombre('presidente')}}</p>
-                <p>{{$asignatura->mesas[$key]->profesorNombre('vocal1')}}</p>
-                <p>{{$asignatura->mesas[$key]->profesorNombre('vocal2')}}</p>
+                <p>{{$materia->mesas[0]->profesorNombre('presidente')}}</p>
+                <p>{{$materia->mesas[0]->profesorNombre('vocal1')}}</p>
+                <p>{{$materia->mesas[0]->profesorNombre('vocal2')}}</p>
               </td>
               @include('Componentes.inscripcion-form')
             @endforeach
