@@ -40,9 +40,9 @@
               
               <td>{{$asignatura->nombre}}</td>
               <td>
-                <p>{{$asignatura->mesas[$key]->profesorNombre('presidente')}}</p>
-                <p>{{$asignatura->mesas[$key]->profesorNombre('vocal1')}}</p>
-                <p>{{$asignatura->mesas[$key]->profesorNombre('vocal2')}}</p>
+                <p>-> {{$asignatura->mesas[$key]->profesorNombre('presidente')}}</p>
+                <p>-> {{$asignatura->mesas[$key]->profesorNombre('vocal1')}}</p>
+                <p>-> {{$asignatura->mesas[$key]->profesorNombre('vocal2')}}</p>
               </td>
               @include('Componentes.inscripcion-form')
             @endforeach

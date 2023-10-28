@@ -46,7 +46,8 @@
       <thead>
         <tr>
           <th>Materia</th>
-          <th>Nota mas alta</th>
+          <th>Profesores</th>
+          <th>Nota</th>
           <th>Fecha - Hora</th>
         </tr>
       </thead>
@@ -69,7 +70,7 @@
         
         @if ($anio_actual != $examen->anio)
                   <tr>
-                      <td class="center font-600 tit-year" colspan="3">
+                      <td class="center font-600 tit-year" colspan="4">
                         Año: {{$examen->anio+1}}
                       </td>
                   </tr>
@@ -92,7 +93,11 @@
           @php
             $actual = $examen->id_asignatura;
         @endphp  
-          
+          <td>
+            <p>-> {{$examen->mesa->profesorNombre('presidente')}}</p>
+            <p>-> {{$examen->mesa->profesorNombre('vocal1','Desconocido')}}</p>
+            <p>-> {{$examen->mesa->profesorNombre('vocal2','Desconocido')}}</p>
+          </td>
             <td>
               @if($examen->aprobado == 3)
                 Ausente
@@ -104,6 +109,7 @@
               @endif
         
             </td>
+            
             <td>
               {{$formatoFecha->d_m_h_m($examen->fecha())}}
             </td>

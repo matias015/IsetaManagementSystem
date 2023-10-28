@@ -45,7 +45,7 @@ class Mesa extends Model
         return $horasMesa >= $horasHabiles;
      }
 
-    function profesorNombre($tipo){
+    function profesorNombre($tipo, $mensaje="A confirmar"){
         $profesor = null;
 
         if($tipo == 'vocal1') $profesor = $this->vocal1;
@@ -55,7 +55,7 @@ class Mesa extends Model
         if($profesor){
             return $profesor->apellidoNombre();
         }else{
-            return "A confimar";
+            return $mensaje;
         }
     }
     
