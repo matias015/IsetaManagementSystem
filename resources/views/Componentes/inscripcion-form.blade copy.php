@@ -7,7 +7,7 @@
 
             <td class="llamado_{{$yaAnotado->llamado}}">
                 <input checked name="mesa" value="{{$yaAnotado->id}}" type="radio">
-                <span>{{$fomatoFecha->d_m_h_m($yaAnotado->fecha)}}</span>
+                <span>{{$fomatoFecha->dmhm($yaAnotado->fecha)}}</span>
             </td>
     
             <td class="llamado_{{$yaAnotado->llamado}}"> - </td>
@@ -18,7 +18,7 @@
             
             <td class="llamado_{{$yaAnotado->llamado}}">
                 <input checked name="mesa" value="{{$yaAnotado->id}}" type="radio">
-                <span>{{$formatoFecha->d_m_h_m($yaAnotado->fecha)}}</span>
+                <span>{{$formatoFecha->dmhm($yaAnotado->fecha)}}</span>
             </td>
 
         @endif
@@ -38,7 +38,7 @@
         @if ($mesas[0])
             <td class="llamado_1">
                 <input name="mesa" value="{{$mesas[0]->id}}" type="radio">
-                {{$formatoFecha->d_m_h_m($mesas[0]->fecha)}}
+                {{$formatoFecha->dmhm($mesas[0]->fecha)}}
             </td>
         @else
             <td>No hay llamado 1</td>
@@ -48,7 +48,7 @@
         @if ($mesas[1])
             <td class="llamado_2">
                 <input name="mesa" value="{{$mesas[1]->id}}" type="radio">
-                {{$formatoFecha->d_m_h_m($mesas[1]->fecha)}}
+                {{$formatoFecha->dmhm($mesas[1]->fecha)}}
             </td>
         @else
             <td>No hay llamado 2</td>

@@ -2,8 +2,9 @@
 
 
 #fondo-estudiantes {
-    background: linear-gradient(150deg, #5872d16d, rgba(175, 222, 252, 0.44));
-    background-size: cover;
+    background: #5872d16d;
+    /*--background: linear-gradient(150deg, #5872d16d, rgba(175, 222, 252, 0.44));
+    background-size: cover;--*/
 }
 
 main {
@@ -574,4 +575,69 @@ button.bajarse:hover {
 .box-sh {
     box-shadow: 0 .4rem .8rem #0005;
     background: var(--gris-body-tabla);
+}
+
+.table__remat {
+    width: 100%;
+    background-color: var(--gris-body-tabla);
+    overflow: auto;
+}
+
+.perfil_dataname {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid;
+    font-size: 16px;
+    font-weight: 600;
+   
+}
+
+.salto {
+    white-space: nowrap;
+}
+
+.perfil_dataname label {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.campo_info { 
+    border: none;
+    outline: none;
+    width: 120px;
+    margin: 5px 0 5px 10px;
+    padding: 10px 0 10px 5px;
+    background-color: white;
+}
+
+tbody tr:hover .campo_info {
+    color: black;
+}
+
+
+.remat div {
+    margin: 0 10px 0 0;
+}
+
+.remat div label {
+    margin: 0 10px 0 0;
+}
+
+.remat div span {
+    margin: 0 10px 0 0;
+}
+
+@media screen and (max-width: 640px) {
+    .rematriculacion td div div {
+        flex-direction: column;
+        justify-content: left;
+        text-align: left;
+    }
+
+    .rematriculacion th {
+        text-align: left;
+    }
 }

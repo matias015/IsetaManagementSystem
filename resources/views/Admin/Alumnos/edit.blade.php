@@ -205,7 +205,7 @@
                 <thead>
                     <tr>
                         <th>Materia</th>
-                        {{-- <th>Carrera</th> --}}
+                        <th>Fecha</th>
                         <th>Nota</th>
                         <th>Acciones</th>
                     </tr>
@@ -242,6 +242,8 @@
 
                         <tr>
                             <td>{{$examen->asignatura}}</td>
+    
+                            <td>{{$formatoFecha->dma($examen->fecha())}}</td>
                             <td>
                         
                             @if ($examen->aprobado==3)

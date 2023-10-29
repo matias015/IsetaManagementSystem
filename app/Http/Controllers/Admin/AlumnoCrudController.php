@@ -34,7 +34,7 @@ class AlumnoCrudController extends Controller
         $orden = $request->orden ? $request->orden: 'fecha';
         $porPagina = $config['filas_por_tabla'];
         
-        $query = Alumno::select('alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni');
+        $query = Alumno::select('alumnos.email','alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni');
 
 
         if($filtro){

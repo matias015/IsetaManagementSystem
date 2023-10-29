@@ -19,7 +19,7 @@
           </ul>
         </div>
       </section>
-      <section class="footer-texto grid-1 md-grid-2 lg-grid-4  gap-2">
+      <section class="footer-texto grid-1 md-grid-2 sm-grid-2 lg-grid-4">
         <article class="footer-info">
           <h3>Explorar</h3>
           <ul class="box">

@@ -18,8 +18,13 @@
 
 <body class="flex p-2" id="logeo">
     @include('Componentes.mensaje')
-
+    
     <section class="login">
+        <div class="who">
+            <a class="tag-alumno" href="{{route('alumno.login')}}">Alumno</a>
+
+            <a class="tag-profesor act2" href="{{route('profesor.login')}}">Profesor</a>
+        </div>
         <form class="w-100p h-50p " method="post" action="{{route('profesor.login.post')}}">
             @csrf
 

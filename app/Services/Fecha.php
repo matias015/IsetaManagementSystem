@@ -5,7 +5,7 @@ namespace App\Services;
 use DateTime;
 
 class Fecha{
-     function d_m_a_h_m($fecha){
+     function dmahm($fecha){
         if(!$fecha) return "Sin datos de fecha";
 
         // Convertir el string a un objeto DateTime
@@ -27,7 +27,7 @@ class Fecha{
         return $fecha;
     }
     
-     function d_m_h_m($fecha){
+     function dmhm($fecha){
         if(!$fecha) return "Sin datos de fecha";
 
         // Convertir el string a un objeto DateTime
@@ -47,5 +47,36 @@ class Fecha{
         $fecha = "$dia/$mes - $horaMinutos";
         return $fecha;
     }
+
+    function dma($fecha){
+      if(!$fecha) return "Sin datos de fecha";
+
+      // Convertir el string a un objeto DateTime
+      $dateObj = new DateTime($fecha);
+
+      // Obtener el día, mes, hora y minutos en formato deseado
+      $dia = $dateObj->format('j'); // Día sin ceros iniciales
+      $mes = $dateObj->format('n'); // Mes sin ceros iniciales
+      $anio = $dateObj->format('Y'); // 
+
+      // Formatear la fecha y hora en el formato deseado
+      $fecha = "$dia/$mes/$anio";
+      return $fecha;
+  }
+
+  function dm($fecha){
+    if(!$fecha) return "Sin datos de fecha";
+
+    // Convertir el string a un objeto DateTime
+    $dateObj = new DateTime($fecha);
+
+    // Obtener el día, mes, hora y minutos en formato deseado
+    $dia = $dateObj->format('j'); // Día sin ceros iniciales
+    $mes = $dateObj->format('n'); // Mes sin ceros iniciales
+
+    // Formatear la fecha y hora en el formato deseado
+    $fecha = "$dia/$mes";
+    return $fecha;
+}
 }
 

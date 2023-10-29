@@ -18,9 +18,17 @@
             <div class="perfil_tit_dataname rounded">
                 <h3>Alumno/a</h3>
             </div>
-            <div class="perfil_dataname border-none">
+            <div class="perfil_dataname">
                 <label>Nombre:</label>
-                <span class="campo_info2">{{$examen->alumno->nombre}}</span>
+                <span class="campo_info2">
+                    <a class="capitalize" href="{{route('admin.alumnos.edit',['alumno'=>$examen->alumno->id])}}">
+                        {{$examen->alumno->apellidoNombre()}} <span>&#8599;</span>
+                    </a>
+                </span>
+            </div>
+            <div class="perfil_dataname border-none">
+                <label>DNI:</label>
+                <span class="campo_info2">{{$examen->alumno->dniPuntos()}}</span>
             </div>
             <div class="perfil_tit_dataname rounded">
                 <h3>Asignatura</h3>
@@ -28,15 +36,23 @@
             <div>
                 <div class="perfil_dataname">
                     <label>Materia:</label>
-                    <span class="campo_info2">{{$examen->asignatura->nombre}}</span>
+                    <span class="campo_info2">
+                        <a class="capitalize" href="{{route('admin.asignaturas.edit',['asignatura'=>$examen->asignatura->id])}}">
+                            {{$examen->asignatura->nombre}} <span>&#8599;</span>
+                        </a>
+                    </span>
                 </div>
                 <div class="perfil_dataname">
                     <label>Carrera:</label>
-                    <span class="campo_info2">{{$examen->asignatura->carrera->nombre}}</span>
+                    <span class="campo_info2">
+                        <a href="{{route('admin.carreras.edit',['carrera'=>$examen->asignatura->carrera->id])}}">
+                            {{$examen->asignatura->carrera->nombre}} <span>&#8599;</span>
+                        </a>
+                    </span>
                 </div>
                 <div class="perfil_dataname border-none">
                     <label>Año:</label>
-                    <span class="campo_info2">{{$examen->asignatura->anio}}</span>
+                    <span class="campo_info2">{{$examen->asignatura->anioStr()}}</span>
                 </div>
             </div>
             <div class="perfil_tit_dataname rounded">
@@ -58,7 +74,7 @@
                 </div>
                 <div class="perfil_dataname">
                     <label>Vocal 1:</label> 
-                    <span class="campo_info2">{{$examen->mesa->vocal1? $examen->mesa->vocal1->nombre . ' ' . $examen->mesa->vocal1->apellido : 'No hay'}}</span>
+                    <span class="campo_info2 capitalize">{{$examen->mesa->vocal1? $examen->mesa->vocal1->nombre . ' ' . $examen->mesa->vocal1->apellido : 'No hay'}}</span>
                 </div>
                 <div class="perfil_dataname">
                     <label>Vocal 3:</label>

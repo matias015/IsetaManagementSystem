@@ -22,6 +22,9 @@
     --gris-body-tabla: #fffb;
     --gris-titulo: #d5d1defe;
     --gris-hover: #fff6;
+    --dark: #181818;
+    --dark2: #212121;
+    --dark3: #323232;
 }
 
 * {
@@ -36,7 +39,6 @@
 
 
 body {
-    
     min-height: 100vh;
     overflow-X: hidden;
     display: flex;
@@ -58,17 +60,61 @@ body {
     position: relative;
     top: 50%;
     left: 50%;
-    
     transform: translate(-50%, -50%);
     max-width: 400px;
     width: 100%;
     background: #fff;
     border-radius: 10px;
-    padding: 25px 20px;
+    /*---padding: 20px;----*/
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
 }
 
+.who {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
 
+.tag-alumno, .tag-profesor {
+    width: 50%;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--gris-hover);
+    background-color: #f2f2f2;
+    font-weight: 600;
+}
+
+.tag-alumno {
+    border-top-left-radius: 10px;
+}
+
+.tag-profesor {
+    border-top-right-radius: 10px;
+}
+
+.tag-alumno:hover{
+    background: linear-gradient(to left, skyblue 0%, #0F0844 100%);
+    color: white;
+}
+
+.tag-profesor:hover {
+    background: linear-gradient(to right, skyblue 0%, #0F0844 100%);
+    color: white;
+}
+
+.act {
+    /*--background-color: #0d2e6f;--*/
+    background: linear-gradient(to right, skyblue 0%, #0F0844 100%);
+    color: white;
+}
+
+.act2 {
+    background: linear-gradient(to left, skyblue 0%, #0F0844 100%);
+    color: white;
+}
 
 form .logo {
     text-align: center;
@@ -77,7 +123,8 @@ form .logo {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--azul-osc-iseta)
+    color: var(--azul-osc-iseta);
+    margin-top: 10px;
 }
 
   .container form .title:before{
@@ -142,7 +189,6 @@ form .logo {
 
 .usuario {
     position: relative;
-    
     margin: 30px 0;
 }
 
@@ -291,8 +337,6 @@ input[type=number] { -moz-appearance: textfield; }
     margin-top: 20px
 }
 
-
-
 .etiquetas a {
     padding-top: 10px;
     color: #551A8B
@@ -302,12 +346,9 @@ input[type=number] { -moz-appearance: textfield; }
     color: #0734CF;
 }
 
-
-
 form div {
     margin-bottom: 10px;
 }
-
 
 .contraseña-token{
     margin: 20px 0;

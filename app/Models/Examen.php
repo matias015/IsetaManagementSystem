@@ -26,11 +26,8 @@ class Examen extends Model
     }
 
     function fecha(){
-
-        $fecha = null;
-     
         if( $this-> fecha ){
-           $fecha = $this->fecha;
+           return $this->fecha;
         }
      
         $mesa = Mesa::where('id', $this->id_mesa)
@@ -38,14 +35,7 @@ class Examen extends Model
      
         if( !$mesa ) return "Sin datos de fecha";
         
-        $fecha = $mesa->fecha;
-
-        if($this->fecha && $mesa->fecha){
-            if(substr($this->fecha,-8) == "00:00:00") $fecha = $mesa->fecha;
-            else if(substr($mesa->fecha,-8) == "00:00:00") $fecha = $this->fecha;
-        }
-       
-        return $fecha;
+        return $mesa->fecha;
      }
 
     

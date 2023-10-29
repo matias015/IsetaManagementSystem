@@ -124,7 +124,7 @@
                       $examen = $cursada->asignatura->aproboExamen(auth()->user());
                   @endphp
                   @if ($examen)
-                      <td><div>Nota: {{$examen->nota}}</div><div>{{$formatoFecha->d_m_a_h_m($examen->fecha())}}</div></td>
+                      <td><div>Nota: {{$examen->nota}}</div><div>{{$formatoFecha->dmahm($examen->fecha())}}</div></td>
                   @else
                     <td>Desprobado / Sin rendir</td>
                   @endif
