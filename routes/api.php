@@ -23,13 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/a/{carrera}',function(Request $request, $carrera){
-    $formateadas = [];
-    foreach(Asignatura::where('id_carrera',$carrera)->get() as $asignatura){
-      $asignatura->nombre = TextFormatService::ucfirst($asignatura->nombre); 
-      $formateadas[] =  $asignatura;
-    }
-    return $formateadas;
+Route::get('/a/{carrera}',function(Request $request, Carrera $carrera){
+    return $carrera->asignaturas;
 });
 
 Route::get('cursadas/alumnos/{asignatura}',function(Request $request, $asignatura){

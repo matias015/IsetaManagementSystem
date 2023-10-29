@@ -52,6 +52,8 @@ class Carrera extends Model
             return $carrera;
     }
 
+
+
     static function vigentes(){
         return Carrera::where('vigente',1)->get();
     }

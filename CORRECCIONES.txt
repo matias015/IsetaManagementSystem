@@ -245,3 +245,4 @@ CORRECCIONES 2/9
 - Se muestra condicion de cursada en admin/mesas/editar al ver a los alumnos inscriptos
 - Las actas volantes vacias tiene el tamaño normal
 - Ahora se muestra con que profes rendiste un examen
+- Fix ajax de asignaturas

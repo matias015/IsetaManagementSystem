@@ -8,6 +8,7 @@ use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Configuracion;
+use App\Models\Cursada;
 use App\Models\Examen;
 use App\Models\Habiles;
 use App\Models\Mesa;
@@ -222,13 +223,11 @@ class MesasCrudController extends Controller
      */
     public function edit(Request $request, $mesa)
     {
-  
         $mesa = Mesa::where('id', $mesa)->with('asignatura.carrera','profesor','vocal1','vocal2','examenes.alumno')->first();
         
-        $inscribiblesCursada = Alumno::select('alumnos.id','alumnos.nombre', 'alumnos.apellido')
-            -> join('cursadas','cursadas.id_alumno','alumnos.id')
-            -> join('asignaturas','asignaturas.id','cursadas.id_asignatura')
-            -> whereRaw('(cursadas.aprobada=1 OR cursadas.condicion=1 OR cursadas.condicion=2 OR cursadas.condicion=0)')
+        $inscribiblesCursada = Cursada::with('alumno')
+            -> join('alumnos','cursadas.id_alumno','alumnos.id')
+            -> whereRaw('(cursadas.aprobada=1 OR cursadas.condicion=0 OR cursadas.condicion=2 OR cursadas.condicion=3)')
             -> where('cursadas.id_asignatura',$mesa->id_asignatura)
             -> orderBy('alumnos.apellido')
             -> orderBy('alumnos.nombre')
@@ -236,10 +235,14 @@ class MesasCrudController extends Controller
             
         $inscribibles = [];
 
-        foreach ($inscribiblesCursada as $alumno) {
-            
+        foreach ($inscribiblesCursada as $cursada) {
+            $alumno = $cursada->alumno;
+
             $examen = Examen::where('id_alumno', $alumno->id)
-                ->where('nota','>=',4)
+                ->where(function($query) use($mesa){
+                    $query->where('nota','>=',4)
+                        ->orWhere('id_mesa', $mesa->id);
+                })
                 ->where('id_asignatura', $mesa->id_asignatura)
                 ->first();
             

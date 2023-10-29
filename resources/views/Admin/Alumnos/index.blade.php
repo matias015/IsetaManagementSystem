@@ -64,7 +64,8 @@
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Dni</th>
-                        <th colspan="2">Acciones</th>
+                        <th>Email</th>
+                        <th colspan=""></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,15 +73,18 @@
                 <tr>
                     <td>{{$alumno->nombre}}</td>
                     <td>{{$alumno->apellido}}</td>
-                    <td>{{$alumno->dni}}</td>
-                    <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}"><button class="btn_edit">Editar</button></a></td>
-                    <td>
+                    <td>{{$alumno->dniPuntos()}}</td>
+                    <td>{{$alumno->email}}</td>
+                    <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}">
+                        <button class="btn_edit">Detalles</button>
+                    </a></td>
+                    {{-- <td>
                         <form method="POST" action="{{route('admin.alumnos.destroy', ['alumno' => $alumno->id])}}">
                             @csrf
                             @method('delete')
                             <input class="btn_borrar" type="submit" value="Eliminar">
                         </form>
-                    </td>
+                    </td> --}}
                 </tr>
                 @endforeach
                 </tbody>

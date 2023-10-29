@@ -87,7 +87,10 @@ class Asignatura extends Model
         return $existente;
     }
 
-
+    public function anioStr(){
+        $strings = ['Primer año','Segundo año','Tercer año', 'Cuarto año', 'Quinto año', 'Sexto año'];
+        return $strings[$this->anio-1];
+    }
 
     public function setNombreAttribute($value)
     {

@@ -79,7 +79,7 @@
                         @endif
                     </td>
                     <td class="center">{{$mesa->asignatura->anio}}</td>
-                    <td>{{$formatoFecha->d_m_a_h_m($mesa->fecha)}}</td>
+                    <td>{{$formatoFecha->dmahm($mesa->fecha)}}</td>
                     <td>{{$mesa->asignatura->carrera->nombre}}</td>
                     <td><a href="{{route('admin.mesas.edit', ['mesa' => $mesa->id])}}"><button class="btn_edit">Editar</button></a></td>
                     

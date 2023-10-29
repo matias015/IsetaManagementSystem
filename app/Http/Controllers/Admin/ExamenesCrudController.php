@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Configuracion;
+use App\Models\Correlativa;
 use App\Models\Cursada;
 use App\Models\Examen;
 use App\Models\Mesa;
@@ -100,30 +101,17 @@ class ExamenesCrudController extends Controller
         $data = $request->only('id_alumno','id_mesa');
         $mesa = Mesa::find($data['id_mesa']);
      
-        $asignatura = Asignatura::find($mesa->id_asignatura);
+        $asignatura = $mesa->asignatura;
+        $alumno = Alumno::find($data['id_alumno']);
 
-        $posibles = [];
-
-        $yaAprobado = Examen::where('id_alumno',$data['id_alumno'])
-            -> where('id_asignatura', $asignatura->id)
-            -> whereRaw('(nota >= 4 OR tipo_final = 3)')
-            -> first();
-
-        if($yaAprobado){
+        if($asignatura->aproboExamen($alumno)){
             return redirect() -> back() -> with('error','El alumno ya aprobo esta asignatura.');
         }
 
-        // que haya aprobado la cursada
-        $cursada_aprobada = Cursada::where('id_alumno',$data['id_alumno'])
-            ->where('aprobada', 1)
-            ->where('id_asignatura', $asignatura->id)
-            
-            ->first();
+        if(!$asignatura->aproboCursada($alumno)){
+            return redirect() -> back() -> with('error','El alumno no aprobo la cursada.');
+        };
 
-        if(!$cursada_aprobada){
-            return redirect() -> back() -> with('error','No se aprobo la cursada.');
-        }
-        
         // Que no este ya anotado
         $yaAnotado = Examen::select('id')
             -> where('id_mesa', $mesa->id)
@@ -136,18 +124,19 @@ class ExamenesCrudController extends Controller
 
         // que no deba equivalencias
         foreach($asignatura->correlativas as $correlativa){
-            
-            $aprobada = Examen::where('id_alumno', $data['id_alumno'])
-            -> where('id_asignatura', $correlativa->asignatura->id)
-            -> whereRaw('(nota >= 4 OR tipo_final = 3)')
-            -> first();
-            // \dd($aprobada);
-            if(!$aprobada){
-                return redirect() -> back() -> with('error','Debe la correlativa: '.$correlativa->asignatura->nombre);
+
+            $correlativas = Correlativa::debeExamenesCorrelativos($asignatura,$alumno);
+            // \dd($correlativas);
+            if($correlativas){
+                $mensajes = [];
+                foreach ($correlativas as $correlativa) {
+                    $mensajes[]='Debe correlativa: '.$correlativa->nombre;
+                }
+                return redirect() -> back() -> with('error',$mensajes);
             }
         };
 
-        $posibles = Alumno::inscribibles($data['id_alumno']);
+        // $posibles = Alumno::inscribibles($data['id_alumno']);
 
         $noPuede = true;
         $finBusqueda = false;

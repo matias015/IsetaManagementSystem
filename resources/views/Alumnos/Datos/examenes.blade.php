@@ -111,7 +111,7 @@
             </td>
             
             <td>
-              {{$formatoFecha->d_m_h_m($examen->fecha())}}
+              {{$formatoFecha->dmhm($examen->fecha())}}
             </td>
         </tr>
         

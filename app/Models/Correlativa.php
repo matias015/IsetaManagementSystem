@@ -18,7 +18,8 @@ class Correlativa extends Model
         return $this->BelongsTo(Asignatura::class,'asignatura_correlativa','id');
     }
 
-    static function debeExamenesCorrelativos($asignatura){
+    static function debeExamenesCorrelativos($asignatura, $alumno=null){
+        if(!$alumno) $alumno=Auth::user();
         $asignatura = Asignatura::with('correlativas.asignatura')
         ->where('id', $asignatura->id)
         ->first();    
@@ -28,7 +29,7 @@ class Correlativa extends Model
         foreach($asignatura->correlativas as $correlativa){
            $asigCorr = $correlativa->asignatura;
      
-           if($asigCorr->aproboExamen(Auth::user())) continue;
+           if($asigCorr->aproboExamen($alumno)) continue;
            else $sinAprobar[] = $asigCorr;
         }
      

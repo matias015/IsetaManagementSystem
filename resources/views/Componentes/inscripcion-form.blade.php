@@ -13,7 +13,7 @@
 
             <td class="llamado_{{$yaAnotado->llamado}}">
                 <input checked name="mesa" value="{{$yaAnotado->id}}" type="radio">
-                <span>{{$formatoFecha->d_m_h_m($yaAnotado->fecha)}}</span>
+                <span>{{$formatoFecha->dmhm($yaAnotado->fecha)}}</span>
             </td>
     
             <td class="llamado_{{$yaAnotado->llamado}}"> - </td>
@@ -24,7 +24,7 @@
             
             <td class="llamado_{{$yaAnotado->llamado}}">
                 <input checked name="mesa" value="{{$yaAnotado->id}}" type="radio">
-                <span>{{$formatoFecha->d_m_h_m($yaAnotado->fecha)}}</span>
+                <span>{{$formatoFecha->dmhm($yaAnotado->fecha)}}</span>
             </td>
 
         @endif
@@ -54,7 +54,7 @@
             @elseif ($mesa)
                 <td class="llamado_1">
                     <input name="mesa" value="{{$mesa->id}}" type="radio">
-                    {{$formatoFecha->d_m_h_m($mesa->fecha)}}
+                    {{$formatoFecha->dmhm($mesa->fecha)}}
                 </td>
             @else
                 <td>No hay llamado {{$key +1}}</td>
