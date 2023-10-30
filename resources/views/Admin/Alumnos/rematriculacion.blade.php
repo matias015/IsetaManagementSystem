@@ -34,7 +34,7 @@
                     ])>
                         <div class="flex">
                             <label>Año:</label> 
-                            <span class="font-400">{{$asignatura->anio+1}}</span>
+                            <span class="font-400">{{$asignatura->anio}}</span>
                         </div>
                         <div class="flex">
                             <label>Asignatura:</label>
