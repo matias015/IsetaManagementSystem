@@ -45,7 +45,9 @@
             <div class="table">
                 <div  class="table__header">
                 <a href="{{route('admin.asignaturas.create',['id_carrera'=>$carrera->id])}}"><button class="btn_edit wit">Agregar asignatura</button></a>
-                </div>
+                <a class="underline" href="/admin/cursantes/carrera/{{$carrera->id}}">Exportar cursadas</a>
+    
+            </div>
                 <table class="table__body">
                     <thead>
                         <tr>
@@ -73,7 +75,7 @@
                                     <form action="{{route('admin.mesas.create')}}">
                                         <input name="carrera" type="hidden" value="{{$carrera->id}}">
                                         <input name="asignatura" type="hidden" value="{{$asignatura->id}}">
-                                        <button class="btn_edit" >Crear</button>
+                                        <button class="btn_edit px-1">Crear mesa</button>
                                     </form>
                                 </td>
                             </tr>
@@ -81,8 +83,14 @@
                     </tbody>
                 </table> 
             </div>
+            <td>
+                <form method="POST" action="{{route('admin.carreras.destroy', ['carrera' => $carrera->id])}}">
+                    @csrf
+                    @method('delete')
+                    <input class="pointer p-2 bg-red-600 border-none rounded font-600" type="submit" value="Eliminar carrera">
+                </form>
+            </td>
     </div>
     
-    <a class="blue-700 underline" href="/admin/cursantes/carrera/{{$carrera->id}}">Exportar cursadas</a>
 
 @endsection

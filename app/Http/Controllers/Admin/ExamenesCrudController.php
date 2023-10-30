@@ -98,9 +98,14 @@ class ExamenesCrudController extends Controller
      */
     public function store(Request $request)
     {
+
+        if(!$request->input('id_alumno')){
+            return redirect() -> back() -> with('error','No has seleccionado ningun alumno');
+        }
+
         $data = $request->only('id_alumno','id_mesa');
         $mesa = Mesa::find($data['id_mesa']);
-     
+
         $asignatura = $mesa->asignatura;
         $alumno = Alumno::find($data['id_alumno']);
 

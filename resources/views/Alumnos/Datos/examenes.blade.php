@@ -94,7 +94,7 @@
             $actual = $examen->id_asignatura;
         @endphp  
           <td>
-              @if(isset($examen->mesa)
+              @if(isset($examen->mesa))
             <p>-> {{$examen->mesa->profesorNombre('presidente')}}</p>
             <p>-> {{$examen->mesa->profesorNombre('vocal1','Desconocido')}}</p>
             <p>-> {{$examen->mesa->profesorNombre('vocal2','Desconocido')}}</p>

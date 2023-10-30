@@ -74,7 +74,7 @@
                     <td class="capitalize">{{$alumno->nombre}}</td>
                     <td class="capitalize">{{$alumno->apellido}}</td>
                     <td>{{$alumno->dniPuntos()}}</td>
-                    <td class="lowercase">{{$alumno->email}}</td>
+                    <td>{{$alumno->email?$alumno->email:'Sin mail registrado'}}</td>
                     <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}">
                         <button class="btn_edit">Detalles</button>
                     </a></td>

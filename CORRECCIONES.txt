@@ -246,3 +246,6 @@ CORRECCIONES 2/9
 - Las actas volantes vacias tiene el tamaño normal
 - Ahora se muestra con que profes rendiste un examen
 - Fix ajax de asignaturas
+
+30/10
+- Algunos bugs y seguridad

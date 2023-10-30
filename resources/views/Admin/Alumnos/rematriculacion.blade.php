@@ -9,6 +9,8 @@
     </p> 
     <p>Esta pagina sufrira cambios en el futuro ya que esta en etapa de prueba</p>
 
+    <p>Si solo desea registrar que un alumno esta inscripto en una carrera sin anotarlo en ninguna cursada, deje todos los campos con el valor "No matricular" y haga click en enviar!</p>
+    <p>Al hacer esto el alumno podra visualizar esta carrera en el seleccionador de carreras y podra inscribirse a las cursadas manualmente.</p>
     
     <div class="perfil_one br">
         <div class="perfil__header">

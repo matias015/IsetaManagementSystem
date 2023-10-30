@@ -71,13 +71,7 @@
                 <td class="center">{{$carrera->vigente == 1? "Vigente":$carrera->anio_fin}}</td>
                 <td>{{$carrera->observaciones}}</td>
                 <td><a href="{{route('admin.carreras.edit', ['carrera' => $carrera->id])}}"><button class="btn_edit">Editar</button></a></td>
-                <td>
-                    <form method="POST" action="{{route('admin.carreras.destroy', ['carrera' => $carrera->id])}}">
-                        @csrf
-                        @method('delete')
-                        <input class="btn_borrar" type="submit" value="Eliminar">
-                    </form>
-                </td>
+                
             </tr>
             @endforeach
         </tbody>

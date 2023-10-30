@@ -4,7 +4,7 @@
     <section class="table">
         <div class="table__header">
             <h2>Matricular</h2>
-            <div><button class="btn_edit">Enviar</button></div>
+            <div><button form="formulario" class="btn_edit">Enviar</button></div>
         </div>
         <div class="table__body">
             <table class="rematriculacion">
@@ -16,7 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-            <form  method="POST" action="{{route('alumno.rematriculacion.post', ['carrera'=>$carrera])}}">
+            <form id="formulario" method="POST" action="{{route('alumno.rematriculacion.post', ['carrera'=>$carrera])}}">
                 @csrf
                 
                 @if (count($asignaturas)<=0)

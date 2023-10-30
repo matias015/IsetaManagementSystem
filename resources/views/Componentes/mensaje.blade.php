@@ -27,7 +27,7 @@
         @endforeach
     @else
       <div class="toast px-3 py-2 gap-2 my-1 flex just-between rounded bg-red-400 shadow-md">
-              <p class="">{{ Session::get('mensaje') }}</p>
+              <p class="">{!! Session::get('error') !!}</p>
               <span class="close">&times;</span>
       </div>
     @endif

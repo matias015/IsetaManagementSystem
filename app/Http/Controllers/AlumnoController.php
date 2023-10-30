@@ -17,6 +17,7 @@ use App\Services\TextFormatService;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 use function PHPUnit\Framework\returnValue;
 
@@ -486,6 +487,11 @@ class AlumnoController extends Controller
     }
 
     function bajar_rematriculacion(Request $request, Cursada $cursada){
+        
+        if(!Gate::allows('delete-cursada', $cursada)){
+            return \redirect()->back()->with('error', 'Esta cursada no te pertenece... &#129320;');
+        }
+        
         if($cursada->aprobada != 3) return redirect()->back()->with('error','Ya has terminado de cursar');
         
         $config = Configuracion::todas();

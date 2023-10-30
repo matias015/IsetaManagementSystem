@@ -63,6 +63,7 @@
                     <th>Nombre</td>
                     <th>Apellido</td>
                     <th>DNI</td>
+                        <th>Email</th>
                     <th class="center">Acción</td>
                 </tr>
             </thead>
@@ -72,6 +73,7 @@
                     <td class="capitalize">{{$profesor->nombre}}</td>
                     <td class="capitalize">{{($profesor->apellido)}}</td>
                     <td>{{$profesor->dni}}</td>
+                    <td>{{$profesor->email?$profesor->email:'Sin mail registrado'}}</td>
                     <td class="center"><a class="flex just-center" href="{{route('admin.profesores.edit', ['profesor' => $profesor->id])}}"><button class="btn_edit">Detalles</button></a></td>
                     {{--
                     <td>

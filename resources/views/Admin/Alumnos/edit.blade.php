@@ -177,13 +177,7 @@
                         </a>
                     </td>
                     
-                    <td>
-                    <form method="POST" action="{{route('admin.cursadas.destroy', ['cursada' => $cursada->id])}}">
-                            @method('delete')
-                            @csrf
-                            <button class="btn_borrar">Eliminar</button>
-                        </form>
-                    </td>
+
                 
                 </tr>
                     
