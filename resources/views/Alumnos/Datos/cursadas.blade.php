@@ -52,7 +52,9 @@
                 <th class="text-center">Condicion</th>
                 <th class="text-center">Año cursada</th>
                 <th>Examen final</th>
-                <th>Acción</th>
+                @if ($puedeBajarse)
+                  <th>Acción</th>
+                @endif
               </tr>
             </thead>
             <tbody>
@@ -130,15 +132,18 @@
                   @endif
                 </p>
 
-              <td>
-              @if ($cursada->aprobada == 3)
-              <form method="POST" action="{{route('alumno.rematriculacion.delete', ['cursada'=>$cursada->id])}}">
-                @csrf
-                @method('delete')
-                <button class="rounded px-2 py-1 bg-red-400 bajarse2">Bajarse</button>
-              </form>    
-              @endif
-            </td>
+                @if ($puedeBajarse)
+                  <td>
+                    @if ($cursada->aprobada == 3)
+                    <form method="POST" action="{{route('alumno.rematriculacion.delete', ['cursada'=>$cursada->id])}}">
+                      @csrf
+                      @method('delete')
+                      <button class="rounded px-2 py-1 bg-red-400 bajarse2">Bajarse</button>
+                    </form>    
+                    @endif
+                  </td>
+                @endif
+             
               </tr>
             @endforeach
               

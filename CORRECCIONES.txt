@@ -249,3 +249,4 @@ CORRECCIONES 2/9
 
 30/10
 - Algunos bugs y seguridad
+- Ahora se oculta el boton para revertir la rematriculacion si se ha acabado el tiempo para hacerlo

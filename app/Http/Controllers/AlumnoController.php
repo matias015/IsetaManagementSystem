@@ -97,7 +97,6 @@ class AlumnoController extends Controller
         $filtro = $request->filtro ? $request->filtro: '';
         $campo = $request->campo ? $request->campo: '';
         $orden = $request->orden ? $request->orden: 'fecha';
-
         
         // cursadas del alumno de la carrera seleccionada
         $query = Cursada::with('asignatura')->select('cursadas.id_asignatura','cursadas.anio_cursada','cursadas.id','cursadas.aprobada','cursadas.condicion','asignaturas.nombre','asignaturas.anio')
@@ -151,6 +150,7 @@ class AlumnoController extends Controller
         return view('Alumnos.Datos.cursadas', [
             'cursadas' => $cursadas, 
             'examenesAprobados' => $examenesAprobados,
+            'puedeBajarse' => Configuracion::puedeDesinscribirCursada(),
             'filtros'=>[
                 'campo' => $campo,
                 'orden' => $orden,
@@ -302,7 +302,9 @@ class AlumnoController extends Controller
 
         $config = Configuracion::todas();   
 
-        if(!$request->has('mesa')) return redirect()->route('alumno.inscripciones');
+        if(!$request->has('mesa')){ 
+            return redirect()->route('alumno.inscripciones')->with('error','Selecciona una mesa');
+        }
         
         $mesa = Mesa::select('fecha','id')
             -> where('id', $request->mesa)
