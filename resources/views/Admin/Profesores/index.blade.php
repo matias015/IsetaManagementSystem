@@ -63,16 +63,16 @@
                     <th>Nombre</td>
                     <th>Apellido</td>
                     <th>DNI</td>
-                    <th class="center">Acciones</td>
+                    <th class="center">Acción</td>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($profesores as $profesor)
                 <tr>
-                    <td>{{$profesor->nombre}}</td>
-                    <td>{{($profesor->apellido)}}</td>
+                    <td class="capitalize">{{$profesor->nombre}}</td>
+                    <td class="capitalize">{{($profesor->apellido)}}</td>
                     <td>{{$profesor->dni}}</td>
-                    <td class="center"><a class="flex just-center" href="{{route('admin.profesores.edit', ['profesor' => $profesor->id])}}"><button class="btn_edit">Ver</button></a></td>
+                    <td class="center"><a class="flex just-center" href="{{route('admin.profesores.edit', ['profesor' => $profesor->id])}}"><button class="btn_edit">Detalles</button></a></td>
                     {{--
                     <td>
                          <form method="POST" action="{{route('admin.profesores.destroy', ['profesor' => $profesor->id])}}">
