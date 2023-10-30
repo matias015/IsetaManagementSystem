@@ -15,6 +15,10 @@
 <body class="p-2" id="logeo"> 
     @include('Componentes.mensaje')
     <section class="login">
+        <div class="who">
+            <a class="tag-alumno act" href="{{route('alumno.registro')}}">Alumno</a>
+            <a class="tag-profesor" href="{{route('profesor.login')}}">Profesor</a>
+        </div>
         <form method="post">
             @csrf   
             <div class="logo">ISETA</div>
