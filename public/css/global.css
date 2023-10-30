@@ -208,6 +208,12 @@ table tbody tr.active-row {
 .underline{text-decoration: underline;}
 .italic{font-style: italic;}
 
+/* TIPO DE LETRA */
+
+.capitalize{text-transform: capitalize;}
+.uppercase{text-transform: uppercase;}
+.lowercase{text-transform: lowercase;}
+
 /* TAMAÑO */
 
 .vw-100{width: 100vw;}
