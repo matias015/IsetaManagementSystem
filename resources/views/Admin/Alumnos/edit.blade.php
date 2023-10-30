@@ -237,7 +237,11 @@
                         <tr>
                             <td>{{$examen->asignatura}}</td>
     
-                            <td>{{$formatoFecha->dma($examen->fecha())}}</td>
+                            <td>
+                                
+                                {{$formatoFecha->dma($examen->fecha())}}
+                            </td>
+                            
                             <td>
                         
                             @if ($examen->aprobado==3)

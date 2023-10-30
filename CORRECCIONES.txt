@@ -3,7 +3,8 @@ Anotar cosas que faltan corregir
 
 
 CUESTIONES:
-- 
+- alumno -> id:815 500 error
+- $examen->fecha() con formatoFecha(), error, formatoFecha('no hay datos de fecha') 
 - El acta volante de alumnos que rinden libre, no puede seleccionar alumnos automaticamente, 
     ya que, muchas cursadas anteriores, figuran como libres, cuando no lo son
 - No estoy seguro si la pc sea tan rapida para manejar muchas solicitudes si es que entra mucha gente
