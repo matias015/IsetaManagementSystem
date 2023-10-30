@@ -231,6 +231,9 @@ class AlumnoController extends Controller
         if(!$mesa) return redirect()->back()->with('error','Selecciona una mesa');
 
         $mesaDb = Mesa::with('asignatura','anotado')->find($mesa);
+        
+        if(!$mesaDb) return redirect()->route('alumno.inscripciones')->with('error','No se encontro la mesa');
+
         if($mesaDb->anotado) return \redirect()->back()->with('error','Ya estas anotado en esta asignatura');
 
         if(!$mesaDb->habilitada()) return redirect()->back()->with('error', 'Ha caducado el tiempo de inscripcion');
@@ -310,6 +313,8 @@ class AlumnoController extends Controller
             -> where('id', $request->mesa)
             -> first();
         
+        if(!$mesa) return redirect()->route('alumno.inscripciones')->with('error','No se encontro la mesa');
+
         $examen = Examen::select('id')
             -> where('id_mesa', $mesa->id)
             -> where('id_alumno', Auth::id())
@@ -490,6 +495,9 @@ class AlumnoController extends Controller
 
     function bajar_rematriculacion(Request $request, Cursada $cursada){
         
+        if(!$cursada) return redirect()->route('alumno.inscripciones')->with('error','No se encontro la mesa');
+
+
         if(!Gate::allows('delete-cursada', $cursada)){
             return \redirect()->back()->with('error', 'Esta cursada no te pertenece... &#129320;');
         }
