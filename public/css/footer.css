@@ -132,3 +132,37 @@ footer {
 .footer-derechos a:hover {
     text-decoration: underline;
 }
+
+/*------ RESPONSIVE -----*/
+
+@media screen and (max-width: 640px) {
+
+    .footer-texto {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .footer-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-info h3 {
+        font-size: 18px;
+    }
+
+    .box {
+        font-size: 12px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .footer-info h3 {
+        font-size: 18px;
+    }
+}
