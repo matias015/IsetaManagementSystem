@@ -31,7 +31,7 @@
                         'gray-600' => $asignatura->equivalencias_sin_aprobar
                         ])>
                         
-                        <td> {{$asignatura->anio+1}}</td>
+                        <td> {{$asignatura->anio}}</td>
                         <td>{{$asignatura->nombre}}
                         </td>
                         <td class="flex just-end"> 
