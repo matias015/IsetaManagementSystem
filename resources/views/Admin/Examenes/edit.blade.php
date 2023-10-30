@@ -18,15 +18,15 @@
             <div class="perfil_tit_dataname rounded">
                 <h3>Alumno/a</h3>
             </div>
-            <div class="perfil_dataname border-none">
+            <div class="perfil_dataname">
                 <label>Nombre:</label>
                 <span class="campo_info2">
-                    <a href="{{route('admin.alumnos.edit',['alumno'=>$examen->alumno->id])}}">
+                    <a class="capitalize" href="{{route('admin.alumnos.edit',['alumno'=>$examen->alumno->id])}}">
                         {{$examen->alumno->apellidoNombre()}} <span>&#8599;</span>
                     </a>
                 </span>
             </div>
-            <div class="perfil_dataname">
+            <div class="perfil_dataname border-none">
                 <label>DNI:</label>
                 <span class="campo_info2">{{$examen->alumno->dniPuntos()}}</span>
             </div>
@@ -37,7 +37,7 @@
                 <div class="perfil_dataname">
                     <label>Materia:</label>
                     <span class="campo_info2">
-                        <a href="{{route('admin.asignaturas.edit',['asignatura'=>$examen->asignatura->id])}}">
+                        <a class="capitalize" href="{{route('admin.asignaturas.edit',['asignatura'=>$examen->asignatura->id])}}">
                             {{$examen->asignatura->nombre}} <span>&#8599;</span>
                         </a>
                     </span>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="perfil_dataname">
                     <label>Vocal 1:</label> 
-                    <span class="campo_info2">{{$examen->mesa->vocal1? $examen->mesa->vocal1->nombre . ' ' . $examen->mesa->vocal1->apellido : 'No hay'}}</span>
+                    <span class="campo_info2 capitalize">{{$examen->mesa->vocal1? $examen->mesa->vocal1->nombre . ' ' . $examen->mesa->vocal1->apellido : 'No hay'}}</span>
                 </div>
                 <div class="perfil_dataname">
                     <label>Vocal 3:</label>
