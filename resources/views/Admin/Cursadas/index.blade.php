@@ -74,7 +74,7 @@
                 
                 <td>{{$cursada->alumno_nombre.' '.$cursada->alumno_apellido}}</td>
                 <td>
-                    {{$cursada->aprodabo}}
+                    {{$cursada->aprodabo()}}
                 </td>
                 <td><a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id])}}"><button class="btn_edit">Editar</button></a></td>
                 <td>
