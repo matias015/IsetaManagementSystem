@@ -20,9 +20,14 @@
     @include('Componentes.mensaje')
 
     <section class="login">
+        <div class="who">
+            <a class="tag-alumno act" href="{{route('alumno.login')}}">Alumno</a>
+
+            <a class="tag-profesor" href="{{route('profesor.login')}}">Profesor</a>
+        </div>
         <form class="w-100p h-50p " method="post" action="{{route('alumno.login.post')}}">
             @csrf
-
+            
             <div class="logo">ISETA</div>
             
             <div class="titulo-login">
@@ -40,12 +45,9 @@
             <div class="entrar input-box button"><input type="submit" value="Entrar"></div>
             <div class="etiquetas"><a href="{{route('alumno.registro')}}">¡Registrate!</a></div>
             <div class="etiquetas"><a href="{{route('reset.password')}}">¿Ha olvidado su contraseña?</a></div>
-            <div class="etiquetas"><a href="{{route('profesor.login')}}">¿Eres profesor?</a></div>
         </form>
     </section>    
     <script src="{{asset('js/ocultar-mensaje.js')}}"></script>
 
 </body>
 </html>
-
-
