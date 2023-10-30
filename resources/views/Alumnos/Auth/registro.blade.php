@@ -17,7 +17,11 @@
     <section class="login">
         <div class="who">
             <a class="tag-alumno act" href="{{route('alumno.registro')}}">Alumno</a>
+<<<<<<< HEAD
             <a class="tag-profesor"  href="{{route('profesor.login')}}">Profesor</a>
+=======
+            <a class="tag-profesor" href="{{route('profesor.login')}}">Profesor</a>
+>>>>>>> c36b95294cba4b2eaef257dca6c61b1fa75d33ac
         </div>
         <form method="post">
             @csrf   
