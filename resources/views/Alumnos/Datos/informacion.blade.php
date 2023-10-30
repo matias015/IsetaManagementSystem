@@ -76,8 +76,8 @@
 
         </div>
         <div class="perfil_descargable"> <!--flex just-between items-center-->
-          <span class="md-none font-3">Const. inscripción</span> 
-          <span>Constancia de inscripción a mesas de examen</span><!-- class="none md-block font-3"--->
+          <span class="md-none">Const. inscripción</span> 
+          <span class="none md-block">Constancia de inscripción a mesas de examen</span> <!-- class="none md-block font-3"--->
           <a href="{{route('alumno.constancia')}}" target="_blank"><button><i class="ti ti-eye"></i>Observar</button></a> <!--- class="white rounded-1 border-none p-3  bg-indigo-900"--->
         </div>
         
