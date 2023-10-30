@@ -63,18 +63,18 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>Dni</th>
+                        <th class="uppercase">Dni</th>
                         <th>Email</th>
-                        <th colspan=""></th>
+                        <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach ($alumnos as $alumno)
                 <tr>
-                    <td>{{$alumno->nombre}}</td>
-                    <td>{{$alumno->apellido}}</td>
+                    <td class="capitalize">{{$alumno->nombre}}</td>
+                    <td class="capitalize">{{$alumno->apellido}}</td>
                     <td>{{$alumno->dniPuntos()}}</td>
-                    <td>{{$alumno->email}}</td>
+                    <td class="lowercase">{{$alumno->email}}</td>
                     <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}">
                         <button class="btn_edit">Detalles</button>
                     </a></td>
