@@ -173,7 +173,7 @@ class MesasCrudController extends Controller
         }
 
         // buscar que los profes no tengan otras mesas ese dia
-        $pres = Mesa::where(function ($query) use($data) {
+     /*   $pres = Mesa::where(function ($query) use($data) {
             $query->orWhere('prof_presidente', $data['prof_presidente'])
                 ->orWhere('prof_vocal_1', $data['prof_presidente'])
                 ->orWhere('prof_vocal_2', $data['prof_presidente']);
@@ -210,7 +210,7 @@ class MesasCrudController extends Controller
         if($vocal2 && $data['prof_vocal_2'] != '0'){
             return redirect()->back()->with('error','El profesor vocal 2 ya tiene un llamado ese dia');
         }
-        
+        */
     
         Mesa::create($data);
         return \redirect()->back()->with('mensaje','Se creo la mesa');
