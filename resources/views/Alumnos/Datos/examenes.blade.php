@@ -48,6 +48,7 @@
           <th>Materia</th>
           <th>Profesores</th>
           <th>Nota</th>
+          <th>Tipo de final</th>
           <th>Fecha - Hora</th>
         </tr>
       </thead>
@@ -67,11 +68,11 @@
               echo '<tr>';
             }
           @endphp
-        
+
         @if ($anio_actual != $examen->anio)
                   <tr>
-                      <td class="center font-600 tit-year" colspan="4">
-                        Año: {{$examen->anio+1}}
+                      <td class="p-1 center font-600 tit-year" colspan="5">
+                        Año: {{$examen->asignatura->anio}}
                       </td>
                   </tr>
                   @php
@@ -103,17 +104,10 @@
               @endif
           </td>
             <td>
-              @if($examen->aprobado == 3)
-                Ausente
-              @elseif ($examen->nota < 0.1)
-                Por rendir
-              @else
-                
-                {{$examen->nota}}
-              @endif
+              {{$examen->nota()}}
         
             </td>
-            
+            <td>{{$examen->tipoFinal()}}</td>
             <td>
               {{$formatoFecha->dmhm($examen->fecha())}}
             </td>

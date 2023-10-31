@@ -75,8 +75,9 @@
                                     <form action="{{route('admin.mesas.create')}}">
                                         <input name="carrera" type="hidden" value="{{$carrera->id}}">
                                         <input name="asignatura" type="hidden" value="{{$asignatura->id}}">
-                                        <button class="btn_edit px-1">Crear mesa</button>
+                                        <button class="blue-700 bg-transparent font-5">Crear mesa</button>
                                     </form>
+                                    <a href="{{route('admin.mesas.dual', ['asignatura'=>$asignatura->id])}}" class="blue-700 bg-transparent">Crear mesas</a>
                                 </td>
                             </tr>
                         @endforeach

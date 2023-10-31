@@ -35,11 +35,14 @@ class MesasCrudController extends Controller
         $orden = $request->orden ? $request->orden: 'fecha';
         $porPagina = Configuracion::get('filas_por_tabla',true);
 
-        $query = Mesa::select('mesas.id','mesas.llamado','mesas.fecha', 'asignaturas.nombre','asignaturas.anio', 'carreras.nombre as carrera')
+        $query = Mesa::select('mesas.id_asignatura','mesas.id','mesas.llamado','mesas.fecha', 'asignaturas.nombre','asignaturas.anio', 'carreras.nombre as carrera')
             -> join('asignaturas','asignaturas.id','=','mesas.id_asignatura')
-            -> join('carreras','carreras.id','=','asignaturas.id_carrera');
+            -> join('carreras','carreras.id','=','asignaturas.id_carrera')
+            -> orderBy('carreras.nombre')
+            -> orderBy('asignaturas.anio')
+            -> orderBy('asignaturas.id')
+            -> orderBy('mesas.llamado');
 
-        $query = Mesa::with('asignatura.carrera');
 
         if($campo == "proximas"){
             $query = $query->whereRaw('fecha > NOW()');
@@ -54,8 +57,11 @@ class MesasCrudController extends Controller
 
         if($filtro){
             $word = '%'.str_replace(' ','%',$filtro).'%';
-            $query->whereHas('asignatura', function ($subQuery) use($word){
-                $subQuery->whereRaw("(asignaturas.nombre LIKE '$word' OR carreras.nombre LIKE '$word')");
+            // $query->whereHas('asignatura', function ($subQuery) use($word){
+            //     $subQuery->whereRaw("(asignaturas.nombre LIKE '$word' OR carreras.nombre LIKE '$word')");
+            // });
+            $query->where(function($sub) use($word){
+                $sub->whereRaw("(asignaturas.nombre LIKE '$word' OR carreras.nombre LIKE '$word')");
             });
         }
 

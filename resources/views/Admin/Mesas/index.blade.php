@@ -59,9 +59,10 @@
         <table class="table__body">
             <thead>
                 <tr>
+                    <th>Año</td>
                     <th>Materia</td>
                     <th>Llamado</th>
-                    <th>Año</td>
+                    
                     <th>Fecha</td>
                     <th>Carrera</td>
                     <th colspan="2">Acciones</td>
@@ -70,6 +71,7 @@
             <tbody>
                 @foreach ($mesas as $mesa)
                     <tr>
+                        <td class="center">{{$mesa->asignatura->anio}}</td>
                     <td>{{$mesa->asignatura->nombre}}</td>
                     <td class="center">
                         @if ($mesa->llamado == 1 || $mesa->llamado == 0)
@@ -78,7 +80,7 @@
                             Segundo
                         @endif
                     </td>
-                    <td class="center">{{$mesa->asignatura->anio}}</td>
+                    
                     <td>{{$formatoFecha->dmahm($mesa->fecha)}}</td>
                     <td>{{$mesa->asignatura->carrera->nombre}}</td>
                     <td><a href="{{route('admin.mesas.edit', ['mesa' => $mesa->id])}}"><button class="btn_edit">Editar</button></a></td>

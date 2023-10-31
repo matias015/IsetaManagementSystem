@@ -3,8 +3,6 @@ Anotar cosas que faltan corregir
 
 
 CUESTIONES:
-- alumno -> id:815 500 error
-- $examen->fecha() con formatoFecha(), error, formatoFecha('no hay datos de fecha') 
 - El acta volante de alumnos que rinden libre, no puede seleccionar alumnos automaticamente, 
     ya que, muchas cursadas anteriores, figuran como libres, cuando no lo son
 - No estoy seguro si la pc sea tan rapida para manejar muchas solicitudes si es que entra mucha gente
@@ -251,3 +249,6 @@ CORRECCIONES 2/9
 30/10
 - Algunos bugs y seguridad
 - Ahora se oculta el boton para revertir la rematriculacion si se ha acabado el tiempo para hacerlo
+- Prototipo de apartado para crear ambos llamados en el cual se pede desplazar entre las materias de la carrera
+    se puede acceder a el en admin/carreras/ editar carrera y en las asignaturas pulsar "crear mesas".
+    Solo crea la/s mesa/s, no hace ningun tipo de validacion.

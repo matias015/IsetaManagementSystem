@@ -33,12 +33,24 @@ class Examen extends Model
         $mesa = Mesa::where('id', $this->id_mesa)
            -> first();
      
-        if( !$mesa ) return "Sin datos de fecha";
+        if( !$mesa ) return null;
         
         return $mesa->fecha;
      }
 
-    
+    public function tipoFinal(){
+        if($this->tipo_final == 1) return "Escrito";
+        else if($this->tipo_final == 2) return "Oral";
+        else if($this->tipo_final == 3) return "Promocionado";
+        else return "Sin especificar";
+    }
+
+    public function nota(){
+        if($this->aprobado == 3) return 'Ausente';
+        else if($this->nota <= 0) return 'Aun no rendido';
+        else return $this->nota;
+    }
+
 
     static function delAlumnoMasAltas($filtro,$campo,$orden){
         $id = Auth::id();

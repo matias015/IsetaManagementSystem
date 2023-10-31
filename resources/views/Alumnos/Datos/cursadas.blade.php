@@ -75,8 +75,8 @@
 
                 @if ($anio_actual != $cursada->anio)
                   <tr>
-                      <td class="center font-600 tit-year" colspan=6>
-                        Año: {{$cursada->anio+1}}
+                      <td class="p-1 center font-600 tit-year" colspan=6>
+                        Año: {{$cursada->asignatura->anio}}
                       </td>
                   </tr>
                   @php
@@ -126,9 +126,9 @@
                       $examen = $cursada->asignatura->aproboExamen(auth()->user());
                   @endphp
                   @if ($examen)
-                      <td><div>Nota: {{$examen->nota}}</div><div>{{$formatoFecha->dmahm($examen->fecha())}}</div></td>
+                      <td>Si ({{$examen->nota}} - {{$formatoFecha->dma($examen->fecha())}})</td>
                   @else
-                    <td>Desprobado / Sin rendir</td>
+                    <td>Aun sin aprobar</td>
                   @endif
                 </p>
 

@@ -26,16 +26,16 @@
     <div class="perfil_body">
       <div class="perfil_one shadow">
         <div class="perfil_subtop"><h2>Información alumno</h2></div>
-        <span class="perfil_dataname">Nombres: <b class="perfil_datainfo">{{$alumno->nombre}}</b></span>
-        <span class="perfil_dataname">Apellidos: <b class="perfil_datainfo">{{$alumno->apellido}}</b></span>
-        <span class="perfil_dataname">Mail: <b class="perfil_datainfo">{{$alumno->email}}</b></b></span>
-        <span class="perfil_dataname">DNI: <b class="perfil_datainfo">{{$alumno->dni}}</b></span>
-        <span class="perfil_dataname">Telefono: <b class="perfil_datainfo">{{$alumno->telefono1}}</b></span>
-        <span class="perfil_dataname">Telefono 2: <b class="perfil_datainfo">{{$alumno->telefono2? $alumno->telefono2:'No tienes un numero alternativo'}}</b></span>
-        <span class="perfil_dataname">Telefono 3: <b class="perfil_datainfo">{{$alumno->telefono3? $alumno->telefono3:'No tienes un segundo numero alternativo'}}</b></span>
-        <span class="perfil_dataname">Dirección: <b class="perfil_datainfo">{{$alumno->calle?$alumno->calle:'Sin datos de la direccion'}}</b></span>
+        <span class="perfil_dataname">Nombres: <b class="px-1 perfil_datainfo">{{$alumno->nombre}}</b></span>
+        <span class="perfil_dataname">Apellidos: <b class="px-1 perfil_datainfo">{{$alumno->apellido}}</b></span>
+        <span class="perfil_dataname">Mail: <b class="px-1 perfil_datainfo">{{$alumno->email}}</b></b></span>
+        <span class="perfil_dataname">DNI: <b class="px-1 perfil_datainfo">{{$alumno->dniPuntos()}}</b></span>
+        <span class="perfil_dataname">Telefono: <b class="px-1 perfil_datainfo">{{$alumno->telefono1}}</b></span>
+        <span class="perfil_dataname">Telefono 2: <b class="px-1 perfil_datainfo">{{$alumno->telefono2? $alumno->telefono2:'No tienes un numero alternativo'}}</b></span>
+        <span class="perfil_dataname">Telefono 3: <b class="px-1 perfil_datainfo">{{$alumno->telefono3? $alumno->telefono3:'No tienes un segundo numero alternativo'}}</b></span>
+        <span class="perfil_dataname">Dirección: <b class="px-1 perfil_datainfo">{{$alumno->calle?$alumno->calle:'Sin datos de la direccion'}}</b></span>
         @if ($alumno->casa_numero)
-          <span class="perfil_dataname">Numero: <b class="perfil_datainfo">{{$alumno->casa_numero}}</b></span>
+          <span class="perfil_dataname">Numero: <b class="px-1 perfil_datainfo">{{$alumno->casa_numero}}</b></span>
         @endif
       </div>
 
