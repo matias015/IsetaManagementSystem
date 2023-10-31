@@ -27,7 +27,7 @@ class crearAlumnoRequest extends FormRequest
             'apellido' => ['required','regex:/[a-zA-Z0-9\s]+/'],
             'fecha_nacimiento' => ['required','date'],
             'ciudad' => ['required'],
-            'calle' => ['required','alpha_num'],
+            'calle' => ['required'],
             'casa_numero' => ['required','numeric'],
             'dpto' => ['nullable'],
             'piso' => ['nullable'],
