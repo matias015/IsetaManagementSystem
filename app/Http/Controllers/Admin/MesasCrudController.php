@@ -33,15 +33,13 @@ class MesasCrudController extends Controller
         $filtro = $request->filtro ? $request->filtro: '';
         $campo = $request->campo ? $request->campo: '';
         $orden = $request->orden ? $request->orden: 'fecha';
+
         $porPagina = Configuracion::get('filas_por_tabla',true);
 
         $query = Mesa::select('mesas.id_asignatura','mesas.id','mesas.llamado','mesas.fecha', 'asignaturas.nombre','asignaturas.anio', 'carreras.nombre as carrera')
             -> join('asignaturas','asignaturas.id','=','mesas.id_asignatura')
-            -> join('carreras','carreras.id','=','asignaturas.id_carrera')
-            -> orderBy('carreras.nombre')
-            -> orderBy('asignaturas.anio')
-            -> orderBy('asignaturas.id')
-            -> orderBy('mesas.llamado');
+            -> join('carreras','carreras.id','=','asignaturas.id_carrera');
+
 
 
         if($campo == "proximas"){
@@ -49,30 +47,45 @@ class MesasCrudController extends Controller
         }
 
         if($orden == "fecha"){
-            $query->orderByDesc('mesas.fecha');
+            $query->orderBy('mesas.fecha');
         }
         else if($orden == "asignatura"){
             $query->orderBy('asignaturas.nombre');
         }
 
         if($filtro){
-            $word = '%'.str_replace(' ','%',$filtro).'%';
-            // $query->whereHas('asignatura', function ($subQuery) use($word){
-            //     $subQuery->whereRaw("(asignaturas.nombre LIKE '$word' OR carreras.nombre LIKE '$word')");
-            // });
-            $query->where(function($sub) use($word){
-                $sub->whereRaw("(asignaturas.nombre LIKE '$word' OR carreras.nombre LIKE '$word')");
-            });
+            if(strpos($filtro,':')){
+                $array = explode(':', $filtro);
+                $carrera_nombre = $array[0];
+                $asig_nombre = $array[1];
+
+                $carrera_nombre = '%'.str_replace(' ','%',$array[0]).'%';
+                $asig_nombre = '%'.str_replace(' ','%',$array[1]).'%';
+                
+                $query->where(function($sub) use($carrera_nombre,$asig_nombre){
+                    $sub->whereRaw("(asignaturas.nombre LIKE '$asig_nombre' AND carreras.nombre LIKE '$carrera_nombre')");
+                });
+                $query->orderBy('carreras.nombre');
+            }else{
+                $word = '%'.str_replace(' ','%',$filtro).'%';
+                $query->where(function($sub) use($word){
+                    $sub->whereRaw("(asignaturas.nombre LIKE '$word' OR carreras.nombre LIKE '$word')");
+                });
+                $query->orderBy('carreras.nombre');
+            }
         }
+
+        $query -> orderBy('asignaturas.id')
+            -> orderBy('mesas.llamado');
 
         $mesas = $query -> paginate($porPagina);
 
         return view('Admin.Mesas.index',[
-            'mesas' => $mesas, 
+            'mesas' => $mesas,
             'filtros'=>[
                 'campo' => $campo,
                 'orden' => $orden,
-                'filtro' => $filtro
+                'filtro' => $filtro,
             ]
         ]);
     }
@@ -112,31 +125,14 @@ class MesasCrudController extends Controller
         // obtener datos validados
         $data = $request->validated();
 
-        // Obtener el dia seleccionado (lunes, martes, miercoles, etc)
-        $timestamp = strtotime($data['fecha']);
-        $dia = date("l", $timestamp);
-
         // verificar que no sea sabado ni domingo
-        if($dia == 'Saturday' || $dia == 'Sunday'){
+        if(DiasHabiles::esFinDeSemana($data['fecha'])){
             return \redirect()->back()->with('error','No puedes crear una mesa un fin de semana');
         }
 
-        // verificar que sea dia habil
-        $diasNoHabiles = DiasHabiles::obtenerFestivos();
-
-        if(in_array(explode('T', $data['fecha'])[0],$diasNoHabiles)){
+        // verificar que no sea feriado, o similar
+        if(!DiasHabiles::esDiaHabil($data['fecha'])){
             return \redirect()->back()->with('error','No puedes crear una mesa un dia no habil');
-        }
-
-        // si se selecciona vacio su valor es 0
-        if($data['prof_presidente']=="vacio"){
-            $data['prof_presidente'] = 0;
-        }
-        if($data['prof_vocal_1']=="vacio"){
-            $data['prof_vocal_1'] = 0;
-        }
-        if($data['prof_vocal_2']=="vacio"){
-            $data['prof_vocal_2'] = 0;
         }
 
         // se añade el id de la carrera al registro de mesa, ya que no viene en el formulario
@@ -148,7 +144,6 @@ class MesasCrudController extends Controller
                 -> where('mesas.id_asignatura', $data['id_asignatura'])
                 ->latest('mesas.fecha')
                 -> first();
-        
 
         if($copia){
             $diferencia = DiasHabiles::desdeHoyHasta($copia->fecha, $data['fecha']);
@@ -159,58 +154,14 @@ class MesasCrudController extends Controller
             }
         }
 
-        // se formatea la fecha para que sea valida para buscar profes en otras mesas
-        $fechaBusqueda = $data['fecha'];
-        $fechaFormateada = date('Y-m-d', strtotime($fechaBusqueda));
-        
         // Que los profes no sean los mismos
         if(
             $data['prof_presidente'] == $data['prof_vocal_1'] ||
             $data['prof_presidente'] == $data['prof_vocal_2'] ||
-            $data['prof_vocal_1'] == $data['prof_vocal_2'] && $data['prof_vocal_1'] != 0
+            $data['prof_vocal_1'] == $data['prof_vocal_2'] && $data['prof_vocal_1'] != '0'
         ){
             return redirect()->back()->with('error','Hay profesores repetidos');
         }
-
-        // buscar que los profes no tengan otras mesas ese dia
-     /*   $pres = Mesa::where(function ($query) use($data) {
-            $query->orWhere('prof_presidente', $data['prof_presidente'])
-                ->orWhere('prof_vocal_1', $data['prof_presidente'])
-                ->orWhere('prof_vocal_2', $data['prof_presidente']);
-        })->whereDate('fecha',$fechaFormateada)
-            ->first();
-
-        if($pres){
-            return redirect()->back()->with('error','El profesor presidente ya tiene un llamado ese dia');
-        }
-
-
-        $vocal1 = Mesa::where(function ($query) use($data) {
-            $query->orWhere('prof_presidente', $data['prof_vocal_1'])
-            ->orWhere('prof_vocal_1', $data['prof_vocal_1'])
-            ->orWhere('prof_vocal_2', $data['prof_vocal_1']);
-        })
-        -> whereDate('fecha',$fechaFormateada)
-        ->first();
-            
-        if($vocal1 && $data['prof_vocal_1'] != '0'){
-            return redirect()->back()->with('error','El profesor vocal 1 ya tiene un llamado ese dia');
-        }
-            
-        $vocal2 = Mesa::where(function ($query) use($data) {
-            $query->orWhere('prof_presidente', $data['prof_vocal_2'])
-            ->orWhere('prof_vocal_1', $data['prof_vocal_2'])
-            ->orWhere('prof_vocal_2', $data['prof_vocal_2']);
-        })
-        -> whereDate('fecha',$fechaFormateada)
-        ->first();
-    
-
-        
-        if($vocal2 && $data['prof_vocal_2'] != '0'){
-            return redirect()->back()->with('error','El profesor vocal 2 ya tiene un llamado ese dia');
-        }
-        */
     
         Mesa::create($data);
         return \redirect()->back()->with('mensaje','Se creo la mesa');
@@ -270,20 +221,28 @@ class MesasCrudController extends Controller
     public function update(Request $request, Mesa $mesa)
     {
         //CAMIAR REQUEST ALL
-        $data = $request->all();
-
-        if($data['prof_presidente']=="vacio"){
-            $data['prof_presidente'] = 0;
-        }
-        if($data['prof_vocal_1']=="vacio"){
-            $data['prof_vocal_1'] = 0;
-        }
-        if($data['prof_vocal_2']=="vacio"){
-            $data['prof_vocal_2'] = 0;
-        }
-        $mesa->update($data);
+        $data = $request->only(['fecha','llamado', 'prof_presidente','prof_vocal_1','prof_vocal_2']);
         
-        return redirect()->route('admin.mesas.index');
+        // verificar que no sea sabado ni domingo
+        if(DiasHabiles::esFinDeSemana($data['fecha'])){
+            return \redirect()->back()->with('error','La fecha es fin de semana');
+        }
+
+        // verificar que no sea feriado, o similar
+        if(!DiasHabiles::esDiaHabil($data['fecha'])){
+            return \redirect()->back()->with('error','La fecha es un dia no habil');
+        }
+
+        if(
+            $data['prof_presidente'] == $data['prof_vocal_1'] ||
+            $data['prof_presidente'] == $data['prof_vocal_2'] ||
+            $data['prof_vocal_1'] == $data['prof_vocal_2'] && $data['prof_vocal_1'] != '0'
+        ){
+            return redirect()->back()->with('error','Hay profesores repetidos');
+        }
+
+        $mesa->update($data);
+        return redirect()->back()->with('mensaje','Se edito la mesa');
     }
 
     /**

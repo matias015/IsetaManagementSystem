@@ -18,23 +18,36 @@ class AdminDiasHabilesController extends Controller
     }
     
     function index(){
-        $habiles=Habiles::all();
-        return view('Admin.DiasHabiles.index',\compact('habiles'));
+        $noHabiles=Habiles::all()->pluck('fecha')->toArray();
+        return view('Admin.DiasHabiles.index',\compact('noHabiles'));
     }
 
     function store(Request $request){
 
-        if(Habiles::where('fecha',$request->input('fecha'))->first()) return \redirect()->back()->with('error','ya existe la fecha');
+        if(!$request->input('fecha')){
+            return \redirect()->back()->with('error','No has seleccionado ninguna fecha');
+        }
+
+        $fecha = explode('-',$request->input('fecha'));
+        // \dd($request->input('fecha'));
+        $dia=$fecha[0];
+        $mes=$fecha[1];
+
+        if(strlen($dia) == 1) $dia='0'.$dia;
+        if(strlen($mes) == 1) $mes='0'.$mes;
+
+        if(Habiles::where('fecha',"$dia-$mes")->first()) return \redirect()->back()->with('error','ya existe la fecha');
 
         Habiles::create([
-            'fecha' => $request->input('fecha')
+            'fecha' => "$dia-$mes"
         ]);
 
-        return \redirect()->back();
+        return redirect()->back();
     }
 
-    function destroy(Request $request, Habiles $habil){
-        $habil->delete();
+    function destroy(Request $request, $habil){
+        // \dd($habil);
+        Habiles::where('fecha', $habil)->delete();
         return redirect()->back()->with('mensaje','Se elimino la fecha');
     }
 }

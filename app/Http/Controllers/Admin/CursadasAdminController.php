@@ -41,9 +41,27 @@ class CursadasAdminController extends Controller
         }
 
         
-        // if($orden == "fecha"){
-        //     $query->orderByDesc('cursadas.fecha');
-        // }
+        if($filtro){
+            if(strpos($filtro,':')){
+                $array = explode(':', $filtro);
+
+                $alumno_data = '%'.str_replace(' ','%',$array[1]).'%';
+                $asig_nombre = '%'.str_replace(' ','%',$array[0]).'%';
+                
+                $query->where(function($sub) use($alumno_data,$asig_nombre){
+                    $sub->whereRaw("asignaturas.nombre LIKE '$asig_nombre'")
+                        ->whereRaw("(CONCAT(alumnos.nombre,' ',alumnos.apellido) LIKE '$alumno_data' OR alumnos.dni LIKE '$alumno_data' OR alumnos.email LIKE '$alumno_data' )");
+                });
+                $query->orderBy('carreras.nombre');
+            }else{
+                $word = '%'.str_replace(' ','%',$filtro).'%';
+                $query->where(function($sub) use($word){
+                    $sub->whereRaw("(asignaturas.nombre LIKE '$word' OR CONCAT(alumnos.nombre,' ',alumnos.apellido) LIKE '$word')");
+                });
+                $query->orderBy('carreras.nombre');
+            }
+        }
+
         if($orden == "creacion"){
             $query->orderBy('cursadas.id','desc');
         }

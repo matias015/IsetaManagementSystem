@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="contenedor_filtrado">
-                    <input placeholder="Encontrar filtro..." class="filtrado-busqueda border-none rounded p-1 bg-white shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
+                    <input placeholder="programacion : algebra" class="filtrado-busqueda border-none rounded p-1 bg-white shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
                 </div>
                 
                 <div class="contenedor_btn-busqueda">

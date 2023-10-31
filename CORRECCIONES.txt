@@ -252,3 +252,12 @@ CORRECCIONES 2/9
 - Prototipo de apartado para crear ambos llamados en el cual se pede desplazar entre las materias de la carrera
     se puede acceder a el en admin/carreras/ editar carrera y en las asignaturas pulsar "crear mesas".
     Solo crea la/s mesa/s, no hace ningun tipo de validacion.
+
+
+31/10
+- Ahora los profes pueden tener mas de 1 mesa el mismo dia
+- Ahora se valida al editar mesas
+- Los profes no podian tener espacios en el nombe y apellido ni los alumnos en la columna 'calle'
+- Nueva metodologia de busqueda en Admin/cursadas y Admin/mesas
+- Ya no explota al agregar un dia no habil vacio.
+- Nueva pagina de dias no habiles

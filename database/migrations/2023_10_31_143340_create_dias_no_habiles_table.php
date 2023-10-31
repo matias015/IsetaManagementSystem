@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('cursadas', function (Blueprint $table) {
-            $table->boolean('promocionada')->default(false);
-        }); 
+        Schema::create('dias_no_habiles', function (Blueprint $table) {
+            $table->id();
+            $table->string('fecha');
+        });
     }
 
     /**
@@ -21,8 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('cursadas', function (Blueprint $table) {
-            $table->dropColumn('promocionada');
-        }); 
+        Schema::dropIfExists('dias_no_habiles');
     }
 };
