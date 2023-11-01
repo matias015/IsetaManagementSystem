@@ -138,7 +138,7 @@ class MesasCrudController extends Controller
         // se añade el id de la carrera al registro de mesa, ya que no viene en el formulario
         // no deberia ser necesario pero la base de datos anterior hacia uso de esta duplicidad
         $data['id_carrera'] = Asignatura::find($data['id_asignatura'])->carrera->id;
-        
+       /* 
         // No se pueden crear 2 "llamado 1" ni 2 "llamado 2"
         $copia = Mesa::where('mesas.llamado', $data['llamado'])
                 -> where('mesas.id_asignatura', $data['id_asignatura'])
@@ -153,7 +153,7 @@ class MesasCrudController extends Controller
                 return redirect()->back()->with('error','Ya hay un llamado ' . $data['llamado'] . ' para esta asignatura');
             }
         }
-
+*/
         // Que los profes no sean los mismos
         if(
             $data['prof_presidente'] == $data['prof_vocal_1'] ||
