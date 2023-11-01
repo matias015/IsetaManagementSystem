@@ -261,3 +261,6 @@ CORRECCIONES 2/9
 - Nueva metodologia de busqueda en Admin/cursadas y Admin/mesas
 - Ya no explota al agregar un dia no habil vacio.
 - Nueva pagina de dias no habiles
+
+1/11 
+- Mail de verificar y restablecer contraseña terminados (quizas corregir texto). Hecho desde cero, eliminado el extenso codigo de antes.
