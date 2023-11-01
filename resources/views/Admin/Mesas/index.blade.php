@@ -14,8 +14,8 @@
                     <span class="categoria">Ordenar</span>
                     <div>
                         <select class="ordenar border-none rounded p-1 bg-white shadow" name="orden">
-                            <option @selected($filtros['orden'] == 'asignatura') value="asignatura">Asignatura</option>
                             <option @selected($filtros['orden'] == 'fecha') value="fecha">Fecha</option>
+                            <option @selected($filtros['orden'] == 'asignatura') value="asignatura">Asignatura</option>
                         </select>
                     </div>
                 </div>

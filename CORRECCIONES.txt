@@ -260,7 +260,7 @@ CORRECCIONES 2/9
 - Los profes no podian tener espacios en el nombe y apellido ni los alumnos en la columna 'calle'
 - Nueva metodologia de busqueda en Admin/cursadas y Admin/mesas
 - Ya no explota al agregar un dia no habil vacio.
-- Nueva pagina de dias no habiles
+- Nueva pagina de dias no habiles (IMPORTANTE borrar la base de datos dias_no_habiles y ejecutar php artisan migrate)
 
 1/11 
 - Mail de verificar y restablecer contraseña terminados (quizas corregir texto). Hecho desde cero, eliminado el extenso codigo de antes.

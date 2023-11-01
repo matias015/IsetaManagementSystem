@@ -15,6 +15,7 @@ use App\Models\Mesa;
 use App\Models\Profesor;
 use App\Services\DiasHabiles;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class MesasCrudController extends Controller
 
@@ -47,7 +48,7 @@ class MesasCrudController extends Controller
         }
 
         if($orden == "fecha"){
-            $query->orderBy('mesas.fecha');
+            $query->orderByDesc('mesas.fecha');
         }
         else if($orden == "asignatura"){
             $query->orderBy('asignaturas.nombre');
@@ -75,8 +76,8 @@ class MesasCrudController extends Controller
             }
         }
 
-        $query -> orderBy('asignaturas.id')
-            -> orderBy('mesas.llamado');
+        
+        $query -> orderBy('mesas.fecha');
 
         $mesas = $query -> paginate($porPagina);
 
@@ -138,22 +139,27 @@ class MesasCrudController extends Controller
         // se añade el id de la carrera al registro de mesa, ya que no viene en el formulario
         // no deberia ser necesario pero la base de datos anterior hacia uso de esta duplicidad
         $data['id_carrera'] = Asignatura::find($data['id_asignatura'])->carrera->id;
-       /* 
-        // No se pueden crear 2 "llamado 1" ni 2 "llamado 2"
-        $copia = Mesa::where('mesas.llamado', $data['llamado'])
-                -> where('mesas.id_asignatura', $data['id_asignatura'])
-                ->latest('mesas.fecha')
-                -> first();
 
-        if($copia){
-            $diferencia = DiasHabiles::desdeHoyHasta($copia->fecha, $data['fecha']);
-            $diferencia = abs($diferencia/24); // valor absoluto
+        // la fecha de la nueva mesa a crear.
+        $fecha = Carbon::parse($data['fecha']);
 
-            if($diferencia>0 && $diferencia<$config['diferencia_llamados']){
-                return redirect()->back()->with('error','Ya hay un llamado ' . $data['llamado'] . ' para esta asignatura');
-            }
-        }
-*/
+        $fechaInicio = $fecha->copy()->subDays(30); // Restar 30 días
+        $fechaFin = $fecha->copy()->addDays(30); // Sumar 30 días
+        
+        // buscar mesa entre $fecha-30 dias y $fecha+30 dias, es decir un periodo de 30 dias desde ambos lados
+        $registro = Mesa::with('asignatura')
+            -> whereBetween('fecha', [$fechaInicio, $fechaFin])
+            -> where('llamado',$data['llamado'])                // que sea el mismo llamado
+            -> where('id_asignatura',$data['id_asignatura'])    // de la misma asignatura
+            -> first();
+        
+        // si se encontro avisa que ya existe
+        if($registro){    
+            $fechaMesa = Carbon::parse($registro->fecha);
+            return redirect()->back()->with('error','Ya hay un llamado '.$data['llamado'].' para el dia '.$fechaMesa->format('d/m'));
+        } 
+
+
         // Que los profes no sean los mismos
         if(
             $data['prof_presidente'] == $data['prof_vocal_1'] ||

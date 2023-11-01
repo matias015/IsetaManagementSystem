@@ -37,7 +37,7 @@ class CarrerasCrudController extends Controller
             $query->orWhere('carreras.nombre', 'LIKE', '%'.$word.'%');
         }
 
-        if($campo == "vigentes"){
+        if($campo != "todas"){
             $query = $query -> where('vigente','1');
         }
 
