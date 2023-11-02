@@ -18,6 +18,7 @@
 
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
     <link rel="stylesheet" href="{{asset('css/footer.css')}}">
+    <link rel="stylesheet" href="{{asset('css/profesor.css')}}">
     
     @yield('estilos')
     <link rel="stylesheet" href="{{asset('css/global.css')}}">
@@ -26,46 +27,73 @@
 
 
 <body>
-
-    <div class="m-2 p-2 rounded w-100">
-        <div class="bg-gray-300 p-2 rounded">
-            <p>Bienvenido <span class="font-600">{{$profesor->nombre}}</span></p>
-            <a class="red-600" href="{{route('profesor.logout')}}">Cerrar sesion</a>
+    <div class="profesor">
+        <div class="flex just-between p-header">
+            <a href="/profesor/mesas" class="logo">ISETA</a>
+            <!--
+            <div class="flex just-center items-center p-logout">
+                <span class="font-600 p-name">{{$profesor->nombre}}</span>
+                <a class="red-600" href="{{route('profesor.logout')}}"><i class="ti ti-logout"></i>Cerrar sesion</a>
+            </div>
+            -->
+            <div class="perfil-logout" >
+                <div class="perfil-logout-btn"> 
+                    <span>{{$profesor->nombre}}<i class="ti ti-chevron-down"></i></span>
+                </div>
+          
+                <ul class="perfil-lista shadow-2xl">
+                <!---
+                    <li class="perfil-lista-item">
+                        <a @class(['bold'=>request()->is('profesor/mesas')]) href="{{route('profesor.mesas')}}">
+                        <i class="uil uil-user"></i> Perfil</a>
+                    </li>--->
+                    <li class="perfil-lista-item"><a href="{{route('profesor.logout')}}"><i class="ti ti-logout"></i>Cerrar sesion</a></li>
+                </ul> 
+            </div>    
         </div>
-        
-    
-    
-    <br><br>
 
-    <h2>Proximas mesas</h2>
-    <table>
-        <tr>
-            <td>Asignatura</td>
-            <td>Fecha</td>
-            <td>Rol</td>
-            <td>Detalles</td>
-        </tr>
-    
-    @foreach ($mesas as $mesa)
-        <tr>
-            <td>{{$mesa->asignatura->nombre}}</td>
-            <td>{{$mesa->fecha}}</td>
-            <td>
-                @if ($mesa->prof_presidente == $profesor->id)
-                    Presidente
-                @elseif ($mesa->prof_vocal_1 == $profesor->id)
-                    Vocal 1
-                @elseif ($mesa->prof_vocal_2 == $profesor->id)
-                    Vocal 2
-                @endif
-            </td>
-            <td>
-                <span class="blue-600">Acta</span>
-                <a href="{{route('admin.mesas.acta',['mesa'=>$mesa->id])}}"><button>Acta volante</button></a>
-            </td>
-        </tr>
-    @endforeach
-</table>
-</div>
+        <main>
+            <section class="table">
+                <div class="table__header">
+                    <h1>Proximas mesas</h1>
+                </div>
+                <div class="table__body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Asignatura</th>
+                                <th>Fecha</th>
+                                <th>Rol</th>
+                                <th>Detalles</th>
+                            </tr>
+                        </thead>
+                        
+                    @foreach ($mesas as $mesa)
+                        <tr>
+                            <td>{{$mesa->asignatura->nombre}}</td>
+                            <td>{{$mesa->fecha}}</td>
+                            <td>
+                            @if ($mesa->prof_presidente == $profesor->id)
+                            Presidente
+                            @elseif ($mesa->prof_vocal_1 == $profesor->id)
+                            Vocal 1
+                            @elseif ($mesa->prof_vocal_2 == $profesor->id)
+                            Vocal 2
+                            @endif
+                            </td>
+                            <td>
+                                <a href="{{route('admin.mesas.acta',['mesa'=>$mesa->id])}}" target="__blank"><button class="btn-p-acta">Acta volante</button></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        
+        
+    </div>
+    <script src="{{asset('js/nav-menu.js')}}"></script>
 </body>
 </html>
