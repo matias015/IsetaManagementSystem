@@ -95,9 +95,8 @@
     <table class="acta_contenedor">
         <thead>
             <tr>
-                {{-- <th><img style="width: 100%" src="{{asset('img/pdf.png')}}" alt=""></th> --}}
+                <th><img style="width: 100%" src="{{asset('img/pdf.png')}}" alt=""></th>
             </tr>
-               
         </thead>
         <tbody>
            
@@ -120,7 +119,6 @@
                                 $aniosTexto = ['SEGUNDO AÑO', 'TERCER AÑO'];
                                 $anio = 0;
                             @endphp
-
 
                             @foreach ($materias as $materia)
                             @if ($materia->anio-1 == $anio+1)

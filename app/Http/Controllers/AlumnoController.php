@@ -80,7 +80,7 @@ class AlumnoController extends Controller
         $data = ['id_alumno'=>Auth::id(),'id_carrera'=>$request->carrera];
 
         CarreraDefault::updateOrInsert(['id_alumno' => Auth::id()],$data);     
-        return redirect()->back();
+        return redirect()->back()->with('mensaje','Se ha seleccionado esa asignatura');
     }
 
 
@@ -139,6 +139,7 @@ class AlumnoController extends Controller
         -> orderBy('cursadas.anio_cursada','desc');
 
         $cursadas = $query->get();
+        
         // lista de examenes aprobados para saber si una cursada
         // tiene rendido su final
         $examenesAprobados = Examen::select('examenes.id_asignatura')
@@ -146,7 +147,7 @@ class AlumnoController extends Controller
             -> where('examenes.id_alumno',Auth::id())
             -> orderBy('examenes.id_asignatura')            
             -> get()-> pluck('id_asignatura')-> toArray();
-        // \dd($cursadas);
+        
         return view('Alumnos.Datos.cursadas', [
             'cursadas' => $cursadas, 
             'examenesAprobados' => $examenesAprobados,
@@ -184,19 +185,11 @@ class AlumnoController extends Controller
         -> orderBy('examenes.nota','desc')
         -> get();
 
-        $promedio = 0;
-        foreach($examenes as $examen){
-            $promedio += $examen->nota;
-        }
         
-        $cantidadDeExamenes = count($examenes);
-
-        if($cantidadDeExamenes < 1) $promedio = 0;
-        else $promedio = round($promedio / $cantidadDeExamenes,2);
-        // \dd($examenes);
+            // \dd($examenes);
         return view('Alumnos.Datos.examenes', [
             'examenes'=>$examenes,
-            'promedio'=>$promedio,
+            // 'promedio'=>$promedio,
             'filtros'=>[
                 'campo' => $campo,
                 'orden' => $orden,
