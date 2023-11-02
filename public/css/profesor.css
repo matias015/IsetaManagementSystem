@@ -1,0 +1,152 @@
+body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    color: black;
+    background: #5872d16d;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.profesor {
+    width: 100%;
+}
+
+.p-header {
+    background-color: var(--azul-iseta);
+    color: white;
+    padding: 15px 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.logo {
+    font-family: 'Openface';
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.p-logout {
+    
+}
+
+.p-name {
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 25px;
+}
+
+.perfil-logout {
+    position: relative;
+    width: fit-content;
+  }
+  
+  .perfil-logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 1rem;
+    color: white;
+    border: 1px solid white;
+    border-radius: 50px;
+    cursor: pointer;
+    width: auto;
+    transition: box-shadow 0.2s, background-color 0.2s;
+      height: 40px;
+  }
+  
+  .perfil-imagen{
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: url(/img/SL-Fondo.jpg);
+    background-size: cover;
+    border-radius: 50%;
+  }
+  
+  .perfil-lista {
+    position: absolute;
+    top: 70px;
+    width: 220px;
+    right: 0;
+    background: var(--azul-iseta);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.05);
+    z-index: 1;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s;
+  }
+  
+  .perfil-lista.active{
+    max-height: 500px;
+  }
+  
+  .perfil-lista-item {
+    padding: 0.5rem 0 0.5rem 1rem;
+  }
+  
+  .perfil-lista-item:hover {
+    padding-left: 1.5rem;
+    background: var(--azul-osc-iseta);
+    border-radius: 10px;
+  }
+  
+  .perfil-lista-item a {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #fff;
+  }
+  
+  .perfil-lista-item a i {
+    color: var(--azul-iseta);
+    margin-right: 1rem;
+    font-size: 25px;
+    width: 2.3rem;
+    height: 2.3rem;
+    line-height: 2.3rem;
+    text-align: center;
+    background: #fff;
+    border-radius: 50%;
+    
+  }
+  
+  .perfil-logout-btn span {
+    margin: 0 0 0 0.5rem;
+  }
+  
+  .selected::after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    background-color: white;
+    bottom: 0;
+    left: 0;
+    transition: all 0.4s ease;
+    width: 100%;
+  }
+
+ .btn-p-acta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--azul-iseta);
+    color: white;
+    padding: 0 8px;
+    height: 40px;
+    border-radius: 6px;
+    white-space: nowrap;
+ }
+
+ .btn-p-acta:hover {
+    background-color: var(--facebook);
+ }
+
+ tbody tr:hover {
+    background: var(--gris-hover);
+    color: black;
+}
