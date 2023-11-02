@@ -154,7 +154,8 @@ class MesasCrudController extends Controller
             -> first();
         
         // si se encontro avisa que ya existe
-        if($registro){    
+        if($registro){  
+              
             $fechaMesa = Carbon::parse($registro->fecha);
             return redirect()->back()->with('error','Ya hay un llamado '.$data['llamado'].' para el dia '.$fechaMesa->format('d/m'));
         } 
