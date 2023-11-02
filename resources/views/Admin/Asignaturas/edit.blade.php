@@ -100,7 +100,6 @@
             </tr>
         </thead>
         <tbody>
-            <form action="{{route('test.print-1', ['asignatura'=>$asignatura->id])}}">
                 
             @foreach ($asignatura->cursadas as $cursada)
                 <tr>
@@ -113,7 +112,7 @@
                 </tr>
             @endforeach
 
-            </form>
+
         </tbody>
     </table>
     </div>
