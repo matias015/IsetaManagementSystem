@@ -26,6 +26,10 @@ class Carrera extends Model
         return $this -> hasMany(Asignatura::class, 'id_carrera');
     }
 
+    public function primeraAsignatura(){
+        return Asignatura::where('id_carrera', $this->id)->orderBy('anio')->first();
+    }
+
     static function getDefault($alumno_id=null){
         if($alumno_id) $alumno = Alumno::find($alumno_id);
         else $alumno = Auth::user();

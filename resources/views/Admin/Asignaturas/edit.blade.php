@@ -92,7 +92,6 @@
         <table class="table__body">
         <thead>
                 <tr>
-                <th class="center">Imprimir</th>
                 <th>Nombre</th>
                 <th>DNI</th>
                 <th>Condicion</th>

@@ -50,6 +50,7 @@ table tbody tr.active-row {
 .grid-11 {display: grid;grid-template-columns: repeat(11, 1fr);}
 .grid-12 {display: grid;grid-template-columns: repeat(12, 1fr);}
 
+.span-1 { grid-column-end: span 1; };
 .span-2 { grid-column-end: span 2; }
 .span-3 { grid-column-end: span 3; }
 .span-4 { grid-column-end: span 4; }
@@ -599,7 +600,7 @@ table tbody tr.active-row {
     .sm-grid-11 {display: grid;grid-template-columns: repeat(11, 1fr);}
     .sm-grid-12 {display: grid;grid-template-columns: repeat(12, 1fr);}
 
-    .sm-span-2 { grid-column-end: span 2; }
+       .sm-span-1 { grid-column-end: span 1; }.sm-span-2 { grid-column-end: span 2; }
     .sm-span-3 { grid-column-end: span 3; }
     .sm-span-4 { grid-column-end: span 4; }
     .sm-span-5 { grid-column-end: span 5; }
@@ -791,7 +792,8 @@ table tbody tr.active-row {
     .md-grid-10 {display: grid;grid-template-columns: repeat(10, 1fr);}
     .md-grid-11 {display: grid;grid-template-columns: repeat(11, 1fr);}
     .md-grid-12 {display: grid;grid-template-columns: repeat(12, 1fr);}
-
+    
+    .md-span-1 { grid-column-end: span 1; }
     .md-span-2 { grid-column-end: span 2; }
     .md-span-3 { grid-column-end: span 3; }
     .md-span-4 { grid-column-end: span 4; }
@@ -985,6 +987,8 @@ table tbody tr.active-row {
     .lg-grid-10 {display: grid;grid-template-columns: repeat(10, 1fr);}
     .lg-grid-11 {display: grid;grid-template-columns: repeat(11, 1fr);}
     .lg-grid-12 {display: grid;grid-template-columns: repeat(12, 1fr);}
+
+    .lg-span-1 { grid-column-end: span 1; }
 
     .lg-span-2 { grid-column-end: span 2; }
     .lg-span-3 { grid-column-end: span 3; }

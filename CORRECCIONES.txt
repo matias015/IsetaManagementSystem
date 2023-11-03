@@ -264,3 +264,7 @@ CORRECCIONES 2/9
 
 1/11 
 - Mail de verificar y restablecer contraseña terminados (quizas corregir texto). Hecho desde cero, eliminado el extenso codigo de antes.
+
+2/11
+- prototipo de carga de cursadas
+- prototipo de carga de notas de cursada y creacion de mesas disponibles en admin/carreras/
