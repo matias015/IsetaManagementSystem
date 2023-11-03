@@ -57,7 +57,15 @@ class Carrera extends Model
             return $carrera;
     }
 
+    function estaInscripto($alumno=null){
+        if(!$alumno) $alumno=Auth::user();
 
+        $existe=Egresado::where('id_alumno',$alumno->id)
+            ->where('id_carrera', $this->id)
+            ->exists();
+
+        return $existe;
+    }
 
     static function vigentes(){
         return Carrera::where('vigente',1)->get();

@@ -77,7 +77,14 @@ class AlumnoController extends Controller
      */
 
      function setCarreraDefault(Request $request){
-        $data = ['id_alumno'=>Auth::id(),'id_carrera'=>$request->carrera];
+        if(!Egresado::estaInscripto($request->input('carrera'))){
+            return redirect()->back()->with('error','No estas inscripto en esta carrera');
+        }
+
+        $data = [
+            'id_alumno' => Auth::id(),
+            'id_carrera' => $request->carrera
+        ];
 
         CarreraDefault::updateOrInsert(['id_alumno' => Auth::id()],$data);     
         return redirect()->back()->with('mensaje','Se ha seleccionado esa asignatura');
@@ -412,6 +419,10 @@ class AlumnoController extends Controller
     public function rematriculacion(Request $request, Carrera $carrera){
 
        
+        if(!$carrera->estaInscripto()){
+            return redirect()->back()->with('error','No estas inscripto en esta carrera');
+        }
+
         //todas la materias de esa carrera
         $asignaturas_de_carrera = $carrera->asignaturas()->pluck('id')->toArray();
 

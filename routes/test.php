@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Mockery\CountValidator\Exact;
 
+Route::middleware(['web','auth:admin'])->prefix('admin')->group(function(){
 Route::get('test/{asignatura}', function(Request $request,Asignatura $asignatura){
     $siguiente = null;
     $asignaturas = $asignatura->carrera->asignaturas;
@@ -121,3 +122,4 @@ Route::post('masivo/cursadas', function(Request $request){
     return redirect()->back();
 
 })->name('admin.cursadas.masivo.post');
+});

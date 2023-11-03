@@ -7,6 +7,7 @@ CUESTIONES:
     ya que, muchas cursadas anteriores, figuran como libres, cuando no lo son
 - No estoy seguro si la pc sea tan rapida para manejar muchas solicitudes si es que entra mucha gente
 - Ver si habria que comprobar que los dnis sean unicos
+- para cursar pp tenes q tener finales correlativos o solo cursadas?
 
 
 COSAS RARAS:
@@ -268,3 +269,5 @@ CORRECCIONES 2/9
 2/11
 - prototipo de carga de cursadas
 - prototipo de carga de notas de cursada y creacion de mesas disponibles en admin/carreras/
+- Ahora necesitas ser admin para entrar en estas 2
+- Ahora al alumno cambiar la carrera y rematricularse se comprueba que este inscripto en esa carrera
