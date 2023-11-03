@@ -12,7 +12,7 @@
         <hr>
         <li><a class="text-blue-600" href="{{route('admin.admins.index')}}  "><i class="ti ti-user-cog"></i>      Admins      </a></li>
         <li><a class="text-blue-600" href="{{route('admin.config.index')}}  "><i class="ti ti-settings"></i>      Configuracion      </a></li>
-        <li><a class="text-blue-600" href="{{route('admin.habiles.index')}}  "><i class="ti ti-calendar-time"></i>      Dias habiles      </a></li>
+        <li><a class="text-blue-600" href="{{route('admin.habiles.index')}}  "><i class="ti ti-calendar-time"></i>      Dias no habiles      </a></li>
 
         <div class="aside-end">
             <li><a href="/admin/logout"><i class="ti ti-logout"></i> Cerrar sesion</a></li>
