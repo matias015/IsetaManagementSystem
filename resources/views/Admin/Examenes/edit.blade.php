@@ -77,7 +77,7 @@
                     <span class="campo_info2 capitalize">{{$examen->mesa->vocal1? $examen->mesa->vocal1->nombre . ' ' . $examen->mesa->vocal1->apellido : 'No hay'}}</span>
                 </div>
                 <div class="perfil_dataname">
-                    <label>Vocal 3:</label>
+                    <label>Vocal 2:</label>
                     <span class="campo_info2">{{$examen->mesa->vocal2? $examen->mesa->vocal2->nombre . ' ' . $examen->mesa->vocal2->apellido : 'No hay'}}</span>
                 </div>
                     
