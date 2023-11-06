@@ -58,7 +58,16 @@
                         </select>
                     </div>
 
-                    <div class="upd"><input type="submit" value="Actualizar" class="btn_borrar"></div>
+                    <div class="upd">
+                        <input type="submit" value="Actualizar" class="btn_borrar">
+                        <div>
+                            <form method="POST" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">
+                                @csrf
+                                @method('delete')
+                                <input class="btn_borrar-alt" type="submit" value="Eliminar mesa">
+                            </form>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -69,7 +78,6 @@
                     <h2>Alumnos inscriptos</h2>
                 </div>
                 <div class="matricular">
-                    <p>Agregar alumno</p>
                     <p>
                      @if(strtotime($mesa->fecha) > time())
                         Estos alumnos han aprobado la cursada de esta materia, luego se volvera a validar sobre correlativas y tiempos
@@ -138,12 +146,6 @@
                 </table>
                 
             </div>
-
-                <form method="POST" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">
-                    @csrf
-                    @method('delete')
-                    <input class="border-none rounded px-2 bg-red-500 py-1" type="submit" value="Eliminar mesa">
-                </form>
 
     </div>
 @endsection
