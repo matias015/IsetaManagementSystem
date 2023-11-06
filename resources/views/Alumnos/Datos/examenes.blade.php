@@ -96,9 +96,9 @@
         @endphp  
           <td>
               @if(isset($examen->mesa))
-            <p>-> {{$examen->mesa->profesorNombre('presidente')}}</p>
-            <p>-> {{$examen->mesa->profesorNombre('vocal1','Desconocido')}}</p>
-            <p>-> {{$examen->mesa->profesorNombre('vocal2','Desconocido')}}</p>
+            <p><i class="ti ti-user-filled"></i> {{$examen->mesa->profesorNombre('presidente')}}</p>
+            <p><i class="ti ti-user-filled"></i> {{$examen->mesa->profesorNombre('vocal1','Desconocido')}}</p>
+            <p><i class="ti ti-user-filled"></i> {{$examen->mesa->profesorNombre('vocal2','Desconocido')}}</p>
               @else
                <p>No hay datos de mesa</p>
               @endif
@@ -109,7 +109,7 @@
             </td>
             <td>{{$examen->tipoFinal()}}</td>
             <td>
-              {{$formatoFecha->dmhm($examen->fecha())}}
+             {{$formatoFecha->dmahm($examen->fecha())}}
             </td>
         </tr>
         
