@@ -25,10 +25,10 @@ class crearAlumnoRequest extends FormRequest
             'dni' => ['required','numeric','max:999999999'],
             'nombre' => ['required','regex:/[a-zA-Z0-9\s]+/'],
             'apellido' => ['required','regex:/[a-zA-Z0-9\s]+/'],
-            'fecha_nacimiento' => ['required','date'],
+            'fecha_nacimiento' => ['required','date','before:now'],
             'ciudad' => ['required'],
-            'calle' => ['required'],
-            'casa_numero' => ['required','numeric'],
+            'calle' => ['nullable'],
+            'casa_numero' => ['nullable','numeric'],
             'dpto' => ['nullable'],
             'piso' => ['nullable'],
             'estado_civil' => ['required'],
@@ -39,7 +39,13 @@ class crearAlumnoRequest extends FormRequest
             'telefono1' => ['nullable','numeric'],
             'telefono2' => ['nullable','numeric'],
             'telefono3' => ['nullable','numeric'],
-            'codigo_postal' => ['required','numeric']
+            'codigo_postal' => ['nullable','alpha_num']
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'fecha_nacimiento.before' => 'El campo debe ser menor que la fecha actual.',
         ];
     }
 }
