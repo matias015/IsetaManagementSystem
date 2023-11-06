@@ -38,41 +38,42 @@
                     <label>Observaciones:</label>
                     <input class="campo_info rounded" value="{{$asignatura->observaciones}}" name="observaciones">
                 </div>
-                <div class="perfil_dataname">
-                    <label>Correlativas:</label>
-                    <ul class="campo_info rounded">
-                        @foreach ($asignatura->correlativas as $correlativa)
-                        <form method="post" action="{{route('correlativa.eliminar', ['asignatura'=>$asignatura->id,'asignatura_correlativa'=>$correlativa->asignatura->id])}}">
-                            <div class="flex">
-                            @csrf
-                            @method('delete')
-                                <div class="flex items-center"><li>- {{$correlativa->asignatura->nombre}}</li></div>
-                                <div class="flex items-center m-1 mx-4"><button class="btn_edit">Eliminar</button></div>
-                            </div>
-                        </form>
-                        @endforeach
-                    </ul>
-                </div>
+                
                 <div class="upd"><input class="btn_borrar upd" type="submit" value="Actualizar"></div>
             </form>
         </div>
     </div>
-
+    
 
         {{-- -------------------------- --}}
 
+        @if ($asignatura->anio > 1)
         <div class="perfil_one br">
+            
             <div class="perfil__header">
-                <h2>Agregar correlativa</h2>
+                <h2>Correlativas</h2>
             </div>
+            
             <div class="matricular">
+ 
+                @foreach ($asignatura->correlativas as $correlativa)
+                <form method="post" action="{{route('correlativa.eliminar', ['asignatura'=>$asignatura->id,'asignatura_correlativa'=>$correlativa->asignatura->id])}}">
+                    <div class="flex">
+                    @csrf
+                    @method('delete')
+                    <div class="flex items-center"><li>{{$correlativa->asignatura->nombre}}</li></div>
+                    <div class="flex items-center m-1 mx-4"><button class="rounded white px-1 font-600 bg-red-600">Eliminar</button></div>
+                    </div>
+                </form>
+                @endforeach
+                    <br><br>
                 <form method="post" action="{{route('correlativa.agregar', ['asignatura'=>$asignatura->id])}}">
                 @csrf
 
                     <div class="perfil_dataname1">
                         <label>Materia:</label>
                         <select class="campo_info rounded" id="asignatura_select" name="id_asignatura">
-                            @foreach ($asignatura->carrera->asignaturas as $asignatura_carrera)
+                            @foreach ($asignatura->carrera->asignaturas->where('anio', '<', $asignatura->anio) as $asignatura_carrera)
                                 @if ($asignatura_carrera->id != $asignatura->id)
                                     <option value="{{$asignatura_carrera->id}}">{{$asignatura_carrera->nombre}}</option>
                                 @endif
@@ -82,7 +83,9 @@
                     <div class="upd"><a href=""><button class="btn_edit">Agregar</button></a></div>
                 </form>
             </div>
-        </div>
+        </div>     
+        @endif
+       
        
     <div class="table">
         <div class="table__header">

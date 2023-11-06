@@ -109,7 +109,7 @@
             </td>
             <td>{{$examen->tipoFinal()}}</td>
             <td>
-             {{$formatoFecha->dmahm($examen->fecha())}}
+             {{$formatoFecha->dma($examen->fecha())}}
             </td>
         </tr>
         

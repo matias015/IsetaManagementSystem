@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Carbon\Carbon;
 use DateTime;
 
 class Fecha{
@@ -54,16 +55,9 @@ class Fecha{
     function dma($fecha){
       if(!$fecha) return "Sin datos de fecha";
 
-      // Convertir el string a un objeto DateTime
-      $dateObj = new DateTime($fecha);
+      $carbon = Carbon::parse($fecha);
+      $fecha = $carbon->format('d').'/'.$carbon->format('m').'/'.$carbon->format('Y');
 
-      // Obtener el día, mes, hora y minutos en formato deseado
-      $dia = $dateObj->format('j'); // Día sin ceros iniciales
-      $mes = $dateObj->format('n'); // Mes sin ceros iniciales
-      $anio = $dateObj->format('Y'); // 
-
-      // Formatear la fecha y hora en el formato deseado
-      $fecha = "$dia/$mes/$anio";
       return $fecha;
   }
 

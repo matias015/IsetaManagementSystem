@@ -90,19 +90,14 @@ class AsignaturasCrudController extends Controller
     public function edit(Request $request, $asignatura)
     {
         $config=Configuracion::todas();
-        
-        // $alumnos = Alumno::select('cursadas.condicion','cursadas.id as cursada_id','alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni')
-        //     -> join('cursadas','cursadas.id_alumno','alumnos.id')
-        //     -> join('asignaturas','cursadas.id_asignatura','asignaturas.id')
-        //     -> where('asignaturas.id', $asignatura)
-        //     -> where('cursadas.aprobada', 3)
-        //     -> where('cursadas.anio_cursada', $config['anio_remat'])
-        //     -> get();
 
             $asignatura = Asignatura::with('cursadas.alumno')->find($asignatura);
-            // \dd($asignatura->cursadas);
+
             $alumnos = $asignatura->cursantes();
-            // dd($alumnos);
+
+            $correlativas = Asignatura::where('id_carrera', $asignatura->carrera->id)
+                ->where('anio', '>=', $asignatura->anio);
+
 
         return view('Admin.Asignaturas.edit', [
             'asignatura' => $asignatura,

@@ -51,9 +51,9 @@
                         <input type="submit" value="Actualizar" class="btn_borrar">
                     </form>
                         <form method="post" action="{{route('admin.cursadas.destroy', ['cursada'=>$cursada->id])}}">
-                        @csrf
-                        @method('delete')
-                        <input type="submit" value="Borrar" class="btn_borrar">
+                            @csrf
+                            @method('delete')
+                            <input type="submit" value="Borrar" class="btn_borrar">
                         </form>
                     </div>
                    

@@ -98,6 +98,11 @@ class Asignatura extends Model
         $this->attributes['nombre'] = TextFormatService::ucwords($value);
     }
 
+    public function setAnioAttribute($value)
+    {
+        $this->attributes['anio'] = $value-1;
+    }
+
     public function setObservacionesAttribute($value)
     {
         $this->attributes['observaciones'] = TextFormatService::ucfirst($value);

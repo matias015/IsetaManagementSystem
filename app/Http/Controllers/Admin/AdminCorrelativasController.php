@@ -17,9 +17,11 @@ class AdminCorrelativasController extends Controller
     
     function agregar(Request $request, Asignatura $asignatura){
 
-        if($asignatura->anio == 0) return \redirect()->back()->with('error', 'No puedes añadir correlativas en asignaturas del primer año');
-        // 2 -> 1
-        if(!$asignatura->anio < Asignatura::find($request->id_asignatura)->anio){
+        if($asignatura->anio == 1) return redirect()->back()->with('error', 'No puedes añadir correlativas en asignaturas del primer año');
+
+
+        // 2 
+        if(!$asignatura->anio > Asignatura::find($request->id_asignatura)->anio-1){
             return \redirect()->back()->with('error','El año de la correlativa debe ser menor al de la asignatura');
         } 
 
