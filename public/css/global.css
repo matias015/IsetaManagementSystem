@@ -25,6 +25,25 @@ table tbody tr.active-row {
     color: #009879;
 }
 
+.up-not_green {
+    border-left: 8px solid #47f464;
+    background-color: white;
+}
+
+.up-not_red {
+    border-left: 8px solid #ff355b;
+    background-color: white;
+}
+
+.up-not_green i {
+    color: #47f464;
+    font-size: 24px;
+}
+
+.up-not_red i {
+    color: #ff355b;
+    font-size: 24px;
+}
 
 :root{
     font-family: 'montserrat';
