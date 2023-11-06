@@ -3,7 +3,7 @@
     width: 20%;
     height: auto;
     background: white;
-    min-height: 100vh;
+    height: 100%;
     box-shadow: 0 .4rem .8rem #0005;
     z-index: 1;
     display: flex;
