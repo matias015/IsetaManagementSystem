@@ -121,12 +121,12 @@
                   <td class="text-center">{{$cursada->condicionString()}}</td>
                 <td class="text-center">{{$cursada->anio_cursada}}</td>
 
-                <p>
+                <p class="center">
                   @php
                       $examen = $cursada->asignatura->aproboExamen(auth()->user());
                   @endphp
                   @if ($examen)
-                      <td>Si ({{$examen->nota}} - {{$formatoFecha->dma($examen->fecha())}})</td>
+                      <td>Si ({{$examen->nota}})</td>
                   @else
                     <td>Aun sin aprobar</td>
                   @endif
