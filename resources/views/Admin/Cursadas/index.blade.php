@@ -2,10 +2,6 @@
 
 @section('content')
     
-    <div class="contenedor_top bg-transparent flex items-end gap-2">
-        
-        <a href="{{route('admin.cursadas.create')}}"><button class="nuevo_alumno">Agregar cursada</button></a>
-
         <div class="contenedor-tabla_botonera">
 
             <form class="none grid lg-block form-hh" action="{{route('admin.cursadas.index')}}">
@@ -13,7 +9,7 @@
                     <div class="contenedor_ordenar">
                         <span class="categoria">Ordenar</span>     
                         <div>
-                            <select class="ordenar border-none rounded p-1 bg-white shadow" name="orden">
+                            <select class="ordenar border-none p-1 shadow" name="orden">
                                 <option @selected($filtros['orden'] == 'creacion') value="creacion">Creacion</option>
                                 <option @selected($filtros['orden'] == 'fecha') value="fecha">Fecha</option>
                                 <option @selected($filtros['orden'] == 'asignatura') value="asignatura">Asigantura</option>
@@ -24,7 +20,7 @@
                     <div class="contenedor_filtrar">
                         <span class="categoria">Mostrar</span> 
                         <div>
-                            <select class="filtrar border-none rounded p-1 bg-white shadow" name="campo">
+                            <select class="filtrar border-none p-1 shadow" name="campo">
                                 <option value="ninguno">Todos</option>
                                 <option @selected($filtros['campo'] == 'nuevas') value="nuevas">Nuevas</option>
                                 <option @selected($filtros['campo'] == 'asignatura') value="asignatura">Asigantura</option>
@@ -34,11 +30,11 @@
                     </div>
 
                     <div class="contenedor_filtrado">
-                        <input placeholder="ingles II : lopez" class="filtrado-busqueda border-none rounded p-1 bg-white shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
+                        <input placeholder="ingles II : lopez" class="filtrado-busqueda border-none p-1 shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
                     </div>
 
                     <div class="contenedor_btn-busqueda">
-                        <input class="btn-buscador1 p-1 border-none rounded pointer" type="submit" value="Buscar">
+                        <input class="btn-buscador1 p-1 border-none pointer" type="submit" value="Buscar">
                     </div>
                 </div>
             </form>
@@ -46,7 +42,6 @@
             <a href="{{route('admin.cursadas.index')}}"><button class="quitar_filtro">Quitar filtros</button></a>
       
         </div>
-    </div>
         
 
         {{-- @foreach ($alumnos->pagr as )
@@ -57,6 +52,9 @@
         </li> --}}
         
         <div class="table">
+            <div class="perfil__header-alt">
+                <a href="{{route('admin.cursadas.create')}}"><button class="nuevo_alumno"><i class="ti ti-circle-plus"></i>Agregar cursada</button></a>
+            </div>
         <table class="table__body">
             <thead>
                 <tr>
@@ -93,8 +91,5 @@
         
         <div class="w-1/2 mx-auto p-5 pagination">
             {{ $cursadas->appends(request()->query())->links('Componentes.pagination') }}
-        </div>
-
-    
-    
+        </div> 
 @endsection
