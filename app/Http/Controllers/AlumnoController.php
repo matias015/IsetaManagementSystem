@@ -20,11 +20,7 @@ class AlumnoController extends Controller
         $this -> middleware('auth:web');
         $this -> middleware('verificado')->only([
             'info',
-            'setCarreraDefault',
-            'inscribirse',
-            'bajarse',
-            'rematriculacion',
-            'bajar_rematriculacion'
+            'setCarreraDefault'
         ]);
     }
 
