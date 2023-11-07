@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\AdminLoginRequest;
+use App\Http\Requests\EditarConfigRequest;
 use App\Models\Admin;
 use App\Models\Configuracion;
 use Illuminate\Http\Request;
@@ -23,10 +24,11 @@ class ConfigController extends Controller
         return view('Admin/config',compact('configuracion'));
     }
 
-    public function setear(Request $request){
-        
+    public function setear(EditarConfigRequest $request){
+        $data = $request->validated();
+
         // dd($request->except('_token'));
-        foreach($request->except('_token') as $key => $value){
+        foreach($data as $key => $value){
             if(!$value) $value = '';
             Configuracion::where('key', $key)
             ->update(['value'=>$value]);

@@ -69,6 +69,8 @@ class CarrerasCrudController extends Controller
     {
         $data = $request->validated();
 
+        $data['vigente'] = 1;
+
         Carrera::create($data);
         return redirect()->route('admin.carreras.index');
     }

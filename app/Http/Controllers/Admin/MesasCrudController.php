@@ -143,8 +143,8 @@ class MesasCrudController extends Controller
         // la fecha de la nueva mesa a crear.
         $fecha = Carbon::parse($data['fecha']);
 
-        $fechaInicio = $fecha->copy()->subDays(30); // Restar 30 días
-        $fechaFin = $fecha->copy()->addDays(30); // Sumar 30 días
+        $fechaInicio = $fecha->copy()->subDays($config['diferencia_llamados']); // Restar 30 días
+        $fechaFin = $fecha->copy()->addDays($config['diferencia_llamados']); // Sumar 30 días
         
         // buscar mesa entre $fecha-30 dias y $fecha+30 dias, es decir un periodo de 30 dias desde ambos lados
         $registro = Mesa::with('asignatura')

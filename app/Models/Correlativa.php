@@ -28,8 +28,27 @@ class Correlativa extends Model
 
         foreach($asignatura->correlativas as $correlativa){
            $asigCorr = $correlativa->asignatura;
-     
+           if(!$asigCorr) return false;
            if($asigCorr->aproboExamen($alumno)) continue;
+           else $sinAprobar[] = $asigCorr;
+        }
+     
+        if(count($sinAprobar)>0) return $sinAprobar;
+        else return false;
+     }
+
+     static function debeCursadasCorrelativos($asignatura, $alumno=null){
+        if(!$alumno) $alumno=Auth::user();
+        $asignatura = Asignatura::with('correlativas.asignatura')
+        ->where('id', $asignatura->id)
+        ->first();    
+     
+        $sinAprobar = [];
+
+        foreach($asignatura->correlativas as $correlativa){
+           $asigCorr = $correlativa->asignatura;
+           if(!$asigCorr) return false;
+           if($asigCorr->aproboCursada($alumno)) continue;
            else $sinAprobar[] = $asigCorr;
         }
      

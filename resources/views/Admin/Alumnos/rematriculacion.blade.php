@@ -32,7 +32,7 @@
                 <div class="w-100p flex just-between perfil_dataname">
 
                     <div class="flex remat" @class([
-                    'gray-600' => $asignatura->equivalencias_sin_aprobar
+                    'gray-600' => $asignatura->equivalencias_previas
                     ])>
                         <div class="flex">
                             <label>Año:</label> 
@@ -40,18 +40,18 @@
                         </div>
                         <div class="flex">
                             <label>Asignatura:</label>
-                            <span class="font-400">{{$asignatura->nombre}}</span>
+                            <a href="{{route('admin.asignaturas.edit',['asignatura'=>$asignatura->id])}}"><span class="font-400">{{$asignatura->nombre}}</span></a>
                         </div>
                     </div>
-                    <div class="flex">
-                        @if ($asignatura->equivalencias_sin_aprobar)
+                    <div class="flex-col">
+                        @if ($asignatura->equivalencias_previas)
                         <div class="flex just-end gap-3">    
                             <p class="font-600">Debes correlativas</p>
                             <label class="blue-600 px-1 rounded pointer ver-equiv" data-element="{{$asignatura->id}}">Detalles...</label> 
                         </div>
                             <ul class="none id-{{$asignatura->id}}">
                                 @foreach ($asignatura->equivalencias_previas as $asignatura)
-                                    <li>{{$asignatura}}</li>
+                                <li class="salto"><span class="font-600">{{$asignatura->anioStr()}}:</span> {{$asignatura->nombre}}</li>
                                 @endforeach
                             </ul>
                         @else

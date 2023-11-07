@@ -28,14 +28,14 @@
                 @else
                 @foreach ($asignaturas as $asignatura)
                     <tr @class([
-                        'gray-600' => $asignatura->equivalencias_sin_aprobar
+                        'gray-600' => $asignatura->equivalencias_previas
                         ])>
                         
                         <td> {{$asignatura->anio}}</td>
                         <td>{{$asignatura->nombre}}
                         </td>
                         <td class="flex just-end"> 
-                            @if ($asignatura->equivalencias_sin_aprobar)
+                            @if ($asignatura->equivalencias_previas)
                                 <div>  
                                     <div class="flex just-end gap-3">
                                         <p class="font-600 salto">Debes correlativas</p>
@@ -43,7 +43,7 @@
                                     </div>   
                                     <ul class="none id-{{$asignatura->id}}">
                                     @foreach ($asignatura->equivalencias_previas as $asignatura)
-                                    <li class="salto">{{$asignatura}}</li>
+                                    <li class="salto"><span class="font-600">{{$asignatura->anioStr()}}:</span> {{$asignatura->nombre}}</li>
                                     @endforeach
                                 </ul>
                                 </div>

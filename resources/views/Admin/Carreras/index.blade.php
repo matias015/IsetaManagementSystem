@@ -57,7 +57,6 @@
                 <th class="center">Resolución</th>
                 <th class="center">Apertura</th>
                 <th class="center">Fin</th>
-                <th>Observaciones</th>
                 <th>Acciones</th>
                 <th colspan="2">Masivo</th>
             </tr>
@@ -69,11 +68,17 @@
                 <td class="center">{{$carrera->resolucion}}</td>
                 <td class="center">{{$carrera->anio_apertura}}</td>
                 <td class="center">{{$carrera->vigente == 1? "Vigente":$carrera->anio_fin}}</td>
-                <td>{{$carrera->observaciones}}</td>
                 <td><a href="{{route('admin.carreras.edit', ['carrera' => $carrera->id])}}"><button class="btn_edit">Editar</button></a></td>
-                <td><a href="{{route('admin.cursadas.masivo',['asignatura'=>$carrera->primeraAsignatura()->id])}}"><button class="btn_edit">Cursadas</button></a>
-                </td>
-                <td><a href="{{route('admin.mesas.dual',['asignatura'=>$carrera->primeraAsignatura()->id])}}"><button class="btn_edit">Mesas</button></a></td>
+                <td class="flex-col">
+                @if ($carrera->primeraAsignatura())
+                    <a href="{{route('admin.cursadas.masivo',['asignatura'=>$carrera->primeraAsignatura()->id])}}">
+                        <button class="rounded px-1">Cursadas</button>
+                    </a>
+                    <a href="{{route('admin.mesas.dual',['asignatura'=>$carrera->primeraAsignatura()->id])}}">
+                        <button class="rounded px-1">Mesas</button>
+                    </a>
+                @endif
+            </td>
             </tr>
             @endforeach
         </tbody>

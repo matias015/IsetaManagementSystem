@@ -19,8 +19,6 @@ class AdminCorrelativasController extends Controller
 
         if($asignatura->anio == 1) return redirect()->back()->with('error', 'No puedes añadir correlativas en asignaturas del primer año');
 
-
-        // 2 
         if(!$asignatura->anio > Asignatura::find($request->id_asignatura)->anio-1){
             return \redirect()->back()->with('error','El año de la correlativa debe ser menor al de la asignatura');
         } 
@@ -31,7 +29,6 @@ class AdminCorrelativasController extends Controller
             'id_asignatura' => $asignatura->id,
             'asignatura_correlativa' => $request->id_asignatura
         ]);
-
 
         return redirect()->back()->with('mensaje','Se agrego la correlativa');
     }

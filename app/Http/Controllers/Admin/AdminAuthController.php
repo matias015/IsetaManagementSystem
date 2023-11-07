@@ -48,10 +48,11 @@ class AdminAuthController extends Controller
 
         $admin = Admin::where('username',$data['username'])->first();
 
-        if(!$admin || !Hash::check($data['password'], $admin->password)) return redirect()->route('admin.login')->with('error','incorrecto');
+        if(!$admin || !Hash::check($data['password'], $admin->password)) {
+            return redirect()->route('admin.login')->with('error','Credenciales incorrectas');
+        }
        
-        
-        if(!$admin) return redirect()->back()->with('error','incorrecto');
+        if(!$admin) return redirect()->back()->with('error','Credenciales incorrectas');
 
         Auth::guard('admin')->login($admin);
         return redirect()->route('admin.alumnos.index');

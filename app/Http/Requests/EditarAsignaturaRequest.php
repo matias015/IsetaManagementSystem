@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CrearCarreraRequest extends FormRequest
+class EditarAsignaturaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +22,12 @@ class CrearCarreraRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "nombre" => ['required'],
-            "resolucion" => ['required'],
-            "anio_apertura" => ['required','numeric'],
-            "anio_fin" => ['nullable','numeric'],
-            "observaciones" => ['nullable']
+            'nombre' => ['required'],
+            'id_carrera' => ['required'],
+            'tipo_modulo' => ['nullable'],
+            'carga_horaria' => ['required'],
+            'anio' => ['required'],
+            'observaciones' => ['nullable'],
         ];
     }
 }

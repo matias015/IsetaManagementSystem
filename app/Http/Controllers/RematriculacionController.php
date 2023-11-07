@@ -1,32 +1,42 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Configuracion;
 use App\Models\Correlativa;
 use App\Models\Cursada;
-use App\Models\Egresado;
+use App\Services\DiasHabiles;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
-class AdminMatriculacionController extends Controller
+class RematriculacionController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth:admin');
+
+    public function __construct()
+    {
+        $this -> middleware('auth:web');
+        $this -> middleware('verificado')->only([
+            'rematriculacion',
+            'bajar_rematriculacion'
+        ]);
     }
 
-    /*
+     /*
      | ---------------------------------------------
      | Vista de rematriculacion
      | ---------------------------------------------
      */
-    function rematriculacion_vista(Request $request,Alumno $alumno){
-        $carrera = Carrera::where('id', $request->input('carrera'))->first();
+    function rematriculacion_vista(Request $request){
+
+
+        $carrera = Carrera::getDefault();
+        
         // todas las materias de esa carrera
-        $asignaturas = $carrera->asignaturas;
+        $asignaturas = Asignatura::where('id_carrera',$carrera->id)->get();
+        
         $anotables = [];
 
         // para cada asignatura 
@@ -36,8 +46,8 @@ class AdminMatriculacionController extends Controller
             $asignatura->{'equivalencias_previas'} = array();
 
             // Chequear que no este ya en la cursada
-            $yaAnotadoEnCursada = Cursada::where('id_alumno', $alumno->id)
-                -> whereRaw('(aprobada=3 OR aprobada=1 OR condicion=2 OR condicion=3)')
+            $yaAnotadoEnCursada = Cursada::where('id_alumno', Auth::id())
+                -> whereRaw('(aprobada=3 OR aprobada=1)')
                 -> where('id_asignatura', $asignatura->id)
                 -> first();
 
@@ -45,17 +55,12 @@ class AdminMatriculacionController extends Controller
             if($yaAnotadoEnCursada) continue;
             
             // Si la materia tiene correlativas
-            $asignatura->equivalencias_previas = Correlativa::debeCursadasCorrelativos($asignatura,$alumno);
+            $asignatura->equivalencias_previas = Correlativa::debeCursadasCorrelativos($asignatura);
 
-            // Cargamos a inscribibles
             $anotables[] = $asignatura;
         }
-
-        return view('Admin.Alumnos.rematriculacion', [
-            'asignaturas' => $anotables, 
-            'carrera'=>$carrera,
-            'alumno' => $alumno
-        ]);
+        
+        return view('Alumnos.datos.rematriculacion', ['asignaturas' => $anotables, 'carrera'=>$carrera->id]);
     }
 
 
@@ -68,16 +73,20 @@ class AdminMatriculacionController extends Controller
 
      // Falta chequear lo mismo que arriba
 
-    public function rematriculacion(Request $request, Alumno $alumno,Carrera $carrera){
+    public function rematriculacion(Request $request, Carrera $carrera){
+
        
+        if(!$carrera->estaInscripto()){
+            return redirect()->back()->with('error','No estas inscripto en esta carrera');
+        }
+
         //todas la materias de esa carrera
         $asignaturas_de_carrera = $carrera->asignaturas()->pluck('id')->toArray();
 
         // Ver que no haya seleccionado mas de 2 libres
         $libres=0;
-        // dd($request->except('token'));
         foreach ($request->except('_token') as $value) {
-            if($value===0){
+            if($value == 1){
                 $libres++;
             }
         }
@@ -91,19 +100,19 @@ class AdminMatriculacionController extends Controller
         foreach($request->except('_token') as $asig_id => $value){
 
             // si no se selecciono ignora, si no es de la carrera
-            if(!$value) continue;
+            if($value==0) continue;
             
             // Si la asignatura no es de esta carrera, error
             if(!in_array($asig_id, $asignaturas_de_carrera)) return \redirect()->back()->with('error','Ha habido un error');
             
             // Si se selecciono otra cosa ademas de las posibles
-            if($value!=0 && $value!=1){
+            if($value!=1 && $value!=2){
                 return \redirect()->back()->with('error','Ha habido un error');
             }
 
             // Ver que no este ya anotado o que ya la haya aprobado
-            $yaAnotadoEnCursada = Cursada::where('id_alumno', $alumno->id)
-                -> whereRaw('(aprobada=3 OR aprobada=1 OR condicion=2 OR condicion=3)')
+            $yaAnotadoEnCursada = Cursada::where('id_alumno', Auth::id())
+                -> whereRaw('(aprobada=3 OR aprobada=1)')
                 -> where('id_asignatura', $asig_id)
                 -> first();
 
@@ -116,37 +125,55 @@ class AdminMatriculacionController extends Controller
             $asignatura = Asignatura::with('correlativas.asignatura')->where('id', $asig_id)->first();
             
             // verifica equivalencias
-            if(Correlativa::debeCursadasCorrelativos($asignatura,$alumno)) {
+            if(Correlativa::debeCursadasCorrelativos($asignatura)){
                 return redirect()->back()->with('error', 'Debes 1 o mas correlativas');
             }
- 
+
             $asignaturas[$asig_id] = $value;
         }
 
+
         // Año de la rematriculacion
-        $config = Configuracion::todas();
-        $anio_remat = $config['anio_remat'];
-
-
-            Egresado::create([
-                'id_alumno' => $alumno->id,
-                'id_carrera' => $carrera->id,
-                'anio_inscripcion' => date("Y", time()),
-            ]);
-
-
+        $anio_remat = Configuracion::get('anio_remat');
+    
         // Registrar las cursadas
         foreach($asignaturas as $asigId => $tipoCursada){
             Cursada::create([
                 'id_asignatura' => $asigId,
-                'id_alumno' => $alumno->id,
+                'id_alumno' => Auth::id(),
                 'condicion' => $tipoCursada,
                 'aprobada' => 3,
                 'anio_cursada' => $anio_remat
             ]);
         }
-        
         return redirect()->back()->with('mensaje','Te has rematriculado correctamente');       
     }
 
+
+
+
+    function bajar_rematriculacion(Request $request, Cursada $cursada){
+        
+        if(!$cursada) return redirect()->route('alumno.inscripciones')->with('error','No se encontro la mesa');
+
+
+        if(!Gate::allows('delete-cursada', $cursada)){
+            return \redirect()->back()->with('error', 'Esta cursada no te pertenece... &#129320;');
+        }
+        
+        if($cursada->aprobada != 3) return redirect()->back()->with('error','Ya has terminado de cursar');
+        
+        $config = Configuracion::todas();
+
+        if(DiasHabiles::desdeHoyHasta($config['fecha_limite_desrematriculacion'])<=0){
+            return redirect()->back()->with('error','Ya ha caducado el tiempo para desmatricularse');
+        }
+
+        if($cursada->anio_cursada != $config['anio_remat']){
+            return redirect()->back()->with('error','Ya estas cursando esta asignatura');
+        }
+
+        $cursada->delete();
+        return redirect()->back()->with('mensaje','Se ha eliminado la cursada');
+    }
 }

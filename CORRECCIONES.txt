@@ -272,10 +272,31 @@ CORRECCIONES 2/9
 - Ahora necesitas ser admin para entrar en estas 2
 - Ahora al alumno cambiar la carrera y rematricularse se comprueba que este inscripto en esa carrera
 
-6/11
-- Al cambiar el año de una asignatura se hacia incorrectamente
-- Bug formulario de actualizar asignatura
-- Cambio el diseño de las correlativas
-- Ahora no se muestran correlativas en materias de 1ro
-- Si estas en una materia de 2do, al agregar correlativas solo podras ver materias de 1ro
-- Ahora alumnos/examenes muestra la fecha de examen en formato dd-mm-yyyy (sin hora) 
+
+--------------------------------------------------------------
+6 de noviembre
+--------------------------------------------------------------
+
+- Admin
+    - Asignaturas
+        - Al cambiar el año de una asignatura se hacia incorrectamente
+        - Bug formulario de actualizar asignatura
+        - Cambio el diseño de las correlativas
+        - Ahora no se muestran correlativas en materias de 1ro
+        - Si estas en una materia de 2do, al agregar correlativas solo podras ver materias de 1ro
+        - Al crear una asignatura se agregaba mal el año
+        - Ahora se comprueba que la carrera a la cual se agrega existe
+    - Mesas
+        - Ahora al obtener errores creando una mesa, no se pierde la informacion que habia sido ingresada
+    - Carreras
+        - Las carreras ahora son vigentes por defecto al crearlas
+        - En carreras recien creadas, daba error al entrar Admin/carreras
+        - Ya no se muestra el campo "observaciones" en la tablad en carreras
+    - Alumnos
+        - Admin/alumnos/rematriculacion ahora si muestra las correlativas que debe el alumno
+    - Otros
+        - Cambios internos (refactorizacion)
+
+- Alumnos
+    - Examenes
+        - Ahora alumnos/examenes muestra la fecha de examen en formato dd-mm-yyyy (sin hora) 

@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AlumnoAuthController;
 use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\InscripcionController;
 use App\Http\Controllers\MailVerifController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\PdfsController;
+use App\Http\Controllers\RematriculacionController;
 use App\Models\Alumno;
 use Illuminate\Console\View\Components\Alert;
 use Illuminate\Support\Facades\Auth;
@@ -34,10 +36,10 @@ Route::prefix('alumno')->group(function(){
     Route::get('/info', [AlumnoController::class, 'info'])->name('alumno.info');
     Route::get('/cursadas', [AlumnoController::class, 'cursadas'])->name('alumno.cursadas');
     Route::get('/examenes', [AlumnoController::class, 'examenes'])->name('alumno.examenes');
-    Route::get('/inscripciones', [AlumnoController::class, 'inscripciones'])->name('alumno.inscripciones');
-    Route::get('/inscripciones', [AlumnoController::class, 'inscripciones'])->name('alumno.inscripciones');
-    Route::post('/inscribirse', [AlumnoController::class, 'inscribirse'])->name('alumno.inscribirse');
-    Route::post('/bajarse', [AlumnoController::class, 'bajarse'])->name('alumno.bajarse');
+    Route::get('/inscripciones', [InscripcionController::class, 'inscripciones'])->name('alumno.inscripciones');
+    Route::get('/inscripciones', [InscripcionController::class, 'inscripciones'])->name('alumno.inscripciones');
+    Route::post('/inscribirse', [InscripcionController::class, 'inscribirse'])->name('alumno.inscribirse');
+    Route::post('/bajarse', [InscripcionController  ::class, 'bajarse'])->name('alumno.bajarse');
 
     Route::post('/set-default', [AlumnoController::class, 'setCarreraDefault'])->name('alumno.set.default');
 
@@ -48,10 +50,8 @@ Route::prefix('alumno')->group(function(){
 
     Route::post('/cambiarpw',[AlumnoAuthController::class, 'cambiarPassword'])->name('cambio.password');
 
-    // Route::get('/rematriculacion/carrera', [AlumnoController::class,'remat_carrera_vista'])->name('alumno.rematriculacion.carrera');
-    // Route::get('/rematriculacion/{carrera}', [AlumnoController::class,'rematriculacion_vista'])->name('alumno.rematriculacion.asignaturas');
-    Route::get('/rematriculacion', [AlumnoController::class,'rematriculacion_vista'])->name('alumno.rematriculacion.asignaturas');
-    Route::post('/rematriculacion/{carrera}', [AlumnoController::class,'rematriculacion'])->name('alumno.rematriculacion.post');
-    Route::delete('/rematriculacion/{cursada}', [AlumnoController::class,'bajar_rematriculacion'])->name('alumno.rematriculacion.delete');
+    Route::get('/rematriculacion', [RematriculacionController::class,'rematriculacion_vista'])->name('alumno.rematriculacion.asignaturas');
+    Route::post('/rematriculacion/{carrera}', [RematriculacionController::class,'rematriculacion'])->name('alumno.rematriculacion.post');
+    Route::delete('/rematriculacion/{cursada}', [RematriculacionController::class,'bajar_rematriculacion'])->name('alumno.rematriculacion.delete');
 
 });

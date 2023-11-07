@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CrearAsignaturaRequest;
+use App\Http\Requests\EditarAsignaturaRequest;
 use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
@@ -66,14 +67,14 @@ class AsignaturasCrudController extends Controller
     public function store(CrearAsignaturaRequest $request)
     {
         $data = $request->validated();
-        if($request->id_carrera){
-            $data['id_asignatura'] = $request->id_asignatura; 
+
+        if(!Carrera::where('id', $data['id_carrera'])->exists()){
+            return redirect()->back()->with('error','La carrera seleccionada no existe'); 
         }
 
-        $data['anio'] = $data['anio'] - 1; 
 
         Asignatura::create($data);
-        return redirect()->back()->with('Se creo la asignatura');
+        return redirect()->back()->with('mensaje','Se creo la asignatura');
     }
 
     /**
@@ -108,9 +109,9 @@ class AsignaturasCrudController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Asignatura $asignatura)
+    public function update(EditarAsignaturaRequest $request, Asignatura $asignatura)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $asignatura->update($data);
         return redirect()->back()->with('mensaje','Se edito la asignatura');
     }

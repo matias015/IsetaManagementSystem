@@ -46,7 +46,6 @@ class AdminDiasHabilesController extends Controller
     }
 
     function destroy(Request $request, $habil){
-        // \dd($habil);
         Habiles::where('fecha', $habil)->delete();
         return redirect()->back()->with('mensaje','Se elimino la fecha');
     }
