@@ -355,3 +355,5 @@ PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
         - En la tabla principal y al editar, no se menciona de que carrera es la cursada.
     - DB
         - Pensar en como hacer una copia de seguridad.
+-Profesores
+    - Agregar footer
