@@ -132,7 +132,7 @@
 
                 @if ($puedeBajarse)
                   <td data-label="Acción">
-                    @if ($cursada->aprobada == 3)
+                    @if ($cursada->aprobada == 3 || $cursada->condicion==0)
                     <form method="POST" action="{{route('alumno.rematriculacion.delete', ['cursada'=>$cursada->id])}}">
                       @csrf
                       @method('delete')

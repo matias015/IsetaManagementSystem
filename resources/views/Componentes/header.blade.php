@@ -32,7 +32,8 @@
               
             </div> -->
             <span>
-              {{auth()->user()->nombre}}
+              {{auth()->user()->iniciales()}}
+              {{-- {{auth()->user()->primerNombre()}} --}}
               <i class="ti ti-chevron-down"></i>
             </span>
             

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Configuracion;
 use App\Models\Cursada;
+use App\Models\Examen;
 use App\Models\Mesa;
 
 class MesaRepository
@@ -61,12 +62,34 @@ class MesaRepository
     }
 
     public function inscribibles($mesa){
-        return Cursada::with('alumno')
+        $inscribiblesCursada = Cursada::with('alumno')
             -> join('alumnos','cursadas.id_alumno','alumnos.id')
             -> whereRaw('(cursadas.aprobada=1 OR cursadas.condicion=0 OR cursadas.condicion=2 OR cursadas.condicion=3)')
             -> where('cursadas.id_asignatura',$mesa->id_asignatura)
             -> orderBy('alumnos.apellido')
             -> orderBy('alumnos.nombre')
             -> get();
+
+        foreach ($inscribiblesCursada as $cursada) {
+            $alumno = $cursada->alumno;
+
+            $examen = Examen::where('id_alumno', $alumno->id)
+                ->where(function($query) use($mesa){
+                    $query->where('nota','>=',4)
+                        ->orWhere('id_mesa', $mesa->id);
+                })
+                ->where('id_asignatura', $mesa->id_asignatura)
+                ->first();
+            
+            if(!$examen){
+                $inscribibles[]=$alumno;
+            }
+        }
+        return $inscribibles;
+    }
+
+    public function delete($mesa){
+        Examen::where('id_mesa',$mesa->id)->where('nota',0)->delete();
+        $mesa->delete();
     }
 }

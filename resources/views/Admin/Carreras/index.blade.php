@@ -38,13 +38,6 @@
     </div>
     
 
-
-    {{-- @foreach ($alumnos->pagr as )
-        
-    @endforeach
-    <li class="page-item{{ $page == $alumnos->currentPage() ? ' active' : '' }}">
-        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-    </li> --}}
     
     <div class="table">
         <div class="perfil__header-alt">
@@ -58,7 +51,8 @@
                 <th class="center">Apertura</th>
                 <th class="center">Fin</th>
                 <th>Acciones</th>
-                <th colspan="2">Masivo</th>
+                <th colspan="">Masivo</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -79,6 +73,7 @@
                     </a>
                 @endif
             </td>
+            <td><a href="/admin/cursantes/carrera/{{$carrera->id}}"><button class="bg-transparent blue-600">Exportar cursadas</button></a></td>
             </tr>
             @endforeach
         </tbody>

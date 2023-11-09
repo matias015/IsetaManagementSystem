@@ -141,8 +141,8 @@ class RematriculacionController extends Controller
             Cursada::create([
                 'id_asignatura' => $asigId,
                 'id_alumno' => Auth::id(),
-                'condicion' => $tipoCursada,
-                'aprobada' => 3,
+                'condicion' => $tipoCursada-1,
+                'aprobada' => $tipoCursada==1? 1:3,
                 'anio_cursada' => $anio_remat
             ]);
         }
@@ -161,7 +161,7 @@ class RematriculacionController extends Controller
             return \redirect()->back()->with('error', 'Esta cursada no te pertenece... &#129320;');
         }
         
-        if($cursada->aprobada != 3) return redirect()->back()->with('error','Ya has terminado de cursar');
+        if($cursada->aprobada != 3 && $cursada->condicion!=0) return redirect()->back()->with('error','Ya has terminado de cursar');
         
         $config = Configuracion::todas();
 

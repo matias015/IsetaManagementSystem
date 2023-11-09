@@ -148,6 +148,14 @@ class Alumno extends Authenticatable implements MustVerifyEmail
     public function dniPuntos(){
         return number_format($this->dni, 0, ',', '.');
     }
+
+    public function primerNombre(){
+        return explode(' ',$this->nombre)[0];
+    }
+
+    public function iniciales(){
+        return "{$this->nombre[0]}.{$this->apellido[0]}.";
+    }
     
     public function setEmailAttribute($value)
     {

@@ -38,7 +38,7 @@ class CursadasAdminController extends Controller
    
     function delete(Cursada $cursada){
         $cursada -> delete();
-        return redirect()->back();
+        return redirect() -> route('admin.alumnos.index');
     }
 
     function edit(Request $request, Cursada $cursada){

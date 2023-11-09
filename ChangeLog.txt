@@ -302,3 +302,29 @@ CORRECCIONES 2/9
         - Ahora alumnos/examenes muestra la fecha de examen en formato dd-mm-yyyy (sin hora) 
     - Otros
         - Cambios internos (Controladores para inscripciones y rematriculacion)
+
+
+--------------------------------------------------------------
+8 de noviembre
+--------------------------------------------------------------
+- Admin
+    - Mesas
+        - Validaciones al editar.
+    - config
+        - Ahora incluye una desincripcion para cada una de las opciones de configuracion.
+        
+
+- Alumnos
+    - rematriculacion
+        - Se registraba mal la condicion de la cursada.
+        - No te podias bajar si elegias libre.
+    - general
+        - Ya se puede usar $alumno->iniciales() y $alumno->primerNombre().
+            recordar que auth()->user() es lo mismo que $alumno.
+    - Carreras/Cursadas
+        - Opcion de exportar cursadas directamente desde la tabla principal de Carreras.
+    - Cursadas
+        - Luego de eliminar se redirigia a la misma cursada la cual ya no existe por lo que se obtenia un 404.
+        
+- profesores
+    - Ahora tienen botones para imprimir los 3 tipos de acta volante.

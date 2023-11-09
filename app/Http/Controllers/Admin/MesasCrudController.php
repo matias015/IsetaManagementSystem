@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CrearMesaRequest;
+use App\Http\Requests\EditarMesaRequest;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Configuracion;
@@ -17,24 +18,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 class MesasCrudController extends Controller
-
 {
-    function __construct()
+    public $mesaRepository;
+
+    function __construct(MesaRepository $mesaRepository)
     {
-        // $this -> middleware('auth:admin');
+        $this->mesaRepository = $mesaRepository;
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, MesaRepository $mesaRepository)
+    public function index(Request $request)
     {       
         $mesas = [];
         $filtro = $request->filtro ? $request->filtro: '';
         $campo = $request->campo ? $request->campo: '';
         $orden = $request->orden ? $request->orden: 'fecha';
 
-        $mesas = $mesaRepository->conFiltros($filtro,$campo,$orden);
+        $mesas = $this->mesaRepository->conFiltros($filtro,$campo,$orden);
 
         return view('Admin.Mesas.index',[
             'mesas' => $mesas,
@@ -140,37 +142,11 @@ class MesasCrudController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, $mesa, MesaRepository $mesaRepository)
+    public function edit(Request $request, $mesa)
     {
         $mesa = Mesa::where('id', $mesa)->with('asignatura.carrera','profesor','vocal1','vocal2','examenes.alumno')->first();
         
-        $inscribiblesCursada = Cursada::with('alumno')
-            -> join('alumnos','cursadas.id_alumno','alumnos.id')
-            -> whereRaw('(cursadas.aprobada=1 OR cursadas.condicion=0 OR cursadas.condicion=2 OR cursadas.condicion=3)')
-            -> where('cursadas.id_asignatura',$mesa->id_asignatura)
-            -> orderBy('alumnos.apellido')
-            -> orderBy('alumnos.nombre')
-            -> get();
-            
-        // $inscribibles = $mesaRepository->inscribibles($mesa);
-
-        $inscribibles = [];
-
-        foreach ($inscribiblesCursada as $cursada) {
-            $alumno = $cursada->alumno;
-
-            $examen = Examen::where('id_alumno', $alumno->id)
-                ->where(function($query) use($mesa){
-                    $query->where('nota','>=',4)
-                        ->orWhere('id_mesa', $mesa->id);
-                })
-                ->where('id_asignatura', $mesa->id_asignatura)
-                ->first();
-            
-            if(!$examen){
-                $inscribibles[]=$alumno;
-            }
-        }
+        $inscribibles = $this->mesaRepository->inscribibles($mesa);
 
         return view('Admin.Mesas.edit', [
             'mesa' => $mesa,
@@ -182,10 +158,10 @@ class MesasCrudController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Mesa $mesa)
+    public function update(EditarMesaRequest $request, Mesa $mesa)
     {
         //CAMIAR REQUEST ALL
-        $data = $request->only(['fecha','llamado', 'prof_presidente','prof_vocal_1','prof_vocal_2']);
+        $data = $request->validated();
         
         // verificar que no sea sabado ni domingo
         if(DiasHabiles::esFinDeSemana($data['fecha'])){
@@ -214,10 +190,7 @@ class MesasCrudController extends Controller
      */
     public function destroy(Mesa $mesa)
     {
-        Examen::where('id_mesa',$mesa->id)->where('nota',0)->delete();
-        
-        $mesa->delete();
-
+        $this->mesaRepository->delete($mesa);
         return redirect() -> route('admin.mesas.index') -> with('mensaje', 'Se ha eliminado la mesa');
     }
 }

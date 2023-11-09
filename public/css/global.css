@@ -19,6 +19,9 @@ button{cursor: pointer;border: none;}
     background-color: #cbcbcb;
 } */
 
+.wrap{
+    white-space: wrap;
+}
 
 table tbody tr.active-row {
     font-weight: bold;

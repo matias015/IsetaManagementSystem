@@ -50,8 +50,8 @@
                             @else
                                 <select class="campo_info rounded pointer" name="{{$asignatura->id}}">
                                     <option value="">No matricular</option>
-                                    <option value="0">Libre</option>
-                                    <option value="1">Regular</option>
+                                    <option value="1">Libre</option>
+                                    <option value="2">Regular</option>
                                     </select>
                             @endif
                         </td>
