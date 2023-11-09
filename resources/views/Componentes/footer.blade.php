@@ -56,8 +56,7 @@
     <div class="p-2 footer-derechos">
         <span class="center">Copyright © 2023 <a class="neg" href="#">ISETA</a> | Todos los derechos reservados</span>
         <span class="flex gap-4 just-center">
-          <a class="center" href="#">Política de privacidad</a>
-          <a class="center" href="#">Términos & condiciones</a>
+          Desarrolado por los alumnos de tercer año de Análisis, Desarrollo y Programación de Aplicaciones
         </span>
     </div>
   </footer>
