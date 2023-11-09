@@ -32,7 +32,7 @@ class crearAlumnoRequest extends FormRequest
             'dpto' => ['nullable'],
             'piso' => ['nullable'],
             'estado_civil' => ['required'],
-            'email' => ['required'],
+            'email' => ['required','unique:alumnos'],
             'titulo_anterior' => ['nullable'],
             'becas' => ['nullable'],
             'observaciones' => ['nullable'],

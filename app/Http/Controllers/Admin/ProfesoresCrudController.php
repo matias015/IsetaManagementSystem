@@ -86,7 +86,7 @@ class ProfesoresCrudController extends Controller
         $data = $request->validated();
 
         Profesor::create($data);
-        return redirect()->route('admin.profesores.index');
+        return redirect()->route('admin.profesores.index')->with('mensaje','Se creo el profesor');
     }
 
     /**
@@ -123,7 +123,7 @@ class ProfesoresCrudController extends Controller
     public function update(Request $request, Profesor $profesor)
     {
         $profesor->update($request->all());
-        return redirect()->route('admin.profesores.index');
+        return redirect()->route('admin.profesores.index')->with('mensaje','Se edito el profesor');
     }
 
     /**

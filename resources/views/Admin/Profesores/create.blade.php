@@ -60,10 +60,10 @@
                         <label>Formacion academica:</label>
                         <input class="campo_info rounded" name="formacion_academica">
                     </div>
-                    <div class="perfil_dataname">
+                    {{-- <div class="perfil_dataname">
                         <label>Titulo:</label>
                         <input class="campo_info rounded" name="titulo">
-                    </div>
+                    </div> --}}
                     <div class="perfil_dataname">
                         <label>Año de ingreso:</label>
                         <input class="campo_info rounded" name="anio_ingreso">

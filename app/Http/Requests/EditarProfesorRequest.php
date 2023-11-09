@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class EditarProfesorRequest extends FormRequest
 {
@@ -34,7 +35,7 @@ class EditarProfesorRequest extends FormRequest
             'estado_civil' => ['required'],
             'email' => ['required'],
             'formacion_academica' => ['nullable'],
-            'titulo' => ['nullable'],
+            'titulo' => ['nullable','numeric'],
             'observaciones' => ['nullable'],
             'telefono1' => ['nullable'],
             'telefono2' => ['nullable'],

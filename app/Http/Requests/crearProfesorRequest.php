@@ -34,7 +34,7 @@ class crearProfesorRequest extends FormRequest
             'estado_civil' => ['required'],
             'email' => ['required'],
             'formacion_academica' => ['nullable'],
-            'titulo' => ['nullable'],
+            'titulo' => ['nullable','numeric'],
             'observaciones' => ['nullable'],
             'telefono1' => ['nullable'],
             'telefono2' => ['nullable'],
