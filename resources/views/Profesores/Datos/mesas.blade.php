@@ -60,19 +60,19 @@
                 <div class="table__body">
                     <table>
                         <thead>
-                            <tr>
+                            
                                 <th>Asignatura</th>
                                 <th>Fecha</th>
                                 <th>Rol</th>
-                                <th>Detalles</th>
-                            </tr>
+                                <th>Acta volante</th>
+                            
                         </thead>
                         
                     @foreach ($mesas as $mesa)
                         <tr>
-                            <td>{{$mesa->asignatura->nombre}}</td>
-                            <td>{{$mesa->fecha}}</td>
-                            <td>
+                            <td data-label="Asignatura">{{$mesa->asignatura->nombre}}</td>
+                            <td data-label="Fecha">{{$mesa->fecha}}</td>
+                            <td data-label="Rol">
                             @if ($mesa->prof_presidente == $profesor->id)
                             Presidente
                             @elseif ($mesa->prof_vocal_1 == $profesor->id)
@@ -81,10 +81,10 @@
                             Vocal 2
                             @endif
                             </td>
-                            <td>
-                                <a href="{{route('admin.mesas.acta',['mesa' => $mesa->id])}}" target="__blank"><button class="btn-p-acta">Acta volante</button></a>
-                                <a href="{{route('admin.mesas.actaprom',['mesa' => $mesa->id])}}" target="__blank"><button class="btn-p-acta">Acta volante</button></a>
-                                <a href="{{route('admin.mesas.actalibre',['mesa' => $mesa->id])}}" target="__blank"><button class="btn-p-acta">Acta volante</button></a>
+                            <td data-label="Acta volante" class="flex pf-acta">
+                                <a href="{{route('admin.mesas.acta',['mesa' => $mesa->id])}}" target="__blank"><button class="btn-p-acta">Regular</button></a>
+                                <a href="{{route('admin.mesas.actaprom',['mesa' => $mesa->id])}}" target="__blank"><button class="btn-p-acta">Promoción</button></a>
+                                <a href="{{route('admin.mesas.actalibre',['mesa' => $mesa->id])}}" target="__blank"><button class="btn-p-acta">Libre</button></a>
                             </td>
                         </tr>
                     @endforeach
