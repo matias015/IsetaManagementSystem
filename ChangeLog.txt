@@ -332,3 +332,26 @@ CORRECCIONES 2/9
 
 - profesores
     - Ahora tienen botones para imprimir los 3 tipos de acta volante.
+
+
+
+--------------------------------------------------------------
+PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
+--------------------------------------------------------------
+
+- Admin
+    - Alumnos
+        - No permitir 2 alumnos con el mismo mail, y tal vez mismo dni.
+        - Avisar cuando 2 alumnos con el mismo numero de telefono.
+    - Mesas creacion masiva
+        - Agregar validaciones (mesa en dia no habil, dia feriado, etc)
+    - Diseño general
+        - Enviar botones de eliminar abajo.
+        - Idear una confirmacion antes de eliminar un registro.
+        - Lograr que el mail de contacto y numero de telefono sean configurables.
+    - Carreras
+        - Pensar en si se puede cargar archivos como resoluciones, etc
+    - Cursadas
+        - En la tabla principal y al editar, no se menciona de que carrera es la cursada.
+    - DB
+        - Pensar en como hacer una copia de seguridad.
