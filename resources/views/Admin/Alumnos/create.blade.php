@@ -67,7 +67,7 @@
                     </div>
                     <div class="perfil_dataname">
                         <label>Observaciones:</label>
-                        <textarea value="{{old('observaciones')}}" name="observaciones" cols="30" rows="10"></textarea>
+                        <textarea name="observaciones" cols="30" rows="10">{{old('observaciones')}}</textarea>
                     </div>
                     <div class="perfil_dataname">
                         <label>Telefono:</label>

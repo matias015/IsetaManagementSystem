@@ -17,7 +17,7 @@ class AdminAuthController extends Controller
      | ---------------------------------------------
      | Middleware de administrador, excepto el login 
      | ---------------------------------------------
-     */
+    */
 
     public function __construct()
     {

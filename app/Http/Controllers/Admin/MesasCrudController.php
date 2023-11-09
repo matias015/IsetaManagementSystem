@@ -4,15 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CrearMesaRequest;
-use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Configuracion;
 use App\Models\Cursada;
 use App\Models\Examen;
-use App\Models\Habiles;
 use App\Models\Mesa;
 use App\Models\Profesor;
+use App\Repositories\MesaRepository;
 use App\Services\DiasHabiles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -28,58 +27,14 @@ class MesasCrudController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request, MesaRepository $mesaRepository)
     {       
         $mesas = [];
         $filtro = $request->filtro ? $request->filtro: '';
         $campo = $request->campo ? $request->campo: '';
         $orden = $request->orden ? $request->orden: 'fecha';
 
-        $porPagina = Configuracion::get('filas_por_tabla',true);
-
-        $query = Mesa::select('mesas.id_asignatura','mesas.id','mesas.llamado','mesas.fecha', 'asignaturas.nombre','asignaturas.anio', 'carreras.nombre as carrera')
-            -> join('asignaturas','asignaturas.id','=','mesas.id_asignatura')
-            -> join('carreras','carreras.id','=','asignaturas.id_carrera');
-
-
-
-        if($campo == "proximas"){
-            $query = $query->whereRaw('fecha > NOW()');
-        }
-
-        if($orden == "fecha"){
-            $query->orderByDesc('mesas.fecha');
-        }
-        else if($orden == "asignatura"){
-            $query->orderBy('asignaturas.nombre');
-        }
-
-        if($filtro){
-            if(strpos($filtro,':')){
-                $array = explode(':', $filtro);
-                $carrera_nombre = $array[0];
-                $asig_nombre = $array[1];
-
-                $carrera_nombre = '%'.str_replace(' ','%',$array[0]).'%';
-                $asig_nombre = '%'.str_replace(' ','%',$array[1]).'%';
-                
-                $query->where(function($sub) use($carrera_nombre,$asig_nombre){
-                    $sub->whereRaw("(asignaturas.nombre LIKE '$asig_nombre' AND carreras.nombre LIKE '$carrera_nombre')");
-                });
-                $query->orderBy('carreras.nombre');
-            }else{
-                $word = '%'.str_replace(' ','%',$filtro).'%';
-                $query->where(function($sub) use($word){
-                    $sub->whereRaw("(asignaturas.nombre LIKE '$word' OR carreras.nombre LIKE '$word')");
-                });
-                $query->orderBy('carreras.nombre');
-            }
-        }
-
-        
-        $query -> orderBy('mesas.fecha');
-
-        $mesas = $query -> paginate($porPagina);
+        $mesas = $mesaRepository->conFiltros($filtro,$campo,$orden);
 
         return view('Admin.Mesas.index',[
             'mesas' => $mesas,
@@ -185,7 +140,7 @@ class MesasCrudController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, $mesa)
+    public function edit(Request $request, $mesa, MesaRepository $mesaRepository)
     {
         $mesa = Mesa::where('id', $mesa)->with('asignatura.carrera','profesor','vocal1','vocal2','examenes.alumno')->first();
         
@@ -197,6 +152,8 @@ class MesasCrudController extends Controller
             -> orderBy('alumnos.nombre')
             -> get();
             
+        // $inscribibles = $mesaRepository->inscribibles($mesa);
+
         $inscribibles = [];
 
         foreach ($inscribiblesCursada as $cursada) {

@@ -82,7 +82,9 @@
                             @endif
                             </td>
                             <td>
-                                <a href="{{route('admin.mesas.acta',['mesa'=>$mesa->id])}}" target="__blank"><button class="btn-p-acta">Acta volante</button></a>
+                                <a href="{{route('admin.mesas.acta',['mesa' => $mesa->id])}}" target="__blank"><button class="btn-p-acta">Acta volante</button></a>
+                                <a href="{{route('admin.mesas.actaprom',['mesa' => $mesa->id])}}" target="__blank"><button class="btn-p-acta">Acta volante</button></a>
+                                <a href="{{route('admin.mesas.actalibre',['mesa' => $mesa->id])}}" target="__blank"><button class="btn-p-acta">Acta volante</button></a>
                             </td>
                         </tr>
                     @endforeach

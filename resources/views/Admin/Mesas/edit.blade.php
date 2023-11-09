@@ -61,18 +61,19 @@
                     <div class="upd">
                         <input type="submit" value="Actualizar" class="btn_borrar">
                         <div>
-                            <form method="POST" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">
-                                @csrf
-                                @method('delete')
-                                <input class="btn_borrar-alt" type="submit" value="Eliminar mesa">
-                            </form>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-
-            <div class="perfil_one br">
+        
+        <form method="POST" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">
+            @csrf
+            @method('delete')
+            <input class="btn_borrar-alt" type="submit" value="Eliminar mesa">
+        </form>
+        
+        <div class="perfil_one br">
                 {{-- <p>La funcion de agregar alumnos se elimino hasta que se arreglen algunos errores</p> --}}
                 <div class="perfil__header">
                     <h2>Alumnos inscriptos</h2>
@@ -91,7 +92,8 @@
                                 @endforeach
                             </select>
                             <input name="id_mesa" value="{{$mesa->id}}" type="hidden">
-                            <div class="upd"><input type="submit" value="Agregar" class="btn_borrar"></div>
+                            <input type="submit" value="Agregar" class="btn_borrar">
+                            <div class="upd"></div>
                         </form>
                     
                     @else
