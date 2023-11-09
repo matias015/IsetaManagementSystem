@@ -110,24 +110,11 @@ class AlumnoController extends Controller
         $filtro = $request->filtro ? $request->filtro: '';
         $campo = $request->campo ? $request->campo: '';
         $orden = $request->orden ? $request->orden: 'fecha';
+                
+        $examenes = $this->alumnoRepository->examenes($filtro,$campo,$orden);
         
-
-        // $examenes = Examen::delAlumnoMasAltas($filtro,$campo,$orden);
-        
-        $examenes = Examen::join('asignaturas', 'asignaturas.id','examenes.id_asignatura')
-        -> where('asignaturas.id_carrera', Carrera::getDefault()->id)
-        -> where('examenes.id_alumno', Auth::id())
-        -> orderBy('asignaturas.anio')
-        -> orderBy('asignaturas.id')
-        -> orderBy('examenes.fecha')
-        -> orderBy('examenes.nota','desc')
-        -> get();
-
-        
-            // \dd($examenes);
         return view('Alumnos.Datos.examenes', [
             'examenes'=>$examenes,
-            // 'promedio'=>$promedio,
             'filtros'=>[
                 'campo' => $campo,
                 'orden' => $orden,

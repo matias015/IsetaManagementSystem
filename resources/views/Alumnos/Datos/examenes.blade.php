@@ -26,6 +26,8 @@
               <div class="none md-block contenedor_filtrar">
                 <span>Filtrar por</span>
                 <select  name="campo" class="filtrar">
+                  <option  value="todas">Todas</option>
+
                   <option @selected($filtros['campo'] == 'aprobadas') value="aprobadas">Aprobadas</option>
                   <option @selected($filtros['campo'] == 'desaprobadas') value="desaprobadas">Desaprobadas</option>
                 </select>
