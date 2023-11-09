@@ -325,6 +325,10 @@ CORRECCIONES 2/9
         - Opcion de exportar cursadas directamente desde la tabla principal de Carreras.
     - Cursadas
         - Luego de eliminar se redirigia a la misma cursada la cual ya no existe por lo que se obtenia un 404.
-        
+    - Examenes
+        - Ya no se muestra el vocal 2 en las mesas que no cuenten con este.
+    - Inscripciones/Mesas
+        - Ya no se muestra el vocal 2 en las mesas que no cuenten con este.
+
 - profesores
     - Ahora tienen botones para imprimir los 3 tipos de acta volante.

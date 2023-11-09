@@ -97,8 +97,13 @@
           <td data-label="Profesores">
               @if(isset($examen->mesa))
             <p><i class="ti ti-user-filled"></i> {{$examen->mesa->profesorNombre('presidente')}}</p>
-            <p><i class="ti ti-user-filled"></i> {{$examen->mesa->profesorNombre('vocal1','Desconocido')}}</p>
-            {{--<p><i class="ti ti-user-filled"></i> {{$examen->mesa->profesorNombre('vocal2','Desconocido')}}</p>--}}
+            <p><i class="ti ti-user-filled"></i> {{$examen->mesa->profesorNombre('vocal1','A confirmar')}}</p>
+            
+            @if ($examen->mesa->prof_vocal_2)
+              <p><i class="ti ti-user-filled"></i> {{$examen->mesa->profesorNombre('vocal2','Desconocido')}}</p>
+            @endif
+
+            
               @else
                <p>No hay datos de mesa</p>
               @endif

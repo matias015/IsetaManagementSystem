@@ -42,7 +42,9 @@
               <td>
                 <p>-> {{$asignatura->mesas[$key]->profesorNombre('presidente')}}</p>
                 <p>-> {{$asignatura->mesas[$key]->profesorNombre('vocal1')}}</p>
-                <p>-> {{$asignatura->mesas[$key]->profesorNombre('vocal2')}}</p>
+                @if ($asignatura->mesas[$key]->prof_vocal_2)
+                  <p>-> {{$asignatura->mesas[$key]->profesorNombre('vocal2')}}</p>
+                @endif  
               </td>
               @include('Componentes.inscripcion-form')
             @endforeach
