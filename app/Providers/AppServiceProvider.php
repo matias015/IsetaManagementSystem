@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Repositories\CursadaRepository;
+use App\Services\AlumnoInscripcionService;
 use App\Services\Fecha;
 use App\Services\TextFormatService;
 use Illuminate\Support\Facades\View;
@@ -16,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(CursadaRepository::class);
+        $this->app->bind(AlumnoInscripcionService::class);
     }
 
     /**

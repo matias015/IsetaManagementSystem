@@ -334,6 +334,11 @@ CORRECCIONES 2/9
     - Ahora tienen botones para imprimir los 3 tipos de acta volante.
 
 
+--------------------------------------------------------------
+9 de noviembre
+--------------------------------------------------------------
+
+
 
 --------------------------------------------------------------
 PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)

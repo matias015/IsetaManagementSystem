@@ -88,51 +88,6 @@ class Alumno extends Authenticatable implements MustVerifyEmail
         return Egresado::with('carrera')->where('id_alumno',$this->id)->get();
     }
 
-    // Obtiene las mesas disponibles para el alumno 
-    static function inscribibles2(){
-        
-        $asignaturas = Asignatura::with('mesas.anotado')
-            -> where('id_carrera', Carrera::getDefault()->id)
-            -> get();
-
-        $examenesInscriptos = Examen::select('id_mesa')
-            -> where('id_alumno', Auth::id())
-            -> get() -> pluck('id_mesa') -> toArray();
-
-        $posibles = [];
-        $reg = [];
-
-        foreach ($asignaturas as $key=>$asignatura) {
-            $reg = [
-                'asignatura' => null,
-                'correlativas' => null,
-                'yaAnotado' => null,
-            ];
-            
-            if(count($asignatura->mesas) == 0) continue;
-            if($asignatura->aproboExamen(Auth::user())) continue;
-            if(!$asignatura->aproboCursada(Auth::user())) continue;
-
-            $reg['asignatura'] = $asignatura;
-
-            foreach($asignatura->mesas as $mesa){      
-                if(in_array($mesa->id, $examenesInscriptos)) {
-                    $reg['yaAnotado'] = $mesa; break;
-                }
-            }
-
-            $correlativas = Correlativa::debeExamenesCorrelativos($asignatura);
-           
-            if($correlativas){
-                $reg['correlativas'] = $correlativas;
-            }
-            $posibles[] = $reg;
-        }
-
-        return $posibles;
-    }
-
-
     public function examenes(){
         return $this -> hasMany(Examen::class, 'id_alumno');
     }

@@ -109,7 +109,7 @@
         
                     <p @class([
                         'status' => true,
-                        'aprobada' => $cursada->aprobada == 1,
+                        'aprobada' => $cursada->aprobada == 1 || $cursada->condicion = 0 || $cursada->condicion = 2 || $cursada->condicion = 3,
                         'reprobada' => $cursada->aprobada == 2,
                         'cursando' => $cursada->aprobada == 3
                     ]) >

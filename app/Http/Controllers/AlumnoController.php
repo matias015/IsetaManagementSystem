@@ -8,15 +8,18 @@ use App\Models\Configuracion;
 use App\Models\Cursada;
 use App\Models\Egresado;
 use App\Models\Examen;
+use App\Repositories\AlumnoDataRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
 class AlumnoController extends Controller
 {
+    public $alumnoRepository;
 
-    public function __construct()
+    public function __construct(AlumnoDataRepository $alumnoDataRepository)
     {
+        $this->alumnoRepository = $alumnoDataRepository;
         $this -> middleware('auth:web');
         $this -> middleware('verificado')->only([
             'info',
@@ -68,58 +71,15 @@ class AlumnoController extends Controller
      | ---------------------------------------------
      */
 
-    function cursadas(Request $request){
-
-        $cursadas=[];
-        
+    function cursadas(Request $request){        
         $filtro = $request->filtro ? $request->filtro: '';
         $campo = $request->campo ? $request->campo: '';
         $orden = $request->orden ? $request->orden: 'fecha';
         
         // cursadas del alumno de la carrera seleccionada
-        $query = Cursada::with('asignatura')->select('cursadas.id_asignatura','cursadas.anio_cursada','cursadas.id','cursadas.aprobada','cursadas.condicion','asignaturas.nombre','asignaturas.anio')
-            -> where('id_alumno', Auth::id())
-            -> where('asignaturas.id_carrera', Carrera::getDefault(Auth::id())->id) 
-            -> join('asignaturas','asignaturas.id','cursadas.id_asignatura');
+        $cursadas = $this->alumnoRepository->cursadas($filtro, $campo, $orden);
 
-        if($request->has('filtro')){
-            $query =  $query -> where('asignaturas.nombre','LIKE','%'.$filtro.'%');
-        }
-
-        if($campo == "aprobadas"){
-            $query->where(function($sub){
-                $sub -> where('cursadas.aprobada', 1)
-                    ->orWhereIn('cursadas.condicion',[0,2,3]);
-            });
-        }
-
-        else if($campo == "desaprobadas"){
-            $query-> where('cursadas.aprobada', 2)
-                ->whereNotIn('cursadas.condicion',[0,2,3]);
-        }
-
-
-        if($orden == 'anio'){
-            $query->orderBy('asignaturas.anio');
-        }            
-        else if($orden == 'anio_cursada'){
-            $query->orderBy('cursadas.anio_cursada');
-        }
-        else if($orden == 'anio_desc'){
-            $query->orderBy('asignaturas.anio','desc');
-        }            
-        else if($orden == 'anio_cursada_desc'){
-            $query->orderBy('cursadas.anio_cursada','desc');
-        }
-
-        $query -> orderBy('asignaturas.anio')
-        -> orderBy('asignaturas.id')
-        -> orderBy('cursadas.anio_cursada','desc');
-
-        $cursadas = $query->get();
-        
-        // lista de examenes aprobados para saber si una cursada
-        // tiene rendido su final
+        // lista de examenes aprobados para saber si una cursada tiene rendido su final
         $examenesAprobados = Examen::select('examenes.id_asignatura')
             -> where('examenes.nota','>=',4)
             -> where('examenes.id_alumno',Auth::id())
