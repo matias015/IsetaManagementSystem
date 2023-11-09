@@ -46,7 +46,6 @@
         <div class="table__body">
           <table>
             <thead>
-              <tr>
                 <th>Materia</th>
                 <th>Cursada</th>
                 <th class="text-center">Condicion</th>
@@ -55,7 +54,6 @@
                 @if ($puedeBajarse)
                   <th>Acción</th>
                 @endif
-              </tr>
             </thead>
             <tbody>
               
@@ -94,12 +92,12 @@
               {{-- <tr> --}}
 
                 @if ($actual != $cursada->id_asignatura && !$loop->last && $cursadas[$key+1]->id_asignatura == $cursada->id_asignatura)
-                  <td>
+                  <td data-label="Materia">
                     {{$cursada->nombre}}
                     <button class="pointer bg-transparent px-2 mx-5 rounded desplegable" data-element="{{$cursada->id_asignatura}}">↓</button> 
                   </td>
                 @else
-                  <td>{{$cursada->nombre}}</td>    
+                  <td data-label="Materia">{{$cursada->nombre}}</td>    
                 @endif
                 @php
                   $actual = $cursada->id_asignatura;
@@ -107,7 +105,7 @@
 
 
 
-                <td>
+                <td data-label="Cursada">
         
                     <p @class([
                         'status' => true,
@@ -118,22 +116,22 @@
                     {{$cursada->aprobado()}}
                     </p>
                 </td>
-                  <td class="text-center">{{$cursada->condicionString()}}</td>
-                <td class="text-center">{{$cursada->anio_cursada}}</td>
+                  <td data-label="Condicion" class="text-center mb-left">{{$cursada->condicionString()}}</td>
+                <td data-label="Año cursada" class="text-center mb-left">{{$cursada->anio_cursada}}</td>
 
                 <p class="center">
                   @php
                       $examen = $cursada->asignatura->aproboExamen(auth()->user());
                   @endphp
                   @if ($examen)
-                      <td>Si ({{$examen->nota}})</td>
+                      <td data-label="Examen final">Si ({{$examen->nota}})</td>
                   @else
-                    <td>Aun sin aprobar</td>
+                    <td data-label="Examen final">Aun sin aprobar</td>
                   @endif
                 </p>
 
                 @if ($puedeBajarse)
-                  <td>
+                  <td data-label="Acción">
                     @if ($cursada->aprobada == 3)
                     <form method="POST" action="{{route('alumno.rematriculacion.delete', ['cursada'=>$cursada->id])}}">
                       @csrf
