@@ -116,7 +116,6 @@ footer {
     background-color: var(--azul-osc-iseta);
     color: #AFAFB6;
     width: 100%;
-    height: 50px;
     font-size: 12px;
 }
 
@@ -131,4 +130,14 @@ footer {
 
 .footer-derechos a:hover {
     text-decoration: underline;
+}
+
+@media screen and (max-width: 640px) {
+    .footer-derechos {
+        flex-direction: column;
+    }
+
+    .footer-derechos span {
+        padding: 10px 0;
+    }
 }
