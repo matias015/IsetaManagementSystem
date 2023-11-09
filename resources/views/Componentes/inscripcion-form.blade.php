@@ -11,18 +11,18 @@
         {{-- @dd($disponibles) --}}
         @if($yaAnotado->llamado == 1)
 
-            <td class="llamado_{{$yaAnotado->llamado}}">
+            <td data-label="Llamado 1" class="llamado_{{$yaAnotado->llamado}}">
                 <input checked name="mesa" value="{{$yaAnotado->id}}" type="radio">
                 <span>{{$formatoFecha->dmhm($yaAnotado->fecha)}}</span>
             </td>
     
-            <td class="llamado_{{$yaAnotado->llamado}}"> - </td>
+            <td data-label="LLamado 2" class="llamado_{{$yaAnotado->llamado}}"> - </td>
 
         @else
 
-            <td class="llamado_{{$yaAnotado->llamado}}"> - </td>
+            <td data-label="LLamado 1" class="llamado_{{$yaAnotado->llamado}}"> - </td>
             
-            <td class="llamado_{{$yaAnotado->llamado}}">
+            <td data-label="Llamado 2" class="llamado_{{$yaAnotado->llamado}}">
                 <input checked name="mesa" value="{{$yaAnotado->id}}" type="radio">
                 <span>{{$formatoFecha->dmhm($yaAnotado->fecha)}}</span>
             </td>
@@ -52,19 +52,19 @@
                 </td>        
                 @break        
             @elseif ($mesa)
-                <td class="llamado_1">
+                <td data-label="LLamado 1" class="llamado_1">
                     <input name="mesa" value="{{$mesa->id}}" type="radio">
                     {{$formatoFecha->dmhm($mesa->fecha)}}
                 </td>
             @else
-                <td>No hay llamado {{$key +1}}</td>
+                <td data-label="Llamado 2">No hay llamado {{$key +1}}</td>
             @endif
         @endforeach
         
     @endif
 
     {{-- Boton cambia de clase y texto dependiendo si esta anotado o no --}}
-    <td>
+    <td data-label="Acción">
         <button @class([
           'boton-finales inscribir' => (!$yaAnotado && !$correlativas),
           'boton-finales bajarse' => $yaAnotado,
@@ -80,4 +80,3 @@
     @else
         </form>
     @endif
-  
