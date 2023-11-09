@@ -44,13 +44,13 @@
 <div class="table__body">
     <table>
       <thead>
-        <tr>
+        
           <th>Materia</th>
           <th>Profesores</th>
           <th>Nota</th>
           <th>Tipo de final</th>
-          <th>Fecha - Hora</th>
-        </tr>
+          <th>Fecha</th>
+        
       </thead>
       <tbody>
         @php
@@ -84,31 +84,31 @@
           
           
           @if ($actual != $examen->id_asignatura && !$loop->last && $examenes[$key+1]->id_asignatura == $examen->id_asignatura)
-            <td class="flex items-center">
+            <td data-label="Materia" class="flex items-center">
               {{$examen->nombre}}
               <button class="btn-mov pointer bg-transparent px-2 mx-5 desplegable" data-element="{{$examen->id_asignatura}}">⇅</button> 
             </td>
           @else
-            <td>{{$examen->nombre}}</td>    
+            <td data-label="Materia">{{$examen->nombre}}</td>    
           @endif
           @php
             $actual = $examen->id_asignatura;
         @endphp  
-          <td>
+          <td data-label="Profesores">
               @if(isset($examen->mesa))
             <p><i class="ti ti-user-filled"></i> {{$examen->mesa->profesorNombre('presidente')}}</p>
             <p><i class="ti ti-user-filled"></i> {{$examen->mesa->profesorNombre('vocal1','Desconocido')}}</p>
-            <p><i class="ti ti-user-filled"></i> {{$examen->mesa->profesorNombre('vocal2','Desconocido')}}</p>
+            {{--<p><i class="ti ti-user-filled"></i> {{$examen->mesa->profesorNombre('vocal2','Desconocido')}}</p>--}}
               @else
                <p>No hay datos de mesa</p>
               @endif
           </td>
-            <td>
+            <td data-label="Nota">
               {{$examen->nota()}}
         
             </td>
-            <td>{{$examen->tipoFinal()}}</td>
-            <td>
+            <td data-label="Tipo de final">{{$examen->tipoFinal()}}</td>
+            <td data-label="Fecha">
              {{$formatoFecha->dma($examen->fecha())}}
             </td>
         </tr>
