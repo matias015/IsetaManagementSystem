@@ -8,11 +8,10 @@ use App\Http\Requests\EditarMesaRequest;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Configuracion;
-use App\Models\Cursada;
-use App\Models\Examen;
 use App\Models\Mesa;
 use App\Models\Profesor;
 use App\Repositories\MesaRepository;
+use App\Services\Admin\MesasCheckerService;
 use App\Services\DiasHabiles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -20,10 +19,12 @@ use Illuminate\Support\Carbon;
 class MesasCrudController extends Controller
 {
     public $mesaRepository;
+    public $mesasService;
 
-    function __construct(MesaRepository $mesaRepository)
+    function __construct(MesaRepository $mesaRepository, MesasCheckerService $mesasService)
     {
         $this->mesaRepository = $mesaRepository;
+        $this->mesasService = $mesasService;
     }
 
     /**
@@ -65,6 +66,7 @@ class MesasCrudController extends Controller
 
         $carreras = Carrera::where('vigente', 1)->get();
         $profesores = Profesor::orderBy('apellido','asc')->orderBy('apellido','asc')->get();
+        
         return view('Admin.Mesas.create',[
             'carreras'=>$carreras,
             'profesores'=>$profesores,
@@ -83,40 +85,21 @@ class MesasCrudController extends Controller
         // obtener datos validados
         $data = $request->validated();
 
-        // verificar que no sea sabado ni domingo
-        if(DiasHabiles::esFinDeSemana($data['fecha'])){
-            return \redirect()->back()->with('error','No puedes crear una mesa un fin de semana');
-        }
+        $esDiaValido = $this->mesasService->esDiaHabil($data['fecha']);
 
-        // verificar que no sea feriado, o similar
-        if(!DiasHabiles::esDiaHabil($data['fecha'])){
-            return \redirect()->back()->with('error','No puedes crear una mesa un dia no habil');
-        }
+        if(!$esDiaValido['success']){
+            return redirect()->back()->with('error', $esDiaValido['mensaje'])->withInput();
+        } 
 
         // se añade el id de la carrera al registro de mesa, ya que no viene en el formulario
         // no deberia ser necesario pero la base de datos anterior hacia uso de esta duplicidad
         $data['id_carrera'] = Asignatura::find($data['id_asignatura'])->carrera->id;
-
-        // la fecha de la nueva mesa a crear.
-        $fecha = Carbon::parse($data['fecha']);
-
-        $fechaInicio = $fecha->copy()->subDays($config['diferencia_llamados']); // Restar 30 días
-        $fechaFin = $fecha->copy()->addDays($config['diferencia_llamados']); // Sumar 30 días
         
-        // buscar mesa entre $fecha-30 dias y $fecha+30 dias, es decir un periodo de 30 dias desde ambos lados
-        $registro = Mesa::with('asignatura')
-            -> whereBetween('fecha', [$fechaInicio, $fechaFin])
-            -> where('llamado',$data['llamado'])                // que sea el mismo llamado
-            -> where('id_asignatura',$data['id_asignatura'])    // de la misma asignatura
-            -> first();
+        $llamadoYaExiste = $this->mesasService->llamadoYaExiste($data);
         
-        // si se encontro avisa que ya existe
-        if($registro){  
-              
-            $fechaMesa = Carbon::parse($registro->fecha);
-            return redirect()->back()->with('error','Ya hay un llamado '.$data['llamado'].' para el dia '.$fechaMesa->format('d/m'));
-        } 
-
+        if($llamadoYaExiste['success']){
+            return redirect()->back()->with('error',$llamadoYaExiste['mensaje'])->withInput();
+        }
 
         // Que los profes no sean los mismos
         if(

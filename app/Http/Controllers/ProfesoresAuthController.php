@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AlumnoRegistroRequest;
 use App\Http\Requests\ProfesorLoginRequest;
 use App\Http\Requests\ProfesorRegistroRequest;
 use App\Models\Profesor;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 

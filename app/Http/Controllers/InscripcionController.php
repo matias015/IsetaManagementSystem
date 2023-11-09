@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Alumno;
 use App\Models\Examen;
 use App\Models\Mesa;
 use App\Repositories\InscripcionRepository;

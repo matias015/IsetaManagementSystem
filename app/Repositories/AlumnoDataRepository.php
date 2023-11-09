@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Carrera;
+use App\Models\CarreraDefault;
 use App\Models\Configuracion;
 use App\Models\Cursada;
 use App\Models\Examen;
@@ -70,5 +71,12 @@ class AlumnoDataRepository
         return $query->get();
     }
         
-    function setCarreraDefault(){}
+    function setCarreraDefault($alumno,$carrera){
+        $data = [
+            'id_alumno' => $alumno,
+            'id_carrera' => $carrera
+        ];
+
+        CarreraDefault::updateOrInsert(['id_alumno' => $alumno], $data);   
+    }
 }

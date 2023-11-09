@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
-use function PHPUnit\Framework\returnSelf;
 
 class PasswordResetController extends Controller
 {
@@ -47,7 +46,7 @@ class PasswordResetController extends Controller
 
         $mail = Session::get('__alumno_restablecer_mail');
 
-        if(!$token || !$mail) return \redirect()->back()->with('error','Vaya... hemos perdido el mail o el token, intentalo de nuevo');
+        if(!$token || !$mail) return \redirect()->back()->with('error','Hemos perdido el mail o el token, intentalo de nuevo');
 
         if($token != $request->token) {
             return \redirect()->back()->with('error','Token incorrecto, se ha enviado un nuevo token');

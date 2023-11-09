@@ -8,9 +8,7 @@ use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Examen;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Mockery\CountValidator\Exact;
 
 
 class PdfsController extends Controller
@@ -29,8 +27,6 @@ class PdfsController extends Controller
             -> join('mesas','mesas.id','examenes.id_mesa')
             -> whereRaw('mesas.fecha >= NOW()')
             -> get();
-
-
 
 
         $pdf = Pdf::loadView('pdf.constanciaMesas', ['mesas' => $mesas]);

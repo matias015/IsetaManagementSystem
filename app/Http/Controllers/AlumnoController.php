@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrera;
-use App\Models\CarreraDefault;
 use App\Models\Configuracion;
-use App\Models\Cursada;
 use App\Models\Egresado;
 use App\Models\Examen;
 use App\Repositories\AlumnoDataRepository;
@@ -27,7 +25,6 @@ class AlumnoController extends Controller
         ]);
     }
 
-
     /*
      | -------------------------------------------
      | informacion genereal del alumno
@@ -42,7 +39,6 @@ class AlumnoController extends Controller
         ]);
     }
 
-
     /*
      | ----------------------------------------------------------------------------
      | Setea la carrera que el alumno haya elegido como default para los resultados
@@ -51,19 +47,14 @@ class AlumnoController extends Controller
      */
 
      function setCarreraDefault(Request $request){
+
         if(!Egresado::estaInscripto($request->input('carrera'))){
             return redirect()->back()->with('error','No estas inscripto en esta carrera');
         }
 
-        $data = [
-            'id_alumno' => Auth::id(),
-            'id_carrera' => $request->carrera
-        ];
-
-        CarreraDefault::updateOrInsert(['id_alumno' => Auth::id()],$data);     
+        $this->alumnoRepository->setCarreraDefault(Auth::id(),$request->carrera);
         return redirect()->back()->with('mensaje','Se ha seleccionado esa asignatura');
     }
-
 
     /*
      | ---------------------------------------------
@@ -97,7 +88,6 @@ class AlumnoController extends Controller
             ]
         ]);
     }
-
 
     /*
      | ---------------------------------------------
