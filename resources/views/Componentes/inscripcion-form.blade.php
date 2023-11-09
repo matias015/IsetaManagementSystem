@@ -44,20 +44,20 @@
         {{-- Si hay llamado 1 para esa mesa se muestra, sino, muestra un mensaje --}}
         @foreach ($mesas as $key=>$mesa)
             @if ($correlativas)
-                <td>Debes correlativas</td>
-                <td>
+                <td data-label="Llamado 1">Debes correlativas</td>
+                <td data-label="Llamado 2">
                     @foreach ($correlativas as $correlativa)
                         <div>-> {{$correlativa->nombre}}</div>
                     @endforeach
                 </td>        
                 @break        
             @elseif ($mesa)
-                <td data-label="LLamado 1" class="llamado_1">
+                <td data-label="LLamado {{$key +1}}" class="llamado_1">
                     <input name="mesa" value="{{$mesa->id}}" type="radio">
                     {{$formatoFecha->dmhm($mesa->fecha)}}
                 </td>
             @else
-                <td data-label="Llamado 2">No hay llamado {{$key +1}}</td>
+                <td data-label="LLamado {{$key +1}}">No hay llamado {{$key +1}}</td>
             @endif
         @endforeach
         
