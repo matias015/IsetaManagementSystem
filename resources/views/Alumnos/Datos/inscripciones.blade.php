@@ -16,7 +16,7 @@
             <th>Profesores</th>
             <th>Llamado 1</th>
             <th>Llamado 2</th>
-            <th>Estado</th>
+            <th>Acción</th>
           </tr>
         </thead>
         <tbody>
@@ -28,7 +28,7 @@
               $correlativas = $disponible['correlativas'];
               $yaAnotado = $disponible['yaAnotado'];
               $path = $yaAnotado? "alumno.bajarse":"alumno.inscribirse";
-              $btnTexto = $yaAnotado? "desinscribirme":"inscribirme"; 
+              $btnTexto = $yaAnotado? "Desinscribirme":"Inscribirme"; 
               $btnTexto = $correlativas? "No disponible":$btnTexto;
               if($asignatura->mesas[0]) $key = 0;
               else $key=1;
@@ -36,12 +36,12 @@
             
 
             <tr>
-              <td class="text-center">{{$asignatura->anio}}</td>
+              <td data-label="Año" class="text-center mb-left">{{$asignatura->anio}}</td>
               
-              <td>{{$asignatura->nombre}}</td>
-              <td>
-                <p>-> {{$asignatura->mesas[$key]->profesorNombre('presidente')}}</p>
-                <p>-> {{$asignatura->mesas[$key]->profesorNombre('vocal1')}}</p>
+              <td data-label="Materia">{{$asignatura->nombre}}</td>
+              <td data-label="Profesores">
+                <p><i class="ti ti-user-filled"></i> {{$asignatura->mesas[$key]->profesorNombre('presidente')}}</p>
+                <p><i class="ti ti-user-filled"></i> {{$asignatura->mesas[$key]->profesorNombre('vocal1')}}</p>
                 @if ($asignatura->mesas[$key]->prof_vocal_2)
                   <p>-> {{$asignatura->mesas[$key]->profesorNombre('vocal2')}}</p>
                 @endif  
