@@ -54,6 +54,12 @@ table tbody tr.active-row {
 .z-index-top{z-index: 9999999;}
 
 .pointer{cursor: pointer;}
+
+@media screen and (max-width: 640px) {
+
+.mb-left{text-align: left;}
+}
+
 /* GRILLA */
 
 .grid-1 {display: grid;grid-template-columns: 1fr;}
