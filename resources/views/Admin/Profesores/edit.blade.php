@@ -94,13 +94,13 @@
 
         <div class="table">
             <div  class="table__header"><h2>Proximas mesas</h2></div>
-            <table>
+            <table class="table__body">
                 <thead>
                     <tr>
                         <th>Asignatura</th>
                         <th>Fecha</th>
                         <th>Rol</th>
-                        <th>Detalles</th>
+                        <th class="center">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -117,7 +117,7 @@
                                 Vocal 2
                             @endif
                         </td>
-                        <td><a href="{{route('admin.mesas.edit',['mesa'=>$mesa->id])}}">Detalles</a></td>
+                        <td class="flex just-center"><a href="{{route('admin.mesas.edit',['mesa'=>$mesa->id])}}"><button class="btn_blue"><i class="ti ti-file-info"></i>Detalles</button></a></td>
                     </tr>
                     @endforeach
                 </tbody>           
