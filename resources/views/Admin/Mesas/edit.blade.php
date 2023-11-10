@@ -67,11 +67,7 @@
             </div>
         </div>
         
-        <form method="POST" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">
-            @csrf
-            @method('delete')
-            <input class="btn_borrar-alt" type="submit" value="Eliminar mesa">
-        </form>
+        
         
         <div class="perfil_one br">
                 {{-- <p>La funcion de agregar alumnos se elimino hasta que se arreglen algunos errores</p> --}}
@@ -79,9 +75,8 @@
                     <h2>Alumnos inscriptos</h2>
                 </div>
                 <div class="matricular">
-                    <p>
                      @if(strtotime($mesa->fecha) > time())
-                        Estos alumnos han aprobado la cursada de esta materia, luego se volvera a validar sobre correlativas y tiempos
+                        <p>Estos alumnos han aprobado la cursada de esta materia, luego se volvera a validar sobre correlativas y tiempos</p>
                     
                         <form method="POST" action="{{route('admin.examenes.store')}}">
                     @csrf
@@ -92,23 +87,23 @@
                                 @endforeach
                             </select>
                             <input name="id_mesa" value="{{$mesa->id}}" type="hidden">
+                            
                             <input type="submit" value="Agregar" class="btn_borrar">
-                            <div class="upd"></div>
                         </form>
                     
                     @else
                         Ya no se pueden agregar alumnos    
-                    @endif
-                    </p>
+                    @endif 
                 </div>
+
             </div>
             <div class="table">
                 <div class="table__header">
                     <h2>Acta volante</h2>
                     <div class="flex just-center">
-                        <a href="{{route('admin.mesas.acta', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_edit-alt">Regular</button></a>
-                        <a href="{{route('admin.mesas.actaprom', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_edit-alt">Promocion</button></a>
-                        <a href="{{route('admin.mesas.actalibre', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_edit-alt">Libres</button></a>
+                        <a href="{{route('admin.mesas.acta', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_grey">Regular</button></a>
+                        <a href="{{route('admin.mesas.actaprom', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_grey">Promoción</button></a>
+                        <a href="{{route('admin.mesas.actalibre', ['mesa'=>$mesa->id])}}" target="_blank"><button class="btn_grey">Libre</button></a>
 
                     </div>
                 </div>
@@ -119,7 +114,7 @@
                             <th>Alumno</th>
                             <th>Nota</th>
                             <th>Cursada</th>
-                            <th class="center">Acciones</th>
+                            <th class="center">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -131,14 +126,13 @@
                                 @php
                                     $cursada = $mesa->asignatura->aproboCursada($examen->alumno)
                                 @endphp
-                                <a href="{{route('admin.cursadas.edit',['cursada'=>$cursada->id])}}">
-                                    {{$cursada->condicionString()}} <span>&#8599;</span>
-
+                                <a class="flex items-center" href="{{route('admin.cursadas.edit',['cursada'=>$cursada->id])}}">
+                                    {{$cursada->condicionString()}}   <i class="ti ti-info-circle"></i>
                                 </a>
                             </td>
                             <td class=" flex just-center">
                                 <a href="{{route('admin.examenes.edit', ['examen' => $examen->id])}}">
-                                    <button class="btn_edit">Editar</button>
+                                    <button class="btn_blue"><i class="ti ti-edit"></i>Editar</button>
                                 </a>
 
                             </td>
@@ -148,6 +142,12 @@
                 </table>
                 
             </div>
-
+        <div class="upd">
+            <form method="POST" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">
+                @csrf
+                @method('delete')
+                <input class="btn_borrar-alt" type="submit" value="Eliminar mesa">
+            </form>
+        </div>
     </div>
 @endsection
