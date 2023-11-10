@@ -111,7 +111,7 @@
                         <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
                     @endforeach
                 </select>
-                <div class="upd"><button class="btn_edit">Matricular</button></div>
+                <div class="upd"><button class="btn_blue"><i class="ti ti-paperclip"></i>Matricular</button></div>
             </form>
         </div>
     </div>
@@ -120,7 +120,7 @@
 
     <div class="table">
         <div class="table__header">
-        <h2>Cursadas</h2>
+            <h2>Cursadas</h2>
         </div>
         <table>
             <thead>
@@ -129,8 +129,8 @@
                     {{-- <th>Año</th> --}}
                     {{-- <th>Carrera</th> --}}
                     <th>Condicion</th>
-                    <th class="center">Aprobada</th>
-                    <th colspan="2">Acciones</th>
+                    <th class="center">Estado</th>
+                    <th class="center">Acción</th>
                 </tr>
             </thead>
             <tbody class="table__body">
@@ -171,17 +171,13 @@
                     <td>{{$cursada->condicionString()}}</td>
                     <td class="center">{{$cursada->aprobado()}}</td>
                     
-                    <td>
+                    <td class="flex just-center">
                         <a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id,])}}">
-                            <button class="btn_edit">Editar</button>
+                            <button class="btn_blue"><i class="ti ti-edit"></i>Editar</button>
                         </a>
                     </td>
-                    
-
-                
                 </tr>
-                    
-                    
+                           
             @endforeach
             </tbody>
         </table>
@@ -201,7 +197,7 @@
                         <th>Materia</th>
                         <th>Fecha</th>
                         <th>Nota</th>
-                        <th>Acciones</th>
+                        <th class="center">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -252,7 +248,7 @@
                                 {{$examen->nota}}
                             @endif
                             </td>
-                            <td><a href="{{route('admin.examenes.edit', ['examen' => $examen->id,])}}"><button class="btn_edit">Editar</button></a></td>
+                            <td class="flex just-center"><a href="{{route('admin.examenes.edit', ['examen' => $examen->id,])}}"><button class="btn_blue"><i class="ti ti-edit"></i>Editar</button></a></td>
                         </tr>
                     @endforeach
                 </tbody>

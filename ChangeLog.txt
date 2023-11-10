@@ -342,7 +342,18 @@ CORRECCIONES 2/9
     - examenes
         - Ya andan los filtros menos el de orden
 
+--------------------------------------------------------------
+10 de noviembre
+--------------------------------------------------------------
 
+- Admin
+    -CSS
+        -nuevas clases en los botones, referenciado por los colores btn_(blue, red y grey). Solo aplica para los <a> o <button>, no a los <input>
+
+    -Diseño
+        -actualizado todos los .index y .create, ahora se incorporaron iconos intuitivos
+        -a chequear bien el posicionamiento de los botones cursadas y mesas en admin/carreras, no convence
+        -acomodado rematriculacion
 --------------------------------------------------------------
 PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
 --------------------------------------------------------------
@@ -353,9 +364,10 @@ PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
         - Avisar cuando 2 alumnos con el mismo numero de telefono.
     - Mesas creacion masiva
         - Agregar validaciones (mesa en dia no habil, dia feriado, etc)
+        - Solucionar/acomdar el problema del boton con el ancho en mesas/create. Cuando sale del div (dentro del form) se acomoda
     - Diseño general
-        - Enviar botones de eliminar abajo.
-        - Idear una confirmacion antes de eliminar un registro.
+        - Enviar botones de eliminar abajo. (CORREGIDO)
+        - Idear una confirmacion antes de eliminar un registro. (EN PROCESO)
         - Lograr que el mail de contacto y numero de telefono sean configurables.
     - Carreras
         - Pensar en si se puede cargar archivos como resoluciones, etc

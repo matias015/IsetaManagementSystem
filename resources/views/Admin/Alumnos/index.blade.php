@@ -38,7 +38,7 @@
                     </div>
                 </form>
             
-                <a class="none lg-block" href="{{route('admin.alumnos.index')}}"><button class="quitar_filtro">Quitar filtros</button></a>
+                <a class="none lg-block" href="{{route('admin.alumnos.index')}}"><button class="btn_red"><i class="ti ti-backspace"></i>Quitar filtros</button></a>
             </div>
         
 
@@ -53,7 +53,7 @@
 
         <div class="table">
             <div class="perfil__header-alt">
-                <a href="{{route('admin.alumnos.create')}}"><button class="nuevo_alumno"><i class="ti ti-circle-plus"></i>Agregar alumno</button></a>
+                <a href="{{route('admin.alumnos.create')}}"><button class="btn_blue"><i class="ti ti-circle-plus"></i>Agregar alumno</button></a>
             </div>
             <table class="table__body">
                 <thead>
@@ -62,7 +62,7 @@
                         <th>Apellido</th>
                         <th class="uppercase">Dni</th>
                         <th>Email</th>
-                        <th>Acción</th>
+                        <th class="center">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,8 +72,8 @@
                     <td class="capitalize">{{$alumno->apellido}}</td>
                     <td>{{$alumno->dniPuntos()}}</td>
                     <td>{{$alumno->email?$alumno->email:'Sin mail registrado'}}</td>
-                    <td><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}">
-                        <button class="btn_edit">Detalles</button>
+                    <td class="flex just-center"><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}">
+                        <button class="btn_blue"><i class="ti ti-file-info"></i>Detalles</button>
                     </a></td>
                     {{-- <td>
                         <form method="POST" action="{{route('admin.alumnos.destroy', ['alumno' => $alumno->id])}}">

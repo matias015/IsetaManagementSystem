@@ -6,9 +6,9 @@
         <div class="perfil__header">
             <h2>Configuración</h2>
         </div>
-        <div class="perfil__info">
+        <div class="perfil__info config">
 
-            <form class="flex-col gap-10" method="POST" class="" action="{{route('admin.config.set')}}">
+            <form class="flex-col gap-2" method="POST" class="" action="{{route('admin.config.set')}}">
                 @csrf
    
                 <div class="flex-col items-start items-start perfil_dataname">
@@ -89,7 +89,7 @@
                     <p class="font-200 wrap text-left font-5">Tiempo maximo en dias de diferencia entre los dos llamados de una misma mesa, la diferencia cuenta hacia ambos lados con respecto a la fecha del llamado que se este manejando. Es utilizado internamente para prevenir comportamientos inesperados en el sitio web, como la inscripcion de un alumno al llamado 2 luego de haber desaprobado el llamado 1.</p>
                 </div>
 
-                <div class="upd"><button class="btn_edit">Aplicar</button></div>
+                <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
 
             </form>
         </div>

@@ -11,8 +11,8 @@
             $mesesStr = array('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
         @endphp
 
-        <div class="matricular">
-            <p style="padding-bottom: 2em">Los dias no habiles o feriados se marcan en rojo.</p>
+        <div class="dias-hab">
+            <p style="padding-bottom: 2em">Los días no hábiles o feriados se marcan en rojo.</p>
            @foreach ($meses as $key=>$mesDias)
                <div>
                 <p>{{$mesesStr[$key]}}</p>
@@ -37,11 +37,11 @@
                                 <form method="post" action="{{route('admin.habiles.store')}}">
                             @endif
                                 @csrf
-                                <input name="fecha" type="hidden" value="{{$fecha}}">
+                                <input  name="fecha" type="hidden" value="{{$fecha}}">
 
                                 <button  @class([
                                     'bg-red-200' => in_array($fecha,$noHabiles),
-                                    'rounded img32 p-6 flex just-center items-center' => true
+                                    'rounded-5 img32 p-6 flex just-center items-center' => true
                                     ])><span>{{$i}}</span></button>
                             </form>
                         @endfor

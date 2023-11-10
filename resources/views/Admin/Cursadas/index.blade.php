@@ -39,7 +39,7 @@
                 </div>
             </form>
 
-            <a href="{{route('admin.cursadas.index')}}"><button class="quitar_filtro">Quitar filtros</button></a>
+            <a href="{{route('admin.cursadas.index')}}"><button class="btn_red"><i class="ti ti-backspace"></i>Quitar filtros</button></a>
       
         </div>
         
@@ -53,7 +53,7 @@
         
         <div class="table">
             <div class="perfil__header-alt">
-                <a href="{{route('admin.cursadas.create')}}"><button class="nuevo_alumno"><i class="ti ti-circle-plus"></i>Agregar cursada</button></a>
+                <a href="{{route('admin.cursadas.create')}}"><button class="btn_blue"><i class="ti ti-circle-plus"></i>Agregar cursada</button></a>
             </div>
         <table class="table__body">
             <thead>
@@ -61,7 +61,7 @@
                     <th>Materia</td>
                     <th>Alumno/a</td>
                     <th>Estado</td>
-                    <th colspan="2">Acciones</th>
+                    <th class="center">Acción</th>
                 </tr>
             </thead>
             
@@ -74,15 +74,17 @@
                 <td>
                     {{$cursada->aprobado()}}
                 </td>
-                <td><a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id])}}"><button class="btn_edit">Editar</button></a></td>
-                <td>
+                <td class="flex just-center"><a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id])}}"><button class="btn_blue"><i class="ti ti-file-info"></i>Detalles</button></a></td>
+                
+                
+                {{--<td>
                    
                     <form method="POST" action="{{route('admin.cursadas.destroy', ['cursada' => $cursada->id])}}">
                         @csrf
                         @method('delete')
                         <input class="btn_borrar" type="submit" value="Eliminar">
                     </form>
-                </td>
+                </td>--}}
             </tr>
             @endforeach
             </tbody>

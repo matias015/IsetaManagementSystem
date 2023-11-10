@@ -44,15 +44,8 @@
             
             <div class="table">
                 <div  class="perfil__header-alt">
-                <a href="{{route('admin.asignaturas.create',['id_carrera'=>$carrera->id])}}"><button class="btn_edit">Agregar asignatura</button></a>
-                <a href="/admin/cursantes/carrera/{{$carrera->id}}"><button class="btn_edit">Exportar cursadas</button></a>
-                <div>
-                <form method="POST" action="{{route('admin.carreras.destroy', ['carrera' => $carrera->id])}}">
-                    @csrf
-                    @method('delete')
-                    <input class="pointer p-2 border-none btn_borrar-alt" type="submit" value="Eliminar carrera">
-                </form>
-                </div>
+                <a href="{{route('admin.asignaturas.create',['id_carrera'=>$carrera->id])}}"><button class="btn_blue"><i class="ti ti-circle-plus"></i>Agregar asignatura</button></a>
+                <a href="/admin/cursantes/carrera/{{$carrera->id}}"><button class="btn_blue"><i class="ti ti-file-download"></i>Exportar cursadas</button></a>
             </div>
                 <table class="table__body">
                     <thead>
@@ -60,7 +53,8 @@
                             <th class="center">Año</th>
                             <th>Materia</th>
                             <th class="center">Carga anual/semanal</th>
-                            <th colspan="3">Acciones</th>
+                            <th class="center">Acción</th>
+                            <th class="center" colspan="2">Crear</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,23 +68,30 @@
 
                                 <td style="display:flex;">
                                     <form action="{{route('admin.asignaturas.edit', ['asignatura'=>$asignatura->id])}}">
-                                        <button class="btn_edit">Editar</button>
+                                        <button class="btn_blue"><i class="ti ti-edit"></i>Editar</button>
                                     </form>
                                 </td>
                                 <td>
                                     <form action="{{route('admin.mesas.create')}}">
                                         <input name="carrera" type="hidden" value="{{$carrera->id}}">
                                         <input name="asignatura" type="hidden" value="{{$asignatura->id}}">
-                                        <button class="btn_edit">Crear mesa</button>
+                                        <button class="btn_blue"><i class="ti ti-circle-plus"></i>Mesa</button>
                                     </form>
                                 </td>
                                 <td>
-                                    <a href="{{route('admin.mesas.dual', ['asignatura'=>$asignatura->id])}}"><button class="btn_edit">Crear mesas</button></a>
+                                    <a href="{{route('admin.mesas.dual', ['asignatura'=>$asignatura->id])}}"><button class="btn_blue"><i class="ti ti-circle-plus"></i>Mesas</button></a>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table> 
             </div>
+            <div class="upd">
+                <form method="POST" action="{{route('admin.carreras.destroy', ['carrera' => $carrera->id])}}">
+                    @csrf
+                    @method('delete')
+                    <input class="pointer p-2 border-none btn_borrar-alt" type="submit" value="Eliminar carrera">
+                </form>
+                </div>
     </div>
 @endsection

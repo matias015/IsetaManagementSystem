@@ -35,7 +35,7 @@
                     <tr>
                         <th class="center">Id</th>
                         <th>Usuario</th>
-                        <th class="center">Acciones</th>
+                        <th class="center">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,7 +48,7 @@
                             <form method="POST" action="{{route('admin.admins.destroy', ['admin' => $admin->id])}}">
                                 @csrf
                                 @method('delete')
-                                <input type="submit" value="Eliminar" class="btn_borrar">
+                                <input type="submit" value="Eliminar" class="btn_borrar-alt">
                             </form>
                         </td>
                     </tr>

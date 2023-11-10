@@ -2,20 +2,12 @@
 
 :root {
     --rojo-sl: #ec212d;
-    --azul-sl:  #273b56;
-    --azul-alt: #2c3e50;
     --whatsapp: #25d366;
     --phone: #3276c9;
     --netflix: #d81f26;
-    --youtube: #ff0000;
-    --prime-vide: #00a5e2;
-    --hbo-max: #991eeb;
     --disney-plus:  #0d2e6f;
-    --star-plus: #ec5d2b;
-    --paramount-plus: #0064ff;
     --azul-iseta: #140B5C;
     --azul-osc-iseta: #0F0844;
-    --instagram: #E1306C;
     --facebook: #4267B2;
     --gris-fondo-tabla: #fff5;
     --gris-header-tabla: #fff9;
@@ -53,6 +45,8 @@ body {
     margin-left: 20%; 
 }
 
+/*--- FILTROS, ORDENAR, BUSCAR  ---- */
+
 .contenedor-tabla_botonera {
     display: flex;
     justify-content: start;
@@ -60,6 +54,10 @@ body {
     height: 70px;
     width: 100%;
     padding-left: 20px;
+}
+
+.contenedor-tabla_botonera a {
+    margin-left: 30px;
 }
 
 .tabla_botonera {
@@ -93,63 +91,6 @@ body {
     background: var(--azul-iseta);
     color: white;
 }
-
-.nuevo_alumno, .quitar_filtro {
-    background: var(--azul-iseta);
-    color: white; 
-    font-weight: 600;
-    font-size: 13px;
-    height: 40px;
-    border: none;
-    padding: 0 20px;
-    border-radius: 25px;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-
-  .nuevo_alumno::after, .quitar_filtro::after {
-    content: "";
-    background: var(--facebook); 
-    position: absolute;
-    z-index: -1;
-    padding: 15px 20px;
-    display: block;
-    top: 0;
-    bottom: 0;
-    left: -100%;
-    right: 100%;
-    -webkit-transition: all 0.35s;
-    transition: all 0.35s;
-  }
-
-  .nuevo_alumno i {
-    margin-right: 5px;
-    font-size: 20px;
-  }
-
-  .quitar_filtro {
-    background: var(--rojo-sl);
-    margin-left: 25px;
-  }
-
-  .quitar_filtro::after {
-    background: var(--netflix);
-  }
-
-  .nuevo_alumno:hover::after, .quitar_filtro:hover::after{
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    -webkit-transition: all 0.35s;
-    transition: all 0.35s;
-  }
 
 .filtrar, .ordenar {
     border: none;
@@ -240,53 +181,85 @@ tbody tr:hover {
 
 table, th, td {
     border-collapse: collapse;
-    padding: 1rem;
+    padding: 13px;
     text-align: left;
 }
 
-
-.btn-buscador {
-    border: 1px solid black;
-    outline: none;
-    background-color: var(--gris-header-tabla);
-    height: 40px;
-    width: 180px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    border-radius: 5px;
+table td {
+    font-size: 15px;
 }
 
-.btn_edit {
+/*-------------------------------------------------------     B  0  T  0  N  E  S   ------------------------------------------*/
+
+.btn_blue, .btn_red, .btn_grey {
+    position: relative;
+    z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--azul-iseta);
-    color: white;
-    padding: 0 15px;
-    min-width: 80px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 13px;
     height: 40px;
+    padding: 0 20px;
+    border: none;
     border-radius: 25px;
+    overflow: hidden;
 }
 
-.btn_edit:hover, .btn_borrar:hover {
-    background: var(--facebook);
+  .btn_blue::after, .btn_red::after, .btn_grey::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    right: 100%;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+  }
+
+.btn_blue {
+    background-color: var(--azul-iseta);
+    color: white;
 }
 
-.btn_edit-alt {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.btn_red {
+    background-color: var(--rojo-sl);
+    color: white;
+}
+
+.btn_grey {
     background: var(--gris-titulo);
     color: black;
-    padding: 0 15px;
-    min-width: 80px;
-    height: 40px;
-    border-radius: 25px;
-    font-weight: 600;
 }
 
-.btn_edit-alt:hover {
+.btn_blue::after {
+    background-color: var(--facebook);
+}
+
+.btn_red::after {
+    background-color: var(--netflix);
+}
+
+.btn_grey::after {
     background-color: var(--facebook);
     color: white;
+}
+
+.btn_blue i, .btn_red i, .btn_grey i {
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+.btn_blue:hover::after, .btn_red:hover::after, .btn_grey:hover::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
 }
 
 .btn_borrar {
@@ -295,11 +268,13 @@ table, th, td {
     padding: 0 15px;
     min-width: 80px;
     height: 40px;
-    /* background-color: red; */
-    /* width: 20px; */
     border-radius: 25px;
     cursor: pointer;
     border: none;
+}
+
+.btn_borrar:hover {
+    background-color: var(--facebook);
 }
 
 .btn_borrar-alt {
@@ -317,7 +292,13 @@ table, th, td {
     background-color: var(--netflix);
 }
 
-/*---------------------------------------------- E  D  I  T ---------------------------------------------------------------*/
+.ti-info-circle {
+    font-size: 20px;
+    margin-left: 5px;
+    color: var(--dark3);
+}
+
+/*---------------------------------------------- E  D  I  T  ,   C  R  E  A  T  E    y    R  E  M  A  T  ---------------------------------------------------------------*/
 
 .nwt {
     display: flex;
@@ -372,11 +353,66 @@ table {
     width: 100%;
 }
 
-.perfil_dataname label {
+.spe-b1, .spe-b2 {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--azul-iseta);
+    color: white;
+    border-radius: 25px;
+    padding: 5px;
+    min-width: 90px;
+    overflow: hidden;
+}
+
+.spe-b1::after, .spe-b2::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background-color: var(--facebook);
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    right: 100%;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+}
+
+.spe-b1:hover::after, .spe-b2:hover::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+}
+
+.spe-b1 {
+    margin-bottom: 5px;
+}
+
+.spe-b2 {
+    margin-top: 5px;
+}
+
+.perfil_dataname label, .perfil_dataname-rem label {
     width: auto;
     display: flex;
     justify-content: left;
     align-items: center;
+}
+
+.perfil_dataname-rem {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid;
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    min-height: 50px;
 }
 
 .campo_info { 
@@ -386,6 +422,18 @@ table {
     margin: 5px 0 5px 10px;
     padding: 10px 0 10px 5px;
     background-color: white;
+    cursor: pointer;
+}
+
+.campo_info-rem {
+    border: none;
+    outline: none;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 25px;
 }
 
 .campo_info2 {
@@ -418,7 +466,6 @@ table {
     justify-content: end;
     margin: 10px;
 }
-
 
 .upd input {
     justify-content: center;
@@ -480,10 +527,26 @@ ul .campo_info {
     align-items: center;
 }
 
+.config p {
+    font-size: 13px;
+}
+
+.perfil__header-alt p {
+    font-size: 13px;
+}
+
 .perfil__header-alt a, .perfil__header-alt div {
     margin: 0 10px;
 }
 
+.dias-hab {
+    width: 100%;
+    padding: 15px;
+}
+
+.dias-hab.btn_day:hover {
+    background-color: red;
+}
 
 .matricular {
     width: 100%;

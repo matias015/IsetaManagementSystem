@@ -33,10 +33,9 @@
                         <input class="campo_info rounded" value="{{$registro->anio_finalizacion}}" name="anio_finalizacion">
                     </div>
 
-                    <div class="upd"><input class="btn_borrar upd" type="submit" value="Editar"></div>
+                    <div class="upd"><input class="btn_borrar upd" type="submit" value="Actualizar"></div>
                 </form>
             </div>
         </div>
-        <p class="center">En progreso</p>
     </div>
 @endsection
