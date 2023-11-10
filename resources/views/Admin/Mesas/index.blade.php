@@ -37,7 +37,7 @@
     
         
     
-        <a class="none lg-block" href="{{route('admin.mesas.index')}}"><button class="quitar_filtro">Quitar filtros</button></a>
+        <a class="none lg-block" href="{{route('admin.mesas.index')}}"><button class="btn_red"><i class="ti ti-backspace"></i>Quitar filtros</button></a>
     </div>
 
 
@@ -52,18 +52,17 @@
         
         <div class="table">
             <div class="perfil__header-alt">
-                <a href="{{route('admin.mesas.create')}}"><button class="nuevo_alumno"><i class="ti ti-circle-plus"></i>Agregar mesa</button></a>
+                <a href="{{route('admin.mesas.create')}}"><button class="btn_blue"><i class="ti ti-circle-plus"></i>Agregar mesa</button></a>
             </div>
         <table class="table__body">
             <thead>
                 <tr>
-                    <th>Año</td>
-                    <th>Materia</td>
+                    <th>Año</th>
+                    <th>Materia</th>
                     <th>Llamado</th>
-                    
-                    <th>Fecha</td>
-                    <th>Carrera</td>
-                    <th colspan="2">Acciones</td>
+                    <th class="center">Fecha</th>
+                    <th>Carrera</th>
+                    <th class="center">Acción</th>
                 </tr>
             </thead>
             <tbody>
@@ -81,7 +80,7 @@
                     
                     <td>{{$formatoFecha->dmahm($mesa->fecha)}}</td>
                     <td>{{$mesa->asignatura->carrera->nombre}}</td>
-                    <td><a href="{{route('admin.mesas.edit', ['mesa' => $mesa->id])}}"><button class="btn_edit">Editar</button></a></td>
+                    <td><a href="{{route('admin.mesas.edit', ['mesa' => $mesa->id])}}"><button class="btn_blue"><i class="ti ti-file-info"></i>Detalles</button></a></td>
                     
                 </tr>
                 @endforeach
