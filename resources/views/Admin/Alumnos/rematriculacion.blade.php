@@ -7,8 +7,6 @@
         <a href="/admin/alumnos/{{$alumno->id}}/edit">{{$alumno->id}}</a>/ Rematricular/
         <a href="/admin/matricular/{{$alumno->id}}?carrera={{$carrera->id}}">{{$carrera->nombre}}</a>
     </p> 
-    <p>Esta pagina sufrira cambios en el futuro ya que esta en etapa de prueba</p>
-
     <p>Si solo desea registrar que un alumno esta inscripto en una carrera sin anotarlo en ninguna cursada, deje todos los campos con el valor "No matricular" y haga click en enviar!</p>
     <p>Al hacer esto el alumno podra visualizar esta carrera en el seleccionador de carreras y podra inscribirse a las cursadas manualmente.</p>
     
@@ -29,7 +27,7 @@
         
             @else
             @foreach ($asignaturas as $asignatura)
-                <div class="w-100p flex just-between perfil_dataname">
+                <div class="w-100p flex just-between perfil_dataname-rem">
 
                     <div class="flex remat" @class([
                     'gray-600' => $asignatura->equivalencias_previas
@@ -55,7 +53,7 @@
                                 @endforeach
                             </ul>
                         @else
-                            <select class="campo_info rounded pointer" name="{{$asignatura->id}}">
+                            <select class="campo_info-rem" name="{{$asignatura->id}}">
                                 <option value="">No matricular</option>
                                 <option value="1">Regular</option>
                                 <option value="0">Libre</option>
@@ -64,7 +62,7 @@
                     </div>
                 </div>
             @endforeach
-            <div class="upd"><button class="m-2 rounded px-3 py-2 btn_edit">Enviar</button></div>
+            <div class="upd"><button class="btn_blue"><i class="ti ti-send"></i>Enviar</button></div>
             @endif
             </form>
         </div>
