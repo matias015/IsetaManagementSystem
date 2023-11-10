@@ -61,8 +61,8 @@
                     <div class="flex">
                     @csrf
                     @method('delete')
-                    <div class="flex items-center"><li>{{$correlativa->asignatura->nombre}}</li></div>
-                    <div class="flex items-center m-1 mx-4"><button class="rounded white px-1 font-600 bg-red-600">Eliminar</button></div>
+                        <div class="flex items-center"><li>{{$correlativa->asignatura->nombre}}</li></div>
+                        <div class="flex items-center m-1 mx-4"><button class="btn_red"><i class="ti ti-backspace"></i>Quitar</button></div>
                     </div>
                 </form>
                 @endforeach
@@ -80,7 +80,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="upd"><a href=""><button class="btn_edit">Agregar</button></a></div>
+                    <div class="upd"><a href=""><button class="btn_blue"><i class="ti ti-circle-plus"></i>Agregar</button></a></div>
                 </form>
             </div>
         </div>     
@@ -88,17 +88,17 @@
        
        
     <div class="table">
-        <div class="table__header">
+        <div class="perfil__header-alt just-between">
             <p>Alumnos que cursan esta materia que aun no tienen un estado final (aprobado o desaprobado)</p>
-            <input class="btn_borrar-alt" type="submit" value="Imprimir">
+            <a class="btn_blue" href="/admin/cursantes/{{$asignatura->id}}"><i class="ti ti-file-download"></i>Exportar cursadas</a>
         </div>
         <table class="table__body">
         <thead>
-                <tr>
+            <tr>
                 <th>Nombre</th>
                 <th>DNI</th>
                 <th>Condicion</th>
-                <th>Acciones</th>
+                <th>Acción</th>
             </tr>
         </thead>
         <tbody>
@@ -109,7 +109,7 @@
                     <td> {{$cursada->alumno->dni}} </td>
                     <td> {{$cursada->condicionString()}} </td>
                     <td>
-                        <a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id])}}" class="btn_edit">Editar</a>
+                        <a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id])}}"><button class="btn_blue"><i class="ti ti-edit"></i>Editar</button></a>
                     </td>
                 </tr>
             @endforeach
@@ -119,15 +119,15 @@
     </table>
     </div>
     </div>
-
-    <form method="POST" action="{{route('admin.asignaturas.destroy', ['asignatura'=>$asignatura->id])}}">
-        @csrf
-        @method('delete')
-        <button class="btn_edit">Eliminar</button>
-    </form>
+    <div class="upd">
+        <form method="POST" action="{{route('admin.asignaturas.destroy', ['asignatura'=>$asignatura->id])}}">
+            @csrf
+            @method('delete')
+            <button class="btn_red"><i class="ti ti-trash"></i>Eliminar asignatura</button>
+        </form>
+    </div>
     
-    <br>
-    <a class="blue-700 underline" href="/admin/cursantes/{{$asignatura->id}}">Exportar cursadas</a>
+    
 </div>
 
 
