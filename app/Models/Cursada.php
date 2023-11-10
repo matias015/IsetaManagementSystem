@@ -11,9 +11,7 @@ class Cursada extends Model
     use HasFactory;
 
     protected $fillable = ['anio_cursada','aprobada','id_alumno','id_asignatura','condicion'];
-
-    public $timestamps=false;
-
+    
     public function alumno(){
         return $this -> hasOne(Alumno::class,'id','id_alumno');
     }

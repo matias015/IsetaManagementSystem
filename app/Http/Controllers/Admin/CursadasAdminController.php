@@ -8,7 +8,7 @@ use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Configuracion;
 use App\Models\Cursada;
-use App\Repositories\CursadaRepository;
+use App\Repositories\AdminCursadaRepository;
 use Illuminate\Http\Request;
 
 class CursadasAdminController extends Controller
@@ -18,7 +18,7 @@ class CursadasAdminController extends Controller
         $this -> middleware('auth:admin');
     }
 
-    public function index(Request $request, CursadaRepository $cursadas)
+    public function index(Request $request, AdminCursadaRepository $cursadas)
     {       
         $filtro = $request->filtro ? $request->filtro: '';
         $campo = $request->campo ? $request->campo: '';

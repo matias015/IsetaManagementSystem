@@ -131,7 +131,7 @@ class AdminMatriculacionController extends Controller
             Egresado::create([
                 'id_alumno' => $alumno->id,
                 'id_carrera' => $carrera->id,
-                'anio_inscripcion' => date("Y", time()),
+                'anio_inscripcion' => $anio_remat
             ]);
 
 

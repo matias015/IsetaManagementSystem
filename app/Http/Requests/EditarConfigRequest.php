@@ -28,6 +28,7 @@ class EditarConfigRequest extends FormRequest
             'fecha_inicial_rematriculacion' => ['required'],
             'fecha_final_rematriculacion' => ['required'],
             'anio_remat' => ['required'],
+            'anio_ciclo_actual' => ['required'],
             'fecha_limite_desrematriculacion' => ['required'],
             'diferencia_llamados' => ['required']
         ];

@@ -31,11 +31,11 @@ class ConfigSeeder extends Seeder
         
         Configuracion::create([
             'key' => 'fecha_inicial_rematriculacion',
-            'value' => "01-01-23"
+            'value' => "2020-01-01 00:00:00"
         ]);
         Configuracion::create([
             'key' => 'fecha_final_rematriculacion',
-            'value' => "01-02-23"
+            'value' => "2020-01-01 00:00:00"
         ]);
         Configuracion::create([
             'key' => 'anio_remat',
@@ -43,11 +43,15 @@ class ConfigSeeder extends Seeder
         ]);
         Configuracion::create([
             'key' => 'fecha_limite_desrematriculacion',
-            'value' => "01-02-23"
+            'value' => "2020-01-01 00:00:00"
         ]);
         Configuracion::create([
             'key' => 'diferencia_llamados',
             'value' => "30"
+        ]);
+        Configuracion::create([
+            'key' => 'anio_ciclo_actual',
+            'value' => "2023"
         ]);
 
     }

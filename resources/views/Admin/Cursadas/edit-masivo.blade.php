@@ -40,11 +40,12 @@
                       <div class="grid-3">
                         <span class="span-2">{{$cursada->alumno->apellidoNombre()}}</span>
                         <select name="{{$cursada->id}}">
-                          <option @selected($cursada->condicion==1 && $cursada->aprobada==2) value="rd">Regular desaprobado</option>
-                          <option @selected($cursada->condicion==1 && $cursada->aprobada==1) value="ra">Regular aprobado</option>
-                          <option @selected($cursada->condicion==0 && $cursada->aprobada==1) value="l">Libre</option>
-                          <option @selected($cursada->condicion==3 && $cursada->aprobada==1) value="e">Equivalencia</option>
-                          <option @selected($cursada->condicion==2 && $cursada->aprobada==1) value="p">Promoción</option>
+                            <option @selected($cursada->condicion==1 && $cursada->aprobada==3) value="rc">Regular cursando</option>
+                            <option @selected($cursada->condicion==1 && $cursada->aprobada==2) value="rd">Regular desaprobado</option>
+                            <option @selected($cursada->condicion==1 && $cursada->aprobada==1) value="ra">Regular aprobado</option>
+                            <option @selected($cursada->condicion==0) value="l">Libre</option>
+                            <option @selected($cursada->condicion==3) value="e">Equivalencia</option>
+                            <option @selected($cursada->condicion==2) value="p">Promoción</option>
                         </select>
                       </div>
                     @endforeach

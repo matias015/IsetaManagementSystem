@@ -101,7 +101,10 @@ Route::post('masivo/cursadas', function(Request $request){
     foreach($data as $idCursada => $condicion){
       $cursada = Cursada::find($idCursada);
      
-      if($condicion=='rd'){
+      if($condicion=='rc'){
+        $cursada->condicion = 1;
+        $cursada->aprobada = 3;
+      }else if($condicion=='rd'){
         $cursada->condicion = 1;
         $cursada->aprobada = 2;
       }else if($condicion=='ra'){

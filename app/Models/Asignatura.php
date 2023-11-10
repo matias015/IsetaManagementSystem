@@ -23,7 +23,7 @@ class Asignatura extends Model
     ];
 
     public function cursadas(){
-        return $this -> hasMany(Cursada::class,'id_asignatura')->where('anio_cursada', Configuracion::get('anio_remat'));
+        return $this -> hasMany(Cursada::class,'id_asignatura')->where('anio_cursada', Configuracion::get('anio_ciclo_actual'));
     }
 
     public function carrera(){
@@ -76,7 +76,7 @@ class Asignatura extends Model
             -> join('asignaturas','cursadas.id_asignatura','asignaturas.id')
             -> where('asignaturas.id', $this->id)
             // -> where('cursadas.aprobada', 3)
-            -> where('anio_cursada', $config['anio_remat'])
+            -> where('anio_cursada', $config['anio_ciclo_actual'])
             -> get();
     }
     

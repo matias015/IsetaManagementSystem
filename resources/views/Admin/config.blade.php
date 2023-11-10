@@ -64,6 +64,15 @@
 
                 <div class="flex-col gap-2 items-start perfil_dataname">
                     <div class="flex w-100p">
+                        <label>Año del ciclo actual:</label>
+                        <input class="campo_info rounded" type="number" name="anio_ciclo_actual" value="{{$configuracion['anio_ciclo_actual'] ? $configuracion['anio_ciclo_actual'] : ''}}" name="anio_remat">
+                    </div>
+                    <p class="font-200 wrap text-left font-5">Año correspondiente actual o a aquel que se quiera analizar, por ejemplo, si se desea obtener informes de cursadas o modificacion en lote de estas, se usara este valor como filtro del año.</p>
+                    <p class="font-600 wrap text-left font-5">Es necesario actualizar este valor cada año.</p>
+                </div>
+
+                <div class="flex-col gap-2 items-start perfil_dataname">
+                    <div class="flex w-100p">
                         <label>Fechas limite para revertir rematriculacion:</label>
                         <input class="campo_info rounded" type="date" name="fecha_limite_desrematriculacion" value="{{$configuracion['fecha_limite_desrematriculacion'] ? $configuracion['fecha_limite_desrematriculacion'] : ''}}">
                     </div>
