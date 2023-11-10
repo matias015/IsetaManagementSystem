@@ -354,6 +354,8 @@ CORRECCIONES 2/9
         -actualizado todos los .index y .create, ahora se incorporaron iconos intuitivos
         -a chequear bien el posicionamiento de los botones cursadas y mesas en admin/carreras, no convence
         -acomodado rematriculacion
+    -Mesas
+        -no pude acomodar el boton ancho en mesas/create. Cuando sale del div (dentro del form) se acomoda
 --------------------------------------------------------------
 PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
 --------------------------------------------------------------
