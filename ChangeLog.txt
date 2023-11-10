@@ -364,6 +364,7 @@ CORRECCIONES 2/9
 - General
     - Nuevo sistema de mensajes
     - Ahora andan los mensajes amarillos (en un solo caso por ahora xd)
+    - ya esta cargada la nueva base (dump.sql) recordar hacer 'migrate', 'db:seed' y una vez dentro del admin a admin/normalizar.
 
 - admin
     - cursadas
