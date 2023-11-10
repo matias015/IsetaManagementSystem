@@ -354,8 +354,6 @@ CORRECCIONES 2/9
         -actualizado todos los .index y .create, ahora se incorporaron iconos intuitivos
         -a chequear bien el posicionamiento de los botones cursadas y mesas en admin/carreras, no convence
         -acomodado rematriculacion
-    -Mesas
-        -no pude acomodar el boton ancho en mesas/create. Cuando sale del div (dentro del form) se acomoda
 --------------------------------------------------------------
 PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
 --------------------------------------------------------------
@@ -366,9 +364,10 @@ PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
         - Avisar cuando 2 alumnos con el mismo numero de telefono.
     - Mesas creacion masiva
         - Agregar validaciones (mesa en dia no habil, dia feriado, etc)
+        - Solucionar/acomdar el problema del boton con el ancho en mesas/create. Cuando sale del div (dentro del form) se acomoda
     - Diseño general
-        - Enviar botones de eliminar abajo.
-        - Idear una confirmacion antes de eliminar un registro.
+        - Enviar botones de eliminar abajo. (CORREGIDO)
+        - Idear una confirmacion antes de eliminar un registro. (EN PROCESO)
         - Lograr que el mail de contacto y numero de telefono sean configurables.
     - Carreras
         - Pensar en si se puede cargar archivos como resoluciones, etc
