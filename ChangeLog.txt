@@ -354,6 +354,25 @@ CORRECCIONES 2/9
         -actualizado todos los .index y .create, ahora se incorporaron iconos intuitivos
         -a chequear bien el posicionamiento de los botones cursadas y mesas en admin/carreras, no convence
         -acomodado rematriculacion
+
+
+
+--------------------------------------------------------------
+10 de noviembre
+--------------------------------------------------------------
+
+- General
+    - Nuevo sistema de mensajes
+    - Ahora andan los mensajes amarillos (en un solo caso por ahora xd)
+
+- admin
+    - cursadas
+        - explotaba no me acurdo porque
+        - Ahora al cargar por lotes las cursadas aparece la opcion de 'regular cursando'
+
+- No se, hice push y ya no me acurdo que cambie
+
+
 --------------------------------------------------------------
 PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
 --------------------------------------------------------------

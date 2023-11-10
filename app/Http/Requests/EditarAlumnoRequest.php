@@ -28,7 +28,7 @@ class EditarAlumnoRequest extends FormRequest
             'fecha_nacimiento' => ['required','date','before:now'],
             'ciudad' => ['required'],
             'calle' => ['nullable'],
-            'casa_numero' => ['nullable','numeric'],
+            'casa_numero' => ['nullable','numeric','max:100000'],
             'dpto' => ['nullable'],
             'piso' => ['nullable'],
             'estado_civil' => ['required'],

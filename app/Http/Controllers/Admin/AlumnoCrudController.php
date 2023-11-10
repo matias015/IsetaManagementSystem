@@ -9,9 +9,7 @@ use App\Models\Alumno;
 use App\Models\Carrera;
 use App\Models\Configuracion;
 use App\Models\Cursada;
-use App\Models\Egresado;
 use App\Models\Examen;
-use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
 
 class AlumnoCrudController extends Controller
@@ -91,9 +89,14 @@ class AlumnoCrudController extends Controller
     public function store(crearAlumnoRequest $request)
     {
         $data = $request->validated();
+        $response = redirect()->back();
+        
+        if(Alumno::where('telefono1',\strtolower($data['telefono1']))){
+            $response -> with('aviso','Ya hay un usuario con ese numero de telefono');
+        };
 
         Alumno::create($data);
-        return redirect()->route('admin.alumnos.index');
+        return $response->with('mensaje','Se creo el alumno');
     }
 
     /**
@@ -145,8 +148,17 @@ class AlumnoCrudController extends Controller
      */
     public function update(EditarAlumnoRequest $request, Alumno $alumno)
     {
-        $alumno->update($request->validated());
-        return redirect()->back();
+        $data = $request->validated();
+
+        $mensajes = ['aviso'=>[],'error'=>[],'mensaje'=>[]];
+        
+        if(Alumno::where('id','!=',$alumno->id)->where('telefono1', strtolower($data['telefono1']))->exists()){
+            $mensajes['aviso'][] = 'Ya hay un usuario con ese numero de telefono';
+        };
+
+        $alumno->update($data);
+        $mensajes['mensaje'][] = 'Se actualizo el alumno';
+        return redirect()->back()->with('mensajes', $mensajes);
     }
 
     /**
