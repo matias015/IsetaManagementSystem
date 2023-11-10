@@ -38,6 +38,11 @@ table tbody tr.active-row {
     background-color: white;
 }
 
+.up-not_yellow {
+    border-left: 8px solid #ffc021;
+    background-color: white;
+}
+
 .up-not_green i {
     color: #47f464;
     font-size: 24px;
@@ -45,6 +50,11 @@ table tbody tr.active-row {
 
 .up-not_red i {
     color: #ff355b;
+    font-size: 24px;
+}
+
+.up-not_yellow i {
+    color: #ffc021;
     font-size: 24px;
 }
 
