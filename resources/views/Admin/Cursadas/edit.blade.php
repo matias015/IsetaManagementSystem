@@ -49,15 +49,18 @@
 
                     <div class="upd">
                         <input type="submit" value="Actualizar" class="btn_borrar">
-                    </form>
-                        <form method="post" action="{{route('admin.cursadas.destroy', ['cursada'=>$cursada->id])}}">
-                            @csrf
-                            @method('delete')
-                            <input type="submit" value="Borrar" class="btn_borrar">
-                        </form>
+                    
+                        
                     </div>
                    
                 </div>
+            </div>
+            <div class="upd">
+                <form method="post" action="{{route('admin.cursadas.destroy', ['cursada'=>$cursada->id])}}">
+                    @csrf
+                    @method('delete')
+                    <input type="submit" value="Eliminar cursada" class="btn_borrar-alt">
+                </form>
             </div>
         </div>
 
