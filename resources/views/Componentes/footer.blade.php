@@ -2,7 +2,7 @@
     <div class="footer-contenido">
       <section class="footer-logos grid-1 gap-2 just-center lg-flex lg-just-between">
         <div class="logo-footer center">
-          <span class="font-6">ISETA</span>
+          <span class="font-6">{{$config['nombre']}}</span>
         </div>
         <div class="footer-redes flex just-center">
           <span>Seguinos en nuestras redes</span>
@@ -32,29 +32,48 @@
         <article class="footer-info">
           <h3>Correos</h3>
           <ul class="box">
-            <li>preceptoria@iseta.edu.ar</li>
-            <li>secretaria@iseta.edu.ar</li>
-            <li>iseta@abc.gob.ar</li>
+            @if ($config['correo1'])
+                <li>{{$config['correo1']}}</li>
+            @endif
+            
+            @if ($config['correo2'])
+                <li>{{$config['correo2']}}</li>
+            @endif
+            
+            @if ($config['correo3'])
+                <li>{{$config['correo3']}}</li>
+            @endif
           </ul>
         </article>
         <article class="footer-info">
           <h3>Telefonos</h3>
           <ul class="box">
-            <li>+54 2317 422305</li>
-            <li>+54 2317 611071</li>
+            @if ($config['telefono1'])
+                <li>{{$config['telefono1']}}</li>
+            @endif
+            
+            @if ($config['telefono2'])
+                <li>{{$config['telefono2']}}</li>
+            @endif
+            
+            @if ($config['telefono3'])
+                <li>{{$config['telefono3']}}</li>
+            @endif
           </ul>
         </article>
         <article class="footer-info">
           <h3>Más información</h3>
           <ul class="box">
-            <li>H. Yrigoyen 931</li>
-            <li>Lunes a Viernes de 8 a 22.40 hs</li>
+            <li>{{$config['mas_info1']}}</li>
+            <li>{{$config['mas_info2']}}</li>
+            <li>{{$config['mas_info3']}}</li>
+            {{-- <li>Lunes a Viernes de 8 a 22.40 hs</li> --}}
           </ul>
         </article>
       </section>
     </div>
     <div class="p-2 footer-derechos">
-        <span class="center">Copyright © 2023 <a class="neg" href="#">ISETA</a> | Todos los derechos reservados</span>
+        <span class="center">Copyright © 2023<a class="neg" href="#">{{$config['nombre']}}</a> | Todos los derechos reservados</span>
         <span class="flex gap-4 just-center">
           Desarrolado por los alumnos de tercer año de Análisis, Desarrollo y Programación de Aplicaciones
         </span>

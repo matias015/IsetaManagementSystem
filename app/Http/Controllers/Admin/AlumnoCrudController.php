@@ -156,6 +156,10 @@ class AlumnoCrudController extends Controller
             $mensajes['aviso'][] = 'Ya hay un usuario con ese numero de telefono';
         };
 
+        if(Alumno::where('email',strtolower($data['email'])) -> where('id','<>',$alumno->id)->exists() ){
+            return \redirect()->back()->with('error','El mail ya esta en usa')->withInput();
+        }
+
         $alumno->update($data);
         $mensajes['mensaje'][] = 'Se actualizo el alumno';
         return redirect()->back()->with('mensajes', $mensajes);

@@ -12,17 +12,21 @@
                     <h2>Cursada</h2>
                 </div>
                 <div class="perfil__info">
+                    
                     <form method="post" action="{{route('admin.cursadas.update', ['cursada'=>$cursada->id])}}">
                     @csrf
                     @method('put')
-
                     <div class="perfil_dataname">
-                        <label>Alumno:</label>
-                        <span class="campo_info2">{{$cursada->alumno->apellidoNombre()}}</span>
+                        <label>Carrera:</label>
+                        <span class="campo_info2">{{$cursada->asignatura->carrera->nombre}}</span>
                     </div>
                     <div class="perfil_dataname">
                         <label>Materia:</label>
                         <span class="campo_info2">{{$cursada->asignatura->nombre}}</span>
+                    </div>
+                    <div class="perfil_dataname">
+                        <label>Alumno/a:</label>
+                        <span class="campo_info2">{{$cursada->alumno->apellidoNombre()}}</span>
                     </div>
                     <div class="perfil_dataname">
                         <label>Año de cursada:</label>
@@ -52,7 +56,7 @@
                     
                         
                     </div>
-                   
+                    </form>
                 </div>
             </div>
             <div class="upd">

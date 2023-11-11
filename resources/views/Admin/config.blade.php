@@ -10,7 +10,7 @@
 
             <form class="flex-col gap-2" method="POST" class="" action="{{route('admin.config.set')}}">
                 @csrf
-   
+
                 <div class="flex-col items-start items-start perfil_dataname">
                     <div class="flex w-100p">
                         <label>Filas por tabla:</label>
@@ -58,7 +58,7 @@
                         <label>Año de rematriculacion:</label>
                         <input class="campo_info rounded" type="number" name="anio_remat" value="{{$configuracion['anio_remat'] ? $configuracion['anio_remat'] : ''}}" name="anio_remat">
                     </div>
-                    <p class="font-200 wrap text-left font-5">Año correspondiente a las cursadas del proximo ciclo lectivo. Los reportes sobre las nuevas cursadas se basan en esta configuracion. No es recomendable su modificacion hasta el inicio del nuevo ciclo de rematriculacion e inscripciones. Tambien sera el año de cursada fijado para la inscripcion a cursadas cuando los alumnos se matriculan por su cuenta.</p>
+                    <p class="font-200 wrap text-left font-5">Año correspondiente a las cursadas del proximo ciclo lectivo. Sera el año de cursada fijado para la inscripcion a cursadas cuando los alumnos se matriculan por su cuenta. No es recomendable su modificacion hasta el inicio del nuevo ciclo de rematriculacion e inscripciones.</p>
                     <p class="font-600 wrap text-left font-5">Es necesario actualizar este valor cada año.</p>
                 </div>
 
@@ -67,7 +67,7 @@
                         <label>Año del ciclo actual:</label>
                         <input class="campo_info rounded" type="number" name="anio_ciclo_actual" value="{{$configuracion['anio_ciclo_actual'] ? $configuracion['anio_ciclo_actual'] : ''}}" name="anio_remat">
                     </div>
-                    <p class="font-200 wrap text-left font-5">Año correspondiente actual o a aquel que se quiera analizar, por ejemplo, si se desea obtener informes de cursadas o modificacion en lote de estas, se usara este valor como filtro del año.</p>
+                    <p class="font-200 wrap text-left font-5">Año correspondiente actual o a aquel que se quiera analizar, por ejemplo, si se desea obtener informes de cursadas o modificacion en lote de estas, se usara este valor como filtro del año. Tambien, los reportes sobre las nuevas cursadas se basan en esta configuracion.</p>
                     <p class="font-600 wrap text-left font-5">Es necesario actualizar este valor cada año.</p>
                 </div>
 
@@ -88,6 +88,39 @@
                     </div>
                     <p class="font-200 wrap text-left font-5">Tiempo maximo en dias de diferencia entre los dos llamados de una misma mesa, la diferencia cuenta hacia ambos lados con respecto a la fecha del llamado que se este manejando. Es utilizado internamente para prevenir comportamientos inesperados en el sitio web, como la inscripcion de un alumno al llamado 2 luego de haber desaprobado el llamado 1.</p>
                 </div>
+
+                <div class="flex-col items-start items-start perfil_dataname">
+                    <div class="flex w-100p">
+                        <label>Nombre:</label>
+                        <input class="campo_info rounded" name="nombre" value="{{$configuracion['nombre'] ? $configuracion['nombre'] : ''}}" name="nombre">
+                    </div>
+                </div>
+   
+                <div class="flex-col items-start items-start perfil_dataname">
+                    <div class="flex-col w-100p">
+                        <label>Correos electronicos:</label>
+                        <input class="campo_info rounded" name="correo1" value="{{$configuracion['correo1'] ? $configuracion['correo1'] : ''}}" name="correo1">
+                        <input class="campo_info rounded" name="correo2" value="{{$configuracion['correo2'] ? $configuracion['correo2'] : ''}}" name="correo2">
+                        <input class="campo_info rounded" name="correo3" value="{{$configuracion['correo3'] ? $configuracion['correo3'] : ''}}" name="correo3">
+                    </div>
+                </div>  
+
+                <div class="flex-col items-start items-start perfil_dataname">
+                    <div class="flex-col w-100p">
+                        <label>Numeros telefonicos:</label>
+                        <input class="campo_info rounded" name="telefono1" value="{{$configuracion['telefono1'] ? $configuracion['telefono1'] : ''}}" name="telefono1">
+                        <input class="campo_info rounded" name="telefono2" value="{{$configuracion['telefono2'] ? $configuracion['telefono2'] : ''}}" name="telefono2">
+                        <input class="campo_info rounded" name="telefono3" value="{{$configuracion['telefono3'] ? $configuracion['telefono3'] : ''}}" name="telefono3">
+                    </div>
+                </div> 
+                <div class="flex-col items-start items-start perfil_dataname">
+                    <div class="flex-col w-100p">
+                        <label>Mas informacion:</label>
+                        <input class="campo_info rounded" name="mas_info1" value="{{$configuracion['mas_info1'] ? $configuracion['mas_info1'] : ''}}" name="mas_info1">
+                        <input class="campo_info rounded" name="mas_info2" value="{{$configuracion['mas_info2'] ? $configuracion['mas_info2'] : ''}}" name="mas_info2">
+                        <input class="campo_info rounded" name="mas_info3" value="{{$configuracion['mas_info3'] ? $configuracion['mas_info3'] : ''}}" name="mas_info3">
+                    </div>
+                </div>  
 
                 <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
 

@@ -53,6 +53,47 @@ class ConfigSeeder extends Seeder
             'key' => 'anio_ciclo_actual',
             'value' => "2023"
         ]);
+        Configuracion::create([
+            'key' => 'correo1',
+            'value' => ""
+        ]);
+        Configuracion::create([
+            'key' => 'correo2',
+            'value' => ""
+        ]);
+        Configuracion::create([
+            'key' => 'correo3',
+            'value' => ""
+        ]);
+        
+        Configuracion::create([
+            'key' => 'telefono1',
+            'value' => ""
+        ]);
+        Configuracion::create([
+            'key' => 'telefono2',
+            'value' => ""
+        ]);
+        Configuracion::create([
+            'key' => 'telefono3',
+            'value' => ""
+        ]);
 
+        Configuracion::create([
+            'key' => 'mas_info1',
+            'value' => "Ubicacion"
+        ]);
+        Configuracion::create([
+            'key' => 'mas_info2',
+            'value' => "Atencion en horarios ...."
+        ]);
+        Configuracion::create([
+            'key' => 'mas_info3',
+            'value' => ""
+        ]);
+        Configuracion::create([
+            'key' => 'nombre',
+            'value' => "ISETA"
+        ]);
     }
 }

@@ -7,8 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="{{asset('css/Reset/reset.css')}}">
+
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
+
+    <link rel="stylesheet" href="{{asset('css/header.css')}}">
+    <link rel="stylesheet" href="{{asset('css/footer.css')}}">
+    
+    @yield('estilos')
+    <link rel="stylesheet" href="{{asset('css/global.css')}}">
 </head>
     @include('Componentes.mensaje')
     <body id="logeo">

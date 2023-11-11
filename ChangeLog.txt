@@ -378,17 +378,44 @@ CORRECCIONES 2/9
 PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
 --------------------------------------------------------------
 
+
+--------------------------------------------------------------
+11 de noviembre
+--------------------------------------------------------------
+
+- Alumnos
+    - cursadas
+        - Algunas cursadas se mostraban en verde incluso habiendo desaprobado
+    - rematriculacion
+        - no respetaba si era fecha de rematriculacion o no
+        - La fecha de año de rematriculacion de configuracion debe coincidir con la de la cursada para ser eliminada
+    - Mail 
+        - El token de verificacion no se comprobaba
+
 - Admin
+    - configuracion
+        - Ahora la informacion del footer es configurables (vaciar la tabla config y usar db:seed)
+        - Ahora para cargar cursadas y otros datos se usa la configuracion 'Año del ciclo actual'
     - Alumnos
-        - No permitir 2 alumnos con el mismo mail, y tal vez mismo dni.
-        - Avisar cuando 2 alumnos con el mismo numero de telefono.
+        - se avisa si existe usuarios con el mismo numero de telefono
+        - No se puede editar o crear si el mail ya esta en usando
+    
+
+
+
+    
+
+
+
+
+
+- Admin
     - Mesas creacion masiva
         - Agregar validaciones (mesa en dia no habil, dia feriado, etc)
         - Solucionar/acomdar el problema del boton con el ancho en mesas/create. Cuando sale del div (dentro del form) se acomoda
     - Diseño general
         - Enviar botones de eliminar abajo. (CORREGIDO)
         - Idear una confirmacion antes de eliminar un registro. (EN PROCESO)
-        - Lograr que el mail de contacto y numero de telefono sean configurables.
     - Carreras
         - Pensar en si se puede cargar archivos como resoluciones, etc
     - Cursadas

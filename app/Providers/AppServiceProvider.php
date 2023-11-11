@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Configuracion;
 use App\Repositories\AdminCursadaRepository;
 use App\Services\AlumnoInscripcionService;
 use App\Services\Fecha;
@@ -27,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
     {
         View::share('textFormatService', new TextFormatService());
         View::share('formatoFecha', new Fecha());
+        View::share('config', Configuracion::todas());
     }
 }

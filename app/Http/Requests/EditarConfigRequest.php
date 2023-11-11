@@ -30,7 +30,17 @@ class EditarConfigRequest extends FormRequest
             'anio_remat' => ['required'],
             'anio_ciclo_actual' => ['required'],
             'fecha_limite_desrematriculacion' => ['required'],
-            'diferencia_llamados' => ['required']
+            'diferencia_llamados' => ['required'],
+            'correo1' => ['nullable'],
+            'correo2' => ['nullable'],
+            'correo3' => ['nullable'],
+            'telefono1' => ['nullable'],
+            'telefono2' => ['nullable'],
+            'telefono3' => ['nullable'],
+            'mas_info1' => ['nullable'],
+            'mas_info2' => ['nullable'],
+            'mas_info3' => ['nullable'],
+            'nombre' => ['nullable']        
         ];
     }
 }

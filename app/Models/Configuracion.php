@@ -6,6 +6,7 @@ use App\Services\DiasHabiles;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Configuracion extends Model
 {
@@ -30,6 +31,8 @@ class Configuracion extends Model
         }
         
     }
+
+
 
     static function puedeDesinscribirCursada(){
         if(DiasHabiles::desdeHoyHasta(Configuracion::get('fecha_limite_desrematriculacion')) <= 0){
