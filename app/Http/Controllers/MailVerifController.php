@@ -49,15 +49,15 @@ class MailVerifController extends Controller
         $alumno = Alumno::find(Auth::id());
         $token = Session::get('__alumno_verificacion_token');
 
-        // if($token && $token == $request->token){
+        if($token && $token == $request->token){
         // para testeos, cualquier codigo es valido
-        if(true){
+        // if(true){
             $alumno->verificar();
             $request->session()->forget('__alumno_verificacion_token');
             return redirect()->route('alumno.info')->with('mensaje','estas verificado');
         }
-        
-        return redirect()->back()->with('error','token incorrecto o no valido');
+        // dd('mal');
+        return redirect()->route('alumno.info')->with('error','token incorrecto o no valido');
     }
 
     function enviarMailProfe(){

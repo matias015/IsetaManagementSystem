@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
 </head>
-
+    @include('Componentes.mensaje')
     <body id="logeo">
         
     <div class="login">
