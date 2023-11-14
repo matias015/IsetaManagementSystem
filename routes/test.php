@@ -9,6 +9,7 @@ use App\Models\Mesa;
 use App\Models\Profesor;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
 use Mockery\CountValidator\Exact;
 
@@ -125,4 +126,14 @@ Route::post('masivo/cursadas', function(Request $request){
     return redirect()->back();
 
 })->name('admin.cursadas.masivo.post');
+
+
+Route::get('set-horarios', function(){
+  foreach (Mesa::whereRaw('fecha > NOW()')->get() as $mesa) {
+      $fecha = Carbon::parse($mesa->fecha);
+      $mesa->fecha = $fecha->addMinutes(420+($mesa->hora*15))->format('Y-m-d H:i:s');
+      $mesa->save();
+  }
+});
+
 });

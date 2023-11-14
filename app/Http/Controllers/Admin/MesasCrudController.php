@@ -38,7 +38,7 @@ class MesasCrudController extends Controller
         $orden = $request->orden ? $request->orden: 'fecha';
 
         $mesas = $this->mesaRepository->conFiltros($filtro,$campo,$orden);
-
+        // \dd($mesas);
         return view('Admin.Mesas.index',[
             'mesas' => $mesas,
             'filtros'=>[

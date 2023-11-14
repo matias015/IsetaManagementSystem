@@ -16,7 +16,7 @@ class MesaRepository
     public function conFiltros($filtro, $campo, $orden){
         $porPagina = Configuracion::get('filas_por_tabla',true);
 
-        $query = Mesa::select('mesas.id_asignatura','mesas.id','mesas.llamado','mesas.fecha', 'asignaturas.nombre','asignaturas.anio', 'carreras.nombre as carrera')
+        $query = Mesa::select('mesas.hora','mesas.id_asignatura','mesas.id','mesas.llamado','mesas.fecha', 'asignaturas.nombre','asignaturas.anio', 'carreras.nombre as carrera')
             -> join('asignaturas','asignaturas.id','=','mesas.id_asignatura')
             -> join('carreras','carreras.id','=','asignaturas.id_carrera');
 
