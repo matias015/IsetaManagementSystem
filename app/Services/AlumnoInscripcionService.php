@@ -7,6 +7,7 @@ use App\Models\Carrera;
 use App\Models\Configuracion;
 use App\Models\Correlativa;
 use App\Models\Examen;
+use Illuminate\Support\Facades\Auth;
 
 class AlumnoInscripcionService{
     public $config;   
@@ -27,23 +28,23 @@ class AlumnoInscripcionService{
         if(!$mesa) return ['success'=>false, 'mensaje'=>'No se encontro la mesa'];
 
         // No esta anotado
-        if($mesa->anotado) return ['success'=>false, 'mensaje'=>'Ya estas anotado en esta asignatura'];
+        if($mesa->anotado) return ['success'=>false, 'mensaje'=>'Ya anotado en esta asignatura'];
         
         // Hay 48hs habiles
-        if(!$mesa->habilitada()) return ['success'=>false, 'mensaje'=>'Ha caducado el tiempo de inscripcion'];
+        if(!$mesa->habilitada() && !Auth::guard()->name == 'admin') return ['success'=>false, 'mensaje'=>'Ha caducado el tiempo de inscripcion'];
         
         // Aprobo cursada y aun no el examen
-        if($mesa->asignatura->aproboExamen($alumno)) return ['success'=>false, 'mensaje'=>'Ya aprobaste esta asignatura'];
-        if(!$mesa->asignatura->aproboCursada($alumno)) return ['success'=>false, 'mensaje'=>'Aun no aprobaste la cursada de esta asignatura'];
+        if($mesa->asignatura->aproboExamen($alumno)) return ['success'=>false, 'mensaje'=>'Ya se aprobo esta asignatura'];
+        if(!$mesa->asignatura->aproboCursada($alumno)) return ['success'=>false, 'mensaje'=>'Aun no se aprobo la cursada de esta asignatura'];
         
         // Tiene correlativas sin rendir?
-        $correlativas = Correlativa::debeExamenesCorrelativos($mesa->asignatura);
+        $correlativas = Correlativa::debeExamenesCorrelativos($mesa->asignatura, $alumno);
 
         if($correlativas){
             $mensajes = [];
 
             foreach ($correlativas as $correlativa) {
-                $mensajes[] = "Debes la correlativa: $correlativa->nombre";
+                $mensajes[] = "Se debe la correlativa: $correlativa->nombre";
             }            
             return ['success'=>false, 'mensaje'=>$mensajes];
         }

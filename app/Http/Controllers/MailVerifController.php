@@ -60,7 +60,7 @@ class MailVerifController extends Controller
     }
 
     function enviarMailProfe(){
-        $token = rand(1,100);
+        $token = rand(100000,999999);
 
         // el token se guarda en la sesion
         Session::put('__profe_verificacion_token', $token);
@@ -88,9 +88,7 @@ class MailVerifController extends Controller
 
         $token = Session::get('__profe_verificacion_token');
 
-        // if($token && $token == $request->token){
-        // para testeos, cualquier codigo es valido
-        if(true){
+        if($token && $token == $request->token){
             $profe->verificar();
             $request->session()->forget('__alumno_verificacion_token');
             return redirect()->route('profesor.mesas')->with('mensaje','estas verificado');

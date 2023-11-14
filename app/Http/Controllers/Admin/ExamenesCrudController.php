@@ -11,6 +11,7 @@ use App\Models\Cursada;
 use App\Models\Examen;
 use App\Models\Mesa;
 use App\Models\Profesor;
+use App\Services\AlumnoInscripcionService;
 use App\Services\DiasHabiles;
 use Illuminate\Http\Request;
 use Mockery\CountValidator\Exact;
@@ -27,62 +28,7 @@ class ExamenesCrudController extends Controller
      */
     public function index(Request $request)
     {       
-         $examenes = [];
-         $filtro = "";
-         $campo = "";
-         $porPagina = Configuracion::get('filas_por_tabla',true);
-
-        if($request->has('filtro')){
-            $filtro = $request->filtro;
-            $campo = $request->campo;
-
-            if($campo == "principales"){
-                $examenes = Examen::select('examenes.id','alumnos.nombre','alumnos.apellido','asignaturas.nombre as materia','examenes.nota')
-                -> join('alumnos','examenes.id_alumno','alumnos.id')
-                    -> join('mesas','mesas.id','examenes.id_mesa')
-                    -> join('asignaturas', 'asignaturas.id','mesas.id_asignatura')
-                    -> where('alumnos.nombre','LIKE','%'.$filtro.'%')
-                    -> orWhere('alumnos.apellido','LIKE','%'.$filtro.'%')
-                    -> orWhere('alumnos.dni','LIKE','%'.$filtro.'%')
-                    -> orWhere('asignaturas.nombre','LIKE','%'.$filtro.'%')
-                    -> paginate($porPagina);
-            }
-            else if($campo == "ciudad"||$campo == "email"||$campo == "nombre" || $campo == "apellido" || $campo == "dni") {
-                $examenes = Examen::select('examenes.id','alumnos.nombre','alumnos.apellido','asignaturas.nombre as materia','examenes.nota')
-                -> join('alumnos','examenes.id_alumno','alumnos.id')
-                -> join('mesas','mesas.id','examenes.id_mesa')
-                -> join('asignaturas', 'asignaturas.id','mesas.id_asignatura')
-                -> where('alumnos.'.$campo.'','LIKE','%'.$filtro.'%')
-                -> paginate($porPagina);
-            }
-            else if($campo == "telefonos"){
-                $examenes = Examen::select('examenes.id','alumnos.nombre','alumnos.apellido','asignaturas.nombre as materia','examenes.nota')
-                -> join('alumnos','examenes.id_alumno','alumnos.id')
-                -> join('mesas','mesas.id','examenes.id_mesa')
-                -> join('asignaturas', 'asignaturas.id','mesas.id_asignatura')
-                -> where('alumnos.telefono1','LIKE','%'.$filtro.'%')
-                -> orWhere('alumnos.telefono2','LIKE','%'.$filtro.'%')
-                -> orWhere('alumnos.telefono3','LIKE','%'.$filtro.'%')
-                -> paginate($porPagina);
-            } 
-            else if($campo == "materia"){
-                $examenes = Examen::select('examenes.id','alumnos.nombre','alumnos.apellido','asignaturas.nombre as materia','examenes.nota')
-                -> join('alumnos','examenes.id_alumno','alumnos.id')
-                -> join('mesas','mesas.id','examenes.id_mesa')
-                -> join('asignaturas', 'asignaturas.id','mesas.id_asignatura')
-                -> where('asignaturas.nombre','LIKE','%'.$filtro.'%')
-                -> paginate($porPagina);
-            } 
-        }else{
-            $examenes = Examen::select('examenes.id','alumnos.nombre','alumnos.apellido','asignaturas.nombre as materia','examenes.nota')
-                -> join('alumnos','examenes.id_alumno','alumnos.id')
-                -> join('mesas','mesas.id','examenes.id_mesa')
-                -> join('asignaturas', 'asignaturas.id','mesas.id_asignatura')
-                -> paginate($porPagina);
-        }
-        
-        return view('Admin.Examenes.index',['examenes'=>$examenes, 'filtros'=>['campo'=>$campo,'filtro'=>$filtro]]);
-        
+        return redirect()->back();       
     }
 
     /**
@@ -90,84 +36,26 @@ class ExamenesCrudController extends Controller
      */
     public function create(Request $request, Mesa $mesa)
     {
-        return view('Admin.Examenes.create');
+        return redirect()->back(); 
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, AlumnoInscripcionService $inscripcionService)
     {
 
         if(!$request->input('id_alumno')){
             return redirect() -> back() -> with('error','No has seleccionado ningun alumno');
-        }
+        }else{}
 
         $data = $request->only('id_alumno','id_mesa');
+
         $mesa = Mesa::find($data['id_mesa']);
-
-        $asignatura = $mesa->asignatura;
         $alumno = Alumno::find($data['id_alumno']);
-
-        if($asignatura->aproboExamen($alumno)){
-            return redirect() -> back() -> with('error','El alumno ya aprobo esta asignatura.');
-        }
-
-        if(!$asignatura->aproboCursada($alumno)){
-            return redirect() -> back() -> with('error','El alumno no aprobo la cursada.');
-        };
-
-        // Que no este ya anotado
-        $yaAnotado = Examen::select('id')
-            -> where('id_mesa', $mesa->id)
-            -> where('id_alumno', $data['id_alumno'])
-            -> first();
-
-        if($yaAnotado) {
-            return redirect() -> back() -> with('error','ya esta anotado');
-        }
-
-        // que no deba equivalencias
-        foreach($asignatura->correlativas as $correlativa){
-
-            $correlativas = Correlativa::debeExamenesCorrelativos($asignatura,$alumno);
-            // \dd($correlativas);
-            if($correlativas){
-                $mensajes = [];
-                foreach ($correlativas as $correlativa) {
-                    $mensajes[]='Debe correlativa: '.$correlativa->nombre;
-                }
-                return redirect() -> back() -> with('error',$mensajes);
-            }
-        };
-
-        // $posibles = Alumno::inscribibles($data['id_alumno']);
-
-        $noPuede = true;
-        $finBusqueda = false;
         
-        // la materia que selecciono esta en las que puede inscribirse
-        // y no caduco la fecha de inscripcion
-
-
-        // foreach($asignatura->mesas as $mesaMateria){
-            
-        //     if($mesaMateria->id == $mesa->id){
-        //         if(DiasHabiles::desdeHoyHasta($mesaMateria->fecha) >= 48) $noPuede = false;
-        //         else break;
-        //         $finBusqueda=true;
-        //     }
-
-        // }
-        
-
-        // if(1) {
-        //     return redirect() -> back() -> with('error','no puede anotarse a esta mesa');
-        // }
-        
-        
-
-        //////////////////
+        $res = $inscripcionService->puedeInscribirse($mesa,$alumno);
+        if(!$res['success']) return \redirect()->back()->with('error',$res['mensaje']);
       
         Examen::create([
             'id_alumno' => $data['id_alumno'],
