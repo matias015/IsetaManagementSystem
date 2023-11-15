@@ -110,10 +110,8 @@ class AlumnoCrudController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, $alumno)
+    public function edit(Request $request, Alumno $alumno)
     {
-        // $alumno = Alumno::where('id', $alumno)->with('cursadas.asignatura.carrera','examenes.mesa.materia.carrera')->first();
-        $alumno = Alumno::find($alumno);
         $cursadas = Cursada::select('asignaturas.nombre as asignatura', 'cursadas.aprobada' ,'cursadas.condicion' ,'cursadas.anio_cursada' ,'cursadas.id' ,'carreras.nombre as carrera','asignaturas.anio as anio_asig')
             ->join('asignaturas', 'cursadas.id_asignatura','asignaturas.id')
             -> join('carreras','carreras.id','asignaturas.id_carrera')

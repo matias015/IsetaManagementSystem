@@ -97,8 +97,8 @@ class RematriculacionController extends Controller
 
 
     function bajar_rematriculacion(Request $request, Cursada $cursada){
-        
-        if(!$cursada) return redirect()->route('alumno.inscripciones')->with('error','No se encontro la mesa');
+
+        if(!$cursada) return redirect()->route('alumno.inscripciones')->with('error','No se encontro la cursada');
 
         // Es su cursada
         if(!Gate::allows('delete-cursada', $cursada)){
@@ -115,14 +115,14 @@ class RematriculacionController extends Controller
             return redirect()->back()->with('error','Ya ha caducado el tiempo para desmatricularse');
         }
 
-        if($cursada->anio != $config['anio_remat']){
+        if($cursada->anio_cursada != $config['anio_remat']){
             return redirect()->back()->with('error','No puedes bajarte de esta cursada porque es del año anterior');
         }
 
         $fechaCursada = new DateTime($cursada->created_at);
         $fechaLimite = new DateTime($config['fecha_limite_desrematriculacion']);
 
-        if(isset($cursada->created_at) && $fechaCursada<$fechaLimite){
+        if(isset($cursada->created_at) && $fechaCursada>$fechaLimite){
             return redirect()->back()->with('error','Ya estas cursando esta asignatura');
         }
 

@@ -91,7 +91,7 @@
 
                 <div class="flex-col items-start items-start perfil_dataname">
                     <div class="flex w-100p">
-                        <label>Nombre:</label>
+                        <label>Nombre de la institucion:</label>
                         <input class="campo_info rounded" name="nombre" value="{{$configuracion['nombre'] ? $configuracion['nombre'] : ''}}" name="nombre">
                     </div>
                 </div>

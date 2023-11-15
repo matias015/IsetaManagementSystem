@@ -401,9 +401,22 @@ PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
         - No se puede editar o crear si el mail ya esta en usando
     
 
+--------------------------------------------------------------
+15 de noviembre
+--------------------------------------------------------------
 
-
-    
+- Admin
+    - General
+        - Ahora en algunos apartados no da error si se accede a un registro que no existe
+        - Ya existe una confirmacion de borrado general, para los formularios con la clase ".form-eliminar"
+            El html esta en resources/views/componentes/confirmacion
+            Y su javascript en public/js/confirmacion
+    - Alumnos
+        - error al matricular al alumno, se hacia mal o no se hacia
+    - Cursadas (carga masiva de datos)
+        - Ahora se puede cambiar de carrera y seleccionar el año.
+    - Inscriptos
+        - ahora se pueden borrar
 
 
 

@@ -57,7 +57,7 @@
             <div class="matricular">
  
                 @foreach ($asignatura->correlativas as $correlativa)
-                <form method="post" action="{{route('correlativa.eliminar', ['asignatura'=>$asignatura->id,'asignatura_correlativa'=>$correlativa->asignatura->id])}}">
+                <form method="post" class="form-eliminar" action="{{route('correlativa.eliminar', ['asignatura'=>$asignatura->id,'asignatura_correlativa'=>$correlativa->asignatura->id])}}">
                     <div class="flex">
                     @csrf
                     @method('delete')
@@ -120,7 +120,7 @@
     </div>
     </div>
     <div class="upd">
-        <form method="POST" action="{{route('admin.asignaturas.destroy', ['asignatura'=>$asignatura->id])}}">
+        <form method="POST" class="form-eliminar" action="{{route('admin.asignaturas.destroy', ['asignatura'=>$asignatura->id])}}">
             @csrf
             @method('delete')
             <button class="btn_red"><i class="ti ti-trash"></i>Eliminar asignatura</button>

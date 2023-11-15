@@ -87,7 +87,7 @@
                 </table> 
             </div>
             <div class="upd">
-                <form method="POST" action="{{route('admin.carreras.destroy', ['carrera' => $carrera->id])}}">
+                <form method="POST" class="form-eliminar" action="{{route('admin.carreras.destroy', ['carrera' => $carrera->id])}}">
                     @csrf
                     @method('delete')
                     <input class="pointer p-2 border-none btn_borrar-alt" type="submit" value="Eliminar carrera">

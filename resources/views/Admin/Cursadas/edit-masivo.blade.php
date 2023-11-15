@@ -5,6 +5,13 @@
         <div class="perfil_one br">
             <div class="perfil__header">
                 <h2>Cargar resultados de cursadas</h2>
+                <form method="POST" action="{{route('admin.config.setone')}}">
+                    @csrf
+                    Año
+                    
+                    <input class="black" name="anio_ciclo_actual" value="{{$config['anio_ciclo_actual']}}" type="number">
+                    <button class="p-1 bg-blue-800 rounded">Cambiar año</button>
+                </form>
             </div>
 
             <div class="perfil__info">
@@ -56,6 +63,21 @@
                   <br>
                   <br>
 
+                  <div class="flex-col">
+                    @foreach ($carreras as $carrera)
+                        @if ($carrera->primeraAsignatura())
+                            @if ($carrera->id == $asignatura->carrera->id)
+                                <p class="text-left gray-700" href="{{route('admin.cursadas.masivo',['asignatura'=>$carrera->primeraAsignatura()->id])}}">
+                                    {{$carrera->nombre}}                       
+                                </p>    
+                            @else
+                                <a class="text-left blue-700" href="{{route('admin.cursadas.masivo',['asignatura'=>$carrera->primeraAsignatura()->id])}}">
+                                    {{$carrera->nombre}}                       
+                                </a>     
+                            @endif
+                        @endif
+                    @endforeach
+                  </div>
 
                 
             </div>

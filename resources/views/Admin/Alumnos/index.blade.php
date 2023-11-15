@@ -75,13 +75,6 @@
                     <td class="flex just-center"><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}">
                         <button class="btn_blue"><i class="ti ti-file-info"></i>Detalles</button>
                     </a></td>
-                    {{-- <td>
-                        <form method="POST" action="{{route('admin.alumnos.destroy', ['alumno' => $alumno->id])}}">
-                            @csrf
-                            @method('delete')
-                            <input class="btn_borrar" type="submit" value="Eliminar">
-                        </form>
-                    </td> --}}
                 </tr>
                 @endforeach
                 </tbody>

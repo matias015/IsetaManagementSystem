@@ -136,7 +136,7 @@
             </form>
 
             @if ($examen->borrable)
-                <form class="form-eliminar" method="post" action="{{route('admin.examenes.destroy', ['examen'=>$examen->id])}}">
+                <form class="form-eliminar" c method="post" action="{{route('admin.examenes.destroy', ['examen'=>$examen->id])}}">
                     @csrf
                     @method('delete')
                     <input type="submit" value="Borrar registro de examen">

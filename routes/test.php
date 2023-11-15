@@ -86,10 +86,12 @@ Route::get('cursadas/{asignatura}', function(Request $request, Asignatura $asign
       }
     }
     
+    
     return view('Admin.Cursadas.edit-masivo', [
       'asignatura' => $asignatura,
       'siguiente' => $siguiente<count($asignaturas)? $asignaturas[$siguiente]:null,
-      'anterior' => $anterior>=0? $asignaturas[$anterior]:null
+      'anterior' => $anterior>=0? $asignaturas[$anterior]:null,
+      'carreras' => Carrera::vigentes()
     ]);
 })->name('admin.cursadas.masivo');
 

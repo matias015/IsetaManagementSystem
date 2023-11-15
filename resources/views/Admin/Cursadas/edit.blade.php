@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="upd">
-                <form method="post" action="{{route('admin.cursadas.destroy', ['cursada'=>$cursada->id])}}">
+                <form class="form-eliminar" method="post" action="{{route('admin.cursadas.destroy', ['cursada'=>$cursada->id])}}">
                     @csrf
                     @method('delete')
                     <input type="submit" value="Eliminar cursada" class="btn_borrar-alt">

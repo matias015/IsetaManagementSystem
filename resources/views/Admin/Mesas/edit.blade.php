@@ -143,7 +143,7 @@
                 
             </div>
         <div class="upd">
-            <form method="POST" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">
+            <form method="POST" class="form-eliminar" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">
                 @csrf
                 @method('delete')
                 <input class="btn_borrar-alt" type="submit" value="Eliminar mesa">

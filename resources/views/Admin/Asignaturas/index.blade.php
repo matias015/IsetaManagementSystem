@@ -44,11 +44,11 @@
                     <td>{{$asignatura->carrera->nombre}}</td>
                     <td><a href="{{route('admin.asignaturas.edit', ['asignatura' => $asignatura->id])}}"><button class="btn_edit">Editar</button></a></td>
                     <td>
-                        <form method="POST" action="{{route('admin.asignaturas.destroy', ['asignatura' => $asignatura->id])}}">
+                        {{-- <form method="POST" class="form-eliminar" action="{{route('admin.asignaturas.destroy', ['asignatura' => $asignatura->id])}}">
                             @csrf
                             @method('delete')
                             <input class="btn_borrar" type="submit" value="Eliminar">
-                        </form>
+                        </form> --}}
                     </td>
                 </tr>
                 @endforeach

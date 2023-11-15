@@ -36,4 +36,16 @@ class ConfigController extends Controller
         
         return redirect()->back();
     }
+
+    public function setOnly(Request $request){
+            $key = key($request->except('_token'));
+
+
+            Configuracion::where('key', $key)
+            ->update(['value'=>$request->input($key)]);
+
+            // key($request->except('_token'));
+        
+        return redirect()->back();
+    }
 }

@@ -37,5 +37,12 @@
                 </form>
             </div>
         </div>
+       
+                    <form class="form-eliminar" method="POST" action="{{route('admin.inscriptos.destroy', ['inscripto' => $registro->id])}}">
+                        @csrf
+                        @method('delete')
+                        <input class="btn_borrar-alt" type="submit" value="Eliminar">
+                    </form>
+              
     </div>
 @endsection

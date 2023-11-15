@@ -60,17 +60,28 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('logout', [AdminAuthController::class, 'logout']) -> name('admin.logout');
 
-    Route::resource('alumnos', AlumnoCrudController::class, ['as' => 'admin'])->middleware('auth:admin');
-    Route::resource('inscriptos', EgresadosAdminController::class, ['as' => 'admin']);
+    Route::resource('alumnos', AlumnoCrudController::class, ['as' => 'admin'])->middleware('auth:admin')->missing(function(){
+        return redirect()->route('admin.alumnos.index')->with('aviso','El alumno no existe o ha sido eliminado');
+    });
+
+    Route::resource('inscriptos', EgresadosAdminController::class, ['as' => 'admin'])->missing(function(){
+        return redirect()->route('admin.inscriptos.index')->with('aviso','La inscripcion no existe o ha sido eliminada');
+    });
 
     Route::resource('profesores', ProfesoresCrudController::class, [
         'as' => 'admin', 
         'parameters' => ['profesores' => 'profesor']
-    ]);
+    ])->missing(function(){
+        return redirect()->route('admin.profesores.index')->with('aviso','El profesor no existe o ha sido eliminado');
+    });
     
-    Route::resource('carreras', CarrerasCrudController::class, ['as' => 'admin'])->middleware('auth:admin');
+    Route::resource('carreras', CarrerasCrudController::class, ['as' => 'admin'])->middleware('auth:admin')->missing(function(){
+        return redirect()->route('admin.carreras.index')->with('aviso','La carrera no existe o ha sido eliminada');
+    });
     
-    Route::resource('asignaturas', AsignaturasCrudController::class, ['as' => 'admin']);
+    Route::resource('asignaturas', AsignaturasCrudController::class, ['as' => 'admin'])->missing(function(){
+        return redirect()->route('admin.asignaturas.index')->with('aviso','La asignatura no existe o ha sido eliminada');
+    });
 
     Route::get('cursadas', [CursadasAdminController::class,'index'])->name('admin.cursadas.index');
     Route::get('cursadas/{cursada}/edit', [CursadasAdminController::class,'edit'])->name('admin.cursadas.edit');
@@ -80,7 +91,7 @@ use Illuminate\Support\Facades\Route;
     Route::post('cursadas/create', [CursadasAdminController::class,'store'])->name('admin.cursadas.store');
     
 
-    Route::resource('mesas', MesasCrudController::class, ['as' => 'admin'])->middleware('auth:admin');;
+    Route::resource('mesas', MesasCrudController::class, ['as' => 'admin'])->middleware('auth:admin');
     Route::resource('admins', AdminsCrudController::class, ['as' => 'admin']);
 
     Route::resource('examenes',ExamenesCrudController::class,[
@@ -91,6 +102,7 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('config', [ConfigController::class, 'index'])->name('admin.config.index');
     Route::post('config', [ConfigController::class, 'setear'])->name('admin.config.set');
+    Route::post('config/one', [ConfigController::class,'setOnly'])->name('admin.config.setone');
 
     Route::post('correlativa/{asignatura}',[AdminCorrelativasController::class, 'agregar'])->name('correlativa.agregar');
 

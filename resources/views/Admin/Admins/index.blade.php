@@ -45,7 +45,7 @@
                         <td>{{$admin->username}}</td>
                         {{---<td><a href="{{route('admin.admins.edit', ['admin' => $admin->id])}}"><button class="btn_edit">Editar</button></a></td>---}}
                         <td class="center">
-                            <form method="POST" action="{{route('admin.admins.destroy', ['admin' => $admin->id])}}">
+                            <form method="POST" class="form-eliminar" action="{{route('admin.admins.destroy', ['admin' => $admin->id])}}">
                                 @csrf
                                 @method('delete')
                                 <input type="submit" value="Eliminar" class="btn_borrar-alt">

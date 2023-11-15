@@ -10,6 +10,8 @@ use App\Models\Configuracion;
 use App\Models\Egresado;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\returnSelf;
+
 class EgresadosAdminController extends Controller
 {
     function __construct()
@@ -118,11 +120,11 @@ class EgresadosAdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request,  $registro)
+    public function edit(Request $request, $registro)
     { 
         $registro = Egresado::find($registro);
-        // $alumno = Alumno::find($registro->id_alumno);
-        // $carrera = Carrera::find($registro->id_carrera);
+        if(!$registro) return \redirect()->route('admin.inscriptos.index')->with('aviso','La inscripcion no existe');
+
        
         return view('Admin.inscriptos.edit', [
             'registro' => $registro,
@@ -142,10 +144,12 @@ class EgresadosAdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Egresado $alumno)
+    public function destroy($alumno)
     {
-        dd('No hagas cagada');
-        $alumno->delete();
-        return redirect() -> route('admin.inscriptos.index') -> with('mensaje', 'Se ha eliminado el alumno');
+        Egresado::find($alumno)->delete();
+        return redirect() -> route('admin.inscriptos.index') -> with(['mensaje' => [
+            'Se ha eliminado la inscripcion',
+            'Recuerda que puedes volver a crearla en el apartado "crear inscripcion"'
+        ]]);
     }
 }

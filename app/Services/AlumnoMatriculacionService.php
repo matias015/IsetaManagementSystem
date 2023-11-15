@@ -39,7 +39,7 @@ class AlumnoMatriculacionService{
 
             // Chequear que no este ya en la cursada
             $yaAnotadoEnCursada = Cursada::where('id_alumno', $alumno->id)
-                -> whereRaw('(aprobada=3 OR aprobada=1)')
+                -> whereRaw('(aprobada=3 OR aprobada=1 OR condicion=0 OR condicion=2 OR condicion=3)')
                 -> where('id_asignatura', $asignatura->id)
                 -> first();
 
@@ -47,10 +47,11 @@ class AlumnoMatriculacionService{
             if($yaAnotadoEnCursada) continue;
             
             // Si la materia tiene correlativas
-            $asignatura->equivalencias_previas = Correlativa::debeCursadasCorrelativos($asignatura);
-
+            $asignatura->equivalencias_previas = Correlativa::debeCursadasCorrelativos($asignatura,$alumno);
+           
             $anotables[] = $asignatura;
         }
+        
         return $anotables;
     }
 
@@ -58,6 +59,8 @@ class AlumnoMatriculacionService{
                 
         //todas la materias de esa carrera
         $asignaturas_de_carrera = $carrera->asignaturas()->pluck('id')->toArray();
+
+        $asignaturas=[];
 
         foreach($inputs as $asig_id => $value){
 
@@ -90,7 +93,7 @@ class AlumnoMatriculacionService{
             $asignatura = Asignatura::with('correlativas.asignatura')->where('id', $asig_id)->first();
             
             // verifica equivalencias
-            if(Correlativa::debeCursadasCorrelativos($asignatura)){
+            if(Correlativa::debeCursadasCorrelativos($asignatura,$alumno)){
                 return ['success' => false,'mensaje' => 'Debes 1 o mas correlativas'];
             }
 

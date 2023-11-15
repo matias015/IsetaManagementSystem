@@ -83,13 +83,7 @@
                 </td>
                 
                 <td class="flex just-center"><a href="{{route('admin.inscriptos.edit', ['inscripto' => $alumno->id])}}"><button class="btn_blue"><i class="ti ti-file-info"></i>Detalles</button></a></td>
-                {{--<td>
-                    <form method="POST" action="{{route('admin.inscriptos.destroy', ['inscripto' => $alumno->id])}}">
-                        @csrf
-                        @method('delete')
-                        <input class="btn_borrar-alt" type="submit" value="Eliminar">
-                    </form>
-                </td>--}}
+                
             </tr>
             @endforeach
             </tbody>
