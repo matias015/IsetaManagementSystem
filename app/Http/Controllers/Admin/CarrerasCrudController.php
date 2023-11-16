@@ -24,9 +24,10 @@ class CarrerasCrudController extends Controller
     {       
          $carreras = [];
          $config = Configuracion::todas();
+        //  \dd($request->all());
 
          $filtro = $request->filtro ? $request->filtro: '';
-         $campo = $request->campo ? $request->campo: '';
+         $campo = $request->campo ? $request->campo: 'vigentes';
          $orden = $request->orden ? $request->orden: 'fecha';
          $porPagina = $config['filas_por_tabla'];
 
@@ -37,8 +38,8 @@ class CarrerasCrudController extends Controller
             $query->orWhere('carreras.nombre', 'LIKE', '%'.$word.'%');
         }
 
-        if($campo != "todas"){
-            $query = $query -> where('vigente','1');
+        if($campo == "vigentes"){
+            $query -> where('vigente','1');
         }
 
         if($orden == "nombre"){

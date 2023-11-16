@@ -74,9 +74,9 @@ class AlumnoMatriculacionService{
                 
             
             // Si se selecciono otra cosa ademas de las posibles
-            if($value!=1 && $value!=2){
-                return ['success' => false,'mensaje' => 'Ha habido un error'];
-            }
+            // if($value!=1 && $value!=2){
+            //     return ['success' => false,'mensaje' => 'Ha habido un error'];
+            // }
 
             // Ver que no este ya anotado o que ya la haya aprobado
             $yaAnotadoEnCursada = Cursada::where('id_alumno', $alumno->id)

@@ -125,7 +125,15 @@
                 <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
 
             </form>
+           <button>
+               <a href="/admin/copia">COPIA DE LA BASE DE DATOS EN C:/COPIA</a>
+            </button> 
+            <br><br>
+            <button>
+            <a href="/admin/restaurar">RESTAURAR</a>
+            </button> 
         </div>
+        
     </div>
     
 @endsection

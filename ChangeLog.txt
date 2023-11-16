@@ -419,7 +419,19 @@ PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
         - ahora se pueden borrar
 
 
+--------------------------------------------------------------
+16 de noviembre
+--------------------------------------------------------------
 
+- Admin
+    - rematriculacion
+        - No se seteaban bien la condicion
+        - Ya no se crea una nueva inscripcion
+    - ajustes
+        - test de copia de seguridad
+    - Cursadas
+        - El apartado de crear ahora funciona correctamente
+        
 
 
 - Admin

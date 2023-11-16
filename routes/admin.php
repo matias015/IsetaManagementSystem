@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Admin\AdminCopiaDB;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminCorrelativasController;
 use App\Http\Controllers\Admin\AdminDiasHabilesController;
@@ -155,4 +155,10 @@ use Illuminate\Support\Facades\Route;
 
         return redirect()->back()->with('mensaje','Se han normalizado los datos');
     });
+
+
+
+    
+Route::get('copia',[AdminCopiaDB::class,'crearCopia']);
+Route::get('restaurar',[AdminCopiaDB::class,'restaurarCopia']);
 });

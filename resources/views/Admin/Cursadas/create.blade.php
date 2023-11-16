@@ -1,29 +1,48 @@
 @extends('Admin.template')
 
 @section('content')
+
+    @php
+        $ultimaCarreraSeleccionada = null;
+        $ultimaAsignaturaSeleccionada = null;
+
+        
+    @endphp
+
     <div>
         <div class="perfil_one br">
             <div class="perfil__header">
                 <h2>Crear nueva cursada</h2>
             </div>
             <div class="perfil__info">
-                <div class="perfil_dataname">
-                    <label>Carrera:</label>
-                    <select class="campo_info rounded" name="carrera" id="carrera_select">
-                        <option selected >Selecciona una carrera</option>
-                        @foreach ($carreras as $carrera)
-                        <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
-                        @endforeach
-                    </select>
-                </div>
+                
 
             <form method="post" action="{{route('admin.cursadas.store')}}">
             @csrf
-
+            <div class="perfil_dataname">
+                <label>Carrera:</label>
+                <select class="campo_info rounded" name="carrera" id="carrera_select">
+                    <option selected >Selecciona una carrera</option>
+                    @foreach ($carreras as $carrera)
+                        @php
+                            if(old('carrera')==$carrera->id){
+                                $ultimaCarreraSeleccionada = $carrera;
+                            }
+                        @endphp
+                        <option @selected(old('carrera')==$carrera->id) value="{{$carrera->id}}">{{$carrera->nombre}}</option>
+                    @endforeach
+                </select>
+            </div>
                 <div class="perfil_dataname">
                     <label>Materia:</label>
                     <select id="asignatura_select" class="asignatura campo_info rounded" name="id_asignatura">
-                        <option value="">Selecciona una carrera</option>
+                        @if ($ultimaCarreraSeleccionada)
+                            <option value="{{old('id_asignatura')}}">{{$ultimaCarreraSeleccionada->asignaturas->where('id',old('id_asignatura'))->first()->nombre}}</option>
+                        @endif
+                        @if (old('carrera') && old('id_asignatura'))
+                            <option value="{{old('id_asignatura')}}">Selecciona una carrera</option>
+                        @endif
+                        
                     </select>
                 </div>
                 <div class="perfil_dataname">
@@ -31,23 +50,22 @@
                     <select class="alumno campo_info rounded" name="id_alumno">
                         <option selected>Selecciona un alumno</option>
                         @foreach($alumnos as $alumno)
-                        <option value="{{$alumno->id}}">{{$alumno->nombreApellido()}}</option>
+                            <option @selected(old('id_alumno') == $alumno->id) value="{{$alumno->id}}">{{$alumno->apellidoNombre()}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="perfil_dataname">
                     <label>Año de cursada:</label>
-                    <input class="campo_info rounded" placeholder="2023" name="anio_cursada">
+                    <input class="campo_info rounded" value="{{old('anio_cursada')?old('anio_cursada'):$config['anio_remat']}}" placeholder="{{$config['anio_remat']}}" name="anio_cursada">
                 </div>
                 <div class="perfil_dataname">
                     <label>Condicion:</label>
                     <select class="campo_info rounded" name="condicion">
-                        <option value="1">Libre</option>
-                        <option selected value="2">Regular</option>
-                        <option value="3">Desertor</option>    
-                        <option value="4">Atraso acadamico</option>
-                        <option value="5">Otro</option>
-                    </select>
+                        <option @selected(old('condicion') == 1) value="1">Regular</option>
+                        <option @selected(old('condicion') == 0) value="0">Libre</option>
+                        <option @selected(old('condicion') == 2) value="2">Promocion</option>    
+                        <option @selected(old('condicion') == 3) value="3">Equivalencia</option>
+                    </select> 
                 </div>
                 <div class="upd"><input class="btn_borrar upd" type="submit" value="Crear"></div>
             </form>

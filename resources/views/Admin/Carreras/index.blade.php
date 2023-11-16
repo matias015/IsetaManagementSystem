@@ -18,8 +18,8 @@
                     <span class="categoria">Mostrar</span> 
                     <div>
                         <select class="filtrar border-none p-1 shadow" name="campo">
-                            <option value="">Vigentes</option>
-                            <option @selected($filtros['campo'] == 'todas') value="ninguno">Todas</option>
+                            <option value="vigentes">Vigentes</option>
+                            <option @selected($filtros['campo'] == 'todas') value="todas">Todas</option>
                         </select>
                     </div>
                 </div>

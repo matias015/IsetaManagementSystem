@@ -55,8 +55,10 @@
                         @else
                             <select class="campo_info-rem" name="{{$asignatura->id}}">
                                 <option value="">No matricular</option>
-                                <option value="1">Libre</option>
-                                <option value="2">Regular</option>
+                                <option @selected(old($asignatura->id) == 2) value="2">Regular</option>
+                                <option @selected(old($asignatura->id) == 1) value="1">Libre</option>
+                                <option @selected(old($asignatura->id) == 3) value="3">Promocion</option>    
+                                <option @selected(old($asignatura->id) == 4) value="4">Equivalencia</option>
                             </select>
                         @endif
                     </div>

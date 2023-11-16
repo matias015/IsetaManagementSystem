@@ -64,22 +64,23 @@ class AdminMatriculacionController extends Controller
         // Año de la rematriculacion
         $anio_remat = Configuracion::get('anio_remat');
     
+        
         // Registrar las cursadas
         foreach($asignaturas as $asigId => $tipoCursada){
+            $aprobada=3;
+            $tipoCursada = $tipoCursada-1;
+            if($tipoCursada==0 || $tipoCursada==2 || $tipoCursada==3){
+                $aprobada=1;
+            }
+
             Cursada::create([
                 'id_asignatura' => $asigId,
                 'id_alumno' => $alumno->id,
-                'condicion' => $tipoCursada-1,
-                'aprobada' => $tipoCursada==1? 1:3,
+                'condicion' => $tipoCursada,
+                'aprobada' => $aprobada,
                 'anio_cursada' => $anio_remat
             ]);
         }
-
-        return redirect()->back()->with('mensaje','Te has rematriculado correctamente'); 
-
-        // Año de la rematriculacion
-        $config = Configuracion::todas();
-        $anio_remat = $config['anio_remat'];
 
 
         if(!Egresado::where('id_alumno',$alumno->id)->where('id_carrera',$carrera->id)->exists()){  
@@ -89,8 +90,6 @@ class AdminMatriculacionController extends Controller
                 'anio_inscripcion' => $anio_remat
             ]);
         }
-
-
         
         return redirect()->back()->with('mensaje','Se ha rematriculado correctamente');       
     }

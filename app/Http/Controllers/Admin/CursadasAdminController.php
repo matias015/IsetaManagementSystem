@@ -7,6 +7,7 @@ use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Configuracion;
+use App\Models\Correlativa;
 use App\Models\Cursada;
 use App\Repositories\AdminCursadaRepository;
 use Illuminate\Http\Request;
@@ -71,7 +72,7 @@ class CursadasAdminController extends Controller
 
     function create(){
         $alumnos = Alumno::orderBy('nombre','asc')->orderBy('apellido','asc')->get();
-        $carreras = Carrera::orderBy('nombre')->get();
+        $carreras = Carrera::vigentes();
         
         return view('Admin/Cursadas/create',[
             'alumnos' => $alumnos,
@@ -81,36 +82,51 @@ class CursadasAdminController extends Controller
 
     function store(Request $request){
 
-        // validar si el alumno se puede anotar a la cursada
-        // debe tener cursada de equivalencia aprobada
-        // no haberla aprobado ya
-        // no tener final rendido (no?)
+        $asignatura = Asignatura::where('id',$request->id_asignatura)->with('correlativas.asignatura')->first();       
+        $alumno = Alumno::find($request->id_alumno);
 
-        $puede = true;
-        $asignatura = Asignatura::where('id',$request->id_asignatura)->with('correlativas.asignatura')->first(); 
 
-        $cursadasDeEsaMateria = Cursada::where('id_asignatura', $request->id_asignatura)->where('id_alumno', $request->id_alumno)->get();
+        // Si se selecciono otra cosa ademas de las posibles
+        // if($value!=1 && $value!=2){
+        //     return ['success' => false,'mensaje' => 'Ha habido un error'];
+        // }
 
-        foreach($cursadasDeEsaMateria as $cursada){
-            if($cursada->aprobada == 1) $puede=false;
-        }
-
-        foreach($asignatura->correlativas as $correlativa){
-            $cursada = Cursada::where('id_asignatura', $correlativa->asignatura->id)
-            -> where('id_alumno', $request->id_alumno)
+        // Ver que no este ya anotado o que ya la haya aprobado
+        $yaAnotadoEnCursada = Cursada::where('id_alumno', $alumno->id)
+            -> whereRaw('(aprobada=3 OR aprobada=1)')
+            -> where('id_asignatura', $asignatura->id)
             -> first();
-            if(!$cursada || $cursada->aprobada != 1) $puede = false;  
+
+        // Si lo esta, no incluir
+        if($yaAnotadoEnCursada) {
+            return \redirect()->back()->with('error', 'El alumno ya registra una cursada de la asignatura del año '.$yaAnotadoEnCursada->anio_cursada)->withInput();
         }
 
-        // dd($puede);
+        // Obtener datos de la asignatura con sus correlativas
+        $correlativas = Correlativa::debeCursadasCorrelativos($asignatura,$alumno);
+
+        if($correlativas){
+            $mensajes=[];
+            foreach($correlativas as $correlativa){
+                $mensajes[] = 'Debe la cursada de '.$correlativa->nombre;
+            }
+            return \redirect()->back()->with(['error'=>$mensajes])->withInput();
+        }
+        
+
+        $aprobada=3;
+        if($request->condicion == 0 ||$request->condicion == 2||$request->condicion == 3){
+            $aprobada = 1;
+        }
 
         Cursada::create([
             'id_asignatura' => $request->id_asignatura,
             'id_alumno' => $request->id_alumno,
             'anio_cursada' => $request->anio_cursada,
-            'condicion' => $request->condicion
+            'condicion' => $request->condicion,
+            'aprobada' => $aprobada
         ]);
         
-        return redirect() -> back();
+        return redirect() -> back() -> with('mensaje','Se creo la cursada');
     }
 }
