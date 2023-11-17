@@ -2,6 +2,7 @@
     .confirmacion-popup{
         z-index: 9999999;
         position: fixed;
+        
         left: 40vw;
         top: 40vh;
     }

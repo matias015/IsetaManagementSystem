@@ -1,26 +1,15 @@
-// const toast = document.querySelector('.toast');
-const closeBtn = document.querySelector('.close');
+const botonesCerrar = elements().whereClass('close')
 
-if(closeBtn){
-  window.addEventListener('click', clickHideToast);
-
-  // Ocultar el tost después de 3 segundos
-  setTimeout(function() {
-    _findAll('.toast').forEach(element => { 
-      hideToast(element);
+if(botonesCerrar.hasElements()){ 
+  
+  botonesCerrar.get().forEach(function(boton){
+    boton.when('click', function(){
+      boton.parent().hide()
     })
-    window.removeEventListener('click', clickHideToast)
-  }, 7000);
+  })
 
+  botonesCerrar.get().forEach(function(boton){
+      boton.parent().removeAfter(7000, () => boton.unsetEvent('click'))
+  })
 
-  function clickHideToast(e){
-    console.log(3);
-      if(e.target.classList.contains('close')){
-        hideToast(_parent(e.target));
-      }
-    }
-  }
-
-  function hideToast(toast) {
-    toast.style.display = 'none';
-  }
+}

@@ -1,20 +1,18 @@
+let perfilDropdownList = _find(".perfil-lista")
+let btn = _find(".perfil-logout-btn")
 
-let perfilDropdownList = document.querySelector(".perfil-lista")
-let btn = document.querySelector(".perfil-logout-btn")
-
-
-btn.addEventListener('click', function(e) {
-    perfilDropdownList.classList.toggle('active')
+btn.when('click', function(e) {
+    perfilDropdownList.toggleClass('active')
 });
 
 const btnNav = _find('.navOpenBtn')
 const nav = _find('.nav-links')
 const btnClose = _find('.navCloseBtn')
 
-btnNav.addEventListener('click',function(e){
-    nav.classList.toggle('left-hide')
+btnNav.when('click',function(e){
+    nav.toggleClass('left-hide')
 })
 
-btnClose.addEventListener('click',function(e){
-    nav.classList.toggle('left-hide')
+btnClose.when('click',function(e){
+    nav.toggleClass('left-hide')
 })
