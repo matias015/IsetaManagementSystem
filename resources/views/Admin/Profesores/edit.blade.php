@@ -87,7 +87,7 @@
                         <input class="rounded px-2 campo_info" value="{{$profesor->codigo_postal}}" value="6500" name="codigo_postal">
                     </div>
 
-                    <div class="upd"><input class="btn_borrar upd" type="submit" value="Actualizar"></div>
+                    <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
                 </form>
             </div>
         </div>
