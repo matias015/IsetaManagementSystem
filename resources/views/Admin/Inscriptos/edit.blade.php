@@ -33,16 +33,16 @@
                         <input class="campo_info rounded" value="{{$registro->anio_finalizacion}}" name="anio_finalizacion">
                     </div>
 
-                    <div class="upd"><input class="btn_borrar upd" type="submit" value="Actualizar"></div>
+                    <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
                 </form>
             </div>
         </div>
-       
-                    <form class="form-eliminar" method="POST" action="{{route('admin.inscriptos.destroy', ['inscripto' => $registro->id])}}">
-                        @csrf
-                        @method('delete')
-                        <input class="btn_borrar-alt" type="submit" value="Eliminar">
-                    </form>
-              
+        <div class="upd">
+            <form class="form-eliminar" method="POST" action="{{route('admin.inscriptos.destroy', ['inscripto' => $registro->id])}}">
+                @csrf
+                @method('delete')
+                <button class="btn_red"><i class="ti ti-trash"></i>Eliminar cursada</button>
+            </form>
+        </div>  
     </div>
 @endsection
