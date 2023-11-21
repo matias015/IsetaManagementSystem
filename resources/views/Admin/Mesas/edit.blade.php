@@ -59,9 +59,7 @@
                     </div>
 
                     <div class="upd">
-                        <input type="submit" value="Actualizar" class="btn_borrar">
-                        <div>
-                        </div>
+                        <button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button>
                     </div>
                 </form>
             </div>
@@ -146,7 +144,7 @@
             <form method="POST" class="form-eliminar" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">
                 @csrf
                 @method('delete')
-                <input class="btn_borrar-alt" type="submit" value="Eliminar mesa">
+                <button class="btn_red"><i class="ti ti-trash"></i>Eliminar mesa</button>
             </form>
         </div>
     </div>
