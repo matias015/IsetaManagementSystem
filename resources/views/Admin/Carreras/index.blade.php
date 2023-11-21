@@ -29,7 +29,7 @@
                 </div>
                 
                 <div class="contenedor_btn-busqueda">
-                    <input class="btn-buscador1 p-1 border-none pointer" type="submit" value="Buscar">
+                    <button class="btn_sky"><i class="ti ti-search"></i>Buscar</button>
                 </div>
             </div>
         </form>
