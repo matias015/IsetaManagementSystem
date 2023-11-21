@@ -88,7 +88,7 @@
                         <label>Codigo postal:</label>
                         <input class="campo_info rounded" value="6500" name="codigo_postal">
                     </div>
-                    <div class="upd"><input class="btn_borrar upd" type="submit" value="Crear"></div>
+                    <div class="upd"><button class="btn_blue"><i class="ti ti-circle-plus"></i>Crear</button></div>
                 </form>
             </div>
         </div>
