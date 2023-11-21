@@ -51,11 +51,7 @@
                         </select>
                     </div>
 
-                    <div class="upd">
-                        <input type="submit" value="Actualizar" class="btn_borrar">
-                    
-                        
-                    </div>
+                    <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
                     </form>
                 </div>
             </div>
@@ -63,7 +59,7 @@
                 <form class="form-eliminar" method="post" action="{{route('admin.cursadas.destroy', ['cursada'=>$cursada->id])}}">
                     @csrf
                     @method('delete')
-                    <input type="submit" value="Eliminar cursada" class="btn_borrar-alt">
+                    <button class="btn_red"><i class="ti ti-trash"></i>Eliminar cursada</button>
                 </form>
             </div>
         </div>
