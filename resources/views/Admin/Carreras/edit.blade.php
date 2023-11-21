@@ -37,7 +37,7 @@
                         <input class="campo_info3 rounded" value="1" type="checkbox"  @checked($carrera->vigente == 1) name="vigente">
                     </div>
 
-                    <div class="upd"><input class="btn_borrar upd" type="submit" value="Actualizar"></div>
+                    <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
                 </form>
             </div>
         </div>
