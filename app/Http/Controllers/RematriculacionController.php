@@ -58,6 +58,10 @@ class RematriculacionController extends Controller
 
     public function rematriculacion(Request $request, Carrera $carrera){
 
+        if(!Configuracion::get('alumno_puede_anotarse_cursada')){
+            return redirect()->back()->with('error', 'El administrador ha desactivado esta caracteristica');
+        }
+
         if(!$carrera->estaInscripto()){
             return redirect()->back()->with('error','No estas inscripto en esta carrera');
         }
@@ -69,6 +73,10 @@ class RematriculacionController extends Controller
             if($value == 1){
                 $libres++;
             }
+        }
+        
+        if($libres>0 && !Configuracion::get('alumno_puede_anotarse_libre')){
+            return redirect()->back()->with('error', 'El administrador no permite inscripciones como libres');
         }
         
         $asignaturas = $this->rematService->validasParaRegistrar($carrera,$request->except('_token'),Auth::user());
@@ -97,6 +105,11 @@ class RematriculacionController extends Controller
 
 
     function bajar_rematriculacion(Request $request, Cursada $cursada){
+
+        if(!Configuracion::get('alumno_puede_bajarse_cursada')){
+            return redirect()->back()->with('error', 'El administrador ha desactivado esta caracteristica');
+        }
+
 
         if(!$cursada) return redirect()->route('alumno.inscripciones')->with('error','No se encontro la cursada');
 

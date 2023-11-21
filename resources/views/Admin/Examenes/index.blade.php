@@ -56,11 +56,7 @@
             <td>{{$examen->nota}}</td>
             <td><a href="{{route('admin.examenes.edit', ['examen' => $examen->id])}}"><button class="btn_edit">Editar</button></a></td>
             <td>
-                <form method="POST" class="form-eliminar" action="{{route('admin.examenes.destroy', ['examen' => $examen->id])}}">
-                    @csrf
-                    @method('delete')
-                    <input class="btn_borrar" type="submit" value="Eliminar">
-                </form>
+              
             </td>
         </tr>
         @endforeach

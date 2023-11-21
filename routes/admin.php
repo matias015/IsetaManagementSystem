@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\CarrerasCrudController;
 use App\Http\Controllers\Admin\MesasCrudController;
 use App\Http\Controllers\Admin\ProfesoresCrudController;
 use App\Http\Controllers\Admin\AdminsCrudController;
+use App\Http\Controllers\Admin\AdminSeguridadController;
 use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\ExamenesCrudController;
 use App\Http\Controllers\Admin\CursadasAdminController;
@@ -103,6 +104,11 @@ use Illuminate\Support\Facades\Storage;
     Route::get('cursantes/carrera/{carrera}',[AdminExportController::class, 'cursadasCarrera'])->name('excel.cursadas.carrera');
 
     Route::get('cursantes/{asignatura}',[AdminExportController::class, 'cursadasAsignatura'])->name('excel.cursadas.asig');
+
+    Route::get('seguridad', [AdminSeguridadController::class, 'vista'])->name('admin.seguridad.index');
+    
+    Route::post('seguridad', [AdminSeguridadController::class, 'editar'])->name('admin.seguridad.update');
+
 
     Route::get('normalizar',function(){
         foreach (Alumno::all() as $alumno) {

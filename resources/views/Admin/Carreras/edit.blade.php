@@ -103,12 +103,14 @@
                     </tbody>
                 </table> 
             </div>
+        @if (!$config['modo_seguro'])       
             <div class="upd">
                 <form method="POST" class="form-eliminar" action="{{route('admin.carreras.destroy', ['carrera' => $carrera->id])}}">
                     @csrf
                     @method('delete')
                     <input class="pointer p-2 border-none btn_borrar-alt" type="submit" value="Eliminar carrera">
                 </form>
-                </div>
+            </div>
+        @endif
     </div>
 @endsection

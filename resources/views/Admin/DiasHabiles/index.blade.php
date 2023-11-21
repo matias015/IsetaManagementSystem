@@ -12,7 +12,8 @@
         @endphp
 
         <div class="dias-hab">
-            <p style="padding-bottom: 2em">Los días no hábiles o feriados se marcan en rojo.</p>
+            <p class="font-4" style="padding-bottom: 0.5em">Los días no hábiles o feriados se marcan en rojo y no se contaran como horas habiles previas a una mesa, ademas no se permitira crear mesas en un dia no habil.</p>
+            <p class="font-4" style="padding-bottom: 2em">No es necesario marcar fines de semana.</p>
            @foreach ($meses as $key=>$mesDias)
                <div>
                 <p>{{$mesesStr[$key]}}</p>

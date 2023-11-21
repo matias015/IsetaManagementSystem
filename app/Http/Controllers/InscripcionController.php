@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Configuracion;
 use App\Models\Examen;
 use App\Models\Mesa;
 use App\Repositories\InscripcionRepository;
@@ -46,6 +47,10 @@ class InscripcionController extends Controller
 
     function inscribirse(Request $request){
 
+        if(!Configuracion::get('alumno_puede_anotarse_mesa')){
+            return redirect()->back()->with('error', 'El administrador ha desactivado esta caracteristica');
+        }
+
         if(!$request->has('mesa')) return redirect()->back()->with('error','Selecciona una mesa');
 
         $mesa = Mesa::with('asignatura','anotado')->find($request->input('mesa'));
@@ -70,6 +75,10 @@ class InscripcionController extends Controller
      */
 
     function bajarse(Request $request){
+
+        if(!Configuracion::get('alumno_puede_bajarse_mesa')){
+            return redirect()->back()->with('error', 'El administrador ha desactivado esta caracteristica');
+        }
 
         if(!$request->has('mesa')) return redirect()->back()->with('error','Selecciona una mesa');
         

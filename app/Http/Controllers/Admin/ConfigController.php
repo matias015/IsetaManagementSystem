@@ -26,6 +26,26 @@ class ConfigController extends Controller
 
     public function setear(EditarConfigRequest $request){
         $data = $request->validated();
+      
+        if(!$request->has('alumno_puede_anotarse_mesa')){
+            $data['alumno_puede_anotarse_mesa'] = 0;
+        }
+        if(!$request->has('alumno_puede_bajarse_mesa')){
+            $data['alumno_puede_bajarse_mesa'] = 0;
+        } 
+        if(!$request->has('alumno_puede_anotarse_cursada')){
+            $data['alumno_puede_anotarse_cursada'] = 0;
+        }
+        if(!$request->has('alumno_puede_bajarse_cursada')){
+            $data['alumno_puede_bajarse_cursada'] = 0;
+        }
+        if(!$request->has('alumno_puede_anotarse_libre')){
+            $data['alumno_puede_anotarse_libre'] = 0;
+        }
+        if(!$request->has('modo_seguro')){
+            $data['modo_seguro'] = 0;
+        }
+        
 
         // dd($request->except('_token'));
         foreach($data as $key => $value){

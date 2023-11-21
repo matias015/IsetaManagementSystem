@@ -445,4 +445,4 @@ PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
 21/11
 - muchas cosas que ya me olvide
 - Cambie el diseño de la carga de cursadas en lote pq era muy dificil de leer
-
+- Nuevas configuraciones y modo seguro

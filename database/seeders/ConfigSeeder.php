@@ -95,5 +95,31 @@ class ConfigSeeder extends Seeder
             'key' => 'nombre',
             'value' => "ISETA"
         ]);
+
+        Configuracion::create([
+            'key' => 'alumno_puede_anotarse_mesa',
+            'value' => 1
+        ]);
+        Configuracion::create([
+            'key' => 'alumno_puede_bajarse_mesa',
+            'value' => 1
+        ]);
+        Configuracion::create([
+            'key' => 'alumno_puede_anotarse_cursada',
+            'value' => 1
+        ]);
+        Configuracion::create([
+            'key' => 'alumno_puede_bajarse_cursada',
+            'value' => 1
+        ]);
+        Configuracion::create([
+            'key' => 'alumno_puede_anotarse_libre',
+            'value' => 1
+        ]);
+        
+        Configuracion::create([
+            'key' => 'modo_seguro',
+            'value' => 1
+        ]);
     }
 }

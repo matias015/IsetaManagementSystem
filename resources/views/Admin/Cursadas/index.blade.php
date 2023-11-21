@@ -76,15 +76,7 @@
                 </td>
                 <td class="flex just-center"><a href="{{route('admin.cursadas.edit', ['cursada' => $cursada->id])}}"><button class="btn_blue"><i class="ti ti-file-info"></i>Detalles</button></a></td>
                 
-                
-                {{--<td>
-                   
-                    <form method="POST" action="{{route('admin.cursadas.destroy', ['cursada' => $cursada->id])}}">
-                        @csrf
-                        @method('delete')
-                        <input class="btn_borrar" type="submit" value="Eliminar">
-                    </form>
-                </td>--}}
+
             </tr>
             @endforeach
             </tbody>

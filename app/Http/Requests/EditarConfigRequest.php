@@ -22,7 +22,7 @@ class EditarConfigRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'filas_por_tabla' => ['required'],
+            'filas_por_tabla' => ['nullable'],
             'horas_habiles_inscripcion' => ['required','min:0'],
             'horas_habiles_desinscripcion' => ['required','min:0'],
             'fecha_inicial_rematriculacion' => ['nullable'],
@@ -40,7 +40,13 @@ class EditarConfigRequest extends FormRequest
             'mas_info1' => ['nullable'],
             'mas_info2' => ['nullable'],
             'mas_info3' => ['nullable'],
-            'nombre' => ['nullable']        
+            'nombre' => ['nullable'],
+            'alumno_puede_anotarse_mesa'=>['nullable'],
+            'alumno_puede_bajarse_mesa'=>['nullable'],
+            'alumno_puede_anotarse_cursada'=>['nullable'],
+            'alumno_puede_bajarse_cursada'=>['nullable'],
+            'alumno_puede_anotarse_libre'=>['nullable'],
+            'modo_seguro'=>['nullable'],        
         ];
     }
 }

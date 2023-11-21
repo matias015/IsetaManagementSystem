@@ -124,6 +124,59 @@
 
                 <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
 
+            {{-- </form>         --}}
+           
+        </div>
+        
+    </div>
+    
+    <div class="perfil_one br">
+        <div class="perfil__header">
+            <h2>Seguridad</h2>
+        </div>
+        <div class="perfil__info config">
+
+            {{-- <form class="flex-col gap-2" method="POST" class="" action="{{route('admin.config.set')}}">
+                @csrf --}}
+                
+                
+                
+                
+                <div class="flex-col items-start items-start perfil_dataname">
+                    <div class="flex-col w-100p">
+                        <label>Los alumnos pueden</label>
+                        <div class="flex-col">
+                            <div class="flex px-5 gap-3">                                
+                                <input @checked($config['alumno_puede_anotarse_mesa']) name="alumno_puede_anotarse_mesa" value="1" type="checkbox"><span class="font-400">Anotarse a mesas</span>
+                            </div>
+                            <div class="flex px-5 gap-3">                                
+                                <input @checked($config['alumno_puede_bajarse_mesa']) name="alumno_puede_bajarse_mesa" value="1" type="checkbox"><span class="font-400">Bajarse de la mesas</span>
+                            </div>
+                            <div class="flex px-5 gap-3">                                
+                                <input @checked($config['alumno_puede_anotarse_cursada']) name="alumno_puede_anotarse_cursada" value="1" type="checkbox"><span class="font-400">Matricularse</span>
+                            </div>
+                            <div class="flex px-5 gap-3">                                
+                                <input @checked($config['alumno_puede_bajarse_cursada']) name="alumno_puede_bajarse_cursada" value="1" type="checkbox"><span class="font-400">Desmatricularse</span>
+                            </div>
+                            <div class="flex px-5 gap-3">                                
+                                <input @checked($config['alumno_puede_anotarse_libre']) name="alumno_puede_anotarse_libre" value="1" type="checkbox"><span class="font-400">Entrar a cursadas como libres</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-col items-start perfil_dataname">
+                    <div class="flex gap-3 w-100p">
+                       <label>Activar el modo seguro</label>
+                        <input @checked($config['modo_seguro']) name="modo_seguro" value="1" type="checkbox">
+                    </div>
+                    <p class="font-200 wrap text-left font-5">Horas habiles previas limite a la fecha de una mesa para su desinscripcion.</p>
+                </div>
+                
+
+                <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
+
             </form>
            <button>
                <a href="/admin/copia">COPIA DE LA BASE DE DATOS EN C:/COPIA</a>
@@ -135,5 +188,4 @@
         </div>
         
     </div>
-    
 @endsection

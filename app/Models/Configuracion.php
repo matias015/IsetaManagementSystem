@@ -33,7 +33,6 @@ class Configuracion extends Model
     }
 
 
-
     static function puedeDesinscribirCursada(){
         if(DiasHabiles::desdeHoyHasta(Configuracion::get('fecha_limite_desrematriculacion')) <= 0){
             return false;

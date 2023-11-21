@@ -57,14 +57,18 @@
             <div class="matricular">
  
                 @foreach ($asignatura->correlativas as $correlativa)
-                <form method="post" class="form-eliminar" action="{{route('correlativa.eliminar', ['asignatura'=>$asignatura->id,'asignatura_correlativa'=>$correlativa->asignatura->id])}}">
-                    <div class="flex">
-                    @csrf
-                    @method('delete')
-                        <div class="flex items-center"><li>{{$correlativa->asignatura->nombre}}</li></div>
-                        <div class="flex items-center m-1 mx-4"><button class="btn_red"><i class="ti ti-backspace"></i>Quitar</button></div>
-                    </div>
-                </form>
+                <div class="flex items-center"><li>{{$correlativa->asignatura->nombre}}</li></div>
+                @if (!$config['modo_seguro'])
+    
+                    <form method="post" class="form-eliminar" action="{{route('correlativa.eliminar', ['asignatura'=>$asignatura->id,'asignatura_correlativa'=>$correlativa->asignatura->id])}}">
+                        <div class="flex">
+                        @csrf
+                        @method('delete')
+                           
+                            <div class="flex items-center m-1 mx-4"><button class="btn_red"><i class="ti ti-backspace"></i>Quitar</button></div>
+                        </div>
+                    </form>
+                @endif
                 @endforeach
                     <br><br>
                 <form method="post" action="{{route('correlativa.agregar', ['asignatura'=>$asignatura->id])}}">
@@ -119,13 +123,17 @@
     </table>
     </div>
     </div>
-    <div class="upd">
-        <form method="POST" class="form-eliminar" action="{{route('admin.asignaturas.destroy', ['asignatura'=>$asignatura->id])}}">
-            @csrf
-            @method('delete')
-            <button class="btn_red"><i class="ti ti-trash"></i>Eliminar asignatura</button>
-        </form>
-    </div>
+    
+    @if (!$config['modo_seguro'])
+        <div class="upd">
+            <form method="POST" class="form-eliminar" action="{{route('admin.asignaturas.destroy', ['asignatura'=>$asignatura->id])}}">
+                @csrf
+                @method('delete')
+                <button class="btn_red"><i class="ti ti-trash"></i>Eliminar asignatura</button>
+            </form>
+        </div>
+    @endif
+
     
     
 </div>

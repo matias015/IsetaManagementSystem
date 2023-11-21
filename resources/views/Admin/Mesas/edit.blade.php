@@ -140,6 +140,7 @@
                 </table>
                 
             </div>
+@if (!$config['modo_seguro'])
         <div class="upd">
             <form method="POST" class="form-eliminar" action="{{route('admin.mesas.destroy', ['mesa' => $mesa->id])}}">
                 @csrf
@@ -147,5 +148,6 @@
                 <button class="btn_red"><i class="ti ti-trash"></i>Eliminar mesa</button>
             </form>
         </div>
+        @endif
     </div>
 @endsection
