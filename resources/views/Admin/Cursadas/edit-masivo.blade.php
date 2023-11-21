@@ -6,72 +6,74 @@
             <div class="perfil__header">
                 <h2>Cargar resultados de cursadas</h2>
                 <form method="POST" action="{{route('admin.config.setone')}}">
-                    @csrf
-                    Año
-                    
-                    <input class="black" name="anio_ciclo_actual" value="{{$config['anio_ciclo_actual']}}" type="number">
-                    <button class="p-1 bg-blue-800 rounded">Cambiar año</button>
+                    <div class="flex items-center bot-masivo">
+                        @csrf
+                        Año
+                        <input class="black rounded" name="anio_ciclo_actual" value="{{$config['anio_ciclo_actual']}}" type="number">
+                        <button class="btn_grey">Cambiar</button>
+                    </div>
                 </form>
             </div>
 
             <div class="perfil__info">
-                
-                <h2>{{$asignatura->carrera->nombre}}</h2>
-                <p>{{$asignatura->anioStr()}}</p><br>
-                
-                
 
-                <div class="grid-3 gridx-center gap-4">
+                <div>
+                    <h2>{{$asignatura->carrera->nombre}}</h2>
+                    <span>{{$asignatura->anioStr()}}</span>
+                </div>
+                
+                <div class="grid-3 gridx-center gap-4 selec-masivo">
                     <div>
-                        <p>siguiente</p>
+                        <p>Anterior</p>
                         @if ($anterior)
                             <a class="blue-600" href="{{route('admin.cursadas.masivo', ['asignatura'=>$anterior->id])}}">{{$anterior->nombre}}</a>
                         @endif
                     </div>
                     <div>
-                        <p>actual</p>
+                        <p>Actual</p>
                         {{$asignatura->nombre}}
                     </div>
                     <div>
-                        <p>siguiente</p>
+                        <p>Siguiente</p>
                         @if ($siguiente)
                             <a class="blue-600" href="{{route('admin.cursadas.masivo', ['asignatura'=>$siguiente->id])}}">{{$siguiente->nombre}}</a>
                         @endif
                     </div>
                 </div>
-            <br><br>
-
+            
                 <form method="POST" action="{{route('admin.cursadas.masivo.post')}}">
                     @csrf
                     @foreach($asignatura->cursadas as $cursada)
-                      <div class="grid-3">
-                        <span class="span-2">{{$cursada->alumno->apellidoNombre()}}</span>
-                        <select name="{{$cursada->id}}">
-                            <option @selected($cursada->condicion==1 && $cursada->aprobada==3) value="rc">Regular cursando</option>
-                            <option @selected($cursada->condicion==1 && $cursada->aprobada==2) value="rd">Regular desaprobado</option>
-                            <option @selected($cursada->condicion==1 && $cursada->aprobada==1) value="ra">Regular aprobado</option>
-                            <option @selected($cursada->condicion==0) value="l">Libre</option>
-                            <option @selected($cursada->condicion==3) value="e">Equivalencia</option>
-                            <option @selected($cursada->condicion==2) value="p">Promoción</option>
-                        </select>
+                      <div class="w-100p flex just-between perfil_dataname-rem">
+                        <span class="span-2 flex remat">{{$cursada->alumno->apellidoNombre()}}</span>
+                        <div>
+                            <select class="campo_info-rem" name="{{$cursada->id}}">
+                                <option @selected($cursada->condicion==1 && $cursada->aprobada==3) value="rc">Regular cursando</option>
+                                <option @selected($cursada->condicion==1 && $cursada->aprobada==2) value="rd">Regular desaprobado</option>
+                                <option @selected($cursada->condicion==1 && $cursada->aprobada==1) value="ra">Regular aprobado</option>
+                                <option @selected($cursada->condicion==0) value="l">Libre</option>
+                                <option @selected($cursada->condicion==3) value="e">Equivalencia</option>
+                                <option @selected($cursada->condicion==2) value="p">Promoción</option>
+                            </select>
+                        </div>
                       </div>
                     @endforeach
-                    <button>Cargar</button>
-                  </form>
+                    <div class="upd"><button class="btn_blue"><i class="ti ti-upload"></i>Cargar</button></div>
+                    
+                </form>
 
-                  <br>
-                  <br>
                   <br>
 
                   <div class="flex-col">
+                    <h3 class="h-sub">Seleccionar carrera</h3>
                     @foreach ($carreras as $carrera)
                         @if ($carrera->primeraAsignatura())
                             @if ($carrera->id == $asignatura->carrera->id)
-                                <p class="text-left gray-700" href="{{route('admin.cursadas.masivo',['asignatura'=>$carrera->primeraAsignatura()->id])}}">
+                                <p class="text-left gray-700 perfil_dataname-rem" href="{{route('admin.cursadas.masivo',['asignatura'=>$carrera->primeraAsignatura()->id])}}">
                                     {{$carrera->nombre}}                       
                                 </p>    
                             @else
-                                <a class="text-left blue-700" href="{{route('admin.cursadas.masivo',['asignatura'=>$carrera->primeraAsignatura()->id])}}">
+                                <a class="text-left blue-700 perfil_dataname-rem" href="{{route('admin.cursadas.masivo',['asignatura'=>$carrera->primeraAsignatura()->id])}}">
                                     {{$carrera->nombre}}                       
                                 </a>     
                             @endif
@@ -88,10 +90,3 @@
     <script src="{{asset('js/obtener-materias.js')}}"></script>
 
 @endsection
-
-
-
-
- 
-  
-  
