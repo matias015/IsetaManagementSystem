@@ -93,7 +93,7 @@
                 <input class="px-2 rounded campo_info" value="{{old('codigo_postal')? old('codigo_postal'):$alumno->codigo_postal}}" value="6500" name="codigo_postal">
             </div>
 
-            <div class="upd"><input class="btn_borrar upd" type="submit" value="Actualizar"></div>
+            <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
             </div>
        </form>
     </div>
