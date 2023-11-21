@@ -191,7 +191,7 @@ table td {
 
 /*-------------------------------------------------------     B  0  T  0  N  E  S   ------------------------------------------*/
 
-.btn_blue, .btn_red, .btn_grey {
+.btn_blue, .btn_red, .btn_grey, .btn_sky {
     position: relative;
     z-index: 1;
     display: flex;
@@ -208,7 +208,7 @@ table td {
     overflow: hidden;
 }
 
-  .btn_blue::after, .btn_red::after, .btn_grey::after {
+  .btn_blue::after, .btn_red::after, .btn_grey::after, .btn_sky::after {
     content: "";
     position: absolute;
     z-index: -1;
@@ -235,6 +235,11 @@ table td {
     color: black;
 }
 
+.btn_sky {
+    background-color: var(--gris-header-tabla);
+    color: black;
+}
+
 .btn_blue::after {
     background-color: var(--facebook);
 }
@@ -248,12 +253,16 @@ table td {
     color: white;
 }
 
-.btn_blue i, .btn_red i, .btn_grey i {
+.btn_sky::after {
+    background-color: var(--gris-titulo);
+}
+
+.btn_blue i, .btn_red i, .btn_grey i, .btn_sky i {
     margin-right: 5px;
     font-size: 20px;
 }
 
-.btn_blue:hover::after, .btn_red:hover::after, .btn_grey:hover::after {
+.btn_blue:hover::after, .btn_red:hover::after, .btn_grey:hover::after, .btn_sky:hover::after {
     left: 0;
     right: 0;
     top: 0;
@@ -408,11 +417,15 @@ table {
     display: flex;
     align-items: center;
     width: 100%;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid black;
     font-size: 16px;
     font-weight: 600;
     white-space: nowrap;
     min-height: 50px;
+}
+
+.h-sub {
+    font-size: 24px;
 }
 
 .campo_info { 
@@ -572,4 +585,13 @@ ul .campo_info {
 
 .remat div span {
     margin: 0 10px 0 0;
+}
+
+.bot-masivo input {
+    width: 80px;
+    margin: 0 8px;
+}
+
+.selec-masivo {
+    margin: 20px 0;
 }
