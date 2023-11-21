@@ -44,10 +44,10 @@
                 <form method="POST" action="{{route('admin.cursadas.masivo.post')}}">
                     @csrf
                     @foreach($asignatura->cursadas as $cursada)
-                      <div class="w-100p flex just-between perfil_dataname-rem">
-                        <span class="span-2 flex remat">{{$cursada->alumno->apellidoNombre()}}</span>
+                      <div class="w-100p grid-3 perfil_dataname-rem">
+                        <span class="remat w-100p">{{$cursada->alumno->apellidoNombre()}}</span>
                         <div>
-                            <select class="campo_info-rem" name="{{$cursada->id}}">
+                            <select class="campo_info-rem p-2 border-1 rounded" name="{{$cursada->id}}">
                                 <option @selected($cursada->condicion==1 && $cursada->aprobada==3) value="rc">Regular cursando</option>
                                 <option @selected($cursada->condicion==1 && $cursada->aprobada==2) value="rd">Regular desaprobado</option>
                                 <option @selected($cursada->condicion==1 && $cursada->aprobada==1) value="ra">Regular aprobado</option>

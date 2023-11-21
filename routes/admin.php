@@ -2,6 +2,7 @@
 use App\Http\Controllers\Admin\AdminCopiaDB;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminCorrelativasController;
+use App\Http\Controllers\Admin\AdminCursadasLotes;
 use App\Http\Controllers\Admin\AdminDiasHabilesController;
 use App\Http\Controllers\Admin\AdminExcelController;
 use App\Http\Controllers\Admin\AdminExportController;
@@ -25,22 +26,11 @@ use App\Models\Carrera;
 use App\Models\Mesa;
 use App\Models\Profesor;
 use App\Services\TextFormatService;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
-/* --------------------------------------------------------
- | 
- | original -> 
- | tambien activar middlewares en el controlador
- |
- | NO LOGIN NECESARIO
- | 
- / Route::redirect('/admin','/admin/alumnos'); /*
- |
- |  SOLO POR TESTEO
- | --------------------------------------------------------*/ 
+
 
  Route::redirect('/admin','/admin/login');
  Route::middleware(['web'])->prefix('admin')->group(function(){
@@ -48,12 +38,6 @@ use Illuminate\Support\Facades\Storage;
     Route::get('/mesas/acta-volante/{mesa}', [AdminPdfController::class,'acta_volante'])->name('admin.mesas.acta');
     Route::get('/mesas/acta-volante-prom/{mesa}', [AdminPdfController::class,'actaVolantePromocion'])->name('admin.mesas.actaprom');
     Route::get('/mesas/acta-volante-libre/{mesa}', [AdminPdfController::class,'actaVolanteLibre'])->name('admin.mesas.actalibre');
-
-    Route::get('/mesas/actas',function(){
-        $mesas = Mesa::whereDate('fecha', '>=', now()->subDay()->toDateString())->get();
-        dd($mesas);
-    })->name('admin.mesas.actas');
-
 
     Route::get('login', [AdminAuthController::class, 'loginView']) -> name('admin.login');
     Route::post('login', [AdminAuthController::class, 'login']) -> name('admin.login.post');
@@ -175,7 +159,14 @@ use Illuminate\Support\Facades\Storage;
         return redirect()->back();
     })->name('admin.carreras.resolucion.borrar');
     
-    
-Route::get('copia',[AdminCopiaDB::class,'crearCopia']);
-Route::get('restaurar',[AdminCopiaDB::class,'restaurarCopia']);
+
+
+    // /////////////////////////////////////////////
+    Route::get('cursadas/{asignatura}', [AdminCursadasLotes::class,'vista'])->name('admin.cursadas.masivo');
+
+    Route::post('masivo/cursadas', [AdminCursadasLotes::class, 'cargar'])->name('admin.cursadas.masivo.post');
+
+        
+    Route::get('copia',[AdminCopiaDB::class,'crearCopia']);
+    Route::get('restaurar',[AdminCopiaDB::class,'restaurarCopia']);
 });

@@ -440,3 +440,9 @@ PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
         - Solucionar/acomdar el problema del boton con el ancho en mesas/create. Cuando sale del div (dentro del form) se acomoda
 -Profesores
     - Agregar footer
+
+
+21/11
+- muchas cosas que ya me olvide
+- Cambie el diseño de la carga de cursadas en lote pq era muy dificil de leer
+

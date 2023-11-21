@@ -616,6 +616,8 @@ table tbody tr.active-row {
 .font-900{font-weight: 900;}
 
 .center{text-align: center;}
+.end{text-align: right;}
+.start{text-align: left;}
 
 .overflow-hidden{overflow: hidden;}
 .overflow-scroll{overflow: scroll;}
