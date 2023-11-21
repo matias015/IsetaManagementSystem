@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminExcelController;
 use App\Http\Controllers\Admin\AdminExportController;
 use App\Http\Controllers\Admin\AdminMatriculacionController;
 use App\Http\Controllers\Admin\AdminMesaPorCarreraController;
+use App\Http\Controllers\Admin\AdminMesasLotes;
 use App\Http\Controllers\Admin\AdminPdfController;
 use App\Http\Controllers\Admin\AlumnoCrudController;
 use App\Http\Controllers\Admin\AsignaturasCrudController;
@@ -27,8 +28,7 @@ use App\Services\TextFormatService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-
+use Illuminate\Support\Facades\Storage;
 
 /* --------------------------------------------------------
  | 
@@ -158,6 +158,23 @@ use Illuminate\Support\Facades\Route;
 
 
 
+    Route::get('test/{asignatura}',[AdminMesasLotes::class,'vista'])->name('admin.mesas.dual');
+    
+    Route::post('test/{asignatura}',[AdminMesasLotes::class,'store'])->name('admin.mesas.dual');
+
+
+
+    Route::get('carreras/resolucion/{carrera}',function(Request $request, Carrera $carrera){
+        return Storage::download($carrera->resolucion_archivo);
+    })->name('admin.carreras.resolucion');
+
+    Route::get('carreras/resolucion-delete/{carrera}',function(Request $request, Carrera $carrera){
+        Storage::delete($carrera->resolucion_archivo);
+        $carrera->resolucion_archivo='';
+        $carrera->save();
+        return redirect()->back();
+    })->name('admin.carreras.resolucion.borrar');
+    
     
 Route::get('copia',[AdminCopiaDB::class,'crearCopia']);
 Route::get('restaurar',[AdminCopiaDB::class,'restaurarCopia']);

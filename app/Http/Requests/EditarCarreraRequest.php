@@ -27,7 +27,8 @@ class EditarCarreraRequest extends FormRequest
             "anio_apertura" => ['required','numeric'],
             "anio_fin" => ['nullable','numeric'],
             "observaciones" => ['nullable'],
-            "vigente" => ['nullable']
+            "vigente" => ['nullable'],
+            "resolucion_archivo" => ['nullable']
         ];
     }
 }

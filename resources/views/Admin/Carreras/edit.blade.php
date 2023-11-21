@@ -8,17 +8,13 @@
             </div>
             <div class="perfil__info">
 
-                <form method="post" action="{{route('admin.carreras.update', ['carrera'=>$carrera->id])}}">
+                <form method="post" enctype="multipart/form-data" action="{{route('admin.carreras.update', ['carrera'=>$carrera->id])}}">
                     @csrf
                     @method('put')
 
                     <div class="perfil_dataname">
                         <label>Carrera:</label>
                         <input class="campo_info rounded" value="{{$carrera->nombre}}" name="nombre">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Resolucion:</label>
-                        <input class="campo_info rounded" value="{{$carrera->resolucion}}" name="resolucion">
                     </div>
                     <div class="perfil_dataname">
                         <label>Año apertura:</label>
@@ -36,12 +32,33 @@
                         <label>Vigente:</label> 
                         <input class="campo_info3 rounded" value="1" type="checkbox"  @checked($carrera->vigente == 1) name="vigente">
                     </div>
+                    <div class="flex-col items-start perfil_dataname">
+                        <div class="flex">                       
+                            <label>Resolucion:</label>
+                            <input class="campo_info rounded" value="{{$carrera->resolucion}}" name="resolucion">
+                        </div>
+                        
+                        <input class="campo_info3 rounded" value="1" type="file" name="resolucion_archivo">
+                        
+                        @if ($carrera->resolucion_archivo)  
+                            <span class="font-3 font-400">{{$carrera->resolucion_archivo}}</span>
+                            <div class="flex gap-4">
+                                    <a class="font-3 blue-700" href="{{route('admin.carreras.resolucion', ['carrera'=>$carrera->id])}}">Descargar resolucion</a>
+                                    <a class="font-3 red-600" href="{{route('admin.carreras.resolucion.borrar', ['carrera'=>$carrera->id])}}">Eliminar esta resolucion</a>
+                                </div>
+                        @endif
+                    </div>
+
+                    
+
+           
 
                     <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
                 </form>
             </div>
         </div>
-            
+    
+
             <div class="table">
                 <div  class="perfil__header-alt">
                 <a href="{{route('admin.asignaturas.create',['id_carrera'=>$carrera->id])}}"><button class="btn_blue"><i class="ti ti-circle-plus"></i>Agregar asignatura</button></a>

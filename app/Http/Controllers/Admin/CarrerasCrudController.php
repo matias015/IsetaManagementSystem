@@ -8,6 +8,7 @@ use App\Http\Requests\EditarCarreraRequest;
 use App\Models\Carrera;
 use App\Models\Configuracion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CarrerasCrudController extends Controller
 {
@@ -89,8 +90,8 @@ class CarrerasCrudController extends Controller
      */
     public function edit(Request $request,Carrera $carrera)
     {
-        //dd($alumno->fecha_nacimiento);
-        //dd(Carrera::where('id',$carrera)->with('asignaturas')->get());
+        
+        
         return view('Admin.Carreras.edit', ['carrera'=>Carrera::where('id',$carrera->id)->with('asignaturas')->first()]);
     }
 
@@ -101,6 +102,12 @@ class CarrerasCrudController extends Controller
     {
         $datos = $request->validated();
 
+        if($request->has('resolucion_archivo')){
+            $request->file('resolucion_archivo')->storeAs(str_replace(' ','_',$datos['nombre']).'.pdf');
+            $datos['resolucion_archivo'] = str_replace(' ','_',$datos['nombre']).'.pdf';
+        }
+
+
         $carrera->update($datos);
 
         if(!$request->has('vigente')){
@@ -108,7 +115,7 @@ class CarrerasCrudController extends Controller
             $carrera->save();
         }
 
-        return redirect()->route('admin.carreras.index');
+        return redirect()->back()->with('mensaje','Se edito la carrera');
     }
 
     /**

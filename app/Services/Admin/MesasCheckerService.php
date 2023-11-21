@@ -18,11 +18,7 @@ class MesasCheckerService{
         $this->config = Configuracion::todas();
     }
 
-    /**
-     * -------------------------------
-     * Comprueba que pueda inscribirse
-     * -------------------------------
-     */
+
 
      public function esDiaHabil($fecha){
         // verificar que no sea sabado ni domingo
