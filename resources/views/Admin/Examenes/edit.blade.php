@@ -21,8 +21,8 @@
             <div class="perfil_dataname">
                 <label>Nombre:</label>
                 <span class="campo_info2">
-                    <a class="capitalize" href="{{route('admin.alumnos.edit',['alumno'=>$examen->alumno->id])}}">
-                        {{$examen->alumno->apellidoNombre()}} <span>&#8599;</span>
+                    <a class="capitalize flex items-center" href="{{route('admin.alumnos.edit',['alumno'=>$examen->alumno->id])}}">
+                        {{$examen->alumno->apellidoNombre()}} <i class="ti ti-info-circle"></i>
                     </a>
                 </span>
             </div>
@@ -37,16 +37,16 @@
                 <div class="perfil_dataname">
                     <label>Materia:</label>
                     <span class="campo_info2">
-                        <a class="capitalize" href="{{route('admin.asignaturas.edit',['asignatura'=>$examen->asignatura->id])}}">
-                            {{$examen->asignatura->nombre}} <span>&#8599;</span>
+                        <a class="capitalize flex items-center" href="{{route('admin.asignaturas.edit',['asignatura'=>$examen->asignatura->id])}}">
+                            {{$examen->asignatura->nombre}} <i class="ti ti-info-circle"></i>
                         </a>
                     </span>
                 </div>
                 <div class="perfil_dataname">
                     <label>Carrera:</label>
                     <span class="campo_info2">
-                        <a href="{{route('admin.carreras.edit',['carrera'=>$examen->asignatura->carrera->id])}}">
-                            {{$examen->asignatura->carrera->nombre}} <span>&#8599;</span>
+                        <a class="flex items-center" href="{{route('admin.carreras.edit',['carrera'=>$examen->asignatura->carrera->id])}}">
+                            {{$examen->asignatura->carrera->nombre}} <i class="ti ti-info-circle"></i>
                         </a>
                     </span>
                 </div>
@@ -132,19 +132,21 @@
                 </div>
             </div>
         
-            <div class="upd"><input type="submit" value="Actualizar" class="btn_borrar"></div>
+            <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
             </form>
 
-            @if ($examen->borrable)
-                <form class="form-eliminar" c method="post" action="{{route('admin.examenes.destroy', ['examen'=>$examen->id])}}">
-                    @csrf
-                    @method('delete')
-                    <input type="submit" value="Borrar registro de examen">
-                </form>    
-            @endif
         </div>
     </div>
 </div>
+<div class="upd">
+        @if ($examen->borrable)
+            <form class="form-eliminar" c method="post" action="{{route('admin.examenes.destroy', ['examen'=>$examen->id])}}">
+                @csrf
+                @method('delete')
+                <button class="btn_red"><i class="ti ti-trash"></i>Eliminar examen</button>
+            </form>    
+        @endif
+    </div>
 
 <script src="{{asset('js/confirmacion.js')}}"></script>
 
