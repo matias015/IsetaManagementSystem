@@ -39,7 +39,7 @@
                     <input class="campo_info rounded" value="{{$asignatura->observaciones}}" name="observaciones">
                 </div>
                 
-                <div class="upd"><input class="btn_borrar upd" type="submit" value="Actualizar"></div>
+                <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
             </form>
         </div>
     </div>
