@@ -59,6 +59,10 @@ class Profesor extends Authenticatable
         return $this->apellido.' '.$this->nombre;
     }
 
+    public function dniPuntos(){
+        return number_format($this->dni, 0, ',', '.');
+    }
+
     public function setEmailAttribute($value)
     {
         $this->attributes['email'] = strtolower($value);

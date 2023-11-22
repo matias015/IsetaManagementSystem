@@ -7,6 +7,10 @@
                 <h2>{{$mesa->asignatura->nombre}}</h2>
             </div>
             <div class="perfil__info">
+                <div class="perfil_dataname">
+                    <label>Carrera:</label>
+                    <p class="px-2">{{$mesa->asignatura->carrera->nombre}} - {{$mesa->asignatura->anioStr()}}</p>
+                </div>
                 <form method="post" action="{{route('admin.mesas.update', ['mesa'=>$mesa->id])}}">
                 @csrf
                 @method('put')

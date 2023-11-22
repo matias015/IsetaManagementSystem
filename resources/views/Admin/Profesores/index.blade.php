@@ -70,7 +70,7 @@
                 <tr>
                     <td class="capitalize">{{$profesor->nombre}}</td>
                     <td class="capitalize">{{($profesor->apellido)}}</td>
-                    <td>{{$profesor->dni}}</td>
+                    <td>{{$profesor->dniPuntos()}}</td>
                     <td>{{$profesor->email?$profesor->email:'Sin mail registrado'}}</td>
                     <td class="flex just-center"><a  href="{{route('admin.profesores.edit', ['profesor' => $profesor->id])}}"><button class="btn_blue"><i class="ti ti-file-info"></i>Detalles</button></a></td>
       
