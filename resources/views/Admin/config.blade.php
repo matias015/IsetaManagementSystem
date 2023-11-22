@@ -171,7 +171,7 @@
                        <label>Activar el modo seguro</label>
                         <input @checked($config['modo_seguro']) name="modo_seguro" value="1" type="checkbox">
                     </div>
-                    <p class="font-200 wrap text-left font-5">Horas habiles previas limite a la fecha de una mesa para su desinscripcion.</p>
+                    <p class="font-200 wrap text-left font-5">Oculta todos los botones de eliminacion para evitar el borrado de datos accidental.</p>
                 </div>
                 
 

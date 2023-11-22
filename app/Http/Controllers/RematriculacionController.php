@@ -35,6 +35,9 @@ class RematriculacionController extends Controller
      | ---------------------------------------------
      */
     function rematriculacion_vista(Request $request){
+        if(!Configuracion::get('alumno_puede_anotarse_cursada')){
+            return redirect()->route('alumno.info')->with('error', 'El administrador ha desactivado la inscripcion a cursadas');
+        }
         $carrera = Carrera::getDefault();
         $esFechaDeRemat = $this->rematService->esFechaDeRematriculacion();
 

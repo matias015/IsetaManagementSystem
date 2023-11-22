@@ -50,7 +50,9 @@
                             @else
                                 <select class="campo_info rounded pointer" name="{{$asignatura->id}}">
                                     <option value="">No matricular</option>
-                                    <option value="1">Libre</option>
+                                    @if ($config['alumno_puede_anotarse_libre'])
+                                        <option value="1">Libre</option>
+                                    @endif
                                     <option value="2">Regular</option>
                                     </select>
                             @endif

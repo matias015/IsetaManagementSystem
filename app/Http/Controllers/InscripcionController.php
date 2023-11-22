@@ -18,6 +18,7 @@ class InscripcionController extends Controller
 
     public function __construct(AlumnoInscripcionService $alumnoInscripcionService,InscripcionRepository $inscripcionRepo)
     {
+
         $this->inscripcionService = $alumnoInscripcionService;
         $this->inscripcionRepo = $inscripcionRepo;
 
@@ -35,6 +36,7 @@ class InscripcionController extends Controller
      */
 
      function inscripciones(){
+
         $disponibles = $this->inscripcionService->inscribiblesDelAlumno(Auth::user());
         return view('Alumnos.Datos.inscripciones', compact('disponibles'));
     }

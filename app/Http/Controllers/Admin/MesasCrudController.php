@@ -131,6 +131,7 @@ class MesasCrudController extends Controller
         
         $inscribibles = $this->mesaRepository->inscribibles($mesa);
 
+
         return view('Admin.Mesas.edit', [
             'mesa' => $mesa,
             'profesores'=> Profesor::orderBy('apellido')->orderBy('nombre')->get(),

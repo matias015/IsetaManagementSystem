@@ -1,4 +1,4 @@
-    @if ($correlativas)
+    @if ($correlativas || !$config['alumno_puede_anotarse_mesa'])
         <div method="GET" action="">
     @else
         <form method="POST" action="{{route($path)}}">
@@ -53,7 +53,9 @@
                 @break        
             @elseif ($mesa)
                 <td data-label="LLamado {{$key +1}}" class="llamado_1">
-                    <input name="mesa" value="{{$mesa->id}}" type="radio">
+                    @if ($config['alumno_puede_anotarse_mesa'])
+                        <input name="mesa" value="{{$mesa->id}}" type="radio">
+                    @endif
                     {{$formatoFecha->dmhm($mesa->fecha)}}
                 </td>
             @else
@@ -65,17 +67,23 @@
 
     {{-- Boton cambia de clase y texto dependiendo si esta anotado o no --}}
     <td data-label="Acción">
-        <button @class([
-          'boton-finales inscribir' => (!$yaAnotado && !$correlativas),
-          'boton-finales bajarse' => $yaAnotado,
-          'boton-finales bg-gray-200 black' => $correlativas
-          ])>
-            {{$btnTexto}}
-        </button>
-    </td>
+        @if ($config['alumno_puede_anotarse_mesa'])        
+            <button @class([
+                'boton-finales inscribir' => (!$yaAnotado && !$correlativas),
+                'boton-finales bajarse' => $yaAnotado,
+                'boton-finales bg-gray-200 black' => $correlativas
+                ])>
+                {{$btnTexto}}
+            </button>
+        @else
+            <button class="boton-finales bg-gray-200 black">
+               Deshabilitado
+            </button>
+        @endif
+        </td>
     </tr>
     
-    @if ($correlativas)
+    @if ($correlativas || !$config['alumno_puede_anotarse_mesa'])
         </div>
     @else
         </form>

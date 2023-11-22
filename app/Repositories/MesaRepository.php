@@ -70,6 +70,8 @@ class MesaRepository
             -> orderBy('alumnos.nombre')
             -> get();
 
+            $inscribibles=[];
+
         foreach ($inscribiblesCursada as $cursada) {
             $alumno = $cursada->alumno;
 
