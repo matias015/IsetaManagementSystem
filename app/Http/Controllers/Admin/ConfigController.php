@@ -68,4 +68,21 @@ class ConfigController extends Controller
         
         return redirect()->back();
     }
+
+    function modoSeguro(){
+
+        $modo_seguro = Configuracion::where('key','modo_seguro')->first();
+
+        
+        if($modo_seguro->value == 1){
+            $modo_seguro->value = 0;
+            $msj = 'Se ha desactivado el modo seguro.';
+        }else{
+            $modo_seguro->value = 1;
+            $msj = 'Se ha activado el modo seguro.';
+        }
+
+        $modo_seguro->save();
+        return \redirect()->back()->with('aviso',$msj);
+    }
 }

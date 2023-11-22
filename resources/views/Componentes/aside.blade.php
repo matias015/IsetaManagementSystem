@@ -15,6 +15,15 @@
         <li><a class="text-blue-600" href="{{route('admin.habiles.index')}}  "><i class="ti ti-calendar-time"></i>      Dias no habiles      </a></li>
 
         <div class="aside-end">
+            <li class="font-5"> 
+                <a href="{{route('admin.config.modoseguro')}}">
+                    @if ($config['modo_seguro'])
+                        Desactivar modo seguro
+                    @else
+                        Activar modo seguro
+                    @endif
+                </a>
+            </li>
             <li><a href="/admin/logout"><i class="ti ti-logout"></i> Cerrar sesion</a></li>
         </div>
     </ul>

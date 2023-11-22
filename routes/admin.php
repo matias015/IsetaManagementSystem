@@ -88,6 +88,7 @@ use Illuminate\Support\Facades\Storage;
     Route::get('config', [ConfigController::class, 'index'])->name('admin.config.index');
     Route::post('config', [ConfigController::class, 'setear'])->name('admin.config.set');
     Route::post('config/one', [ConfigController::class,'setOnly'])->name('admin.config.setone');
+    Route::get('config/modoseguro', [ConfigController::class,'modoSeguro'])->name('admin.config.modoseguro');
 
     Route::post('correlativa/{asignatura}',[AdminCorrelativasController::class, 'agregar'])->name('correlativa.agregar');
 
