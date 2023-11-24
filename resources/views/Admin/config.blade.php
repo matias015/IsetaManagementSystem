@@ -178,13 +178,12 @@
                 <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
 
             </form>
-           <button>
-               <a href="/admin/copia">COPIA DE LA BASE DE DATOS EN C:/COPIA</a>
-            </button> 
-            <br><br>
-            <button>
-            <a href="/admin/restaurar">RESTAURAR</a>
-            </button> 
+           <div class="upd">
+                <button class="btn_blue"><a href="/admin/copia"><i class="ti ti-cloud-upload"></i>Copia de la base de datos en C:/Copia</a></button> 
+            </div>
+            <div class="upd">
+                <button class="btn_blue"><a href="/admin/restaurar"><i class="ti ti-cloud-exclamation"></i>Restaurar</a></button> 
+            </div> 
         </div>
         
     </div>
