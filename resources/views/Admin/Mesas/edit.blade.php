@@ -71,16 +71,19 @@
         
         
         
-        <div class="perfil_one br">
+            <div class="perfil_one br">
                 {{-- <p>La funcion de agregar alumnos se elimino hasta que se arreglen algunos errores</p> --}}
                 <div class="perfil__header">
                     <h2>Alumnos inscriptos</h2>
                 </div>
                 <div class="matricular">
-                     @if(strtotime($mesa->fecha) > time() || true)
-                        <p>Estos alumnos han aprobado la cursada de esta materia, luego se volvera a validar sobre correlativas y tiempos</p>
+                     @if(strtotime($mesa->fecha) > time())
+                        <p class="py-2">Estos alumnos han aprobado la cursada de esta materia, luego se volvera a validar sobre correlativas y tiempos</p>
                     
                         <form method="POST" action="{{route('admin.examenes.store')}}">
+                            
+
+                            
                     @csrf
                             <select class="rounded" name="id_alumno">
                                     <option value="">Selecciona un alumno</option>
@@ -90,7 +93,8 @@
                             </select>
                             <input name="id_mesa" value="{{$mesa->id}}" type="hidden">
                             
-                            <input type="submit" value="Agregar" class="btn_borrar">
+                            <div class="upd"><button class="btn_blue"><i class="ti ti-upload"></i>Cargar</button></div>
+                            
                         </form>
                     
                     @else
@@ -123,7 +127,7 @@
                         @foreach($mesa->examenes as $examen)
                         <tr>
                             <td>{{$examen->alumno->apellidoNombre()}}</td>
-                            <td>{{$examen->nota()}}</td>
+                            <td>{{$examen->alumno->nota!=0? $examen->alumno->nota : 'Sin nota'}}</td>
                             <td>
                                 @php
                                     $cursada = $mesa->asignatura->aproboCursada($examen->alumno)
