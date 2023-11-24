@@ -123,7 +123,7 @@
                         @foreach($mesa->examenes as $examen)
                         <tr>
                             <td>{{$examen->alumno->apellidoNombre()}}</td>
-                            <td>{{$examen->alumno->nota!=0? $examen->alumno->nota : 'Sin nota'}}</td>
+                            <td>{{$examen->nota()}}</td>
                             <td>
                                 @php
                                     $cursada = $mesa->asignatura->aproboCursada($examen->alumno)

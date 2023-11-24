@@ -38,6 +38,8 @@ class Examen extends Model
         return $mesa->fecha;
      }
 
+ 
+
     public function tipoFinal(){
         if($this->tipo_final == 1) return "Escrito";
         else if($this->tipo_final == 2) return "Oral";
