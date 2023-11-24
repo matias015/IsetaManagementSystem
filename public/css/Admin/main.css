@@ -595,3 +595,10 @@ ul .campo_info {
 .selec-masivo {
     margin: 20px 0;
 }
+
+@media screen and (max-width: 1024px) {
+    .admin-main {
+        width: 100%;
+        margin-left: 0;
+    }
+}
