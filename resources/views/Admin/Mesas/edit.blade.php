@@ -77,7 +77,7 @@
                     <h2>Alumnos inscriptos</h2>
                 </div>
                 <div class="matricular">
-                     @if(strtotime($mesa->fecha) > time())
+                     @if(strtotime($mesa->fecha) > time() || true)
                         <p>Estos alumnos han aprobado la cursada de esta materia, luego se volvera a validar sobre correlativas y tiempos</p>
                     
                         <form method="POST" action="{{route('admin.examenes.store')}}">
