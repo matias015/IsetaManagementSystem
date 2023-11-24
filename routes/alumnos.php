@@ -24,7 +24,7 @@ Route::prefix('alumno')->group(function(){
 
     Route::get('/login',[AlumnoAuthController::class,'loginView'])->name('alumno.login');
     // Route::post('/login',[AlumnoAuthController::class,'login'])->name('alumno.login.post')->middleware('throttle:alumno-login');
-    Route::post('/login',[AlumnoAuthController::class,'login'])->name('alumno.login.post');
+    Route::post('/login',[AlumnoAuthController::class,'login'])->name('alumno.login.post')->middleware('throttle:alumno-login');
 
     Route::get('/logout',[AlumnoAuthController::class,'logout'])->name('alumno.logout');
 

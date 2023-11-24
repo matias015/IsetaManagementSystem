@@ -31,7 +31,7 @@ class RouteServiceProvider extends ServiceProvider
 
         RateLimiter::for('alumno-login', function (Request $request) {
             
-            $key = 'login.'.$request->ip();
+            $key = 'login.'.$request->input('email');
             $max = 5;   // attempts
             $decay = 60;    // seconds
         
