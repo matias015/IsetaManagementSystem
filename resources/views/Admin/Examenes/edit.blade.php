@@ -140,13 +140,13 @@
 </div>
 @if (!$config['modo_seguro'])
 <div class="upd">
-        @if ($examen->borrable)
+        
             <form class="form-eliminar" c method="post" action="{{route('admin.examenes.destroy', ['examen'=>$examen->id])}}">
                 @csrf
                 @method('delete')
                 <button class="btn_red"><i class="ti ti-trash"></i>Eliminar examen</button>
             </form>    
-        @endif
+
 </div>
 @endif
 <script src="{{asset('js/confirmacion.js')}}"></script>
