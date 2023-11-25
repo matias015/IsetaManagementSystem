@@ -17,6 +17,8 @@
 
 
 <body class="flex p-2" id="logeo">
+    <script src="{{asset('js/libs/ElementEv.js')}}"></script>
+    <script src="{{asset('js/libs/ElementList.js')}}"></script>
     @include('Componentes.mensaje')
 
     <section class="login">
@@ -39,7 +41,8 @@
                 <div class="underline"></div>
             </div>
             <div class="contraseña input-box">
-                <input value="" type="password" name="password"  required placeholder="Contraseña">
+                <input value="" type="password" name="password" id="pw-input" required placeholder="Contraseña">
+                <div class="flex just-center items-center"><p id="mostrar-btn" class="font-600 blue-600">mostrar</p></div>
                 <div class="underline"></div>
             </div>
             <div class="entrar input-box button"><input type="submit" value="Entrar"></div>
@@ -48,6 +51,7 @@
         </form>
     </section>    
     <script src="{{asset('js/ocultar-mensaje.js')}}"></script>
+    <script src="{{asset('js/mostrar-contrasenia.js')}}"></script>
 
 </body>
 </html>
