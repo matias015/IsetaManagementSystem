@@ -42,7 +42,7 @@
             </div>
             <div class="contraseña input-box">
                 <input value="" type="password" name="password" id="pw-input" required placeholder="Contraseña">
-                <div class="flex just-center items-center"><p id="mostrar-btn" class="font-600 blue-600">mostrar</p></div>
+                <div class="flex just-center items-center"><p id="mostrar-btn" class="pointer font-600 blue-600">mostrar</p></div>
                 <div class="underline"></div>
             </div>
             <div class="entrar input-box button"><input type="submit" value="Entrar"></div>
