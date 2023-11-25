@@ -141,4 +141,21 @@ class ExamenesCrudController extends Controller
         $examen->delete();
         return redirect() -> route('admin.mesas.edit',['mesa'=>$examen->mesa->id]) -> with('mensaje', 'Se ha eliminado el examen');
     }
+
+    function modificarNota(Request $request, Examen $examen){
+        if(!$request->has('nota')) return \redirect()->back();
+
+        if($request->input('nota') == 'a'){
+            $examen->aprobado = 3;
+            $examen->save();
+            return \redirect()->back();
+        }
+
+        if($request->input('nota') <0 && $request->input('nota') > 10) return \redirect()->back();
+
+        $examen->nota = $request->input('nota');
+        $examen->aprobado = $request->input('nota')>=4? 1 : 2;
+        $examen->save();
+        return \redirect()->back();
+    }
 }

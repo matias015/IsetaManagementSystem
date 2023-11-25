@@ -23,7 +23,7 @@ class AlumnoInscripcionService{
      */
 
     public function puedeInscribirse($mesa, $alumno){
-
+ 
         // Existe la mesa
         if(!$mesa) return ['success'=>false, 'mensaje'=>'No se encontro la mesa'];
 

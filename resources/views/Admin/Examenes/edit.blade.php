@@ -104,7 +104,7 @@
             <div>
                 <div class="perfil_dataname">
                     <label>Fecha:</label>
-                    <span class="campo_info2">{{$examen->fecha? $examen->fecha : 'Sin rendir'}}</span>
+                    <span class="campo_info2">{{$examen->fecha? $examen->fecha : 'Sin registrar'}}</span>
                 </div>
                 <div class="perfil_dataname">
                     <label>Nota:</label>

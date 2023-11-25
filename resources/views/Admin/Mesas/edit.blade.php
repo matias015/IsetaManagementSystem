@@ -123,7 +123,14 @@
                         @foreach($mesa->examenes as $examen)
                         <tr>
                             <td>{{$examen->alumno->apellidoNombre()}}</td>
-                            <td>{{$examen->nota()}}</td>
+                            <td>
+                                {{-- @dd($examen->id) --}}
+                                <form action="{{route('admin.examenes.nota', ['examen'=>$examen->id])}}" method="POST">
+                                    @csrf
+                                    <input name="nota" placeholder="0 = sin rendir, a = ausente" class="p-1 rounded border-1" value="{{$examen->nota()}}">
+                                    <button class="p-1 rounded border-1">modificar</button>
+                                </form>
+                            </td>
                             <td>
                                 @php
                                     $cursada = $mesa->asignatura->aproboCursada($examen->alumno)

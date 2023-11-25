@@ -31,7 +31,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
-
+use Carbon\Carbon;
 
  Route::redirect('/admin','/admin/login');
  Route::middleware(['web'])->prefix('admin')->group(function(){
@@ -83,6 +83,9 @@ use Illuminate\Support\Facades\Storage;
         'as' => 'admin',
         'parameters' => ['examenes' => 'examen']
     ]);
+
+
+    Route::post('examenes/{examen}/nota', [ExamenesCrudController::class, 'modificarNota'])->name('admin.examenes.nota');
 
 
     Route::get('config', [ConfigController::class, 'index'])->name('admin.config.index');
@@ -176,4 +179,5 @@ use Illuminate\Support\Facades\Storage;
         
     Route::get('copia',[AdminCopiaDB::class,'crearCopia']);
     Route::get('restaurar',[AdminCopiaDB::class,'restaurarCopia']);
+
 });
