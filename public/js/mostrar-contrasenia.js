@@ -1,9 +1,14 @@
-const boton = _find('#mostrar-btn')
-const input = _find('#pw-input')
+const pass = document.getElementById("pw-input"),
+    icon = document.querySelector(".ti");
 
-boton.when('click', () => {
-    input.propToggle('type','password','text')
-
-    if(input.attrIs('type','text')) boton.setText('ocultar')
-    if(input.attrIs('type','password')) boton.setText('mostrar')
+icon.addEventListener("click", e => {
+    if (pass.type === "password") {
+        pass.type = "text";
+        icon.classList.remove('ti-eye')
+        icon.classList.add('ti-eye-off')
+    } else {
+        pass.type = "password"
+        icon.classList.add('ti-eye')
+        icon.classList.remove('ti-eye-off')
+    }
 })
