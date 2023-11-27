@@ -282,6 +282,11 @@ form .logo {
     outline: none;
 }
 
+.contraseña i {
+    font-size: 22px;
+    color: var(--dark3);
+}
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
