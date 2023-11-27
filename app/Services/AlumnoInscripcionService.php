@@ -31,7 +31,7 @@ class AlumnoInscripcionService{
         if($mesa->anotado) return ['success'=>false, 'mensaje'=>'Ya anotado en esta asignatura'];
         
         // Hay 48hs habiles
-        if(!$mesa->habilitada() && !Auth::guard()->name == 'admin') return ['success'=>false, 'mensaje'=>'Ha caducado el tiempo de inscripcion'];
+        if(!$mesa->habilitada() && !(Auth::guard()->name == 'admin')) return ['success'=>false, 'mensaje'=>'Ha caducado el tiempo de inscripcion'];
         
         // Aprobo cursada y aun no el examen
         if($mesa->asignatura->aproboExamen($alumno)) return ['success'=>false, 'mensaje'=>'Ya se aprobo esta asignatura'];
