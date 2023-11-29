@@ -22,6 +22,9 @@
               ]) href="{{route('alumno.rematriculacion.asignaturas')}}">
               <i class="ti ti-clipboard-text"></i>Rematriculacion</a>
             </li>
+            <li><a @class(['selected'=>request()->is('alumno/ayuda')]) href="{{route('alumno.ayuda')}}">
+              <i class="uil uil-books"></i>
+              Ayuda</a></li>
         </ul>
         @auth('web')
 

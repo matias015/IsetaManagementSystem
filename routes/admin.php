@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\EgresadosAdminController;
 use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
+use App\Models\Mensaje;
 use App\Models\Mesa;
 use App\Models\Profesor;
 use App\Services\TextFormatService;
@@ -179,5 +180,19 @@ use Carbon\Carbon;
         
     Route::get('copia',[AdminCopiaDB::class,'crearCopia']);
     Route::get('restaurar',[AdminCopiaDB::class,'restaurarCopia']);
+
+    Route::get('mensajes',function(){
+        return view('Admin.mensajes',['mensajes'=>Mensaje::with('alumno')->get()]);
+    })->name('admin.mensajes.index');
+    
+    Route::put('mensajes/{mensaje}',function(Request $request, Mensaje $mensaje){
+        $mensaje->update($request->only('respuesta'));
+        return redirect()->back();
+    })->name('admin.mensajes.update');
+
+    Route::delete('mensajes/{mensaje}',function(Request $request, Mensaje $mensaje){
+        $mensaje->delete();
+        return redirect()->back();
+    })->name('admin.mensajes.destroy');
 
 });

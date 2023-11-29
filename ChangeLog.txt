@@ -446,3 +446,9 @@ PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
 - muchas cosas que ya me olvide
 - Cambie el diseño de la carga de cursadas en lote pq era muy dificil de leer
 - Nuevas configuraciones y modo seguro
+
+
+
+
+28/11
+- apartado de alumnos y admin para enviarse y responder mensajes, aun esta a medio hacer, migrate

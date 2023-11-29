@@ -8,7 +8,9 @@ use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\PdfsController;
 use App\Http\Controllers\RematriculacionController;
 use App\Models\Alumno;
+use App\Models\Mensaje;
 use Illuminate\Console\View\Components\Alert;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -53,5 +55,17 @@ Route::prefix('alumno')->group(function(){
     Route::get('/rematriculacion', [RematriculacionController::class,'rematriculacion_vista'])->name('alumno.rematriculacion.asignaturas');
     Route::post('/rematriculacion/{carrera}', [RematriculacionController::class,'rematriculacion'])->name('alumno.rematriculacion.post');
     Route::delete('/rematriculacion/{cursada}', [RematriculacionController::class,'bajar_rematriculacion'])->name('alumno.rematriculacion.delete');
+
+    Route::get('ayuda',function(){
+        return view('Alumnos.ayuda',['mensajes'=>Mensaje::where('id_alumno',Auth::id())->get()]);
+    })->name('alumno.ayuda');
+
+    Route::post('ayuda/mensaje',function(Request $request){
+        Mensaje::create([
+            'id_alumno' => Auth::id(),
+            'mensaje' => $request->input('mensaje'),
+        ]);
+        return redirect()->back();
+    })->name('alumno.ayuda.post');
 
 });
