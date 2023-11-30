@@ -62,7 +62,8 @@ class ExamenesCrudController extends Controller
             'id_mesa' => $mesa->id,
             'id_asignatura' => $mesa->id_asignatura,
             'nota'=> 0,
-            'aprobado' => 0
+            'aprobado' => 0,
+            'fecha' => now()
         ]); 
 
         return redirect() -> back() -> with('mensaje','anotado');

@@ -1,6 +1,7 @@
 @extends('Admin.template')
 
 @section('content')
+
 <p class="w-100p">
     <a href="/admin/alumnos">Alumnos</a>/
     <a href="/admin/alumnos/{{$examen->alumno->id}}/edit">{{$examen->alumno->id}}</a>/ Examen/
@@ -87,8 +88,8 @@
                 </div>
                     
                 <div class="perfil_dataname border-none">
-                    <label>Llamado:</label>
-                    <span class="campo_info2">{{$examen->mesa->fecha? $examen->mesa->fecha : 'No hay datos sobre la fecha'}}</span>
+                    <label>Fecha de mesa:</label>
+                    <span class="campo_info2">{{$examen->mesa->fecha? $formatoFecha->dmahm($examen->mesa->fecha) : 'No hay datos sobre la fecha'}}</span>
                 </div>
                 
                 @else
@@ -103,8 +104,8 @@
             </div>
             <div>
                 <div class="perfil_dataname">
-                    <label>Fecha:</label>
-                    <span class="campo_info2">{{$examen->fecha? $examen->fecha : 'Sin registrar'}}</span>
+                    <label>Fecha de inscripcion:</label>
+                    <span class="campo_info2">{{$examen->fecha? $formatoFecha->dmahm($examen->fecha) : 'Sin registrar'}}</span>
                 </div>
                 <div class="perfil_dataname">
                     <label>Nota:</label>
@@ -117,7 +118,7 @@
                 <div class="perfil_dataname">
                     <label>Tipo de final:</label>      
                     <select class="campo_info rounded" name="tipo_final">
-                        <option value="1">Escrito</option >
+                        <option value="1">Escrito</option>
                         <option value="2">Oral</option>
                         <option value="3">Promocionado</option> 
                     </select>
