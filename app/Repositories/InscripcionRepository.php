@@ -18,7 +18,7 @@ class InscripcionRepository
             'id_alumno'  => $alumno->id,
             'nota'=>'0.00',
             'id_asignatura' => $mesa->id_asignatura,
-            'fecha' => $mesa->fecha
+            'fecha' => \now()
         ]);
     }
 
