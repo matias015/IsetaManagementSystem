@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{{asset('css/admin/main.css')}}">
 </head>
 <body>
-
     <div class="vw-100 vh-100 flex-col bg-gray-900 just-center items-center">
         <p class="font-12 white">ERROR 404</p>
         <p class="white">Esta página no existe</p>

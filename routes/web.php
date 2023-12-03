@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', 'alumno/inscripciones');
 
 
-include_once("alumnos.php");
-include_once("admin.php");
-include_once("profesores.php");
-include_once("test.php");
+include("alumnos.php");
+include("admin.php");
+include("profesores.php");
+include("test.php");
 
 Route::fallback(function(){
-    return view('Error/404');
+    return response()->view('Error.404',[],404);
 });

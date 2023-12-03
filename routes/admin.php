@@ -153,9 +153,9 @@ use Carbon\Carbon;
 
 
 
-    Route::get('test/{asignatura}',[AdminMesasLotes::class,'vista'])->name('admin.mesas.dual');
+    Route::get('mesas-dual/{asignatura}',[AdminMesasLotes::class,'vista'])->name('admin.mesas.dual');
     
-    Route::post('test/{asignatura}',[AdminMesasLotes::class,'store'])->name('admin.mesas.dual');
+    Route::post('mesas-dual/{asignatura}',[AdminMesasLotes::class,'store'])->name('admin.mesas.dual');
 
 
 

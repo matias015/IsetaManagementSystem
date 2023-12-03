@@ -116,7 +116,7 @@
                         </thead>
                         <tbody>
                             @php
-                                $aniosTexto = ['SEGUNDO AÑO', 'TERCER AÑO'];
+                                $aniosTexto = ['SEGUNDO AÑO', 'TERCER AÑO','CUARTO AÑO','QUINTO AÑO', 'SEXTO AÑO', 'SEPTIMO AÑO '];
                                 $anio = 0;
                             @endphp
 

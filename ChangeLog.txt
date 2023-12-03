@@ -452,3 +452,12 @@ PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
 
 28/11
 - apartado de alumnos y admin para enviarse y responder mensajes, aun esta a medio hacer, migrate
+
+
+3/12
+- Logueado como admin, se puede ir a /admin/crear-test-user, para crear un usuario de prueba,
+    luego usar admin/test para comenzar a testear la parte del alumno.
+
+- Usar "php artisan test" antes y despues de modificar para comprobar que nada se rompió
+    solo comprueba que las paginas y informacion se muestran bien, pero no testea acciones, como anotarse a cursadas
+    anotar alumnos etc, solo checkea si cargan las vistas y un poco del contenido.

@@ -53,7 +53,7 @@ class AlumnoController extends Controller
         }
 
         $this->alumnoRepository->setCarreraDefault(Auth::id(),$request->carrera);
-        return redirect()->back()->with('mensaje','Se ha seleccionado esa asignatura');
+        return redirect()->back()->with('mensaje','Se ha seleccionado la carrera');
     }
 
     /*
