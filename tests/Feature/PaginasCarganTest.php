@@ -27,7 +27,17 @@ class PaginasCarganTest extends TestCase
     {
         // $this->withoutExceptionHandling();
 
+        $response = $this->get('/admin/login');
+        $response->assertStatus(200);
+
+        $response = $this->get('/admin/alumnos');
+        $response->assertStatus(302);
+        
         Auth::guard('admin')->login(Admin::first());
+
+        $response = $this->get('/admin/login');
+        $response->assertStatus(302);
+
         $response = $this->get('/admin/alumnos');
         $response->assertStatus(200)->assertSee('alumno');
 
@@ -103,7 +113,22 @@ class PaginasCarganTest extends TestCase
     {
         // $this->withoutExceptionHandling();
 
+        $response = $this->get('/alumno/login');
+        $response->assertStatus(200)->assertSee('Inicio de s');    
+
+        $response = $this->get('alumno/registro');
+        $response->assertStatus(200)->assertSee('Registrate'); 
+
+        $response = $this->get('/alumno/cursadas');
+        $response->assertStatus(302);
+
         Auth::guard('web')->login(Alumno::where('email','test@gmail.com')->first());
+
+        $response = $this->get('/alumno/login');
+        $response->assertStatus(302);
+
+        $response = $this->get('/alumno/registro');
+        $response->assertStatus(302);
 
         $response = $this->get('/alumno/cursadas');
         $response->assertStatus(200)->assertSee('Mis');    

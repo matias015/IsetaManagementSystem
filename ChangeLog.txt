@@ -456,8 +456,10 @@ PROXIMAMENTE / POR HACER (DEJAR ESTE APARTADO SIEMPRE AL FINAL)
 
 3/12
 - Logueado como admin, se puede ir a /admin/crear-test-user, para crear un usuario de prueba,
-    luego usar admin/test para comenzar a testear la parte del alumno.
+    luego usar admin/test para comenzar a testear la parte del alumno. Tiene cursadas, examenes y mesas creadas
+    para testear, algunas al limite de tiempo, otras con correlativas, ect.
 
 - Usar "php artisan test" antes y despues de modificar para comprobar que nada se rompió
-    solo comprueba que las paginas y informacion se muestran bien, pero no testea acciones, como anotarse a cursadas
-    anotar alumnos etc, solo checkea si cargan las vistas y un poco del contenido.
+    comprueba que las paginas y informacion se muestran bien, pero no testea acciones, como anotarse a cursadas
+    anotar alumnos etc, editar profes, etc. solo checkea si la pagina carga y un poco del contenido. 
+    para usar esto tenes que haber hecho /admin/crear-test-user (admin/test no es necesario)
