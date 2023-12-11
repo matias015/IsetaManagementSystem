@@ -89,13 +89,6 @@ class ProfesoresCrudController extends Controller
         return redirect()->route('admin.profesores.index')->with('mensaje','Se creo el profesor');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
