@@ -36,8 +36,8 @@ use Carbon\Carbon;
 
  Route::redirect('/admin','/admin/login');
  Route::middleware(['web'])->prefix('admin')->group(function(){
-
-    Route::view('login', 'Admin.Auth.login') -> name('admin.login');
+    
+    Route::get('login', [AdminAuthController::class, 'loginView']) -> name('admin.login');
     Route::post('login', [AdminAuthController::class, 'login']) -> name('admin.login.post');
  
     Route::get('logout', [AdminAuthController::class, 'logout']) -> name('admin.logout');
