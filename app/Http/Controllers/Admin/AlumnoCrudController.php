@@ -34,32 +34,32 @@ class AlumnoCrudController extends Controller
         $query = Alumno::select('alumnos.email','alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni');
 
         if($filtro){
-            if(is_numeric($filtro)){
+            if(is_numeric($filtro))
                 $query = $query->where('alumnos.dni','like','%'.$filtro.'%');
-            }  
-            else if(preg_match('/^[a-zA-Z\s]+$/', $filtro)){
+            
+            else if(preg_match('/^[a-zA-Z\s]+$/', $filtro))
+            {
                 $word = str_replace(' ','%',$filtro);
                 $query->orWhereRaw("(CONCAT(alumnos.nombre,' ',alumnos.apellido) LIKE '%$word%' OR alumnos.email  LIKE '%$word%')");
-            }else{
+            }else
+            {
                 $query = $query->where('alumnos.email', 'LIKE', '%'.$filtro.'%');
             }
         }
         
-        
        
-        if($campo == "registrados"){
+        if($campo == "registrados")
             $query = $query -> where('password','!=','0');
-        }
+        
 
-        if($orden == "dni"){
+        if($orden == "dni")
             $query = $query -> orderBy('dni');
-        }
-        else if($orden == "dni-desc"){
+        
+        else if($orden == "dni-desc")
             $query = $query -> orderByDesc('dni');
-        } else{
+        else
             $query = $query -> orderBy('alumnos.nombre') -> orderBy('alumnos.apellido');
-        }
-
+        
         $alumnos = $query->paginate($porPagina); 
 
         return view('Admin.Alumnos.index',[
@@ -98,14 +98,6 @@ class AlumnoCrudController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Request $request, Alumno $alumno)
@@ -129,7 +121,6 @@ class AlumnoCrudController extends Controller
             -> orderBy('asignaturas.id')
             -> orderBy('examenes.fecha')
             -> get();
-        // \dd($cursadas);
 
         return view('Admin.Alumnos.edit', [
             'alumno' => $alumno,
@@ -166,7 +157,6 @@ class AlumnoCrudController extends Controller
      */
     public function destroy(Alumno $alumno)
     {
-        return redirect()->back()->with('error','De momento, no se pueden eliminar alumnos');
         
         $alumno->delete();
         return redirect() -> route('admin.alumnos.index') -> with('mensaje', 'Se ha eliminado el alumno');

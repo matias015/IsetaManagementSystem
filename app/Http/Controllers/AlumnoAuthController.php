@@ -41,15 +41,18 @@ class AlumnoAuthController extends Controller
      * valida los datos de registro y actualiza su contraseña
      */
     public function registro(AlumnoRegistroRequest $request){
-        $data = $request->validated();
+        $validated = $request->validated();
+
+        $passwordGiven = $validated['password'];
         
         // si existe el correo y tiene password a 0
-        $alumno = Alumno::existeSinPassword($data);
+        $alumno = Alumno::existeSinPassword($validated);
         
-        if(!$alumno ) return redirect()->back()->withInput()->with('error','mail y dni no coinciden o ya esta registrado');
+        if(!$alumno ) 
+            return redirect()->back()->withInput()->with('error','mail y dni no coinciden o ya esta registrado');
 
         // setea password 
-        $alumno -> password = bcrypt($data['password']);
+        $alumno -> password = bcrypt($passwordGiven);
         $alumno -> save();
 
         Auth::login($alumno);
@@ -68,16 +71,20 @@ class AlumnoAuthController extends Controller
      * valida datos y loguea al alumno
      */
     function login(AlumnoLoginRequest $request){
-        $data = $request->validated();
+        $validated = $request->validated();
 
-        $alumno = Alumno::where('email',$data['email'])->first();
-        // \dd($alumno->password);$data['password']
-        // \dd(Hash::check($data['password'], $alumno->password));
-        if(!$alumno || !Hash::check($data['password'], $alumno->password)) return redirect()->route('alumno.login')->withInput()->with('error','Datos de usuario incorrectos');
+        $emailGiven = $validated['email'];
+        $passwordGiven = $validated['password'];
+
+        $alumno = Alumno::where('email',$emailGiven)->first();
+
+        if(!$alumno || !Hash::check($passwordGiven, $alumno->password)) 
+            return redirect()->route('alumno.login')->withInput()->with('error','Datos de usuario incorrectos');
+        
         Auth::guard('admin')->logout();
 
         Auth::login($alumno);
-        return redirect()->route('alumno.inscripciones');
+        return redirect()->route('alumno.inscripciones')->with('mensaje', 'Has iniciado sesion correctamente');
     }
 
     /**
@@ -85,14 +92,15 @@ class AlumnoAuthController extends Controller
      */
     function logout(){
         Auth::logout();
-        return redirect()->route('alumno.login');
+        return redirect()->route('alumno.login')->with('Has cerrado sesion');
     }
 
 
 
     function cambiarPassword(ModificarPasswordRequest $request){
-        $user = Auth::user();
-        if(!Hash::check($request->oldPassword, $user->password)){
+        $alumno = Auth::user();
+
+        if(!Hash::check($request->oldPassword, $alumno->password)){
             return redirect()->back()->with('error','Las contraseña actual es incorrecta');
         }
 
@@ -100,8 +108,8 @@ class AlumnoAuthController extends Controller
             return redirect()->back()->with('error','Las contraseñas no coinciden');
         }
         
-        $user->password = bcrypt($request->newPassword);
-        $user->save();
+        $alumno->password = bcrypt($request->newPassword);
+        $alumno->save();
         
         return redirect()->back()->with('mensaje','Se ha restablecido la contraseña');
     }

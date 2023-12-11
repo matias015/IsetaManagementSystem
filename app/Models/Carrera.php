@@ -41,14 +41,6 @@ class Carrera extends Model
 
             if($carrera) return Carrera::find($carrera->id_carrera);
 
-            // ANTES
-            // $carrera=Carrera::select('carreras.id', 'carreras.nombre')
-            // -> join('asignaturas', 'asignaturas.id_carrera', 'carreras.id')
-            // -> join('cursadas', 'cursadas.id_asignatura', 'asignaturas.id')
-            // -> where('cursadas.id_alumno', $alumno->id) 
-            // -> groupBy('carreras.id', 'carreras.nombre')
-            // -> first();
-
             $carrera = Egresado::select('carreras.id', 'carreras.nombre')
                 -> join('carreras','egresadoinscripto.id_carrera','carreras.id')
                 -> where('egresadoinscripto.id_alumno',$alumno->id)

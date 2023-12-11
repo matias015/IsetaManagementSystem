@@ -18,7 +18,9 @@ class AlumnoController extends Controller
     public function __construct(AlumnoDataRepository $alumnoDataRepository)
     {
         $this->alumnoRepository = $alumnoDataRepository;
+
         $this -> middleware('auth:web');
+        
         $this -> middleware('verificado')->only([
             'info',
             'setCarreraDefault'
