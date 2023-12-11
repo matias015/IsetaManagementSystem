@@ -58,17 +58,17 @@ use Carbon\Carbon;
     Route::resource('profesores', ProfesoresCrudController::class, [
         'as' => 'admin', 
         'parameters' => ['profesores' => 'profesor']
-    ])->missing(function(){
+    ])->except('show')->missing(function(){
         return redirect()->route('admin.profesores.index')->with('aviso','El profesor no existe o ha sido eliminado');
     });
     
     Route::resource('carreras', CarrerasCrudController::class, ['as' => 'admin'])->middleware('auth:admin')->missing(function(){
         return redirect()->route('admin.carreras.index')->with('aviso','La carrera no existe o ha sido eliminada');
-    });
+    })->except('show');
     
     Route::resource('asignaturas', AsignaturasCrudController::class, ['as' => 'admin'])->missing(function(){
         return redirect()->route('admin.asignaturas.index')->with('aviso','La asignatura no existe o ha sido eliminada');
-    });
+    })->except('show');
 
     Route::get('cursadas', [CursadasAdminController::class,'index'])->name('admin.cursadas.index');
     Route::get('cursadas/{cursada}/edit', [CursadasAdminController::class,'edit'])->name('admin.cursadas.edit');
