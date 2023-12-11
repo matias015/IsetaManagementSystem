@@ -7,15 +7,14 @@ use App\Exports\CursadasExcelExport;
 use App\Http\Controllers\Controller;
 use App\Models\Asignatura;
 use App\Models\Carrera;
-use App\Services\TextFormatService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Facades\Excel;
 
 
 class AdminExportController extends Controller
 {
     function cursadasAsignatura(Request $request, Asignatura $asignatura){
+
         $archivo = str_replace(' ','',trim($asignatura->nombre)).'-cursantes-'.\date('Y-m-d');
         return Excel::download(new CursadasExcelExport($asignatura),$archivo.'.xlsx'); 
     }

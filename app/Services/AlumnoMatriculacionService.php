@@ -32,20 +32,18 @@ class AlumnoMatriculacionService{
         $anotables = [];
 
         // para cada asignatura 
-        foreach($asignaturas as $key => $asignatura){
+        foreach($asignaturas as $asignatura){
 
-            // array para almancenar correlativas, solo en caso de que deba equivalencias
+            // array para almancenar equivalencias, solo en caso de que deba equivalencias.
             $asignatura->{'equivalencias_previas'} = array();
 
             // Chequear que no este ya en la cursada
-            $yaAnotadoEnCursada = Cursada::where('id_alumno', $alumno->id)
-                -> whereRaw('(aprobada=3 OR aprobada=1 OR condicion=0 OR condicion=2 OR condicion=3)')
-                -> where('id_asignatura', $asignatura->id)
-                -> first();
-
-            // Si lo esta, no incluir
+            $yaAnotadoEnCursada = $asignatura->estaCursando($alumno);
             if($yaAnotadoEnCursada) continue;
-            
+
+            $yaAprobo = $asignatura->aproboCursada($alumno);
+            if($yaAprobo) continue;
+
             // Si la materia tiene correlativas
             $asignatura->equivalencias_previas = Correlativa::debeCursadasCorrelativos($asignatura,$alumno);
            
@@ -65,18 +63,12 @@ class AlumnoMatriculacionService{
         foreach($inputs as $asig_id => $value){
 
             // si no se selecciono ignora, si no es de la carrera
-            if($value==0) continue;
+            if($value == 0) continue;
             
             // Si la asignatura no es de esta carrera, error
             if(!in_array($asig_id, $asignaturas_de_carrera)){
                 return ['success' => false,'mensaje' => 'Ha habido un error'];
             }
-                
-            
-            // Si se selecciono otra cosa ademas de las posibles
-            // if($value!=1 && $value!=2){
-            //     return ['success' => false,'mensaje' => 'Ha habido un error'];
-            // }
 
             // Ver que no este ya anotado o que ya la haya aprobado
             $yaAnotadoEnCursada = Cursada::where('id_alumno', $alumno->id)

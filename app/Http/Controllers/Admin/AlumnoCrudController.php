@@ -14,26 +14,24 @@ use Illuminate\Http\Request;
 
 class AlumnoCrudController extends Controller
 {
-    function __construct()
-    {
-        // $this -> middleware('auth:admin');
-    }
 
     /**
      * Display a listing of the resource.
      */
+    
     public function index(Request $request)
     {   
         $config = Configuracion::todas();    
 
-        $alumnos = [];
+        $alumnos = null;
+
         $filtro = $request->filtro ? $request->filtro: '';
         $campo = $request->campo ? $request->campo: '';
         $orden = $request->orden ? $request->orden: 'fecha';
+
         $porPagina = $config['filas_por_tabla'];
         
         $query = Alumno::select('alumnos.email','alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni');
-
 
         if($filtro){
             if(is_numeric($filtro)){

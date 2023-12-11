@@ -37,14 +37,15 @@ use Carbon\Carbon;
  Route::redirect('/admin','/admin/login');
  Route::middleware(['web'])->prefix('admin')->group(function(){
 
+    Route::view('login', 'Admin.Auth.login') -> name('admin.login');
+    Route::post('login', [AdminAuthController::class, 'login']) -> name('admin.login.post');
+ 
+    Route::get('logout', [AdminAuthController::class, 'logout']) -> name('admin.logout');
+
     Route::get('/mesas/acta-volante/{mesa}', [AdminPdfController::class,'acta_volante'])->name('admin.mesas.acta');
     Route::get('/mesas/acta-volante-prom/{mesa}', [AdminPdfController::class,'actaVolantePromocion'])->name('admin.mesas.actaprom');
     Route::get('/mesas/acta-volante-libre/{mesa}', [AdminPdfController::class,'actaVolanteLibre'])->name('admin.mesas.actalibre');
 
-    Route::get('login', [AdminAuthController::class, 'loginView']) -> name('admin.login');
-    Route::post('login', [AdminAuthController::class, 'login']) -> name('admin.login.post');
-
-    Route::get('logout', [AdminAuthController::class, 'logout']) -> name('admin.logout');
 
     Route::resource('alumnos', AlumnoCrudController::class, ['as' => 'admin'])->middleware('auth:admin')->missing(function(){
         return redirect()->route('admin.alumnos.index')->with('aviso','El alumno no existe o ha sido eliminado');

@@ -5,13 +5,11 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\AdminLoginRequest;
 use App\Models\Admin;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminAuthController extends Controller
 {
-
 
     /*
      | ---------------------------------------------
@@ -25,18 +23,6 @@ class AdminAuthController extends Controller
         $this->middleware('auth:admin')->only('logout');
     }
 
-
-    /*
-     | -------------------------------------------------------
-     | Muestra la vista para iniciar sesion como administrador 
-     | -------------------------------------------------------
-     */
-     
-    function loginView(){
-        return view('Admin.Auth.login');
-    }
-
-
     /*
      | ------------------------------------------
      | valida las credenciales del administrador
@@ -44,15 +30,16 @@ class AdminAuthController extends Controller
      */
 
     function login(AdminLoginRequest $request){
-        $data = $request->validated();
+        $validateData = $request->validated();
 
-        $admin = Admin::where('username',$data['username'])->first();
+        $usernameGiven = $validateData['username'];
+        $passwordGiven = $validateData['password'];
 
-        if(!$admin || !Hash::check($data['password'], $admin->password)) {
+        $admin = Admin::where('username', $usernameGiven)->first();
+
+        if(!$admin || !Hash::check($passwordGiven, $admin->password)) {
             return redirect()->route('admin.login')->with('error','Credenciales incorrectas');
         }
-       
-        if(!$admin) return redirect()->back()->with('error','Credenciales incorrectas');
 
         Auth::guard('admin')->login($admin);
         return redirect()->route('admin.alumnos.index');
@@ -60,6 +47,6 @@ class AdminAuthController extends Controller
 
     function logout(){
         Auth::logout();
-        return \redirect()->route('alumno.login');
+        return redirect()->route('admin.login');
     }
 }

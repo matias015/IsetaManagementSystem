@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Alumno;
-use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Configuracion;
-use App\Models\Correlativa;
 use App\Models\Cursada;
 use App\Models\Egresado;
 use App\Services\AlumnoMatriculacionService;
@@ -25,9 +23,10 @@ class AdminMatriculacionController extends Controller
      | ---------------------------------------------
      */
     function rematriculacion_vista(Request $request,Alumno $alumno, AlumnoMatriculacionService $matriculacionService){
+        
         $carrera = Carrera::where('id', $request->input('carrera'))->first();
 
-        $anotables =$matriculacionService->matriculables($alumno,$carrera);
+        $anotables = $matriculacionService->matriculables($alumno, $carrera);
 
         return view('Admin.Alumnos.rematriculacion', [
             'asignaturas' => $anotables, 

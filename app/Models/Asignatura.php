@@ -42,6 +42,15 @@ class Asignatura extends Model
         return $value + 1;
     }
 
+    function estaCursando($alumno){
+        $cursada = Cursada::where('id_alumno', $alumno->id)
+            -> where('id_asignatura', $this->id)
+            -> where('aprobada', 3)
+            -> where('condicion', 1)
+            -> first();
+
+        return $cursada;
+    }
     
     function aproboExamen($alumno){
         $examen = Examen::where('id_alumno',$alumno->id)
@@ -80,7 +89,7 @@ class Asignatura extends Model
             -> get();
     }
     
-    function existe($id){
+    function tieneLaCorrelativa($id){
         $existente = Correlativa::where('id_asignatura', $this->id)
         ->where('asignatura_correlativa', $id)
         ->first();

@@ -18,18 +18,19 @@ class AdminDiasHabilesController extends Controller
     }
     
     function index(){
-        $noHabiles=Habiles::all()->pluck('fecha')->toArray();
-        return view('Admin.DiasHabiles.index',\compact('noHabiles'));
+        $noHabiles = Habiles::all()->pluck('fecha')->toArray();
+
+        return view('Admin.DiasHabiles.index', compact('noHabiles'));
     }
 
     function store(Request $request){
 
-        if(!$request->input('fecha')){
+        if($request->input('fecha')){
             return \redirect()->back()->with('error','No has seleccionado ninguna fecha');
         }
 
         $fecha = explode('-',$request->input('fecha'));
-        // \dd($request->input('fecha'));
+
         $dia=$fecha[0];
         $mes=$fecha[1];
 
