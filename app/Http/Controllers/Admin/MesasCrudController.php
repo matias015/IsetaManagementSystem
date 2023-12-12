@@ -14,7 +14,6 @@ use App\Repositories\MesaRepository;
 use App\Services\Admin\MesasCheckerService;
 use App\Services\DiasHabiles;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 
 class MesasCrudController extends Controller
 {
@@ -114,13 +113,6 @@ class MesasCrudController extends Controller
         return \redirect()->back()->with('mensaje','Se creo la mesa');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

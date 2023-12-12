@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\crearProfesorRequest;
 use App\Models\Configuracion;
-use App\Models\Examen;
 use App\Models\Mesa;
 use App\Models\Profesor;
 use Illuminate\Http\Request;

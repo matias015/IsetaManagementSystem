@@ -5,12 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CrearAsignaturaRequest;
 use App\Http\Requests\EditarAsignaturaRequest;
-use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Configuracion;
 use Illuminate\Http\Request;
-use Svg\Tag\Rect;
 
 class AsignaturasCrudController extends Controller
 {
@@ -77,13 +75,6 @@ class AsignaturasCrudController extends Controller
         return redirect()->back()->with('mensaje','Se creo la asignatura');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

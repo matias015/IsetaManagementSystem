@@ -63,8 +63,6 @@ class Mesa extends Model
         return $this -> hasOne(Profesor::class,'id','prof_vocal_1');
     }
 
-
-
     public function vocal2(){
         return $this -> hasOne(Profesor::class,'id','prof_vocal_2');
     }

@@ -2,15 +2,11 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
-use App\Services\DiasHabiles;
 use App\Services\TextFormatService;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class Alumno extends Authenticatable implements MustVerifyEmail
@@ -66,7 +62,6 @@ class Alumno extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'fecha_nacimiento' => 'datetime',
     ];
-
 
     static function existeSinPassword($data){
         return Alumno::where('email', $data['email'])
@@ -142,82 +137,3 @@ class Alumno extends Authenticatable implements MustVerifyEmail
         $this->attributes['calle'] = TextFormatService::ucfirst($value);
     }
 }
-
-
-
-
-
-
-
-
-    //retorna materias a las que se puede anotar, sin importar si ya esta inscripto
-    // static function inscribibles($alumno_id=null){
-
-    //     if(!$alumno_id) $alumno = Auth::user();
-    //     else $alumno = Alumno::find($alumno_id);
-        
-    //     $exAprob = Examen::select('id_asignatura')
-    //         -> where('id_alumno',$alumno->id)
-    //         -> where('nota','>=',4)
-    //         -> get()
-    //         -> pluck('id_asignatura')
-    //         -> toArray();
-        
-        
-    //     $listaAprobados = implode(',',$exAprob);
-    //     if($listaAprobados=="") $listaAprobados="0";
-
-
-    //     $carreraDefault = Carrera::getDefault($alumno->id);
-
-    //     $sinRendirQuery = Cursada::select('cursadas.id_asignatura','asignaturas.nombre','asignaturas.anio')
-    //     -> join('asignaturas', 'asignaturas.id','cursadas.id_asignatura')
-    //     -> whereRaw('cursadas.aprobada = 1')
-    //     -> where('cursadas.id_alumno', $alumno->id);
- 
-    //     if($alumno_id==null){
-    //         $sinRendirQuery -> where('asignaturas.id_carrera', $carreraDefault->id);
-    //     }
-
-    //     $sinRendirQuery -> whereRaw('cursadas.id_asignatura NOT IN ('.$listaAprobados.')');
-    
-    //     $sinRendir = $sinRendirQuery -> get();
-
-    //     $posibles=[];
-
-    //     foreach($sinRendir as $materia){
-    //         $puede=true;
-
-    //         $correlativas = Correlativa::select('asignatura_correlativa')
-    //         -> where('id_asignatura', $materia -> id_asignatura)
-    //         -> get();
-
-    //         if(count($correlativas)>0){
-    //             foreach($correlativas as $correlativa){
-    //                 if(!in_array($correlativa->asignatura_correlativa,$exAprob)){
-    //                     $puede=false;
-    //                 }
-    //             }
-    //         }
-    //         if($puede) $posibles[]=$materia;    
-    //     }
-
-        
-    //     foreach($posibles as $key => $materia){
-    //         $mesas = Mesa::select('*')
-    //         -> where('id_asignatura', $materia->id_asignatura)
-    //         -> whereRaw('fecha > NOW()')
-    //         -> get();
-            
-            
-    //         foreach($mesas as $keyMesa => $mesa){
-    //             $mesa -> {'diasHabiles'} = DiasHabiles::desdeHoyHasta($mesa->fecha);
-    //             $mesas[$keyMesa] = $mesa;
-    //         }
-
-    //         $materia -> {'mesas'} = $mesas;
-    //         $posibles[$key] = $materia;
-            
-    //     }
-    //     return $posibles;
-    // }

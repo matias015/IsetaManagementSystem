@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
-use App\Models\Configuracion;
 use App\Models\Correlativa;
 use App\Models\Cursada;
 use App\Repositories\AdminCursadaRepository;
@@ -85,11 +84,6 @@ class CursadasAdminController extends Controller
         $asignatura = Asignatura::where('id',$request->id_asignatura)->with('correlativas.asignatura')->first();       
         $alumno = Alumno::find($request->id_alumno);
 
-
-        // Si se selecciono otra cosa ademas de las posibles
-        // if($value!=1 && $value!=2){
-        //     return ['success' => false,'mensaje' => 'Ha habido un error'];
-        // }
 
         // Ver que no este ya anotado o que ya la haya aprobado
         $yaAnotadoEnCursada = Cursada::where('id_alumno', $alumno->id)

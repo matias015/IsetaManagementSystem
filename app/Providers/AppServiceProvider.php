@@ -17,8 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(AdminCursadaRepository::class);
-        $this->app->bind(AlumnoInscripcionService::class);
+       
     }
 
     /**
@@ -26,7 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::share('textFormatService', new TextFormatService());
         View::share('formatoFecha', new Fecha());
         View::share('config', Configuracion::todas());
     }

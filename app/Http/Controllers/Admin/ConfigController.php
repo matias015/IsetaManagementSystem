@@ -3,15 +3,10 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\AdminLoginRequest;
 use App\Http\Requests\EditarConfigRequest;
-use App\Models\Admin;
 use App\Models\Configuracion;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Date;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+
 
 class ConfigController extends Controller
 {

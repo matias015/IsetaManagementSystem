@@ -4,17 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Alumno;
-use App\Models\Asignatura;
-use App\Models\Configuracion;
-use App\Models\Correlativa;
-use App\Models\Cursada;
 use App\Models\Examen;
 use App\Models\Mesa;
-use App\Models\Profesor;
 use App\Services\AlumnoInscripcionService;
 use App\Services\DiasHabiles;
 use Illuminate\Http\Request;
-use Mockery\CountValidator\Exact;
 
 class ExamenesCrudController extends Controller
 {
@@ -23,21 +17,6 @@ class ExamenesCrudController extends Controller
         $this -> middleware('auth:admin');
     }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request)
-    {       
-        return redirect()->back();       
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(Request $request, Mesa $mesa)
-    {
-        return redirect()->back(); 
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -45,20 +24,19 @@ class ExamenesCrudController extends Controller
     public function store(Request $request, AlumnoInscripcionService $inscripcionService)
     {
 
-        if(!$request->input('id_alumno')){
+        if(!$request->has('id_alumno'))
             return redirect() -> back() -> with('error','No has seleccionado ningun alumno');
-        }else{}
-
-        $data = $request->only('id_alumno','id_mesa');
-
-        $mesa = Mesa::find($data['id_mesa']);
-        $alumno = Alumno::find($data['id_alumno']);
         
-        $res = $inscripcionService->puedeInscribirse($mesa,$alumno);
-        if(!$res['success']) return \redirect()->back()->with('error',$res['mensaje']);
+        $mesa = Mesa::find($request->input('id_mesa'));
+        $alumno = Alumno::find($request->input('id_alumno'));
+        
+        $comprobacion = $inscripcionService->puedeInscribirse($mesa, $alumno);
+
+        if(!$comprobacion['success']) 
+            return \redirect()->back()->with('error',$comprobacion['mensaje']);
       
         Examen::create([
-            'id_alumno' => $data['id_alumno'],
+            'id_alumno' => $alumno->id,
             'id_mesa' => $mesa->id,
             'id_asignatura' => $mesa->id_asignatura,
             'nota'=> 0,
@@ -66,33 +44,16 @@ class ExamenesCrudController extends Controller
             'fecha' => now()
         ]); 
 
-        return redirect() -> back() -> with('mensaje','anotado');
+        return redirect() -> back() -> with('mensaje','Se ha inscrito al alumno');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, $examen)
+    public function edit(Request $request, Examen $examen)
     {   
-        $examen = Examen::with('mesa','asignatura' ,'alumno')->where('examenes.id',$examen)->first();
-        if($examen->mesa){
-            $examen -> borrable = DiasHabiles::desdeHoyHasta($examen->mesa->fecha) >= 24? true:false;
-        }else if($examen->fecha){
-            $examen -> borrable = DiasHabiles::desdeHoyHasta($examen->fecha) >= 24? true:false;
-        }else{
-            $examen -> borrable = false;
-        }
-        return view('Admin.Examenes.edit', [
-            'examen' => $examen
-        ]);
+        return view('Admin.Examenes.edit', compact('examen'));
     }
 
     /**
@@ -108,7 +69,8 @@ class ExamenesCrudController extends Controller
             $examen->aprobado = 3;
         }else if($request->nota > 4){
             $examen->aprobado = 1;
-        }else $examen->aprobado = 2;
+        }else 
+            $examen->aprobado = 2;
 
         $examen->save();
         return redirect()->back();
@@ -119,44 +81,29 @@ class ExamenesCrudController extends Controller
      */
     public function destroy(Examen $examen)
     {
-        $examen = Examen::with('mesa','asignatura' ,'alumno')->where('examenes.id', $examen->id)->first();
-        //  aprobado->1, desaprobado->2, ausente->3
-       
-
-        // if($examen->nota > 0 || $examen->aprobado){
-        //     return redirect()->back()->with('error','No se puede borrar porque el examen ya fue realizado por el alumno');
-        // }
-
-        // $borrable = false;
-
-        // if($examen->mesa){
-        //     $borrable = DiasHabiles::desdeHoyHasta($examen->mesa->fecha) >= 24? true:false;
-        // }else if($examen->fecha){
-        //     $borrable = DiasHabiles::desdeHoyHasta($examen->fecha) >= 24? true:false;
-        // }else{
-        //     $borrable = false;
-        // }
-
-        // if(!$borrable) return redirect()->back()->with('error','No se puede borrar porque faltan menos de 24 horas');
-
+        $mesa = Mesa::where('id', $examen->id_mesa)->first();
         $examen->delete();
-        return redirect() -> route('admin.mesas.edit',['mesa'=>$examen->mesa->id]) -> with('mensaje', 'Se ha eliminado el examen');
+
+        if(!$mesa) 
+            return redirect() -> route('admin.mesas.edit',['mesa'=>$mesa->id]) -> with('mensaje', 'Se ha eliminado el examen');
+        else
+            return redirect() -> route('admin.mesas.index') -> with('mensaje', 'Se ha eliminado el examen');
     }
 
     function modificarNota(Request $request, Examen $examen){
-        if(!$request->has('nota')) return \redirect()->back();
+        if(!$request->has('nota')) return \redirect()->back()->with('Ingresa una nota');
 
         if($request->input('nota') == 'a'){
             $examen->aprobado = 3;
             $examen->save();
-            return \redirect()->back();
+            return \redirect()->back()->with('Se ha actualizado la nota');
         }
 
-        if($request->input('nota') <0 && $request->input('nota') > 10) return \redirect()->back();
+        if($request->input('nota') <0 && $request->input('nota') > 10) return \redirect()->back()->with('La nota debe estar entre 0 y 10');
 
         $examen->nota = $request->input('nota');
         $examen->aprobado = $request->input('nota')>=4? 1 : 2;
         $examen->save();
-        return \redirect()->back();
+        return \redirect()->back()->with('Se ha actualizado la nota');
     }
 }

@@ -25,7 +25,6 @@ Route::prefix('alumno')->group(function(){
     Route::post('/registro',[AlumnoAuthController::class,'registro'])->name('alumno.registro.post');
 
     Route::get('/login',[AlumnoAuthController::class,'loginView'])->name('alumno.login');
-    // Route::post('/login',[AlumnoAuthController::class,'login'])->name('alumno.login.post')->middleware('throttle:alumno-login');
     Route::post('/login',[AlumnoAuthController::class,'login'])->name('alumno.login.post')->middleware('throttle:alumno-login');
 
     Route::get('/logout',[AlumnoAuthController::class,'logout'])->name('alumno.logout');
@@ -55,17 +54,5 @@ Route::prefix('alumno')->group(function(){
     Route::get('/rematriculacion', [RematriculacionController::class,'rematriculacion_vista'])->name('alumno.rematriculacion.asignaturas');
     Route::post('/rematriculacion/{carrera}', [RematriculacionController::class,'rematriculacion'])->name('alumno.rematriculacion.post');
     Route::delete('/rematriculacion/{cursada}', [RematriculacionController::class,'bajar_rematriculacion'])->name('alumno.rematriculacion.delete');
-
-    Route::get('ayuda',function(){
-        return view('Alumnos.ayuda',['mensajes'=>Mensaje::where('id_alumno',Auth::id())->get()]);
-    })->name('alumno.ayuda');
-
-    Route::post('ayuda/mensaje',function(Request $request){
-        Mensaje::create([
-            'id_alumno' => Auth::id(),
-            'mensaje' => $request->input('mensaje'),
-        ]);
-        return redirect()->back();
-    })->name('alumno.ayuda.post');
 
 });

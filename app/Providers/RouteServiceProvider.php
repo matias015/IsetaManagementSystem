@@ -39,9 +39,8 @@ class RouteServiceProvider extends ServiceProvider
                 $seconds = RateLimiter::availableIn($key);
                 return redirect()->route('alumno.login')
                     ->with('error', __('auth.throttle', ['seconds' => $seconds]));
-            } else {
-                RateLimiter::hit($key, $decay);
-            }
+            }  
+            RateLimiter::hit($key, $decay);
         });
 
         $this->routes(function () {

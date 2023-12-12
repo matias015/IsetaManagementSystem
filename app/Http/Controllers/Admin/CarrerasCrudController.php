@@ -12,11 +12,6 @@ use Illuminate\Support\Facades\Storage;
 
 class CarrerasCrudController extends Controller
 {
-    
-    function __construct()
-    {
-        // $this -> middleware('auth:admin');
-    }
 
     /**
      * Display a listing of the resource.
@@ -77,13 +72,7 @@ class CarrerasCrudController extends Controller
         return redirect()->route('admin.carreras.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -32,28 +32,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
-use Carbon\Carbon;
-
  Route::redirect('/admin','/admin/login');
+ 
  Route::middleware(['web'])->prefix('admin')->group(function(){
     
+    // LOGIN
     Route::get('login', [AdminAuthController::class, 'loginView']) -> name('admin.login');
     Route::post('login', [AdminAuthController::class, 'login']) -> name('admin.login.post');
  
     Route::get('logout', [AdminAuthController::class, 'logout']) -> name('admin.logout');
 
+
+    // ACTAS VOLANTES
     Route::get('/mesas/acta-volante/{mesa}', [AdminPdfController::class,'acta_volante'])->name('admin.mesas.acta');
     Route::get('/mesas/acta-volante-prom/{mesa}', [AdminPdfController::class,'actaVolantePromocion'])->name('admin.mesas.actaprom');
     Route::get('/mesas/acta-volante-libre/{mesa}', [AdminPdfController::class,'actaVolanteLibre'])->name('admin.mesas.actalibre');
 
-
+    // RESOURCES
     Route::resource('alumnos', AlumnoCrudController::class, ['as' => 'admin'])->middleware('auth:admin')->missing(function(){
         return redirect()->route('admin.alumnos.index')->with('aviso','El alumno no existe o ha sido eliminado');
     })->except('show');
 
     Route::resource('inscriptos', EgresadosAdminController::class, ['as' => 'admin'])->missing(function(){
         return redirect()->route('admin.inscriptos.index')->with('aviso','La inscripcion no existe o ha sido eliminada');
-    });
+    })->except('show');
 
     Route::resource('profesores', ProfesoresCrudController::class, [
         'as' => 'admin', 
@@ -78,14 +80,13 @@ use Carbon\Carbon;
     Route::post('cursadas/create', [CursadasAdminController::class,'store'])->name('admin.cursadas.store');
     
 
-    Route::resource('mesas', MesasCrudController::class, ['as' => 'admin'])->middleware('auth:admin');
-    Route::resource('admins', AdminsCrudController::class, ['as' => 'admin']);
+    Route::resource('mesas', MesasCrudController::class, ['as' => 'admin'])->middleware('auth:admin')->except('show');
+    Route::resource('admins', AdminsCrudController::class, ['as' => 'admin'])->except('show');
 
     Route::resource('examenes',ExamenesCrudController::class,[
         'as' => 'admin',
         'parameters' => ['examenes' => 'examen']
-    ]);
-
+    ])->only('store','edit','update','destroy');
 
     Route::post('examenes/{examen}/nota', [ExamenesCrudController::class, 'modificarNota'])->name('admin.examenes.nota');
 
@@ -181,19 +182,5 @@ use Carbon\Carbon;
         
     Route::get('copia',[AdminCopiaDB::class,'crearCopia']);
     Route::get('restaurar',[AdminCopiaDB::class,'restaurarCopia']);
-
-    Route::get('mensajes',function(){
-        return view('Admin.mensajes',['mensajes'=>Mensaje::with('alumno')->get()]);
-    })->name('admin.mensajes.index');
-    
-    Route::put('mensajes/{mensaje}',function(Request $request, Mensaje $mensaje){
-        $mensaje->update($request->only('respuesta'));
-        return redirect()->back();
-    })->name('admin.mensajes.update');
-
-    Route::delete('mensajes/{mensaje}',function(Request $request, Mensaje $mensaje){
-        $mensaje->delete();
-        return redirect()->back();
-    })->name('admin.mensajes.destroy');
 
 });
