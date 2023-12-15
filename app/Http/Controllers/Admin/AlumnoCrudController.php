@@ -89,8 +89,8 @@ class AlumnoCrudController extends Controller
         $data = $request->validated();
         $response = redirect()->back();
         
-        if(Alumno::where('telefono1',\strtolower($data['telefono1']))){
-            $response -> with('aviso','Ya hay un usuario con ese numero de telefono');
+        if(Alumno::where('telefono1', strtolower($data['telefono1']))->first()){
+            $response -> with('aviso','Ya hay un usuario con ese numero de telefono')->withInput();
         };
 
         Alumno::create($data);

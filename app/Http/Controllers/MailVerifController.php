@@ -23,6 +23,7 @@ class MailVerifController extends Controller
      * envia el mail al usuario con el token de autorizacion
      */
     function enviarMail(){
+
         $token = rand(100000,999999);
 
         // el token se guarda en la sesion
@@ -46,11 +47,10 @@ class MailVerifController extends Controller
      * si lo es verifica su cuenta
      */
     function verificarToken(Request $request){
-        $alumno = Alumno::find(Auth::id());
+        $alumno = Auth::user();
         $token = Session::get('__alumno_verificacion_token');
 
         if($token && $token == $request->token){
-
             $alumno->verificar();
             $request->session()->forget('__alumno_verificacion_token');
             return redirect()->route('alumno.info')->with('mensaje','estas verificado');

@@ -157,7 +157,7 @@ use Illuminate\Support\Facades\Storage;
 
     Route::get('mesas-dual/{asignatura}',[AdminMesasLotes::class,'vista'])->name('admin.mesas.dual');
     
-    Route::post('mesas-dual/{asignatura}',[AdminMesasLotes::class,'store'])->name('admin.mesas.dual');
+    Route::post('mesas-dual/{asignatura}',[AdminMesasLotes::class,'store'])->name('admin.mesas.dualpost');
 
 
 
@@ -182,5 +182,7 @@ use Illuminate\Support\Facades\Storage;
         
     Route::get('copia',[AdminCopiaDB::class,'crearCopia']);
     Route::get('restaurar',[AdminCopiaDB::class,'restaurarCopia']);
+
+  
 
 });

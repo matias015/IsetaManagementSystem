@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class ProfesoresCrudController extends Controller
 {
-        function __construct()
+    function __construct()
     {
         $this -> middleware('auth:admin');
     }

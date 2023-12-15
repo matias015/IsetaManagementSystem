@@ -8,7 +8,7 @@
             </div>
             <div class="perfil__info">
 
-                <form method="post" action="{{route('admin.mesas.dual', ['asignatura'=>$asignatura->id])}}">
+                <form method="post" action="{{route('admin.mesas.dualpost', ['asignatura'=>$asignatura->id])}}">
                 @csrf
 
                 <div class="perfil_dataname">
