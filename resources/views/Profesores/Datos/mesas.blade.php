@@ -25,17 +25,16 @@
 </head>
 
 
-
 <body>
     <div class="profesor">
         <div class="flex just-between p-header">
             <a href="/profesor/mesas" class="logo">ISETA</a>
-            <!--
+            
             <div class="flex just-center items-center p-logout">
                 <span class="font-600 p-name">{{$profesor->nombre}}</span>
                 <a class="red-600" href="{{route('profesor.logout')}}"><i class="ti ti-logout"></i>Cerrar sesion</a>
             </div>
-            -->
+            
             <div class="perfil-logout" >
                 <div class="perfil-logout-btn"> 
                     <span>{{$profesor->nombre}}<i class="ti ti-chevron-down"></i></span>
