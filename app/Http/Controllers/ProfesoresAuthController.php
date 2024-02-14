@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ModificarPasswordRequest;
 use App\Http\Requests\ProfesorLoginRequest;
 use App\Http\Requests\ProfesorRegistroRequest;
 use App\Models\Profesor;

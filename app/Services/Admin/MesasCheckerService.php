@@ -27,6 +27,7 @@ class MesasCheckerService{
         }
 
         // verificar que no sea feriado, o similar
+        
         if(!DiasHabiles::esDiaHabil($fecha)){
             return ['success'=>false,'mensaje'=>'No puedes crear una mesa un dia sin clase'];
         }

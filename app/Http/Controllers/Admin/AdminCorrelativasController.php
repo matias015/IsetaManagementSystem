@@ -24,10 +24,10 @@ class AdminCorrelativasController extends Controller
                 
         $asigCorrelativa = Asignatura::find($request->input('id_asignatura'));
 
-        if($asignatura->anio == 1) // las asignaturas del primer año no tienen correlativas
-            return redirect()->back()->with('error', 'No puedes añadir correlativas en asignaturas del primer año');
+        // if($asignatura->anio == 1) // las asignaturas del primer año no tienen correlativas
+        //    return redirect()->back()->with('error', 'No puedes añadir correlativas en asignaturas del primer año');
 
-        if($asignatura->anio <= $asigCorrelativa->anio) // una asig del 2do año, no puede tener una correlativa de 1er año ni 2do
+        if($asignatura->anio < $asigCorrelativa->anio) // una asig del 2do año, no puede tener una correlativa de 1er año ni 2do
             return \redirect()->back()->with('error','El año de la correlativa debe ser menor al de la asignatura');
         
         if($asignatura->tieneLaCorrelativa($asigCorrelativa->id))  // Comprobar si ya tienes esa correlativa

@@ -104,10 +104,14 @@ class DiasHabiles{
     }
 
     static function esDiaHabil($fecha){
+
         $diasNoHabiles = DiasHabiles::obtenerFestivos();
         
         $fechaSimple = substr(explode('T', $fecha)[0],5);
-
+        
+        $exploded = explode('-',$fechaSimple);
+        $fechaSimple = "$exploded[1]-$exploded[0]";
+    
         foreach($diasNoHabiles as $dia){
             if($fechaSimple == $dia){
                 return \false;

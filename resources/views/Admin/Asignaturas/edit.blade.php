@@ -47,7 +47,7 @@
 
         {{-- -------------------------- --}}
 
-        @if ($asignatura->anio > 1)
+        @if ($asignatura->anio > 0)
         <div class="perfil_one br">
             
             <div class="perfil__header">
@@ -77,7 +77,7 @@
                     <div class="perfil_dataname1">
                         <label>Materia:</label>
                         <select class="campo_info rounded" id="asignatura_select" name="id_asignatura">
-                            @foreach ($asignatura->carrera->asignaturas->where('anio', '<', $asignatura->anio) as $asignatura_carrera)
+                            @foreach ($asignatura->carrera->asignaturas->where('anio', '<=', $asignatura->anio) as $asignatura_carrera)
                                 @if ($asignatura_carrera->id != $asignatura->id)
                                     <option value="{{$asignatura_carrera->id}}">{{$asignatura_carrera->nombre}}</option>
                                 @endif

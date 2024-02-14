@@ -4,7 +4,9 @@ namespace App\Repositories;
 
 use App\Models\Asignatura;
 use App\Models\Carrera;
+use App\Models\Correlativa;
 use App\Models\Examen;
+use Illuminate\Support\Facades\Auth;
 
 class InscripcionRepository
 {
