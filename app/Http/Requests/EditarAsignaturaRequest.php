@@ -23,7 +23,7 @@ class EditarAsignaturaRequest extends FormRequest
     {
         return [
             'nombre' => ['required'],
-            'id_carrera' => ['required'],
+            //'id_carrera' => ['required'],
             'tipo_modulo' => ['nullable'],
             'carga_horaria' => ['required'],
             'anio' => ['required'],
