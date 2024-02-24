@@ -51,7 +51,8 @@
 
                     
 
-           
+                    <input type="hidden" value="{{url()->previous()}}" name="redirect">
+
 
                     <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
                 </form>

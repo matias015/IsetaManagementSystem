@@ -72,6 +72,7 @@ class AsignaturasCrudController extends Controller
 
 
         Asignatura::create($data);
+
         return redirect()->back()->with('mensaje','Se creo la asignatura');
     }
 
@@ -104,7 +105,14 @@ class AsignaturasCrudController extends Controller
     {
         $data = $request->validated();
         $asignatura->update($data);
-        return redirect()->back()->with('mensaje','Se edito la asignatura');
+
+        if($request->has('redirect'))
+            return redirect()->to($request->input('redirect'))->with('mensaje','Se edito la asignatura');
+        else
+            return redirect()->back()->with('mensaje','Se edito la asignatura');
+        
+
+        //return redirect()->back()->with('mensaje','Se edito la asignatura');
     }
 
     /**

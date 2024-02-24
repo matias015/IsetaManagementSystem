@@ -66,7 +66,12 @@ class CursadasAdminController extends Controller
         $cursada -> update($data);
         $mensajes[] = 'Se ha editado correctamente';
         
-        return redirect()->back()->with('mensaje',$mensajes);
+        if($request->has('redirect'))
+            return redirect()->to($request->input('redirect'))->with('mensaje',$mensajes);
+        else
+            return redirect()->back()->with('mensaje',$mensajes);
+            
+
     }
 
     function create(){

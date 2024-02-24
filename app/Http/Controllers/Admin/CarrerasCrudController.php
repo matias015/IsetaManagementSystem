@@ -103,8 +103,13 @@ class CarrerasCrudController extends Controller
             $carrera->vigente=false;
             $carrera->save();
         }
+        if($request->has('redirect'))
+            return redirect()->to($request->input('redirect'))->with('mensaje','Se edito la carrera');
+        else
+            return redirect()->back()->with('mensaje','Se edito la carrera');
+    
 
-        return redirect()->back()->with('mensaje','Se edito la carrera');
+        // return redirect()->back()->with('mensaje','Se edito la carrera');
     }
 
     /**
