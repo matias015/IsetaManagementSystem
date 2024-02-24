@@ -73,7 +73,15 @@ class ExamenesCrudController extends Controller
             $examen->aprobado = 2;
 
         $examen->save();
-        return redirect()->back();
+
+        
+        if($request->has('redirect'))
+            return redirect()->to($request->input('redirect'))->with('mensaje','Se modificó el examen');
+        else
+            return redirect()->back()->with('mensaje','Se modificó el examen');
+        
+
+        //return redirect()->back();
     }
 
     /**
