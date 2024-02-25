@@ -29,7 +29,7 @@
                         </div>
         
                         <div class="contenedor_filtrado">
-                            <input placeholder="Encontrar filtro..." class="filtrado-busqueda border-none p-1 shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
+                            <input placeholder="Nombre, apellido, email,  ..." class="filtrado-busqueda border-none p-1 shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
                         </div>
                         
                         <div class="contenedor_btn-busqueda">
