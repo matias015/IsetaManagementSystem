@@ -139,11 +139,11 @@ class AlumnoCrudController extends Controller
 
         $mensajes = ['aviso'=>[],'error'=>[],'mensaje'=>[]];
         
-        if(Alumno::where('id','!=',$alumno->id)->where('telefono1', strtolower($data['telefono1']))->exists()){
+        if($data['telefono1'] && Alumno::where('id','!=',$alumno->id)->where('telefono1', strtolower($data['telefono1']))->exists()){
             $mensajes['aviso'][] = 'Ya hay un usuario con ese numero de telefono';
         };
 
-        if(Alumno::where('email',strtolower($data['email'])) -> where('id','<>',$alumno->id)->exists() ){
+        if($data['email'] && Alumno::where('email',strtolower($data['email'])) -> where('id','<>',$alumno->id)->exists() ){
             return \redirect()->back()->with('error','El mail ya esta en usa')->withInput();
         }
 

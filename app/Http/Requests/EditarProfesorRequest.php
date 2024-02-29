@@ -23,13 +23,13 @@ class EditarProfesorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'dni' => ['required','numeric'],
-            'nombre' => ['required','alpha'],
-            'apellido' => ['required','alpha'],
-            'fecha_nacimiento' => ['required','date'],
-            'ciudad' => ['required'],
-            'calle' => ['required','alpha_num'],
-            'casa_numero' => ['required','numeric'],
+            'dni' => ['required','numeric','max:999999999'],
+            'nombre' => ['required','regex:/[a-zA-Z0-9\s]+/'],
+            'apellido' => ['required','regex:/[a-zA-Z0-9\s]+/'],
+            'fecha_nacimiento' => ['required','date','before:now'],
+            'ciudad' => ['nullable'],
+            'calle' => ['nullable'],
+            'casa_numero' => ['nullable','numeric','max:100000'],
             'dpto' => ['nullable'],
             'piso' => ['nullable'],
             'estado_civil' => ['required'],
@@ -37,10 +37,10 @@ class EditarProfesorRequest extends FormRequest
             'formacion_academica' => ['nullable'],
             'titulo' => ['nullable','numeric'],
             'observaciones' => ['nullable'],
-            'telefono1' => ['nullable'],
-            'telefono2' => ['nullable'],
-            'telefono3' => ['nullable'],
-            'codigo_postal' => ['required','numeric']
+            'telefono1' => ['nullable','numeric'],
+            'telefono2' => ['nullable','numeric'],
+            'telefono3' => ['nullable','numeric'],
+            'codigo_postal' => ['nullable','alpha_num']
         ];
     }
 }

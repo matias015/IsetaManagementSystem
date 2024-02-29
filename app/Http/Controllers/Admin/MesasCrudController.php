@@ -54,6 +54,7 @@ class MesasCrudController extends Controller
     public function create(Request $request)
     {
 
+
         $precargados = [];
         if($request->has('asignatura') && $request->has('carrera')){
             $precargados['carrera'] = $request->input('carrera');
@@ -69,7 +70,8 @@ class MesasCrudController extends Controller
         return view('Admin.Mesas.create',[
             'carreras'=>$carreras,
             'profesores'=>$profesores,
-            'precargados' => $precargados
+            'precargados' => $precargados,
+            'ProfesoresModel' => Profesor::class
         ]);
     }
 

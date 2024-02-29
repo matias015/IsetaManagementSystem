@@ -6,6 +6,7 @@ use App\Models\Configuracion;
 use App\Repositories\AdminCursadaRepository;
 use App\Services\AlumnoInscripcionService;
 use App\Services\Fecha;
+use App\Services\Form;
 use App\Services\TextFormatService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -27,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
     {
         View::share('formatoFecha', new Fecha());
         View::share('config', Configuracion::todas());
+        View::share('form', new Form());
     }
 }

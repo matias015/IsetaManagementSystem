@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Services\TextFormatService;
+use App\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Profesor extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, ModelTrait;
 
     protected $table = "profesores";
     public $timestamps = false;
@@ -38,6 +39,14 @@ class Profesor extends Authenticatable
     protected $casts = [
         'fecha_nacimiento' => 'datetime',
     ];
+
+    function infoForSelect(){
+        
+    }
+
+    function textForSelect(){
+        return $this->apellidoNombre();
+    }
     
     static function existeSinPassword($data){
         return Profesor::where('email', $data['email'])

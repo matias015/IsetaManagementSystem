@@ -7,89 +7,61 @@
                 <h2>Ficha profesor/a</h2>
             </div>
             <div class="perfil__info">
-                <form method="post" action="{{route('admin.profesores.update', ['profesor'=>$profesor->id])}}">
+                <form class="grid-2" method="post" action="{{route('admin.profesores.update', ['profesor'=>$profesor->id])}}">
                     @csrf
                     @method('put')
+                    <div>
+                        <h2 class="p-2">Personal</h2>
+                        <?= $form->text('dni','DNI:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->text('nombre','Nombre:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->text('apellido','Apellido:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->date('fecha_nacimiento','Fecha de nacimiento:','flex-col py-1 px-5',$profesor,['default'=>$profesor->fecha_nacimiento->format('Y-m-d'),'inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->select('estado_civil','Estado civil:','flex-col py-1 px-5',$profesor,['soltero','casado'],['inputclass'=>'p-1 w-75p']) ?>
+                    </div>
+                    <div>
+                        <h2 class="p-2">Dirección</h2>
+                        <?= $form->text('ciudad','Ciudad:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->text('codigo_postal','Codigo postal 3:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->text('calle','Calle:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->text('numero','Altura:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->text('departamento','Departamento:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->text('piso','Piso:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                    </div>
+                    <div>
+                        <h2 class="p-2">Académico</h2>
+                        <?= $form->text('formacion_academica','Formacion academica:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->text('anio_ingreso','Año de ingreso:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>    
+                    </div>
+                    <div>
+                        <h2 class="p-2">Contacto</h2>
+                        <?= $form->text('email','Email:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->text('telefeono1','Telefeono 1:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->text('telefeono2','Telefeono 2:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->text('telefeono3','Telefeono 3:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                    </div>
+                    <div>
+                        <h2 class="p-2">Otros</h2>
+                        <div class="flex-col py-1 px-5">
+                            <label>Observaciones:</label>
+                            <textarea class="p-1 w-75p" value="{{$profesor->observaciones}}" name="observaciones" rows="2"></textarea>
+                        </div>
+                    </div>
+                    
 
-                    <div class="perfil_dataname">
-                        <label>DNI:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->dni}}" name="dni">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Nombre:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->nombre}}" name="nombre">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Apellido:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->apellido}}" name="apellido">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Fecha de nacimiento:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->fecha_nacimiento->format('Y-m-d')}}" type="date" name="fecha_nacimiento">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Ciudad:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->ciudad}}" value="9 de Julio" name="ciudad">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Calle:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->calle}}" name="calle">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Numero:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->numero}}"  name="casa_numero">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Departamento:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->departamento}}" name="dpto">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Piso:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->piso}}" name="piso">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Estado civil: </label>
-                        <select class="rounded px-2 campo_info" name="estado_civil">
-                            <option @if($profesor->estado_civil==0) selected @endif value="0">soltero</option>
-                            <option @if($profesor->estado_civil==1) selected @endif value="1">casado</option>
-                        </select>
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Email:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->email}}" name="email">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Formacion academica:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->formacion_academica}}" name="formacion_academica">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Año de ingreso:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->anio_ingreso}}" name="anio_ingreso">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Observaciones:</label>
-                        <textarea value="{{$profesor->observaciones}}" name="observaciones" rows="10"></textarea>
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Telefono:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->telefono1}}" name="telefono1">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Telefono 2:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->telefono2}}" name="telefono2">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Telefono 3:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->telefono3}}" name="telefono3">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Codigo postal:</label>
-                        <input class="rounded px-2 campo_info" value="{{$profesor->codigo_postal}}" value="6500" name="codigo_postal">
-                    </div>
+                    
+                    
 
-                    <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
-                </form>
-            </div>
+
+                    
+
+                    
+                    
+                   
+                    
+                
+                </div>
+                <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
+            </form>
         </div>
 
         <div class="table">

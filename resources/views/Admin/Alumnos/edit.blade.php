@@ -1,6 +1,9 @@
 @extends('Admin.template')
 
 @section('content')
+
+
+
 <div class="edit-form-container">
         <p>
             <a href="/admin/alumnos">Alumnos</a>/
@@ -11,90 +14,56 @@
             <h2>Historia academica</h2>
         </div>
         <div class="perfil__info">
-        <form method="post" action="{{route('admin.alumnos.update', ['alumno'=>$alumno->id])}}">
+        <form class="grid-2" method="post" action="{{route('admin.alumnos.update', ['alumno'=>$alumno->id])}}">
         @csrf
         @method('put')
-            <div class="perfil_dataname sep1">
-                <label>DNI:</label>
-                <input class="px-2 rounded campo_info" value="{{old('dni')? old('dni'):$alumno->dni}}" name="dni">
+        
+            <div>
+                <h2 class="p-2">Alumno</h2>
+                <?= $form->text('dni','DNI:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->text('nombre','Nombre:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->text('apellido','Apellido:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->date('fecha_nacimiento','Fecha de nacimiento:','flex-col py-1 px-5',$alumno,['default' => $alumno->fecha_nacimiento->format('Y-m-d'),'inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->select('estado_civil','Estado civil:','flex-col py-1 px-5',$alumno,['soltero','casado'],['inputclass'=>'p-1 w-75p']) ?>
             </div>
-            <div class="perfil_dataname">
-                <label>Nombre: </label>
-                <input class="px-2 rounded campo_info" value="{{old('nombre')? old('nombre'):$alumno->nombre}}" name="nombre">
+            <div>
+                <h2 class="p-2">Dirección</h2>
+                <?= $form->text('ciudad','Ciudad:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->text('codigo_postal','Codigo postal:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->text('calle','Calle:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->text('casa_numero','Altura:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->text('dpto','Departamento:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->text('piso','Piso:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
             </div>
-            <div class="perfil_dataname">
-                <label>Apellido:</label>
-                <input class="px-2 rounded campo_info" value="{{old('apellido')? old('apellido'):$alumno->apellido}}" name="apellido">
+            <div>
+                <h2 class="p-2">Contacto</h2>
+                <?= $form->text('email','Email:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->text('telefono1','Telefono 1:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->text('telefono2','Telefono 2:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->text('telefono3','Telefono 3:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
             </div>
-            <div class="perfil_dataname">
-                <label>Fecha de nacimiento: </label>
-                <input class="px-2 rounded campo_info" value="{{old('fecha_nacimiento')? old('fecha_nacimiento'):$alumno->fecha_nacimiento->format('Y-m-d')}}" type="date" name="fecha_nacimiento">
+            <div>
+                <h2 class="p-2">académico</h2>
+                <?= $form->text('titulo_anterior','Titulo anterior:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->text('becas','Becas:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
             </div>
-            <div class="perfil_dataname">
-                <label >Ciudad:</label>
-                <input class="px-2 rounded campo_info" value="{{old('ciudad')? old('ciudad'):$alumno->ciudad}}" name="ciudad">
-            </div>
-            <div class="perfil_dataname">
-                <label >Calle:</label>
-                <input class="px-2 rounded campo_info" value="{{old('calle')? old('calle'):$alumno->calle}}" name="calle">
-            </div>
-            <div class="perfil_dataname">
-                <label >Numero:</label>
-                <input class="px-2 rounded campo_info" value="{{old('casa_numero')? old('casa_numero'):$alumno->casa_numero}}"  name="casa_numero">
-            </div>
-            <div class="perfil_dataname">
-                <label >Departamento:</label>
-                <input class="px-2 rounded campo_info" value="{{old('dpto')? old('dpto'):$alumno->departamento}}" name="dpto">
-            </div>
-            <div class="perfil_dataname">
-                <label >Piso:</label>
-                <input class="px-2 rounded campo_info" value="{{old('piso')? old('piso'):$alumno->piso}}" name="piso">
-            </div>
-            <div class="perfil_dataname">
-                <label>Estado civil:</label>
-                <select class="px-2 rounded campo_info" name="estado_civil">
-                    <option @if($alumno->estado_civil==0) selected @endif value="0">soltero</option>
-                    <option @if($alumno->estado_civil==1) selected @endif value="1">casado</option>
-                </select>
-            </div>
-            <div class="perfil_dataname">
-                <label >Email:</label>
-                <input class="px-2 rounded campo_info" value="{{old('email')? old('email'):$alumno->email}}" name="email">
-            </div>
-            <div class="perfil_dataname">
-                <label>Titulo anterior:</label>
-                <input class="px-2 rounded campo_info" value="{{old('titulo_anterior')? old('titulo_anterior'):$alumno->titulo_anterior}}" name="titulo_anterior">
-            </div>
-            <div class="perfil_dataname">
-                <label >Becas:</label>
-                <input class="px-2 rounded campo_info" value="{{old('becas')? old('becas'):$alumno->becas}}" name="becas">
-            </div>
-            <div class="perfil_dataname">
-                <label class="w-100p">Observaciones:</label>
-                <textarea name="observaciones" rows="10">
-                    {{old('observaciones')? old('observaciones'):$alumno->observaciones}}
-                </textarea>
+            <div>
+                <h2 class="p-2">Otros</h2>
+                <div class="flex-col py-1 px-5">
+                    <label class="w-100p">Observaciones:</label>
+                    <textarea class="p-1 w-75p" name="observaciones" rows="2">
+                        {{old('observaciones')? old('observaciones'):$alumno->observaciones}}
+                    </textarea>
+                </div>
             </div>
 
-            <div class="perfil_dataname">
-                <label >Telefono:</label>
-                <input class="px-2 rounded campo_info" value="{{old('telefono1')? old('telefono1'):$alumno->telefono1}}" name="telefono1">
-            </div>
-            <div class="perfil_dataname">
-                <label >Telefono 2:</label>
-                <input class="px-2 rounded campo_info" value="{{old('telefono2')? old('telefono2'):$alumno->telefono2}}" name="telefono2">
-            </div>
-            <div class="perfil_dataname">
-                <label >Telefono 3:</label>
-                <input class="px-2 rounded campo_info" value="{{old('telefono3')? old('telefono3'):$alumno->telefono3}}" name="telefono3">
-            </div>
-            <div class="perfil_dataname">
-                <label >Codigo postal:</label>
-                <input class="px-2 rounded campo_info" value="{{old('codigo_postal')? old('codigo_postal'):$alumno->codigo_postal}}" value="6500" name="codigo_postal">
-            </div>
+            
+            
+           
 
-            <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
-            </div>
+
+        </div>
+        <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
        </form>
     </div>
 

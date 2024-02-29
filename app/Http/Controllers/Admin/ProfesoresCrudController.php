@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\crearProfesorRequest;
+use App\Http\Requests\EditarProfesorRequest;
 use App\Models\Configuracion;
 use App\Models\Mesa;
 use App\Models\Profesor;
@@ -112,7 +113,7 @@ class ProfesoresCrudController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Profesor $profesor)
+    public function update(EditarProfesorRequest $request, Profesor $profesor)
     {
         $profesor->update($request->all());
         return redirect()->route('admin.profesores.index')->with('mensaje','Se edito el profesor');
