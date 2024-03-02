@@ -49,7 +49,7 @@
                 <th>Materia</th>
                 <th>Cursada</th>
                 <th class="text-center">Condicion</th>
-                <th class="text-center">Año cursada</th>
+                {{-- <th class="text-center">Año cursada</th> --}}
                 <th>Examen final</th>
                 @if ($puedeBajarse)
                   <th>Acción</th>
@@ -93,11 +93,15 @@
 
                 @if ($actual != $cursada->id_asignatura && !$loop->last && $cursadas[$key+1]->id_asignatura == $cursada->id_asignatura)
                   <td data-label="Materia">
-                    {{$cursada->nombre}}
+                    <p>{{$cursada->nombre}}</p>
+                    <p>Año de cursada: {{$cursada->anio_cursada}}</p>
                     <button class="pointer bg-transparent px-2 mx-5 rounded desplegable" data-element="{{$cursada->id_asignatura}}">↓</button> 
                   </td>
                 @else
-                  <td data-label="Materia">{{$cursada->nombre}}</td>    
+                  <td data-label="Materia">
+                    <p>{{$cursada->nombre}}</p>
+                    <p>Año de cursada: {{$cursada->anio_cursada}}</p>
+                  </td>    
                 @endif
                 @php
                   $actual = $cursada->id_asignatura;
@@ -117,8 +121,7 @@
                     </p>
                 </td>
                   <td data-label="Condicion" class="text-center mb-left">{{$cursada->condicionString()}}</td>
-                <td data-label="Año cursada" class="text-center mb-left">{{$cursada->anio_cursada}}</td>
-
+                
                 <p class="center">
                   @php
                       $examen = $cursada->asignatura->aproboExamen(auth()->user());

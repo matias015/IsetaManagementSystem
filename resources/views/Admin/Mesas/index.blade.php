@@ -42,13 +42,6 @@
 
 
         
-
-        {{-- @foreach ($alumnos->pagr as )
-            
-        @endforeach
-        <li class="page-item{{ $page == $alumnos->currentPage() ? ' active' : '' }}">
-            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-        </li> --}}
         
         <div class="table">
             <div class="perfil__header-alt">
@@ -57,10 +50,9 @@
         <table class="table__body">
             <thead>
                 <tr>
-                    <th>Año</th>
+                    
                     <th>Materia</th>
                     <th>Llamado</th>
-                    <th class="center">Fecha</th>
                     <th>Carrera</th>
                     <th class="center">Acción</th>
                 </tr>
@@ -68,18 +60,26 @@
             <tbody>
                 @foreach ($mesas as $mesa)
                     <tr>
-                        <td class="center">{{$mesa->asignatura->anio}}</td>
-                    <td>{{$mesa->asignatura->nombre}}</td>
-                    <td class="center">
-                        @if ($mesa->llamado == 1 || $mesa->llamado == 0)
-                            Primero
-                        @else
-                            Segundo
-                        @endif
+                       
+                    <td>
+                        
+                        <p>{{$mesa->asignatura->nombre}}</p>
                     </td>
-                    
-                    <td>{{$formatoFecha->dmahm($mesa->fecha)}}</td>
-                    <td>{{$mesa->asignatura->carrera->nombre}}</td>
+                    <td class="w-25p">
+                        <p>
+                            @if ($mesa->llamado == 1 || $mesa->llamado == 0)
+                            Primero
+                            @else
+                            Segundo
+                            @endif
+                        </p>
+                        <p>{{$formatoFecha->dmahm($mesa->fecha)}}</p>
+                    </td>
+                    <td>
+                        <p>{{$mesa->asignatura->carrera->nombre}}</p>
+                        
+                        <p>Año: {{$mesa->asignatura->anio}}</p>
+                    </td>
                     <td><a href="{{route('admin.mesas.edit', ['mesa' => $mesa->id])}}"><button class="btn_blue"><i class="ti ti-file-info"></i>Detalles</button></a></td>
                     
                 </tr>

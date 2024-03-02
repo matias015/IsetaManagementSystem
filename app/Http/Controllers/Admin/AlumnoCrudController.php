@@ -31,7 +31,7 @@ class AlumnoCrudController extends Controller
 
         $porPagina = $config['filas_por_tabla'];
         
-        $query = Alumno::select('alumnos.email','alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.dni');
+        $query = Alumno::select('*');
 
         if($filtro){
             if(is_numeric($filtro))

@@ -11,7 +11,7 @@
             <div class="perfil__header">
                 <h2>Crear nueva mesa</h2>
             </div>
-
+           
             <div class="perfil__info">
                 <form method="post" action="{{route('admin.mesas.store')}}">
                 <div class="perfil_dataname">
@@ -69,6 +69,9 @@
                         @endforeach
                     </select>
                 </div>
+                <?= 
+                    $profesorM->selectInput('profesor_id','Vocal',null,$profesor,['first_item'=>true])
+                ?>
                 <div class="perfil_dataname">
                     <label>Profesor 1:</label>
                     <select class="profesor campo_info rounded" name="prof_vocal_1">

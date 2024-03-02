@@ -58,20 +58,28 @@
             <table class="table__body">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th class="uppercase">Dni</th>
-                        <th>Email</th>
+                        <th>Alumno</th>
+                        <th>Contacto</th>
+                        <th>Dirección</th>
                         <th class="center">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach ($alumnos as $alumno)
                 <tr>
-                    <td class="capitalize">{{$alumno->nombre}}</td>
-                    <td class="capitalize">{{$alumno->apellido}}</td>
-                    <td>{{$alumno->dniPuntos()}}</td>
-                    <td>{{$alumno->email?$alumno->email:'Sin mail registrado'}}</td>
+                    <td class="capitalize">
+                        <p>{{$alumno->apellidoNombre()}}</p>
+                        <p>dni: {{$alumno->dniPuntos()}}</p>
+                    </td>
+                    
+                    <td>
+                        <p>{{$alumno->email?$alumno->email:'Sin mail registrado'}}</p>
+                        <p>tel: {{$alumno->telefono1? $alumno->telefono1:'Sin telefono'}}</p>
+                    </td>
+                    <td>
+                        <p>{{$alumno->ciudad}}</p>
+                        <p>{{$alumno->calle}} {{$alumno->casa_numero?$alumno->casa_numero:''}}</p>
+                    </td>
                     <td class="flex just-center"><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}">
                         <button class="btn_blue"><i class="ti ti-file-info"></i>Detalles</button>
                     </a></td>

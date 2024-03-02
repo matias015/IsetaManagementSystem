@@ -40,8 +40,16 @@ class Profesor extends Authenticatable
         'fecha_nacimiento' => 'datetime',
     ];
 
-    function infoForSelect(){
-        
+    function firstItemsForSelect(){
+        return ['0'=>'Vacio/A confirmar'];
+    }
+
+    function others(){
+        return Profesor::where('id',3)->get();
+    }
+
+    function itemsForSelect(){
+        return Profesor::all();
     }
 
     function textForSelect(){

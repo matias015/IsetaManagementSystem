@@ -29,7 +29,7 @@ class ProfesoresCrudController extends Controller
         $orden = $request->orden ? $request->orden: 'fecha';
         $porPagina = $config['filas_por_tabla'];
 
-        $query = Profesor::select('profesores.email','profesores.id','profesores.nombre','profesores.apellido','profesores.dni');
+        $query = Profesor::select('*');
 
 
         if($filtro){

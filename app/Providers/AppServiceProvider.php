@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Alumno;
 use App\Models\Configuracion;
+use App\Models\Profesor;
 use App\Repositories\AdminCursadaRepository;
 use App\Services\AlumnoInscripcionService;
 use App\Services\Fecha;
@@ -29,5 +31,9 @@ class AppServiceProvider extends ServiceProvider
         View::share('formatoFecha', new Fecha());
         View::share('config', Configuracion::todas());
         View::share('form', new Form());
+        View::share('profesorM', new Profesor());
+        View::share('alumnoM', new Alumno());
+        // View::share('profesorM', new Profesor());
+        // View::share('profesorM', new Profesor());
     }
 }
