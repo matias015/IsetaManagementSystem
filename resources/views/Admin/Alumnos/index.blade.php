@@ -2,99 +2,77 @@
 
 @section('content')
 
-            <div class="contenedor-tabla_botonera">
-            
-                <form class="none grid lg-block form-hh" action="{{route('admin.alumnos.index')}}">
-                    <div class="tabla_botonera gap-5 flex items-end">
-                        
-                        <div class="contenedor_ordenar">
-                            <span class="categoria">Ordenar</span>
-                            <div>
-                                <select class="ordenar border-none p-1 shadow" name="orden">
-                                    <option @selected($filtros['orden'] == 'nombre') value="nombre">Nombre</option>
-                                    <option @selected($filtros['orden'] == 'dni') value="dni">DNI</option>
-                                    <option @selected($filtros['orden'] == 'dni-desc') value="dni-desc">DNI descendiente</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="contenedor_filtrar">
-                            <span class="categoria">Mostrar</span> 
-                            <div>
-                                <select class="filtrar border-none p-1 shadow" name="campo">
-                                    <option value="ninguno">Ninguno</option>
-                                    <option @selected($filtros['campo'] == 'egresados') value="egresados">Egresados</option>
-                                    <option @selected($filtros['campo'] == 'registrados') value="registrados">Registrados</option>
-                                </select>
-                            </div>
-                        </div>
-        
-                        <div class="contenedor_filtrado">
-                            <input placeholder="Nombre, apellido, email,  ..." class="filtrado-busqueda border-none p-1 shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
-                        </div>
-                        
-                        <div class="contenedor_btn-busqueda">
-                            <button class="btn_sky"><i class="ti ti-search"></i>Buscar</button>
-                        </div>
-                    </div>
-                </form>
-            
-                <a class="none lg-block" href="{{route('admin.alumnos.index')}}"><button class="btn_red"><i class="ti ti-backspace"></i>Quitar filtros</button></a>
-            </div>
-        
+    {{-- FILTROS --}}
+    <?= $filtergen->generate('admin.alumnos.index',$filtros, [
+        'order' => [
+            'nombre'=> 'Nombre',
+            'dni' => 'Dni',
+            'dni-desc' => 'Dni descendiente'
+        ],
+        'show' => [
+            'ninguno' => 'Ninguno',
+            'registrados' => 'Registrados'
+        ],
+        'searchField' => [
+            'placeholder' => 'Nombre, apellido, email,  ...'
+        ]
 
-        
+    ]) ?>
 
-        {{-- @foreach ($alumnos->pagr as )
+
+    {{-- CONTENT --}}
+    <div class="table">
+
+        {{-- BOTON CREAR --}}
+        <div class="perfil__header-alt">
+            <a href="{{route('admin.alumnos.create')}}"><button class="btn_blue"><i class="ti ti-circle-plus"></i>Agregar alumno</button></a>
+        </div>
+
+        {{-- TABLA --}}
+        <table class="table__body">
             
-        @endforeach
-        <li class="page-item{{ $page == $alumnos->currentPage() ? ' active' : '' }}">
-            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-        </li> --}}
-
-        <div class="table">
-            <div class="perfil__header-alt">
-                <a href="{{route('admin.alumnos.create')}}"><button class="btn_blue"><i class="ti ti-circle-plus"></i>Agregar alumno</button></a>
-            </div>
-            <table class="table__body">
-                <thead>
-                    <tr>
-                        <th>Alumno</th>
-                        <th>Contacto</th>
-                        <th>Dirección</th>
-                        <th class="center">Acción</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach ($alumnos as $alumno)
+            {{-- HEADER --}}
+            <thead>
                 <tr>
-                    <td class="capitalize">
-                        <p>{{$alumno->apellidoNombre()}}</p>
-                        <p>dni: {{$alumno->dniPuntos()}}</p>
-                    </td>
-                    
-                    <td>
-                        <p>{{$alumno->email?$alumno->email:'Sin mail registrado'}}</p>
-                        <p>tel: {{$alumno->telefono1? $alumno->telefono1:'Sin telefono'}}</p>
-                    </td>
-                    <td>
-                        <p>{{$alumno->ciudad}}</p>
-                        <p>{{$alumno->calle}} {{$alumno->casa_numero?$alumno->casa_numero:''}}</p>
-                    </td>
-                    <td class="flex just-center"><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}">
-                        <button class="btn_blue"><i class="ti ti-file-info"></i>Detalles</button>
-                    </a></td>
+                    <th>Alumno</th>
+                    <th>Contacto</th>
+                    <th>Dirección</th>
+                    <th class="center">Acción</th>
                 </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-        
+            </thead>
 
-        
-        
-        <div class="w-1/2 mx-auto p-5 pagination">
-            {{ $alumnos->appends(request()->query())->links('Componentes.pagination') }}
-        </div>
+            {{-- TBODY --}}
+            <tbody>
+                @foreach ($alumnos as $alumno)
+                    <tr>
+                        <td class="capitalize">
+                            <p>{{$alumno->apellidoNombre()}}</p>
+                            <p>dni: {{$alumno->dniPuntos()}}</p>
+                        </td>
+                        
+                        <td>
+                            <p>{{$alumno->email?$alumno->email:'Sin mail registrado'}}</p>
+                            <p>tel: {{$alumno->telefono1? $alumno->telefono1:'Sin telefono'}}</p>
+                        </td>
+                        <td>
+                            <p>{{$alumno->ciudad}}</p>
+                            <p>{{$alumno->calle}} {{$alumno->casa_numero?$alumno->casa_numero:''}}</p>
+                        </td>
+                        <td class="flex just-center"><a href="{{route('admin.alumnos.edit', ['alumno' => $alumno->id])}}">
+                            <button class="btn_blue"><i class="ti ti-file-info"></i>Detalles</button>
+                        </a></td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    
+
+    
+    
+    <div class="w-1/2 mx-auto p-5 pagination">
+        {{ $alumnos->appends(request()->query())->links('Componentes.pagination') }}
+    </div>
 
 
     

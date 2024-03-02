@@ -18,36 +18,36 @@
         @csrf
         @method('put')
         
-            <div>
+            <div class="flex-col gap-2 p-2">
                 <h2 class="p-2">Alumno</h2>
-                <?= $form->text('dni','DNI:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
-                <?= $form->text('nombre','Nombre:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
-                <?= $form->text('apellido','Apellido:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
-                <?= $form->date('fecha_nacimiento','Fecha de nacimiento:','flex-col py-1 px-5',$alumno,['default' => $alumno->fecha_nacimiento->format('Y-m-d'),'inputclass'=>'p-1 w-75p']) ?>
-                <?= $form->select('estado_civil','Estado civil:','flex-col py-1 px-5',$alumno,['soltero','casado'],['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->text('dni','DNI:','label-input-y-75',$alumno) ?>
+                <?= $form->text('nombre','Nombre:','label-input-y-75',$alumno) ?>
+                <?= $form->text('apellido','Apellido:','label-input-y-75',$alumno) ?>
+                <?= $form->date('fecha_nacimiento','Fecha de nacimiento:','label-input-y-75',$alumno,['default' => $alumno->fecha_nacimiento->format('Y-m-d'),'inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->select('estado_civil','Estado civil:','label-select-y',$alumno,['soltero','casado']) ?>
             </div>
-            <div>
+            <div class="flex-col gap-2 p-2">
                 <h2 class="p-2">Dirección</h2>
-                <?= $form->text('ciudad','Ciudad:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
-                <?= $form->text('codigo_postal','Codigo postal:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
-                <?= $form->text('calle','Calle:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
-                <?= $form->text('casa_numero','Altura:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
-                <?= $form->text('dpto','Departamento:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
-                <?= $form->text('piso','Piso:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->text('ciudad','Ciudad:','label-input-y-75',$alumno) ?>
+                <?= $form->text('codigo_postal','Codigo postal:','label-input-y-75',$alumno) ?>
+                <?= $form->text('calle','Calle:','label-input-y-75',$alumno) ?>
+                <?= $form->text('casa_numero','Altura:','label-input-y-75',$alumno) ?>
+                <?= $form->text('dpto','Departamento:','label-input-y-75',$alumno) ?>
+                <?= $form->text('piso','Piso:','label-input-y-75',$alumno) ?>
             </div>
-            <div>
+            <div class="flex-col gap-2 p-2">
                 <h2 class="p-2">Contacto</h2>
-                <?= $form->text('email','Email:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
-                <?= $form->text('telefono1','Telefono 1:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
-                <?= $form->text('telefono2','Telefono 2:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
-                <?= $form->text('telefono3','Telefono 3:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->text('email','Email:','label-input-y-75',$alumno) ?>
+                <?= $form->text('telefono1','Telefono 1:','label-input-y-75',$alumno) ?>
+                <?= $form->text('telefono2','Telefono 2:','label-input-y-75',$alumno) ?>
+                <?= $form->text('telefono3','Telefono 3:','label-input-y-75',$alumno) ?>
             </div>
-            <div>
+            <div class="flex-col gap-2 p-2">
                 <h2 class="p-2">académico</h2>
-                <?= $form->text('titulo_anterior','Titulo anterior:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
-                <?= $form->text('becas','Becas:','flex-col py-1 px-5',$alumno,['inputclass'=>'p-1 w-75p']) ?>
+                <?= $form->text('titulo_anterior','Titulo anterior:','label-input-y-75',$alumno) ?>
+                <?= $form->text('becas','Becas:','label-input-y-75',$alumno) ?>
             </div>
-            <div>
+            <div class="flex-col gap-2 p-2">
                 <h2 class="p-2">Otros</h2>
                 <div class="flex-col py-1 px-5">
                     <label class="w-100p">Observaciones:</label>
@@ -70,16 +70,14 @@
     
     
     <div class="perfil_one br">
+
         <div class="perfil__header">
             <h2>Rematriculación manual</h2>
         </div>
+        
         <div class="matricular">
             <form action="{{route('admin.alumno.rematricular',['alumno' => $alumno->id])}}">
-                <select class="px-2 rounded" name="carrera" id="">
-                    @foreach ($carreras as $carrera)
-                        <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
-                    @endforeach
-                </select>
+                <?= $carreraM->dropdown('carrera', null, 'select-fullw',null,[]) ?>
                 <div class="upd"><button class="btn_blue"><i class="ti ti-paperclip"></i>Matricular</button></div>
             </form>
         </div>
@@ -95,8 +93,6 @@
             <thead>
                 <tr>
                     <th>Materia</th>
-                    {{-- <th>Año</th> --}}
-                    {{-- <th>Carrera</th> --}}
                     <th>Condicion</th>
                     <th class="center">Estado</th>
                     <th class="center">Acción</th>

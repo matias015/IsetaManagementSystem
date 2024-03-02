@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Services\TextFormatService;
+use App\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class Carrera extends Model
 {
-    use HasFactory;
+    use HasFactory, ModelTrait;
     protected $table = "carreras";
     public $timestamps = false;
 
@@ -29,6 +30,10 @@ class Carrera extends Model
 
     public function primeraAsignatura(){
         return Asignatura::where('id_carrera', $this->id)->orderBy('anio')->first();
+    }
+
+    public function textForSelect(){
+        return $this->nombre;
     }
 
     static function getDefault($alumno_id=null){

@@ -14,6 +14,7 @@
            
             <div class="perfil__info">
                 <form method="post" action="{{route('admin.mesas.store')}}">
+                
                 <div class="perfil_dataname">
                     <label>Carrera:</label>
                     <select class="campo_info rounded" name="carrera" id="carrera_select">
@@ -69,9 +70,7 @@
                         @endforeach
                     </select>
                 </div>
-                <?= 
-                    $profesorM->selectInput('profesor_id','Vocal',null,$profesor,['first_item'=>true])
-                ?>
+     
                 <div class="perfil_dataname">
                     <label>Profesor 1:</label>
                     <select class="profesor campo_info rounded" name="prof_vocal_1">

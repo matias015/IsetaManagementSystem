@@ -1,56 +1,24 @@
 @extends('Admin.template')
 
 @section('content')
-    
-        <div class="contenedor-tabla_botonera">
-
-            <form class="none grid lg-block form-hh" action="{{route('admin.cursadas.index')}}">
-                <div class="tabla_botonera gap-5 flex items-end">
-                    <div class="contenedor_ordenar">
-                        <span class="categoria">Ordenar</span>     
-                        <div>
-                            <select class="ordenar border-none p-1 shadow" name="orden">
-                                <option @selected($filtros['orden'] == 'creacion') value="creacion">Creacion</option>
-                                <option @selected($filtros['orden'] == 'fecha') value="fecha">Fecha</option>
-                                <option @selected($filtros['orden'] == 'asignatura') value="asignatura">Asigantura</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="contenedor_filtrar">
-                        <span class="categoria">Mostrar</span> 
-                        <div>
-                            <select class="filtrar border-none p-1 shadow" name="campo">
-                                <option value="ninguno">Todos</option>
-                                <option @selected($filtros['campo'] == 'nuevas') value="nuevas">Nuevas</option>
-                                <option @selected($filtros['campo'] == 'asignatura') value="asignatura">Asigantura</option>
-                                <option @selected($filtros['campo'] == 'carrera') value="carrera">Carrera</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="contenedor_filtrado">
-                        <input placeholder="ingles II : lopez" class="filtrado-busqueda border-none p-1 shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
-                    </div>
-
-                    <div class="contenedor_btn-busqueda">
-                        <button class="btn_sky"><i class="ti ti-search"></i>Buscar</button>
-                    </div>
-                </div>
-            </form>
-
-            <a href="{{route('admin.cursadas.index')}}"><button class="btn_red"><i class="ti ti-backspace"></i>Quitar filtros</button></a>
-      
-        </div>
+    {{-- FILTROS --}}
+<?= $filtergen->generate('admin.cursadas.index',$filtros, [
+    'order' => [
+        'creacion'=> 'Creacion',
+        'fecha' => 'Fecha',
+        'asignatura'=> 'Asignatura'
+    ],
+    'show' => [
+        // 'ninguno' => 'Todas',    
+        // 'nuevas' => 'Nuevas' 
+    ],
+    'searchField' => [
+        'placeholder' => 'programacion : Lopez'
+    ]
+]) ?>
+       
         
 
-        {{-- @foreach ($alumnos->pagr as )
-            
-        @endforeach
-        <li class="page-item{{ $page == $alumnos->currentPage() ? ' active' : '' }}">
-            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-        </li> --}}
-        
         <div class="table">
             <div class="perfil__header-alt">
                 <a href="{{route('admin.cursadas.create')}}"><button class="btn_blue"><i class="ti ti-circle-plus"></i>Agregar cursada</button></a>

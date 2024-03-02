@@ -17,12 +17,14 @@
     }
 @endphp
 
-<div class="flex-col py-1 px-5">
-    <label for="">{{$label}}</label>
+<div class="{{$class}}">
+    @if (!$label)
+        <label for="">{{$label}}</label>
+    @endif
 
-    <select name="{{$name}}" class="{{$inputClass}}">
-        @if ($firstItem)
-            @foreach ($firstItem as $key=>$value)
+    <select name="{{$name}}" >
+        @if ($firstItems)
+            @foreach ($firstItems as $key=>$value)
                 <option value="{{$key}}">{{$value}}</option>
             @endforeach
         @endif

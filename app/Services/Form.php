@@ -49,5 +49,22 @@ class Form{
             'label' => $label,
             'options' => $options
         ])->render();
+    }  
+    
+    function password($name, $label, $class, $item=null, $options=[]){
+
+        if(!isset($options['inputclass'])){
+            $options['inputclass'] = 'p-1';
+        }
+
+        return view('Componentes.form.text-input', [
+            'type' => 'password',
+            'name' => $name,
+            'item' => $item,
+            'class' => $class,
+            'label' => $label,
+            'options' => $options
+        ])->render();
     }    
+    
 }

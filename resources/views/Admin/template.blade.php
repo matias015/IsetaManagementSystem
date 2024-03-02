@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{asset('css/Admin/main.css')}}">
     <link rel="stylesheet" href="{{asset('css/Admin/aside.css')}}">
     <link rel="stylesheet" href="{{asset('css/global.css')}}">
+    <link rel="stylesheet" href="{{asset('css/form.css')}}">
 
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">

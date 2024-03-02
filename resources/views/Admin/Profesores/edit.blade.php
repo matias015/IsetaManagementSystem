@@ -12,32 +12,32 @@
                     @method('put')
                     <div>
                         <h2 class="p-2">Personal</h2>
-                        <?= $form->text('dni','DNI:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
-                        <?= $form->text('nombre','Nombre:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
-                        <?= $form->text('apellido','Apellido:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
-                        <?= $form->date('fecha_nacimiento','Fecha de nacimiento:','flex-col py-1 px-5',$profesor,['default'=>$profesor->fecha_nacimiento->format('Y-m-d'),'inputclass'=>'p-1 w-75p']) ?>
-                        <?= $form->select('estado_civil','Estado civil:','flex-col py-1 px-5',$profesor,['soltero','casado'],['inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->text('dni','DNI:','label-input-y-75',$profesor) ?>
+                        <?= $form->text('nombre','Nombre:','label-input-y-75',$profesor) ?>
+                        <?= $form->text('apellido','Apellido:','label-input-y-75',$profesor) ?>
+                        <?= $form->date('fecha_nacimiento','Fecha de nacimiento:','label-input-y-75',$profesor,['default'=>$profesor->fecha_nacimiento->format('Y-m-d')]) ?>
+                        <?= $form->select('estado_civil','Estado civil:','label-input-y-75',$profesor,['soltero','casado']) ?>
                     </div>
                     <div>
                         <h2 class="p-2">Dirección</h2>
-                        <?= $form->text('ciudad','Ciudad:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
-                        <?= $form->text('codigo_postal','Codigo postal 3:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
-                        <?= $form->text('calle','Calle:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
-                        <?= $form->text('numero','Altura:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
-                        <?= $form->text('departamento','Departamento:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
-                        <?= $form->text('piso','Piso:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->text('ciudad','Ciudad:','label-input-y-75',$profesor) ?>
+                        <?= $form->text('codigo_postal','Codigo postal 3:','label-input-y-75',$profesor) ?>
+                        <?= $form->text('calle','Calle:','label-input-y-75',$profesor) ?>
+                        <?= $form->text('numero','Altura:','label-input-y-75',$profesor) ?>
+                        <?= $form->text('departamento','Departamento:','label-input-y-75',$profesor) ?>
+                        <?= $form->text('piso','Piso:','label-input-y-75',$profesor) ?>
                     </div>
                     <div>
                         <h2 class="p-2">Académico</h2>
-                        <?= $form->text('formacion_academica','Formacion academica:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
-                        <?= $form->text('anio_ingreso','Año de ingreso:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>    
+                        <?= $form->text('formacion_academica','Formacion academica:','label-input-y-75',$profesor) ?>
+                        <?= $form->text('anio_ingreso','Año de ingreso:','label-input-y-75',$profesor) ?>    
                     </div>
                     <div>
                         <h2 class="p-2">Contacto</h2>
-                        <?= $form->text('email','Email:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
-                        <?= $form->text('telefeono1','Telefeono 1:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
-                        <?= $form->text('telefeono2','Telefeono 2:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
-                        <?= $form->text('telefeono3','Telefeono 3:','flex-col py-1 px-5',$profesor,['inputclass'=>'p-1 w-75p']) ?>
+                        <?= $form->text('email','Email:','label-input-y-75',$profesor) ?>
+                        <?= $form->text('telefeono1','Telefeono 1:','label-input-y-75',$profesor) ?>
+                        <?= $form->text('telefeono2','Telefeono 2:','label-input-y-75',$profesor) ?>
+                        <?= $form->text('telefeono3','Telefeono 3:','label-input-y-75',$profesor) ?>
                     </div>
                     <div>
                         <h2 class="p-2">Otros</h2>

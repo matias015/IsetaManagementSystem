@@ -2,41 +2,17 @@
 
 @section('content')
 
-    <div class="contenedor-tabla_botonera">
-        <form class="none grid lg-block form-hh" action="{{route('admin.carreras.index')}}">
-            <div class="tabla_botonera gap-5 flex items-end">
-                
-                <div class="contenedor_ordenar">
-                    <span class="categoria">Ordenar</span>
-                    <div>
-                        <select class="ordenar border-none  p-1 shadow" name="orden">
-                            <option @selected($filtros['orden'] == 'nombre') value="nombre">Nombre</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="contenedor_filtrar">
-                    <span class="categoria">Mostrar</span> 
-                    <div>
-                        <select class="filtrar border-none p-1 shadow" name="campo">
-                            <option value="vigentes">Vigentes</option>
-                            <option @selected($filtros['campo'] == 'todas') value="todas">Todas</option>
-                        </select>
-                    </div>
-                </div>
+    <?= $filtergen->generate('admin.carreras.index',$filtros, [
+        'show' => [
+            'vigentes' => 'Vigentes',
+            'todas' => 'Todas'
+        ],
+        'searchField' => [
+            'placeholder' => 'Buscar'
+        ]
 
-                <div class="contenedor_filtrado">
-                    <input placeholder="Buscar" class="filtrado-busqueda border-none p-1 bg-white shadow" value="{{$filtros['filtro']}}" name="filtro" type="text">
-                </div>
-                
-                <div class="contenedor_btn-busqueda">
-                    <button class="btn_sky"><i class="ti ti-search"></i>Buscar</button>
-                </div>
-            </div>
-        </form>
-    
-        <a class="none lg-block" href="{{route('admin.carreras.index')}}"><button class="btn_red"><i class="ti ti-backspace"></i>Quitar filtros</button></a>
-    </div>
-    
+    ]) ?>
+
 
     
     <div class="table">

@@ -2,29 +2,26 @@
 
 @section('content')
 
-        {{-- @foreach ($alumnos->pagr as )
-            
-        @endforeach
-        <li class="page-item{{ $page == $alumnos->currentPage() ? ' active' : '' }}">
-            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-        </li> --}}
 
         <div class="perfil_one br">
             <div class="perfil__header">
                 <h2>Crear nuevo administrador</h2>
             </div>
             <div class="perfil__info">
-            <form method="POST" action="{{route('admin.admins.store')}}">
+            <form class="flex-col gap-3" method="POST" action="{{route('admin.admins.store')}}">
                 @csrf
-                <div class="perfil_dataname">
-                    <label>Usuario:</label>
-                    <input class="campo_info rounded" name="username">
+                <div class="grid-2 gap-1">
+
+                    <div>
+                        <?= $form->text('username', 'Usuario:','label-input-y-75', null) ?>
+                    </div>
+                    <div>
+                        <?= $form->password('password', 'Contraseña:','label-input-y-75', null) ?>
+                    </div>
                 </div>
-                <div class="perfil_dataname">
-                    <label>Contraseña:</label>
-                    <input class="campo_info rounded" name="password">
+                <div class="flex">
+                    <input type="submit" value="Crear" class="btn_borrar">
                 </div>
-                <div class="upd"><input type="submit" value="Crear" class="btn_borrar"></div>
             </form>
             </div>
         </div>
@@ -35,7 +32,9 @@
                     <tr>
                         <th class="center">Id</th>
                         <th>Usuario</th>
-                        <th class="center">Acción</th>
+                        @if (!$config['modo_seguro'])
+                            <th class="center">Acción</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>

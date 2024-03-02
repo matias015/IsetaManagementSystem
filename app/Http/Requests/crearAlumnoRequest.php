@@ -34,7 +34,7 @@ class crearAlumnoRequest extends FormRequest
             'estado_civil' => ['required'],
             'email' => ['nullable','unique:alumnos'],
             'titulo_anterior' => ['nullable'],
-            'becas' => ['nullable'],
+            'becas' => ['numeric','nullable'],
             'observaciones' => ['nullable'],
             'telefono1' => ['nullable','numeric'],
             'telefono2' => ['nullable','numeric'],
