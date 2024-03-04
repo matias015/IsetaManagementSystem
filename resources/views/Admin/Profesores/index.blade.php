@@ -3,20 +3,17 @@
 @section('content')
 
 {{-- FILTROS --}}
-<?= $filtergen->generate('admin.profesores.index',$filtros, [
-    'order' => [
-        'nombre'=> 'Nombre',
+<?= $filtergen->generate('admin.profesores.index',$filters,[
+    // 'dropdowns' => [
+    //     $carreraM->dropdown('filter_carrera_id','Carrera:', 'label-input-y-100',$filters, ['first_items' => ['Todas']])
+    // ],
+    'fields' => [
+        'profesor' => 'Profesor',
         'dni' => 'Dni',
-        'dni-desc' => 'Dni descendiente'
-    ],
-    'show' => [
-        'ninguno' => 'Ninguno',
-        'registrados' => 'Registrados'
-    ],
-    'searchField' => [
-        'placeholder' => 'Nombre, apellido, email,  ...'
+        'email' => 'Email',
+        'ciudad' => 'Ciudad',
+        'telefono1' => 'Telefono'
     ]
-
 ]) ?>
 
         

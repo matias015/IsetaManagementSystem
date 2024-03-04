@@ -1,8 +1,9 @@
 
 @php
     $default = '';
+    $id = '';
 
-    if($item){
+    if($item && isset($item->$name)){
         if(isset($options['default'])){
             $default = old($name)?old($name):$options['default'];
         }else{
@@ -15,6 +16,10 @@
             $default = old($name)?old($name):'';
         }
     }
+
+    if(isset($options['id'])){
+        $id = $options['id'];
+    }
     
 @endphp
 
@@ -22,7 +27,7 @@
 
     <label>{{$label}}</label>
 
-    <select name="{{$name}}" class="{{$options['inputclass']}}">
+    <select id="{{$id}}" name="{{$name}}" class="{{$options['inputclass']}}">
         @foreach ($optionsE as $key=>$value)
             <option @selected($default==$key) value="{{$key}}">{{$value}}</option>
         @endforeach

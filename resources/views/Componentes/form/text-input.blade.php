@@ -2,7 +2,7 @@
 @php
     $default = '';
 
-    if($item){
+    if($item  && isset($item->$name)){
         if(isset($options['default'])){
             $default = old($name)?old($name):$options['default'];
         }else{

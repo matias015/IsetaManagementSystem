@@ -2,53 +2,38 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CrearCarreraRequest;
 use App\Http\Requests\EditarCarreraRequest;
 use App\Models\Carrera;
 use App\Models\Configuracion;
+use App\Repositories\Admin\CarreraRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class CarrerasCrudController extends Controller
+class CarrerasCrudController extends BaseController
 {
+
+    public $defaultFilters = [
+        'filter_vigente' => 0,
+    ];
+
+    public $carreraRepo;
+
+    public function __construct(CarreraRepository $carreraRepo) {
+        parent::__construct();
+        $this->carreraRepo = $carreraRepo;
+    }
 
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {       
-         $carreras = [];
-         $config = Configuracion::todas();
-        //  \dd($request->all());
-
-         $filtro = $request->filtro ? $request->filtro: '';
-         $campo = $request->campo ? $request->campo: 'vigentes';
-         $orden = $request->orden ? $request->orden: 'fecha';
-         $porPagina = $config['filas_por_tabla'];
-
-         $query = Carrera::select('*');
-
-         if($filtro){
-            $word = str_replace(' ','%',$filtro);
-            $query->orWhere('carreras.nombre', 'LIKE', '%'.$word.'%');
-        }
-
-        if($campo == "vigentes"){
-            $query -> where('vigente','1');
-        }
-
-        if($orden == "nombre"){
-            $query = $query -> orderBy('nombre');
-        }
-            
-        $carreras = $query->paginate($porPagina);
-
-        return view('Admin.Carreras.index',['carreras'=>$carreras, 'filtros'=>[
-            'campo' => $campo,
-            'orden' => $orden,
-            'filtro' => $filtro
-        ]]);
+        $this->setFilters($request);
+        $this->data['carreras'] = $this->carreraRepo->index($request);
+        return view('Admin.Carreras.index',$this->data);
     }
 
     /**
@@ -119,4 +104,5 @@ class CarrerasCrudController extends Controller
     {
         return redirect() -> route('admin.carreras.index') -> with('error', 'Las carreras no se pueden eliminar');
     }
+
 }

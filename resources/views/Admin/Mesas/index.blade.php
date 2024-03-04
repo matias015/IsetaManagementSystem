@@ -1,21 +1,19 @@
 @extends('Admin.template')
 
 @section('content')
-    
-{{-- FILTROS --}}
-<?= $filtergen->generate('admin.mesas.index',$filtros, [
-    'order' => [
-        'fecha'=> 'Fecha',
-        'asignatura' => 'Asignatura'
-    ],
-    'show' => [
-        'ninguno' => 'Ninguno',
-        'proximas' => 'Proximas'
-    ],
-    'searchField' => [
-        'placeholder' => 'programacion : algebra'
-    ]
 
+  {{-- FILTROS --}}
+  <?= $filtergen->generate('admin.mesas.index',$filters,[
+    'dropdowns' => [
+        $carreraM->dropdown('filter_carrera_id', 'Carrera:','label-input-y-75',$filters,['first_items'=>['Todas'],'id'=>'carrera_select']),
+        $form->select('filter_asignatura_id', 'Asignatura:', 'label-input-y-75', $filters,['Seleccione una carrera'], ['id'=>'asignatura_select']),
+        $alumnoM->dropdown('filter_alumno_id', 'Alumno:','label-input-y-75',$filters,['first_items'=>['Todos'],'filter'=>'orderByApellidoNombre']),
+        $form->select('filter_llamado', 'Llamado: ', 'label-input-y-75', $filters,['Primer llamado','Segundo llamado'])
+        
+    ],
+    'fields' => [
+        'alumno' => 'Alumno',
+        ]
 ]) ?>
         
         
@@ -67,4 +65,6 @@
         <div class="w-1/2 mx-auto p-5 pagination">
             {{ $mesas->appends(request()->query())->links('Componentes.pagination') }}
         </div>
+
+        <script src="{{asset('js/obtener-materias.js')}}"></script>
 @endsection

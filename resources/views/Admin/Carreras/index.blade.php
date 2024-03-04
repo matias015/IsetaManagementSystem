@@ -2,19 +2,15 @@
 
 @section('content')
 
-    <?= $filtergen->generate('admin.carreras.index',$filtros, [
-        'show' => [
-            'vigentes' => 'Vigentes',
-            'todas' => 'Todas'
+    {{-- FILTROS --}}
+    <?= $filtergen->generate('admin.carreras.index',$filters,[
+        'dropdowns' => [
+            $form->select('filter_vigente','Condición: ', 'label-input-y',$filters,['Todas','No Vigentes','Vigentes'])
         ],
-        'searchField' => [
-            'placeholder' => 'Buscar'
-        ]
-
+        'fields' => ['nombre' => 'Nombre',]
     ]) ?>
 
-
-    
+    {{-- TABLA --}}
     <div class="table">
         <div class="perfil__header-alt">
             <a href="{{route('admin.carreras.create')}}"><button class="btn_blue"><i class="ti ti-circle-plus"></i>Agregar carrera</button></a>

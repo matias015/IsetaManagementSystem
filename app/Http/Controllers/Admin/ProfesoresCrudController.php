@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\crearProfesorRequest;
 use App\Http\Requests\EditarProfesorRequest;
 use App\Models\Configuracion;
 use App\Models\Mesa;
 use App\Models\Profesor;
+use App\Repositories\Admin\ProfesorRepository;
 use Illuminate\Http\Request;
 
-class ProfesoresCrudController extends Controller
-{
-    function __construct()
+class ProfesoresCrudController extends BaseController
+{   
+    public $profeRepo;
+
+    function __construct(ProfesorRepository $profeRepo)
     {
-        $this -> middleware('auth:admin');
+        parent::__construct();
+        $this->middleware('auth:admin');
+        $this->profeRepo = $profeRepo;
     }
        /**
      * Display a listing of the resource.
@@ -22,51 +28,11 @@ class ProfesoresCrudController extends Controller
     public function index(Request $request)
     {       
         $config = Configuracion::todas();    
+        $this->setFilters($request);
 
-        $profesores = [];
-        $filtro = $request->filtro ? $request->filtro: '';
-        $campo = $request->campo ? $request->campo: '';
-        $orden = $request->orden ? $request->orden: 'fecha';
-        $porPagina = $config['filas_por_tabla'];
-
-        $query = Profesor::select('*');
-
-
-        if($filtro){
-            if(is_numeric($filtro)){
-                $query = $query->where('profesores.dni','like','%'.$filtro.'%');
-            }  
-            else if(preg_match('/^[a-zA-Z\s]+$/', $filtro)){
-                $word = str_replace(' ','%',$filtro);
-                $query->orWhereRaw("CONCAT(profesores.nombre,' ',profesores.apellido) LIKE '%$word%'");            
-            }else{
-                $query = $query->where('profesores.email', 'LIKE', '%'.$filtro.'%');
-            }
-        }
+        $this->data['profesores'] = $this->profeRepo->index($request);
         
-       
-        if($campo == "registrados"){
-            $query = $query -> where('password','!=','0');
-        }
-
-           if($orden == "dni"){
-                $query = $query -> orderBy('dni');
-            }
-            else if($orden == "dni-desc"){
-                $query = $query -> orderByDesc('dni');
-            } else{
-                $query = $query -> orderBy('profesores.nombre') -> orderBy('profesores.apellido');
-            }
-
-            $profesores = $query->paginate($porPagina); 
-        return view('Admin.Profesores.index',[
-            'profesores'=>$profesores, 
-            'filtros'=>[
-                'campo' => $campo,
-                'orden' => $orden,
-                'filtro' => $filtro
-            ]
-        ]);
+        return view('Admin.Profesores.index',$this->data);
 
     }
 
@@ -127,4 +93,7 @@ class ProfesoresCrudController extends Controller
         $profesor->delete();
         return redirect() -> route('admin.profesores.index') -> with('mensaje', 'Se ha eliminado el profesor');
     }
+
+    
+
 }

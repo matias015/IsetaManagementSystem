@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\crearAlumnoRequest;
 use App\Http\Requests\EditarAlumnoRequest;
@@ -10,67 +11,30 @@ use App\Models\Carrera;
 use App\Models\Configuracion;
 use App\Models\Cursada;
 use App\Models\Examen;
+use App\Repositories\Admin\AlumnoRepository;
 use Illuminate\Http\Request;
+use stdClass;
 
-class AlumnoCrudController extends Controller
+class AlumnoCrudController extends BaseController
 {
+    public $alumnosRepo;
+    public $defaultFilters = ['filter_carrera_id' => 0];
+
+    public function __construct(AlumnoRepository $alumnosRepo) {
+        parent::__construct();
+        $this->alumnosRepo = $alumnosRepo;
+    }
 
     /**
      * Display a listing of the resource.
      */
     
     public function index(Request $request)
-    {   
-        $config = Configuracion::todas();    
-
-        $alumnos = null;
-
-        $filtro = $request->filtro ? $request->filtro: '';
-        $campo = $request->campo ? $request->campo: '';
-        $orden = $request->orden ? $request->orden: 'fecha';
-
-        $porPagina = $config['filas_por_tabla'];
+    {
+        $this->setFilters($request);        
+        $this->data['alumnos'] = $this->alumnosRepo->index($request);
         
-        $query = Alumno::select('*');
-
-        if($filtro){
-            if(is_numeric($filtro))
-                $query = $query->where('alumnos.dni','like','%'.$filtro.'%');
-            
-            else if(preg_match('/^[a-zA-Z\s]+$/', $filtro))
-            {
-                $word = str_replace(' ','%',$filtro);
-                $query->orWhereRaw("(CONCAT(alumnos.nombre,' ',alumnos.apellido) LIKE '%$word%' OR alumnos.email  LIKE '%$word%')");
-            }else
-            {
-                $query = $query->where('alumnos.email', 'LIKE', '%'.$filtro.'%');
-            }
-        }
-        
-       
-        if($campo == "registrados")
-            $query = $query -> where('password','!=','0');
-        
-
-        if($orden == "dni")
-            $query = $query -> orderBy('dni');
-        
-        else if($orden == "dni-desc")
-            $query = $query -> orderByDesc('dni');
-        else
-            $query = $query -> orderBy('alumnos.nombre') -> orderBy('alumnos.apellido');
-        
-        $alumnos = $query->paginate($porPagina); 
-
-        return view('Admin.Alumnos.index',[
-            'alumnos'=>$alumnos, 
-            'filtros'=>[
-                'campo' => $campo,
-                'orden' => $orden,
-                'filtro' => $filtro
-            ]
-        ]);
-        
+        return view('Admin.Alumnos.index', $this->data);
     }
 
     /**
@@ -161,4 +125,5 @@ class AlumnoCrudController extends Controller
         $alumno->delete();
         return redirect() -> route('admin.alumnos.index') -> with('mensaje', 'Se ha eliminado el alumno');
     }
+
 }

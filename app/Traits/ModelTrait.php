@@ -4,11 +4,11 @@ namespace App\Traits;
 
 trait ModelTrait {
     
-    public function dropdown($name, $label=null, $class='label-select-y', $item=null,$options) {
+    public function dropdown($name, $label=null, $class='label-select-y', $item=null,$options=[]) {
         $firstItems = [];
         $items = null;
         $filter = null;
-        
+      
         if(isset($options['filter']))
             $filter = $options['filter'];
 
@@ -26,6 +26,7 @@ trait ModelTrait {
             'class' => $class,
             'label' => $label,
             'firstItems' => $firstItems,
+            'options' => $options,
             'item' => $item
         ])->render();
 

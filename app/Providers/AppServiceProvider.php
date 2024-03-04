@@ -9,6 +9,7 @@ use App\Models\Profesor;
 use App\Repositories\AdminCursadaRepository;
 use App\Services\AlumnoInscripcionService;
 use App\Services\Fecha;
+use App\Services\Filter;
 use App\Services\FilterGenerator;
 use App\Services\Form;
 use App\Services\TextFormatService;
@@ -30,7 +31,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::share('filtergen', new FilterGenerator());
+        // View::share('filtergen', new FilterGenerator());
+        View::share('filtergen', new Filter());
+        
         
         View::share('formatoFecha', new Fecha());
         View::share('config', Configuracion::todas());

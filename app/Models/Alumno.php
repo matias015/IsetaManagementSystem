@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Services\TextFormatService;
+use App\Traits\ModelTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Alumno extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, ModelTrait;
 
     protected $table = 'alumnos';
     public $timestamps = false;
@@ -85,6 +86,16 @@ class Alumno extends Authenticatable implements MustVerifyEmail
 
     public function examenes(){
         return $this -> hasMany(Examen::class, 'id_alumno');
+    }
+
+    function textForSelect(){
+        return $this->apellidoNombre();
+    }
+
+    function elementsForDropdown($filter){
+        if($filter=='orderByApellidoNombre'){
+            return Alumno::select()->orderBy('apellido')->orderBy('nombre')->get();
+        }
     }
 
     public function nombreApellido(){

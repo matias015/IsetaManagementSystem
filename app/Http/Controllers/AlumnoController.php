@@ -11,12 +11,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
-class AlumnoController extends Controller
+class AlumnoController extends BaseController
 {
     public $alumnoRepository;
+    public $defaultFilters = ['filter_carrera' => 10];
 
     public function __construct(AlumnoDataRepository $alumnoDataRepository)
     {
+        parent::__construct();
+
         $this->alumnoRepository = $alumnoDataRepository;
 
         $this -> middleware('auth:web');

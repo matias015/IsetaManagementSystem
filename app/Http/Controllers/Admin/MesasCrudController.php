@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CrearMesaRequest;
 use App\Http\Requests\EditarMesaRequest;
@@ -10,19 +11,28 @@ use App\Models\Carrera;
 use App\Models\Configuracion;
 use App\Models\Mesa;
 use App\Models\Profesor;
-use App\Repositories\MesaRepository;
+use App\Repositories\Admin\mesaRepo;
+use App\Repositories\Admin\MesaRepository;
 use App\Services\Admin\MesasCheckerService;
 use App\Services\DiasHabiles;
 use Illuminate\Http\Request;
 
-class MesasCrudController extends Controller
+class MesasCrudController extends BaseController
 {
-    public $mesaRepository;
+    public $defaultFilters = [
+        'filter_carrera_id' => 0,
+        'filter_asignatura' => 0,
+        'filter_alumno_id' => 0,
+        'filter_llamado' => 0
+    ];
+    
+    public $mesaRepo;
     public $mesasService;
 
-    function __construct(MesaRepository $mesaRepository, MesasCheckerService $mesasService)
+    function __construct(MesaRepository $mesaRepo, MesasCheckerService $mesasService)
     {
-        $this->mesaRepository = $mesaRepository;
+        parent::__construct();
+        $this->mesaRepo = $mesaRepo;
         $this->mesasService = $mesasService;
     }
 
@@ -31,21 +41,11 @@ class MesasCrudController extends Controller
      */
     public function index(Request $request)
     {       
-        $mesas = [];
-        $filtro = $request->filtro ? $request->filtro: '';
-        $campo = $request->campo ? $request->campo: '';
-        $orden = $request->orden ? $request->orden: 'fecha';
+        $this->setFilters($request);
+        $this->data['mesas'] = $this->mesaRepo->index($request);
 
-        $mesas = $this->mesaRepository->conFiltros($filtro,$campo,$orden);
         // \dd($mesas);
-        return view('Admin.Mesas.index',[
-            'mesas' => $mesas,
-            'filtros'=>[
-                'campo' => $campo,
-                'orden' => $orden,
-                'filtro' => $filtro,
-            ]
-        ]);
+        return view('Admin.Mesas.index', $this->data);
     }
 
     /**
@@ -53,7 +53,6 @@ class MesasCrudController extends Controller
      */
     public function create(Request $request)
     {
-
 
         $precargados = [];
         if($request->has('asignatura') && $request->has('carrera')){
@@ -123,7 +122,7 @@ class MesasCrudController extends Controller
     {
         $mesa = Mesa::where('id', $mesa)->with('asignatura.carrera','profesor','vocal1','vocal2','examenes.alumno')->first();
         
-        $inscribibles = $this->mesaRepository->inscribibles($mesa);
+        $inscribibles = $this->mesaRepo->inscribibles($mesa);
 
 
         return view('Admin.Mesas.edit', [
@@ -168,7 +167,7 @@ class MesasCrudController extends Controller
      */
     public function destroy(Mesa $mesa)
     {
-        $this->mesaRepository->delete($mesa);
+        $this->mesaRepo->delete($mesa);
         return redirect() -> route('admin.mesas.index') -> with('mensaje', 'Se ha eliminado la mesa');
     }
 }

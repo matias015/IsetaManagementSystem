@@ -8,6 +8,7 @@ class Form{
         if(!isset($options['inputclass'])){
             $options['inputclass'] = 'p-1';
         }
+
         return view('Componentes.form.generic-select', [
             'type' => 'text',
             'name' => $name,
@@ -66,5 +67,21 @@ class Form{
             'options' => $options
         ])->render();
     }    
+
+
+    function checkbox($name, $label, $class, $item=null, $options=[]){
+
+        if(!isset($options['inputclass'])){
+            $options['inputclass'] = 'p-1';
+        }
+        return view('Componentes.form.checkbox-input', [
+            'type' => 'checkbox',
+            'name' => $name,
+            'item' => $item,
+            'class' => $class,
+            'label' => $label,
+            'options' => $options
+        ])->render();
+    }
     
 }
