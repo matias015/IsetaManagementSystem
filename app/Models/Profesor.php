@@ -48,8 +48,10 @@ class Profesor extends Authenticatable
         return Profesor::where('id',3)->get();
     }
 
-    function itemsForSelect(){
-        return Profesor::all();
+    function elementsForDropdown($filter){
+        if($filter=='order'){
+            return Profesor::select()->orderBy('apellido')->orderBy('nombre')->get();
+        }
     }
 
     function textForSelect(){

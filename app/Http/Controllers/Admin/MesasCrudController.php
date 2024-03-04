@@ -23,9 +23,12 @@ class MesasCrudController extends BaseController
         'filter_carrera_id' => 0,
         'filter_asignatura' => 0,
         'filter_alumno_id' => 0,
-        'filter_llamado' => 0
+        'filter_llamado' => 0,
+        'filter_presidente' => 0,
+        'filter_vocal1' => 0,
+        'filter_vocal2' => 0
     ];
-    
+
     public $mesaRepo;
     public $mesasService;
 
