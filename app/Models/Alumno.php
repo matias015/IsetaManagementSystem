@@ -147,4 +147,13 @@ class Alumno extends Authenticatable implements MustVerifyEmail
     {
         $this->attributes['calle'] = TextFormatService::ucfirst($value);
     }
+
+    function ciudades(){
+        $result = Alumno::select('ciudad')->distinct('ciudad')->get()->pluck('ciudad');
+        $ciudades = ['Cualquiera'];
+        foreach($result as $ciudad){
+            $ciudades[$ciudad] = $ciudad;
+        }
+        return $ciudades;
+    }
 }

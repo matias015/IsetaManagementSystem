@@ -3,7 +3,9 @@
 @section('content')
     <?= $filtergen->generate('admin.alumnos.index',$filters,[
         'dropdowns' => [
-            $carreraM->dropdown('filter_carrera_id','Carrera:', 'label-input-y-100',$filters, ['first_items' => ['Todas']])
+            $carreraM->dropdown('filter_carrera_id','Carrera:', 'label-input-y-100',$filters, ['first_items' => ['Todas']]),
+            $form->select('filter_ciudad', 'Ciudad:','label-input-y-75',$filters,$alumnoM->ciudades())
+        
         ],
         'fields' => [
             'alumno' => 'Alumno',

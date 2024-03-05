@@ -9,13 +9,18 @@
         $form->select('filter_asignatura_id', 'Asignatura:', 'label-input-y-75', $filters,['Seleccione una carrera'], ['id'=>'asignatura_select']),
         $alumnoM->dropdown('filter_alumno_id', 'Alumno:','label-input-y-75',$filters,['first_items'=>['Todos'],'filter'=>'orderByApellidoNombre']),
         $form->select('filter_llamado', 'Llamado: ', 'label-input-y-75', $filters,['Cualquiera','Primer llamado','Segundo llamado']),
+        $form->date('filter_from','Desde:','label-input-y-75',$filters),
+        $form->date('filter_to','Hasta:','label-input-y-75',$filters),
         $profesorM->dropdown('filter_presidente','Profesor presidente:','label-input-y-75',$filters,['filter'=>'order','first_items'=>['Cualquiera']]),
         $profesorM->dropdown('filter_vocal1','Vocal 1:','label-input-y-75',$filters,['filter'=>'order','first_items'=>['Cualquiera']]),
         $profesorM->dropdown('filter_vocal2','Vocal 2:','label-input-y-75',$filters,['filter'=>'order','first_items'=>['Cualquiera']])
     ],
     'fields' => [
         'alumno' => 'Alumno',
-        ]
+        'carrera' => 'Carrera',
+        'asignatura' => 'Asignatura',
+        'profesor' => 'Presidente'
+    ]
 ]) ?>
         
         

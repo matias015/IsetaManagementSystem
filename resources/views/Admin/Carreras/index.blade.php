@@ -7,7 +7,7 @@
         'dropdowns' => [
             $form->select('filter_vigente','Condición: ', 'label-input-y',$filters,['Todas','No Vigentes','Vigentes'])
         ],
-        'fields' => ['nombre' => 'Nombre',]
+        'fields' => ['nombre' => 'Nombre','asignatura'=>'Asignatura']
     ]) ?>
 
     {{-- TABLA --}}

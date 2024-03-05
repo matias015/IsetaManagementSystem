@@ -2,82 +2,44 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\crearAlumnoRequest;
 use App\Models\Alumno;
 use App\Models\Carrera;
 use App\Models\Configuracion;
 use App\Models\Egresado;
+use App\Repositories\Admin\InscripcionRepository;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\returnSelf;
 
-class EgresadosAdminController extends Controller
+class EgresadosAdminController extends BaseController
 {
+
+    public $defaultFilters = [
+        'filter_carrera_id' => 0,
+        'filter_alumno_id' => 0,
+        'filter_vigente' => 0,
+        'filter_finalizada' => 0,
+        'filter_ciudad' => 0
+    ];
+
     function __construct()
     {
+        parent::__construct();
         $this -> middleware('auth:admin');
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request, InscripcionRepository $inscriptosRepo)
     {       
-        
-        $config = Configuracion::todas();    
+        $this->setFilters($request);
+        $this->data['inscripciones'] = $inscriptosRepo->index($request);
 
-        $alumnos = [];
-        
-        $filtro = $request->filtro ? $request->filtro: '';
-        $campo = $request->campo ? $request->campo: '';
-        $orden = $request->orden ? $request->orden: 'fecha';
-        $porPagina = $config['filas_por_tabla'];
-        
-        
-        $query = Egresado::select('egresadoinscripto.id as id','alumnos.id as id_alumno','alumnos.nombre','alumnos.apellido','alumnos.dni','carreras.nombre as carrera','egresadoinscripto.anio_inscripcion','egresadoinscripto.anio_finalizacion')
-        ->join('alumnos','alumnos.id','egresadoinscripto.id_alumno')
-        ->join('carreras','carreras.id','egresadoinscripto.id_carrera');
-
-        
-        if($filtro){
-            if(is_numeric($filtro)){
-                $query = $query->where('alumnos.dni','like','%'.$filtro.'%');
-            }  
-            else if(preg_match('/^[a-zA-Z\s]+$/', $filtro)){
-                $word = str_replace(' ','%',$filtro);
-                $query->orWhereRaw("(CONCAT(alumnos.nombre,' ',alumnos.apellido) LIKE '%$word%' OR alumnos.email  LIKE '%$word%')");
-            }else{
-                $query = $query->where('alumnos.email', 'LIKE', '%'.$filtro.'%');
-            }
-        }
-        
-        
-        if($campo == "registrados"){
-            $query = $query -> where('password','!=','0');
-        }else if($campo == "egresados"){
-            $query = $query -> where('anio_finalizacion','!=','null');
-        }
-
-            if($orden == "dni"){
-                $query = $query -> orderBy('dni');
-            }
-            else if($orden == "dni-desc"){
-                $query = $query -> orderByDesc('dni');
-            } else{
-                $query = $query -> orderBy('alumnos.nombre') -> orderBy('alumnos.apellido');
-            }
-
-            $alumnos = $query->paginate($porPagina); 
-
-        return view('Admin.inscriptos.index',[
-            'alumnos'=>$alumnos, 
-            'filtros'=>[
-                'campo' => $campo,
-                'orden' => $orden,
-                'filtro' => $filtro
-            ]
-        ]);
+        return view('Admin.inscriptos.index',$this->data);
         
     }
 

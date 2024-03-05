@@ -2,38 +2,38 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Correlativa;
 use App\Models\Cursada;
+use App\Repositories\Admin\CursadaRepository;
 use App\Repositories\AdminCursadaRepository;
 use Illuminate\Http\Request;
 
-class CursadasAdminController extends Controller
+class CursadasAdminController extends BaseController
 {
-        function __construct()
+    public $defaultFilters = [
+        'filter_carrera_id' => 0,
+        'filter_asignatura' => 0,
+        'filter_alumno_id' => 0,
+        'filter_condicion' => 0,
+        'filter_aprobada' => 0
+    ];
+    
+    function __construct()
     {
+        parent::__construct();
         $this -> middleware('auth:admin');
     }
 
-    public function index(Request $request, AdminCursadaRepository $cursadas)
+    public function index(Request $request, CursadaRepository $cursadaRepo)
     {       
-        $filtro = $request->filtro ? $request->filtro: '';
-        $campo = $request->campo ? $request->campo: '';
-        $orden = $request->orden ? $request->orden: 'fecha';
-
-        $cursadas = $cursadas->conFiltros($filtro,$campo,$orden);
-        
-        return view('Admin.Cursadas.index', [
-            'cursadas' => $cursadas,
-            'filtros'=>[
-                'campo' => $campo,
-                'orden' => $orden,
-                'filtro' => $filtro
-            ]
-        ]);
+        $this->setFilters($request);
+        $this->data['cursadas'] = $cursadaRepo->index($request);
+        return view('Admin.Cursadas.index', $this->data);
     }
    
     function delete(Cursada $cursada){

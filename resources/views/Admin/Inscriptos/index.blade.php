@@ -3,20 +3,21 @@
 @section('content')
 
 {{-- FILTROS --}}
-<?= $filtergen->generate('admin.inscriptos.index',$filtros, [
-    'order' => [
-        'nombre'=> 'Nombre',
-        'dni' => 'Dni',
-        'dni-desc' => 'Dni descendiente'
-    ],
-    'show' => [
-        'egresados' => 'Egresados',
-        'registrados' => 'Registrados'
-    ],
-    'searchField' => [
-        'placeholder' => 'Buscar'
-    ]
+<?= $filtergen->generate('admin.inscriptos.index',$filters,[
+    'dropdowns' => [
+        $carreraM->dropdown('filter_carrera_id', 'Carrera:','label-input-y-75',$filters,['first_items'=>['Todas'],'id'=>'carrera_select']),
+        $form->select('filter_vigente','Carreras vigentes: ', 'label-input-y-75',$filters,['Todas','No Vigentes','Vigentes']),
+        $alumnoM->dropdown('filter_alumno_id', 'Alumno:','label-input-y-75',$filters,['first_items'=>['Todos'],'filter'=>'orderByApellidoNombre']),
+        $form->select('filter_finalizada','Estado: ', 'label-input-y-75',$filters,['Cualquiera','Finalizadas','No finalizadas']),
+        $form->select('filter_ciudad', 'Ciudad:','label-input-y-75',$filters,$alumnoM->ciudades())
 
+
+    ],
+
+    'fields' => [
+        'anio_inscripcion' => 'Año de inscripción',
+        'anio_finalizacion' => 'Año de finalización',
+    ]
 ]) ?>
 
 
@@ -36,21 +37,21 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach ($alumnos as $alumno)
+            @foreach ($inscripciones as $inscripcion)
             <tr>
                 <td>
-                    {{$alumno->apellido.' '. $alumno->nombre}}
+                    {{$inscripcion->alumno->apellidoNombre()}}
                 </td>
                 
                 {{-- <td>{{$alumno->dni}}</td> --}}
-                <td>{{$alumno->carrera}}</td>
+                <td>{{$inscripcion->carrera->nombre}}</td>
                 <td>
-                    {{$alumno->anio_inscripcion?$alumno->anio_inscripcion:'Sin datos'}}
+                    {{$inscripcion->anio_inscripcion?$inscripcion->anio_inscripcion:'Sin datos'}}
                     -
-                    {{$alumno->anio_finalizacion? $alumno->anio_finalizacion:'Presente'}}
+                    {{$inscripcion->anio_finalizacion? $inscripcion->anio_finalizacion:'Presente'}}
                 </td>
                 
-                <td class="flex just-center"><a href="{{route('admin.inscriptos.edit', ['inscripto' => $alumno->id])}}"><button class="btn_blue"><i class="ti ti-file-info"></i>Detalles</button></a></td>
+                <td class="flex just-center"><a href="{{route('admin.inscriptos.edit', ['inscripto' => $inscripcion->id])}}"><button class="btn_blue"><i class="ti ti-file-info"></i>Detalles</button></a></td>
                 
             </tr>
             @endforeach
@@ -65,6 +66,6 @@
         
         
         <div class="w-1/2 mx-auto p-5 pagination">
-            {{ $alumnos->appends(request()->query())->links('Componentes.pagination') }}
+            {{ $inscripciones->appends(request()->query())->links('Componentes.pagination') }}
         </div>    
 @endsection

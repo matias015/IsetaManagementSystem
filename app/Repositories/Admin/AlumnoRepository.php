@@ -24,6 +24,10 @@ class AlumnoRepository{
             $idsQuery->where('egresadoinscripto.id_carrera', $request->input('filter_carrera_id'));
         }
 
+        if($request->has('filter_ciudad') && $request->input('filter_ciudad') != 0){
+            $idsQuery->where('alumnos.ciudad', $request->input('filter_ciudad'));
+        }
+
         if($request->has('filter_search_box')){
             if($request->input('filter_field') == 'alumno'){
                 $word = str_replace(' ','%',$request->input('filter_search_box'));

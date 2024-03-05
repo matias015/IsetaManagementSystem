@@ -1,19 +1,19 @@
 @extends('Admin.template')
 
 @section('content')
-    {{-- FILTROS --}}
-<?= $filtergen->generate('admin.cursadas.index',$filtros, [
-    'order' => [
-        'creacion'=> 'Creacion',
-        'fecha' => 'Fecha',
-        'asignatura'=> 'Asignatura'
+
+  {{-- FILTROS --}}
+  <?= $filtergen->generate('admin.cursadas.index',$filters,[
+    'dropdowns' => [
+        $carreraM->dropdown('filter_carrera_id', 'Carrera:','label-input-y-75',$filters,['first_items'=>['Todas'],'id'=>'carrera_select']),
+        $form->select('filter_asignatura_id', 'Asignatura:', 'label-input-y-75', $filters,['Seleccione una carrera'], ['id'=>'asignatura_select']),
+        $alumnoM->dropdown('filter_alumno_id', 'Alumno:','label-input-y-75',$filters,['first_items'=>['Todos'],'filter'=>'orderByApellidoNombre']),
+        $form->select('filter_condicion', 'Condición: ', 'label-input-y-75', $filters, ['Cualquiera','Libre','Regular','Promoción','Equivalencia','Desertor']),
+        $form->select('filter_aprobada', 'Estado: ', 'label-input-y-75', $filters, ['Cualquiera', 'Aprobada','Desaprobada','Cursando']),
     ],
-    'show' => [
-        // 'ninguno' => 'Todas',    
-        // 'nuevas' => 'Nuevas' 
-    ],
-    'searchField' => [
-        'placeholder' => 'programacion : Lopez'
+
+    'fields' => [
+        'anio_cursada' => 'Año',
     ]
 ]) ?>
        
@@ -34,11 +34,12 @@
             </thead>
             
             <tbody>
+                {{-- @dd($cursadas) --}}
             @foreach ($cursadas as $cursada)
             <tr>
-                <td>{{$cursada->asignatura}}</td>
+                <td>{{$cursada->asignatura->nombre}}</td>
                 
-                <td>{{$cursada->alumno_nombre.' '.$cursada->alumno_apellido}}</td>
+                <td>{{$cursada->alumno->apellidoNombre()}}</td>
                 <td>
                     {{$cursada->aprobado()}}
                 </td>
@@ -54,4 +55,5 @@
         <div class="w-1/2 mx-auto p-5 pagination">
             {{ $cursadas->appends(request()->query())->links('Componentes.pagination') }}
         </div> 
+        <script src="{{asset('js/obtener-materias.js')}}"></script>
 @endsection

@@ -9,14 +9,15 @@ use App\Models\Configuracion;
 class CarreraRepository{
 
     public $config;
-    public $availableFiels = ['nombre'];
+    public $availableFiels = ['nombre','asignatura'];
 
     public function __construct() {
         $this->config = Configuracion::todas();
     }
 
     function index($request){
-        $idsQuery = Carrera::select('carreras.id');
+        $idsQuery = Carrera::select('carreras.id')
+            ->join('asignaturas','asignaturas.id_carrera', 'carreras.id');
 
         if($request->has('filter_vigente') && $request->input('filter_vigente') != 0){
             $value = $request->input('filter_vigente');
@@ -24,7 +25,12 @@ class CarreraRepository{
         }
 
         if($request->has('filter_search_box') && in_array($request->input('filter_field'),$this->availableFiels)){
-            $idsQuery->where($request->input('filter_field'), 'LIKE', '%'.$request->input('filter_search_box').'%');
+            $word = str_replace(' ','%',$request->input('filter_search_box'));
+            if($request->input('filter_field') == 'asignatura'){
+                $idsQuery->where('asignaturas.nombre','LIKE','%'.$word.'%');
+            }else{
+                $idsQuery->where('carreras.'.$request->input('filter_field'), 'LIKE', '%'.$request->input('filter_search_box').'%');
+            }
         }
 
         $ids = $idsQuery->distinct()->get()->pluck('id');

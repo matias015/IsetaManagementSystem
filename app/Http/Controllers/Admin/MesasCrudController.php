@@ -15,6 +15,8 @@ use App\Repositories\Admin\mesaRepo;
 use App\Repositories\Admin\MesaRepository;
 use App\Services\Admin\MesasCheckerService;
 use App\Services\DiasHabiles;
+use DateInterval;
+use DateTime;
 use Illuminate\Http\Request;
 
 class MesasCrudController extends BaseController
@@ -26,7 +28,9 @@ class MesasCrudController extends BaseController
         'filter_llamado' => 0,
         'filter_presidente' => 0,
         'filter_vocal1' => 0,
-        'filter_vocal2' => 0
+        'filter_vocal2' => 0,
+        'filter_from' => null,
+        'filter_to' => null
     ];
 
     public $mesaRepo;

@@ -2,15 +2,17 @@
 
 namespace App\Repositories\Admin;
 
+use App\Models\Asignatura;
 use App\Models\Configuracion;
 use App\Models\Cursada;
 use App\Models\Examen;
 use App\Models\Mesa;
+use App\Models\Profesor;
 
 class MesaRepository
 {
     public $config;
-    public $availableFiels = [];
+    public $availableFiels = ['alumno','carrera','asignatura','profesor'];
 
     public function __construct() {
         $this->config = Configuracion::todas();
@@ -45,12 +47,33 @@ class MesaRepository
         if($request->has('filter_vocal2') && $request->input('filter_vocal2') != 0)
             $idsQuery->where('mesas.prof_vocal_2', $request->input('filter_vocal2'));
 
+        if($request->has('filter_from') && $request->input('filter_from') != 0)
+            $idsQuery->whereDate('mesas.fecha', '>=',$request->input('filter_from'));
+
+        if($request->has('filter_to') && $request->input('filter_to') != 0)
+            $idsQuery->whereDate('mesas.fecha', '<=',$request->input('filter_to'));
+
+
+
         if($request->has('filter_search_box') && in_array($request->input('filter_field'),$this->availableFiels)){
+            $word = str_replace(' ','%',$request->input('filter_search_box'));
+            
             if($request->input('filter_field') == 'alumno'){
-                $word = str_replace(' ','%',$request->input('filter_search_box'));
                 $idsQuery->whereRaw("(CONCAT(alumnos.nombre,' ',alumnos.apellido) LIKE '%$word%')"); 
             }
-            $idsQuery->where($request->input('filter_field'), 'LIKE', '%'.$request->input('filter_search_box').'%');
+            else if($request->input('filter_field') == 'profesor'){
+                $prof_ids = Profesor::select('id')->whereRaw("(CONCAT(nombre,' ',apellido) LIKE '%$word%')")->get()->pluck('id');
+                $idsQuery->whereIn('mesas.prof_presidente',$prof_ids); 
+            }
+            else if($request->input('filter_field') == 'carrera'){
+                $idsQuery->where('carreras.nombre','LIKE','%'.$word.'%'); 
+            }
+            else if($request->input('filter_field') == 'asignatura'){
+                $asig_ids = Asignatura::select('id')->where('nombre','LIKE','%'.$word.'%')->get()->pluck('id');
+                $idsQuery->whereIn('mesas.id_asignatura',$asig_ids); 
+            }else{
+                $idsQuery->where($request->input('filter_field'), 'LIKE', '%'.$request->input('filter_search_box').'%');
+            }
         }
 
         $ids = $idsQuery->distinct()->get()->pluck('id');

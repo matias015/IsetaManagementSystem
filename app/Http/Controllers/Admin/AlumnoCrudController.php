@@ -18,7 +18,10 @@ use stdClass;
 class AlumnoCrudController extends BaseController
 {
     public $alumnosRepo;
-    public $defaultFilters = ['filter_carrera_id' => 0];
+    public $defaultFilters = [
+        'filter_carrera_id' => 0,
+        'filter_ciudad' => 0
+    ];
 
     public function __construct(AlumnoRepository $alumnosRepo) {
         parent::__construct();
