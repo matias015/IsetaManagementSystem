@@ -110,7 +110,6 @@ class AdminMesasLotes extends Controller
             ]);
         }
     
-        // dd([$mesa1,$mesa2]);
     
         return redirect()->back()->with('Se crearon correctamente');
     

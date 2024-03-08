@@ -10,6 +10,7 @@ use App\Models\Profesor;
 class ProfesorRepository{
 
     public $config;
+    public $availableFiels = ['profesor','dni','email','ciudad','telefono1'];
 
     public function __construct() {
         $this->config = Configuracion::todas();
@@ -22,7 +23,7 @@ class ProfesorRepository{
             $idsQuery->where('egresadoinscripto.id_carrera', $request->input('filter_carrera_id'));
         }
 
-        if($request->has('filter_search_box')){
+        if($request->has('filter_search_box') && ''!=$request->input('filter_search_box') && in_array($request->input('filter_field'),$this->availableFiels)){
             if($request->input('filter_field') == 'profesor'){
                 $word = str_replace(' ','%',$request->input('filter_search_box'));
                 $idsQuery->whereRaw("(CONCAT(profesores.nombre,' ',profesores.apellido) LIKE '%$word%' OR profesores.email  LIKE '%$word%')");

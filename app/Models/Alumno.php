@@ -152,7 +152,9 @@ class Alumno extends Authenticatable implements MustVerifyEmail
         $result = Alumno::select('ciudad')->distinct('ciudad')->get()->pluck('ciudad');
         $ciudades = ['Cualquiera'];
         foreach($result as $ciudad){
-            $ciudades[$ciudad] = $ciudad;
+            if(!in_array(trim($ciudad),$ciudades)){
+                $ciudades[trim($ciudad)] = trim($ciudad);
+            }
         }
         return $ciudades;
     }

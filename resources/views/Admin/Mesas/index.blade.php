@@ -44,7 +44,7 @@
                        
                     <td>
                         
-                        <p>{{$mesa->asignatura->nombre}}</p>
+                        <p>{{$mesa->asignatura->nombre.' - '.$mesa->id}}</p>
                     </td>
                     <td class="w-25p">
                         <p>

@@ -1,8 +1,8 @@
 <div class="w-100p flex-col p-2 gap-2 items-end">
         
-    <div><button id="show-filters" class="p-2 rounded">Filtros</button></div>
+        <div><button id="show-filters" class="p-2 rounded">Filtros</button></div>
 
-    <form action="{{route($url)}}" id="filters" class="w-100p rounded bg-white">
+    <form action="{{route($url)}}" id="filters" class="none w-100p rounded bg-white">
         @if ($dropdowns)
             <div class="grid-4 gap-3 w-100p p-2">
                 @foreach ($dropdowns as $dropdown)

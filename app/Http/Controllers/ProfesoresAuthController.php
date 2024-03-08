@@ -84,7 +84,6 @@ class ProfesoresAuthController extends Controller
     function cambiarPassword(ModificarPasswordRequest $request){
         $user = Auth::user();
         if(!Hash::check($request->oldPassword, $user->password)){
-            dd('incor');
             return redirect()->back()->with('error','la contraseña no coincide');
         }
         

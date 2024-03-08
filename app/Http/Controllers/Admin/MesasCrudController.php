@@ -51,7 +51,6 @@ class MesasCrudController extends BaseController
         $this->setFilters($request);
         $this->data['mesas'] = $this->mesaRepo->index($request);
 
-        // \dd($mesas);
         return view('Admin.Mesas.index', $this->data);
     }
 

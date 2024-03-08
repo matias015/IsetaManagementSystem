@@ -20,10 +20,10 @@ class MesaRepository
 
     function index($request){
         $idsQuery = Mesa::select('mesas.id')
-            ->join('carreras', 'carreras.id', 'mesas.id_carrera')
-            ->join('asignaturas', 'asignaturas.id_carrera', 'carreras.id')
-            ->join('examenes','examenes.id_mesa','mesas.id')
-            ->join('alumnos', 'alumnos.id', 'examenes.id_alumno');
+            ->leftJoin('carreras', 'carreras.id', 'mesas.id_carrera')
+            ->leftJoin('asignaturas', 'asignaturas.id_carrera', 'carreras.id')
+            ->leftJoin('examenes','examenes.id_mesa','mesas.id')
+            ->leftJoin('alumnos', 'alumnos.id', 'examenes.id_alumno');
 
         if($request->has('filter_carrera_id') && $request->input('filter_carrera_id') != 0){
             $idsQuery->where('mesas.id_carrera', $request->input('filter_carrera_id'));
@@ -47,15 +47,18 @@ class MesaRepository
         if($request->has('filter_vocal2') && $request->input('filter_vocal2') != 0)
             $idsQuery->where('mesas.prof_vocal_2', $request->input('filter_vocal2'));
 
-        if($request->has('filter_from') && $request->input('filter_from') != 0)
+        if($request->has('filter_from') && $request->input('filter_from') != 0){
             $idsQuery->whereDate('mesas.fecha', '>=',$request->input('filter_from'));
+        }
 
-        if($request->has('filter_to') && $request->input('filter_to') != 0)
+        if($request->has('filter_to') && $request->input('filter_to') != 0){
             $idsQuery->whereDate('mesas.fecha', '<=',$request->input('filter_to'));
+        }
 
 
 
-        if($request->has('filter_search_box') && in_array($request->input('filter_field'),$this->availableFiels)){
+
+        if($request->has('filter_search_box') && ''!=$request->input('filter_search_box') && in_array($request->input('filter_field'),$this->availableFiels)){
             $word = str_replace(' ','%',$request->input('filter_search_box'));
             
             if($request->input('filter_field') == 'alumno'){
@@ -75,8 +78,8 @@ class MesaRepository
                 $idsQuery->where($request->input('filter_field'), 'LIKE', '%'.$request->input('filter_search_box').'%');
             }
         }
+        $ids = $idsQuery->distinct('mesas.id')->get()->pluck('id');
 
-        $ids = $idsQuery->distinct()->get()->pluck('id');
 
         $mesas = Mesa::select('mesas.*')->whereIn('mesas.id', $ids)
 

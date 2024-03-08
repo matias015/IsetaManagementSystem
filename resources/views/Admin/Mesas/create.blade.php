@@ -107,6 +107,9 @@
 
                 <div class="upd"><button class="btn_blue"><i class="ti ti-circle-plus"></i>Crear</button></div>
                 </form>
+                <?= $form->generate(route('admin.mesas.store'),'post',[
+                    
+                ]) ?>
             </div>
         </div>
     </div>

@@ -29,7 +29,6 @@ class AdminPdfController extends Controller
                 }
             }
         }
-        // dd($alumnos);
         // $alumnos = Mesa::select('examenes.id as id_examen','alumnos.nombre','alumnos.dni','alumnos.apellido','examenes.nota')
         // -> join('examenes', 'examenes.id_mesa','mesas.id')
         // -> join('alumnos', 'alumnos.id','examenes.id_alumno')

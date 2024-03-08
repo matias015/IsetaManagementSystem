@@ -18,9 +18,9 @@ public $availableFiels = ['anio_cursada'];
 
     function index($request){
         $idsQuery = Cursada::select('cursadas.id')
-            ->join('asignaturas', 'asignaturas.id', 'cursadas.id_asignatura')
-            ->join('alumnos', 'alumnos.id', 'cursadas.id_alumno')
-            ->join('carreras', 'carreras.id', 'asignaturas.id_carrera');
+            ->leftJoin('asignaturas', 'asignaturas.id', 'cursadas.id_asignatura')
+            ->leftJoin('alumnos', 'alumnos.id', 'cursadas.id_alumno')
+            ->leftJoin('carreras', 'carreras.id', 'asignaturas.id_carrera');
 
         if($request->has('filter_carrera_id') && $request->input('filter_carrera_id') != 0){
             $idsQuery->where('carreras.id', $request->input('filter_carrera_id'));
@@ -40,8 +40,8 @@ public $availableFiels = ['anio_cursada'];
 
             
 
-        if($request->has('filter_search_box') && in_array($request->input('filter_field'),$this->availableFiels)){
-            $idsQuery->where($request->input('filter_field'), 'LIKE', '%'.$request->input('filter_search_box').'%');
+            if($request->has('filter_search_box') && ''!=$request->input('filter_search_box') && in_array($request->input('filter_field'),$this->availableFiels)){
+                $idsQuery->where($request->input('filter_field'), 'LIKE', '%'.$request->input('filter_search_box').'%');
         }
 
         $ids = $idsQuery->distinct()->get()->pluck('id');

@@ -8,54 +8,33 @@
             </div>
             <div class="perfil__info">
 
-                <form method="post" enctype="multipart/form-data" action="{{route('admin.carreras.update', ['carrera'=>$carrera->id])}}">
-                    @csrf
-                    @method('put')
-
-                    <div class="perfil_dataname">
-                        <label>Carrera:</label>
-                        <input class="campo_info rounded" value="{{$carrera->nombre}}" name="nombre">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Año apertura:</label>
-                        <input class="campo_info rounded" value="{{$carrera->anio_apertura}}" name="anio_apertura">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Año fin:</label>
-                        <input class="campo_info rounded" value="{{$carrera->anio_fin}}" name="anio_fin">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Observaciones:</label>
-                        <input class="campo_info rounded" value="{{$carrera->observaciones}}" name="observaciones">
-                    </div>
-                    <div class="perfil_dataname">
-                        <label>Vigente:</label> 
-                        <input class="campo_info3 rounded" value="1" type="checkbox"  @checked($carrera->vigente == 1) name="vigente">
-                    </div>
-                    <div class="flex-col items-start perfil_dataname">
-                        <div class="flex">                       
-                            <label>Resolucion:</label>
-                            <input class="campo_info rounded" value="{{$carrera->resolucion}}" name="resolucion">
-                        </div>
-                        
-                        <input class="campo_info3 rounded" value="1" type="file" name="resolucion_archivo">
-                        
-                        @if ($carrera->resolucion_archivo)  
-                            <span class="font-3 font-400">{{$carrera->resolucion_archivo}}</span>
+                <?= $form->generate(route('admin.carreras.store'),'post',[
+                    'Información' => [
+                        $form->text('nombre', 'Nombre:','label-input-y-75',$carrera),
+                        $form->text('resolucion', 'Resolucion:','label-input-y-75',$carrera),
+                        $form->text('anio_apertura', 'Año de apertura:','label-input-y-75',$carrera),
+                        $form->text('anio_fin', 'Año de cierre:','label-input-y-75',$carrera),
+                        $form->textarea('observaciones', 'Observaciones:','label-input-y-75',$carrera),
+                        $form->texthidden(url()->previous()),
+            ],'Resolución'=>[
+                        '<input class="campo_info3 rounded" value="1" type="file" name="resolucion_archivo">',
+                        $carrera->resolucion_archivo?
+                            '<span class="font-3 font-400">'.$carrera->resolucion_archivo.'</span>
                             <div class="flex gap-4">
-                                    <a class="font-3 blue-700" href="{{route('admin.carreras.resolucion', ['carrera'=>$carrera->id])}}">Descargar resolucion</a>
-                                    <a class="font-3 red-600" href="{{route('admin.carreras.resolucion.borrar', ['carrera'=>$carrera->id])}}">Eliminar esta resolucion</a>
-                                </div>
-                        @endif
-                    </div>
-
+                                    <a class="font-3 blue-700" href="'.route('admin.carreras.resolucion', ['carrera'=>$carrera->id]).'">Descargar resolucion</a>
+                                    <a class="font-3 red-600" href="'.route('admin.carreras.resolucion.borrar', ['carrera'=>$carrera->id]).'">Eliminar esta resolucion</a>
+                                </div>'
+                        :''
+                        
+                    ]
+                ]) ?>
+                        
+                        
                     
-
-                    <input type="hidden" value="{{url()->previous()}}" name="redirect">
-
-
-                    <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
-                </form>
+                @if ($carrera->resolucion_archivo)  
+                            
+                        @endif
+                
             </div>
         </div>
     

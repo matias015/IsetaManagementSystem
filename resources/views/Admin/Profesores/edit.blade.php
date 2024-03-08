@@ -7,61 +7,35 @@
                 <h2>Ficha profesor/a</h2>
             </div>
             <div class="perfil__info">
-                <form class="grid-2" method="post" action="{{route('admin.profesores.update', ['profesor'=>$profesor->id])}}">
-                    @csrf
-                    @method('put')
-                    <div>
-                        <h2 class="p-2">Personal</h2>
-                        <?= $form->text('dni','DNI:','label-input-y-75',$profesor) ?>
-                        <?= $form->text('nombre','Nombre:','label-input-y-75',$profesor) ?>
-                        <?= $form->text('apellido','Apellido:','label-input-y-75',$profesor) ?>
-                        <?= $form->date('fecha_nacimiento','Fecha de nacimiento:','label-input-y-75',$profesor,['default'=>$profesor->fecha_nacimiento->format('Y-m-d')]) ?>
-                        <?= $form->select('estado_civil','Estado civil:','label-input-y-75',$profesor,['soltero','casado']) ?>
-                    </div>
-                    <div>
-                        <h2 class="p-2">Dirección</h2>
-                        <?= $form->text('ciudad','Ciudad:','label-input-y-75',$profesor) ?>
-                        <?= $form->text('codigo_postal','Codigo postal 3:','label-input-y-75',$profesor) ?>
-                        <?= $form->text('calle','Calle:','label-input-y-75',$profesor) ?>
-                        <?= $form->text('numero','Altura:','label-input-y-75',$profesor) ?>
-                        <?= $form->text('departamento','Departamento:','label-input-y-75',$profesor) ?>
-                        <?= $form->text('piso','Piso:','label-input-y-75',$profesor) ?>
-                    </div>
-                    <div>
-                        <h2 class="p-2">Académico</h2>
-                        <?= $form->text('formacion_academica','Formacion academica:','label-input-y-75',$profesor) ?>
-                        <?= $form->text('anio_ingreso','Año de ingreso:','label-input-y-75',$profesor) ?>    
-                    </div>
-                    <div>
-                        <h2 class="p-2">Contacto</h2>
-                        <?= $form->text('email','Email:','label-input-y-75',$profesor) ?>
-                        <?= $form->text('telefeono1','Telefeono 1:','label-input-y-75',$profesor) ?>
-                        <?= $form->text('telefeono2','Telefeono 2:','label-input-y-75',$profesor) ?>
-                        <?= $form->text('telefeono3','Telefeono 3:','label-input-y-75',$profesor) ?>
-                    </div>
-                    <div>
-                        <h2 class="p-2">Otros</h2>
-                        <div class="flex-col py-1 px-5">
-                            <label>Observaciones:</label>
-                            <textarea class="p-1 w-75p" value="{{$profesor->observaciones}}" name="observaciones" rows="2"></textarea>
-                        </div>
-                    </div>
-                    
 
-                    
-                    
+                <?= $form->generate(route('admin.profesores.update', ['profesor'=>$profesor->id]),'put',[
+                    'Profesor' => [
+                        $form->text('dni','DNI:','label-input-y-75',$profesor),
+                        $form->text('nombre','Nombre:','label-input-y-75',$profesor),
+                        $form->text('apellido','Apellido:','label-input-y-75',$profesor),
+                        $form->date('fecha_nacimiento','Fecha de nacimiento:','label-input-y-75',$profesor,['default'=>$profesor->fecha_nacimiento->format('Y-m-d')]),
+                        $form->select('estado_civil','Estado civil:','label-input-y-75',$profesor,['soltero','casado'])
+                    ], 'Dirección' => [
+                        $form->text('ciudad','Ciudad:','label-input-y-75',$profesor),
+                        $form->text('codigo_postal','Codigo postal:','label-input-y-75',$profesor),
+                        $form->text('calle','Calle:','label-input-y-75',$profesor),
+                        $form->text('numero','Altura:','label-input-y-75',$profesor),
+                        $form->text('departamento','Departamento:','label-input-y-75',$profesor),
+                        $form->text('piso','Piso:','label-input-y-75',$profesor)
+                    ], 'Academico' => [
+                        $form->text('formacion_academica','Formacion academica:','label-input-y-75',$profesor),
+                        $form->text('anio_ingreso','Año de ingreso:','label-input-y-75',$profesor)
+                    ], 'Contacto' => [
+                        $form->text('email','Email:','label-input-y-75',$profesor),
+                        $form->text('telefeono1','Telefeono 1:','label-input-y-75',$profesor),
+                        $form->text('telefeono2','Telefeono 2:','label-input-y-75',$profesor),
+                        $form->text('telefeono3','Telefeono 3:','label-input-y-75',$profesor)
+                    ], 'Otros' => [
+                        $form->textarea('observaciones', 'Observaciones:', 'label-input-y-75', $profesor)
+                    ]
 
-
-                    
-
-                    
-                    
-                   
-                    
-                
-                </div>
-                <div class="upd"><button class="btn_blue"><i class="ti ti-refresh"></i>Actualizar</button></div>
-            </form>
+                ]) ?>
+            </div>
         </div>
 
         <div class="table">

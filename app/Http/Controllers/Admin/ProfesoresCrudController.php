@@ -61,7 +61,6 @@ class ProfesoresCrudController extends BaseController
      */
     public function edit(Profesor $profesor)
     {
-        //dd($profesor->fecha_nacimiento);
         $mesas = Mesa::where(function ($query) use ($profesor) {
             $query->where('prof_presidente', $profesor->id)
                 ->orWhere('prof_vocal_1', $profesor->id)

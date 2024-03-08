@@ -24,7 +24,6 @@ class AdminDiasHabilesController extends Controller
     }
 
     function store(Request $request){
-        //dd($request->all());
 
         if(!$request->has('fecha')){
             return \redirect()->back()->with('error','No has seleccionado ninguna fecha');

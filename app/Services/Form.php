@@ -35,6 +35,21 @@ class Form{
             'options' => $options
         ])->render();
     }    
+    function textarea($name, $label, $class, $item=null, $options=[]){
+
+        if(!isset($options['inputclass'])){
+            $options['inputclass'] = 'p-1';
+        }
+
+        return view('Componentes.form.textarea-input', [
+            'name' => $name,
+            'item' => $item,
+            'class' => $class,
+            'label' => $label,
+            'options' => $options
+        ])->render();
+    }    
+
 
     function date($name, $label, $class, $item=null, $options=[]){
 
@@ -84,4 +99,24 @@ class Form{
         ])->render();
     }
     
+    function generate($url, $method, $fieldsets){
+
+        $fieldsets = (object) $fieldsets;
+
+        if(!isset($options['inputclass'])){
+            $options['inputclass'] = 'p-1';
+        }
+        return view('Componentes.form.edit-form', [
+            'url' => $url,
+            'method' => $method,
+            'fieldsets' => $fieldsets
+        ])->render();
+    }
+
+    function texthidden($value){
+        return view('Componentes.form.text-hidden', [
+            'value' => $value,
+        ])->render();
+    }
+
 }

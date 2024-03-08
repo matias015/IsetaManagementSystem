@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\DB;
 
 class AlumnoRepository{
 
-    public $config;
+    public $config; 
+    public $availableFiels = ['alumno','dni','email','ciudad','telefono1'];
 
     public function __construct() {
         $this->config = Configuracion::todas();
@@ -17,8 +18,8 @@ class AlumnoRepository{
 
     function index($request){
         $idsQuery = Alumno::select('alumnos.id')
-        ->join('egresadoinscripto', 'egresadoinscripto.id_alumno', '=', 'alumnos.id')
-        ->join('carreras','carreras.id', '=', 'egresadoinscripto.id_carrera'); 
+        ->leftJoin('egresadoinscripto', 'egresadoinscripto.id_alumno', '=', 'alumnos.id')
+        ->leftJoin('carreras','carreras.id', '=', 'egresadoinscripto.id_carrera'); 
 
         if($request->has('filter_carrera_id') && $request->input('filter_carrera_id') != 0){
             $idsQuery->where('egresadoinscripto.id_carrera', $request->input('filter_carrera_id'));
@@ -28,7 +29,7 @@ class AlumnoRepository{
             $idsQuery->where('alumnos.ciudad', $request->input('filter_ciudad'));
         }
 
-        if($request->has('filter_search_box')){
+        if($request->has('filter_search_box') && ''!=$request->input('filter_search_box') && in_array($request->input('filter_field'),$this->availableFiels)){
             if($request->input('filter_field') == 'alumno'){
                 $word = str_replace(' ','%',$request->input('filter_search_box'));
                 $idsQuery->whereRaw("(CONCAT(alumnos.nombre,' ',alumnos.apellido) LIKE '%$word%')");

@@ -42,7 +42,6 @@ class ConfigController extends Controller
         }
         
 
-        // dd($request->except('_token'));
         foreach($data as $key => $value){
             if(!$value) $value = '';
             Configuracion::where('key', $key)

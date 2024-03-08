@@ -54,7 +54,6 @@ class CursadasAdminController extends BaseController
             $request->input('condicion') == 2 ||
             $request->input('condicion') == 3){
             
-                // \dd([$cursada->aprobada, $request->aprobada]);
             
             if($cursada->aprobada == 1 && ($request->aprobada==2 || $request->aprobada==3)){
                 $mensajes[] = "No puedes desaprobar una cursada libre, promocionada o aprobada por equivalencias";

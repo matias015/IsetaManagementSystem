@@ -24,8 +24,8 @@ class InscripcionRepository
 
     function index($request){
         $idsQuery = Egresado::select('egresadoinscripto.id')
-            ->join('alumnos', 'alumnos.id', 'egresadoinscripto.id_alumno')
-            ->join('carreras', 'carreras.id', 'egresadoinscripto.id_carrera');
+            ->leftJoin('alumnos', 'alumnos.id', 'egresadoinscripto.id_alumno')
+            ->leftJoin('carreras', 'carreras.id', 'egresadoinscripto.id_carrera');
 
         if($request->has('filter_carrera_id') && $request->input('filter_carrera_id') != 0){
             $idsQuery->where('egresadoinscripto.id_carrera', $request->input('filter_carrera_id'));
@@ -41,8 +41,8 @@ class InscripcionRepository
                 $idsQuery->whereRaw('egresadoinscripto.anio_finalizacion IS NULL');
 
 
-        if($request->has('filter_ciudad') && $request->input('filter_ciudad') != 0){
-            $idsQuery->where('alumnos.ciudad', $request->input('filter_ciudad'));
+                if($request->has('filter_search_box') && ''!=$request->input('filter_search_box') && in_array($request->input('filter_field'),$this->availableFiels)){
+                    $idsQuery->where('alumnos.ciudad', $request->input('filter_ciudad'));
         }
             
 
