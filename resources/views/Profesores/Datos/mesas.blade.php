@@ -30,25 +30,12 @@
         <div class="flex just-between p-header">
             <a href="/profesor/mesas" class="logo">ISETA</a>
             
-            <div class="flex just-center items-center p-logout">
-                <span class="font-600 p-name">{{$profesor->nombre}}</span>
+            <div class="flex just-center items-center gap-5 p-logout">
                 <a class="red-600" href="{{route('profesor.logout')}}"><i class="ti ti-logout"></i>Cerrar sesion</a>
+                <span class="font-600 p-name">{{$profesor->nombre}}</span>
             </div>
             
-            <div class="perfil-logout" >
-                <div class="perfil-logout-btn"> 
-                    <span>{{$profesor->nombre}}<i class="ti ti-chevron-down"></i></span>
-                </div>
-          
-                <ul class="perfil-lista shadow-2xl">
-                <!---
-                    <li class="perfil-lista-item">
-                        <a @class(['bold'=>request()->is('profesor/mesas')]) href="{{route('profesor.mesas')}}">
-                        <i class="uil uil-user"></i> Perfil</a>
-                    </li>--->
-                    <li class="perfil-lista-item"><a href="{{route('profesor.logout')}}"><i class="ti ti-logout"></i>Cerrar sesion</a></li>
-                </ul> 
-            </div>    
+           
         </div>
 
         <main>
@@ -70,7 +57,7 @@
                     @foreach ($mesas as $mesa)
                         <tr>
                             <td data-label="Asignatura">{{$mesa->asignatura->nombre}}</td>
-                            <td data-label="Fecha">{{$mesa->fecha}}</td>
+                            <td data-label="Fecha">{{$formatoFecha->dmhm($mesa->fecha)}}</td>
                             <td data-label="Rol">
                             @if ($mesa->prof_presidente == $profesor->id)
                             Presidente
@@ -81,9 +68,9 @@
                             @endif
                             </td>
                             <td data-label="Acta volante" class="flex pf-acta">
-                                <a href="{{route('admin.mesas.acta',['mesa' => $mesa->id])}}" target="__blank"><button class="btn-p-acta">Regular</button></a>
-                                <a href="{{route('admin.mesas.actaprom',['mesa' => $mesa->id])}}" target="__blank"><button class="btn-p-acta">Promoción</button></a>
-                                <a href="{{route('admin.mesas.actalibre',['mesa' => $mesa->id])}}" target="__blank"><button class="btn-p-acta">Libre</button></a>
+                                <a href="{{route('admin.mesas.acta',['mesa' => $mesa->id])}}" target="__blank"><button class="btn-p-acta rounded-1">Regular</button></a>
+                                <a href="{{route('admin.mesas.actaprom',['mesa' => $mesa->id])}}" target="__blank"><button class="btn-p-acta rounded-1">Promoción</button></a>
+                                <a href="{{route('admin.mesas.actalibre',['mesa' => $mesa->id])}}" target="__blank"><button class="btn-p-acta rounded-1">Libre</button></a>
                             </td>
                         </tr>
                     @endforeach

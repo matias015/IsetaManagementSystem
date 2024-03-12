@@ -13,7 +13,7 @@
                         $form->text('nombre','Nombre:','label-input-y-75',null),
                         $form->text('apellido','Apellido:','label-input-y-75',null),
                         $form->date('fecha_nacimiento','Fecha de nacimiento:','label-input-y-75',null),
-                        $form->select('estado_civil','Estado civil:','label-input-y-75',null,['soltero','casado'])
+                        $form->select('estado_civil','Estado civil:','label-input-y-75',null,['Soltero','Casado','Divorciado','Viudo','Conyuge','Otro'])
                     ], 'Dirección' => [
                         $form->text('ciudad','Ciudad:','label-input-y-75',null),
                         $form->text('codigo_postal','Codigo postal:','label-input-y-75',null),

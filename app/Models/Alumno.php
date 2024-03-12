@@ -76,6 +76,18 @@ class Alumno extends Authenticatable implements MustVerifyEmail
         $this->save();
     }
 
+    public function estadoCivilStr(){
+
+        $estados_civiles = ['soltero/a','casado/a','divorciado/a','viudo/a','conyuge','otro'];
+
+        if(isset($estados_civiles[$this->estado_civil])){
+            return $estados_civiles[$this->estado_civil];
+        }else{
+            return 'Otro';
+        }
+        
+    }
+
     public function cursadas(){
         return $this -> hasMany(Cursada::class,'id_alumno');
     }

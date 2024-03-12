@@ -29,6 +29,10 @@ class AlumnoRepository{
             $idsQuery->where('alumnos.ciudad', $request->input('filter_ciudad'));
         }
 
+        if($request->has('filter_estado_civil') && $request->input('filter_estado_civil') != 0){
+           $idsQuery->where('alumnos.estado_civil', $request->input('filter_estado_civil'));
+        }
+
         if($request->has('filter_search_box') && ''!=$request->input('filter_search_box') && in_array($request->input('filter_field'),$this->availableFiels)){
             if($request->input('filter_field') == 'alumno'){
                 $word = str_replace(' ','%',$request->input('filter_search_box'));

@@ -10,6 +10,7 @@ use App\Models\Alumno;
 use App\Models\Carrera;
 use App\Models\Configuracion;
 use App\Models\Cursada;
+use App\Models\Egresado;
 use App\Models\Examen;
 use App\Repositories\Admin\AlumnoRepository;
 use Illuminate\Http\Request;
@@ -20,7 +21,8 @@ class AlumnoCrudController extends BaseController
     public $alumnosRepo;
     public $defaultFilters = [
         'filter_carrera_id' => 0,
-        'filter_ciudad' => 0
+        'filter_ciudad' => 0,
+        'filter_estado_civil' => 0
     ];
 
     public function __construct(AlumnoRepository $alumnosRepo) {

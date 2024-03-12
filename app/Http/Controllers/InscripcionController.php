@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Configuracion;
 use App\Models\Examen;
 use App\Models\Mesa;
-use App\Repositories\InscripcionRepository;
+use App\Repositories\Admin\InscripcionRepository;
 use App\Services\AlumnoInscripcionService;
 use Illuminate\Support\Facades\Auth;
 

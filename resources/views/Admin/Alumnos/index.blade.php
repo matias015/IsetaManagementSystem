@@ -4,8 +4,8 @@
     <?= $filtergen->generate('admin.alumnos.index',$filters,[
         'dropdowns' => [
             $carreraM->dropdown('filter_carrera_id','Carrera:', 'label-input-y-100',$filters, ['first_items' => ['Todas']]),
-            $form->select('filter_ciudad', 'Ciudad:','label-input-y-75',$filters,$alumnoM->ciudades())
-        
+            $form->select('filter_ciudad', 'Ciudad:','label-input-y-100',$filters,$alumnoM->ciudades()),
+            $form->select('filter_estado_civil','Estado civil:','label-input-y-100',$filters,['Todos','Soltero','Casado','Divorciado','Viudo','Conyuge','Otro'])
         ],
         'fields' => [
             'alumno' => 'Alumno',
@@ -18,8 +18,8 @@
 
     {{-- CONTENT --}}
     <div class="table">
-
         {{-- BOTON CREAR --}}
+        
         <div class="perfil__header-alt">
             <a href="{{route('admin.alumnos.create')}}"><button class="btn_blue"><i class="ti ti-circle-plus"></i>Agregar alumno</button></a>
         </div>
@@ -37,6 +37,7 @@
                 </tr>
             </thead>
 
+
             {{-- TBODY --}}
             <tbody>
                 @foreach ($alumnos as $alumno)
@@ -48,7 +49,15 @@
                         
                         <td>
                             <p>{{$alumno->email?$alumno->email:'Sin mail registrado'}}</p>
-                            <p>tel: {{$alumno->telefono1? $alumno->telefono1:'Sin telefono'}}</p>
+                            @if ($alumno->telefono1)
+                                <p>tel: {{$alumno->telefono1}}</p>
+                            @elseif ($alumno->telefono2)
+                                <p>tel: {{$alumno->telefono2}}</p>
+                            @elseif ($alumno->telefono3)
+                                <p>tel: {{$alumno->telefono3}}</p>
+                            @else
+                                <p>tel: Sin telefono</p>
+                            @endif
                         </td>
                         <td>
                             <p>{{$alumno->ciudad}}</p>

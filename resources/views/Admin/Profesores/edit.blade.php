@@ -14,7 +14,7 @@
                         $form->text('nombre','Nombre:','label-input-y-75',$profesor),
                         $form->text('apellido','Apellido:','label-input-y-75',$profesor),
                         $form->date('fecha_nacimiento','Fecha de nacimiento:','label-input-y-75',$profesor,['default'=>$profesor->fecha_nacimiento->format('Y-m-d')]),
-                        $form->select('estado_civil','Estado civil:','label-input-y-75',$profesor,['soltero','casado'])
+                        $form->select('estado_civil','Estado civil:','label-input-y-75',$profesor,['Soltero','Casado','Divorciado','Viudo','Conyuge','Otro'])
                     ], 'Dirección' => [
                         $form->text('ciudad','Ciudad:','label-input-y-75',$profesor),
                         $form->text('codigo_postal','Codigo postal:','label-input-y-75',$profesor),

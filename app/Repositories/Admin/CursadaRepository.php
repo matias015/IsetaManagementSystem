@@ -47,7 +47,7 @@ public $availableFiels = ['anio_cursada'];
         $ids = $idsQuery->distinct()->get()->pluck('id');
 
         $cursadas = Cursada::with('alumno','asignatura')->whereIn('cursadas.id', $ids)
-
+        ->orderBy('anio_cursada', 'DESC')
         ->paginate($this->config['filas_por_tabla']); 
 
         

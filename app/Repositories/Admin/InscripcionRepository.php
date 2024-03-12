@@ -53,7 +53,8 @@ class InscripcionRepository
         $ids = $idsQuery->distinct()->get()->pluck('id');
 
         $cursadas = Egresado::with('alumno','carrera')->whereIn('egresadoinscripto.id', $ids)
-            ->paginate($this->config['filas_por_tabla']); 
+        
+        ->paginate($this->config['filas_por_tabla']); 
 
         
         return $cursadas;
