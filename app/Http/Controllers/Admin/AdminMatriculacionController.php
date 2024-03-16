@@ -90,14 +90,6 @@ class AdminMatriculacionController extends Controller
             ]);
         }
 
-
-        if(!Egresado::where('id_alumno',$alumno->id)->where('id_carrera',$carrera->id)->exists()){  
-            Egresado::create([
-                'id_alumno' => $alumno->id,
-                'id_carrera' => $carrera->id,
-                'anio_inscripcion' => $anio_remat
-            ]);
-        }
         
         return redirect()->back()->with('mensaje','Se ha rematriculado correctamente');       
     }

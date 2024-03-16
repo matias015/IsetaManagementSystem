@@ -13,6 +13,7 @@
                     <div class="perfil_dataname">
                         <label>Alumno:</label>
                         <select class="campo_info rounded" name="id_alumno">
+                            <option value="">Selecciona un alumno</option>
                             @foreach ($alumnos as $alumno)
                             <option value="{{$alumno->id}}">{{$alumno->apellidoNombre()}}</option>
                             @endforeach
@@ -38,6 +39,7 @@
                         <label>Año finalizacion:</label>
                         <input class="campo_info rounded" name="anio_finalizacion">
                     </div>
+                    <input name="redirect" type="hidden" value="{{url()->previous()}}">
                     <div class="upd"><button class="btn_blue"><i class="ti ti-circle-plus"></i>Crear</button></div>
                 </form>
             </div>

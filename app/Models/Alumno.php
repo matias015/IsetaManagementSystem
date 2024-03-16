@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class Alumno extends Authenticatable implements MustVerifyEmail
@@ -94,6 +95,16 @@ class Alumno extends Authenticatable implements MustVerifyEmail
 
     public function carreras(){
         return Egresado::with('carrera')->where('id_alumno',$this->id)->get();
+    }
+
+    public function carrerasIncriptas(){
+        $alumno = $this->id;
+
+        return Carrera::select('carreras.id as carrera_id','carreras.nombre as carrera_nombre')
+            ->leftJoin('egresadoinscripto', 'egresadoinscripto.id_carrera','carreras.id')
+            ->where('egresadoinscripto.id_alumno',$alumno)
+            ->get();
+        
     }
 
     public function examenes(){

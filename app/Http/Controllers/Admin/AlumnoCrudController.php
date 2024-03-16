@@ -96,7 +96,7 @@ class AlumnoCrudController extends BaseController
             'alumno' => $alumno,
             'cursadas' => $cursadas,
             'examenes' => $examenes,
-            'carreras' => Carrera::vigentes()
+            'carreras' => $alumno->carrerasIncriptas()
         ]);
     }
 

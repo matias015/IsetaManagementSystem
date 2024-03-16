@@ -56,9 +56,14 @@
         
         <div class="matricular">
             <form action="{{route('admin.alumno.rematricular',['alumno' => $alumno->id])}}">
-                <?= $carreraM->dropdown('carrera', null, 'select-fullw',null,[]) ?>
+                <select name="carrera">
+                    @foreach ($carreras as $carrera)
+                        <option value="{{$carrera->carrera_id}}">{{$carrera->carrera_nombre}}</option>
+                    @endforeach
+                </select>
                 <div class="upd"><button class="btn_blue"><i class="ti ti-paperclip"></i>Matricular</button></div>
             </form>
+            <a href="{{route('admin.inscriptos.create')}}">Inscribir a otra carrera</a>
         </div>
     </div>
    

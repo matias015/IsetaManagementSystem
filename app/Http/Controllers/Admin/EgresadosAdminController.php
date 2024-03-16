@@ -68,7 +68,12 @@ class EgresadosAdminController extends BaseController
         ]);
         
         Egresado::create($data);
-        return redirect()->route('admin.inscriptos.index');
+
+        if($request->has('redirect'))
+            return redirect()->to($request->input('redirect'))->with('mensaje','Se creo la inscripción');
+        else
+            return redirect()->route('admin.inscriptos.index')->with('mensaje','Se creo la inscripción');
+
     }
 
 

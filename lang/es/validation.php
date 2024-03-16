@@ -149,7 +149,9 @@ return [
     'attributes' => [
         'password'=>'contraseña',
         'newPassword' => 'nueva contraseña',
-        'newPassword_confirmation' => 'de confirmacion'
+        'newPassword_confirmation' => 'de confirmacion',
+        'id_alumno' => 'alumno',
+        'anio_inscripcion' => 'Año de inscripción'
     ],
 
 ];
