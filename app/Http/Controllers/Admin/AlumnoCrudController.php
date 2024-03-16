@@ -24,6 +24,7 @@ class AlumnoCrudController extends BaseController
         'filter_ciudad' => 0,
         'filter_estado_civil' => 0
     ];
+    public $mensajes = ['mensaje'=>[],'error'=>[],'aviso'=>[]];
 
     public function __construct(AlumnoRepository $alumnosRepo) {
         parent::__construct();
@@ -129,6 +130,24 @@ class AlumnoCrudController extends BaseController
         
         $alumno->delete();
         return redirect() -> route('admin.alumnos.index') -> with('mensaje', 'Se ha eliminado el alumno');
+    }
+
+
+    public function verificar(Request $request, Alumno $alumno){
+        
+        if( 1 != $alumno->verificado){
+            $alumno->verificar();
+            $this->mensajes['mensaje'][] = 'Se ha verificado al alumno';
+        }
+
+        if($alumno->password == 0){
+            $alumno->password = bcrypt($alumno->dni);
+            $alumno->save();
+            $this->mensajes['mensaje'][] = 'Se utilizará su dni como clave de acceso';
+        }
+        // dd($this->mensajes,['mensaje'=>['Se ha verificado al alumno','Se utilizará su dni como clave de acceso']]);
+        return redirect()->route('admin.alumnos.index')->with('mensajes', $this->mensajes);
+
     }
 
 }

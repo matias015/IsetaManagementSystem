@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\ExamenesCrudController;
 use App\Http\Controllers\Admin\CursadasAdminController;
 use App\Http\Controllers\Admin\EgresadosAdminController;
+use App\Http\Controllers\AlumnoController;
 use App\Models\Alumno;
 use App\Models\Asignatura;
 use App\Models\Carrera;
@@ -32,9 +33,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
- Route::redirect('/admin','/admin/login');
- 
- Route::middleware(['web'])->prefix('admin')->group(function(){
+Route::redirect('/admin','/admin/login');
+
+Route::middleware(['web'])->prefix('admin')->group(function(){
+    Route::get('alumnos/verificar/{alumno}', [AlumnoCrudController::class, 'verificar'])->name('admin.alumnos.verificar')->middleware('auth:admin');
     
     // LOGIN
     Route::get('login', [AdminAuthController::class, 'loginView']) -> name('admin.login');
@@ -52,6 +54,7 @@ use Illuminate\Support\Facades\Storage;
     Route::resource('alumnos', AlumnoCrudController::class, ['as' => 'admin'])->middleware('auth:admin')->missing(function(){
         return redirect()->route('admin.alumnos.index')->with('aviso','El alumno no existe o ha sido eliminado');
     })->except('show');
+
 
     Route::resource('inscriptos', EgresadosAdminController::class, ['as' => 'admin'])->missing(function(){
         return redirect()->route('admin.inscriptos.index')->with('aviso','La inscripcion no existe o ha sido eliminada');

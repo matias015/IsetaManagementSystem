@@ -23,8 +23,11 @@ class AdminMatriculacionController extends Controller
      | ---------------------------------------------
      */
     function rematriculacion_vista(Request $request,Alumno $alumno, AlumnoMatriculacionService $matriculacionService){
-        
+
         $carrera = Carrera::where('id', $request->input('carrera'))->first();
+
+        
+        
 
         $anotables = $matriculacionService->matriculables($alumno, $carrera);
 
@@ -54,7 +57,13 @@ class AdminMatriculacionController extends Controller
                 $libres++;
             }
         }
+        $inscripcion = Egresado::select('id')
+                            ->where('id_carrera', $carrera->id)
+                            ->where('id_alumno', $alumno->id)
+                            ->first();
         
+     
+
         $asignaturas = $rematService->validasParaRegistrar($carrera,$request->except('_token'),$alumno);
 
         if(!$asignaturas['success']) return redirect()->back()->with('error',$asignaturas['mensaje']);

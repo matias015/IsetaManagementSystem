@@ -199,7 +199,9 @@
             </table>
        
     </div> 
-    
+    @if ($alumno->verificado == 0)
+        <a href="{{route('admin.alumnos.verificar', ['alumno' => $alumno->id])}}">Verificar alumno</a>        
+    @endif
 </div>
 
 @endsection
